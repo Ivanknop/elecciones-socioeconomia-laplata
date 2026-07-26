@@ -1,0 +1,4223 @@
+{
+  "anio": 2011,
+  "nivel": "intendente",
+  "categoria_id": 7,
+  "circuitos": {
+    "0460": {
+      "mesas": 6,
+      "electores": 1987,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 131,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 430,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 113,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 26,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 295,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 54,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 152,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 64,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 18,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 110,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 71,
+        "IMPUGNADO": 1,
+        "NULO": 19,
+        "RECURRIDO": 0
+      }
+    },
+    "0461": {
+      "mesas": 5,
+      "electores": 1656,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 97,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 333,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 110,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 29,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 217,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 38,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 135,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 28,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 10,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 92,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 68,
+        "IMPUGNADO": 1,
+        "NULO": 17,
+        "RECURRIDO": 1
+      }
+    },
+    "0462": {
+      "mesas": 6,
+      "electores": 1816,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 139,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 344,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 121,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 27,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 273,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 37,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 151,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 40,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 15,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 89,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 52,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 0
+      }
+    },
+    "0463": {
+      "mesas": 4,
+      "electores": 1104,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 70,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 163,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 71,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 20,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 124,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 23,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 79,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 19,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 6,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 81,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 40,
+        "IMPUGNADO": 0,
+        "NULO": 2,
+        "RECURRIDO": 0
+      }
+    },
+    "0464": {
+      "mesas": 7,
+      "electores": 2160,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 135,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 443,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 135,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 34,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 324,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 61,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 177,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 67,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 20,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 142,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 88,
+        "IMPUGNADO": 0,
+        "NULO": 17,
+        "RECURRIDO": 2
+      }
+    },
+    "0465": {
+      "mesas": 6,
+      "electores": 1893,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 81,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 494,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 118,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 60,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 292,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 49,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 168,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 40,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 20,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 100,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 75,
+        "IMPUGNADO": 0,
+        "NULO": 7,
+        "RECURRIDO": 2
+      }
+    },
+    "0466": {
+      "mesas": 7,
+      "electores": 2151,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 110,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 465,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 174,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 45,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 294,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 66,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 207,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 48,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 26,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 128,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 80,
+        "IMPUGNADO": 0,
+        "NULO": 8,
+        "RECURRIDO": 1
+      }
+    },
+    "0467": {
+      "mesas": 6,
+      "electores": 2074,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 118,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 438,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 144,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 47,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 292,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 60,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 170,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 42,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 20,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 131,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 88,
+        "IMPUGNADO": 0,
+        "NULO": 13,
+        "RECURRIDO": 0
+      }
+    },
+    "0468": {
+      "mesas": 7,
+      "electores": 2225,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 91,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 390,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 119,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 44,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 265,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 48,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 156,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 56,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 15,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 133,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 71,
+        "IMPUGNADO": 0,
+        "NULO": 7,
+        "RECURRIDO": 1
+      }
+    },
+    "0469": {
+      "mesas": 7,
+      "electores": 2386,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 89,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 533,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 128,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 56,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 318,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 84,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 183,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 76,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 30,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 182,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 82,
+        "IMPUGNADO": 0,
+        "NULO": 4,
+        "RECURRIDO": 0
+      }
+    },
+    "0471": {
+      "mesas": 6,
+      "electores": 1933,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 64,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 567,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 100,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 70,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 171,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 63,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 167,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 44,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 19,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 122,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 140,
+        "IMPUGNADO": 0,
+        "NULO": 3,
+        "RECURRIDO": 0
+      }
+    },
+    "0472": {
+      "mesas": 4,
+      "electores": 1370,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 60,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 303,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 75,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 40,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 186,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 36,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 109,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 33,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 17,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 111,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 61,
+        "IMPUGNADO": 0,
+        "NULO": 2,
+        "RECURRIDO": 0
+      }
+    },
+    "0473": {
+      "mesas": 13,
+      "electores": 4331,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 211,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 950,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 259,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 106,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 642,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 122,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 356,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 95,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 36,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 263,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 209,
+        "IMPUGNADO": 1,
+        "NULO": 21,
+        "RECURRIDO": 0
+      }
+    },
+    "0474": {
+      "mesas": 15,
+      "electores": 4908,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 249,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 1217,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 265,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 148,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 710,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 138,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 486,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 117,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 46,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 314,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 195,
+        "IMPUGNADO": 1,
+        "NULO": 30,
+        "RECURRIDO": 2
+      }
+    },
+    "0475": {
+      "mesas": 46,
+      "electores": 15923,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 724,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 4030,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 934,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 435,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 2279,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 447,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 1531,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 324,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 135,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 910,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 615,
+        "IMPUGNADO": 6,
+        "NULO": 109,
+        "RECURRIDO": 0
+      }
+    },
+    "0476": {
+      "mesas": 9,
+      "electores": 3021,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 199,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 720,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 172,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 69,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 461,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 79,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 246,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 80,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 27,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 176,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 124,
+        "IMPUGNADO": 0,
+        "NULO": 21,
+        "RECURRIDO": 0
+      }
+    },
+    "0477": {
+      "mesas": 21,
+      "electores": 6995,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 173,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 1859,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 315,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 227,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 717,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 199,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 579,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 143,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 71,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 418,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 315,
+        "IMPUGNADO": 1,
+        "NULO": 38,
+        "RECURRIDO": 2
+      }
+    },
+    "0480": {
+      "mesas": 23,
+      "electores": 9640,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 254,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 2309,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 298,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 117,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 514,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 191,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 395,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 116,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 64,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 240,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 240,
+        "IMPUGNADO": 0,
+        "NULO": 11,
+        "RECURRIDO": 2
+      }
+    },
+    "0481": {
+      "mesas": 9,
+      "electores": 3061,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 160,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 686,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 190,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 70,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 457,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 85,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 284,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 77,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 22,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 184,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 144,
+        "IMPUGNADO": 0,
+        "NULO": 15,
+        "RECURRIDO": 0
+      }
+    },
+    "0482": {
+      "mesas": 9,
+      "electores": 2851,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 133,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 653,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 159,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 58,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 410,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 115,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 235,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 70,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 26,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 209,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 139,
+        "IMPUGNADO": 0,
+        "NULO": 15,
+        "RECURRIDO": 0
+      }
+    },
+    "0483": {
+      "mesas": 8,
+      "electores": 2644,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 106,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 690,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 152,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 70,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 377,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 84,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 255,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 61,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 29,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 169,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 127,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 0
+      }
+    },
+    "0484": {
+      "mesas": 9,
+      "electores": 2888,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 130,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 704,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 141,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 77,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 399,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 99,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 272,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 71,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 23,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 184,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 126,
+        "IMPUGNADO": 0,
+        "NULO": 13,
+        "RECURRIDO": 0
+      }
+    },
+    "0485": {
+      "mesas": 7,
+      "electores": 2342,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 129,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 482,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 129,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 58,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 350,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 79,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 191,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 75,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 22,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 198,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 87,
+        "IMPUGNADO": 1,
+        "NULO": 7,
+        "RECURRIDO": 0
+      }
+    },
+    "0486": {
+      "mesas": 8,
+      "electores": 2720,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 104,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 713,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 142,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 81,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 392,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 114,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 244,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 82,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 32,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 190,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 86,
+        "IMPUGNADO": 3,
+        "NULO": 12,
+        "RECURRIDO": 0
+      }
+    },
+    "0487": {
+      "mesas": 7,
+      "electores": 2317,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 67,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 560,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 90,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 62,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 252,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 56,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 202,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 57,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 19,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 129,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 63,
+        "IMPUGNADO": 0,
+        "NULO": 7,
+        "RECURRIDO": 0
+      }
+    },
+    "0488": {
+      "mesas": 9,
+      "electores": 3147,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 118,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 915,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 175,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 73,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 411,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 98,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 279,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 82,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 24,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 179,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 154,
+        "IMPUGNADO": 0,
+        "NULO": 18,
+        "RECURRIDO": 0
+      }
+    },
+    "0493": {
+      "mesas": 1,
+      "electores": 119,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 49,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 1,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 18,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "0495": {
+      "mesas": 73,
+      "electores": 25290,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 807,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 7465,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 1400,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 875,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 3104,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 762,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 2190,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 518,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 206,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 1387,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 988,
+        "IMPUGNADO": 1,
+        "NULO": 194,
+        "RECURRIDO": 13
+      }
+    },
+    "0496": {
+      "mesas": 86,
+      "electores": 30938,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 607,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 10461,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 1594,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 1331,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 2201,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 822,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 2246,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 449,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 274,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 1805,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1698,
+        "IMPUGNADO": 1,
+        "NULO": 209,
+        "RECURRIDO": 4
+      }
+    },
+    "0496A": {
+      "mesas": 26,
+      "electores": 8943,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 88,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 3947,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 365,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 335,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 367,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 150,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 541,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 100,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 93,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 634,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 780,
+        "IMPUGNADO": 1,
+        "NULO": 42,
+        "RECURRIDO": 0
+      }
+    },
+    "0496B": {
+      "mesas": 24,
+      "electores": 8249,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 112,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 3360,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 415,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 315,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 464,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 180,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 548,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 118,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 73,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 610,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 650,
+        "IMPUGNADO": 2,
+        "NULO": 47,
+        "RECURRIDO": 3
+      }
+    },
+    "0496C": {
+      "mesas": 29,
+      "electores": 10152,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 140,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 3854,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 524,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 354,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 584,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 220,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 704,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 120,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 93,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 673,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 657,
+        "IMPUGNADO": 1,
+        "NULO": 72,
+        "RECURRIDO": 6
+      }
+    },
+    "0496D": {
+      "mesas": 40,
+      "electores": 13796,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 209,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 5418,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 771,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 553,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 738,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 294,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 929,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 165,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 101,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 940,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1263,
+        "IMPUGNADO": 1,
+        "NULO": 104,
+        "RECURRIDO": 1
+      }
+    },
+    "0496E": {
+      "mesas": 6,
+      "electores": 1874,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 26,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 671,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 120,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 70,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 142,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 40,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 125,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 31,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 21,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 196,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 136,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 0
+      }
+    },
+    "0496F": {
+      "mesas": 1,
+      "electores": 113,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 24,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 8,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 27,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 2,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 5,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 7,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "0497": {
+      "mesas": 45,
+      "electores": 16454,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 317,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 5314,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 776,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 605,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 1363,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 408,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 1278,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 198,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 143,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 715,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 998,
+        "IMPUGNADO": 0,
+        "NULO": 83,
+        "RECURRIDO": 3
+      }
+    },
+    "0497A": {
+      "mesas": 2,
+      "electores": 362,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 51,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 17,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 17,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 10,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 16,
+        "IMPUGNADO": 0,
+        "NULO": 1,
+        "RECURRIDO": 0
+      }
+    },
+    "0497B": {
+      "mesas": 22,
+      "electores": 7581,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 114,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 2706,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 427,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 319,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 507,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 143,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 558,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 83,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 102,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 508,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 660,
+        "IMPUGNADO": 5,
+        "NULO": 57,
+        "RECURRIDO": 5
+      }
+    },
+    "0497C": {
+      "mesas": 22,
+      "electores": 7421,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 77,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 3098,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 348,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 285,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 374,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 167,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 423,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 127,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 67,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 504,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 753,
+        "IMPUGNADO": 0,
+        "NULO": 49,
+        "RECURRIDO": 0
+      }
+    },
+    "0497D": {
+      "mesas": 24,
+      "electores": 8207,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 120,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 3169,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 460,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 364,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 533,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 194,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 604,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 77,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 63,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 512,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 625,
+        "IMPUGNADO": 0,
+        "NULO": 43,
+        "RECURRIDO": 0
+      }
+    },
+    "0497E": {
+      "mesas": 24,
+      "electores": 8114,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 97,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 3228,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 400,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 283,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 420,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 177,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 531,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 103,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 75,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 548,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 756,
+        "IMPUGNADO": 1,
+        "NULO": 29,
+        "RECURRIDO": 0
+      }
+    },
+    "0497F": {
+      "mesas": 7,
+      "electores": 2380,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 30,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 709,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 95,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 118,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 144,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 32,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 143,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 24,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 20,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 257,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 258,
+        "IMPUGNADO": 0,
+        "NULO": 15,
+        "RECURRIDO": 0
+      }
+    },
+    "0498": {
+      "mesas": 2,
+      "electores": 671,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 278,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 21,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 21,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 30,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 8,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 43,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 14,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 95,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 43,
+        "IMPUGNADO": 0,
+        "NULO": 3,
+        "RECURRIDO": 0
+      }
+    },
+    "0501": {
+      "mesas": 124,
+      "electores": 44282,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 1143,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 14533,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 2232,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 1602,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 4299,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 1109,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 3618,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 679,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 404,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 2197,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 2290,
+        "IMPUGNADO": 15,
+        "NULO": 241,
+        "RECURRIDO": 5
+      }
+    },
+    "0502": {
+      "mesas": 118,
+      "electores": 41228,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 1176,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 14565,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 1735,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 1424,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 3637,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 1056,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 3184,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 683,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 383,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 2225,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 2093,
+        "IMPUGNADO": 5,
+        "NULO": 308,
+        "RECURRIDO": 9
+      }
+    },
+    "0503": {
+      "mesas": 10,
+      "electores": 3257,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 56,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 1534,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 124,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 54,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 231,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 69,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 221,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 37,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 15,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 178,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 290,
+        "IMPUGNADO": 1,
+        "NULO": 23,
+        "RECURRIDO": 0
+      }
+    },
+    "0503A": {
+      "mesas": 16,
+      "electores": 5399,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 103,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 2374,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 242,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 170,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 309,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 120,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 371,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 87,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 42,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 278,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 365,
+        "IMPUGNADO": 0,
+        "NULO": 40,
+        "RECURRIDO": 0
+      }
+    },
+    "0504": {
+      "mesas": 83,
+      "electores": 28971,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 1014,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 8992,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 1235,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 992,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 3354,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 721,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 2037,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 699,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 292,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 2023,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1681,
+        "IMPUGNADO": 5,
+        "NULO": 179,
+        "RECURRIDO": 4
+      }
+    },
+    "0504A": {
+      "mesas": 60,
+      "electores": 20952,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 821,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 6489,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 1041,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 654,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 2767,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 567,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 1615,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 636,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 265,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 1369,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1103,
+        "IMPUGNADO": 1,
+        "NULO": 151,
+        "RECURRIDO": 5
+      }
+    },
+    "0505": {
+      "mesas": 48,
+      "electores": 17054,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 375,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 5085,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 810,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 722,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 1575,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 391,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 1314,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 413,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 149,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 980,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1007,
+        "IMPUGNADO": 2,
+        "NULO": 88,
+        "RECURRIDO": 6
+      }
+    },
+    "0505A": {
+      "mesas": 15,
+      "electores": 5212,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 93,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 2151,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 196,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 242,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 304,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 110,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 341,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 87,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 45,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 451,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 435,
+        "IMPUGNADO": 1,
+        "NULO": 41,
+        "RECURRIDO": 1
+      }
+    },
+    "0505B": {
+      "mesas": 5,
+      "electores": 1685,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 18,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 549,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 71,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 47,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 81,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 20,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 110,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 31,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 11,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 201,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 195,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 1
+      }
+    },
+    "0508": {
+      "mesas": 25,
+      "electores": 8326,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 109,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 3248,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 383,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 265,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 460,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 158,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 559,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 91,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 62,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 515,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 623,
+        "IMPUGNADO": 1,
+        "NULO": 52,
+        "RECURRIDO": 3
+      }
+    },
+    "0508A": {
+      "mesas": 30,
+      "electores": 10297,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 155,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 3867,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 544,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 490,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 732,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 249,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 827,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 139,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 83,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 621,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 788,
+        "IMPUGNADO": 3,
+        "NULO": 77,
+        "RECURRIDO": 3
+      }
+    },
+    "0508B": {
+      "mesas": 16,
+      "electores": 5287,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 31,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 2758,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 195,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 108,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 189,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 53,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 265,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 65,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 29,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 342,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 410,
+        "IMPUGNADO": 10,
+        "NULO": 36,
+        "RECURRIDO": 0
+      }
+    },
+    "0508C": {
+      "mesas": 16,
+      "electores": 5464,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 54,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 2396,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 246,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 196,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 290,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 124,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 288,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 49,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 29,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 409,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 443,
+        "IMPUGNADO": 3,
+        "NULO": 22,
+        "RECURRIDO": 0
+      }
+    },
+    "0508D": {
+      "mesas": 22,
+      "electores": 7466,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 81,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 3331,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 282,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 221,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 214,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 100,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 473,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 66,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 71,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 422,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 514,
+        "IMPUGNADO": 0,
+        "NULO": 9,
+        "RECURRIDO": 1
+      }
+    },
+    "0508E": {
+      "mesas": 16,
+      "electores": 5332,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 91,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 1823,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 301,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 205,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 354,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 117,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 405,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 62,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 33,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 530,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 477,
+        "IMPUGNADO": 0,
+        "NULO": 28,
+        "RECURRIDO": 2
+      }
+    },
+    "0508F": {
+      "mesas": 5,
+      "electores": 1659,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 15,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 500,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 78,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 41,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 98,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 23,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 157,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 22,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 64,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 137,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 155,
+        "IMPUGNADO": 0,
+        "NULO": 5,
+        "RECURRIDO": 1
+      }
+    },
+    "0508G": {
+      "mesas": 2,
+      "electores": 396,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 161,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 25,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 6,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 26,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 5,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 43,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 18,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "0509": {
+      "mesas": 18,
+      "electores": 6531,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 51,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 2113,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 300,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 126,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 222,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 96,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 623,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 65,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 49,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 495,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 354,
+        "IMPUGNADO": 1,
+        "NULO": 18,
+        "RECURRIDO": 1
+      }
+    },
+    "0509A": {
+      "mesas": 18,
+      "electores": 6037,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 82,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 2165,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 332,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 288,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 419,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 106,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 497,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 63,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 27,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 479,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 598,
+        "IMPUGNADO": 0,
+        "NULO": 65,
+        "RECURRIDO": 0
+      }
+    },
+    "0516": {
+      "mesas": 9,
+      "electores": 2851,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 165,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 583,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 181,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 72,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 408,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 74,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 236,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 86,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 44,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 175,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 104,
+        "IMPUGNADO": 0,
+        "NULO": 13,
+        "RECURRIDO": 3
+      }
+    },
+    "0517": {
+      "mesas": 11,
+      "electores": 3726,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 115,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 415,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 155,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 43,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 290,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 80,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 188,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 52,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 26,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 134,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 89,
+        "IMPUGNADO": 0,
+        "NULO": 4,
+        "RECURRIDO": 0
+      }
+    },
+    "0518": {
+      "mesas": 9,
+      "electores": 2899,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 135,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 597,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 181,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 64,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 426,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 108,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 291,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 86,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 27,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 230,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 127,
+        "IMPUGNADO": 1,
+        "NULO": 14,
+        "RECURRIDO": 0
+      }
+    },
+    "0519": {
+      "mesas": 18,
+      "electores": 6168,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 217,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 1369,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 252,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 160,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 660,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 216,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 487,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 185,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 66,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 324,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 227,
+        "IMPUGNADO": 0,
+        "NULO": 38,
+        "RECURRIDO": 1
+      }
+    },
+    "0520": {
+      "mesas": 26,
+      "electores": 8841,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 239,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 2331,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 382,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 317,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 900,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 323,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 648,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 181,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 94,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 482,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 492,
+        "IMPUGNADO": 1,
+        "NULO": 64,
+        "RECURRIDO": 10
+      }
+    },
+    "0521": {
+      "mesas": 11,
+      "electores": 3698,
+      "positivos": {
+        "0047": {
+          "nombre": "Coalición Cívica - Afirmación para una República Igualitaria ARI",
+          "votos": 140,
+          "campo_ideologico": "4"
+        },
+        "0131": {
+          "nombre": "Alianza Frente para la Victoria",
+          "votos": 957,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "Alianza Frente Popular",
+          "votos": 196,
+          "campo_ideologico": "2"
+        },
+        "0133": {
+          "nombre": "Alianza Compromiso Federal",
+          "votos": 113,
+          "campo_ideologico": "4"
+        },
+        "0134": {
+          "nombre": "Alianza Frente Amplio Progresista",
+          "votos": 480,
+          "campo_ideologico": "2"
+        },
+        "0135": {
+          "nombre": "Alianza Frente de Izquierda y de los Trabajadores",
+          "votos": 141,
+          "campo_ideologico": "1"
+        },
+        "0137": {
+          "nombre": "Alianza Unión para el Desarrollo Social",
+          "votos": 301,
+          "campo_ideologico": "4"
+        },
+        "0160": {
+          "nombre": "Nuevo Encuentro",
+          "votos": 93,
+          "campo_ideologico": "2"
+        },
+        "0220": {
+          "nombre": "Proyecto Sur",
+          "votos": 34,
+          "campo_ideologico": "2"
+        },
+        "0236": {
+          "nombre": "Frente Social de la Pcia. Bs.As.",
+          "votos": 238,
+          "campo_ideologico": "2"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 157,
+        "IMPUGNADO": 1,
+        "NULO": 21,
+        "RECURRIDO": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "fechaTotalizacion": "2026-07-26T16:04:39.125Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1594,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 555945,
+    "cantidadVotantes": 442581,
+    "participacionPorcentaje": 79.61
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "02-1911",
+      "nombreAgrupacion": "FRENTE NOS",
+      "votos": 5213,
+      "votosPorcentaje": 1.22,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "133",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+      "votos": 15291,
+      "votosPorcentaje": 3.59,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "02-503",
+      "nombreAgrupacion": "FRENTE DE TODOS",
+      "votos": 190780,
+      "votosPorcentaje": 44.77,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "135",
+      "nombreAgrupacion": "JUNTOS POR EL CAMBIO",
+      "votos": 191782,
+      "votosPorcentaje": 45,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "137",
+      "nombreAgrupacion": "CONSENSO FEDERAL",
+      "votos": 23091,
+      "votosPorcentaje": 5.42,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 2528,
+    "votosNulosPorcentaje": 0.57,
+    "votosEnBlanco": 12867,
+    "votosEnBlancoPorcentaje": 2.91,
+    "votosRecurridosComandoImpugnados": 1029,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.23
+  }
+}

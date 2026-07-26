@@ -1,0 +1,77 @@
+{
+  "fechaTotalizacion": "2026-07-26T15:28:07.516Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1388,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 479365,
+    "cantidadVotantes": 378505,
+    "participacionPorcentaje": 78.96
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0131",
+      "nombreAgrupacion": "Alianza Frente para la Victoria                                                                     ",
+      "votos": 150988,
+      "votosPorcentaje": 45.64,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0135",
+      "nombreAgrupacion": "Alianza Frente de Izquierda y de los Trabajadores                                                   ",
+      "votos": 13642,
+      "votosPorcentaje": 4.12,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0137",
+      "nombreAgrupacion": "Alianza Unión para el Desarrollo Social                                                             ",
+      "votos": 61298,
+      "votosPorcentaje": 18.53,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0047",
+      "nombreAgrupacion": "Coalición Cívica - Afirmación para una República Igualitaria ARI                                    ",
+      "votos": 9606,
+      "votosPorcentaje": 2.9,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0132",
+      "nombreAgrupacion": "Alianza Frente Popular                                                                              ",
+      "votos": 19745,
+      "votosPorcentaje": 5.97,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0134",
+      "nombreAgrupacion": "Alianza Frente Amplio Progresista                                                                   ",
+      "votos": 58629,
+      "votosPorcentaje": 17.72,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0160",
+      "nombreAgrupacion": "Nuevo Encuentro                                                                                     ",
+      "votos": 16923,
+      "votosPorcentaje": 5.12,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 2470,
+    "votosNulosPorcentaje": 0.65,
+    "votosEnBlanco": 45032,
+    "votosEnBlancoPorcentaje": 11.9,
+    "votosRecurridosComandoImpugnados": 172,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.05
+  }
+}

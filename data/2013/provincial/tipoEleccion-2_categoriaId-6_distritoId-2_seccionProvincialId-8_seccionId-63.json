@@ -1,0 +1,69 @@
+{
+  "fechaTotalizacion": "2026-07-26T17:07:13.998Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1524,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 525404,
+    "cantidadVotantes": 419745,
+    "participacionPorcentaje": 79.89
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0501",
+      "nombreAgrupacion": "FRENTE PARA LA VICTORIA",
+      "votos": 108787,
+      "votosPorcentaje": 28.29,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0505",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+      "votos": 32480,
+      "votosPorcentaje": 8.45,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0507",
+      "nombreAgrupacion": "UNIDOS POR LA LIBERTAD Y EL TRABAJO",
+      "votos": 32985,
+      "votosPorcentaje": 8.58,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0510",
+      "nombreAgrupacion": "FRENTE RENOVADOR",
+      "votos": 133030,
+      "votosPorcentaje": 34.59,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0511",
+      "nombreAgrupacion": "FRENTE POPULAR DEMOCRATICO Y SOCIAL (PODEMOS)",
+      "votos": 6836,
+      "votosPorcentaje": 1.78,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0514",
+      "nombreAgrupacion": "FRENTE PROGRESISTA CIVICO Y SOCIAL",
+      "votos": 70473,
+      "votosPorcentaje": 18.32,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 4628,
+    "votosNulosPorcentaje": 1.1,
+    "votosEnBlanco": 30045,
+    "votosEnBlancoPorcentaje": 7.16,
+    "votosRecurridosComandoImpugnados": 481,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.11
+  }
+}

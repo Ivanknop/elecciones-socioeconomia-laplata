@@ -1,0 +1,77 @@
+{
+  "fechaTotalizacion": "2023-11-25T20:12:26.043Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1338,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 455794,
+    "cantidadVotantes": 369821,
+    "participacionPorcentaje": 81.14
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0133",
+      "nombreAgrupacion": "Alianza Compromiso Federal                                                                          ",
+      "votos": 30978,
+      "votosPorcentaje": 8.73,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0135",
+      "nombreAgrupacion": "Alianza Frente de Izquierda y de los Trabajadores                                                   ",
+      "votos": 12654,
+      "votosPorcentaje": 3.57,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0047",
+      "nombreAgrupacion": "Coalición Cívica - Afirmación para una República Igualitaria ARI                                    ",
+      "votos": 9092,
+      "votosPorcentaje": 2.56,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0132",
+      "nombreAgrupacion": "Alianza Frente Popular                                                                              ",
+      "votos": 27275,
+      "votosPorcentaje": 7.69,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0137",
+      "nombreAgrupacion": "Alianza Unión para el Desarrollo Social                                                             ",
+      "votos": 42476,
+      "votosPorcentaje": 11.97,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0134",
+      "nombreAgrupacion": "Alianza Frente Amplio Progresista                                                                   ",
+      "votos": 78714,
+      "votosPorcentaje": 22.19,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0131",
+      "nombreAgrupacion": "Alianza Frente para la Victoria                                                                     ",
+      "votos": 153609,
+      "votosPorcentaje": 43.29,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 2565,
+    "votosNulosPorcentaje": 0.69,
+    "votosEnBlanco": 12279,
+    "votosEnBlancoPorcentaje": 3.32,
+    "votosRecurridosComandoImpugnados": 179,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.05
+  }
+}

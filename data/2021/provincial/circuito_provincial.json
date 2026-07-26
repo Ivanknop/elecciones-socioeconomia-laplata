@@ -1,0 +1,2629 @@
+{
+  "anio": 2021,
+  "nivel": "provincial",
+  "categoria_id": 6,
+  "circuitos": {
+    "00460": {
+      "mesas": 8,
+      "electores": 2870,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 81,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 118,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 801,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 512,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 58,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 41,
+        "COMANDO": 2,
+        "IMPUGNADOS": 0,
+        "NULOS": 11,
+        "RECURRIDOS": 0
+      }
+    },
+    "00461": {
+      "mesas": 5,
+      "electores": 1553,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 61,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 75,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 556,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 307,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 40,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 19,
+        "COMANDO": 1,
+        "IMPUGNADOS": 0,
+        "NULOS": 18,
+        "RECURRIDOS": 2
+      }
+    },
+    "00462": {
+      "mesas": 5,
+      "electores": 1732,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 77,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 61,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 705,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 290,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 34,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 25,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 7,
+        "RECURRIDOS": 1
+      }
+    },
+    "00463": {
+      "mesas": 3,
+      "electores": 1011,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 35,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 48,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 437,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 177,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 22,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 18,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 6,
+        "RECURRIDOS": 0
+      }
+    },
+    "00464": {
+      "mesas": 7,
+      "electores": 2337,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 87,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 135,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 917,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 484,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 74,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 34,
+        "COMANDO": 2,
+        "IMPUGNADOS": 0,
+        "NULOS": 12,
+        "RECURRIDOS": 2
+      }
+    },
+    "00465": {
+      "mesas": 6,
+      "electores": 1973,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 88,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 116,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 809,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 385,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 54,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 36,
+        "COMANDO": 2,
+        "IMPUGNADOS": 1,
+        "NULOS": 9,
+        "RECURRIDOS": 0
+      }
+    },
+    "00466": {
+      "mesas": 11,
+      "electores": 4130,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 136,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 129,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1035,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 511,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 45,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 42,
+        "COMANDO": 0,
+        "IMPUGNADOS": 6,
+        "NULOS": 6,
+        "RECURRIDOS": 2
+      }
+    },
+    "00467": {
+      "mesas": 6,
+      "electores": 1978,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 95,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 90,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 832,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 346,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 69,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 28,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 4,
+        "RECURRIDOS": 0
+      }
+    },
+    "00468": {
+      "mesas": 6,
+      "electores": 1959,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 95,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 98,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 696,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 413,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 43,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 49,
+        "COMANDO": 1,
+        "IMPUGNADOS": 0,
+        "NULOS": 16,
+        "RECURRIDOS": 1
+      }
+    },
+    "00469": {
+      "mesas": 7,
+      "electores": 2125,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 109,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 137,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 647,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 481,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 54,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 36,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 19,
+        "RECURRIDOS": 3
+      }
+    },
+    "00471": {
+      "mesas": 6,
+      "electores": 1812,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 79,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 94,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 566,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 432,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 47,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 69,
+        "COMANDO": 1,
+        "IMPUGNADOS": 0,
+        "NULOS": 10,
+        "RECURRIDOS": 1
+      }
+    },
+    "00472": {
+      "mesas": 4,
+      "electores": 1344,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 70,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 81,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 399,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 306,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 30,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 24,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 11,
+        "RECURRIDOS": 2
+      }
+    },
+    "00473": {
+      "mesas": 14,
+      "electores": 5330,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 182,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 259,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1589,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 913,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 124,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 78,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 23,
+        "RECURRIDOS": 0
+      }
+    },
+    "00474": {
+      "mesas": 14,
+      "electores": 4891,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 205,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 268,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2051,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 981,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 132,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 87,
+        "COMANDO": 1,
+        "IMPUGNADOS": 0,
+        "NULOS": 31,
+        "RECURRIDOS": 3
+      }
+    },
+    "00475": {
+      "mesas": 48,
+      "electores": 16924,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 792,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 872,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 6768,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3145,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 424,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 248,
+        "COMANDO": 9,
+        "IMPUGNADOS": 0,
+        "NULOS": 117,
+        "RECURRIDOS": 2
+      }
+    },
+    "00476": {
+      "mesas": 9,
+      "electores": 2922,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 112,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 154,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1216,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 599,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 82,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 38,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 21,
+        "RECURRIDOS": 3
+      }
+    },
+    "00477": {
+      "mesas": 20,
+      "electores": 6964,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 306,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 399,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2287,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1681,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 220,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 163,
+        "COMANDO": 1,
+        "IMPUGNADOS": 0,
+        "NULOS": 55,
+        "RECURRIDOS": 2
+      }
+    },
+    "00480": {
+      "mesas": 8,
+      "electores": 2659,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 117,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 139,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 985,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 513,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 67,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 31,
+        "COMANDO": 0,
+        "IMPUGNADOS": 1,
+        "NULOS": 21,
+        "RECURRIDOS": 0
+      }
+    },
+    "00481": {
+      "mesas": 10,
+      "electores": 3160,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 143,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 146,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1222,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 621,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 93,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 51,
+        "COMANDO": 0,
+        "IMPUGNADOS": 2,
+        "NULOS": 26,
+        "RECURRIDOS": 0
+      }
+    },
+    "00482": {
+      "mesas": 8,
+      "electores": 2789,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 125,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 161,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1057,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 626,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 73,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 50,
+        "COMANDO": 0,
+        "IMPUGNADOS": 1,
+        "NULOS": 14,
+        "RECURRIDOS": 1
+      }
+    },
+    "00483": {
+      "mesas": 6,
+      "electores": 2018,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 95,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 134,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 776,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 414,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 62,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 41,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 18,
+        "RECURRIDOS": 0
+      }
+    },
+    "00484": {
+      "mesas": 8,
+      "electores": 2760,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 123,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 164,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1014,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 578,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 58,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 42,
+        "COMANDO": 1,
+        "IMPUGNADOS": 0,
+        "NULOS": 21,
+        "RECURRIDOS": 0
+      }
+    },
+    "00485": {
+      "mesas": 7,
+      "electores": 2371,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 97,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 172,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 848,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 559,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 49,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 51,
+        "COMANDO": 0,
+        "IMPUGNADOS": 1,
+        "NULOS": 15,
+        "RECURRIDOS": 1
+      }
+    },
+    "00486": {
+      "mesas": 8,
+      "electores": 2765,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 141,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 212,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1006,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 621,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 98,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 39,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 13,
+        "RECURRIDOS": 1
+      }
+    },
+    "00487": {
+      "mesas": 9,
+      "electores": 3185,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 138,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 176,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 975,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 599,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 82,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 43,
+        "COMANDO": 4,
+        "IMPUGNADOS": 0,
+        "NULOS": 20,
+        "RECURRIDOS": 1
+      }
+    },
+    "00488": {
+      "mesas": 10,
+      "electores": 3298,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 163,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 219,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1199,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 753,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 90,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 61,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 28,
+        "RECURRIDOS": 2
+      }
+    },
+    "00493": {
+      "mesas": 1,
+      "electores": 101,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 20,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 38,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 5,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 1,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 0,
+        "RECURRIDOS": 0
+      }
+    },
+    "00495": {
+      "mesas": 74,
+      "electores": 25889,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 1240,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1328,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 10035,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 5425,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 787,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 474,
+        "COMANDO": 13,
+        "IMPUGNADOS": 7,
+        "NULOS": 182,
+        "RECURRIDOS": 7
+      }
+    },
+    "00496": {
+      "mesas": 86,
+      "electores": 30753,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 1560,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1724,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 9710,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 7147,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 901,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 753,
+        "COMANDO": 15,
+        "IMPUGNADOS": 1,
+        "NULOS": 256,
+        "RECURRIDOS": 2
+      }
+    },
+    "00497": {
+      "mesas": 39,
+      "electores": 13861,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 833,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 728,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 5158,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2746,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 410,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 310,
+        "COMANDO": 8,
+        "IMPUGNADOS": 0,
+        "NULOS": 111,
+        "RECURRIDOS": 3
+      }
+    },
+    "00498": {
+      "mesas": 4,
+      "electores": 1145,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 94,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 34,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 282,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 327,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 27,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 42,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 6,
+        "RECURRIDOS": 0
+      }
+    },
+    "00501": {
+      "mesas": 135,
+      "electores": 48124,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 2442,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 2502,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 16774,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 9737,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 1467,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 990,
+        "COMANDO": 30,
+        "IMPUGNADOS": 23,
+        "NULOS": 348,
+        "RECURRIDOS": 18
+      }
+    },
+    "00502": {
+      "mesas": 126,
+      "electores": 45059,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 2111,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 2262,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 14584,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 10530,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 1343,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 961,
+        "COMANDO": 10,
+        "IMPUGNADOS": 20,
+        "NULOS": 318,
+        "RECURRIDOS": 13
+      }
+    },
+    "00503": {
+      "mesas": 17,
+      "electores": 5952,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 266,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 283,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2061,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1442,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 234,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 199,
+        "COMANDO": 1,
+        "IMPUGNADOS": 0,
+        "NULOS": 68,
+        "RECURRIDOS": 2
+      }
+    },
+    "00504": {
+      "mesas": 100,
+      "electores": 35000,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 1725,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 2000,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 12672,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 7838,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 1172,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 855,
+        "COMANDO": 29,
+        "IMPUGNADOS": 3,
+        "NULOS": 241,
+        "RECURRIDOS": 8
+      }
+    },
+    "00505": {
+      "mesas": 47,
+      "electores": 16462,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 816,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 896,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 5368,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3900,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 590,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 498,
+        "COMANDO": 9,
+        "IMPUGNADOS": 0,
+        "NULOS": 161,
+        "RECURRIDOS": 3
+      }
+    },
+    "00508": {
+      "mesas": 31,
+      "electores": 11179,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 475,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 664,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2873,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2928,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 417,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 352,
+        "COMANDO": 3,
+        "IMPUGNADOS": 4,
+        "NULOS": 75,
+        "RECURRIDOS": 0
+      }
+    },
+    "00509": {
+      "mesas": 22,
+      "electores": 8097,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 335,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 339,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1678,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2245,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 176,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 246,
+        "COMANDO": 2,
+        "IMPUGNADOS": 7,
+        "NULOS": 48,
+        "RECURRIDOS": 0
+      }
+    },
+    "00516": {
+      "mesas": 9,
+      "electores": 3112,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 130,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 161,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 967,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 570,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 73,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 47,
+        "COMANDO": 0,
+        "IMPUGNADOS": 1,
+        "NULOS": 5,
+        "RECURRIDOS": 0
+      }
+    },
+    "00517": {
+      "mesas": 10,
+      "electores": 3376,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 144,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 193,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1214,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 674,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 97,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 61,
+        "COMANDO": 4,
+        "IMPUGNADOS": 0,
+        "NULOS": 12,
+        "RECURRIDOS": 2
+      }
+    },
+    "00518": {
+      "mesas": 5,
+      "electores": 1736,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 58,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 94,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 495,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 307,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 36,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 14,
+        "COMANDO": 1,
+        "IMPUGNADOS": 1,
+        "NULOS": 12,
+        "RECURRIDOS": 0
+      }
+    },
+    "00519": {
+      "mesas": 18,
+      "electores": 6353,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 270,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 373,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1842,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1396,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 123,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 97,
+        "COMANDO": 4,
+        "IMPUGNADOS": 6,
+        "NULOS": 33,
+        "RECURRIDOS": 1
+      }
+    },
+    "00520": {
+      "mesas": 26,
+      "electores": 9154,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 426,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 503,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2894,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1988,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 250,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 159,
+        "COMANDO": 7,
+        "IMPUGNADOS": 2,
+        "NULOS": 57,
+        "RECURRIDOS": 2
+      }
+    },
+    "00521": {
+      "mesas": 11,
+      "electores": 3683,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 176,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 234,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1318,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 857,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 101,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 70,
+        "COMANDO": 1,
+        "IMPUGNADOS": 0,
+        "NULOS": 13,
+        "RECURRIDOS": 0
+      }
+    },
+    "0496A": {
+      "mesas": 40,
+      "electores": 14626,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 545,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 723,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 3166,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 4476,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 397,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 459,
+        "COMANDO": 6,
+        "IMPUGNADOS": 10,
+        "NULOS": 156,
+        "RECURRIDOS": 4
+      }
+    },
+    "0496B": {
+      "mesas": 41,
+      "electores": 15425,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 619,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 756,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 3570,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 4151,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 427,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 456,
+        "COMANDO": 6,
+        "IMPUGNADOS": 10,
+        "NULOS": 184,
+        "RECURRIDOS": 1
+      }
+    },
+    "0496C": {
+      "mesas": 44,
+      "electores": 15930,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 726,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 802,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 4062,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 4310,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 427,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 406,
+        "COMANDO": 19,
+        "IMPUGNADOS": 0,
+        "NULOS": 121,
+        "RECURRIDOS": 3
+      }
+    },
+    "0496D": {
+      "mesas": 50,
+      "electores": 17728,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 765,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 959,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 4500,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 4644,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 479,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 558,
+        "COMANDO": 23,
+        "IMPUGNADOS": 3,
+        "NULOS": 196,
+        "RECURRIDOS": 3
+      }
+    },
+    "0496E": {
+      "mesas": 14,
+      "electores": 4687,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 235,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 315,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1265,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1422,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 178,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 134,
+        "COMANDO": 3,
+        "IMPUGNADOS": 0,
+        "NULOS": 41,
+        "RECURRIDOS": 2
+      }
+    },
+    "0496F": {
+      "mesas": 1,
+      "electores": 247,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 14,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 12,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 55,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 57,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 11,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 16,
+        "COMANDO": 3,
+        "IMPUGNADOS": 0,
+        "NULOS": 3,
+        "RECURRIDOS": 0
+      }
+    },
+    "0497A": {
+      "mesas": 2,
+      "electores": 632,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 27,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 20,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 149,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 114,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 16,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 10,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 5,
+        "RECURRIDOS": 0
+      }
+    },
+    "0497B": {
+      "mesas": 31,
+      "electores": 10742,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 545,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 576,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 3028,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2557,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 360,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 344,
+        "COMANDO": 6,
+        "IMPUGNADOS": 0,
+        "NULOS": 60,
+        "RECURRIDOS": 1
+      }
+    },
+    "0497C": {
+      "mesas": 29,
+      "electores": 10594,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 532,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 548,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2513,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2711,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 324,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 262,
+        "COMANDO": 6,
+        "IMPUGNADOS": 0,
+        "NULOS": 78,
+        "RECURRIDOS": 0
+      }
+    },
+    "0497D": {
+      "mesas": 31,
+      "electores": 10740,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 547,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 574,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 3147,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2475,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 319,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 357,
+        "COMANDO": 0,
+        "IMPUGNADOS": 10,
+        "NULOS": 71,
+        "RECURRIDOS": 2
+      }
+    },
+    "0497E": {
+      "mesas": 28,
+      "electores": 9793,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 506,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 540,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2609,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2478,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 322,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 435,
+        "COMANDO": 3,
+        "IMPUGNADOS": 0,
+        "NULOS": 85,
+        "RECURRIDOS": 11
+      }
+    },
+    "0497F": {
+      "mesas": 14,
+      "electores": 5595,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 226,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 194,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 943,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1107,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 146,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 136,
+        "COMANDO": 14,
+        "IMPUGNADOS": 1,
+        "NULOS": 23,
+        "RECURRIDOS": 0
+      }
+    },
+    "0503A": {
+      "mesas": 28,
+      "electores": 10011,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 484,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 608,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2759,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2491,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 323,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 268,
+        "COMANDO": 2,
+        "IMPUGNADOS": 2,
+        "NULOS": 65,
+        "RECURRIDOS": 4
+      }
+    },
+    "0504A": {
+      "mesas": 82,
+      "electores": 29768,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 1492,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1479,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 11050,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 6375,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 1070,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 538,
+        "COMANDO": 10,
+        "IMPUGNADOS": 1,
+        "NULOS": 179,
+        "RECURRIDOS": 4
+      }
+    },
+    "0504C": {
+      "mesas": 1,
+      "electores": 331,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 6,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 48,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 2,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 0,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 0,
+        "RECURRIDOS": 0
+      }
+    },
+    "0505A": {
+      "mesas": 29,
+      "electores": 10200,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 467,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 561,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2515,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2835,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 292,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 356,
+        "COMANDO": 3,
+        "IMPUGNADOS": 5,
+        "NULOS": 119,
+        "RECURRIDOS": 11
+      }
+    },
+    "0505B": {
+      "mesas": 12,
+      "electores": 4558,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 179,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 199,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 708,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1277,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 98,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 107,
+        "COMANDO": 0,
+        "IMPUGNADOS": 6,
+        "NULOS": 20,
+        "RECURRIDOS": 0
+      }
+    },
+    "0508A": {
+      "mesas": 40,
+      "electores": 14194,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 715,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 756,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 4401,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3208,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 423,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 416,
+        "COMANDO": 6,
+        "IMPUGNADOS": 5,
+        "NULOS": 116,
+        "RECURRIDOS": 9
+      }
+    },
+    "0508B": {
+      "mesas": 22,
+      "electores": 7430,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 297,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 451,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1519,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2269,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 284,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 243,
+        "COMANDO": 0,
+        "IMPUGNADOS": 1,
+        "NULOS": 50,
+        "RECURRIDOS": 5
+      }
+    },
+    "0508C": {
+      "mesas": 20,
+      "electores": 6815,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 315,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 359,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1657,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1943,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 269,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 232,
+        "COMANDO": 3,
+        "IMPUGNADOS": 0,
+        "NULOS": 58,
+        "RECURRIDOS": 3
+      }
+    },
+    "0508D": {
+      "mesas": 37,
+      "electores": 13943,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 556,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 619,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2760,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3808,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 349,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 446,
+        "COMANDO": 2,
+        "IMPUGNADOS": 19,
+        "NULOS": 61,
+        "RECURRIDOS": 2
+      }
+    },
+    "0508E": {
+      "mesas": 22,
+      "electores": 7682,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 395,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 474,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2150,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1997,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 256,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 309,
+        "COMANDO": 3,
+        "IMPUGNADOS": 1,
+        "NULOS": 56,
+        "RECURRIDOS": 5
+      }
+    },
+    "0508F": {
+      "mesas": 7,
+      "electores": 2228,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 136,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 94,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 563,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 517,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 60,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 67,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 9,
+        "RECURRIDOS": 2
+      }
+    },
+    "0508G": {
+      "mesas": 4,
+      "electores": 1533,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 47,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 38,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 177,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 345,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 33,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 32,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 0,
+        "RECURRIDOS": 0
+      }
+    },
+    "0509A": {
+      "mesas": 29,
+      "electores": 10562,
+      "positivos": {
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 551,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 468,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2948,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2332,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 330,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "BLANCOS": 372,
+        "COMANDO": 1,
+        "IMPUGNADOS": 0,
+        "NULOS": 77,
+        "RECURRIDOS": 0
+      }
+    }
+  }
+}

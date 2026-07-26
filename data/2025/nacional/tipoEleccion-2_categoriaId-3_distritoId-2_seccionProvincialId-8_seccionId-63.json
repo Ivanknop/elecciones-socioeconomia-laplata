@@ -1,0 +1,141 @@
+{
+  "fechaTotalizacion": "2026-07-26T17:07:28.219Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1679,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 576612,
+    "cantidadVotantes": 407253,
+    "participacionPorcentaje": 70.63
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": 110,
+      "nombreAgrupacion": "ALIANZA LA LIBERTAD AVANZA",
+      "votos": 173880,
+      "votosPorcentaje": 44.15,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 248,
+      "nombreAgrupacion": "ALIANZA FUERZA PATRIA",
+      "votos": 153163,
+      "votosPorcentaje": 38.89,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 372,
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+      "votos": 21472,
+      "votosPorcentaje": 5.45,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 259,
+      "nombreAgrupacion": "ALIANZA PROVINCIAS UNIDAS",
+      "votos": 12296,
+      "votosPorcentaje": 3.12,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 316,
+      "nombreAgrupacion": "COALICIÓN CÍVICA - A.R.I.",
+      "votos": 4054,
+      "votosPorcentaje": 1.03,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 260,
+      "nombreAgrupacion": "ALIANZA POTENCIA",
+      "votos": 3031,
+      "votosPorcentaje": 0.77,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 258,
+      "nombreAgrupacion": "PROPUESTA FEDERAL PARA EL CAMBIO",
+      "votos": 9361,
+      "votosPorcentaje": 2.38,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 263,
+      "nombreAgrupacion": "MOVIMIENTO AVANZADA SOCIALISTA",
+      "votos": 1824,
+      "votosPorcentaje": 0.46,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 265,
+      "nombreAgrupacion": "MOVIMIENTO POLÍTICO SOCIAL Y CULTURAL PROYECTO SUR",
+      "votos": 2243,
+      "votosPorcentaje": 0.57,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 262,
+      "nombreAgrupacion": "ALIANZA NUEVOS AIRES",
+      "votos": 1265,
+      "votosPorcentaje": 0.32,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 252,
+      "nombreAgrupacion": "PARTIDO NUEVO BUENOS AIRES",
+      "votos": 4192,
+      "votosPorcentaje": 1.06,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 315,
+      "nombreAgrupacion": "UNIÓN LIBERAL",
+      "votos": 1634,
+      "votosPorcentaje": 0.41,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 317,
+      "nombreAgrupacion": "ALIANZA UNIÓN FEDERAL",
+      "votos": 1622,
+      "votosPorcentaje": 0.41,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 11,
+      "nombreAgrupacion": "FRENTE PATRIOTA FEDERAL",
+      "votos": 3250,
+      "votosPorcentaje": 0.83,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 253,
+      "nombreAgrupacion": "LIBER.AR",
+      "votos": 584,
+      "votosPorcentaje": 0.15,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 8831,
+    "votosNulosPorcentaje": 2.17,
+    "votosEnBlanco": 4233,
+    "votosEnBlancoPorcentaje": 1.04,
+    "votosRecurridosComandoImpugnados": 318,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.08
+  }
+}

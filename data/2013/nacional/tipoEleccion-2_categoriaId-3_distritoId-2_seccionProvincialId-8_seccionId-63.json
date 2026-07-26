@@ -1,0 +1,69 @@
+{
+  "fechaTotalizacion": "2026-07-26T17:07:13.076Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1524,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 500621,
+    "cantidadVotantes": 408045,
+    "participacionPorcentaje": 81.51
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0501",
+      "nombreAgrupacion": "FRENTE PARA LA VICTORIA",
+      "votos": 103224,
+      "votosPorcentaje": 27.12,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0505",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+      "votos": 30672,
+      "votosPorcentaje": 8.06,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0507",
+      "nombreAgrupacion": "UNIDOS POR LA LIBERTAD Y EL TRABAJO",
+      "votos": 31132,
+      "votosPorcentaje": 8.18,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0510",
+      "nombreAgrupacion": "FRENTE RENOVADOR",
+      "votos": 140382,
+      "votosPorcentaje": 36.88,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0513",
+      "nombreAgrupacion": "UNION CON FE",
+      "votos": 4698,
+      "votosPorcentaje": 1.23,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0514",
+      "nombreAgrupacion": "FRENTE PROGRESISTA CIVICO Y SOCIAL",
+      "votos": 70580,
+      "votosPorcentaje": 18.54,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 4867,
+    "votosNulosPorcentaje": 1.19,
+    "votosEnBlanco": 22248,
+    "votosEnBlancoPorcentaje": 5.45,
+    "votosRecurridosComandoImpugnados": 242,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.06
+  }
+}

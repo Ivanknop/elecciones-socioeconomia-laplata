@@ -1,0 +1,61 @@
+{
+  "fechaTotalizacion": "2026-07-26T17:07:17.405Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1663,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 572008,
+    "cantidadVotantes": 419234,
+    "participacionPorcentaje": 73.29
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0518",
+      "nombreAgrupacion": "CAMBIEMOS BUENOS AIRES",
+      "votos": 201129,
+      "votosPorcentaje": 50.1,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0546",
+      "nombreAgrupacion": "FRENTE JUSTICIALISTA",
+      "votos": 22986,
+      "votosPorcentaje": 5.73,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0574",
+      "nombreAgrupacion": "UNIDAD CIUDADANA",
+      "votos": 113650,
+      "votosPorcentaje": 28.31,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0503",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+      "votos": 27649,
+      "votosPorcentaje": 6.89,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0511",
+      "nombreAgrupacion": "1PAIS",
+      "votos": 36062,
+      "votosPorcentaje": 8.98,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3140,
+    "votosNulosPorcentaje": 0.75,
+    "votosEnBlanco": 13229,
+    "votosEnBlancoPorcentaje": 3.16,
+    "votosRecurridosComandoImpugnados": 1389,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.33
+  }
+}

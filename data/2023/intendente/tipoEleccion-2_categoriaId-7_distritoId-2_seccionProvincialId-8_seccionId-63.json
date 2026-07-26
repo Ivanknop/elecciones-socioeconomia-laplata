@@ -1,0 +1,53 @@
+{
+  "fechaTotalizacion": "2024-06-03T17:53:13.789Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1805,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 625734,
+    "cantidadVotantes": 461701,
+    "participacionPorcentaje": 73.79
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "20135",
+      "nombreAgrupacion": "LA LIBERTAD AVANZA",
+      "votos": 78189,
+      "votosPorcentaje": 18.47,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "20136",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+      "votos": 21392,
+      "votosPorcentaje": 5.05,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "20134",
+      "nombreAgrupacion": "UNION POR LA PATRIA",
+      "votos": 162268,
+      "votosPorcentaje": 38.34,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "20132",
+      "nombreAgrupacion": "JUNTOS POR EL CAMBIO",
+      "votos": 161412,
+      "votosPorcentaje": 38.14,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3087,
+    "votosNulosPorcentaje": 0.67,
+    "votosEnBlanco": 34335,
+    "votosEnBlancoPorcentaje": 7.44,
+    "votosRecurridosComandoImpugnados": 1018,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.22
+  }
+}

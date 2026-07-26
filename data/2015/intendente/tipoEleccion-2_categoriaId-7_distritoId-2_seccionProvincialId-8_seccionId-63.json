@@ -1,0 +1,105 @@
+{
+  "fechaTotalizacion": "2026-07-26T16:04:35.464Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1532,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 531539,
+    "cantidadVotantes": 423304,
+    "participacionPorcentaje": 79.64
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0131",
+      "nombreAgrupacion": "ALIANZA FRENTE PARA LA VICTORIA                                                                     ",
+      "votos": 111566,
+      "votosPorcentaje": 28.43,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA                                                                     ",
+          "votos": 111566
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0132",
+      "nombreAgrupacion": "ALIANZA PROGRESISTAS                                                                                ",
+      "votos": 19078,
+      "votosPorcentaje": 4.86,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "ALIANZA PROGRESISTAS                                                                                ",
+          "votos": 19078
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0137",
+      "nombreAgrupacion": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES                                                   ",
+      "votos": 22608,
+      "votosPorcentaje": 5.76,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES                                                   ",
+          "votos": 22608
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0138",
+      "nombreAgrupacion": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)                                                      ",
+      "votos": 62296,
+      "votosPorcentaje": 15.87,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)                                                      ",
+          "votos": 62296
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0145",
+      "nombreAgrupacion": "CAMBIEMOS BUENOS AIRES                                                                              ",
+      "votos": 162238,
+      "votosPorcentaje": 41.34,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CAMBIEMOS BUENOS AIRES                                                                              ",
+          "votos": 162238
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0301",
+      "nombreAgrupacion": "PATRIA GRANDE                                                                                       ",
+      "votos": 14697,
+      "votosPorcentaje": 3.74,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "PATRIA GRANDE                                                                                       ",
+          "votos": 14697
+        }
+      ]
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 2262,
+    "votosNulosPorcentaje": 0.53,
+    "votosEnBlanco": 27958,
+    "votosEnBlancoPorcentaje": 6.6,
+    "votosRecurridosComandoImpugnados": 601,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.14
+  }
+}

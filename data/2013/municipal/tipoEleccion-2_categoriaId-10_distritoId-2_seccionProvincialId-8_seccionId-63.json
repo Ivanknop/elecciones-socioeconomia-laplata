@@ -1,0 +1,93 @@
+{
+  "fechaTotalizacion": "2026-07-26T17:07:15.168Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1524,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 525404,
+    "cantidadVotantes": 419663,
+    "participacionPorcentaje": 79.87
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0347",
+      "nombreAgrupacion": "ESPACIO UNION PRO",
+      "votos": 11193,
+      "votosPorcentaje": 2.85,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0348",
+      "nombreAgrupacion": "FRENTE CIUDAD NUEVA",
+      "votos": 20258,
+      "votosPorcentaje": 5.15,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0349",
+      "nombreAgrupacion": "FRENTE SOCIAL DE LA PROVINCIA DE BUENOS AIRES",
+      "votos": 43100,
+      "votosPorcentaje": 10.96,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0501",
+      "nombreAgrupacion": "FRENTE PARA LA VICTORIA",
+      "votos": 68432,
+      "votosPorcentaje": 17.39,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0505",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+      "votos": 27416,
+      "votosPorcentaje": 6.97,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0507",
+      "nombreAgrupacion": "UNIDOS POR LA LIBERTAD Y EL TRABAJO",
+      "votos": 29363,
+      "votosPorcentaje": 7.46,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0510",
+      "nombreAgrupacion": "FRENTE RENOVADOR",
+      "votos": 123696,
+      "votosPorcentaje": 31.44,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0511",
+      "nombreAgrupacion": "FRENTE POPULAR DEMOCRATICO Y SOCIAL (PODEMOS)",
+      "votos": 5797,
+      "votosPorcentaje": 1.47,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0514",
+      "nombreAgrupacion": "FRENTE PROGRESISTA CIVICO Y SOCIAL",
+      "votos": 64167,
+      "votosPorcentaje": 16.31,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 4979,
+    "votosNulosPorcentaje": 1.19,
+    "votosEnBlanco": 20754,
+    "votosEnBlancoPorcentaje": 4.95,
+    "votosRecurridosComandoImpugnados": 508,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.12
+  }
+}

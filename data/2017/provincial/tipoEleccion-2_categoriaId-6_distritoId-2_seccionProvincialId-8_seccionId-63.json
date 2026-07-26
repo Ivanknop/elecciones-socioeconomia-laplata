@@ -1,0 +1,77 @@
+{
+  "fechaTotalizacion": "2026-07-26T17:07:18.630Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1663,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 572008,
+    "cantidadVotantes": 435100,
+    "participacionPorcentaje": 76.07
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0574",
+      "nombreAgrupacion": "UNIDAD CIUDADANA",
+      "votos": 116809,
+      "votosPorcentaje": 27.82,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0301",
+      "nombreAgrupacion": "PATRIA GRANDE",
+      "votos": 8290,
+      "votosPorcentaje": 1.97,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0503",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+      "votos": 26516,
+      "votosPorcentaje": 6.31,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0511",
+      "nombreAgrupacion": "1PAIS",
+      "votos": 37562,
+      "votosPorcentaje": 8.94,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0518",
+      "nombreAgrupacion": "CAMBIEMOS BUENOS AIRES",
+      "votos": 203085,
+      "votosPorcentaje": 48.36,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0546",
+      "nombreAgrupacion": "FRENTE JUSTICIALISTA",
+      "votos": 24095,
+      "votosPorcentaje": 5.74,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0567",
+      "nombreAgrupacion": "IZQUIERDA AL FRENTE POR EL SOCIALISMO",
+      "votos": 3590,
+      "votosPorcentaje": 0.85,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3306,
+    "votosNulosPorcentaje": 0.76,
+    "votosEnBlanco": 10455,
+    "votosEnBlancoPorcentaje": 2.4,
+    "votosRecurridosComandoImpugnados": 1392,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.32
+  }
+}

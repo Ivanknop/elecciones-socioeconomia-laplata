@@ -1,0 +1,61 @@
+{
+  "fechaTotalizacion": "2026-07-26T17:07:23.760Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1672,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 591890,
+    "cantidadVotantes": 416737,
+    "participacionPorcentaje": 70.41
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "506",
+      "nombreAgrupacion": "JUNTOS",
+      "votos": 183044,
+      "votosPorcentaje": 46.07,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "507",
+      "nombreAgrupacion": "FRENTE DE TODOS",
+      "votos": 137164,
+      "votosPorcentaje": 34.53,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "504",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+      "votos": 31451,
+      "votosPorcentaje": 7.92,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "503",
+      "nombreAgrupacion": "AVANZA LIBERTAD",
+      "votos": 27798,
+      "votosPorcentaje": 7,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "508",
+      "nombreAgrupacion": "FRENTE VAMOS CON VOS",
+      "votos": 17820,
+      "votosPorcentaje": 4.49,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 0,
+    "votosNulosPorcentaje": 0,
+    "votosEnBlanco": 0,
+    "votosEnBlancoPorcentaje": 0,
+    "votosRecurridosComandoImpugnados": 19460,
+    "votosRecurridosComandoImpugnadosPorcentaje": 4.67
+  }
+}

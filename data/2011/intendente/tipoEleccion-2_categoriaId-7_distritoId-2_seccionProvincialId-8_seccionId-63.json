@@ -1,0 +1,101 @@
+{
+  "fechaTotalizacion": "2026-07-26T15:28:11.171Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1429,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 493225,
+    "cantidadVotantes": 384273,
+    "participacionPorcentaje": 77.91
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0047",
+      "nombreAgrupacion": "Coalición Cívica - Afirmación para una República Igualitaria ARI                                    ",
+      "votos": 13177,
+      "votosPorcentaje": 3.74,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0131",
+      "nombreAgrupacion": "Alianza Frente para la Victoria                                                                     ",
+      "votos": 160079,
+      "votosPorcentaje": 45.44,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0132",
+      "nombreAgrupacion": "Alianza Frente Popular                                                                              ",
+      "votos": 24291,
+      "votosPorcentaje": 6.9,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0133",
+      "nombreAgrupacion": "Alianza Compromiso Federal                                                                          ",
+      "votos": 16610,
+      "votosPorcentaje": 4.71,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0134",
+      "nombreAgrupacion": "Alianza Frente Amplio Progresista                                                                   ",
+      "votos": 45165,
+      "votosPorcentaje": 12.82,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0135",
+      "nombreAgrupacion": "Alianza Frente de Izquierda y de los Trabajadores                                                   ",
+      "votos": 12264,
+      "votosPorcentaje": 3.48,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0137",
+      "nombreAgrupacion": "Alianza Unión para el Desarrollo Social                                                             ",
+      "votos": 37390,
+      "votosPorcentaje": 10.61,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0160",
+      "nombreAgrupacion": "Nuevo Encuentro                                                                                     ",
+      "votos": 8799,
+      "votosPorcentaje": 2.5,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0220",
+      "nombreAgrupacion": "Proyecto Sur                                                                                        ",
+      "votos": 4472,
+      "votosPorcentaje": 1.27,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0236",
+      "nombreAgrupacion": "Frente Social de la Pcia. Bs.As.                                                                    ",
+      "votos": 30037,
+      "votosPorcentaje": 8.53,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 2941,
+    "votosNulosPorcentaje": 0.77,
+    "votosEnBlanco": 28864,
+    "votosEnBlancoPorcentaje": 7.51,
+    "votosRecurridosComandoImpugnados": 184,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.05
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "fechaTotalizacion": "2026-07-26T17:07:19.831Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1650,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 567623,
+    "cantidadVotantes": 433414,
+    "participacionPorcentaje": 76.36
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0503",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES                                                           ",
+      "votos": 26395,
+      "votosPorcentaje": 6.29,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0511",
+      "nombreAgrupacion": "1PAIS                                                                                               ",
+      "votos": 37689,
+      "votosPorcentaje": 8.98,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0518",
+      "nombreAgrupacion": "CAMBIEMOS BUENOS AIRES                                                                              ",
+      "votos": 201813,
+      "votosPorcentaje": 48.11,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0546",
+      "nombreAgrupacion": "FRENTE JUSTICIALISTA                                                                                ",
+      "votos": 24958,
+      "votosPorcentaje": 5.95,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0567",
+      "nombreAgrupacion": "IZQUIERDA AL FRENTE POR EL SOCIALISMO                                                               ",
+      "votos": 3734,
+      "votosPorcentaje": 0.89,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0574",
+      "nombreAgrupacion": "UNIDAD CIUDADANA                                                                                    ",
+      "votos": 114580,
+      "votosPorcentaje": 27.31,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0812",
+      "nombreAgrupacion": "VAMOS CREANDO CIUDAD NUEVA                                                                          ",
+      "votos": 10349,
+      "votosPorcentaje": 2.47,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3350,
+    "votosNulosPorcentaje": 0.77,
+    "votosEnBlanco": 10275,
+    "votosEnBlancoPorcentaje": 2.37,
+    "votosRecurridosComandoImpugnados": 271,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.06
+  }
+}

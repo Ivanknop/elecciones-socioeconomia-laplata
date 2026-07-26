@@ -1,0 +1,69 @@
+{
+  "fechaTotalizacion": "2023-11-25T20:12:48.089Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1532,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 531539,
+    "cantidadVotantes": 410229,
+    "participacionPorcentaje": 77.18
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0132",
+      "nombreAgrupacion": "ALIANZA PROGRESISTAS                                                                                ",
+      "votos": 18494,
+      "votosPorcentaje": 4.64,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0135",
+      "nombreAgrupacion": "ALIANZA CAMBIEMOS                                                                                   ",
+      "votos": 163852,
+      "votosPorcentaje": 41.11,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0137",
+      "nombreAgrupacion": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES                                                   ",
+      "votos": 22939,
+      "votosPorcentaje": 5.75,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0131",
+      "nombreAgrupacion": "ALIANZA FRENTE PARA LA VICTORIA                                                                     ",
+      "votos": 119144,
+      "votosPorcentaje": 29.89,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0133",
+      "nombreAgrupacion": "ALIANZA COMPROMISO FEDERAL                                                                          ",
+      "votos": 3616,
+      "votosPorcentaje": 0.91,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0138",
+      "nombreAgrupacion": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)                                                      ",
+      "votos": 70553,
+      "votosPorcentaje": 17.7,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 2271,
+    "votosNulosPorcentaje": 0.55,
+    "votosEnBlanco": 8778,
+    "votosEnBlancoPorcentaje": 2.14,
+    "votosRecurridosComandoImpugnados": 582,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.14
+  }
+}
