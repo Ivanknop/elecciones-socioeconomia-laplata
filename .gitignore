@@ -9,3 +9,6 @@ dist/
 
 graficos/*
 !graficos/serie_temporal/
+
+# Documento de trabajo interno, no forma parte del proyecto versionado
+PLAN_CORRECCIONES_ELECTORALES.md

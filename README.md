@@ -8,7 +8,7 @@ Gobernador, Intendente— entre 2011 y 2023, y los cargos legislativos —nacion
 Provinciales), municipal (Concejales)— entre 2013 y 2025.
 
 
-## Estructura del repo
+## Estructura del repositorio
 
 ```
 src/electoral/
@@ -24,7 +24,7 @@ notebooks/
   02_la_plata_cargos_ejecutivos.ipynb    # pipeline: cargos ejecutivos, 2011-2023
   03_la_plata_legislativas.ipynb         # pipeline: cargos legislativos, 2013-2025
   04_totales_por_circuito.ipynb         
-data/<año>/<categoría o nivel>/          # caché: .json (agregado) + .csv (oficial) + circuito_<nivel>.json
+data/<año>/<categoría o nivel>/<etapa>/  # etapa: generales (.json + .csv + circuito_<nivel>.json) | paso | balotaje
 data/agrupaciones/agrupaciones.csv                 # año/agrupación/nivel/campo_ideologico — cargos ejecutivos
 data/agrupaciones/agrupaciones_legislativas.csv    # año/agrupación/nivel/campo_ideologico — cargos legislativos
 data/agrupaciones/campo_ideologico.csv             # escala 1-6 izquierda→derecha radical (provisto)
@@ -65,17 +65,15 @@ saliente a `resultados.mininterior.gob.ar`.
    abajo), agrega por ese id los totales de cada agrupación y de los "otros"
    (blanco, nulo, recurrido, impugnado...) para cada (año, nivel) ya
    descargado, cruza contra el libro de códigos ideológico, agrega un
-   indicador de cobertura, y escribe `data/<año>/<nivel>/circuito_<nivel>.json`
+   indicador de cobertura, y escribe `data/<año>/<nivel>/generales/circuito_<nivel>.json`
    y `data/agrupaciones/circuito_id_correspondencias.csv`.
 6. Si ya existe la caché en `data/`, los notebooks corren instantáneo (leen
    de disco, no vuelven a pedirle nada a la API). Para forzar una actualización
    real, pasar `force_refresh=True` a los métodos del cliente.
 
 **`agrupaciones.csv`/`agrupaciones_legislativas.csv` nunca se regeneran ni se
-pisan** (antes sí lo hacían — problema ya resuelto). Ambos archivos tienen
-una **4ª columna**, `campo_ideologico`, clasificada a mano; la API no puede
-reponerla, así que los notebooks 02/03 no la tratan como una tabla para
-recrear desde cero. En cambio, el último paso de cada notebook:
+pisan.** Ambos archivos tienen una 4ª columna, `campo_ideologico`, clasificada
+a mano; el último paso de cada notebook:
 
 1. arma la tabla de agrupaciones a partir de lo que devuelve la API para ese
    run (`anio`, `agrupacion`, `nivel`);
@@ -97,16 +95,7 @@ del CSV oficial antes de armar `positivos`, así que el `nombre` dentro de
 `circuito_<nivel>.json` también queda en mayúsculas — coincide con la clave
 usada en el join contra `agrupaciones.csv`/`agrupaciones_legislativas.csv`. Al
 incorporar PASO se agregaron ~179 filas nuevas (agrupaciones que compitieron
-en la interna y no llegaron a Generales) con `campo_ideologico` vacío — a
-clasificar en la etapa analítica, no inventado. Esto expuso que la API
-también devuelve el nombre de una misma agrupación con grafía distinta según
-el año/etapa más allá de mayúsculas — abreviaturas y puntuación distintas
-(ej. `"COALICIÓN CÍVICA - AFIRMACIÓN PARA UNA REPÚBLICA IGUALITARIA ARI"` vs.
-`"COALICION CIVICA ARI"`, `"ALIANZA UNIÓN PARA EL DESARROLLO SOCIAL"` vs.
-`"ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO"`): esos casos **no** se
-fusionaron (solo se fusionaron los que coincidían exactamente tras subir a
-mayúsculas) y siguen como filas separadas — un mapeo de nombres entre
-etapas/años queda pendiente.
+en la interna y no llegaron a Generales). 
 
 ## El cliente (`src/electoral/client.py`)
 
@@ -149,9 +138,10 @@ en silencio.
 
 ## Alcance de los datos ya descargados
 
-`data/<2011|2015|2019|2023>/<presidente|gobernador|intendente>/`, cada una
-con 2 archivos: el agregado de la sección (`.json`) y el CSV oficial
-(`.csv`). Todo scopeado a **La Plata**:
+`data/<2011|2015|2019|2023>/<presidente|gobernador|intendente>/generales/`,
+cada una con 2 archivos: el agregado de la sección (`.json`) y el CSV oficial
+(`.csv`) — más `paso/` y, para Presidente, `balotaje/` (ver "PASO y balotaje"
+más abajo). Todo scopeado a **La Plata**:
 
 - `distritoId=2` → Buenos Aires
 - `seccionProvincialId=8` → Sección Capital
@@ -168,7 +158,7 @@ Y el mapeo de categoría, **estable en los cuatro años para esta sección**:
 
 ### Legislativas (2013-2025)
 
-`data/<2013|2017|2021|2025>/<nacional|provincial|municipal>/`. Mismo
+`data/<2013|2017|2021|2025>/<nacional|provincial|municipal>/generales/`. Mismo
 distrito/sección que arriba. `idCargo` estable en los cuatro años para La
 Plata:
 
@@ -189,9 +179,10 @@ sus agrupaciones se juntan bajo ese `nivel` y se deduplican.
 
 ### Totales por circuito
 
-`data/<año>/<nivel>/circuito_<nivel>.json` — agrega, por `circuito_id`, los
-positivos por agrupación y los "otros" (blanco/nulo/recurrido/impugnado/
-comando, lo que exista ese año). Sale del CSV oficial.
+`data/<año>/<nivel>/generales/circuito_<nivel>.json` — agrega, por
+`circuito_id`, los positivos por agrupación y los "otros"
+(blanco/nulo/recurrido/impugnado/comando, lo que exista ese año). Sale del
+CSV oficial.
 
 **`circuito_id` canónico**: el mismo circuito se identifica con distinto
 ancho/relleno de ceros según el año (`"0460"` en 2011/2015, `"000460"` en
@@ -248,7 +239,7 @@ todo el (año, nivel):
 ### Anomalía conocida: JSON agregado de Presidente 2019
 
 El JSON agregado crudo cacheado para Presidente 2019
-(`data/2019/presidente/tipoEleccion-2_categoriaId-1_..._.json`) reporta 96
+(`data/2019/presidente/generales/tipoEleccion-2_categoriaId-1_..._.json`) reporta 96
 mesas totalizadas y 27.567 votos positivos; el CSV oficial de la misma
 consulta tiene 1.517 mesas y 418.164 votos positivos (~16x más). El dato
 analítico (`circuito_presidente.json`) ya está bien porque sale del CSV, no
@@ -318,66 +309,25 @@ subirlos (son miles de archivos, se regeneran en segundos desde `data/`).
   PYTHONPATH=src python -m analisis.cuadros_anualizados --anio 2023
   ```
 
-## PASO y balotaje (§2.3 del plan de correcciones)
+## PASO y balotaje
 
-Además de Generales (`tipo_eleccion=2`), el pipeline ahora también trae **PASO**
-(`tipo_eleccion=1`) para todas las combinaciones (año, cargo) ya cubiertas, y
-**balotaje/segunda vuelta** (`tipo_eleccion=3`) para Presidente en los años en
-que efectivamente hubo — 2015 y 2023 (2011 y 2019 se definieron en primera
-vuelta). El caché sigue el mismo patrón `data/<año>/<cargo>/`, con una
-subcarpeta nueva por etapa: `data/<año>/<cargo>/paso/` y, para Presidente,
-`data/<año>/presidente/balotaje/`. Los archivos de Generales **no se
-movieron** — siguen sueltos directamente en `data/<año>/<cargo>/`, como
-estaban; reorganizarlos para que Generales también viva en su propia
-subcarpeta (`data/<año>/<cargo>/generales/`) queda pendiente para más
-adelante.
-
-Notas verificadas al traer estos datos:
-
-- **2011/intendente no tiene PASO**: se probó el rango de `categoria_id` 1-11
-  para PASO 2011 completo y no aparece ninguna categoría municipal. La
-  hipótesis más consistente con la Ley de PASO (26.571) es que esa interna no
-  estuvo disputada (candidatura única), por lo que no se hizo comicio
-  primario para esa categoría — no se pudo confirmar con una fuente externa,
-  así que queda como caso a revisar, no como hecho asumido.
-- **No hay balotaje para Gobernador ni Intendente** en la Provincia de Buenos
-  Aires (se definen por simple pluralidad) — verificado pidiendo
-  `tipo_eleccion=3` para esos cargos: la API devuelve "no disponible".
-- **PASO 2025 no existe**: la Ley 27.781 las suspendió para todas las
-  elecciones de ese año — verificado que la API devuelve "no disponible"
-  para las cinco combinaciones de cargo en 2025.
-- **`2017/nacional/paso`** comparte carpeta entre Senador Nacional (idCargo=2,
-  solo se votó en 2017) y Diputados Nacionales (idCargo=3) — igual que ya
-  pasaba en Generales para ese mismo (año, nivel).
-
-**Pendiente** (no alcanzado en esta etapa): `circuito_<nivel>.json` sigue
-representando solo Generales — todavía no hay una versión por circuito de
-PASO/balotaje, ni una columna/campo que marque a qué etapa corresponde cada
-fila en una tabla combinada. Eso, junto con el movimiento de los archivos de
-Generales a su propia subcarpeta, queda para un paso siguiente.
-
-## Estado de la capa socioeconómica
-
-El nombre del repositorio (`analisis-politica-economia`) anuncia una capa
-económica/socioeconómica (Censo, EPH) que **todavía no existe**: hoy no hay
-ningún dato de Censo, EPH ni ninguna otra variable socioeconómica en
-`data/`. Lo que hay es exclusivamente el pipeline y los datos electorales de
-La Plata descriptos en este README. Un prerrequisito técnico para esa capa
-futura es una tabla de correspondencia entre `circuito_id` canónico (ver
-arriba) y radios/fracciones censales — todavía no construida.
+Además de Generales (`tipo_eleccion=2`, en `data/<año>/<cargo>/generales/`),
+el pipeline también trae **PASO** (`tipo_eleccion=1`) para todas las
+combinaciones (año, cargo) ya cubiertas, y **balotaje/segunda vuelta**
+(`tipo_eleccion=3`) para Presidente en los años en que efectivamente hubo —
+2015 y 2023 (2011 y 2019 se definieron en primera vuelta). El caché sigue el
+mismo patrón `data/<año>/<cargo>/`, con una subcarpeta por etapa:
+`data/<año>/<cargo>/paso/` y, para Presidente, `data/<año>/presidente/balotaje/`
+— hermanas de `generales/`, misma estructura simétrica entre las tres.
 
 ## Libro de códigos ideológico — estado actual
 
 `campo_ideologico` (columna en `agrupaciones.csv` /
 `agrupaciones_legislativas.csv`, escala 1-6 en `campo_ideologico.csv`) es
-hoy una clasificación cargada a mano, con varios casos donde la unidad de
-clasificación (alianza vs. candidatura vs. programa de gobierno) y el
-criterio de asignación no están explicitados — por ejemplo, una misma
-alianza (Progresistas 2015, Patria Grande, Frente Renovador/1País) queda en
-valores distintos según el cargo o el año sin una regla escrita que lo
-justifique. Definir esas reglas, separar identidad partidaria de posición
-ideológica, y revisar los casos dudosos con una segunda persona es trabajo
-pendiente — no algo que este pipeline resuelva por sí solo.
+hoy una clasificación cargada a mano. La unidad de clasificación (alianza vs.
+candidatura vs. programa) y el criterio de asignación todavía no están
+fijados de forma sistemática — algunas reglas puntuales ya se aplicaron caso
+por caso, pero el criterio general queda para una etapa posterior.
 
 ## Extender a otro distrito, sección o cargo
 
