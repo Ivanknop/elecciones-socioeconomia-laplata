@@ -1,0 +1,156 @@
+{
+  "fechaTotalizacion": "2026-07-29T12:34:41.596Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1636,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 571044,
+    "cantidadVotantes": 410814,
+    "participacionPorcentaje": 71.94
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "02-1911",
+      "nombreAgrupacion": "FRENTE NOS",
+      "votos": 6709,
+      "votosPorcentaje": 1.72,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LINEA ÚNICA",
+          "numero": "A",
+          "votos": 6709
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "02-503",
+      "nombreAgrupacion": "FRENTE DE TODOS",
+      "votos": 179550,
+      "votosPorcentaje": 46.12,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CELESTE Y BLANCA",
+          "numero": "2",
+          "votos": 179550
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "02-816",
+      "nombreAgrupacion": "PARTIDO DIGNIDAD POPULAR",
+      "votos": 806,
+      "votosPorcentaje": 0.21,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "POR LA VIDA",
+          "numero": "1A",
+          "votos": 806
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "137",
+      "nombreAgrupacion": "CONSENSO FEDERAL",
+      "votos": 26691,
+      "votosPorcentaje": 6.86,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "HAY CONSENSO",
+          "numero": "A",
+          "votos": 26691
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "135",
+      "nombreAgrupacion": "JUNTOS POR EL CAMBIO",
+      "votos": 152591,
+      "votosPorcentaje": 39.19,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "1A",
+          "numero": "1A",
+          "votos": 152591
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "02-276",
+      "nombreAgrupacion": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+      "votos": 4069,
+      "votosPorcentaje": 1.05,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNIDAD DE LA IZQUIERDA",
+          "numero": "1A",
+          "votos": 4069
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "02-309",
+      "nombreAgrupacion": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+      "votos": 773,
+      "votosPorcentaje": 0.2,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "AZUL Y BLANCO",
+          "numero": "A",
+          "votos": 773
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "02-865",
+      "nombreAgrupacion": "FRENTE PATRIOTA",
+      "votos": 1018,
+      "votosPorcentaje": 0.26,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LEALTAD",
+          "numero": "A",
+          "votos": 1018
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "133",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+      "votos": 17109,
+      "votosPorcentaje": 4.39,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNIDAD",
+          "numero": "A",
+          "votos": 17109
+        }
+      ]
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3084,
+    "votosNulosPorcentaje": 0.75,
+    "votosEnBlanco": 17496,
+    "votosEnBlancoPorcentaje": 4.26,
+    "votosRecurridosComandoImpugnados": 918,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.22
+  }
+}

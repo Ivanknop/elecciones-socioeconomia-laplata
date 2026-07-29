@@ -1,0 +1,316 @@
+{
+  "fechaTotalizacion": "2026-07-29T12:42:00.568Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1651,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 583962,
+    "cantidadVotantes": 388400,
+    "participacionPorcentaje": 66.51
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "19",
+      "nombreAgrupacion": "CONSERVADOR POPULAR",
+      "votos": 1214,
+      "votosPorcentaje": 0.33,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNICA",
+          "numero": "1",
+          "votos": 1214
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "255",
+      "nombreAgrupacion": "MOVIMIENTO AL SOCIALISMO",
+      "votos": 4499,
+      "votosPorcentaje": 1.23,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "PARA RENOVAR A LA IZQUIERDA",
+          "numero": "1",
+          "votos": 4499
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "258",
+      "nombreAgrupacion": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+      "votos": 499,
+      "votosPorcentaje": 0.14,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CORRIENTE DE PENSAMIENTO AUTENTICA",
+          "numero": "1",
+          "votos": 499
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "298",
+      "nombreAgrupacion": "TODOS POR BUENOS AIRES",
+      "votos": 1172,
+      "votosPorcentaje": 0.32,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "TODOS POR LA PROVINCIA",
+          "numero": "1",
+          "votos": 1172
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "312",
+      "nombreAgrupacion": "FRENTE PATRIOTA",
+      "votos": 1401,
+      "votosPorcentaje": 0.38,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "PRIMERO LA PATRIA",
+          "numero": "2",
+          "votos": 1401
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "314",
+      "nombreAgrupacion": "REPUBLICANO FEDERAL",
+      "votos": 2674,
+      "votosPorcentaje": 0.73,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "numero": "2",
+          "votos": 2674
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "317",
+      "nombreAgrupacion": "VOCACION SOCIAL",
+      "votos": 2128,
+      "votosPorcentaje": 0.58,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNITE POR BUENOS AIRES",
+          "numero": "2",
+          "votos": 2128
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "27",
+      "nombreAgrupacion": "UNION CELESTE Y BLANCO",
+      "votos": 4943,
+      "votosPorcentaje": 1.35,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "ANTI CORRUPCIÓN",
+          "numero": "1",
+          "votos": 4943
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "106",
+      "nombreAgrupacion": "HUMANISTA",
+      "votos": 1141,
+      "votosPorcentaje": 0.31,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "NARANJA",
+          "numero": "3",
+          "votos": 1141
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "503",
+      "nombreAgrupacion": "AVANZA LIBERTAD",
+      "votos": 15788,
+      "votosPorcentaje": 4.32,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LIBERTAD",
+          "numero": "2",
+          "votos": 15788
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "504",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+      "votos": 22535,
+      "votosPorcentaje": 6.17,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNIDAD DE LA IZQUIERDA",
+          "numero": "2",
+          "votos": 16977
+        },
+        {
+          "nombre": "(R)EVOLUCIONEMOS LA IZQUIERDA",
+          "numero": "1",
+          "votos": 5558
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "112",
+      "nombreAgrupacion": "UNION POR TODOS",
+      "votos": 3289,
+      "votosPorcentaje": 0.9,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNIDAD",
+          "numero": "1",
+          "votos": 3289
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "506",
+      "nombreAgrupacion": "JUNTOS",
+      "votos": 163160,
+      "votosPorcentaje": 44.66,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "A",
+          "numero": "1",
+          "votos": 99911
+        },
+        {
+          "nombre": "DAR EL PASO",
+          "numero": "5",
+          "votos": 63249
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "507",
+      "nombreAgrupacion": "FRENTE DE TODOS",
+      "votos": 120790,
+      "votosPorcentaje": 33.06,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CELESTE Y BLANCA 2",
+          "numero": "5",
+          "votos": 120790
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "508",
+      "nombreAgrupacion": "FRENTE VAMOS CON VOS",
+      "votos": 15777,
+      "votosPorcentaje": 4.32,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "HAY OTRO CAMINO",
+          "numero": "2",
+          "votos": 5329
+        },
+        {
+          "nombre": "HACER OTRO CAMINO",
+          "numero": "1",
+          "votos": 5629
+        },
+        {
+          "nombre": "POR EL PROGRESO SOCIAL",
+          "numero": "4",
+          "votos": 4819
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "766",
+      "nombreAgrupacion": "RENOVADOR FEDERAL",
+      "votos": 1221,
+      "votosPorcentaje": 0.33,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "SOMOS RENOVADORES",
+          "numero": "1",
+          "votos": 1221
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "864",
+      "nombreAgrupacion": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+      "votos": 913,
+      "votosPorcentaje": 0.25,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CREER",
+          "numero": "1",
+          "votos": 913
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "8",
+      "nombreAgrupacion": "FEDERAL",
+      "votos": 2186,
+      "votosPorcentaje": 0.6,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CELESTE Y BLANCA",
+          "numero": "2",
+          "votos": 951
+        },
+        {
+          "nombre": "FEDERALISMO PURO",
+          "numero": "3",
+          "votos": 1235
+        }
+      ]
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 0,
+    "votosNulosPorcentaje": 0,
+    "votosEnBlanco": 0,
+    "votosEnBlancoPorcentaje": 0,
+    "votosRecurridosComandoImpugnados": 23070,
+    "votosRecurridosComandoImpugnadosPorcentaje": 5.94
+  }
+}

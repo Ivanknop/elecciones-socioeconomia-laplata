@@ -1,0 +1,171 @@
+{
+  "fechaTotalizacion": "2026-07-29T12:28:34.684Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1556,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 533207,
+    "cantidadVotantes": 395855,
+    "participacionPorcentaje": 74.24
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "137",
+      "nombreAgrupacion": "CONSENSO FEDERAL",
+      "votos": 33104,
+      "votosPorcentaje": 8.68,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CONSENSO PARA EL FUTURO - Roberto Lavagna",
+          "numero": "A",
+          "votos": 33104
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "36",
+      "nombreAgrupacion": "PARTIDO AUTONOMISTA",
+      "votos": 345,
+      "votosPorcentaje": 0.09,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "VALORES Y EXPERIENCIA - José Romero",
+          "numero": "A",
+          "votos": 345
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "87",
+      "nombreAgrupacion": "UNITE POR LA LIBERTAD Y LA DIGNIDAD",
+      "votos": 8086,
+      "votosPorcentaje": 2.12,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "DESPERTAR - José Espert",
+          "numero": "A",
+          "votos": 8086
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "131",
+      "nombreAgrupacion": "FRENTE NOS",
+      "votos": 6953,
+      "votosPorcentaje": 1.82,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CELESTE 2019 - Juan Gomez",
+          "numero": "A",
+          "votos": 6953
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "133",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+      "votos": 17316,
+      "votosPorcentaje": 4.54,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNIDAD - Nicolás Del Caño",
+          "numero": "A",
+          "votos": 17316
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "57",
+      "nombreAgrupacion": "MOVIMIENTO DE ACCION VECINAL",
+      "votos": 404,
+      "votosPorcentaje": 0.11,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "COMPROMISO VECINAL - Raúl Albarracin",
+          "numero": "A",
+          "votos": 404
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "13",
+      "nombreAgrupacion": "MOVIMIENTO AL SOCIALISMO",
+      "votos": 4524,
+      "votosPorcentaje": 1.19,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNIDAD DE LA IZQUIERDA - Manuela Castañeira",
+          "numero": "A",
+          "votos": 4524
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "135",
+      "nombreAgrupacion": "JUNTOS POR EL CAMBIO",
+      "votos": 139237,
+      "votosPorcentaje": 36.5,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "JUNTOS SOMOS EL CAMBIO - Mauricio Macri",
+          "numero": "A",
+          "votos": 139237
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "132",
+      "nombreAgrupacion": "FRENTE PATRIOTA",
+      "votos": 1072,
+      "votosPorcentaje": 0.28,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CELESTE - Alejandro Biondini",
+          "numero": "A",
+          "votos": 1072
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "136",
+      "nombreAgrupacion": "FRENTE DE TODOS",
+      "votos": 170405,
+      "votosPorcentaje": 44.67,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CELESTE Y BLANCA - Alberto Fernández",
+          "numero": "A",
+          "votos": 170405
+        }
+      ]
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3247,
+    "votosNulosPorcentaje": 0.82,
+    "votosEnBlanco": 10276,
+    "votosEnBlancoPorcentaje": 2.6,
+    "votosRecurridosComandoImpugnados": 886,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.22
+  }
+}

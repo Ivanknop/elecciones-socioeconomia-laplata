@@ -1,0 +1,37 @@
+{
+  "fechaTotalizacion": "2023-11-25T20:11:52.785Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1629,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 560219,
+    "cantidadVotantes": 431175,
+    "participacionPorcentaje": 76.97
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": 135,
+      "nombreAgrupacion": "LA LIBERTAD AVANZA",
+      "votos": 208515,
+      "votosPorcentaje": 50.46,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": 134,
+      "nombreAgrupacion": "UNION POR LA PATRIA",
+      "votos": 204713,
+      "votosPorcentaje": 49.54,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 7640,
+    "votosNulosPorcentaje": 1.77,
+    "votosEnBlanco": 9907,
+    "votosEnBlancoPorcentaje": 2.3,
+    "votosRecurridosComandoImpugnados": 400,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.09
+  }
+}

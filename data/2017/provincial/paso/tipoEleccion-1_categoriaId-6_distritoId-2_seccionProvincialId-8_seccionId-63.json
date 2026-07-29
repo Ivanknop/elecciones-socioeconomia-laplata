@@ -1,0 +1,276 @@
+{
+  "fechaTotalizacion": "2026-07-29T12:41:37.331Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1663,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 572080,
+    "cantidadVotantes": 401115,
+    "participacionPorcentaje": 70.12
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0008",
+      "nombreAgrupacion": "FEDERAL",
+      "votos": 3803,
+      "votosPorcentaje": 1.01,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "ALTERNATIVA",
+          "numero": "3007",
+          "votos": 3803
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0298",
+      "nombreAgrupacion": "TODOS POR BUENOS AIRES",
+      "votos": 1122,
+      "votosPorcentaje": 0.3,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "TOBA",
+          "numero": "3135",
+          "votos": 1122
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0301",
+      "nombreAgrupacion": "PATRIA GRANDE",
+      "votos": 6365,
+      "votosPorcentaje": 1.68,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "FUERZA DE LA GENTE",
+          "numero": "3335",
+          "votos": 6365
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0503",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+      "votos": 19140,
+      "votosPorcentaje": 5.06,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA 1",
+          "numero": "3161",
+          "votos": 19140
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0511",
+      "nombreAgrupacion": "1PAIS",
+      "votos": 47406,
+      "votosPorcentaje": 12.54,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UN PAIS UNIDO HOY Y SIEMPRE",
+          "numero": "3165",
+          "votos": 47406
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0518",
+      "nombreAgrupacion": "CAMBIEMOS BUENOS AIRES",
+      "votos": 156032,
+      "votosPorcentaje": 41.28,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "1A AMARILLO",
+          "numero": "3354",
+          "votos": 156032
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0527",
+      "nombreAgrupacion": "ENCUENTRO POPULAR POR TIERRA TECHO Y TRABAJO",
+      "votos": 868,
+      "votosPorcentaje": 0.23,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "POR TIERRA TECHO Y TRABAJO",
+          "numero": "3352",
+          "votos": 868
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0546",
+      "nombreAgrupacion": "FRENTE JUSTICIALISTA",
+      "votos": 26882,
+      "votosPorcentaje": 7.11,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CUMPLIR 2",
+          "numero": "3355",
+          "votos": 15830
+        },
+        {
+          "nombre": "CUMPLIR 4",
+          "numero": "3366",
+          "votos": 11052
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0567",
+      "nombreAgrupacion": "IZQUIERDA AL FRENTE POR EL SOCIALISMO",
+      "votos": 6464,
+      "votosPorcentaje": 1.71,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNIDAD DE LA  IZQUIERDA",
+          "numero": "3292",
+          "votos": 6464
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0574",
+      "nombreAgrupacion": "UNIDAD CIUDADANA",
+      "votos": 95803,
+      "votosPorcentaje": 25.35,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CELESTE Y BLANCA U2",
+          "numero": "3350",
+          "votos": 95803
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0809",
+      "nombreAgrupacion": "CORRIENTE DE PENSAMIENTO BONAERENSE (CO.PE.BO)",
+      "votos": 5480,
+      "votosPorcentaje": 1.45,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UN CAMBIO REAL",
+          "numero": "3377",
+          "votos": 5480
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0810",
+      "nombreAgrupacion": "FRENTE UNION FEDERAL",
+      "votos": 2380,
+      "votosPorcentaje": 0.63,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "AUTOCTONO",
+          "numero": "3356",
+          "votos": 33
+        },
+        {
+          "nombre": "DIGNIDAD POPULAR",
+          "numero": "3357",
+          "votos": 43
+        },
+        {
+          "nombre": "FRENTE UNION FEDERAL",
+          "numero": "3358",
+          "votos": 259
+        },
+        {
+          "nombre": "LABORISTA",
+          "numero": "3359",
+          "votos": 430
+        },
+        {
+          "nombre": "POPULAR",
+          "numero": "3360",
+          "votos": 521
+        },
+        {
+          "nombre": "RENOVACION FEDERAL",
+          "numero": "3361",
+          "votos": 376
+        },
+        {
+          "nombre": "TRES BANDERAS",
+          "numero": "3362",
+          "votos": 17
+        },
+        {
+          "nombre": "CONCERTACION FEDERAL UNITE",
+          "numero": "3363",
+          "votos": 641
+        },
+        {
+          "nombre": "PRIMERA DAMA DEL PUEBLO",
+          "numero": "3375",
+          "votos": 60
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0813",
+      "nombreAgrupacion": "PARTIDO SOCIALISTA",
+      "votos": 4246,
+      "votosPorcentaje": 1.12,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "FRENTE SOCIALISTA Y POPULAR",
+          "numero": "3277",
+          "votos": 4246
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0814",
+      "nombreAgrupacion": "PARTIDO RENOVADOR FEDERAL",
+      "votos": 1983,
+      "votosPorcentaje": 0.52,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CONVICCIONES",
+          "numero": "3353",
+          "votos": 1983
+        }
+      ]
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3705,
+    "votosNulosPorcentaje": 0.92,
+    "votosEnBlanco": 18194,
+    "votosEnBlancoPorcentaje": 4.54,
+    "votosRecurridosComandoImpugnados": 1242,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.31
+  }
+}

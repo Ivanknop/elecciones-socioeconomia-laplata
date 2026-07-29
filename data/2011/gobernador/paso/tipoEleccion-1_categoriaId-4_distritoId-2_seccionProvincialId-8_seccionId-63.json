@@ -1,0 +1,126 @@
+{
+  "fechaTotalizacion": "2026-07-29T12:34:13.958Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1441,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 492046,
+    "cantidadVotantes": 343799,
+    "participacionPorcentaje": 69.87
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0501",
+      "nombreAgrupacion": "ALIANZA FRENTE PARA LA VICTORIA",
+      "votos": 128473,
+      "votosPorcentaje": 41.5,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA 2 CELESTE Y BLANCA K N 2",
+          "numero": "3101",
+          "votos": 125117
+        },
+        {
+          "nombre": "ISHII GOBERNADOR N 678",
+          "numero": "3100",
+          "votos": 3356
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0047",
+      "nombreAgrupacion": "COALICION CIVICA ARI",
+      "votos": 14309,
+      "votosPorcentaje": 4.62,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0509",
+      "nombreAgrupacion": "COMPROMISO FEDERAL",
+      "votos": 8251,
+      "votosPorcentaje": 2.67,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "ES POSIBLE BS AS",
+          "numero": "3106",
+          "votos": 8251
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0136",
+      "nombreAgrupacion": "ALIANZA PROYECTO SUR",
+      "votos": 6374,
+      "votosPorcentaje": 2.06,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0199",
+      "nombreAgrupacion": "NUEVO ENCUENTRO",
+      "votos": 13138,
+      "votosPorcentaje": 4.24,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0137",
+      "nombreAgrupacion": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+      "votos": 62340,
+      "votosPorcentaje": 20.14,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CELESTE",
+          "numero": "3112",
+          "votos": 62340
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0510",
+      "nombreAgrupacion": "FRENTE AMPLIO PROGRESISTA",
+      "votos": 35620,
+      "votosPorcentaje": 11.51,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0505",
+      "nombreAgrupacion": "ALIANZA FRENTE POPULAR",
+      "votos": 28630,
+      "votosPorcentaje": 9.25,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "FRENTE POPULAR GOBERNADOR",
+          "numero": "3102",
+          "votos": 28630
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0517",
+      "nombreAgrupacion": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+      "votos": 12405,
+      "votosPorcentaje": 4.01,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3119,
+    "votosNulosPorcentaje": 0.91,
+    "votosEnBlanco": 30885,
+    "votosEnBlancoPorcentaje": 8.98,
+    "votosRecurridosComandoImpugnados": 255,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.07
+  }
+}

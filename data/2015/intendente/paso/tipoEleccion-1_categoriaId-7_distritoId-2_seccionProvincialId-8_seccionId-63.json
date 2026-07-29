@@ -1,0 +1,266 @@
+{
+  "fechaTotalizacion": "2026-07-29T12:34:35.077Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1547,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 536661,
+    "cantidadVotantes": 408475,
+    "participacionPorcentaje": 76.11
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0754",
+      "nombreAgrupacion": "UNION DEL PUEBLO LA PLATA",
+      "votos": 2510,
+      "votosPorcentaje": 0.68,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNION DEL PUEBLO LA PLATA",
+          "numero": "3442",
+          "votos": 2510
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0013",
+      "nombreAgrupacion": "MOVIMIENTO AL SOCIALISMO",
+      "votos": 2158,
+      "votosPorcentaje": 0.58,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA A SoB",
+          "numero": "3253",
+          "votos": 2158
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0081",
+      "nombreAgrupacion": "PARTIDO POPULAR",
+      "votos": 712,
+      "votosPorcentaje": 0.19,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA A MOVIMIENTO SOLIDARIO POPULAR",
+          "numero": "3217",
+          "votos": 712
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0298",
+      "nombreAgrupacion": "TODOS POR BUENOS AIRES",
+      "votos": 928,
+      "votosPorcentaje": 0.25,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA A TOBA",
+          "numero": "3400",
+          "votos": 928
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0301",
+      "nombreAgrupacion": "PATRIA GRANDE",
+      "votos": 7601,
+      "votosPorcentaje": 2.05,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "PARA LA LIBERACION",
+          "numero": "3013",
+          "votos": 7601
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0131",
+      "nombreAgrupacion": "ALIANZA FRENTE PARA LA VICTORIA",
+      "votos": 122388,
+      "votosPorcentaje": 33,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA CELESTE Y BLANCA K 2",
+          "numero": "3403",
+          "votos": 67552
+        },
+        {
+          "nombre": "LISTA CELESTE Y BLANCA K 4",
+          "numero": "3404",
+          "votos": 54836
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0132",
+      "nombreAgrupacion": "ALIANZA PROGRESISTAS",
+      "votos": 20594,
+      "votosPorcentaje": 5.55,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA IGUALDAD Y DECENCIA MS",
+          "numero": "3008",
+          "votos": 13905
+        },
+        {
+          "nombre": "LISTA CREO A",
+          "numero": "3129",
+          "votos": 6689
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0133",
+      "nombreAgrupacion": "ALIANZA COMPROMISO FEDERAL",
+      "votos": 2594,
+      "votosPorcentaje": 0.7,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA P",
+          "numero": "3406",
+          "votos": 1401
+        },
+        {
+          "nombre": "LISTA M",
+          "numero": "3416",
+          "votos": 1193
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0038",
+      "nombreAgrupacion": "MST-MOVIMIENTO SOCIALISTA DE LOS TRABAJADORES",
+      "votos": 2089,
+      "votosPorcentaje": 0.56,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA A - UNIDAD",
+          "numero": "3019",
+          "votos": 2089
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0145",
+      "nombreAgrupacion": "CAMBIEMOS BUENOS AIRES",
+      "votos": 124387,
+      "votosPorcentaje": 33.53,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA 1 A AMARILLO",
+          "numero": "3407",
+          "votos": 48265
+        },
+        {
+          "nombre": "LISTA 6 A B AMARILLO",
+          "numero": "3429",
+          "votos": 35807
+        },
+        {
+          "nombre": "LISTA 2 A A AMARILLO",
+          "numero": "3422",
+          "votos": 40315
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0136",
+      "nombreAgrupacion": "ALIANZA FRENTE POPULAR",
+      "votos": 3017,
+      "votosPorcentaje": 0.81,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA A PROTAGONISMO Y PARTICIPACION",
+          "numero": "3234",
+          "votos": 3017
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0137",
+      "nombreAgrupacion": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+      "votos": 16150,
+      "votosPorcentaje": 4.35,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA 1 A RENOVAR Y FORTALECER EL FRENTE",
+          "numero": "3014",
+          "votos": 8124
+        },
+        {
+          "nombre": "LISTA UNIDAD - 2 U",
+          "numero": "3261",
+          "votos": 8026
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0138",
+      "nombreAgrupacion": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+      "votos": 65794,
+      "votosPorcentaje": 17.74,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA B CORRIENTE RENOVADORA",
+          "numero": "3420",
+          "votos": 13716
+        },
+        {
+          "nombre": "LISTA C LINEA RENOVADORA",
+          "numero": "3417",
+          "votos": 16408
+        },
+        {
+          "nombre": "LISTA D MOVIMIENTO RENOVADOR",
+          "numero": "3418",
+          "votos": 7924
+        },
+        {
+          "nombre": "LISTA E FUERZA RENOVADORA",
+          "numero": "3433",
+          "votos": 19493
+        },
+        {
+          "nombre": "LINEA F UNION RENOVADORA",
+          "numero": "3443",
+          "votos": 8253
+        }
+      ]
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3087,
+    "votosNulosPorcentaje": 0.76,
+    "votosEnBlanco": 34176,
+    "votosEnBlancoPorcentaje": 8.37,
+    "votosRecurridosComandoImpugnados": 290,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.07
+  }
+}

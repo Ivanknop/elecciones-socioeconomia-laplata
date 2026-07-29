@@ -1,6 +1,6 @@
 """Gráficos de barras y torta por campo ideológico, a partir de los JSON de
-totales por circuito (`data/<anio>/<nivel>/circuito_<nivel>.json`, ver
-`notebooks/04_totales_por_circuito.ipynb`).
+totales por circuito (`data/<anio>/<nivel>/generales/circuito_<nivel>.json`,
+ver `notebooks/04_totales_por_circuito.ipynb`).
 
 Funciones reutilizables: se llaman con el (año, nivel, circuito) que haga
 falta y devuelven la figura. `circuito_id=None` agrega todos los circuitos
@@ -35,7 +35,7 @@ _COLOR_IDEOLOGIA = {
 
 
 def _cargar_circuito(data_dir: Path | str, anio: int, nivel: str) -> dict:
-    path = Path(data_dir) / str(anio) / nivel / f"circuito_{nivel}.json"
+    path = Path(data_dir) / str(anio) / nivel / "generales" / f"circuito_{nivel}.json"
     return json.loads(path.read_text(encoding="utf-8"))
 
 

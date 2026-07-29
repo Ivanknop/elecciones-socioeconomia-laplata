@@ -1,0 +1,206 @@
+{
+  "fechaTotalizacion": "2026-07-29T12:34:20.122Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1547,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 536661,
+    "cantidadVotantes": 389659,
+    "participacionPorcentaje": 72.61
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0134",
+      "nombreAgrupacion": "MST - NUEVA IZQUIERDA                                                                               ",
+      "votos": 1798,
+      "votosPorcentaje": 0.49,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA UNIDAD A                                                                                      ",
+          "numero": "3018",
+          "votos": 1798
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0133",
+      "nombreAgrupacion": "ALIANZA COMPROMISO FEDERAL                                                                          ",
+      "votos": 3028,
+      "votosPorcentaje": 0.82,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA A 1                                                                                           ",
+          "numero": "3100",
+          "votos": 3028
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0138",
+      "nombreAgrupacion": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)                                                      ",
+      "votos": 67829,
+      "votosPorcentaje": 18.31,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "D MOVIMIENTO DE UNIDAD                                                                              ",
+          "numero": "3214",
+          "votos": 8843
+        },
+        {
+          "nombre": "A FRENTE RENOVADOR +A15                                                                             ",
+          "numero": "3192",
+          "votos": 58986
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0132",
+      "nombreAgrupacion": "ALIANZA PROGRESISTAS                                                                                ",
+      "votos": 26014,
+      "votosPorcentaje": 7.02,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA IGUALDAD Y DECENCIA MS                                                                        ",
+          "numero": "3008",
+          "votos": 26014
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0081",
+      "nombreAgrupacion": "PARTIDO POPULAR                                                                                     ",
+      "votos": 688,
+      "votosPorcentaje": 0.19,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA A MOVIMIENTO SOLIDARIO POPULAR                                                                ",
+          "numero": "3217",
+          "votos": 688
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0057",
+      "nombreAgrupacion": "MOVIMIENTO DE ACCION VECINAL                                                                        ",
+      "votos": 532,
+      "votosPorcentaje": 0.14,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "COMPROMISO VECINAL LISTA A                                                                          ",
+          "numero": "3172",
+          "votos": 532
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0013",
+      "nombreAgrupacion": "MOVIMIENTO AL SOCIALISMO                                                                            ",
+      "votos": 2338,
+      "votosPorcentaje": 0.63,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA A SoB                                                                                         ",
+          "numero": "3253",
+          "votos": 2338
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0131",
+      "nombreAgrupacion": "ALIANZA FRENTE PARA LA VICTORIA                                                                     ",
+      "votos": 112706,
+      "votosPorcentaje": 30.42,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "A LISTA CELESTE Y BLANCA K NESTOR KIRCHNER                                                          ",
+          "numero": "3166",
+          "votos": 112706
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0135",
+      "nombreAgrupacion": "ALIANZA CAMBIEMOS                                                                                   ",
+      "votos": 132185,
+      "votosPorcentaje": 35.68,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA G EL CAMINO DEL CAMBIO                                                                        ",
+          "numero": "3182",
+          "votos": 108062
+        },
+        {
+          "nombre": "LISTA F REPUBLICA DE LIBRES E IGUALES                                                               ",
+          "numero": "3243",
+          "votos": 12164
+        },
+        {
+          "nombre": "LISTA E EL PODER DE LA UNION                                                                        ",
+          "numero": "3185",
+          "votos": 11959
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0137",
+      "nombreAgrupacion": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES                                                   ",
+      "votos": 19970,
+      "votosPorcentaje": 5.39,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA 1 A RENOVAR Y FORTALECER EL FRENTE                                                            ",
+          "numero": "3014",
+          "votos": 10479
+        },
+        {
+          "nombre": "LISTA UNIDAD - 2 U                                                                                  ",
+          "numero": "3261",
+          "votos": 9491
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0136",
+      "nombreAgrupacion": "ALIANZA FRENTE POPULAR                                                                              ",
+      "votos": 3368,
+      "votosPorcentaje": 0.91,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA A PROTAGONISMO Y PARTICIPACION                                                                ",
+          "numero": "3234",
+          "votos": 3368
+        }
+      ]
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 2804,
+    "votosNulosPorcentaje": 0.72,
+    "votosEnBlanco": 16156,
+    "votosEnBlancoPorcentaje": 4.15,
+    "votosRecurridosComandoImpugnados": 243,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.06
+  }
+}

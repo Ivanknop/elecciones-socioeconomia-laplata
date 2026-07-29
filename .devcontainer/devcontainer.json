@@ -6,6 +6,12 @@
     "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
   },
   "postCreateCommand": "pip install -r requirements.txt",
+    "containerEnv": {
+    "CLAUDE_CONFIG_DIR": "/home/vscode/.claude"
+  },
+  "mounts": [
+    "source=claude-code-config-${devcontainerId},target=/home/vscode/.claude,type=volume"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [

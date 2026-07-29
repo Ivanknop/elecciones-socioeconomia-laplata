@@ -1,0 +1,101 @@
+{
+  "fechaTotalizacion": "2026-07-29T12:34:10.089Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1379,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 469169,
+    "cantidadVotantes": 348293,
+    "participacionPorcentaje": 74.24
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0131",
+      "nombreAgrupacion": "ALIANZA FRENTE PARA LA VICTORIA",
+      "votos": 130552,
+      "votosPorcentaje": 39.94,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0132",
+      "nombreAgrupacion": "ALIANZA FRENTE POPULAR",
+      "votos": 51302,
+      "votosPorcentaje": 15.69,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0133",
+      "nombreAgrupacion": "ALIANZA COMPROMISO FEDERAL",
+      "votos": 11978,
+      "votosPorcentaje": 3.66,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0134",
+      "nombreAgrupacion": "ALIANZA FRENTE AMPLIO PROGRESISTA",
+      "votos": 44591,
+      "votosPorcentaje": 13.64,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0135",
+      "nombreAgrupacion": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+      "votos": 13427,
+      "votosPorcentaje": 4.11,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0136",
+      "nombreAgrupacion": "ALIANZA PROYECTO SUR",
+      "votos": 5907,
+      "votosPorcentaje": 1.81,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0137",
+      "nombreAgrupacion": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+      "votos": 50514,
+      "votosPorcentaje": 15.45,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0037",
+      "nombreAgrupacion": "DEL CAMPO POPULAR",
+      "votos": 1072,
+      "votosPorcentaje": 0.33,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0047",
+      "nombreAgrupacion": "COALICION CIVICA ARI",
+      "votos": 16452,
+      "votosPorcentaje": 5.03,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "0057",
+      "nombreAgrupacion": "MOVIMIENTO DE ACCION VECINAL",
+      "votos": 1097,
+      "votosPorcentaje": 0.34,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3139,
+    "votosNulosPorcentaje": 0.9,
+    "votosEnBlanco": 17477,
+    "votosEnBlancoPorcentaje": 5.02,
+    "votosRecurridosComandoImpugnados": 785,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.23
+  }
+}

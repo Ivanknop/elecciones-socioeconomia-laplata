@@ -18,7 +18,7 @@ from analisis.graficos import graficar_barras, graficar_torta
 
 def generar_graficos(data_dir: Path | str, graficos_dir: Path | str, anio: int, nivel: str) -> Path:
     data_dir = Path(data_dir)
-    circuito_json = data_dir / str(anio) / nivel / f"circuito_{nivel}.json"
+    circuito_json = data_dir / str(anio) / nivel / "generales" / f"circuito_{nivel}.json"
     contenido = json.loads(circuito_json.read_text(encoding="utf-8"))
     circuito_ids = sorted(contenido["circuitos"])
 
@@ -48,7 +48,7 @@ def main():
     args = parser.parse_args()
 
     salida = generar_graficos(args.data_dir, args.graficos_dir, args.anio, args.nivel)
-    circuito_json = Path(args.data_dir) / str(args.anio) / args.nivel / f"circuito_{args.nivel}.json"
+    circuito_json = Path(args.data_dir) / str(args.anio) / args.nivel / "generales" / f"circuito_{args.nivel}.json"
     n_circuitos = len(json.loads(circuito_json.read_text(encoding="utf-8"))["circuitos"])
     print(f"{n_circuitos} circuitos + 1 acumulado -> {salida} ({(n_circuitos + 1) * 2} imágenes)")
 

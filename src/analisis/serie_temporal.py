@@ -32,8 +32,8 @@ CARGO_LABEL = {
 
 def _anios_disponibles(data_dir: Path | str, nivel_especifico: str) -> list[int]:
     return sorted(
-        int(p.parents[1].name)
-        for p in Path(data_dir).glob(f"*/{nivel_especifico}/circuito_{nivel_especifico}.json")
+        int(p.parents[2].name)
+        for p in Path(data_dir).glob(f"*/{nivel_especifico}/generales/circuito_{nivel_especifico}.json")
     )
 
 

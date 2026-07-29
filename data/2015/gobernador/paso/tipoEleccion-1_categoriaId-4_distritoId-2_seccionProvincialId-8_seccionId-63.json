@@ -1,0 +1,186 @@
+{
+  "fechaTotalizacion": "2026-07-29T12:34:25.483Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1547,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 536661,
+    "cantidadVotantes": 401633,
+    "participacionPorcentaje": 74.84
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0145",
+      "nombreAgrupacion": "CAMBIEMOS BUENOS AIRES                                                                              ",
+      "votos": 125719,
+      "votosPorcentaje": 34.68,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA 1 A AMARILLO                                                                                  ",
+          "numero": "3407",
+          "votos": 125719
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0038",
+      "nombreAgrupacion": "    MST-MOVIMIENTO SOCIALISTA DE LOS TRABAJADORES                                                   ",
+      "votos": 2330,
+      "votosPorcentaje": 0.64,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA A - UNIDAD                                                                                    ",
+          "numero": "3019",
+          "votos": 2330
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0136",
+      "nombreAgrupacion": "ALIANZA FRENTE POPULAR                                                                              ",
+      "votos": 3078,
+      "votosPorcentaje": 0.85,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA A PROTAGONISMO Y PARTICIPACION                                                                ",
+          "numero": "3234",
+          "votos": 3078
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0132",
+      "nombreAgrupacion": "ALIANZA PROGRESISTAS                                                                                ",
+      "votos": 21119,
+      "votosPorcentaje": 5.83,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA IGUALDAD Y DECENCIA MS                                                                        ",
+          "numero": "3008",
+          "votos": 13891
+        },
+        {
+          "nombre": "LISTA CREO A                                                                                        ",
+          "numero": "3129",
+          "votos": 7228
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0133",
+      "nombreAgrupacion": "ALIANZA COMPROMISO FEDERAL                                                                          ",
+      "votos": 2767,
+      "votosPorcentaje": 0.76,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA P                                                                                             ",
+          "numero": "3406",
+          "votos": 2767
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0138",
+      "nombreAgrupacion": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)                                                      ",
+      "votos": 60357,
+      "votosPorcentaje": 16.65,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "A FRENTE RENOVADOR +A15                                                                             ",
+          "numero": "3192",
+          "votos": 60357
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0131",
+      "nombreAgrupacion": "ALIANZA FRENTE PARA LA VICTORIA                                                                     ",
+      "votos": 122208,
+      "votosPorcentaje": 33.71,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA CELESTE Y BLANCA K 1                                                                          ",
+          "numero": "3401",
+          "votos": 60197
+        },
+        {
+          "nombre": "LISTA CELESTE Y BLANCA K 10                                                                         ",
+          "numero": "3402",
+          "votos": 62011
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0013",
+      "nombreAgrupacion": "MOVIMIENTO AL SOCIALISMO                                                                            ",
+      "votos": 2039,
+      "votosPorcentaje": 0.56,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA A SoB                                                                                         ",
+          "numero": "3253",
+          "votos": 2039
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0137",
+      "nombreAgrupacion": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES                                                   ",
+      "votos": 17970,
+      "votosPorcentaje": 4.96,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA UNIDAD - 2 U                                                                                  ",
+          "numero": "3261",
+          "votos": 8891
+        },
+        {
+          "nombre": "LISTA 1 A RENOVAR Y FORTALECER EL FRENTE                                                            ",
+          "numero": "3014",
+          "votos": 9079
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0301",
+      "nombreAgrupacion": "PATRIA GRANDE                                                                                       ",
+      "votos": 4912,
+      "votosPorcentaje": 1.36,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "PARA LA LIBERACION                                                                                  ",
+          "numero": "3013",
+          "votos": 4912
+        }
+      ]
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3126,
+    "votosNulosPorcentaje": 0.78,
+    "votosEnBlanco": 35714,
+    "votosEnBlancoPorcentaje": 8.89,
+    "votosRecurridosComandoImpugnados": 294,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.07
+  }
+}

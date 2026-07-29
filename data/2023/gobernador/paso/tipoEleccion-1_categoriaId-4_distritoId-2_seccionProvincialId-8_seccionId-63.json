@@ -1,0 +1,376 @@
+{
+  "fechaTotalizacion": "2026-07-29T12:35:03.575Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1805,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 624908,
+    "cantidadVotantes": 401987,
+    "participacionPorcentaje": 64.33
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "276",
+      "nombreAgrupacion": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+      "votos": 1719,
+      "votosPorcentaje": 0.47,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "IZQUIERDA ANTICAPITALISTA",
+          "numero": "3614",
+          "votos": 1719
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "95",
+      "nombreAgrupacion": "FRENTE PATRIOTA FEDERAL",
+      "votos": 744,
+      "votosPorcentaje": 0.2,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "A- PRIMERO LA PATRIA",
+          "numero": "3021",
+          "votos": 744
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "135",
+      "nombreAgrupacion": "LA LIBERTAD AVANZA",
+      "votos": 68894,
+      "votosPorcentaje": 18.74,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LIBERTAD POR SIEMPRE",
+          "numero": "3612",
+          "votos": 68894
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "311",
+      "nombreAgrupacion": "CONFIANZA PUBLICA",
+      "votos": 237,
+      "votosPorcentaje": 0.06,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "VALORES EN ACCION",
+          "numero": "3606",
+          "votos": 237
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "40",
+      "nombreAgrupacion": "MOVIMIENTO LIBRES DEL SUR",
+      "votos": 1703,
+      "votosPorcentaje": 0.46,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "A- AZUL Y ROJO",
+          "numero": "3019",
+          "votos": 1703
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "92",
+      "nombreAgrupacion": "POLITICA OBRERA",
+      "votos": 659,
+      "votosPorcentaje": 0.18,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "A- UNIDAD OBRERA",
+          "numero": "3020",
+          "votos": 659
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "258",
+      "nombreAgrupacion": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+      "votos": 272,
+      "votosPorcentaje": 0.07,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CORRIENTE DE PENSAMIENTO AUTENTICA",
+          "numero": "3137",
+          "votos": 272
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "534",
+      "nombreAgrupacion": "CELESTE PROVIDA",
+      "votos": 844,
+      "votosPorcentaje": 0.23,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CELESTE",
+          "numero": "3617",
+          "votos": 844
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "94",
+      "nombreAgrupacion": "PROYECTO JOVEN",
+      "votos": 298,
+      "votosPorcentaje": 0.08,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "FRENTE JOVEN",
+          "numero": "3165",
+          "votos": 298
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "318",
+      "nombreAgrupacion": "LIBER.AR",
+      "votos": 325,
+      "votosPorcentaje": 0.09,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "C- ANTICORRUPCIÓN",
+          "numero": "3004",
+          "votos": 325
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "323",
+      "nombreAgrupacion": "JUSTICIA Y DIGNIDAD PATRIOTICA",
+      "votos": 17,
+      "votosPorcentaje": 0,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "JUSTICIA Y DIGNIDAD",
+          "numero": "3611",
+          "votos": 17
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "268",
+      "nombreAgrupacion": "BUENOS AIRES PRIMERO (BAP)",
+      "votos": 792,
+      "votosPorcentaje": 0.22,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNICA",
+          "numero": "3288",
+          "votos": 792
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "319",
+      "nombreAgrupacion": "UNIDAD SOCIAL",
+      "votos": 238,
+      "votosPorcentaje": 0.06,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNIDOS",
+          "numero": "3295",
+          "votos": 238
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "220",
+      "nombreAgrupacion": "MOVIMIENTO DE INTEGRACION FEDERAL (MIF)",
+      "votos": 360,
+      "votosPorcentaje": 0.1,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "DEFENDAMOS LA PROVINCIA",
+          "numero": "3140",
+          "votos": 360
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "304",
+      "nombreAgrupacion": "FRENTE FEDERAL DE ACCION SOLIDARIA DE LA PROVINCIA DE BUENOS AIRES",
+      "votos": 263,
+      "votosPorcentaje": 0.07,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "ACCION Y SOLIDARIDAD",
+          "numero": "3610",
+          "votos": 263
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "191",
+      "nombreAgrupacion": "POLITICA ABIERTA PARA LA INTEGRIDAD SOCIAL",
+      "votos": 262,
+      "votosPorcentaje": 0.07,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "AZUL UNICA",
+          "numero": "3116",
+          "votos": 262
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "298",
+      "nombreAgrupacion": "TODOS POR BUENOS AIRES",
+      "votos": 129,
+      "votosPorcentaje": 0.04,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "TOBA",
+          "numero": "3620",
+          "votos": 129
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "134",
+      "nombreAgrupacion": "UNION POR LA PATRIA",
+      "votos": 127833,
+      "votosPorcentaje": 34.78,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CELESTE Y BLANCA - 2",
+          "numero": "3604",
+          "votos": 127833
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "329",
+      "nombreAgrupacion": "PRINCIPIOS Y VALORES",
+      "votos": 2234,
+      "votosPorcentaje": 0.61,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "1A- TIERRA, TECHO  Y TRABAJO",
+          "numero": "3011",
+          "votos": 2234
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "132",
+      "nombreAgrupacion": "JUNTOS POR EL CAMBIO",
+      "votos": 143050,
+      "votosPorcentaje": 38.92,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "FALTA MENOS PARA VIVIR SIN MIEDO",
+          "numero": "3602",
+          "votos": 82132
+        },
+        {
+          "nombre": "LA FUERZA DEL CAMBIO",
+          "numero": "3603",
+          "votos": 60918
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "136",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+      "votos": 16316,
+      "votosPorcentaje": 4.44,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "A- UNIR Y FORTALECER LA IZQUIERDA",
+          "numero": "3009",
+          "votos": 12534
+        },
+        {
+          "nombre": "B- UNIDAD DE LUCHADORES Y LA IZQUIERDA",
+          "numero": "3010",
+          "votos": 3782
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "317",
+      "nombreAgrupacion": "VOCACION SOCIAL",
+      "votos": 335,
+      "votosPorcentaje": 0.09,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "VALORES Y SOLIDARIDAD",
+          "numero": "3621",
+          "votos": 335
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "324",
+      "nombreAgrupacion": "ESPERANZA DEL PUEBLO",
+      "votos": 14,
+      "votosPorcentaje": 0,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "ESPERANZA",
+          "numero": "3609",
+          "votos": 14
+        }
+      ]
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3428,
+    "votosNulosPorcentaje": 0.85,
+    "votosEnBlanco": 30101,
+    "votosEnBlancoPorcentaje": 7.49,
+    "votosRecurridosComandoImpugnados": 920,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.23
+  }
+}

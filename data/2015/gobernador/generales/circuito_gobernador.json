@@ -1,0 +1,2564 @@
+{
+  "anio": 2015,
+  "nivel": "gobernador",
+  "categoria_id": 4,
+  "fuente": "csv",
+  "coincide_con_agregado_json": true,
+  "advertencia_fuente": null,
+  "cobertura": {
+    "mesas_esperadas": 0,
+    "mesas_totalizadas": 1532,
+    "mesas_totalizadas_porcentaje": 0,
+    "cantidad_electores": 531539,
+    "cantidad_votantes": 422919,
+    "participacion_porcentaje": 79.56
+  },
+  "circuitos": {
+    "460": {
+      "mesas": 6,
+      "electores": 2032,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 346,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 65,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 108,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 136,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 860,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 35,
+        "IMPUGNADO": 0,
+        "NULO": 8,
+        "RECURRIDO": 0
+      }
+    },
+    "461": {
+      "mesas": 5,
+      "electores": 1672,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 235,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 48,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 76,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 100,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 748,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 34,
+        "IMPUGNADO": 0,
+        "NULO": 7,
+        "RECURRIDO": 0
+      }
+    },
+    "462": {
+      "mesas": 6,
+      "electores": 1808,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 200,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 57,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 69,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 104,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 852,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 22,
+        "IMPUGNADO": 0,
+        "NULO": 5,
+        "RECURRIDO": 0
+      }
+    },
+    "463": {
+      "mesas": 4,
+      "electores": 1081,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 130,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 37,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 50,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 97,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 540,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 17,
+        "IMPUGNADO": 0,
+        "NULO": 3,
+        "RECURRIDO": 0
+      }
+    },
+    "464": {
+      "mesas": 7,
+      "electores": 2264,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 366,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 76,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 132,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 184,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1012,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 55,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 0
+      }
+    },
+    "465": {
+      "mesas": 6,
+      "electores": 1954,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 320,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 90,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 93,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 162,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 888,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 33,
+        "IMPUGNADO": 0,
+        "NULO": 3,
+        "RECURRIDO": 0
+      }
+    },
+    "466": {
+      "mesas": 7,
+      "electores": 2330,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 289,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 70,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 95,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 150,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 961,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 39,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 0
+      }
+    },
+    "467": {
+      "mesas": 6,
+      "electores": 2086,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 331,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 72,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 86,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 145,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 967,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 38,
+        "IMPUGNADO": 0,
+        "NULO": 1,
+        "RECURRIDO": 0
+      }
+    },
+    "468": {
+      "mesas": 10,
+      "electores": 3634,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 552,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 94,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 132,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 220,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1124,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 89,
+        "IMPUGNADO": 0,
+        "NULO": 3,
+        "RECURRIDO": 1
+      }
+    },
+    "469": {
+      "mesas": 7,
+      "electores": 2397,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 431,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 93,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 162,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 198,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 897,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 66,
+        "IMPUGNADO": 0,
+        "NULO": 11,
+        "RECURRIDO": 5
+      }
+    },
+    "471": {
+      "mesas": 6,
+      "electores": 1943,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 376,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 55,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 110,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 257,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 695,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 66,
+        "IMPUGNADO": 0,
+        "NULO": 12,
+        "RECURRIDO": 1
+      }
+    },
+    "472": {
+      "mesas": 5,
+      "electores": 1415,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 253,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 53,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 84,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 131,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 546,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 36,
+        "IMPUGNADO": 1,
+        "NULO": 10,
+        "RECURRIDO": 0
+      }
+    },
+    "473": {
+      "mesas": 13,
+      "electores": 4456,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 697,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 170,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 238,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 309,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 2021,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 77,
+        "IMPUGNADO": 0,
+        "NULO": 19,
+        "RECURRIDO": 2
+      }
+    },
+    "474": {
+      "mesas": 13,
+      "electores": 4358,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 709,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 190,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 198,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 346,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 2032,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 71,
+        "IMPUGNADO": 0,
+        "NULO": 13,
+        "RECURRIDO": 2
+      }
+    },
+    "475": {
+      "mesas": 48,
+      "electores": 16820,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2668,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 581,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 785,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1314,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 7378,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 357,
+        "IMPUGNADO": 10,
+        "NULO": 69,
+        "RECURRIDO": 5
+      }
+    },
+    "476": {
+      "mesas": 9,
+      "electores": 3048,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 507,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 98,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 141,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 230,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1408,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 70,
+        "IMPUGNADO": 0,
+        "NULO": 14,
+        "RECURRIDO": 0
+      }
+    },
+    "477": {
+      "mesas": 23,
+      "electores": 8041,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1618,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 198,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 347,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 822,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 2806,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 257,
+        "IMPUGNADO": 16,
+        "NULO": 23,
+        "RECURRIDO": 2
+      }
+    },
+    "480": {
+      "mesas": 9,
+      "electores": 2857,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 456,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 99,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 163,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 230,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1274,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 70,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 0
+      }
+    },
+    "481": {
+      "mesas": 9,
+      "electores": 3141,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 533,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 85,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 161,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 256,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1393,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 78,
+        "IMPUGNADO": 0,
+        "NULO": 16,
+        "RECURRIDO": 0
+      }
+    },
+    "482": {
+      "mesas": 8,
+      "electores": 2801,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 479,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 106,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 158,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 221,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1251,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 59,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 1
+      }
+    },
+    "483": {
+      "mesas": 8,
+      "electores": 2716,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 475,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 86,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 131,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 232,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1266,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 67,
+        "IMPUGNADO": 2,
+        "NULO": 6,
+        "RECURRIDO": 2
+      }
+    },
+    "484": {
+      "mesas": 11,
+      "electores": 3586,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 513,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 111,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 166,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 231,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1323,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 73,
+        "IMPUGNADO": 3,
+        "NULO": 7,
+        "RECURRIDO": 2
+      }
+    },
+    "485": {
+      "mesas": 9,
+      "electores": 2979,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 511,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 108,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 163,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 209,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1056,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 60,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 4
+      }
+    },
+    "486": {
+      "mesas": 9,
+      "electores": 2841,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 538,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 103,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 204,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 262,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1156,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 76,
+        "IMPUGNADO": 0,
+        "NULO": 5,
+        "RECURRIDO": 3
+      }
+    },
+    "487": {
+      "mesas": 7,
+      "electores": 2409,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 451,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 80,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 152,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 250,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 999,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 67,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 0
+      }
+    },
+    "488": {
+      "mesas": 10,
+      "electores": 3276,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 586,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 122,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 201,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 348,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1352,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 77,
+        "IMPUGNADO": 0,
+        "NULO": 18,
+        "RECURRIDO": 0
+      }
+    },
+    "495": {
+      "mesas": 76,
+      "electores": 26613,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 4602,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 848,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 1187,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 2542,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 10615,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 739,
+        "IMPUGNADO": 53,
+        "NULO": 93,
+        "RECURRIDO": 14
+      }
+    },
+    "496": {
+      "mesas": 82,
+      "electores": 28462,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 5774,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 700,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 1266,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 4017,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 10345,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1207,
+        "IMPUGNADO": 0,
+        "NULO": 140,
+        "RECURRIDO": 10
+      }
+    },
+    "496A": {
+      "mesas": 29,
+      "electores": 10030,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 3319,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 142,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 362,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1461,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 2037,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 876,
+        "IMPUGNADO": 1,
+        "NULO": 49,
+        "RECURRIDO": 1
+      }
+    },
+    "496B": {
+      "mesas": 27,
+      "electores": 9315,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2448,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 165,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 346,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1295,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 2650,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 746,
+        "IMPUGNADO": 5,
+        "NULO": 56,
+        "RECURRIDO": 2
+      }
+    },
+    "496C": {
+      "mesas": 33,
+      "electores": 11503,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2807,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 226,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 422,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1635,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 3429,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 773,
+        "IMPUGNADO": 0,
+        "NULO": 25,
+        "RECURRIDO": 6
+      }
+    },
+    "496D": {
+      "mesas": 42,
+      "electores": 14359,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 3481,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 316,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 597,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 2171,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 4152,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1139,
+        "IMPUGNADO": 1,
+        "NULO": 84,
+        "RECURRIDO": 4
+      }
+    },
+    "496E": {
+      "mesas": 7,
+      "electores": 2224,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 558,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 63,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 101,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 256,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 657,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 178,
+        "IMPUGNADO": 0,
+        "NULO": 8,
+        "RECURRIDO": 2
+      }
+    },
+    "496F": {
+      "mesas": 1,
+      "electores": 161,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 32,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 24,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 49,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 16,
+        "IMPUGNADO": 0,
+        "NULO": 3,
+        "RECURRIDO": 0
+      }
+    },
+    "497": {
+      "mesas": 41,
+      "electores": 14026,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2398,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 413,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 577,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1800,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 5795,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 524,
+        "IMPUGNADO": 0,
+        "NULO": 61,
+        "RECURRIDO": 2
+      }
+    },
+    "497A": {
+      "mesas": 1,
+      "electores": 350,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 58,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 73,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 82,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 27,
+        "IMPUGNADO": 0,
+        "NULO": 3,
+        "RECURRIDO": 0
+      }
+    },
+    "497B": {
+      "mesas": 24,
+      "electores": 8262,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1838,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 195,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 313,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1233,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 2669,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 536,
+        "IMPUGNADO": 0,
+        "NULO": 24,
+        "RECURRIDO": 0
+      }
+    },
+    "497C": {
+      "mesas": 25,
+      "electores": 8663,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2211,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 118,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 282,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1300,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 2207,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 690,
+        "IMPUGNADO": 1,
+        "NULO": 35,
+        "RECURRIDO": 0
+      }
+    },
+    "497D": {
+      "mesas": 29,
+      "electores": 10029,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2031,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 178,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 395,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1560,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 3224,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 678,
+        "IMPUGNADO": 10,
+        "NULO": 83,
+        "RECURRIDO": 2
+      }
+    },
+    "497E": {
+      "mesas": 28,
+      "electores": 9488,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2211,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 276,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 295,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1533,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 2702,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 733,
+        "IMPUGNADO": 0,
+        "NULO": 59,
+        "RECURRIDO": 1
+      }
+    },
+    "497F": {
+      "mesas": 15,
+      "electores": 5652,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1210,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 66,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 162,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 587,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 835,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 376,
+        "IMPUGNADO": 101,
+        "NULO": 4,
+        "RECURRIDO": 0
+      }
+    },
+    "498": {
+      "mesas": 3,
+      "electores": 885,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 294,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 8,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 14,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 140,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 203,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 60,
+        "IMPUGNADO": 0,
+        "NULO": 2,
+        "RECURRIDO": 0
+      }
+    },
+    "501": {
+      "mesas": 136,
+      "electores": 48558,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 9205,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 1263,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 1889,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 5339,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 18592,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1859,
+        "IMPUGNADO": 16,
+        "NULO": 174,
+        "RECURRIDO": 7
+      }
+    },
+    "502": {
+      "mesas": 120,
+      "electores": 41883,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 9257,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 1030,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 1675,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 4846,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 14872,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1699,
+        "IMPUGNADO": 0,
+        "NULO": 192,
+        "RECURRIDO": 11
+      }
+    },
+    "503": {
+      "mesas": 12,
+      "electores": 4186,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1197,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 75,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 133,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 656,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1220,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 313,
+        "IMPUGNADO": 4,
+        "NULO": 14,
+        "RECURRIDO": 1
+      }
+    },
+    "503A": {
+      "mesas": 18,
+      "electores": 6244,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1564,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 146,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 256,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 909,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1804,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 432,
+        "IMPUGNADO": 0,
+        "NULO": 25,
+        "RECURRIDO": 0
+      }
+    },
+    "504": {
+      "mesas": 87,
+      "electores": 30436,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 6603,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 945,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 1406,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 3069,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 11919,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1212,
+        "IMPUGNADO": 3,
+        "NULO": 120,
+        "RECURRIDO": 4
+      }
+    },
+    "504A": {
+      "mesas": 71,
+      "electores": 25218,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 4928,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 908,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 1139,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 2376,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 10338,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 750,
+        "IMPUGNADO": 23,
+        "NULO": 107,
+        "RECURRIDO": 5
+      }
+    },
+    "505": {
+      "mesas": 48,
+      "electores": 16792,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 3904,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 493,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 591,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 2146,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 5524,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 763,
+        "IMPUGNADO": 37,
+        "NULO": 74,
+        "RECURRIDO": 4
+      }
+    },
+    "505A": {
+      "mesas": 21,
+      "electores": 7280,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2427,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 174,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 254,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 915,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1805,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 397,
+        "IMPUGNADO": 2,
+        "NULO": 51,
+        "RECURRIDO": 5
+      }
+    },
+    "505B": {
+      "mesas": 7,
+      "electores": 2328,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 811,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 24,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 45,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 387,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 419,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 234,
+        "IMPUGNADO": 0,
+        "NULO": 17,
+        "RECURRIDO": 0
+      }
+    },
+    "508": {
+      "mesas": 25,
+      "electores": 8510,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2255,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 188,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 337,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1347,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 2378,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 606,
+        "IMPUGNADO": 0,
+        "NULO": 27,
+        "RECURRIDO": 5
+      }
+    },
+    "508A": {
+      "mesas": 34,
+      "electores": 11964,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2440,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 241,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 462,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1732,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 3769,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 695,
+        "IMPUGNADO": 5,
+        "NULO": 63,
+        "RECURRIDO": 1
+      }
+    },
+    "508B": {
+      "mesas": 18,
+      "electores": 5987,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2141,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 73,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 175,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 894,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1247,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 494,
+        "IMPUGNADO": 0,
+        "NULO": 22,
+        "RECURRIDO": 1
+      }
+    },
+    "508C": {
+      "mesas": 20,
+      "electores": 6947,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2091,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 103,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 213,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1017,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1758,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 535,
+        "IMPUGNADO": 0,
+        "NULO": 36,
+        "RECURRIDO": 0
+      }
+    },
+    "508D": {
+      "mesas": 23,
+      "electores": 7786,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2103,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 94,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 175,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1202,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1857,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 589,
+        "IMPUGNADO": 0,
+        "NULO": 13,
+        "RECURRIDO": 0
+      }
+    },
+    "508E": {
+      "mesas": 17,
+      "electores": 5932,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1444,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 93,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 223,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1023,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1794,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 504,
+        "IMPUGNADO": 4,
+        "NULO": 16,
+        "RECURRIDO": 0
+      }
+    },
+    "508F": {
+      "mesas": 4,
+      "electores": 1367,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 347,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 17,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 33,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 219,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 372,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 64,
+        "IMPUGNADO": 0,
+        "NULO": 3,
+        "RECURRIDO": 0
+      }
+    },
+    "508G": {
+      "mesas": 2,
+      "electores": 467,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 172,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 8,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 61,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 96,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 0,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "509": {
+      "mesas": 25,
+      "electores": 9531,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2908,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 109,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 191,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 893,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1514,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 597,
+        "IMPUGNADO": 45,
+        "NULO": 17,
+        "RECURRIDO": 2
+      }
+    },
+    "509A": {
+      "mesas": 19,
+      "electores": 6643,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1478,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 113,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 191,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 1065,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 2208,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 414,
+        "IMPUGNADO": 1,
+        "NULO": 52,
+        "RECURRIDO": 4
+      }
+    },
+    "516": {
+      "mesas": 9,
+      "electores": 2920,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 453,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 108,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 159,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 211,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1253,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 49,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 2
+      }
+    },
+    "517": {
+      "mesas": 11,
+      "electores": 3691,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 584,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 144,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 226,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 263,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1575,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 86,
+        "IMPUGNADO": 0,
+        "NULO": 9,
+        "RECURRIDO": 2
+      }
+    },
+    "518": {
+      "mesas": 24,
+      "electores": 9671,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2651,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 152,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 258,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 519,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 2018,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 298,
+        "IMPUGNADO": 103,
+        "NULO": 6,
+        "RECURRIDO": 1
+      }
+    },
+    "519": {
+      "mesas": 20,
+      "electores": 6834,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1212,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 229,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 430,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 530,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 2438,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 157,
+        "IMPUGNADO": 1,
+        "NULO": 18,
+        "RECURRIDO": 1
+      }
+    },
+    "520": {
+      "mesas": 25,
+      "electores": 8477,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1588,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 261,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 514,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 888,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 3357,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 223,
+        "IMPUGNADO": 0,
+        "NULO": 16,
+        "RECURRIDO": 5
+      }
+    },
+    "521": {
+      "mesas": 12,
+      "electores": 3920,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0131": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 735,
+          "campo_ideologico": "3"
+        },
+        "0132": {
+          "nombre": "ALIANZA PROGRESISTAS",
+          "votos": 141,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 275,
+          "campo_ideologico": "1"
+        },
+        "0138": {
+          "nombre": "ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA)",
+          "votos": 336,
+          "campo_ideologico": "4"
+        },
+        "0145": {
+          "nombre": "CAMBIEMOS BUENOS AIRES",
+          "votos": 1546,
+          "campo_ideologico": "5"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 93,
+        "IMPUGNADO": 0,
+        "NULO": 12,
+        "RECURRIDO": 0
+      }
+    }
+  }
+}

@@ -15,20 +15,22 @@ src/electoral/
   client.py     
   models.py     
 src/analisis/
-  graficos.py           # graficar_barras / graficar_torta (por campo ideológico) a partir de circuito_<nivel>.json
-  generar_graficos.py   # script: para un (año, nivel), genera todos los PNG (circuito por circuito + acumulado)
-  serie_temporal.py      # script: por nivel de gobierno (nacional/provincial/municipal), línea por ideología 2011-2025
+  graficos.py               # graficar_barras / graficar_torta (por campo ideológico) a partir de circuito_<nivel>.json
+  generar_graficos.py       # script: para un (año, nivel), genera todos los PNG (circuito por circuito + acumulado)
+  serie_temporal.py         # script: por nivel de gobierno (nacional/provincial/municipal), línea por ideología 2011-2025
+  cuadros_anualizados.py    # script: un gráfico por año, con todos sus cargos lado a lado
 notebooks/
   01_explorar_resultados.ipynb           # cómo usar el cliente + el modelo de dominio
   02_la_plata_cargos_ejecutivos.ipynb    # pipeline: cargos ejecutivos, 2011-2023
   03_la_plata_legislativas.ipynb         # pipeline: cargos legislativos, 2013-2025
   04_totales_por_circuito.ipynb         
 data/<año>/<categoría o nivel>/          # caché: .json (agregado) + .csv (oficial) + circuito_<nivel>.json
-data/agrupaciones/agrupaciones.csv                 # año/agrupación/nivel — cargos ejecutivos
-data/agrupaciones/agrupaciones_legislativas.csv    # año/agrupación/nivel — cargos legislativos
+data/agrupaciones/agrupaciones.csv                 # año/agrupación/nivel/campo_ideologico — cargos ejecutivos
+data/agrupaciones/agrupaciones_legislativas.csv    # año/agrupación/nivel/campo_ideologico — cargos legislativos
 data/agrupaciones/campo_ideologico.csv             # escala 1-6 izquierda→derecha radical (provisto)
-graficos/<año>/<nivel>/                 
-graficos/serie_temporal/                 
+data/agrupaciones/circuito_id_correspondencias.csv # circuito_id crudo (por año) -> circuito_id canónico
+graficos/serie_temporal/                 # el único subdirectorio de graficos/ versionado en git
+graficos/<año>/<nivel>/, graficos/cuadros_anualizados/   # generados on demand, no versionados (ver .gitignore)
 requirements.txt
 ```
 
@@ -51,19 +53,60 @@ saliente a `resultados.mininterior.gob.ar`.
    notebook que efectivamente genera/actualiza `data/`: trae el CSV oficial y
    el agregado JSON de cada combinación (año × cargo), valida uno contra el
    otro, hace un ejemplo de análisis mesa por mesa, confirma que el caché en
-   disco quedó limpio (2 archivos por carpeta), y arma
-   `data/agrupaciones/agrupaciones.csv` (año, agrupación, nivel) a partir de
-   los agregados JSON.
+   disco quedó limpio (2 archivos por carpeta), y valida
+   `data/agrupaciones/agrupaciones.csv` contra lo que trae la API — si hay
+   agrupaciones nuevas las agrega (avisando), si no, no toca el archivo (ver
+   advertencia abajo).
 4. Abrir y correr `notebooks/03_la_plata_legislativas.ipynb`: mismo patrón
    pero para los cargos legislativos (nacional/provincial/municipal,
-   2013-2025), y arma `data/agrupaciones/agrupaciones_legislativas.csv`.
-5. Abrir y correr `notebooks/04_totales_por_circuito.ipynb`: agrega por
-   `circuito_id` los totales de cada agrupación y de los "otros" (blanco,
-   nulo, recurrido, impugnado...) para cada (año, nivel) ya descargado, y
-   escribe `data/<año>/<nivel>/circuito_<nivel>.json`.
+   2013-2025), sobre `data/agrupaciones/agrupaciones_legislativas.csv`.
+5. Abrir y correr `notebooks/04_totales_por_circuito.ipynb`: normaliza
+   `circuito_id` a su forma canónica (sin ceros a la izquierda — ver más
+   abajo), agrega por ese id los totales de cada agrupación y de los "otros"
+   (blanco, nulo, recurrido, impugnado...) para cada (año, nivel) ya
+   descargado, cruza contra el libro de códigos ideológico, agrega un
+   indicador de cobertura, y escribe `data/<año>/<nivel>/circuito_<nivel>.json`
+   y `data/agrupaciones/circuito_id_correspondencias.csv`.
 6. Si ya existe la caché en `data/`, los notebooks corren instantáneo (leen
    de disco, no vuelven a pedirle nada a la API). Para forzar una actualización
    real, pasar `force_refresh=True` a los métodos del cliente.
+
+**`agrupaciones.csv`/`agrupaciones_legislativas.csv` nunca se regeneran ni se
+pisan** (antes sí lo hacían — problema ya resuelto). Ambos archivos tienen
+una **4ª columna**, `campo_ideologico`, clasificada a mano; la API no puede
+reponerla, así que los notebooks 02/03 no la tratan como una tabla para
+recrear desde cero. En cambio, el último paso de cada notebook:
+
+1. arma la tabla de agrupaciones a partir de lo que devuelve la API para ese
+   run (`anio`, `agrupacion`, `nivel`);
+2. la compara contra el archivo ya existente en disco por clave exacta
+   (`anio`, `nivel`, `agrupacion`);
+3. si **no hay agrupaciones nuevas**, no toca el archivo (solo lo informa);
+4. si **hay alguna nueva**, la imprime explícitamente (aviso, no error
+   silencioso) y la agrega al final con `campo_ideologico` vacío — las filas
+   existentes, con su clasificación, nunca se sobreescriben.
+
+Esto hace seguro correr 02→03→04 desde cero en cualquier momento: en el caso
+normal (sin agrupaciones nuevas) el archivo queda bit a bit idéntico.
+
+**Nombre de agrupación, normalizado a mayúsculas**: `agrupacion` en ambos CSV
+está en mayúsculas — es la convención que ya traía la API en la mayoría de
+los años; solo Generales 2011 (ejecutivos) venía en minúscula/capitalizado.
+`agregar_por_circuito` (notebook 04) sube a mayúsculas el `agrupacion_nombre`
+del CSV oficial antes de armar `positivos`, así que el `nombre` dentro de
+`circuito_<nivel>.json` también queda en mayúsculas — coincide con la clave
+usada en el join contra `agrupaciones.csv`/`agrupaciones_legislativas.csv`. Al
+incorporar PASO se agregaron ~179 filas nuevas (agrupaciones que compitieron
+en la interna y no llegaron a Generales) con `campo_ideologico` vacío — a
+clasificar en la etapa analítica, no inventado. Esto expuso que la API
+también devuelve el nombre de una misma agrupación con grafía distinta según
+el año/etapa más allá de mayúsculas — abreviaturas y puntuación distintas
+(ej. `"COALICIÓN CÍVICA - AFIRMACIÓN PARA UNA REPÚBLICA IGUALITARIA ARI"` vs.
+`"COALICION CIVICA ARI"`, `"ALIANZA UNIÓN PARA EL DESARROLLO SOCIAL"` vs.
+`"ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO"`): esos casos **no** se
+fusionaron (solo se fusionaron los que coincidían exactamente tras subir a
+mayúsculas) y siguen como filas separadas — un mapeo de nombres entre
+etapas/años queda pendiente.
 
 ## El cliente (`src/electoral/client.py`)
 
@@ -139,15 +182,28 @@ Plata:
 
 
 `data/agrupaciones/agrupaciones_legislativas.csv`, misma estructura que
-`agrupaciones.csv` (`anio`, `agrupacion`, `nivel`). Cuando un nivel tuvo dos
-cargos el mismo año, sus agrupaciones se juntan bajo ese `nivel` y se
-deduplican.
+genera el notebook 03 para `agrupaciones.csv` (`anio`, `agrupacion`,
+`nivel`; el archivo en disco tiene además `campo_ideologico`, agregado a
+mano — ver advertencia arriba). Cuando un nivel tuvo dos cargos el mismo año,
+sus agrupaciones se juntan bajo ese `nivel` y se deduplican.
 
 ### Totales por circuito
 
 `data/<año>/<nivel>/circuito_<nivel>.json` — agrega, por `circuito_id`, los
 positivos por agrupación y los "otros" (blanco/nulo/recurrido/impugnado/
-comando, lo que exista ese año). Sale del CSV oficial. 
+comando, lo que exista ese año). Sale del CSV oficial.
+
+**`circuito_id` canónico**: el mismo circuito se identifica con distinto
+ancho/relleno de ceros según el año (`"0460"` en 2011/2015, `"000460"` en
+2019, `"00460"` en 2023). El notebook 04 normaliza a una forma canónica (sin
+ceros a la izquierda, conservando cualquier sufijo de letra por subdivisión,
+ej. `"0496F"` → `"496F"`) **antes** de agregar, y usa esa forma como clave en
+`circuitos`. La correspondencia entre el id crudo de cada año y el canónico
+queda versionada en `data/agrupaciones/circuito_id_correspondencias.csv`. De
+los circuitos de La Plata, un subconjunto no es común a todos los años
+procesados (`493`, `496F`, `504C` en esta ejecución) — no es un problema de
+formato sino de altas/bajas/subdivisiones reales de circuito, y requiere
+revisión manual de límites, no normalización adicional.
 
 `2017/nacional` tuvo dos cargos ese año (Senador Nacional idCargo=2, solo
 2017; Diputados Nacionales idCargo=3, todos los años) compartiendo la misma
@@ -158,13 +214,60 @@ de este archivo.
 Cada agrupación dentro de `positivos` suma el campo `campo_ideologico`,
 copiado tal cual de `agrupaciones.csv` / `agrupaciones_legislativas.csv`
 (join exacto por año/nivel/nombre; `"gobernador"` se mapea a
-`"gobernacion"`.
+`"gobernacion"`). Si una agrupación no aparece en el CSV de clasificación,
+el notebook falla con `KeyError` en vez de guardar el circuito sin el
+campo.
+
+Cada circuito también trae `mesas_sin_votos_positivos`: cuántas de sus mesas
+no tienen ningún voto positivo (37 en Presidente 2023, 47 en Gobernador e
+Intendente 2023, en 26 circuitos). Es una señal a revisar (puede ser padrón
+sin categoría —p. ej. electores extranjeros en cargos nacionales— o una mesa
+todavía no escrutada al momento de la consulta), **no** una clasificación
+automática: no se decide la causa por código, se deja el número para
+revisión manual.
+
+Cada archivo trae además tres campos de procedencia/cobertura, a nivel de
+todo el (año, nivel):
+
+- `fuente`: siempre `"csv"` — el pipeline usa el CSV oficial, no el JSON
+  agregado, para construir `circuito_<nivel>.json` (ver anomalía 2019 abajo).
+- `coincide_con_agregado_json` / `advertencia_fuente`: si la suma por
+  circuito no coincide exactamente con el JSON agregado de la misma
+  consulta, `advertencia_fuente` explica por qué (hoy, el único caso es
+  Presidente 2019 — ver más abajo).
+- `cobertura`: los campos de `estadoRecuento` que ya expone la API
+  (`EstadoRecuento`, `src/electoral/models.py`) para todo el (año, nivel):
+  `mesas_totalizadas`, `cantidad_electores`, `cantidad_votantes`,
+  `participacion_porcentaje`. **`mesas_esperadas` y
+  `mesas_totalizadas_porcentaje` están siempre en `0`** en los datos ya
+  descargados: la API no los completa para elecciones cerradas/históricas
+  (solo tendrían valor en una consulta en vivo), así que no sirven hoy para
+  calcular un % de cobertura real — quedan igual en el archivo, sin
+  recalcularlos, para no inventar un dato que la fuente no da.
+
+### Anomalía conocida: JSON agregado de Presidente 2019
+
+El JSON agregado crudo cacheado para Presidente 2019
+(`data/2019/presidente/tipoEleccion-2_categoriaId-1_..._.json`) reporta 96
+mesas totalizadas y 27.567 votos positivos; el CSV oficial de la misma
+consulta tiene 1.517 mesas y 418.164 votos positivos (~16x más). El dato
+analítico (`circuito_presidente.json`) ya está bien porque sale del CSV, no
+del JSON agregado — pero ese JSON agregado sigue en el repo tal cual se
+cacheó, sin corregir, porque es el crudo devuelto por la API en su momento.
+`circuito_presidente.json` de 2019 documenta esto mismo con
+`"coincide_con_agregado_json": false` y una `"advertencia_fuente"` explícita.
+Ningún paso del pipeline debería tomar los totales de ese JSON agregado.
 
 ## Gráficos (`src/analisis/`, salida en `graficos/`)
 
 Barras y torta por **campo ideológico** (izquierda → derecha radical, con
 una paleta divergente azul↔rojo — es un dato de polaridad, no de identidad),
 a partir de `circuito_<nivel>.json`.
+
+**Solo `graficos/serie_temporal/` está versionado en git.** `graficos/<año>/<nivel>/`
+(circuito por circuito) y `graficos/cuadros_anualizados/` están en
+`.gitignore` — se generan on demand con los scripts de abajo y no hace falta
+subirlos (son miles de archivos, se regeneran en segundos desde `data/`).
 
 - **`graficos.py`**: `graficar_barras(data_dir, anio, nivel, circuito_id=None)`
   y `graficar_torta(...)` — devuelven una figura de matplotlib.
@@ -187,16 +290,94 @@ a partir de `circuito_<nivel>.json`.
 - **`serie_temporal.py`**: **un gráfico por nivel de gobierno** (nacional /
   provincial / municipal, no por cargo puntual), con una línea por campo
   ideológico (las 6) cubriendo 2011-2025. Cada nivel combina su cargo
-  ejecutivo (años pares) y su cargo legislativo (años impares) en una sola
-  serie continua — nunca se superponen (los datos que tenemos de cada uno
-  son de años distintos), así que no hace falta reconciliar dos fuentes el
-  mismo año, solo elegir cuál de las dos corresponde a cada punto:
+  ejecutivo y su cargo legislativo en una sola serie continua. **Todos los
+  años del proyecto son impares** (ejecutivos 2011/2015/2019/2023,
+  legislativos 2013/2017/2021/2025 — no hay ningún año par en el dataset):
+  lo que alterna es el *tipo* de elección (general ejecutiva vs. legislativa
+  intermedia), no la paridad del año. Nunca se superponen (los datos que
+  tenemos de cada uno son de años distintos), así que no hace falta
+  reconciliar dos fuentes el mismo año, solo elegir cuál de las dos
+  corresponde a cada punto:
 
   | nivel | ejecutivo | legislativo | puntos | rango |
   |---|---|---|---|---|
   | nacional | Presidente | Diputados Nacionales | 8 | 2011-2025 completo |
   | provincial | Gobernador | Diputados Provinciales | 7 | 2011-2023 (sin 2025 ) |
   | municipal | Intendente | Concejales | 7 | 2011-2023 (sin 2025) |
+
+- **`cuadros_anualizados.py`**: **un gráfico por año** (2011-2025), con todos
+  los cargos que se disputaron ese año lado a lado — a diferencia de
+  `serie_temporal.py`, acá el eje temporal no existe: es una foto de un año
+  puntual, comparando sus propios cargos entre sí. **No suma los cargos entre
+  sí** (mismo motivo que el punto anterior: sumar Presidente + Gobernador +
+  Intendente sugeriría más comparabilidad de la que hay) — cada cargo es su
+  propia serie de barras, con el nombre del cargo en la leyenda. Escribe en
+  `graficos/cuadros_anualizados/<año>_votos.png` y `<año>_porcentaje.png`.
+
+  ```bash
+  PYTHONPATH=src python -m analisis.cuadros_anualizados --anio 2023
+  ```
+
+## PASO y balotaje (§2.3 del plan de correcciones)
+
+Además de Generales (`tipo_eleccion=2`), el pipeline ahora también trae **PASO**
+(`tipo_eleccion=1`) para todas las combinaciones (año, cargo) ya cubiertas, y
+**balotaje/segunda vuelta** (`tipo_eleccion=3`) para Presidente en los años en
+que efectivamente hubo — 2015 y 2023 (2011 y 2019 se definieron en primera
+vuelta). El caché sigue el mismo patrón `data/<año>/<cargo>/`, con una
+subcarpeta nueva por etapa: `data/<año>/<cargo>/paso/` y, para Presidente,
+`data/<año>/presidente/balotaje/`. Los archivos de Generales **no se
+movieron** — siguen sueltos directamente en `data/<año>/<cargo>/`, como
+estaban; reorganizarlos para que Generales también viva en su propia
+subcarpeta (`data/<año>/<cargo>/generales/`) queda pendiente para más
+adelante.
+
+Notas verificadas al traer estos datos:
+
+- **2011/intendente no tiene PASO**: se probó el rango de `categoria_id` 1-11
+  para PASO 2011 completo y no aparece ninguna categoría municipal. La
+  hipótesis más consistente con la Ley de PASO (26.571) es que esa interna no
+  estuvo disputada (candidatura única), por lo que no se hizo comicio
+  primario para esa categoría — no se pudo confirmar con una fuente externa,
+  así que queda como caso a revisar, no como hecho asumido.
+- **No hay balotaje para Gobernador ni Intendente** en la Provincia de Buenos
+  Aires (se definen por simple pluralidad) — verificado pidiendo
+  `tipo_eleccion=3` para esos cargos: la API devuelve "no disponible".
+- **PASO 2025 no existe**: la Ley 27.781 las suspendió para todas las
+  elecciones de ese año — verificado que la API devuelve "no disponible"
+  para las cinco combinaciones de cargo en 2025.
+- **`2017/nacional/paso`** comparte carpeta entre Senador Nacional (idCargo=2,
+  solo se votó en 2017) y Diputados Nacionales (idCargo=3) — igual que ya
+  pasaba en Generales para ese mismo (año, nivel).
+
+**Pendiente** (no alcanzado en esta etapa): `circuito_<nivel>.json` sigue
+representando solo Generales — todavía no hay una versión por circuito de
+PASO/balotaje, ni una columna/campo que marque a qué etapa corresponde cada
+fila en una tabla combinada. Eso, junto con el movimiento de los archivos de
+Generales a su propia subcarpeta, queda para un paso siguiente.
+
+## Estado de la capa socioeconómica
+
+El nombre del repositorio (`analisis-politica-economia`) anuncia una capa
+económica/socioeconómica (Censo, EPH) que **todavía no existe**: hoy no hay
+ningún dato de Censo, EPH ni ninguna otra variable socioeconómica en
+`data/`. Lo que hay es exclusivamente el pipeline y los datos electorales de
+La Plata descriptos en este README. Un prerrequisito técnico para esa capa
+futura es una tabla de correspondencia entre `circuito_id` canónico (ver
+arriba) y radios/fracciones censales — todavía no construida.
+
+## Libro de códigos ideológico — estado actual
+
+`campo_ideologico` (columna en `agrupaciones.csv` /
+`agrupaciones_legislativas.csv`, escala 1-6 en `campo_ideologico.csv`) es
+hoy una clasificación cargada a mano, con varios casos donde la unidad de
+clasificación (alianza vs. candidatura vs. programa de gobierno) y el
+criterio de asignación no están explicitados — por ejemplo, una misma
+alianza (Progresistas 2015, Patria Grande, Frente Renovador/1País) queda en
+valores distintos según el cargo o el año sin una regla escrita que lo
+justifique. Definir esas reglas, separar identidad partidaria de posición
+ideológica, y revisar los casos dudosos con una segunda persona es trabajo
+pendiente — no algo que este pipeline resuelva por sí solo.
 
 ## Extender a otro distrito, sección o cargo
 
@@ -208,4 +389,16 @@ a partir de `circuito_<nivel>.json`.
    distrito/año. Resolverlo pidiendo `get_resultados_csv` con distintos
    `categoria_id` y leyendo el campo `cargo_nombre` de la respuesta (ver
    sección 1 de `02_la_plata_cargos_ejecutivos.ipynb`).
-3. Usar `get_resultados_csv` para traer los datos
+3. Usar `get_resultados_csv` para traer los datos, y a partir de ahí seguir
+   el mismo camino que los notebooks de este repo:
+   - Agregar por `circuito_id` (normalizado a su forma canónica, sin ceros a
+     la izquierda) con la misma lógica de `notebooks/04_totales_por_circuito.ipynb`
+     (`agregar_por_circuito`), validando contra el JSON agregado de
+     `get_resultados` antes de confiar en el resultado.
+   - Armar (o extender) el libro de códigos ideológico para las agrupaciones
+     nuevas del distrito, con la unidad y el criterio de clasificación
+     explicitados (ver sección anterior) — el join falla ruidosamente
+     (`KeyError`) si una agrupación queda sin clasificar, a propósito.
+   - Recién con eso escribir el equivalente a `circuito_<nivel>.json` y, si
+     hace falta, graficar con `src/analisis/graficos.py` /
+     `generar_graficos.py`.

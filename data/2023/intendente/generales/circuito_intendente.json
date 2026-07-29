@@ -1,0 +1,2330 @@
+{
+  "anio": 2023,
+  "nivel": "intendente",
+  "categoria_id": 7,
+  "fuente": "csv",
+  "coincide_con_agregado_json": true,
+  "advertencia_fuente": null,
+  "cobertura": {
+    "mesas_esperadas": 0,
+    "mesas_totalizadas": 1805,
+    "mesas_totalizadas_porcentaje": 0,
+    "cantidad_electores": 625734,
+    "cantidad_votantes": 461701,
+    "participacion_porcentaje": 73.79
+  },
+  "circuitos": {
+    "460": {
+      "mesas": 9,
+      "electores": 3158,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 719,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 618,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 238,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 85,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 95,
+        "IMPUGNADO": 1,
+        "NULO": 3,
+        "RECURRIDO": 2
+      }
+    },
+    "461": {
+      "mesas": 9,
+      "electores": 3260,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 614,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 501,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 197,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 88,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 65,
+        "IMPUGNADO": 0,
+        "NULO": 9,
+        "RECURRIDO": 0
+      }
+    },
+    "462": {
+      "mesas": 5,
+      "electores": 1658,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 576,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 359,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 144,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 45,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 58,
+        "IMPUGNADO": 0,
+        "NULO": 1,
+        "RECURRIDO": 0
+      }
+    },
+    "463": {
+      "mesas": 9,
+      "electores": 3346,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 542,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 445,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 183,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 45,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 58,
+        "IMPUGNADO": 0,
+        "NULO": 1,
+        "RECURRIDO": 0
+      }
+    },
+    "464": {
+      "mesas": 7,
+      "electores": 2286,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 768,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 560,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 213,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 100,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 128,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 2
+      }
+    },
+    "465": {
+      "mesas": 6,
+      "electores": 1956,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 738,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 469,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 201,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 83,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 74,
+        "IMPUGNADO": 0,
+        "NULO": 8,
+        "RECURRIDO": 0
+      }
+    },
+    "466": {
+      "mesas": 7,
+      "electores": 2111,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 803,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 447,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 178,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 90,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 4,
+        "EN BLANCO": 75,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 0
+      }
+    },
+    "467": {
+      "mesas": 6,
+      "electores": 1897,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 738,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 422,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 173,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 79,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 78,
+        "IMPUGNADO": 0,
+        "NULO": 5,
+        "RECURRIDO": 0
+      }
+    },
+    "468": {
+      "mesas": 6,
+      "electores": 1863,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 607,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 514,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 152,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 78,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 69,
+        "IMPUGNADO": 0,
+        "NULO": 2,
+        "RECURRIDO": 2
+      }
+    },
+    "469": {
+      "mesas": 6,
+      "electores": 2085,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 480,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 467,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 174,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 96,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 4,
+        "EN BLANCO": 72,
+        "IMPUGNADO": 0,
+        "NULO": 7,
+        "RECURRIDO": 0
+      }
+    },
+    "471": {
+      "mesas": 6,
+      "electores": 1769,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 478,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 499,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 207,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 70,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 116,
+        "IMPUGNADO": 0,
+        "NULO": 3,
+        "RECURRIDO": 1
+      }
+    },
+    "472": {
+      "mesas": 4,
+      "electores": 1279,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 330,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 336,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 146,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 60,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 64,
+        "IMPUGNADO": 0,
+        "NULO": 4,
+        "RECURRIDO": 0
+      }
+    },
+    "473": {
+      "mesas": 12,
+      "electores": 4075,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1145,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 874,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 317,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 153,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 6,
+        "EN BLANCO": 151,
+        "IMPUGNADO": 0,
+        "NULO": 16,
+        "RECURRIDO": 0
+      }
+    },
+    "474": {
+      "mesas": 14,
+      "electores": 4830,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1795,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1158,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 440,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 217,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 206,
+        "IMPUGNADO": 1,
+        "NULO": 15,
+        "RECURRIDO": 0
+      }
+    },
+    "475": {
+      "mesas": 49,
+      "electores": 17023,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 5800,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 3729,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1612,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 696,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 12,
+        "EN BLANCO": 638,
+        "IMPUGNADO": 2,
+        "NULO": 84,
+        "RECURRIDO": 9
+      }
+    },
+    "476": {
+      "mesas": 9,
+      "electores": 2861,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1028,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 680,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 287,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 137,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 4,
+        "EN BLANCO": 181,
+        "IMPUGNADO": 0,
+        "NULO": 7,
+        "RECURRIDO": 1
+      }
+    },
+    "477": {
+      "mesas": 20,
+      "electores": 6826,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1922,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1962,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 740,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 297,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 8,
+        "EN BLANCO": 365,
+        "IMPUGNADO": 0,
+        "NULO": 47,
+        "RECURRIDO": 5
+      }
+    },
+    "480": {
+      "mesas": 8,
+      "electores": 2652,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 796,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 643,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 215,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 106,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 86,
+        "IMPUGNADO": 2,
+        "NULO": 12,
+        "RECURRIDO": 0
+      }
+    },
+    "481": {
+      "mesas": 12,
+      "electores": 4263,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1224,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 861,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 315,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 149,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 157,
+        "IMPUGNADO": 0,
+        "NULO": 11,
+        "RECURRIDO": 2
+      }
+    },
+    "482": {
+      "mesas": 8,
+      "electores": 2771,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 854,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 623,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 202,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 117,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 100,
+        "IMPUGNADO": 1,
+        "NULO": 10,
+        "RECURRIDO": 0
+      }
+    },
+    "483": {
+      "mesas": 8,
+      "electores": 2701,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 946,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 698,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 246,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 119,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 4,
+        "EN BLANCO": 151,
+        "IMPUGNADO": 2,
+        "NULO": 8,
+        "RECURRIDO": 0
+      }
+    },
+    "484": {
+      "mesas": 8,
+      "electores": 2697,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 791,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 637,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 205,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 109,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 83,
+        "IMPUGNADO": 0,
+        "NULO": 4,
+        "RECURRIDO": 1
+      }
+    },
+    "485": {
+      "mesas": 7,
+      "electores": 2277,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 709,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 665,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 190,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 132,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 103,
+        "IMPUGNADO": 1,
+        "NULO": 10,
+        "RECURRIDO": 0
+      }
+    },
+    "486": {
+      "mesas": 8,
+      "electores": 2773,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 819,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 670,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 157,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 147,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 155,
+        "IMPUGNADO": 0,
+        "NULO": 9,
+        "RECURRIDO": 0
+      }
+    },
+    "487": {
+      "mesas": 7,
+      "electores": 2288,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 798,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 609,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 219,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 126,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 123,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 0
+      }
+    },
+    "488": {
+      "mesas": 10,
+      "electores": 3203,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1024,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 932,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 317,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 172,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 150,
+        "IMPUGNADO": 0,
+        "NULO": 36,
+        "RECURRIDO": 0
+      }
+    },
+    "493": {
+      "mesas": 1,
+      "electores": 109,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 0,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 0,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 0,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "495": {
+      "mesas": 76,
+      "electores": 26364,
+      "mesas_sin_votos_positivos": 3,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 8810,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 6181,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2489,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1087,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 25,
+        "EN BLANCO": 1207,
+        "IMPUGNADO": 1,
+        "NULO": 120,
+        "RECURRIDO": 9
+      }
+    },
+    "496": {
+      "mesas": 88,
+      "electores": 30988,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 8271,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 8155,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 3880,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1126,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 11,
+        "EN BLANCO": 1599,
+        "IMPUGNADO": 0,
+        "NULO": 219,
+        "RECURRIDO": 6
+      }
+    },
+    "496A": {
+      "mesas": 47,
+      "electores": 17206,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 3230,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 5490,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2290,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 423,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 12,
+        "EN BLANCO": 1007,
+        "IMPUGNADO": 219,
+        "NULO": 60,
+        "RECURRIDO": 3
+      }
+    },
+    "496B": {
+      "mesas": 41,
+      "electores": 14665,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2926,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 4503,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2041,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 426,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 8,
+        "EN BLANCO": 972,
+        "IMPUGNADO": 35,
+        "NULO": 113,
+        "RECURRIDO": 4
+      }
+    },
+    "496C": {
+      "mesas": 47,
+      "electores": 16727,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 3603,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 5048,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2350,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 519,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 6,
+        "EN BLANCO": 846,
+        "IMPUGNADO": 5,
+        "NULO": 81,
+        "RECURRIDO": 10
+      }
+    },
+    "496D": {
+      "mesas": 54,
+      "electores": 19204,
+      "mesas_sin_votos_positivos": 3,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 3927,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 5336,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2642,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 573,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 6,
+        "EN BLANCO": 1177,
+        "IMPUGNADO": 0,
+        "NULO": 107,
+        "RECURRIDO": 3
+      }
+    },
+    "496E": {
+      "mesas": 17,
+      "electores": 5490,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1299,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1758,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 789,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 279,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 6,
+        "EN BLANCO": 289,
+        "IMPUGNADO": 4,
+        "NULO": 36,
+        "RECURRIDO": 1
+      }
+    },
+    "496F": {
+      "mesas": 1,
+      "electores": 275,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 64,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 74,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 38,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 11,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 1,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "497": {
+      "mesas": 44,
+      "electores": 15039,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 4620,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 3433,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1958,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 540,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 12,
+        "EN BLANCO": 1018,
+        "IMPUGNADO": 18,
+        "NULO": 53,
+        "RECURRIDO": 7
+      }
+    },
+    "497A": {
+      "mesas": 4,
+      "electores": 1157,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 132,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 204,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 227,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 13,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 9,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "497B": {
+      "mesas": 30,
+      "electores": 10283,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2481,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2907,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1597,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 329,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 7,
+        "EN BLANCO": 711,
+        "IMPUGNADO": 0,
+        "NULO": 55,
+        "RECURRIDO": 3
+      }
+    },
+    "497C": {
+      "mesas": 29,
+      "electores": 9833,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1945,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2840,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1581,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 300,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 47,
+        "EN BLANCO": 735,
+        "IMPUGNADO": 2,
+        "NULO": 58,
+        "RECURRIDO": 4
+      }
+    },
+    "497D": {
+      "mesas": 36,
+      "electores": 12307,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2819,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 3128,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2016,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 362,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 7,
+        "EN BLANCO": 808,
+        "IMPUGNADO": 0,
+        "NULO": 55,
+        "RECURRIDO": 3
+      }
+    },
+    "497E": {
+      "mesas": 39,
+      "electores": 13378,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2601,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 3600,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2116,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 355,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 4,
+        "EN BLANCO": 824,
+        "IMPUGNADO": 0,
+        "NULO": 84,
+        "RECURRIDO": 2
+      }
+    },
+    "497F": {
+      "mesas": 15,
+      "electores": 5491,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 752,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1214,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1036,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 135,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 279,
+        "IMPUGNADO": 0,
+        "NULO": 20,
+        "RECURRIDO": 2
+      }
+    },
+    "498": {
+      "mesas": 5,
+      "electores": 1440,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 268,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 384,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 329,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 28,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 109,
+        "IMPUGNADO": 0,
+        "NULO": 5,
+        "RECURRIDO": 0
+      }
+    },
+    "501": {
+      "mesas": 139,
+      "electores": 48943,
+      "mesas_sin_votos_positivos": 3,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 14813,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 11223,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 5669,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1792,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 41,
+        "EN BLANCO": 2595,
+        "IMPUGNADO": 9,
+        "NULO": 208,
+        "RECURRIDO": 16
+      }
+    },
+    "502": {
+      "mesas": 130,
+      "electores": 45746,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 12835,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 12342,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 5172,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1576,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 32,
+        "EN BLANCO": 2285,
+        "IMPUGNADO": 13,
+        "NULO": 223,
+        "RECURRIDO": 19
+      }
+    },
+    "503": {
+      "mesas": 20,
+      "electores": 6466,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1938,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1732,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 906,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 200,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 4,
+        "EN BLANCO": 413,
+        "IMPUGNADO": 0,
+        "NULO": 45,
+        "RECURRIDO": 2
+      }
+    },
+    "503A": {
+      "mesas": 31,
+      "electores": 10671,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2767,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2721,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1412,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 323,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 5,
+        "EN BLANCO": 582,
+        "IMPUGNADO": 8,
+        "NULO": 93,
+        "RECURRIDO": 0
+      }
+    },
+    "504": {
+      "mesas": 106,
+      "electores": 36927,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 11433,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 9508,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 4560,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1416,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 76,
+        "EN BLANCO": 2131,
+        "IMPUGNADO": 10,
+        "NULO": 162,
+        "RECURRIDO": 8
+      }
+    },
+    "504A": {
+      "mesas": 87,
+      "electores": 30330,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 10177,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 7511,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 3145,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1163,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 16,
+        "EN BLANCO": 1659,
+        "IMPUGNADO": 1,
+        "NULO": 147,
+        "RECURRIDO": 3
+      }
+    },
+    "505": {
+      "mesas": 50,
+      "electores": 17049,
+      "mesas_sin_votos_positivos": 5,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 4118,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 4173,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2140,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 581,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 15,
+        "EN BLANCO": 994,
+        "IMPUGNADO": 2,
+        "NULO": 109,
+        "RECURRIDO": 1
+      }
+    },
+    "505A": {
+      "mesas": 36,
+      "electores": 12132,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2274,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 4014,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1731,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 457,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 15,
+        "EN BLANCO": 788,
+        "IMPUGNADO": 1,
+        "NULO": 71,
+        "RECURRIDO": 4
+      }
+    },
+    "505B": {
+      "mesas": 14,
+      "electores": 5013,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 490,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1477,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 799,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 113,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 252,
+        "IMPUGNADO": 5,
+        "NULO": 10,
+        "RECURRIDO": 2
+      }
+    },
+    "508": {
+      "mesas": 44,
+      "electores": 15620,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 3139,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 4070,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1973,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 421,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 5,
+        "EN BLANCO": 1147,
+        "IMPUGNADO": 2,
+        "NULO": 40,
+        "RECURRIDO": 2
+      }
+    },
+    "508A": {
+      "mesas": 38,
+      "electores": 13081,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 3471,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 3171,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1958,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 394,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 8,
+        "EN BLANCO": 884,
+        "IMPUGNADO": 0,
+        "NULO": 94,
+        "RECURRIDO": 5
+      }
+    },
+    "508B": {
+      "mesas": 25,
+      "electores": 8494,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1429,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2751,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1503,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 225,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 660,
+        "IMPUGNADO": 0,
+        "NULO": 51,
+        "RECURRIDO": 1
+      }
+    },
+    "508C": {
+      "mesas": 26,
+      "electores": 9091,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1766,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2889,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1418,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 266,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 6,
+        "EN BLANCO": 755,
+        "IMPUGNADO": 0,
+        "NULO": 126,
+        "RECURRIDO": 7
+      }
+    },
+    "508D": {
+      "mesas": 38,
+      "electores": 13740,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2185,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 4287,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2104,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 265,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 829,
+        "IMPUGNADO": 0,
+        "NULO": 26,
+        "RECURRIDO": 4
+      }
+    },
+    "508E": {
+      "mesas": 24,
+      "electores": 8358,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1785,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2362,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1592,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 273,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 518,
+        "IMPUGNADO": 3,
+        "NULO": 51,
+        "RECURRIDO": 3
+      }
+    },
+    "508F": {
+      "mesas": 7,
+      "electores": 2250,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 426,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 557,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 523,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 36,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 127,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 1
+      }
+    },
+    "508G": {
+      "mesas": 2,
+      "electores": 656,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 86,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 225,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 130,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 12,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 21,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 0
+      }
+    },
+    "509": {
+      "mesas": 36,
+      "electores": 13021,
+      "mesas_sin_votos_positivos": 8,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1343,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2753,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1681,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 219,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 559,
+        "IMPUGNADO": 8,
+        "NULO": 82,
+        "RECURRIDO": 0
+      }
+    },
+    "509A": {
+      "mesas": 28,
+      "electores": 9712,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2074,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2377,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1954,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 249,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 7,
+        "EN BLANCO": 760,
+        "IMPUGNADO": 2,
+        "NULO": 45,
+        "RECURRIDO": 2
+      }
+    },
+    "516": {
+      "mesas": 10,
+      "electores": 3174,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 837,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 687,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 255,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 134,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 122,
+        "IMPUGNADO": 0,
+        "NULO": 7,
+        "RECURRIDO": 2
+      }
+    },
+    "517": {
+      "mesas": 10,
+      "electores": 3345,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1059,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 848,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 293,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 154,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 164,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 0
+      }
+    },
+    "518": {
+      "mesas": 13,
+      "electores": 4560,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 914,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 813,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 272,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 155,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 90,
+        "IMPUGNADO": 1,
+        "NULO": 4,
+        "RECURRIDO": 0
+      }
+    },
+    "519": {
+      "mesas": 22,
+      "electores": 7531,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1772,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1858,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 649,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 300,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 225,
+        "IMPUGNADO": 7,
+        "NULO": 20,
+        "RECURRIDO": 3
+      }
+    },
+    "520": {
+      "mesas": 24,
+      "electores": 8346,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2465,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2374,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 989,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 393,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 7,
+        "EN BLANCO": 430,
+        "IMPUGNADO": 1,
+        "NULO": 42,
+        "RECURRIDO": 2
+      }
+    },
+    "521": {
+      "mesas": 11,
+      "electores": 3614,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "20132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1024,
+          "campo_ideologico": "5"
+        },
+        "20134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 912,
+          "campo_ideologico": "3"
+        },
+        "20135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 314,
+          "campo_ideologico": "6"
+        },
+        "20136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 173,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 153,
+        "IMPUGNADO": 1,
+        "NULO": 9,
+        "RECURRIDO": 3
+      }
+    }
+  }
+}

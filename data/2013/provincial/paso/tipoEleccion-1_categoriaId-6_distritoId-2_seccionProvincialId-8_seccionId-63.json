@@ -1,0 +1,150 @@
+{
+  "fechaTotalizacion": "2026-07-29T12:41:10.894Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 2550,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 878293,
+    "cantidadVotantes": 390703,
+    "participacionPorcentaje": 44.48
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "501",
+      "nombreAgrupacion": "FRENTE PARA LA VICTORIA                                                                             ",
+      "votos": 95022,
+      "votosPorcentaje": 26.85,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA 2 - CELESTE Y BLANCA K                                                                        ",
+          "numero": "3323",
+          "votos": 95022
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "504",
+      "nombreAgrupacion": "COMPROMISO FEDERAL                                                                                  ",
+      "votos": 3364,
+      "votosPorcentaje": 0.95,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "ES POSIBLE - E                                                                                      ",
+          "numero": "3016",
+          "votos": 1675
+        },
+        {
+          "nombre": "JUSTICIA Y DIGNIDAD - M                                                                             ",
+          "numero": "3018",
+          "votos": 1689
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "505",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES                                                           ",
+      "votos": 24112,
+      "votosPorcentaje": 6.81,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "507",
+      "nombreAgrupacion": "UNIDOS POR LA LIBERTAD Y EL TRABAJO                                                                 ",
+      "votos": 56763,
+      "votosPorcentaje": 16.04,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA CELESTE                                                                                       ",
+          "numero": "3334",
+          "votos": 56763
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "510",
+      "nombreAgrupacion": "FRENTE RENOVADOR                                                                                    ",
+      "votos": 93480,
+      "votosPorcentaje": 26.42,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CORRIENTE RENOVADORA - LISTA 1                                                                      ",
+          "numero": "3307",
+          "votos": 56337
+        },
+        {
+          "nombre": "CONCERTACION PLURAL - LISTA 2                                                                       ",
+          "numero": "3308",
+          "votos": 37143
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "511",
+      "nombreAgrupacion": "FRENTE POPULAR DEMOCRATICO Y SOCIAL (PODEMOS)                                                       ",
+      "votos": 8642,
+      "votosPorcentaje": 2.44,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    },
+    {
+      "idAgrupacion": "513",
+      "nombreAgrupacion": "UNION CON FE                                                                                        ",
+      "votos": 3641,
+      "votosPorcentaje": 1.03,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNION CON FE                                                                                        ",
+          "numero": "3335",
+          "votos": 3641
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "514",
+      "nombreAgrupacion": "FRENTE PROGRESISTA CIVICO Y SOCIAL                                                                  ",
+      "votos": 67020,
+      "votosPorcentaje": 18.94,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNIDAD PROGRESISTA - A                                                                              ",
+          "numero": "3310",
+          "votos": 51008
+        },
+        {
+          "nombre": "RENOVACION - MK                                                                                     ",
+          "numero": "3331",
+          "votos": 16012
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "364",
+      "nombreAgrupacion": "PARTIDO LEALTAD Y DIGNIDAD DE LA PROVINCIA DE BUENOS AIRES                                          ",
+      "votos": 1818,
+      "votosPorcentaje": 0.51,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": ""
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 5628,
+    "votosNulosPorcentaje": 1.44,
+    "votosEnBlanco": 30883,
+    "votosEnBlancoPorcentaje": 7.9,
+    "votosRecurridosComandoImpugnados": 330,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.08
+  }
+}

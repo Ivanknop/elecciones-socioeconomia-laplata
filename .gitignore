@@ -1,23 +1,11 @@
-# Python
 __pycache__/
 *.py[cod]
 *.egg-info/
 build/
 dist/
-
-# Jupyter
+.pytest_cache/
 .ipynb_checkpoints/
-
-# Entornos virtuales
-.venv/
-venv/
-env/
-
-# Claude Code — estado local de la sesión, no es parte del proyecto
 .claude/
 
-# Editor / SO
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
+graficos/*
+!graficos/serie_temporal/

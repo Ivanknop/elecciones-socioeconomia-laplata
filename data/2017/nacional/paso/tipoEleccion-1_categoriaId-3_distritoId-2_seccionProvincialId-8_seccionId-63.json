@@ -1,0 +1,291 @@
+{
+  "fechaTotalizacion": "2026-07-29T12:41:30.685Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1663,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 572080,
+    "cantidadVotantes": 393291,
+    "participacionPorcentaje": 68.75
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0008",
+      "nombreAgrupacion": "FEDERAL",
+      "votos": 3240,
+      "votosPorcentaje": 0.87,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "ALTERNATIVA",
+          "numero": "3007",
+          "votos": 3150
+        },
+        {
+          "nombre": "CELESTE Y BLANCA",
+          "numero": "3009",
+          "votos": 26
+        },
+        {
+          "nombre": "FEDERALISMO PURO",
+          "numero": "3012",
+          "votos": 12
+        },
+        {
+          "nombre": "ROJO PUNZO",
+          "numero": "3014",
+          "votos": 52
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0022",
+      "nombreAgrupacion": "HUMANISTA",
+      "votos": 1271,
+      "votosPorcentaje": 0.34,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "NARANJA",
+          "numero": "3018",
+          "votos": 1271
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0259",
+      "nombreAgrupacion": "DEL CAMPO POPULAR",
+      "votos": 387,
+      "votosPorcentaje": 0.1,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "INDEPENDENCIA",
+          "numero": "3122",
+          "votos": 387
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0268",
+      "nombreAgrupacion": "MOVIMIENTO AMPLIO DE TRABAJADORES Y JUBILADOS",
+      "votos": 26,
+      "votosPorcentaje": 0.01,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNIDAD 1",
+          "numero": "3134",
+          "votos": 26
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0298",
+      "nombreAgrupacion": "TODOS POR BUENOS AIRES",
+      "votos": 1113,
+      "votosPorcentaje": 0.3,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "TOBA",
+          "numero": "3135",
+          "votos": 1113
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0301",
+      "nombreAgrupacion": "PATRIA GRANDE",
+      "votos": 5286,
+      "votosPorcentaje": 1.42,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "VAMOS",
+          "numero": "3136",
+          "votos": 5286
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0309",
+      "nombreAgrupacion": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+      "votos": 92,
+      "votosPorcentaje": 0.02,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "COMPROMISO CIUDADANO",
+          "numero": "3137",
+          "votos": 92
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0503",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+      "votos": 19070,
+      "votosPorcentaje": 5.11,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA 1",
+          "numero": "3161",
+          "votos": 19070
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0511",
+      "nombreAgrupacion": "1PAIS",
+      "votos": 47418,
+      "votosPorcentaje": 12.72,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UN PAIS UNIDO HOY Y SIEMPRE",
+          "numero": "3165",
+          "votos": 47418
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0518",
+      "nombreAgrupacion": "CAMBIEMOS BUENOS AIRES",
+      "votos": 160549,
+      "votosPorcentaje": 43.06,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CAMBIANDO JUNTOS",
+          "numero": "3173",
+          "votos": 160549
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0526",
+      "nombreAgrupacion": "CREO",
+      "votos": 2062,
+      "votosPorcentaje": 0.55,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CONVICCIONES",
+          "numero": "3184",
+          "votos": 2062
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0527",
+      "nombreAgrupacion": "ENCUENTRO POPULAR POR TIERRA TECHO Y TRABAJO",
+      "votos": 680,
+      "votosPorcentaje": 0.18,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "MEMORIA, VERDAD Y JUSTICIA",
+          "numero": "3185",
+          "votos": 680
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0546",
+      "nombreAgrupacion": "FRENTE JUSTICIALISTA",
+      "votos": 25201,
+      "votosPorcentaje": 6.76,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CUMPLIR",
+          "numero": "3226",
+          "votos": 25201
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0552",
+      "nombreAgrupacion": "FRENTE PATRIOTA BANDERA VECINAL",
+      "votos": 1372,
+      "votosPorcentaje": 0.37,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CONDUCCION",
+          "numero": "3256",
+          "votos": 1372
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0561",
+      "nombreAgrupacion": "FRENTE SOCIALISTA Y POPULAR",
+      "votos": 3371,
+      "votosPorcentaje": 0.9,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA A",
+          "numero": "3349",
+          "votos": 3371
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0567",
+      "nombreAgrupacion": "IZQUIERDA AL FRENTE POR EL SOCIALISMO",
+      "votos": 6639,
+      "votosPorcentaje": 1.78,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNIDAD DE LA  IZQUIERDA",
+          "numero": "3292",
+          "votos": 6639
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0574",
+      "nombreAgrupacion": "UNIDAD CIUDADANA",
+      "votos": 95074,
+      "votosPorcentaje": 25.5,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CELESTE Y BLANCA U",
+          "numero": "3304",
+          "votos": 95074
+        }
+      ]
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3702,
+    "votosNulosPorcentaje": 0.94,
+    "votosEnBlanco": 15498,
+    "votosEnBlancoPorcentaje": 3.94,
+    "votosRecurridosComandoImpugnados": 1240,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.32
+  }
+}

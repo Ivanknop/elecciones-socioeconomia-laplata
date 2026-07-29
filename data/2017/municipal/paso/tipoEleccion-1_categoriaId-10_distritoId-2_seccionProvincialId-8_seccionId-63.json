@@ -1,0 +1,291 @@
+{
+  "fechaTotalizacion": "2026-07-29T12:41:44.609Z",
+  "estadoRecuento": {
+    "mesasEsperadas": 0,
+    "mesasTotalizadas": 1551,
+    "mesasTotalizadasPorcentaje": 0,
+    "cantidadElectores": 533701,
+    "cantidadVotantes": 394124,
+    "participacionPorcentaje": 73.85
+  },
+  "valoresTotalizadosPositivos": [
+    {
+      "idAgrupacion": "0008",
+      "nombreAgrupacion": "FEDERAL                                                                                             ",
+      "votos": 4272,
+      "votosPorcentaje": 1.14,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "ALTERNATIVA                                                                                         ",
+          "numero": "3007",
+          "votos": 4272
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0298",
+      "nombreAgrupacion": "TODOS POR BUENOS AIRES                                                                              ",
+      "votos": 1113,
+      "votosPorcentaje": 0.3,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "TOBA                                                                                                ",
+          "numero": "3135",
+          "votos": 1113
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0503",
+      "nombreAgrupacion": "FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES                                                           ",
+      "votos": 18503,
+      "votosPorcentaje": 4.93,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LISTA 1                                                                                             ",
+          "numero": "3161",
+          "votos": 18503
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0511",
+      "nombreAgrupacion": "1PAIS                                                                                               ",
+      "votos": 46684,
+      "votosPorcentaje": 12.44,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UN PAIS UNIDO HOY Y SIEMPRE                                                                         ",
+          "numero": "3165",
+          "votos": 46684
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0518",
+      "nombreAgrupacion": "CAMBIEMOS BUENOS AIRES                                                                              ",
+      "votos": 153297,
+      "votosPorcentaje": 40.85,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "1A AMARILLO                                                                                         ",
+          "numero": "3354",
+          "votos": 153297
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0527",
+      "nombreAgrupacion": "ENCUENTRO POPULAR POR TIERRA TECHO Y TRABAJO                                                        ",
+      "votos": 961,
+      "votosPorcentaje": 0.26,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "POR TIERRA TECHO Y TRABAJO                                                                          ",
+          "numero": "3352",
+          "votos": 961
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0546",
+      "nombreAgrupacion": "FRENTE JUSTICIALISTA                                                                                ",
+      "votos": 28306,
+      "votosPorcentaje": 7.54,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CUMPLIR 2                                                                                           ",
+          "numero": "3355",
+          "votos": 15672
+        },
+        {
+          "nombre": "CUMPLIR 4                                                                                           ",
+          "numero": "3366",
+          "votos": 10949
+        },
+        {
+          "nombre": "LEALTAD Y DIGNIDAD 12                                                                               ",
+          "numero": "3379",
+          "votos": 1685
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0567",
+      "nombreAgrupacion": "IZQUIERDA AL FRENTE POR EL SOCIALISMO                                                               ",
+      "votos": 6236,
+      "votosPorcentaje": 1.66,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UNIDAD DE LA  IZQUIERDA                                                                             ",
+          "numero": "3292",
+          "votos": 6236
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0574",
+      "nombreAgrupacion": "UNIDAD CIUDADANA                                                                                    ",
+      "votos": 92735,
+      "votosPorcentaje": 24.71,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CELESTE Y BLANCA U2                                                                                 ",
+          "numero": "3350",
+          "votos": 92735
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0809",
+      "nombreAgrupacion": "CORRIENTE DE PENSAMIENTO BONAERENSE (CO.PE.BO)                                                      ",
+      "votos": 5476,
+      "votosPorcentaje": 1.46,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "UN CAMBIO REAL                                                                                      ",
+          "numero": "3377",
+          "votos": 5476
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0810",
+      "nombreAgrupacion": "FRENTE UNION FEDERAL                                                                                ",
+      "votos": 2069,
+      "votosPorcentaje": 0.55,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "AUTOCTONO                                                                                           ",
+          "numero": "3356",
+          "votos": 26
+        },
+        {
+          "nombre": "DIGNIDAD POPULAR                                                                                    ",
+          "numero": "3357",
+          "votos": 38
+        },
+        {
+          "nombre": "FRENTE UNION FEDERAL                                                                                ",
+          "numero": "3358",
+          "votos": 218
+        },
+        {
+          "nombre": "LABORISTA                                                                                           ",
+          "numero": "3359",
+          "votos": 493
+        },
+        {
+          "nombre": "POPULAR                                                                                             ",
+          "numero": "3360",
+          "votos": 568
+        },
+        {
+          "nombre": "TRES BANDERAS                                                                                       ",
+          "numero": "3362",
+          "votos": 13
+        },
+        {
+          "nombre": "CONCERTACION FEDERAL UNITE                                                                          ",
+          "numero": "3363",
+          "votos": 640
+        },
+        {
+          "nombre": "PRIMERA DAMA DEL PUEBLO                                                                             ",
+          "numero": "3375",
+          "votos": 73
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0812",
+      "nombreAgrupacion": "VAMOS CREANDO CIUDAD NUEVA                                                                          ",
+      "votos": 8261,
+      "votosPorcentaje": 2.2,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "FUERZA COLECTIVA                                                                                    ",
+          "numero": "3378",
+          "votos": 8261
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0813",
+      "nombreAgrupacion": "PARTIDO SOCIALISTA                                                                                  ",
+      "votos": 4418,
+      "votosPorcentaje": 1.18,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "FRENTE SOCIALISTA Y POPULAR                                                                         ",
+          "numero": "3277",
+          "votos": 4418
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0814",
+      "nombreAgrupacion": "PARTIDO RENOVADOR FEDERAL                                                                           ",
+      "votos": 1808,
+      "votosPorcentaje": 0.48,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "CONVICCIONES                                                                                        ",
+          "numero": "3353",
+          "votos": 1808
+        }
+      ]
+    },
+    {
+      "idAgrupacion": "0817",
+      "nombreAgrupacion": "UVEP-U. VECINALISTA PLATENSE                                                                        ",
+      "votos": 1110,
+      "votosPorcentaje": 0.3,
+      "idAgrupacionTelegrama": "",
+      "urlLogo": "",
+      "listas": [
+        {
+          "nombre": "LATINOAMERICANA                                                                                     ",
+          "numero": "3380",
+          "votos": 1110
+        }
+      ]
+    }
+  ],
+  "valoresTotalizadosOtros": {
+    "votosNulos": 3728,
+    "votosNulosPorcentaje": 0.95,
+    "votosEnBlanco": 14811,
+    "votosEnBlancoPorcentaje": 3.76,
+    "votosRecurridosComandoImpugnados": 336,
+    "votosRecurridosComandoImpugnadosPorcentaje": 0.09
+  }
+}
