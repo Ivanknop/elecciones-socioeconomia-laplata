@@ -10,5 +10,11 @@ dist/
 graficos/*
 !graficos/serie_temporal/
 
+# Zips crudos de microdatos EPH: se recachean corriendo src/socioeconomia/eph_client.py
+data/socioeconomia/eph_cache/
+
 # Documento de trabajo interno, no forma parte del proyecto versionado
 PLAN_CORRECCIONES_ELECTORALES.md
+
+# Nota personal, no es un artefacto del pipeline
+Nota_metodologica_La_Plata_para_Ivan.docx

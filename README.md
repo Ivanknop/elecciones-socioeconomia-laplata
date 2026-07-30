@@ -16,21 +16,25 @@ src/electoral/
   models.py     
 src/analisis/
   graficos.py               # graficar_barras / graficar_torta (por campo ideológico) a partir de circuito_<nivel>.json
-  generar_graficos.py       # script: para un (año, nivel), genera todos los PNG (circuito por circuito + acumulado)
+  generar_graficos.py       # script: para un (año, nivel)
   serie_temporal.py         # script: por nivel de gobierno (nacional/provincial/municipal), línea por ideología 2011-2025
-  cuadros_anualizados.py    # script: un gráfico por año, con todos sus cargos lado a lado
+  cuadros_anualizados.py    
+src/socioeconomia/
+  geo.py         # correspondencia espacial circuito electoral <-> radio censal (geopandas)
+  eph_client.py  # descarga+caché de microdatos trimestrales EPH, agregados para Gran La Plata
 notebooks/
   01_explorar_resultados.ipynb           # cómo usar el cliente + el modelo de dominio
   02_la_plata_cargos_ejecutivos.ipynb    # pipeline: cargos ejecutivos, 2011-2023
   03_la_plata_legislativas.ipynb         # pipeline: cargos legislativos, 2013-2025
   04_totales_por_circuito.ipynb         
-data/<año>/<categoría o nivel>/<etapa>/  # etapa: generales (.json + .csv + circuito_<nivel>.json) | paso | balotaje
-data/agrupaciones/agrupaciones.csv                 # año/agrupación/nivel/campo_ideologico — cargos ejecutivos
-data/agrupaciones/agrupaciones_legislativas.csv    # año/agrupación/nivel/campo_ideologico — cargos legislativos
+  05_capa_socioeconomica.ipynb           # correspondencia circuito<->radio + serie EPH (ver más abajo)
+data/<año>/<categoría o nivel>/<etapa>/  
+data/agrupaciones/agrupaciones.csv                 
+data/agrupaciones/agrupaciones_legislativas.csv    
 data/agrupaciones/campo_ideologico.csv             # escala 1-6 izquierda→derecha radical (provisto)
 data/agrupaciones/circuito_id_correspondencias.csv # circuito_id crudo (por año) -> circuito_id canónico
-graficos/serie_temporal/                 # el único subdirectorio de graficos/ versionado en git
-graficos/<año>/<nivel>/, graficos/cuadros_anualizados/   # generados on demand, no versionados (ver .gitignore)
+data/socioeconomia/                      # capa socioeconómica (EPH + Censo) — ver sección propia más abajo
+graficos/serie_temporal/                 
 requirements.txt
 ```
 
@@ -315,10 +319,7 @@ Además de Generales (`tipo_eleccion=2`, en `data/<año>/<cargo>/generales/`),
 el pipeline también trae **PASO** (`tipo_eleccion=1`) para todas las
 combinaciones (año, cargo) ya cubiertas, y **balotaje/segunda vuelta**
 (`tipo_eleccion=3`) para Presidente en los años en que efectivamente hubo —
-2015 y 2023 (2011 y 2019 se definieron en primera vuelta). El caché sigue el
-mismo patrón `data/<año>/<cargo>/`, con una subcarpeta por etapa:
-`data/<año>/<cargo>/paso/` y, para Presidente, `data/<año>/presidente/balotaje/`
-— hermanas de `generales/`, misma estructura simétrica entre las tres.
+2015 y 2023 (2011 y 2019 se definieron en primera vuelta). 
 
 ## Libro de códigos ideológico — estado actual
 
@@ -326,8 +327,88 @@ mismo patrón `data/<año>/<cargo>/`, con una subcarpeta por etapa:
 `agrupaciones_legislativas.csv`, escala 1-6 en `campo_ideologico.csv`) es
 hoy una clasificación cargada a mano. La unidad de clasificación (alianza vs.
 candidatura vs. programa) y el criterio de asignación todavía no están
-fijados de forma sistemática — algunas reglas puntuales ya se aplicaron caso
-por caso, pero el criterio general queda para una etapa posterior.
+fijados de forma sistemática.
+
+## Capa socioeconómica (EPH + Censo) — estado actual
+
+**Correspondencia circuito electoral ↔ radio censal**
+(`data/socioeconomia/circuito_radio_correspondencia.csv`, construida por
+`src/socioeconomia/geo.py`): circuitos electorales y radios censales son
+geografías de instituciones distintas sin id compartido, así que la
+correspondencia es un join espacial (`geopandas`), no un lookup por id como
+`circuito_id_correspondencias.csv`. Cada radio censal (2010 y 2022, cargados
+desde la cartografía armonizada de CONICET) se reparte entre los circuitos
+que intersecta, ponderado por área — `match_limpio=True` si cayó entero en
+un único circuito, o varias filas con `peso_area` sumando 1.0 si cruza un
+límite. **Bastante más de un tercio de los radios de La Plata están
+prorrateados** (2010: 395/849 = 46.5%; 2022: 464/1.049 = 44.2% — no es un
+caso raro, es la norma en los bordes de circuito): cualquier cifra censal
+por circuito construida a partir de esas filas es una estimación por área,
+no un conteo censal, y debe presentarse como tal. De los circuitos ya
+señalados como límite incierto en la sección "Totales por circuito" de más
+arriba, `493` y `496F` sí están en la capa de circuitos electorales
+descargada; **`504C` no está** — el circuito electoral en sí no tiene
+polígono en la fuente usada (`mapa2.electoral.gob.ar` / catálogo de datos
+abiertos de la Provincia de Buenos Aires), no es un problema de la
+correspondencia con radios.
+
+**EPH Gran La Plata** (`src/socioeconomia/eph_client.py`, tres CSV en
+`data/socioeconomia/`): serie trimestral **2011T1-2025T4 (57 de 60
+trimestres)**, para `AGLOMERADO=2` — confirmado empíricamente: en el 1er
+trimestre de 2018 concentra 870.693 personas ponderadas, en línea con la
+población conocida de Gran La Plata (La Plata + Berisso + Ensenada). **Es un
+dato de aglomerado, nunca de circuito** — no tiene apertura geográfica más
+fina, y no se pretende forzarla.
+
+- `eph_gran_la_plata.csv`: una fila por trimestre, ~25 indicadores —
+  núcleo laboral (tasa de actividad, empleo, desocupación, informalidad,
+  ingreso de la ocupación principal), composición ocupacional (`CAT_OCUP`),
+  calidad del empleo asalariado (obra social/aguinaldo/vacaciones pagas —
+  `PP07G1/G2/G4`), cobertura de salud (`CH08`), educación (secundario
+  completo, alfabetización, asistencia escolar), hacinamiento y tenencia de
+  vivienda (`II1`/`IX_TOT`, `IV7`, `II7`), estrategias de subsistencia del
+  hogar en los últimos 3 meses (ayuda social del gobierno, préstamo
+  bancario, venta de pertenencias — `V5`/`V15`/`V17`), e ingreso total
+  individual e IPCF. Se descartó explícitamente un indicador de
+  subocupación horaria (`INTENSI`): dio ~71% sobre datos reales, muy por
+  encima de la tasa oficial de INDEC (~10%) — no se pudo confirmar la causa
+  a tiempo, mejor no publicarlo que publicar un número probablemente mal
+  (ver comentario en el código).
+- `eph_gran_la_plata_por_sexo.csv` / `_por_edad.csv`: el núcleo laboral
+  (actividad/empleo/desocupación/informalidad/ingreso) abierto por sexo
+  (`CH04`) y por tramo etario (`CH06`: 10-24, 25-39, 40-59, 60+) — para
+  brecha de género y desocupación juvenil, entre otros.
+
+Desde 2023T4 INDEC dividió la pregunta `V5` (ayuda social del gobierno) en
+`V5_01`/`V5_02`/`V5_03` — el cliente reconstruye una `V5` equivalente (1 si
+cualquiera de las tres es "Sí") para no perder continuidad de la serie.
+
+2011-2015 salió de una fuente distinta a 2016 en adelante: INDEC dejó de
+servir esos trimestres en su propio sitio (el dominio que los alojaba,
+`www.indec.gov.ar`, ya ni resuelve) — se recuperaron desde el archivo de
+Internet (`web.archive.org`), en formato DBF (no txt/csv), con un esquema de
+nombres previo (`t<trimestre><año>_dbf.<zip|rar>`). Los `.rar` de 2014-2015
+necesitan el binario de sistema `unar` (`apt-get install unar`, no es un
+paquete de pip) para extraerse. Ver el docstring de `eph_client.py` para el
+detalle completo (timestamps de Wayback Machine, la columna `PONDIH` que no
+existe en la base hogar histórica, etc.).
+
+Quedan exactamente **3 trimestres sin dato**: INDEC no publicó la encuesta en 2015T3, 2015T4 y 2016T1
+("emergencia estadística").
+
+**Censo 2010 y 2022 por radio censal** (país de nacimiento, nivel
+educativo, condición de actividad, vivienda/hacinamiento): **falta
+todavía**. A diferencia de lo anterior, REDATAM no tiene un endpoint
+masivo tipo CSV — la extracción es manual, tabla por tabla, en la
+herramienta web. Los pasos y parámetros geográficos exactos (partido de La
+Plata = `PROV 06`, `DEPTO 441`; formato del id de radio) están en
+`data/socioeconomia/EXTRACCION_REDATAM.md`. El notebook 05 ya tiene el paso
+de unión listo (`unir_censo_a_circuitos`, prorratea cada variable por
+`peso_area` antes de sumar por circuito) — corre automáticamente apenas
+`censo_2010_radio.csv` / `censo_2022_radio.csv` existan en
+`data/socioeconomia/`.
+
+**No hay un índice NBI único que INDEC recalcule igual en 2010 y 2022** 
 
 ## Extender a otro distrito, sección o cargo
 

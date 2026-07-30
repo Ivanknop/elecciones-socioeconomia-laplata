@@ -1,0 +1,33 @@
+periodo_tipo,anio,trimestre,rama,var_interanual_pct,aporte_pp
+trimestral,2025,4,Primario,13.6,0.1
+trimestral,2025,4,Bancos,11.9,0.4
+trimestral,2025,4,Comercio Automotor,6.5,0.2
+trimestral,2025,4,Servicios Comunitarios,1.1,0.1
+trimestral,2025,4,Enseñanza,0.5,0.0
+trimestral,2025,4,Salud,0.4,0.0
+trimestral,2025,4,Transporte y comunicaciones,0.4,0.0
+trimestral,2025,4,Servicios Inmobiliarios y Empresas,0.0,0.0
+trimestral,2025,4,IAELaP,-0.9,
+trimestral,2025,4,Servicios Públicos,-1.2,0.0
+trimestral,2025,4,Administración Pública,-1.7,-0.6
+trimestral,2025,4,Industria,-2.5,-0.3
+trimestral,2025,4,Comercio Minorista,-4.2,-0.2
+trimestral,2025,4,Comercio Mayorista,-7.9,-0.2
+trimestral,2025,4,Hoteles y Restaurantes,-8.8,-0.1
+trimestral,2025,4,Construcción,-10.3,-0.2
+anual,2025,,Comercio Automotor,47.4,1.4
+anual,2025,,Bancos,23.4,0.8
+anual,2025,,Primario,9.5,0.1
+anual,2025,,Servicios Inmobiliarios y Empresas,8.2,0.8
+anual,2025,,IAELaP,2.2,
+anual,2025,,Transporte y comunicaciones,1.7,0.2
+anual,2025,,Enseñanza,0.8,0.0
+anual,2025,,Industria,0.4,0.0
+anual,2025,,Servicios Comunitarios,0.2,0.0
+anual,2025,,Salud,-0.2,0.0
+anual,2025,,Servicios Públicos,-0.3,0.0
+anual,2025,,Comercio Mayorista,-1.5,0.0
+anual,2025,,Administración Pública,-2.0,-0.6
+anual,2025,,Hoteles y Restaurantes,-2.0,0.0
+anual,2025,,Construcción,-6.0,-0.1
+anual,2025,,Comercio Minorista,-6.4,-0.3
