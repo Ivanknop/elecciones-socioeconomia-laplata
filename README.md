@@ -331,27 +331,6 @@ fijados de forma sistemática.
 
 ## Capa socioeconómica (EPH + Censo) — estado actual
 
-**Correspondencia circuito electoral ↔ radio censal**
-(`data/socioeconomia/circuito_radio_correspondencia.csv`, construida por
-`src/socioeconomia/geo.py`): circuitos electorales y radios censales son
-geografías de instituciones distintas sin id compartido, así que la
-correspondencia es un join espacial (`geopandas`), no un lookup por id como
-`circuito_id_correspondencias.csv`. Cada radio censal (2010 y 2022, cargados
-desde la cartografía armonizada de CONICET) se reparte entre los circuitos
-que intersecta, ponderado por área — `match_limpio=True` si cayó entero en
-un único circuito, o varias filas con `peso_area` sumando 1.0 si cruza un
-límite. **Bastante más de un tercio de los radios de La Plata están
-prorrateados** (2010: 395/849 = 46.5%; 2022: 464/1.049 = 44.2% — no es un
-caso raro, es la norma en los bordes de circuito): cualquier cifra censal
-por circuito construida a partir de esas filas es una estimación por área,
-no un conteo censal, y debe presentarse como tal. De los circuitos ya
-señalados como límite incierto en la sección "Totales por circuito" de más
-arriba, `493` y `496F` sí están en la capa de circuitos electorales
-descargada; **`504C` no está** — el circuito electoral en sí no tiene
-polígono en la fuente usada (`mapa2.electoral.gob.ar` / catálogo de datos
-abiertos de la Provincia de Buenos Aires), no es un problema de la
-correspondencia con radios.
-
 **EPH Gran La Plata** (`src/socioeconomia/eph_client.py`, tres CSV en
 `data/socioeconomia/`): serie trimestral **2011T1-2025T4 (57 de 60
 trimestres)**, para `AGLOMERADO=2` — confirmado empíricamente: en el 1er
