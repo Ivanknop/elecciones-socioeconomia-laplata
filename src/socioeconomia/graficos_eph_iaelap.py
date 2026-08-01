@@ -65,9 +65,7 @@ def _graficar_series_eph(
 ):
     """Helper compartido: N series de línea (`columnas` = {columna_csv: etiqueta})
     desde `eph_gran_la_plata.csv`, sobre un único eje. `colores` debe tener
-    tantos elementos como `columnas` y venir ya validado (ver docstring del
-    módulo) -- como máximo 3, la paleta categórica no valida all-pairs más allá
-    de eso.
+    tantos elementos como `columnas` y venir ya validado 
     """
     filas = _leer_csv(Path(data_dir) / "eph_gran_la_plata.csv")
     etiquetas = [_etiqueta_trimestre(f["anio"], f["trimestre"]) for f in filas]
@@ -259,11 +257,7 @@ def graficar_brecha_genero(data_dir: Path | str, indicador: str, titulo: str, ax
 
 
 def graficar_desocupacion_por_edad(data_dir: Path | str):
-    """Tasa de desocupación por tramo etario, `eph_gran_la_plata_por_edad.csv`,
-    2011-2025. Pequeños múltiplos (un panel por tramo, mismo color) en vez de
-    4 líneas superpuestas -- 4 series categóricas no pasan la validación
-    all-pairs de la paleta (ver docstring del módulo), y en un solo eje con
-    4 líneas de todos modos sería difícil de leer.
+    """Tasa de desocupación por tramo etario.
     """
     filas = _leer_csv(Path(data_dir) / "eph_gran_la_plata_por_edad.csv")
     tramos = ["10-24", "25-39", "40-59", "60+"]
@@ -292,8 +286,7 @@ def graficar_desocupacion_por_edad(data_dir: Path | str):
 def graficar_iaelap_general(data_dir: Path | str, ax=None):
     """Variación % interanual del índice IAELaP, Partido de La Plata,
     2018T1-2025T4. Barras, un eje. No incluye el nivel del índice (2018=100)
-    en el mismo gráfico — ver EXTRACCION_IAELAP.md, esa serie no se relevó
-    todavía; si se agrega, va en un gráfico aparte (regla de un eje).
+    en el mismo gráfico.
     """
     filas = _leer_csv(Path(data_dir) / "iaelap_la_plata.csv")
     etiquetas = [_etiqueta_trimestre(f["anio"], f["trimestre"]) for f in filas]
@@ -323,8 +316,7 @@ def graficar_iaelap_sectorial(
 ):
     """Desagregación sectorial IAELaP para un período puntual (`periodo_tipo`
     'trimestral' u 'anual'). Barras horizontales, coloreadas por signo
-    (positivo/negativo) — con ~15 ramas, identidad categórica por rama
-    cicla la paleta, que la skill de dataviz prohíbe.
+    (positivo/negativo).
     """
     filas = _leer_csv(Path(data_dir) / "iaelap_la_plata_ramas.csv")
     filas = [
@@ -391,7 +383,7 @@ def graficar_contraste_eph_iaelap(eph_dir: Path | str, iaelap_dir: Path | str = 
     _quitar_spines(ax2)
 
     fig.suptitle(
-        "EPH (Gran La Plata) vs. IAELaP (Partido de La Plata) — geografías distintas, no superponer en un eje",
+        "EPH (Gran La Plata) vs. IAELaP (Partido de La Plata) — geografías distintas",
         fontsize="small",
         y=1.0,
     )

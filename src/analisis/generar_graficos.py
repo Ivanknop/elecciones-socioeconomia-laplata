@@ -43,8 +43,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--anio", type=int, required=True)
     parser.add_argument("--nivel", required=True, help="presidente | gobernador | intendente | nacional | provincial | municipal")
-    parser.add_argument("--data-dir", default="data")
-    parser.add_argument("--graficos-dir", default="graficos")
+    parser.add_argument("--data-dir", default="data/distrito")
+    parser.add_argument("--graficos-dir", default="graficos/distrito")
     args = parser.parse_args()
 
     salida = generar_graficos(args.data_dir, args.graficos_dir, args.anio, args.nivel)

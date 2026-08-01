@@ -1,8 +1,8 @@
 """Agrupa resultados electorales por circuito en localidades de La Plata,
 usando el crosswalk circuito_id -> localidad de
-`data/fuentes_extras/circuito_localidad.csv` (diseño y estado documentados en
-`data/fuentes_extras/LOCALIDADES_README.md`; auditoría de confiabilidad de
-cada localidad en `data/fuentes_extras/AUDITORIA_DISCREPANCIAS.md`).
+`data/fuentes_extra/circuito_localidad.csv` (diseño y estado documentados en
+`data/fuentes_extra/LOCALIDADES_README.md`; auditoría de confiabilidad de
+cada localidad en `data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md`).
 
 Dos niveles de cobertura agrupables, que nunca se mezclan sin pedirlo
 explícitamente vía `niveles_cobertura`:
@@ -17,17 +17,7 @@ explícitamente vía `niveles_cobertura`:
 
 Cuando se piden ambos, `NIVEL_OFICIAL` prevalece siempre que un circuito
 tenga fila en los dos. Un tercer nivel, `NIVEL_NO_AGRUPABLE`
-("oficial_no_agrupable"), existe para el caso de un circuito con fuente
-oficial pero sin ninguna localidad reconocible en su tabla -- hoy no hay
-ningún circuito así en el crosswalk (503 y 503A, que sí tenían localidades
-listadas aunque sin una única dominante, se reclasificaron a
-`oficial_confirmada`). Si algún circuito futuro llegara a necesitar este
-nivel, se excluye siempre del agrupamiento, sin importar qué se pida en
-`niveles_cobertura`, incluso si el nivel periodístico sí trae una etiqueta
-para ese circuito.
-
-Ningún voto se pierde nunca: lo que no se puede agrupar por localidad queda
-en la fila `SIN_DETERMINAR`, siempre visible.
+("oficial_no_agrupable").
 """
 from __future__ import annotations
 
@@ -92,7 +82,7 @@ def circuitos_con_discrepancia(crosswalk: list[FilaCrosswalk]) -> list[dict[str,
     """Circuitos donde `oficial_confirmada` y `periodistico_no_oficial` traen
     una etiqueta de localidad distinta (comparación literal de etiquetas, no
     contra los códigos de localidad internos de cada circuito -- para eso ver
-    `data/fuentes_extras/AUDITORIA_DISCREPANCIAS.md`).
+    `data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md`).
     """
     por_circuito: dict[str, dict[str, str]] = {}
     for fila in crosswalk:
@@ -141,8 +131,7 @@ def agrupar_resultados_por_localidad(
 ) -> tuple[pd.DataFrame, ReporteCobertura]:
     """Agrupa `resultados_por_circuito` (circuito_id -> valor, o circuito_id ->
     {columna: valor}) por localidad. Nunca descarta un circuito: el que no
-    tiene localidad asignada cae en la fila `SIN_DETERMINAR`, siempre presente
-    en el resultado aunque esté en cero.
+    tiene localidad asignada cae en la fila `SIN_DETERMINAR`.
     """
     mapa = mapa_localidad_por_circuito(crosswalk, niveles_cobertura)
 

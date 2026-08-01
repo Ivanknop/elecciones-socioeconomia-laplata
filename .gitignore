@@ -8,13 +8,12 @@ dist/
 .claude/
 
 graficos/*
-!graficos/serie_temporal/
-!graficos/serie_temporal/socioeconomia/
-!graficos/serie_temporal/cuadros_por_localidad/
-graficos/serie_temporal/cuadros_por_localidad/imagenes/*
+!graficos/distrito/
+graficos/distrito/*
+!graficos/distrito/serie_temporal/
 
-# Zips crudos de microdatos EPH: se recachean corriendo src/socioeconomia/eph_client.py
 data/socioeconomia/eph_cache/
+data/por_localidad/*
 
 # Documentos de trabajo interno
 PLAN_CORRECCIONES_ELECTORALES.md

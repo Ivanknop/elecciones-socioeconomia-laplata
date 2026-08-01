@@ -5,36 +5,48 @@ Ministerio del Interior (`https://resultados.mininterior.gob.ar/api`), con foco
 en La Plata (Provincia de Buenos Aires): los cargos ejecutivos —Presidente,
 Gobernador, Intendente— entre 2011 y 2023, y los cargos legislativos —nacional
 (Diputados/Senadores Nacionales), provincial (Diputados/Senadores
-Provinciales), municipal (Concejales)— entre 2013 y 2025.
-
+Provinciales), municipal (Concejales)— entre 2013 y 2025. También recopila una
+capa socioeconómica (EPH Gran La Plata, IAELaP y su correspondencia espacial
+con el Censo) para poder cruzar, más adelante, resultados electorales con
+condiciones socioeconómicas del mismo territorio.
 
 ## Estructura del repositorio
 
 ```
 src/electoral/
-  client.py     
-  models.py     
+  client.py
+  models.py
+  localidades.py
 src/analisis/
-  graficos.py               # graficar_barras / graficar_torta (por campo ideológico) a partir de circuito_<nivel>.json
-  generar_graficos.py       # script: para un (año, nivel)
-  serie_temporal.py         # script: por nivel de gobierno (nacional/provincial/municipal), línea por ideología 2011-2025
-  cuadros_anualizados.py    
+  graficos.py
+  generar_graficos.py
+  serie_temporal.py
+  cuadros_anualizados.py
+  cuadros_por_localidad.py
+  serie_temporal_por_localidad.py
 src/socioeconomia/
-  geo.py         # correspondencia espacial circuito electoral <-> radio censal (geopandas)
-  eph_client.py  # descarga+caché de microdatos trimestrales EPH, agregados para Gran La Plata
+  geo.py
+  eph_client.py
+  graficos_eph_iaelap.py
 notebooks/
-  01_explorar_resultados.ipynb           # cómo usar el cliente + el modelo de dominio
-  02_la_plata_cargos_ejecutivos.ipynb    # pipeline: cargos ejecutivos, 2011-2023
-  03_la_plata_legislativas.ipynb         # pipeline: cargos legislativos, 2013-2025
-  04_totales_por_circuito.ipynb         
-  05_capa_socioeconomica.ipynb           # correspondencia circuito<->radio + serie EPH (ver más abajo)
-data/<año>/<categoría o nivel>/<etapa>/  
-data/agrupaciones/agrupaciones.csv                 
-data/agrupaciones/agrupaciones_legislativas.csv    
-data/agrupaciones/campo_ideologico.csv             # escala 1-6 izquierda→derecha radical (provisto)
-data/agrupaciones/circuito_id_correspondencias.csv # circuito_id crudo (por año) -> circuito_id canónico
-data/socioeconomia/                      # capa socioeconómica (EPH + Censo) — ver sección propia más abajo
-graficos/serie_temporal/                 
+  01_explorar_resultados.ipynb
+  02_la_plata_cargos_ejecutivos.ipynb
+  03_la_plata_legislativas.ipynb
+  04_totales_por_circuito.ipynb
+  05_capa_socioeconomica.ipynb
+  06_graficos_eph_iaelap.ipynb
+data/distrito/<año>/<categoría o nivel>/<etapa>/
+data/por_localidad/
+data/agrupaciones/agrupaciones.csv
+data/agrupaciones/agrupaciones_legislativas.csv
+data/agrupaciones/campo_ideologico.csv
+data/agrupaciones/circuito_id_correspondencias.csv
+data/fuentes_extra/
+data/socioeconomia/
+graficos/distrito/<año>/<nivel>/
+graficos/distrito/serie_temporal/
+graficos/socioeconomia/
+graficos/por_localidad/
 requirements.txt
 ```
 
@@ -55,21 +67,18 @@ saliente a `resultados.mininterior.gob.ar`.
    sobre un solo caso (La Plata, Presidente, 2011).
 3. Abrir y correr `notebooks/02_la_plata_cargos_ejecutivos.ipynb`. Este es el
    notebook que efectivamente genera/actualiza `data/`: trae el CSV oficial y
-   el agregado JSON de cada combinación (año × cargo), valida uno contra el
-   otro, hace un ejemplo de análisis mesa por mesa, confirma que el caché en
-   disco quedó limpio (2 archivos por carpeta), y valida
+   el agregado JSON de cada combinación (año × cargo), hace un ejemplo de análisis mesa por mesa, confirma que el caché en
+   disco quedó limpio y valida
    `data/agrupaciones/agrupaciones.csv` contra lo que trae la API — si hay
-   agrupaciones nuevas las agrega (avisando), si no, no toca el archivo (ver
-   advertencia abajo).
+   agrupaciones nuevas las agrega.
 4. Abrir y correr `notebooks/03_la_plata_legislativas.ipynb`: mismo patrón
    pero para los cargos legislativos (nacional/provincial/municipal,
    2013-2025), sobre `data/agrupaciones/agrupaciones_legislativas.csv`.
 5. Abrir y correr `notebooks/04_totales_por_circuito.ipynb`: normaliza
-   `circuito_id` a su forma canónica (sin ceros a la izquierda — ver más
-   abajo), agrega por ese id los totales de cada agrupación y de los "otros"
+   `circuito_id`, agrega por ese id los totales de cada agrupación y de los "otros"
    (blanco, nulo, recurrido, impugnado...) para cada (año, nivel) ya
    descargado, cruza contra el libro de códigos ideológico, agrega un
-   indicador de cobertura, y escribe `data/<año>/<nivel>/generales/circuito_<nivel>.json`
+   indicador de cobertura, y escribe `data/distrito/<año>/<nivel>/generales/circuito_<nivel>.json`
    y `data/agrupaciones/circuito_id_correspondencias.csv`.
 6. Si ya existe la caché en `data/`, los notebooks corren instantáneo (leen
    de disco, no vuelven a pedirle nada a la API). Para forzar una actualización
@@ -87,9 +96,6 @@ a mano; el último paso de cada notebook:
 4. si **hay alguna nueva**, la imprime explícitamente (aviso, no error
    silencioso) y la agrega al final con `campo_ideologico` vacío — las filas
    existentes, con su clasificación, nunca se sobreescriben.
-
-Esto hace seguro correr 02→03→04 desde cero en cualquier momento: en el caso
-normal (sin agrupaciones nuevas) el archivo queda bit a bit idéntico.
 
 **Nombre de agrupación, normalizado a mayúsculas**: `agrupacion` en ambos CSV
 está en mayúsculas — es la convención que ya traía la API en la mayoría de
@@ -122,14 +128,6 @@ en la interna y no llegaron a Generales).
   puntual, pero **no es el camino recomendado para traer datos**: el CSV ya
   trae todas las mesas en un pedido, es más rápido y no genera cientos de
   archivos de caché.
-
-Todas las respuestas se cachean en disco en
-`data/<anio_eleccion>/<categoria_nombre>/`. `categoria_nombre` (ej.
-`"presidente"`) es una etiqueta que decide quien llama, **no** un dato que
-devuelva la API — no hay forma confiable de derivar el nombre de una
-categoría a partir de su id (ver más abajo). El nombre de archivo dentro de
-cada carpeta codifica los demás parámetros de la consulta
-(`tipoEleccion-2_categoriaId-1_...json`).
 
 ## El modelo de dominio (`src/electoral/models.py`)
 
@@ -183,12 +181,12 @@ sus agrupaciones se juntan bajo ese `nivel` y se deduplican.
 
 ### Totales por circuito
 
-`data/<año>/<nivel>/generales/circuito_<nivel>.json` — agrega, por
+`data/distrito/<año>/<nivel>/generales/circuito_<nivel>.json` — agrega, por
 `circuito_id`, los positivos por agrupación y los "otros"
 (blanco/nulo/recurrido/impugnado/comando, lo que exista ese año). Sale del
 CSV oficial.
 
-**`circuito_id` canónico**: el mismo circuito se identifica con distinto
+**`circuito_id`**: el mismo circuito se identifica con distinto
 ancho/relleno de ceros según el año (`"0460"` en 2011/2015, `"000460"` en
 2019, `"00460"` en 2023). El notebook 04 normaliza a una forma canónica (sin
 ceros a la izquierda, conservando cualquier sufijo de letra por subdivisión,
@@ -196,9 +194,7 @@ ej. `"0496F"` → `"496F"`) **antes** de agregar, y usa esa forma como clave en
 `circuitos`. La correspondencia entre el id crudo de cada año y el canónico
 queda versionada en `data/agrupaciones/circuito_id_correspondencias.csv`. De
 los circuitos de La Plata, un subconjunto no es común a todos los años
-procesados (`493`, `496F`, `504C` en esta ejecución) — no es un problema de
-formato sino de altas/bajas/subdivisiones reales de circuito, y requiere
-revisión manual de límites, no normalización adicional.
+procesados (`493`, `496F`, `504C` en esta ejecución).
 
 `2017/nacional` tuvo dos cargos ese año (Senador Nacional idCargo=2, solo
 2017; Diputados Nacionales idCargo=3, todos los años) compartiendo la misma
@@ -243,7 +239,7 @@ todo el (año, nivel):
 ### Anomalía conocida: JSON agregado de Presidente 2019
 
 El JSON agregado crudo cacheado para Presidente 2019
-(`data/2019/presidente/generales/tipoEleccion-2_categoriaId-1_..._.json`) reporta 96
+(`data/distrito/2019/presidente/generales/tipoEleccion-2_categoriaId-1_..._.json`) reporta 96
 mesas totalizadas y 27.567 votos positivos; el CSV oficial de la misma
 consulta tiene 1.517 mesas y 418.164 votos positivos (~16x más). El dato
 analítico (`circuito_presidente.json`) ya está bien porque sale del CSV, no
@@ -259,10 +255,11 @@ Barras y torta por **campo ideológico** (izquierda → derecha radical, con
 una paleta divergente azul↔rojo — es un dato de polaridad, no de identidad),
 a partir de `circuito_<nivel>.json`.
 
-**Solo `graficos/serie_temporal/` está versionado en git.** `graficos/<año>/<nivel>/`
-(circuito por circuito) y `graficos/cuadros_anualizados/` están en
-`.gitignore` — se generan on demand con los scripts de abajo y no hace falta
-subirlos (son miles de archivos, se regeneran en segundos desde `data/`).
+**Solo `graficos/distrito/serie_temporal/` está versionado en git.** El resto
+de `graficos/distrito/<año>/<nivel>/` (circuito por circuito, más el cuadro
+anual de todos los cargos de ese año) está en `.gitignore` — se genera on
+demand con los scripts de abajo y no hace falta subirlo (son miles de
+archivos, se regeneran en segundos desde `data/`).
 
 - **`graficos.py`**: `graficar_barras(data_dir, anio, nivel, circuito_id=None)`
   y `graficar_torta(...)` — devuelven una figura de matplotlib.
@@ -273,8 +270,8 @@ subirlos (son miles de archivos, se regeneran en segundos desde `data/`).
 - **`generar_graficos.py`**: script que, dado un `--anio` y un `--nivel`,
   genera **circuito por circuito** (barras + torta) más **un acumulado**
   con el total del (año, nivel) — todo por campo ideológico. Escribe en
-  `graficos/<año>/<nivel>/` — carpeta al mismo nivel que `data/` y `src/`,
-  **no** adentro de `data/`: `<circuito_id>_barras.png` /
+  `graficos/distrito/<año>/<nivel>/` — carpeta al mismo nivel que `data/` y
+  `src/`, **no** adentro de `data/`: `<circuito_id>_barras.png` /
   `<circuito_id>_torta.png` por cada circuito, y `total_barras.png` /
   `total_torta.png` para el acumulado.
 
@@ -284,15 +281,8 @@ subirlos (son miles de archivos, se regeneran en segundos desde `data/`).
 
 - **`serie_temporal.py`**: **un gráfico por nivel de gobierno** (nacional /
   provincial / municipal, no por cargo puntual), con una línea por campo
-  ideológico (las 6) cubriendo 2011-2025. Cada nivel combina su cargo
-  ejecutivo y su cargo legislativo en una sola serie continua. **Todos los
-  años del proyecto son impares** (ejecutivos 2011/2015/2019/2023,
-  legislativos 2013/2017/2021/2025 — no hay ningún año par en el dataset):
-  lo que alterna es el *tipo* de elección (general ejecutiva vs. legislativa
-  intermedia), no la paridad del año. Nunca se superponen (los datos que
-  tenemos de cada uno son de años distintos), así que no hace falta
-  reconciliar dos fuentes el mismo año, solo elegir cuál de las dos
-  corresponde a cada punto:
+  ideológico cubriendo 2011-2025. Cada nivel combina su cargo
+  ejecutivo y su cargo legislativo en una sola serie continua.
 
   | nivel | ejecutivo | legislativo | puntos | rango |
   |---|---|---|---|---|
@@ -307,7 +297,9 @@ subirlos (son miles de archivos, se regeneran en segundos desde `data/`).
   sí** (mismo motivo que el punto anterior: sumar Presidente + Gobernador +
   Intendente sugeriría más comparabilidad de la que hay) — cada cargo es su
   propia serie de barras, con el nombre del cargo en la leyenda. Escribe en
-  `graficos/cuadros_anualizados/<año>_votos.png` y `<año>_porcentaje.png`.
+  `graficos/distrito/<año>/<año>_votos.png` y `<año>_porcentaje.png` —
+  junto al resto de los gráficos de ese año (`<nivel>/`, circuito por
+  circuito), no en una carpeta aparte.
 
   ```bash
   PYTHONPATH=src python -m analisis.cuadros_anualizados --anio 2023
@@ -315,7 +307,7 @@ subirlos (son miles de archivos, se regeneran en segundos desde `data/`).
 
 ## PASO y balotaje
 
-Además de Generales (`tipo_eleccion=2`, en `data/<año>/<cargo>/generales/`),
+Además de Generales (`tipo_eleccion=2`, en `data/distrito/<año>/<cargo>/generales/`),
 el pipeline también trae **PASO** (`tipo_eleccion=1`) para todas las
 combinaciones (año, cargo) ya cubiertas, y **balotaje/segunda vuelta**
 (`tipo_eleccion=3`) para Presidente en los años en que efectivamente hubo —
@@ -330,6 +322,27 @@ candidatura vs. programa) y el criterio de asignación todavía no están
 fijados de forma sistemática.
 
 ## Capa socioeconómica (EPH + Censo) — estado actual
+
+**Correspondencia circuito electoral ↔ radio censal**
+(`data/socioeconomia/circuito_radio_correspondencia.csv`, construida por
+`src/socioeconomia/geo.py`): circuitos electorales y radios censales son
+geografías de instituciones distintas sin id compartido, así que la
+correspondencia es un join espacial (`geopandas`), no un lookup por id como
+`circuito_id_correspondencias.csv`. Cada radio censal (2010 y 2022, cargados
+desde la cartografía armonizada de CONICET) se reparte entre los circuitos
+que intersecta, ponderado por área — `match_limpio=True` si cayó entero en
+un único circuito, o varias filas con `peso_area` sumando 1.0 si cruza un
+límite. **Bastante más de un tercio de los radios de La Plata están
+prorrateados** (2010: 395/849 = 46.5%; 2022: 464/1.049 = 44.2% — no es un
+caso raro, es la norma en los bordes de circuito): cualquier cifra censal
+por circuito construida a partir de esas filas es una estimación por área,
+no un conteo censal, y debe presentarse como tal. De los circuitos ya
+señalados como límite incierto en la sección "Totales por circuito" de más
+arriba, `493` y `496F` sí están en la capa de circuitos electorales
+descargada; **`504C` no está** — el circuito electoral en sí no tiene
+polígono en la fuente usada (`mapa2.electoral.gob.ar` / catálogo de datos
+abiertos de la Provincia de Buenos Aires), no es un problema de la
+correspondencia con radios.
 
 **EPH Gran La Plata** (`src/socioeconomia/eph_client.py`, tres CSV en
 `data/socioeconomia/`): serie trimestral **2011T1-2025T4 (57 de 60
@@ -364,13 +377,9 @@ cualquiera de las tres es "Sí") para no perder continuidad de la serie.
 
 2011-2015 salió de una fuente distinta a 2016 en adelante: INDEC dejó de
 servir esos trimestres en su propio sitio (el dominio que los alojaba,
-`www.indec.gov.ar`, ya ni resuelve) — se recuperaron desde el archivo de
+`www.indec.gov.ar`) — se recuperaron desde el archivo de
 Internet (`web.archive.org`), en formato DBF (no txt/csv), con un esquema de
-nombres previo (`t<trimestre><año>_dbf.<zip|rar>`). Los `.rar` de 2014-2015
-necesitan el binario de sistema `unar` (`apt-get install unar`, no es un
-paquete de pip) para extraerse. Ver el docstring de `eph_client.py` para el
-detalle completo (timestamps de Wayback Machine, la columna `PONDIH` que no
-existe en la base hogar histórica, etc.).
+nombres previo (`t<trimestre><año>_dbf.<zip|rar>`). 
 
 Quedan exactamente **3 trimestres sin dato**: INDEC no publicó la encuesta en 2015T3, 2015T4 y 2016T1
 ("emergencia estadística").
@@ -388,6 +397,67 @@ de unión listo (`unir_censo_a_circuitos`, prorratea cada variable por
 `data/socioeconomia/`.
 
 **No hay un índice NBI único que INDEC recalcule igual en 2010 y 2022** 
+
+## Agrupación de resultados por localidad — estado actual
+
+Además de la correspondencia circuito↔radio censal de la sección anterior
+(para cruzar con el Censo), existe una **segunda correspondencia
+territorial, independiente y con otro propósito**: agrupar los resultados
+electorales por localidad/barrio de La Plata (Villa Elvira, Los Hornos, San
+Lorenzo, Melchor Romero, etc.) con nombres legibles, no censales.
+
+- **Crosswalk** (`data/fuentes_extra/circuito_localidad.csv`,
+  hand-curated como `agrupaciones.csv` — no se regenera desde ningún
+  notebook): mapea `circuito_id` → `localidad` con dos niveles de cobertura
+  que nunca se mezclan sin pedirlo explícitamente —
+  `oficial_confirmada` (Resolución 1990/2007 del Ministerio del Interior,
+  16/68 circuitos) y `periodistico_no_oficial` (relevamiento "barrio por
+  barrio" de El Día, octubre 2025, 65/68 circuitos). El detalle completo
+  del armado, la cobertura circuito a circuito y qué falta está en
+  `data/fuentes_extra/LOCALIDADES_README.md`; la auditoría de qué tan
+  bien coincide cada localidad `oficial_confirmada` contra el texto
+  completo de la resolución (no solo el título de la subsección) está en
+  `data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md`.
+- **`src/electoral/localidades.py`**: la lógica de agrupamiento pura
+  (`agrupar_resultados_por_localidad`), sin tocar `data/` ni la API.
+  `oficial_confirmada` prevalece siempre sobre `periodistico_no_oficial`
+  cuando ambas existen para un circuito; ningún voto se pierde nunca — lo
+  que no tiene localidad asignada queda en la fila `SIN_DETERMINAR`,
+  siempre presente en el resultado.
+- **`src/analisis/cuadros_por_localidad.py`**: script que combina ese
+  crosswalk con los `circuito_<nivel>.json` ya generados por el notebook
+  04 (no vuelve a tocar la API ni el CSV oficial) y escribe un CSV por
+  (año, nivel, etapa) en `data/por_localidad/` — es un CSV derivado (data,
+  no imagen), pero no se versiona: se regenera en segundos, igual criterio
+  que `graficos/`. Cada cuadro trae, además de las 6 columnas de campo
+  ideológico, una columna `blanco_nulo` (votos en blanco + nulos — no es
+  una ideología, pero tampoco se mezcla en un "otros" genérico) y una
+  columna `otros` con el resto (impugnado/recurrido/comando,
+  procedimental), más la cobertura de circuitos/votos lograda como
+  comentario `#` en el encabezado.
+
+  ```bash
+  PYTHONPATH=src python -m analisis.cuadros_por_localidad --anio 2023 --nivel intendente
+  PYTHONPATH=src python -m analisis.cuadros_por_localidad                    # todo lo disponible
+  ```
+
+- **`src/analisis/serie_temporal_por_localidad.py`**: a partir de esos
+  cuadros (no relee `circuito_<nivel>.json` ni el crosswalk), un gráfico
+  de serie temporal por campo ideológico por localidad y nivel de
+  gobierno (2011-2025), reusando la fusión ejecutivo+legislativo de
+  `serie_temporal.py`. Escribe en `graficos/por_localidad/`.
+  `SIN_DETERMINAR` se grafica siempre como una serie más, nunca se oculta.
+
+  ```bash
+  PYTHONPATH=src python -m analisis.serie_temporal_por_localidad                # todas las localidades, los 3 niveles
+  PYTHONPATH=src python -m analisis.serie_temporal_por_localidad --nivel municipal
+  ```
+
+Falta subir de nivel a `oficial_confirmada` las familias de circuitos 504,
+505, 508 y 509 (hoy solo tienen la etiqueta de El Día) — ver "Qué falta" en
+`LOCALIDADES_README.md` para el resto del plan (pedido de acceso a la
+información a la Junta Electoral, contraste contra las 24 localidades
+oficiales usadas por la cobertura de 0221.com.ar).
 
 ## Extender a otro distrito, sección o cargo
 

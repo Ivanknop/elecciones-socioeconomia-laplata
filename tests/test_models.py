@@ -1,8 +1,6 @@
 """Tests de `src/electoral/models.py`: parseo del JSON crudo de la API a
 dataclasses tipadas, y las tres propiedades derivadas de `ResultadoElectoral`.
 
-No pega a la API: todo corre sobre fixtures en `conftest.py` recortadas de
-JSON real ya cacheado en `data/`.
 """
 from electoral.models import (
     EstadoRecuento,

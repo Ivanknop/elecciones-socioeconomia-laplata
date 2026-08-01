@@ -9,28 +9,10 @@ convención fija de guión bajo) — `_URLS_IRREGULARES` tiene los que se
 confirmaron navegando en esta sesión (2016 T2-T4, 2017 T1).
 
 ## 2011-2015: microdatos históricos vía Wayback Machine
-
-INDEC dejó de servir en su propio sitio los trimestres 2011-2015 (el dominio
-`www.indec.gov.ar` que los alojaba ya ni resuelve). Se encontraron y
-confirmaron en el archivo de Internet (`web.archive.org`), capturados el
-2017-10-18, con el nombre `t<trimestre><año 2 dígitos>_dbf.<zip|rar>` (ej.
-`t111_dbf.zip` = 1er trimestre de 2011) — un esquema de nombres previo al
-`EPH_usu_...` actual, en formato **DBF** (no txt/csv). `_WAYBACK_DBF` tiene
-el timestamp de cada trimestre confirmado; `descargar_trimestre_historico` +
-`leer_base_historica` los descargan/leen. La extensión no sigue una regla
-por año (`_EXTENSION_HISTORICA`): 2011-2013 y el caso puntual de 2014 T2
-están en `.zip`; el resto de 2014-2015 está en `.rar` — hace falta el
-binario `unar` instalado en el sistema (`apt-get install unar`; no es un
-paquete de pip) para extraerlos.
-
-Dentro de estos DBF, la base `Hogar` **no tiene columna `PONDIH`** (se
-llama `PONDERA`, igual que en la base individual) — `agregados_gran_la_plata`
-ya contempla esto.
-
-Con esto, `data/socioeconomia/eph_gran_la_plata.csv` cubre 2011-2025 casi
+`data/socioeconomia/eph_gran_la_plata.csv` cubre 2011-2025 casi
 completo (57 de 60 trimestres) en un único CSV.
 
-## Huecos conocidos en la serie (no son un bug de este cliente)
+## Huecos conocidos en la serie 
 
 - 2015 T3, 2015 T4, 2016 T1: INDEC no publicó la EPH ("emergencia
   estadística") — confirmado además porque no existen `t315`/`t415` en el
@@ -64,11 +46,9 @@ _URLS_IRREGULARES = {
     (2016, 2): "EPH_usu_2doTrim_2016_txt.zip",
     (2016, 3): "EPH_usu_3erTrim_2016_txt.zip",
     (2016, 4): "EPH_usu_4toTrim_2016_txt.zip",
-    (2017, 1): "EPH_usu_1er_trim_2017_txt.zip",  # "trim" en minúscula -- "Trim" (mayúscula) da 404
+    (2017, 1): "EPH_usu_1er_trim_2017_txt.zip",
 }
 
-# timestamp de wayback machine (todos capturados 2017-10-18) por (año, trimestre),
-# para los .dbf de 2011-2015 -- ver docstring del módulo.
 _WAYBACK_DBF = {
     (2011, 1): "20171018105514",
     (2011, 2): "20171018105001",
@@ -92,9 +72,6 @@ _WAYBACK_DBF = {
 
 TRIMESTRES_NO_PUBLICADOS = {(2015, 3), (2015, 4), (2016, 1), (2007, 3)}
 
-# extensión real del archivo dbf capturado en Wayback Machine -- no sigue una
-# regla por año: 2014 T2 quedó en .zip mientras T1/T3/T4 del mismo año están
-# en .rar (confirmado contra el listado real de archive.org, no una regla inferida).
 _EXTENSION_HISTORICA = {
     (2014, 1): "rar",
     (2014, 2): "zip",
@@ -106,7 +83,7 @@ _EXTENSION_HISTORICA = {
 
 
 class TrimestreNoPublicado(Exception):
-    """INDEC no publicó microdatos para este (año, trimestre) — no es un error de descarga."""
+    """INDEC no publicó microdatos para este (año, trimestre)."""
 
 
 class UrlDesconocida(Exception):
@@ -120,15 +97,13 @@ def _nombre_archivo(anio: int, trimestre: int) -> str:
         return f"EPH_usu_{trimestre}_Trim_{anio}_txt.zip"
     raise UrlDesconocida(
         f"No hay un patrón de URL confirmado para {anio} T{trimestre}. "
-        "Pasar `url` explícito a `descargar_trimestre` (ver docstring del módulo)."
+        "Pasar `url` explícito a `descargar_trimestre` ."
     )
 
 
 def _nombre_archivo_historico(anio: int, trimestre: int) -> str:
     """Nombre del archivo DBF histórico 2011-2015 en Wayback Machine —
-    `t<trimestre><año 2 dígitos>_dbf.<zip|rar>`. La extensión no sigue una
-    regla por año (ver `_EXTENSION_HISTORICA`): todo 2011-2013 está en zip,
-    2014-2015 es rar salvo la excepción confirmada de 2014 T2 (zip).
+    `t<trimestre><año 2 dígitos>_dbf.<zip|rar>`.
     """
     yy = anio % 100
     extension = _EXTENSION_HISTORICA.get((anio, trimestre), "zip" if anio <= 2013 else "rar")
@@ -150,7 +125,7 @@ class EphClient:
         if (anio, trimestre) in TRIMESTRES_NO_PUBLICADOS:
             raise TrimestreNoPublicado(
                 f"INDEC no publicó la EPH para {anio} T{trimestre} "
-                "(emergencia estadística o no relevamiento — ver docstring del módulo)."
+                "(emergencia estadística o no relevamiento)."
             )
 
         nombre = url.rsplit("/", 1)[-1] if url else _nombre_archivo(anio, trimestre)
@@ -164,8 +139,8 @@ class EphClient:
         response.raise_for_status()
         if response.headers.get("Content-Type", "").startswith("text/html"):
             raise UrlDesconocida(
-                f"{descarga_url} no devolvió un zip (¿nombre de archivo incorrecto "
-                "para este trimestre? INDEC devuelve una página HTML en vez de 404)."
+                f"{descarga_url} no devolvió un zip "
+                "(INDEC devuelve una página HTML en vez de 404)."
             )
 
         cache_path.parent.mkdir(parents=True, exist_ok=True)
@@ -173,9 +148,7 @@ class EphClient:
         return cache_path
 
     def leer_base(self, zip_path: Path, tipo: str) -> pd.DataFrame:
-        """Lee la base `individual` u `hogar` de un zip ya descargado. El
-        archivo interno de la base individual no siempre se llama igual entre
-        trimestres (ej. 4to trim. 2020 lo llamó "personas" en vez de "individual").
+        """Lee la base `individual` u `hogar` de un zip ya descargado.
         """
         if tipo not in ("individual", "hogar"):
             raise ValueError("tipo debe ser 'individual' u 'hogar'")
@@ -195,17 +168,16 @@ class EphClient:
         self, anio: int, trimestre: int, force_refresh: bool = False
     ) -> Path:
         """Descarga (o lee de caché) el .zip/.rar con las bases DBF de un
-        trimestre 2011-2015, vía Wayback Machine (ver docstring del módulo).
+        trimestre 2011-2015, vía Wayback Machine.
         """
         if (anio, trimestre) in TRIMESTRES_NO_PUBLICADOS:
             raise TrimestreNoPublicado(
-                f"INDEC no publicó la EPH para {anio} T{trimestre} (ver docstring del módulo)."
+                f"INDEC no publicó la EPH para {anio} T{trimestre}."
             )
         timestamp = _WAYBACK_DBF.get((anio, trimestre))
         if timestamp is None:
             raise UrlDesconocida(
                 f"No hay una captura de Wayback Machine confirmada para {anio} T{trimestre} "
-                "(ver _WAYBACK_DBF en el docstring del módulo)."
             )
         nombre = _nombre_archivo_historico(anio, trimestre)
         cache_path = self.cache_dir / str(anio) / f"trim{trimestre}" / nombre
@@ -254,11 +226,7 @@ _COLUMNAS_NUMERICAS_HOGAR = ("IPCF", "IX_TOT", "II1", "IV7", "II7", "V5", "V15",
 
 
 def _numerico(df: pd.DataFrame, columnas: tuple[str, ...]) -> pd.DataFrame:
-    """Fuerza a numérico las columnas dadas que estén presentes -- el formato
-    (separador decimal, celdas vacías) no es consistente entre trimestres
-    publicados por INDEC, no hay que confiar en el dtype que infirió `read_csv`
-    ni asumir que todas las columnas existen en todos los esquemas (2011-2015
-    DBF vs. 2017+ txt difieren en columnas auxiliares, ver docstring del módulo).
+    """Fuerza a numérico las columnas dadas que estén presentes 
     """
     df = df.copy()
     for columna in columnas:
@@ -333,15 +301,6 @@ def agregados_gran_la_plata(individual: pd.DataFrame, hogar: pd.DataFrame) -> di
     `PONDERA`/`PONDIH`, como exige la EPH al ser una encuesta muestral.
     En las bases históricas (2011-2015, DBF) la base hogar no tiene columna
     `PONDIH` -- usa `PONDERA` en su lugar.
-
-    Además del núcleo laboral (`_indicadores_laborales_core`), agrega:
-    composición ocupacional (`CAT_OCUP`), calidad del empleo asalariado
-    (`PP07G1/G2/G4`: vacaciones pagas/aguinaldo/obra social), cobertura de
-    salud (`CH08`), educación (`NIVEL_ED`, alfabetización, asistencia
-    escolar), hacinamiento y tenencia de vivienda, estrategias de
-    subsistencia del hogar (`V5`/`V15`/`V17`), e ingreso total individual
-    (`P47T`) además de ingreso de la ocupación principal e IPCF. No incluye
-    subocupación horaria (`INTENSI`) -- se descartó, ver comentario más abajo.
     """
     ind = individual[individual["AGLOMERADO"] == AGLOMERADO_GRAN_LA_PLATA].copy()
     hog = hogar[hogar["AGLOMERADO"] == AGLOMERADO_GRAN_LA_PLATA].copy()

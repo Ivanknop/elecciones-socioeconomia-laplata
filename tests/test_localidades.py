@@ -1,6 +1,5 @@
 """Tests de `src/electoral/localidades.py`: crosswalk circuito -> localidad y
-agregación de resultados por localidad. Usa un crosswalk chico en memoria, no
-el `data/fuentes_extras/circuito_localidad.csv` real.
+agregación de resultados por localidad.
 """
 import pytest
 

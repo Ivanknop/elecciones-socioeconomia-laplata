@@ -1,19 +1,12 @@
 """Serie temporal por campo ideológico, un gráfico por localidad y nivel de
 gobierno (2011-2025), a partir de los cuadros ya agregados en
-`graficos/cuadros_por_localidad/*.csv` (ver `analisis.cuadros_por_localidad`
--- este script no vuelve a leer `circuito_<nivel>.json` ni el crosswalk
-directamente, así que hay que correr `cuadros_por_localidad` primero).
-
-Reusa la fusión ejecutivo+legislativo de `analisis.serie_temporal.NIVELES`
-(nacional=presidente+diputados nac., provincial=gobernador+diputados prov.,
-municipal=intendente+concejales) para que los puntos de cada serie sean
-comparables a los de `graficos/serie_temporal/`.
+`data/por_localidad/*.csv`.
 
 Cada localidad incluye siempre `SIN_DETERMINAR` como una serie más -- son
 votos reales de circuitos sin localidad asignada ese año, nunca se ocultan
-(ver `data/fuentes_extras/LOCALIDADES_README.md`). La confiabilidad de la
+(ver `data/fuentes_extra/LOCALIDADES_README.md`). La confiabilidad de la
 clasificación de cada localidad está en
-`data/fuentes_extras/AUDITORIA_DISCREPANCIAS.md`.
+`data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md`.
 
 Uso:
     python -m analisis.serie_temporal_por_localidad                          # todas las localidades, los 3 niveles
@@ -31,41 +24,38 @@ import pandas as pd
 from analisis.graficos import IDEOLOGIAS, _COLOR_IDEOLOGIA
 from analisis.serie_temporal import CARGO_LABEL, NIVELES, _puntos_del_nivel
 
-CUADROS_DIR = "cuadros_por_localidad"
+
+def _ruta_cuadro(cuadros_dir: Path | str, anio: int, cargo: str) -> Path:
+    return Path(cuadros_dir) / f"{anio}_{cargo}_generales_localidad.csv"
 
 
-def _ruta_cuadro(graficos_dir: Path | str, anio: int, cargo: str) -> Path:
-    return Path(graficos_dir) / CUADROS_DIR / f"{anio}_{cargo}_generales_localidad.csv"
+def _cargar_cuadro(cuadros_dir: Path | str, anio: int, cargo: str) -> pd.DataFrame:
+    return pd.read_csv(_ruta_cuadro(cuadros_dir, anio, cargo), comment="#")
 
 
-def _cargar_cuadro(graficos_dir: Path | str, anio: int, cargo: str) -> pd.DataFrame:
-    return pd.read_csv(_ruta_cuadro(graficos_dir, anio, cargo), comment="#")
-
-
-def _puntos_con_cuadro(data_dir: Path | str, graficos_dir: Path | str, nivel: str) -> list[tuple[int, str]]:
+def _puntos_con_cuadro(data_dir: Path | str, cuadros_dir: Path | str, nivel: str) -> list[tuple[int, str]]:
     """Igual que `_puntos_del_nivel`, pero solo los (año, cargo) para los que
-    ya existe el cuadro por localidad (no todo lo que tiene `circuito_<nivel>.json`
-    tiene necesariamente su cuadro generado)."""
+    ya existe el cuadro por localidad."""
     return [
         (anio, cargo)
         for anio, cargo in _puntos_del_nivel(data_dir, nivel)
-        if _ruta_cuadro(graficos_dir, anio, cargo).exists()
+        if _ruta_cuadro(cuadros_dir, anio, cargo).exists()
     ]
 
 
-def _localidades_en_puntos(graficos_dir: Path | str, puntos: list[tuple[int, str]]) -> list[str]:
+def _localidades_en_puntos(cuadros_dir: Path | str, puntos: list[tuple[int, str]]) -> list[str]:
     localidades: set[str] = set()
     for anio, cargo in puntos:
-        localidades.update(_cargar_cuadro(graficos_dir, anio, cargo)["localidad"])
+        localidades.update(_cargar_cuadro(cuadros_dir, anio, cargo)["localidad"])
     return sorted(localidades)
 
 
-def _serie_localidad(graficos_dir: Path | str, puntos: list[tuple[int, str]], localidad: str):
+def _serie_localidad(cuadros_dir: Path | str, puntos: list[tuple[int, str]], localidad: str):
     """Devuelve ({ideologia: [votos por punto]}, [total_positivos por punto])."""
     serie = {ideologia: [] for ideologia in IDEOLOGIAS.values()}
     totales = []
     for anio, cargo in puntos:
-        df = _cargar_cuadro(graficos_dir, anio, cargo)
+        df = _cargar_cuadro(cuadros_dir, anio, cargo)
         fila = df[df["localidad"] == localidad]
         valores = {
             ideologia: (fila[ideologia].iloc[0] if not fila.empty else 0)
@@ -78,14 +68,14 @@ def _serie_localidad(graficos_dir: Path | str, puntos: list[tuple[int, str]], lo
 
 
 def graficar_serie_localidad(
-    data_dir: Path | str, graficos_dir: Path | str, nivel: str, localidad: str,
+    data_dir: Path | str, cuadros_dir: Path | str, nivel: str, localidad: str,
     en_porcentaje: bool = False, ax=None,
 ):
-    puntos = _puntos_con_cuadro(data_dir, graficos_dir, nivel)
+    puntos = _puntos_con_cuadro(data_dir, cuadros_dir, nivel)
     if not puntos:
         raise FileNotFoundError(f"no hay cuadros por localidad generados para el nivel {nivel!r}")
 
-    serie, totales = _serie_localidad(graficos_dir, puntos, localidad)
+    serie, totales = _serie_localidad(cuadros_dir, puntos, localidad)
     anios = [a for a, _ in puntos]
     etiquetas_x = [f"{a}\n{CARGO_LABEL[cargo]}" for a, cargo in puntos]
 
@@ -108,15 +98,17 @@ def graficar_serie_localidad(
     return ax.figure
 
 
-def generar_serie_localidad(data_dir: Path | str, graficos_dir: Path | str, nivel: str, localidad: str) -> Path:
-    salida = Path(graficos_dir) / CUADROS_DIR / "imagenes"
+def generar_serie_localidad(
+    data_dir: Path | str, cuadros_dir: Path | str, graficos_dir: Path | str, nivel: str, localidad: str,
+) -> Path:
+    salida = Path(graficos_dir)
     salida.mkdir(parents=True, exist_ok=True)
 
-    fig = graficar_serie_localidad(data_dir, graficos_dir, nivel, localidad, en_porcentaje=False)
+    fig = graficar_serie_localidad(data_dir, cuadros_dir, nivel, localidad, en_porcentaje=False)
     fig.savefig(salida / f"{localidad}_{nivel}_votos.png", dpi=100)
     plt.close(fig)
 
-    fig = graficar_serie_localidad(data_dir, graficos_dir, nivel, localidad, en_porcentaje=True)
+    fig = graficar_serie_localidad(data_dir, cuadros_dir, nivel, localidad, en_porcentaje=True)
     fig.savefig(salida / f"{localidad}_{nivel}_porcentaje.png", dpi=100)
     plt.close(fig)
 
@@ -127,21 +119,22 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--nivel", choices=list(NIVELES), help="si se omite, corre los 3 niveles")
     parser.add_argument("--localidad", help="si se omite, corre todas las localidades disponibles para ese nivel")
-    parser.add_argument("--data-dir", default="data")
-    parser.add_argument("--graficos-dir", default="graficos")
+    parser.add_argument("--data-dir", default="data/distrito")
+    parser.add_argument("--cuadros-dir", default="data/por_localidad")
+    parser.add_argument("--graficos-dir", default="graficos/por_localidad")
     args = parser.parse_args()
 
     niveles = [args.nivel] if args.nivel else list(NIVELES)
     total_imagenes = 0
     for nivel in niveles:
-        puntos = _puntos_con_cuadro(args.data_dir, args.graficos_dir, nivel)
+        puntos = _puntos_con_cuadro(args.data_dir, args.cuadros_dir, nivel)
         if not puntos:
             print(f"{nivel}: sin cuadros por localidad generados, se omite (correr antes analisis.cuadros_por_localidad)")
             continue
 
-        localidades = [args.localidad] if args.localidad else _localidades_en_puntos(args.graficos_dir, puntos)
+        localidades = [args.localidad] if args.localidad else _localidades_en_puntos(args.cuadros_dir, puntos)
         for localidad in localidades:
-            salida = generar_serie_localidad(args.data_dir, args.graficos_dir, nivel, localidad)
+            salida = generar_serie_localidad(args.data_dir, args.cuadros_dir, args.graficos_dir, nivel, localidad)
             total_imagenes += 2
 
         anios = [a for a, _ in puntos]

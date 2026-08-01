@@ -1,8 +1,4 @@
-"""Tests de `src/socioeconomia/eph_client.py` que no pegan a la red: la
-resolución de nombre de archivo (`_nombre_archivo`/`_nombre_archivo_historico`)
-y el cálculo de agregados (`agregados_gran_la_plata`, `agregados_por_sexo`,
-`agregados_por_edad`) sobre DataFrames sintéticos chicos, con el mismo estilo
-de fixtures de `tests/test_models.py`.
+"""Tests de `src/socioeconomia/eph_client.py`.
 """
 import pandas as pd
 import pytest

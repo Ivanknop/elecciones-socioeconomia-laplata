@@ -4,11 +4,6 @@ Devuelve siempre los datos crudos tal como los entrega la API (JSON o CSV),
 sin transformarlos. El parseo a objetos de dominio es responsabilidad de
 `electoral.models`.
 
-El caché en disco se organiza como `data/<anioEleccion>/<categoria_nombre>/...`.
-`categoria_nombre` es una etiqueta que decide quien llama (ej. "presidente",
-"gobernador"), no un dato que devuelva la API: `categoriaId` está indexado
-localmente por distrito/año, no hay forma de derivar el nombre de la
-categoría de manera confiable a partir del id solo (ver notebooks).
 """
 from __future__ import annotations
 
@@ -65,7 +60,7 @@ class ResultadosClient:
         """Trae el JSON crudo de resultados totalizados, usando caché en disco.
 
         `categoria_nombre` (ej. "presidente") solo se usa para organizar el
-        caché en `data/<anio_eleccion>/<categoria_nombre>/`; no se envía a la API.
+        caché en `<cache_dir>/<anio_eleccion>/<categoria_nombre>/`; no se envía a la API.
         """
         params = {
             "anioEleccion": anio_eleccion,

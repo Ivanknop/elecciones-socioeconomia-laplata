@@ -158,7 +158,7 @@ barrio por barrio y circuito por circuito, así votó la ciudad", 9/9/2025.
 ```python
 from electoral.localidades import agrupar_resultados_por_localidad, cargar_crosswalk
 
-crosswalk = cargar_crosswalk("data/fuentes_extras/circuito_localidad.csv")
+crosswalk = cargar_crosswalk("data/fuentes_extra/circuito_localidad.csv")
 agrupado, reporte = agrupar_resultados_por_localidad(resultados_por_circuito, crosswalk)
 
 print(reporte)  # SIEMPRE revisar esto antes de interpretar `agrupado`

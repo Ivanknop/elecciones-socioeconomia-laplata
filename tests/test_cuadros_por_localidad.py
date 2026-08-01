@@ -1,13 +1,12 @@
 """Tests de `src/analisis/cuadros_por_localidad.py`: genera el cuadro a partir
-de un `circuito_<nivel>.json` y un crosswalk chicos, ambos en `tmp_path` (no
-toca `data/` real ni la API).
+de un `circuito_<nivel>.json` y un crosswalk chicos, ambos en `tmp_path`.
 """
 import json
 
 import pandas as pd
 import pytest
 
-from analisis.cuadros_por_localidad import generar_cuadro_localidad
+from analisis.cuadros_por_localidad import _clasificar_no_positivo, generar_cuadro_localidad
 from electoral.localidades import SIN_DETERMINAR
 
 
@@ -75,24 +74,41 @@ def _leer_cuadro(path):
     return pd.read_csv(path, comment="#")
 
 
+class TestClasificarNoPositivo:
+    @pytest.mark.parametrize("nombre", ["EN BLANCO", "BLANCOS", "BLANCO"])
+    def test_blanco_va_a_blanco_nulo(self, nombre):
+        assert _clasificar_no_positivo(nombre) == "blanco_nulo"
+
+    @pytest.mark.parametrize("nombre", ["NULO", "NULOS"])
+    def test_nulo_va_a_blanco_nulo(self, nombre):
+        assert _clasificar_no_positivo(nombre) == "blanco_nulo"
+
+    @pytest.mark.parametrize("nombre", ["IMPUGNADO", "IMPUGNADOS", "RECURRIDO", "RECURRIDOS", "COMANDO"])
+    def test_procedimentales_van_a_otros(self, nombre):
+        assert _clasificar_no_positivo(nombre) == "otros"
+
+    def test_categoria_no_vista_antes_va_a_otros_sin_perder_el_voto(self):
+        assert _clasificar_no_positivo("UNA_CATEGORIA_NUEVA") == "otros"
+
+
 class TestGenerarCuadroLocalidad:
     def test_devuelve_none_si_no_existe_el_circuito_json(self, tmp_path, crosswalk_path):
         salida = generar_cuadro_localidad(
-            tmp_path, tmp_path / "graficos", 2023, "intendente", "paso", crosswalk_path,
+            tmp_path, tmp_path / "por_localidad", 2023, "intendente", "paso", crosswalk_path,
         )
         assert salida is None
 
     def test_nombre_de_archivo_sigue_la_convencion_anio_nivel_etapa(self, circuito_json_path, crosswalk_path, tmp_path):
         salida = generar_cuadro_localidad(
-            circuito_json_path, tmp_path / "graficos", 2023, "intendente", "generales", crosswalk_path,
+            circuito_json_path, tmp_path / "por_localidad", 2023, "intendente", "generales", crosswalk_path,
         )
         assert salida.name == "2023_intendente_generales_localidad.csv"
 
-    def test_archivo_se_guarda_bajo_cuadros_por_localidad(self, circuito_json_path, crosswalk_path, tmp_path):
+    def test_archivo_se_guarda_directamente_en_salida_dir(self, circuito_json_path, crosswalk_path, tmp_path):
         salida = generar_cuadro_localidad(
-            circuito_json_path, tmp_path / "graficos", 2023, "intendente", "generales", crosswalk_path,
+            circuito_json_path, tmp_path / "por_localidad", 2023, "intendente", "generales", crosswalk_path,
         )
-        assert salida.parent.name == "cuadros_por_localidad"
+        assert salida.parent == tmp_path / "por_localidad"
 
     def test_ningun_voto_se_pierde(self, circuito_json_path, crosswalk_path, tmp_path):
         contenido = json.loads(
@@ -103,14 +119,14 @@ class TestGenerarCuadroLocalidad:
             for c in contenido["circuitos"].values()
         )
         salida = generar_cuadro_localidad(
-            circuito_json_path, tmp_path / "graficos", 2023, "intendente", "generales", crosswalk_path,
+            circuito_json_path, tmp_path / "por_localidad", 2023, "intendente", "generales", crosswalk_path,
         )
         cuadro = _leer_cuadro(salida)
         assert cuadro["votos"].sum() == total_origen
 
     def test_barrio_a_suma_los_dos_circuitos_agrupados(self, circuito_json_path, crosswalk_path, tmp_path):
         salida = generar_cuadro_localidad(
-            circuito_json_path, tmp_path / "graficos", 2023, "intendente", "generales", crosswalk_path,
+            circuito_json_path, tmp_path / "por_localidad", 2023, "intendente", "generales", crosswalk_path,
         )
         cuadro = _leer_cuadro(salida)
         fila = cuadro.set_index("localidad").loc["BARRIO_A"]
@@ -118,7 +134,7 @@ class TestGenerarCuadroLocalidad:
 
     def test_circuito_sin_crosswalk_cae_en_sin_determinar(self, circuito_json_path, crosswalk_path, tmp_path):
         salida = generar_cuadro_localidad(
-            circuito_json_path, tmp_path / "graficos", 2023, "intendente", "generales", crosswalk_path,
+            circuito_json_path, tmp_path / "por_localidad", 2023, "intendente", "generales", crosswalk_path,
         )
         cuadro = _leer_cuadro(salida)
         fila = cuadro.set_index("localidad").loc[SIN_DETERMINAR]
@@ -126,31 +142,43 @@ class TestGenerarCuadroLocalidad:
 
     def test_encabezado_incluye_porcentaje_de_cobertura(self, circuito_json_path, crosswalk_path, tmp_path):
         salida = generar_cuadro_localidad(
-            circuito_json_path, tmp_path / "graficos", 2023, "intendente", "generales", crosswalk_path,
+            circuito_json_path, tmp_path / "por_localidad", 2023, "intendente", "generales", crosswalk_path,
         )
         encabezado = salida.read_text(encoding="utf-8")
         assert "Cobertura votos:" in encabezado
 
     def test_encabezado_referencia_la_auditoria_de_discrepancias(self, circuito_json_path, crosswalk_path, tmp_path):
         salida = generar_cuadro_localidad(
-            circuito_json_path, tmp_path / "graficos", 2023, "intendente", "generales", crosswalk_path,
+            circuito_json_path, tmp_path / "por_localidad", 2023, "intendente", "generales", crosswalk_path,
         )
         encabezado = salida.read_text(encoding="utf-8")
         assert "AUDITORIA_DISCREPANCIAS.md" in encabezado
 
     def test_columna_izquierda_refleja_campo_ideologico_1(self, circuito_json_path, crosswalk_path, tmp_path):
         salida = generar_cuadro_localidad(
-            circuito_json_path, tmp_path / "graficos", 2023, "intendente", "generales", crosswalk_path,
+            circuito_json_path, tmp_path / "por_localidad", 2023, "intendente", "generales", crosswalk_path,
         )
         cuadro = _leer_cuadro(salida)
         fila = cuadro.set_index("localidad").loc["BARRIO_A"]
         assert fila["izquierda"] == 20  # PARTIDO B, circuito 100
 
+    def test_columna_blanco_nulo_suma_en_blanco_mas_nulo_separado_de_otros(
+        self, circuito_json_path, crosswalk_path, tmp_path,
+    ):
+        salida = generar_cuadro_localidad(
+            circuito_json_path, tmp_path / "por_localidad", 2023, "intendente", "generales", crosswalk_path,
+        )
+        cuadro = _leer_cuadro(salida)
+        fila = cuadro.set_index("localidad").loc["BARRIO_A"]
+        # circuito 100: EN BLANCO=5, NULO=1; circuito 101: EN BLANCO=2, NULO=0
+        assert fila["blanco_nulo"] == 8
+        assert fila["otros"] == 0  # IMPUGNADO/RECURRIDO/COMANDO están en cero en la fixture
+
     def test_no_pierde_votos_de_otros_con_nombres_de_categoria_distintos(self, tmp_path, crosswalk_path):
         """La API nombra las categorías de `otros` distinto según el año
-        (p.ej. "NULO" en 2019 vs. "NULOS" en 2021, ver `_votos_por_circuito`).
         Un circuito con nombres de categoría no vistos antes no debe perder
-        esos votos.
+        esos votos, y blanco/nulo debe separarse de lo procedimental aunque
+        cambie el nombre exacto de la categoría.
         """
         contenido = {
             "circuitos": {
@@ -161,6 +189,8 @@ class TestGenerarCuadroLocalidad:
         path.mkdir(parents=True)
         (path / "circuito_nacional.json").write_text(json.dumps(contenido), encoding="utf-8")
 
-        salida = generar_cuadro_localidad(tmp_path, tmp_path / "graficos", 2021, "nacional", "generales", crosswalk_path)
+        salida = generar_cuadro_localidad(tmp_path, tmp_path / "por_localidad", 2021, "nacional", "generales", crosswalk_path)
         cuadro = _leer_cuadro(salida)
         assert cuadro["votos"].sum() == 5
+        assert cuadro["blanco_nulo"].sum() == 5
+        assert cuadro["otros"].sum() == 0

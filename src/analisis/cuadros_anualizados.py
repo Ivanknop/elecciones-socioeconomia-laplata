@@ -2,10 +2,7 @@
 circuitos) de cada cargo/nivel disputado ese año, por campo ideológico.
 
 **No suma los cargos entre sí**: cada uno se dibuja como su propia serie de
-barras. Sumar Presidente + Gobernador + Intendente en un solo número
-sugeriría más comparabilidad de la que realmente hay entre cargos distintos
-(el mismo problema que señala §2.4 del plan de correcciones para
-`serie_temporal.py`) — acá se evita desde el diseño en vez de repetirlo.
+barras.
 
 Uso:
     python -m analisis.cuadros_anualizados --anio 2023
@@ -21,9 +18,6 @@ import numpy as np
 
 from analisis.graficos import IDEOLOGIAS, _COLOR_IDEOLOGIA, _cargar_circuito, _votos_por_ideologia
 
-# Cargos que compitieron cada año en La Plata (ver README). No todos los años
-# tienen los tres niveles: 2025 legislativo solo trajo Diputados Nacionales
-# para este distrito (hallazgo #12 del README).
 NIVELES_POR_ANIO = {
     2011: ["presidente", "gobernador", "intendente"],
     2013: ["nacional", "provincial", "municipal"],
@@ -56,8 +50,7 @@ def _niveles_disponibles(data_dir: Path | str, anio: int) -> list[str]:
 
 def graficar_cuadro_anual(data_dir: Path | str, anio: int, en_porcentaje: bool = False, ax=None):
     """Barras agrupadas: un grupo por campo ideológico, una barra por cargo
-    dentro de cada grupo — todos los cargos de `anio` en el mismo gráfico,
-    sin sumarlos entre sí.
+    dentro de cada grupo.
     """
     niveles = _niveles_disponibles(data_dir, anio)
     if not niveles:
@@ -93,7 +86,7 @@ def graficar_cuadro_anual(data_dir: Path | str, anio: int, en_porcentaje: bool =
     ax.set_xticklabels(ideologias, rotation=20, ha="right")
     ax.set_ylabel("% de los positivos" if en_porcentaje else "votos")
     metrica = "% por campo ideológico" if en_porcentaje else "votos por campo ideológico"
-    ax.set_title(f"La Plata {anio} — {metrica}, por cargo (no sumado entre cargos)")
+    ax.set_title(f"La Plata {anio} — {metrica}, por cargo")
     ax.legend(frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
     ax.figure.tight_layout()
@@ -101,7 +94,7 @@ def graficar_cuadro_anual(data_dir: Path | str, anio: int, en_porcentaje: bool =
 
 
 def generar_cuadro_anual(data_dir: Path | str, graficos_dir: Path | str, anio: int) -> Path:
-    salida = Path(graficos_dir) / "cuadros_anualizados"
+    salida = Path(graficos_dir) / str(anio)
     salida.mkdir(parents=True, exist_ok=True)
 
     fig = graficar_cuadro_anual(data_dir, anio, en_porcentaje=False)
@@ -118,8 +111,8 @@ def generar_cuadro_anual(data_dir: Path | str, graficos_dir: Path | str, anio: i
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--anio", type=int, help="si se omite, corre todos los años disponibles")
-    parser.add_argument("--data-dir", default="data")
-    parser.add_argument("--graficos-dir", default="graficos")
+    parser.add_argument("--data-dir", default="data/distrito")
+    parser.add_argument("--graficos-dir", default="graficos/distrito")
     args = parser.parse_args()
 
     anios = [args.anio] if args.anio else sorted(NIVELES_POR_ANIO)

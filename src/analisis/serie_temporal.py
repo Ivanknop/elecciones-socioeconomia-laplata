@@ -110,8 +110,8 @@ def generar_serie_temporal(data_dir: Path | str, graficos_dir: Path | str, nivel
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--nivel", choices=list(NIVELES), help="si se omite, corre los 3 niveles")
-    parser.add_argument("--data-dir", default="data")
-    parser.add_argument("--graficos-dir", default="graficos")
+    parser.add_argument("--data-dir", default="data/distrito")
+    parser.add_argument("--graficos-dir", default="graficos/distrito")
     args = parser.parse_args()
 
     niveles = [args.nivel] if args.nivel else list(NIVELES)
