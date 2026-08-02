@@ -27,6 +27,7 @@ pytest tests/test_models.py::TestValorAgrupacion::test_from_json_campos_basicos 
 
 PYTHONPATH=src python -m analisis.generar_graficos --anio 2011 --nivel intendente  # per-circuit + accumulated charts for one (año, nivel)
 PYTHONPATH=src python -m analisis.serie_temporal    # one chart per nivel (nacional/provincial/municipal), 2011-2025
+PYTHONPATH=src python -m analisis.serie_temporal_filiacion  # same, by filiacion_politica instead of campo_ideologico
 PYTHONPATH=src python -m analisis.cuadros_anualizados --anio 2023  # one chart per año, all cargos side by side
 PYTHONPATH=src python -m analisis.cuadros_por_localidad --anio 2023 --nivel intendente  # votes-by-locality table for one (año, nivel)
 PYTHONPATH=src python -m analisis.serie_temporal_por_localidad --nivel municipal  # per-locality time series, reads the tables above
@@ -82,15 +83,31 @@ order, 01→04) are the pipeline**.
 - **`data/agrupaciones/`** holds the cross-cutting reference tables:
   `clasificacion_ideologica_agrupaciones.csv` (party lists + hand-classified
   `campo_ideologico`, 1-6 left→radical-right, covering both executive and
-  legislative `nivel` values) and `circuito_id_correspondencias.csv`
-  (raw per-year circuito ids → canonical form). **These are hand-curated
-  and must never be regenerated from scratch** — notebooks 02 (executive)
-  and 03 (legislative) both append newly-seen agrupaciones to the shared
-  classification file (with empty `campo_ideologico`, printed as a
-  warning) and never overwrite existing rows, including rows added by the
-  other notebook; this is what keeps re-running the pipeline from
-  clobbering manual classification work. If you touch this merge logic,
-  preserve that invariant.
+  legislative `nivel` values, plus `filiacion_politica` — party family/
+  tradition, e.g. `peronistas`, `progresistas`, `liberales`, distinct from
+  the per-election ideological position; see below) and
+  `circuito_id_correspondencias.csv` (raw per-year circuito ids → canonical
+  form). **These are hand-curated and must never be regenerated from
+  scratch** — notebooks 02 (executive) and 03 (legislative) both append
+  newly-seen agrupaciones to the shared classification file (with empty
+  `campo_ideologico`, printed as a warning) and never overwrite existing
+  rows, including rows added by the other notebook; this is what keeps
+  re-running the pipeline from clobbering manual classification work. If
+  you touch this merge logic, preserve that invariant.
+
+  `filiacion_politica` was merged in from `data/agrupaciones/tabla_referencia_filiacion_politica.csv`,
+  which stays as the reference source for the classification's justification
+  and confidence per agrupación (`confianza_clasificacion`: alta/media/baja,
+  `nota_clasificacion`: source/rationale) — those two columns were
+  deliberately **not** merged into `clasificacion_ideologica_agrupaciones.csv`
+  to keep it lean; consult the reference file directly to audit a
+  `filiacion_politica` value. Addresses the "familia política vs. posición
+  ideológica" gap flagged in `nota_metodologica.md` §5.2 and
+  `AUDITORIA_ESTADO.md` §8.2 — e.g. FPV/Unidad Ciudadana/Frente de
+  Todos/Unión por la Patria all share `filiacion_politica=peronistas` despite
+  different `campo_ideologico` values across years, which is now expected
+  (same family, different programmatic position) rather than a dataset
+  inconsistency.
 
 - **`data/fuentes_extra/circuito_localidad.csv`** is a second, unrelated
   hand-curated crosswalk (`circuito_id` -> `localidad`/barrio name, not
@@ -115,7 +132,14 @@ order, 01→04) are the pipeline**.
   `graficos.py` has the reusable `graficar_barras`/`graficar_torta`
   functions; `generar_graficos.py`, `serie_temporal.py`, and
   `cuadros_anualizados.py` are scripts that call them to bulk-write PNGs
-  under `graficos/distrito/`. Only `graficos/distrito/serie_temporal/` and
+  under `graficos/distrito/`. `serie_temporal_filiacion.py` is a parallel,
+  narrower script: same `circuito_<nivel>.json` inputs, but plots by
+  `filiacion_politica` instead (joined live against
+  `clasificacion_ideologica_agrupaciones.csv` by `agrupacion` name, not
+  embedded in the JSON — `circuito_<nivel>.json`/notebook 04 were
+  deliberately left untouched when this was added) and only writes the
+  `_filiacion_porcentaje.png` time series, no per-circuito bar/pie or raw-votes
+  variant. Only `graficos/distrito/serie_temporal/` and
   `graficos/socioeconomia/eph/` (the EPH charts from
   `src/socioeconomia/graficos_eph_iaelap.py`, not the IAELaP or
   EPH-vs-IAELaP contrast ones) are git-tracked — the rest of `graficos/`

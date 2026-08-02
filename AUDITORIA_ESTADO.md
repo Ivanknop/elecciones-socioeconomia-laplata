@@ -26,11 +26,31 @@ Convención: 🟢 resuelto · 🟡 parcial · 🔴 abierto
 
 ## 8.2 — Codificaciones políticas a revisar
 
-🔴 Sin cambios verificados. Los ocho casos señalados (peronismo, familia
-progresista, massismo, Patria Grande, Frente NOS, Frente Patriota Federal,
-Frente Social de la PBA, Hacemos por Nuestro País) requieren que primero
-exista el libro de códigos multidimensional de la Sección 5.2/5.3 — sigue
-pendiente.
+🟡 Parcial. Se agregó `filiacion_politica` (familia/identidad partidaria,
+separada de `campo_ideologico` — ver Sección 5.2 de la nota — en
+`data/agrupaciones/clasificacion_ideologica_agrupaciones.csv`, fusionada
+desde `data/agrupaciones/tabla_referencia_filiacion_politica.csv`, 121
+agrupaciones). Verificado contra los ocho casos señalados: los seis
+alias peronistas (FPV, Frente para la Victoria, Frente de Todos, Unidad
+Ciudadana, Unión por la Patria, Frente Renovador/massismo) comparten
+`filiacion_politica=peronistas`; la familia progresista (FAP, Frente Amplio
+Progresista, Frente Progresista Cívico y Social) comparte `progresistas`;
+Patria Grande y Frente Social de la Pcia./Provincia de Buenos Aires (ambas
+grafías) también quedan en `progresistas`; Frente NOS y Frente Patriota
+Federal quedan en `nacionalistas`, distinto de `liberales` (donde cae la
+oferta de Espert); Hacemos por Nuestro País queda en `peronismo provincial`
+(subcategoría distinta de `peronistas` genérico, no fusionada con él). Esto
+resuelve el señalamiento de fondo (una sola columna aplanaba genealogía
+partidaria y posición ideológica) para los ocho casos: ya no hace falta
+leer un `campo_ideologico` estable en el tiempo como "inconsistencia" del
+dataset si `filiacion_politica` explica la continuidad de familia.
+**Sigue sin tocarse** (no era el objetivo de este cambio): los valores de
+`campo_ideologico` en sí para esos ocho casos no se modificaron — si
+alguien quiere disputar, por ejemplo, que Frente Patriota Federal 2025 sea
+`campo_ideologico=5` (derecha) y no `6` (derecha radical), eso sigue abierto
+como decisión de codificación aparte. Tampoco están las otras dimensiones
+del libro de códigos multidimensional de la Sección 5.3 (oferta electoral,
+oficialismo, dimensiones programáticas separadas) — solo familia política.
 
 ## Plan de trabajo
 
@@ -38,7 +58,7 @@ pendiente.
 |---|---|
 | Congelar v1.0.0 como punto de partida | 🟢 (tag existe) |
 | Corregir el repositorio (8.1 prioridad inmediata) | 🟡 ver tabla arriba |
-| Construir el libro de códigos | 🔴 |
+| Construir el libro de códigos | 🟡 `filiacion_politica` separada de `campo_ideologico` (ver 8.2); posición ideológica ya existía; grado de incertidumbre y justificación existen por agrupación en `tabla_referencia_filiacion_politica.csv` (`confianza_clasificacion`/`nota_clasificacion`, no fusionados al CSV principal); **faltan** oferta electoral, oficialismo, y las dimensiones programáticas separadas de la Sección 5.3 |
 | Ampliar etapas y fuentes (PASO/balotaje) | 🟢 agregado en `909760e` |
 | Tabla maestra circuito × elección × cargo × etapa | 🔴 |
 | Armonizar territorio y Censo | 🟡 correspondencia espacial circuito↔radio lista (v2.0.0); **variables temáticas del Censo por radio, no extraídas todavía** (REDATAM manual, ver `EXTRACCION_REDATAM.md`) |
@@ -50,7 +70,7 @@ pendiente.
 | Pieza pedida | Estado a v2.0.1 |
 |---|---|
 | Hoja de pregunta/objetivos/hipótesis | 🟢 esta misma nota, incorporada |
-| Libro de códigos político | 🔴 |
+| Libro de códigos político | 🟡 ver "Construir el libro de códigos" arriba y 8.2 |
 | Auditoría de mesas, circuitos y cobertura | 🟡 parcial (ver 8.1.5) |
 | Tabla maestra | 🔴 |
 | Primer análisis descriptivo (tamaño de bloques / composición / participación / territorio) | 🔴 — v2.0.0 construyó la capa socioeconómica pero **todavía no la cruzó** con resultados electorales |
@@ -59,8 +79,9 @@ pendiente.
 
 De los 14 puntos técnicos de 8.1, **6 están resueltos, 3 parciales y 5
 abiertos**. De las 5 piezas del "producto mínimo" que pedía la Sección 10,
-sólo la primera (esta nota) está resuelta con v2.0.1 — el resto (libro de
-códigos, tabla maestra, cruce elecciones-socioeconomía) sigue siendo el
-trabajo pendiente central del proyecto. v2.0.0 avanzó la infraestructura de
-datos (Sección 5.4) pero no atacó todavía la Sección 8.2 (codificación
-política) ni la Sección 6 (protocolo de inferencia)
+la primera (esta nota) está resuelta y el libro de códigos político pasó a
+parcial (`filiacion_politica`, ver 8.2) — tabla maestra y cruce
+elecciones-socioeconomía siguen siendo el trabajo pendiente central del
+proyecto. La Sección 8.2 (codificación política) ya tiene un primer avance
+(familia política separada de posición ideológica para los ocho casos
+señalados); la Sección 6 (protocolo de inferencia) sigue sin atacarse

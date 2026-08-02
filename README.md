@@ -21,6 +21,7 @@ src/analisis/
   graficos.py
   generar_graficos.py
   serie_temporal.py
+  serie_temporal_filiacion.py
   cuadros_anualizados.py
   cuadros_por_localidad.py
   serie_temporal_por_localidad.py
@@ -38,6 +39,7 @@ notebooks/
 data/distrito/<año>/<categoría o nivel>/<etapa>/
 data/por_localidad/
 data/agrupaciones/clasificacion_ideologica_agrupaciones.csv
+data/agrupaciones/tabla_referencia_filiacion_politica.csv
 data/agrupaciones/campo_ideologico.csv
 data/agrupaciones/circuito_id_correspondencias.csv
 data/fuentes_extra/
@@ -301,6 +303,21 @@ quedan en `graficos/socioeconomia/` sin trackear.
   | provincial | Gobernador | Diputados Provinciales | 7 | 2011-2023 (sin 2025 ) |
   | municipal | Intendente | Concejales | 7 | 2011-2023 (sin 2025) |
 
+- **`serie_temporal_filiacion.py`**: mismo formato que `serie_temporal.py`
+  (un gráfico por nivel, mismos puntos/rango de la tabla de arriba), pero
+  con una línea por `filiacion_politica` (familia/identidad partidaria —
+  peronistas, progresistas, liberales, marxistas, nacionalistas, etc., ver
+  "Libro de códigos ideológico" más abajo) en vez de `campo_ideologico`
+  (posición ideológico-programática por elección). Solo genera la variante
+  en porcentaje (`<nivel>_filiacion_porcentaje.png`), no hay versión en
+  votos crudos. No modifica `circuito_<nivel>.json` ni el notebook 04: la
+  filiación se une en el momento de graficar contra
+  `clasificacion_ideologica_agrupaciones.csv`, por nombre de agrupación.
+
+  ```bash
+  PYTHONPATH=src python -m analisis.serie_temporal_filiacion
+  ```
+
 - **`cuadros_anualizados.py`**: **un gráfico por año** (2011-2025), con todos
   los cargos que se disputaron ese año lado a lado — a diferencia de
   `serie_temporal.py`, acá el eje temporal no existe: es una foto de un año
@@ -331,6 +348,31 @@ escala 1-6 en `campo_ideologico.csv`) es
 hoy una clasificación cargada a mano. La unidad de clasificación (alianza vs.
 candidatura vs. programa) y el criterio de asignación todavía no están
 fijados de forma sistemática.
+
+`filiacion_politica` (misma tabla) es un segundo campo, ortogonal a
+`campo_ideologico`: familia o identidad partidaria (peronistas,
+progresistas, liberales, marxistas, nacionalistas, conservadores,
+Centro-republicanos, peronismo provincial, vecinalistas_locales,
+terceras_vias_federales, sin_clasificar), no posición ideológico-programática
+por elección. No varía por `anio`/`nivel` (una agrupación tiene una única
+`filiacion_politica` en todo el período, a diferencia de `campo_ideologico`,
+que sí puede cambiar elección a elección). Atiende el señalamiento de la
+nota metodológica (§5.2): antes, una alianza como FPV/Unidad
+Ciudadana/Frente de Todos/Unión por la Patria quedaba siempre con
+`campo_ideologico=3` (centro) 2011-2025, lo que aplanaba una genealogía
+peronista continua a una sola posición ideológica. Con `filiacion_politica`
+separada, esas cinco denominaciones comparten `filiacion_politica=peronistas`
+mientras su `campo_ideologico` puede (o no) variar por elección sin que eso
+se lea como inconsistencia del dataset.
+
+Se fusionó desde `data/agrupaciones/tabla_referencia_filiacion_politica.csv`
+(121 agrupaciones, cobertura 1:1 con las 121 agrupaciones únicas de
+`clasificacion_ideologica_agrupaciones.csv`), que sigue existiendo como
+fuente de referencia — trae además `confianza_clasificacion` (alta/media/baja)
+y `nota_clasificacion` (fuente o justificación de la clasificación),
+deliberadamente **no** fusionadas al CSV principal para mantenerlo liviano;
+consultar ese archivo directamente para auditar el porqué de un valor de
+`filiacion_politica` puntual.
 
 ## Capa socioeconómica (EPH + Censo) — estado actual
 

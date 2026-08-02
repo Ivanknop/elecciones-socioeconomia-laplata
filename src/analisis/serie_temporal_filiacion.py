@@ -1,0 +1,165 @@
+"""Serie temporal por filiación política (2011-2025), un gráfico por nivel de
+gobierno -- complementa `serie_temporal.py` (que grafica por `campo_ideologico`,
+posición ideológico-programática por elección) con la dimensión de familia/identidad
+partidaria (`data/agrupaciones/tabla_referencia_filiacion_politica.csv`), que no
+varía por año/nivel -- ver nota_metodologica.md §5.2 y AUDITORIA_ESTADO.md.
+
+No genera el gráfico "_votos" (solo "_filiacion_porcentaje.png") ni toca
+`circuito_<nivel>.json`/notebook 04 -- lee `filiacion_politica` en el momento de
+graficar, uniendo por `nombre`/`agrupacion` contra
+`data/agrupaciones/clasificacion_ideologica_agrupaciones.csv`.
+
+Uso:
+    python -m analisis.serie_temporal_filiacion                     # los 3 niveles
+    python -m analisis.serie_temporal_filiacion --nivel provincial  # uno puntual
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+
+from analisis.graficos import _cargar_circuito
+from analisis.serie_temporal import CARGO_LABEL, NIVELES, _puntos_del_nivel
+
+# Orden fijo por volumen total de filas clasificadas en
+# clasificacion_ideologica_agrupaciones.csv (no se cicla ni se reordena por
+# año/nivel). 11 categorías -- más de las ~8 que family el validador de la
+# skill de dataviz de este proyecto puede confirmar como colorblind-safe
+# (`scripts/validate_palette.js` solo cubre hasta 8 slots); decisión explícita
+# de mantener las 11 tal como las clasificó `tabla_referencia_filiacion_politica.csv`,
+# sin plegar las minoritarias en "Otros". Las primeras 8 usan los slots
+# categóricos ya validados de ese sistema; las últimas 3 (categorías chicas)
+# usan colores adicionales elegidos por contraste visual, sin validación
+# formal de daltonismo.
+_COLOR_FILIACION = {
+    "peronistas": "#2a78d6",
+    "progresistas": "#eb6834",
+    "marxistas": "#1baf7a",
+    "liberales": "#eda100",
+    "nacionalistas": "#e87ba4",
+    "peronismo provincial": "#008300",
+    "conservadores": "#4a3aa7",
+    "Centro-republicanos": "#e34948",
+    "sin_clasificar": "#9e9e9e",
+    "vecinalistas_locales": "#8b5a2b",
+    "terceras_vias_federales": "#546e7a",
+}
+
+
+def _cargar_filiaciones(agrupaciones_dir: Path | str) -> dict[str, str]:
+    """`{agrupacion: filiacion_politica}` desde
+    `clasificacion_ideologica_agrupaciones.csv` -- no varía por año/nivel, así
+    que alcanza con deduplicar por `agrupacion` (verificado 1:1 al fusionar
+    `tabla_referencia_filiacion_politica.csv`)."""
+    archivo = Path(agrupaciones_dir) / "clasificacion_ideologica_agrupaciones.csv"
+    with open(archivo, encoding="utf-8") as f:
+        filas = csv.DictReader(f)
+        return {r["agrupacion"]: r["filiacion_politica"] for r in filas}
+
+
+def _votos_por_filiacion(contenido: dict, filiaciones: dict[str, str], circuito_id: str | None) -> dict[str, int]:
+    if circuito_id is None:
+        circuitos = contenido["circuitos"].values()
+    elif circuito_id not in contenido["circuitos"]:
+        raise KeyError(f"circuito_id {circuito_id!r} no existe en este archivo")
+    else:
+        circuitos = [contenido["circuitos"][circuito_id]]
+
+    votos: dict[str, int] = {}
+    for c in circuitos:
+        for info in c["positivos"].values():
+            # KeyError si `nombre` no está en la clasificación -- nunca se
+            # enmascara en silencio una agrupación sin filiación asignada,
+            # mismo criterio que ya aplica `campo_ideologico` en graficos.py.
+            clave = filiaciones[info["nombre"]]
+            votos[clave] = votos.get(clave, 0) + info["votos"]
+    return votos
+
+
+def _serie_por_anio_filiacion(data_dir: Path | str, agrupaciones_dir: Path | str, nivel: str):
+    """Devuelve (puntos, {filiacion: [votos por punto]}, [total por punto])
+    con `puntos` = [(año, cargo_especifico), ...] ordenado."""
+    puntos = _puntos_del_nivel(data_dir, nivel)
+    if not puntos:
+        raise FileNotFoundError(f"no hay datos para el nivel {nivel!r} en {data_dir!r}")
+
+    filiaciones = _cargar_filiaciones(agrupaciones_dir)
+    serie = {f: [] for f in _COLOR_FILIACION}
+    totales = []
+    for anio, cargo in puntos:
+        contenido = _cargar_circuito(data_dir, anio, cargo)
+        votos = _votos_por_filiacion(contenido, filiaciones, circuito_id=None)
+        totales.append(sum(votos.values()))
+        for f in _COLOR_FILIACION:
+            serie[f].append(votos.get(f, 0))
+    return puntos, serie, totales
+
+
+def graficar_serie_temporal_filiacion(data_dir: Path | str, agrupaciones_dir: Path | str, nivel: str, ax=None):
+    """% de los positivos por filiación política, un punto por (año, cargo
+    específico del nivel) -- única variante (no hay versión en votos crudos,
+    a diferencia de `serie_temporal.graficar_serie_temporal`)."""
+    puntos, serie, totales = _serie_por_anio_filiacion(data_dir, agrupaciones_dir, nivel)
+    anios = [a for a, _ in puntos]
+    etiquetas_x = [f"{a}\n{CARGO_LABEL[cargo]}" for a, cargo in puntos]
+
+    if ax is None:
+        _, ax = plt.subplots(figsize=(10, 5))
+
+    for filiacion, color in _COLOR_FILIACION.items():
+        valores = serie[filiacion]
+        if not any(valores):
+            continue  # esta filiación no tuvo votos en ningún punto de este nivel -- no ensucia la leyenda
+        porcentajes = [v / t * 100 if t else 0 for v, t in zip(valores, totales)]
+        ax.plot(anios, porcentajes, marker="o", label=filiacion, color=color)
+
+    ax.set_xticks(anios, labels=etiquetas_x, fontsize="small")
+    ax.set_ylabel("% de los positivos")
+    ax.set_title(f"La Plata — {nivel} — % por filiación política, {anios[0]}-{anios[-1]}")
+    ax.legend(loc="center left", bbox_to_anchor=(1.0, 0.5), fontsize="small", frameon=False)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.figure.tight_layout()
+    return ax.figure
+
+
+def generar_serie_temporal_filiacion(
+    data_dir: Path | str, agrupaciones_dir: Path | str, graficos_dir: Path | str, nivel: str
+) -> Path:
+    salida = Path(graficos_dir) / "serie_temporal"
+    salida.mkdir(parents=True, exist_ok=True)
+
+    fig = graficar_serie_temporal_filiacion(data_dir, agrupaciones_dir, nivel)
+    destino = salida / f"{nivel}_filiacion_porcentaje.png"
+    fig.savefig(destino, dpi=100)
+    plt.close(fig)
+
+    return destino
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--nivel", choices=list(NIVELES), help="si se omite, corre los 3 niveles")
+    parser.add_argument("--data-dir", default="data/distrito")
+    parser.add_argument("--agrupaciones-dir", default="data/agrupaciones")
+    parser.add_argument("--graficos-dir", default="graficos/distrito")
+    args = parser.parse_args()
+
+    niveles = [args.nivel] if args.nivel else list(NIVELES)
+    for nivel in niveles:
+        try:
+            puntos = _puntos_del_nivel(args.data_dir, nivel)
+        except Exception:
+            puntos = []
+        if not puntos:
+            print(f"{nivel}: sin datos, se omite")
+            continue
+        destino = generar_serie_temporal_filiacion(args.data_dir, args.agrupaciones_dir, args.graficos_dir, nivel)
+        anios = [a for a, _ in puntos]
+        print(f"{nivel}: {anios[0]}-{anios[-1]} ({len(puntos)} puntos) -> {destino}")
+
+
+if __name__ == "__main__":
+    main()

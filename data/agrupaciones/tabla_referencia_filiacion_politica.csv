@@ -1,0 +1,122 @@
+agrupacion,filiacion_politica,confianza_clasificacion,nota_clasificacion
+CONSERVADOR POPULAR,conservadores,alta,Nombre explícito
+FRENTE UNION POR EL FUTURO,liberales,baja,pro+ucr+ari
+FRENTE VAMOS CON VOS,conservadores,baja,Sin información suficiente
+PARTIDO AUTONOMISTA,conservadores,baja,Tradición liberal-conservadora provincial (Corrientes); no coincide con el campo_ideologico=2 original
+PRINCIPIOS Y VALORES,peronistas,alta,randazzo
+REPUBLICANO FEDERAL,conservadores,baja,Sin información suficiente
+UNION POR TODOS,conservadores,baja,Sin información suficiente
+ALIANZA CAMBIEMOS,liberales,alta,Ver Cambiemos
+ALIANZA LA LIBERTAD AVANZA,liberales,alta,LLA
+ALIANZA POTENCIA,liberales,baja,"Alianza 2025, probable espacio liberal/libertario"
+AVANZA LIBERTAD,liberales,alta,"Marca provincial libertaria, afín a LLA"
+BUENOS AIRES PRIMERO (BAP),liberales,baja,"Escisión libertaria post-LLA, poca información"
+CAMBIEMOS BUENOS AIRES,liberales,alta,"Coalición PRO-UCR-CC, identidad dominante liberal-conservadora"
+CREO,liberales,baja,Espacio liberal-conservador provincial (M. del Sel)
+ESPACIO UNION PRO,liberales,alta,PRO
+FRENTE LIBER.AR,liberales,alta,Ver Liber.ar
+JUNTOS,liberales,alta,Marca provincial de JxC
+JUNTOS POR EL CAMBIO,liberales,alta,Coalición PRO-UCR-CC
+LA LIBERTAD AVANZA,liberales,alta,Partido libertario de J. Milei
+LIBER.AR,liberales,media,Espacio libertario
+MORAL Y PROGRESO,liberales,baja,Sin información suficiente
+UNIDOS POR LA LIBERTAD Y EL TRABAJO,liberales,alta,"Espacio de F. de Narváez, peronismo disidente/liberal-empresarial"
+UNION CELESTE Y BLANCO,liberales,media,"Espacio de F. de Narváez, peronismo disidente/liberal-empresarial"
+UNION DEL CENTRO DEMOCRATICO,liberales,alta,"UCeDé, liberalismo económico histórico"
+UNITE POR LA LIBERTAD Y LA DIGNIDAD,liberales,baja,https://es.wikipedia.org/wiki/Unite_por_la_Libertad_y_la_Dignidad
+UNIÓN LIBERAL,liberales,alta,Nombre explícito
+ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,marxistas,alta,"FIT, coalición trotskista"
+FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,marxistas,alta,"FIT, coalición trotskista"
+FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD,marxistas,alta,FIT-U
+IZQUIERDA AL FRENTE POR EL SOCIALISMO,marxistas,alta,"MST/IS, trotskista"
+MOVIMIENTO AL SOCIALISMO,marxistas,alta,"MAS, trotskista"
+MOVIMIENTO AVANZADA SOCIALISTA,marxistas,alta,Ver Movimiento de Avanzada Socialista
+MOVIMIENTO DE AVANZADA SOCIALISTA,marxistas,alta,Izquierda socialista
+MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD,nacionalistas,media,Castells + cuneo
+MST - NUEVA IZQUIERDA,marxistas,alta,MST
+MST-MOVIMIENTO SOCIALISTA DE LOS TRABAJADORES,marxistas,alta,"MST, trotskista"
+POLITICA OBRERA,marxistas,alta,"Partido Obrero, trotskista"
++ VALORES,nacionalistas,media,Espacio confesional/pro-vida
+CELESTE PROVIDA,nacionalistas,alta,"Partido confesional, agenda pro-vida/conservadurismo religioso"
+ESPERANZA DEL PUEBLO,nacionalistas,media,"Espacio posterior de Gómez Centurión, derecha nacional-conservadora"
+FRENTE NOS,nacionalistas,alta,"J.J. Gómez Centurión, derecha nacional-conservadora"
+FRENTE PATRIOTA,nacionalistas,alta,Derecha nacionalista
+FRENTE PATRIOTA BANDERA VECINAL,nacionalistas,media,Derecha nacionalista
+FRENTE PATRIOTA FEDERAL,nacionalistas,media,Derecha nacionalista
+JUSTICIA Y DIGNIDAD PATRIOTICA,nacionalistas,media,Derecha nacional-conservadora
+PARTIDO DIGNIDAD POPULAR,nacionalistas,baja,Nombre sugiere espacio de derecha nacional; poca información
+UNION CON FE,nacionalistas,media,Partido confesional evangélico
+1PAIS,peronistas,media,Massa + Stolbizer; identidad dominante peronismo renovador
+ALIANZA FRENTE PARA LA VICTORIA,peronistas,alta,FPV kirchnerista
+ALIANZA FRENTE POPULAR,peronistas,media,"Frente Popular de Felipe Solá, peronismo federal/disidente"
+ALIANZA FUERZA PATRIA,peronistas,alta,Coalición kirchnerista 2025
+ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA),peronistas,alta,UNA 2015: Frente Renovador de Massa + peronismo federal
+FRENTE CIUDAD NUEVA,peronistas,media,Espacio vecinalista de P. Bruera aliado al FPV
+FRENTE DE TODOS,peronistas,alta,FdT kirchnerista
+FRENTE JUSTICIALISTA,peronistas,alta,Peronismo tradicional
+FRENTE PARA LA VICTORIA,peronistas,alta,FPV
+FRENTE RENOVADOR,peronistas,alta,"Frente Renovador de S. Massa, peronismo renovador"
+HACEMOS POR NUESTRO PAIS,peronismo provincial,alta,"J. Schiaretti, peronismo federal cordobés"
+LABORISTA,peronistas,media,"Partido Laborista, origen fundacional del peronismo"
+POLITICA ABIERTA PARA LA INTEGRIDAD SOCIAL,peronistas,media,"PAIS, L. Barrionuevo, peronismo sindical"
+RENOVADOR FEDERAL,peronistas,media,Derivación del Frente Renovador
+UNIDAD CIUDADANA,peronistas,alta,"Lista de C. Fernández de Kirchner 2017, kirchnerismo"
+UNION POR LA PATRIA,peronistas,alta,UxP kirchnerista
+VAMOS CREANDO CIUDAD NUEVA,progresistas,media,Patria Grande
+ALIANZA FRENTE AMPLIO PROGRESISTA,progresistas,alta,Frente Amplio Progresista (Binner/Solanas)
+ALIANZA PROGRESISTAS,progresistas,alta,Ver Frente Amplio Progresista
+ALIANZA PROYECTO SUR,progresistas,alta,"Proyecto Sur, Pino Solanas"
+COALICION CIVICA ARI,Centro-republicanos,media,"CC-ARI, origen en ARI/FREPASO, republicanismo progresista"
+COALICIÓN CÍVICA - A.R.I.,Centro-republicanos,media,Ver Coalición Cívica
+COALICIÓN CÍVICA - AFIRMACIÓN PARA UNA REPÚBLICA IGUALITARIA ARI,Centro-republicanos,media,Idem CC-ARI
+ENCUENTRO POPULAR POR TIERRA TECHO Y TRABAJO,progresistas,media,Movimientos populares/piqueteros de izquierda no marxista
+FRENTE AMPLIO PROGRESISTA,progresistas,alta,Ver arriba
+FRENTE POPULAR DEMOCRATICO Y SOCIAL (PODEMOS),progresistas,media,Frente de centroizquierda
+FRENTE PROGRESISTA CIVICO Y SOCIAL,progresistas,alta,"Frente santafesino de H. Binner (PS+UCR), identidad dominante progresista"
+FRENTE SOCIAL DE LA PCIA. BS.AS.,progresistas,media,"Frente social bonaerense, centroizquierda"
+FRENTE SOCIAL DE LA PROVINCIA DE BUENOS AIRES,progresistas,media,Ver Frente Social
+FRENTE SOCIALISTA Y POPULAR,progresistas,baja,Nombre sugiere socialdemocracia
+HUMANISTA,progresistas,alta,Partido Humanista
+MOVIMIENTO AMPLIO DE TRABAJADORES Y JUBILADOS,progresistas,baja,Espacio social menor
+MOVIMIENTO LIBRES DEL SUR,progresistas,alta,"Libres del Sur, H. Tumini, izquierda popular"
+MOVIMIENTO POLÍTICO SOCIAL Y CULTURAL PROYECTO SUR,progresistas,media,Continuidad de Proyecto Sur
+NUEVO ENCUENTRO,progresistas,alta,"Nuevo Encuentro, M. Sabbatella, centroizquierda"
+PARTIDO HUMANISTA,progresistas,alta,"Partido Humanista, izquierda no marxista"
+PARTIDO SOCIALISTA,progresistas,alta,"PS, socialdemocracia histórica"
+PATRIA GRANDE,progresistas,media,"Espacio de izquierda nacional-popular (Grabois/Hagman), luego integrado a FdT"
+POPULAR,progresistas,baja,Sin información suficiente
+"PROYECTO JUSTO, SOCIAL Y HUMANISTA",progresistas,baja,Nombre sugiere humanismo/centroizquierda
+PROYECTO SUR,peronistas,alta,Pino Solanas
+UNIDAD SOCIAL,progresistas,baja,Nombre sugiere espacio socialdemócrata; codificación original inconsistente
+VERDE,progresistas,media,"Partido Verde, ecologismo"
+VOCACION SOCIAL,progresistas,media,Espacio socialdemócrata menor
+ALIANZA NUEVOS AIRES,liberales,baja,https://www.letrap.com.ar/nuevos-aires-a1666
+CONFIANZA PUBLICA,progresistas,baja,Graciela Ocaña
+CORRIENTE DE PENSAMIENTO BONAERENSE,peronistas,media,https://www.electoral.gob.ar/nuevo/paginas/plataformas2021/Paso/CATAMARCA/CORRIENTE%20DE%20PENSAMIENTO%20BONAERENSE%20CO.PE.BO.pdf
+CORRIENTE DE PENSAMIENTO BONAERENSE (CO.PE.BO),peronistas,media,https://www.electoral.gob.ar/nuevo/paginas/plataformas2021/Paso/CATAMARCA/CORRIENTE%20DE%20PENSAMIENTO%20BONAERENSE%20CO.PE.BO.pdf
+FRENTE H.A.C.E.R. POR PROGRESO SOCIAL,peronistas,alta,randazzo
+GENTE EN ACCION,nacionalistas,alta,Biondini https://es.wikipedia.org/wiki/Frente_Patriota_Federal
+MOVIMIENTO ORGANIZACION DEMOCRATICA,sin_clasificar,baja,Sin información suficiente para clasificar con certeza
+PARTIDO LEALTAD Y DIGNIDAD DE LA PROVINCIA DE BUENOS AIRES,peronistas,alta,Menem
+PARTIDO NUEVO BUENOS AIRES,sin_clasificar,baja,Sin información suficiente
+PROYECTO JOVEN,sin_clasificar,baja,Sin información suficiente
+ALIANZA COMPROMISO FEDERAL,peronismo provincial,media,Idem Compromiso Federal
+ALIANZA PROVINCIAS UNIDAS,peronismo provincial,media,"Alianza de gobernadores 2025, mezcla peronismo federal no kirchnerista y radicalismo (Pullaro)"
+ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO,Centro-republicanos,baja,ricardo alfonsin +  de narvaez
+ALIANZA UNIÓN FEDERAL,peronismo provincial,baja,Sin información suficiente
+ALIANZA UNIÓN PARA EL DESARROLLO SOCIAL,Centro-republicanos,baja,ricardo alfonsin +  de narvaez
+COMPROMISO FEDERAL,peronismo provincial,media,Peronismo federal/disidente (espacio de A. Rodríguez Saá 2011)
+CONSENSO FEDERAL,peronismo provincial,media,"Espacio de R. Lavagna, desarrollismo/peronismo federal moderado"
+DEL CAMPO POPULAR,terceras_vias_federales,baja,Sin información suficiente; nombre sugiere espacio nacional-popular
+FEDERAL,peronismo provincial,baja,"Nombre genérico, sin información suficiente"
+FRENTE FEDERAL DE ACCION SOLIDARIA DE LA PROVINCIA DE BUENOS AIRES,peronismo provincial,baja,Sin información suficiente
+FRENTE UNION FEDERAL,peronismo provincial,baja,Sin información suficiente
+MOVIMIENTO DE INTEGRACION FEDERAL (MIF),peronistas,alta,Randazzo
+PARTIDO POPULAR,peronismo provincial,alta,"Vigo, platense"
+PARTIDO RENOVADOR FEDERAL,peronistas,alta,massismo
+PROPUESTA FEDERAL PARA EL CAMBIO,liberales,alta,pro
+TODOS POR BUENOS AIRES,conservadores,alta,https://www.laizquierdadiario.com/Los-defensores-de-los-genocidas-tambien-tienen-su-partido-en-las-PASO
+ALTERNATIVA VECINAL PLATENSE,vecinalistas_locales,alta,Frente vecinalista platense
+MOVIMIENTO DE ACCION VECINAL,vecinalistas_locales,media,Frente vecinalista
+UNION DEL PUEBLO LA PLATA,marxistas,alta,Son la JG
+UVEP-U. VECINALISTA PLATENSE,vecinalistas_locales,alta,Frente vecinalista platense

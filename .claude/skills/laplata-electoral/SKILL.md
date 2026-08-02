@@ -47,6 +47,7 @@ data/distrito/<año>/<nivel>/{generales,paso,balotaje}/        # crudo (JSON + C
 data/distrito/<año>/<nivel>/generales/circuito_<nivel>.json   # derivado por circuito -- SOLO generales tiene este derivado
 data/por_localidad/<año>_<nivel>_<etapa>_localidad.csv        # cuadros por localidad, derivado, NO versionado
 data/agrupaciones/clasificacion_ideologica_agrupaciones.csv    # clasificación ideológica manual -- append-only
+data/agrupaciones/tabla_referencia_filiacion_politica.csv       # fuente de filiacion_politica + confianza/nota de cada valor
 data/agrupaciones/circuito_id_correspondencias.csv             # normalización circuito_id entre años
 data/fuentes_extra/circuito_localidad.csv                      # crosswalk circuito -> localidad, dos niveles
 data/fuentes_extra/LOCALIDADES_README.md                       # estado + qué falta
@@ -77,12 +78,17 @@ Presidente 2015/2023).
   que `suma(salida) == suma(entrada)`. Mismo criterio se usó al separar
   `blanco_nulo` de `otros` en `cuadros_por_localidad.py`: ambas columnas
   quedan explícitas, ninguna absorbe a la otra en silencio.
-- **`clasificacion_ideologica_agrupaciones.csv` (columna `campo_ideologico`)
-  es append-only.** Nunca se regenera desde cero ni se sobreescribe con un
-  script automático -- es curaduría manual. Es un único archivo compartido
-  por los notebooks 02 (ejecutivos) y 03 (legislativos); ninguno de los
-  dos debe tocar esa columna en filas existentes, ni las que agregó el
-  otro notebook.
+- **`clasificacion_ideologica_agrupaciones.csv` (columnas `campo_ideologico`
+  y `filiacion_politica`) es append-only.** Nunca se regenera desde cero ni
+  se sobreescribe con un script automático -- es curaduría manual. Es un
+  único archivo compartido por los notebooks 02 (ejecutivos) y 03
+  (legislativos); ninguno de los dos debe tocar esas columnas en filas
+  existentes, ni las que agregó el otro notebook. `filiacion_politica` (familia/
+  identidad partidaria, no varía por `anio`/`nivel`) se fusionó desde
+  `tabla_referencia_filiacion_politica.csv`, que sigue siendo la fuente de
+  la justificación (`nota_clasificacion`) y confianza (`confianza_clasificacion`)
+  de cada valor -- esas dos columnas deliberadamente no se fusionaron al CSV
+  principal.
 - **`circuito_id` no es comparable entre años sin normalizar.** Usar
   `circuito_id_correspondencias.csv` (formatos: con cero a la izquierda
   vs. sin, con o sin sufijo de letra) antes de cualquier cruce
