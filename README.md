@@ -37,8 +37,7 @@ notebooks/
   06_graficos_eph_iaelap.ipynb
 data/distrito/<año>/<categoría o nivel>/<etapa>/
 data/por_localidad/
-data/agrupaciones/agrupaciones.csv
-data/agrupaciones/agrupaciones_legislativas.csv
+data/agrupaciones/clasificacion_ideologica_agrupaciones.csv
 data/agrupaciones/campo_ideologico.csv
 data/agrupaciones/circuito_id_correspondencias.csv
 data/fuentes_extra/
@@ -46,6 +45,7 @@ data/socioeconomia/
 graficos/distrito/<año>/<nivel>/
 graficos/distrito/serie_temporal/
 graficos/socioeconomia/
+graficos/socioeconomia/eph/
 graficos/por_localidad/
 requirements.txt
 ```
@@ -69,11 +69,12 @@ saliente a `resultados.mininterior.gob.ar`.
    notebook que efectivamente genera/actualiza `data/`: trae el CSV oficial y
    el agregado JSON de cada combinación (año × cargo), hace un ejemplo de análisis mesa por mesa, confirma que el caché en
    disco quedó limpio y valida
-   `data/agrupaciones/agrupaciones.csv` contra lo que trae la API — si hay
-   agrupaciones nuevas las agrega.
+   `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` contra lo
+   que trae la API — si hay agrupaciones nuevas las agrega.
 4. Abrir y correr `notebooks/03_la_plata_legislativas.ipynb`: mismo patrón
    pero para los cargos legislativos (nacional/provincial/municipal,
-   2013-2025), sobre `data/agrupaciones/agrupaciones_legislativas.csv`.
+   2013-2025), sobre el mismo
+   `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv`.
 5. Abrir y correr `notebooks/04_totales_por_circuito.ipynb`: normaliza
    `circuito_id`, agrega por ese id los totales de cada agrupación y de los "otros"
    (blanco, nulo, recurrido, impugnado...) para cada (año, nivel) ya
@@ -84,9 +85,10 @@ saliente a `resultados.mininterior.gob.ar`.
    de disco, no vuelven a pedirle nada a la API). Para forzar una actualización
    real, pasar `force_refresh=True` a los métodos del cliente.
 
-**`agrupaciones.csv`/`agrupaciones_legislativas.csv` nunca se regeneran ni se
-pisan.** Ambos archivos tienen una 4ª columna, `campo_ideologico`, clasificada
-a mano; el último paso de cada notebook:
+**`clasificacion_ideologica_agrupaciones.csv` nunca se regenera ni se
+pisa.** Es un único archivo, compartido por los notebooks 02 (cargos
+ejecutivos) y 03 (cargos legislativos), con una 4ª columna,
+`campo_ideologico`, clasificada a mano; el último paso de cada notebook:
 
 1. arma la tabla de agrupaciones a partir de lo que devuelve la API para ese
    run (`anio`, `agrupacion`, `nivel`);
@@ -95,15 +97,17 @@ a mano; el último paso de cada notebook:
 3. si **no hay agrupaciones nuevas**, no toca el archivo (solo lo informa);
 4. si **hay alguna nueva**, la imprime explícitamente (aviso, no error
    silencioso) y la agrega al final con `campo_ideologico` vacío — las filas
-   existentes, con su clasificación, nunca se sobreescriben.
+   existentes, con su clasificación, nunca se sobreescriben, incluidas las
+   filas que agregó el otro notebook (ejecutivo/legislativo no comparten
+   valores de `nivel`, así que no hay colisión de claves entre ambos).
 
-**Nombre de agrupación, normalizado a mayúsculas**: `agrupacion` en ambos CSV
+**Nombre de agrupación, normalizado a mayúsculas**: `agrupacion` en el CSV
 está en mayúsculas — es la convención que ya traía la API en la mayoría de
 los años; solo Generales 2011 (ejecutivos) venía en minúscula/capitalizado.
 `agregar_por_circuito` (notebook 04) sube a mayúsculas el `agrupacion_nombre`
 del CSV oficial antes de armar `positivos`, así que el `nombre` dentro de
 `circuito_<nivel>.json` también queda en mayúsculas — coincide con la clave
-usada en el join contra `agrupaciones.csv`/`agrupaciones_legislativas.csv`. Al
+usada en el join contra `clasificacion_ideologica_agrupaciones.csv`. Al
 incorporar PASO se agregaron ~179 filas nuevas (agrupaciones que compitieron
 en la interna y no llegaron a Generales). 
 
@@ -173,11 +177,13 @@ Plata:
 | 10 | Concejales | municipal |
 
 
-`data/agrupaciones/agrupaciones_legislativas.csv`, misma estructura que
-genera el notebook 03 para `agrupaciones.csv` (`anio`, `agrupacion`,
-`nivel`; el archivo en disco tiene además `campo_ideologico`, agregado a
-mano — ver advertencia arriba). Cuando un nivel tuvo dos cargos el mismo año,
-sus agrupaciones se juntan bajo ese `nivel` y se deduplican.
+El notebook 03 agrega, al mismo
+`data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` que genera
+el notebook 02, filas con `nivel` en `nacional`/`provincial`/`municipal`
+(`anio`, `agrupacion`, `nivel`; el archivo en disco tiene además
+`campo_ideologico`, agregado a mano — ver advertencia arriba). Cuando un
+nivel tuvo dos cargos el mismo año, sus agrupaciones se juntan bajo ese
+`nivel` y se deduplican.
 
 ### Totales por circuito
 
@@ -203,7 +209,7 @@ consistente en los 4 años legislativos — Senador Nacional 2017 queda afuera
 de este archivo.
 
 Cada agrupación dentro de `positivos` suma el campo `campo_ideologico`,
-copiado tal cual de `agrupaciones.csv` / `agrupaciones_legislativas.csv`
+copiado tal cual de `clasificacion_ideologica_agrupaciones.csv`
 (join exacto por año/nivel/nombre; `"gobernador"` se mapea a
 `"gobernacion"`). Si una agrupación no aparece en el CSV de clasificación,
 el notebook falla con `KeyError` en vez de guardar el circuito sin el
@@ -259,7 +265,12 @@ a partir de `circuito_<nivel>.json`.
 de `graficos/distrito/<año>/<nivel>/` (circuito por circuito, más el cuadro
 anual de todos los cargos de ese año) está en `.gitignore` — se genera on
 demand con los scripts de abajo y no hace falta subirlo (son miles de
-archivos, se regeneran en segundos desde `data/`).
+archivos, se regeneran en segundos desde `data/`). Para la capa
+socioeconómica, `graficos/socioeconomia/eph/` (los gráficos de la EPH,
+generados por `notebooks/06_graficos_eph_iaelap.ipynb` /
+`src/socioeconomia/graficos_eph_iaelap.py`) sigue el mismo criterio y
+también está versionado — los de IAELaP y el de contraste EPH/IAELaP no,
+quedan en `graficos/socioeconomia/` sin trackear.
 
 - **`graficos.py`**: `graficar_barras(data_dir, anio, nivel, circuito_id=None)`
   y `graficar_torta(...)` — devuelven una figura de matplotlib.
@@ -315,8 +326,8 @@ combinaciones (año, cargo) ya cubiertas, y **balotaje/segunda vuelta**
 
 ## Libro de códigos ideológico — estado actual
 
-`campo_ideologico` (columna en `agrupaciones.csv` /
-`agrupaciones_legislativas.csv`, escala 1-6 en `campo_ideologico.csv`) es
+`campo_ideologico` (columna en `clasificacion_ideologica_agrupaciones.csv`,
+escala 1-6 en `campo_ideologico.csv`) es
 hoy una clasificación cargada a mano. La unidad de clasificación (alianza vs.
 candidatura vs. programa) y el criterio de asignación todavía no están
 fijados de forma sistemática.
@@ -407,8 +418,9 @@ electorales por localidad/barrio de La Plata (Villa Elvira, Los Hornos, San
 Lorenzo, Melchor Romero, etc.) con nombres legibles, no censales.
 
 - **Crosswalk** (`data/fuentes_extra/circuito_localidad.csv`,
-  hand-curated como `agrupaciones.csv` — no se regenera desde ningún
-  notebook): mapea `circuito_id` → `localidad` con dos niveles de cobertura
+  hand-curated como `clasificacion_ideologica_agrupaciones.csv` — no se
+  regenera desde ningún notebook): mapea `circuito_id` → `localidad` con
+  dos niveles de cobertura
   que nunca se mezclan sin pedirlo explícitamente —
   `oficial_confirmada` (Resolución 1990/2007 del Ministerio del Interior,
   16/68 circuitos) y `periodistico_no_oficial` (relevamiento "barrio por

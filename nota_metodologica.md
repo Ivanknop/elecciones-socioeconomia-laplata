@@ -282,7 +282,7 @@ Si la unidad clasificada es la alianza, hay una inconsistencia. Si se clasifican
 
 ### 3. La secuencia reproducible borra la clasificación manual
 
-Los notebooks 02 y 03 regeneran agrupaciones.csv y agrupaciones_legislativas.csv con tres columnas: año, agrupación y nivel. Los archivos guardados tienen una cuarta columna manual, campo_ideologico, que el notebook 04 necesita.
+Los notebooks 02 y 03 agregan filas (año, agrupación, nivel) al archivo compartido clasificacion_ideologica_agrupaciones.csv. El archivo guardado tiene una cuarta columna manual, campo_ideologico, que el notebook 04 necesita.
 
 Por lo tanto, ejecutar desde cero la secuencia indicada en el README puede borrar la clasificación y hacer fallar el paso siguiente. La solución es separar:
 

@@ -12,6 +12,10 @@ graficos/*
 graficos/distrito/*
 !graficos/distrito/serie_temporal/
 
+!graficos/socioeconomia/
+graficos/socioeconomia/*
+!graficos/socioeconomia/eph/
+
 data/socioeconomia/eph_cache/
 data/por_localidad/*
 

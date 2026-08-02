@@ -221,6 +221,7 @@ class EphClient:
 _COLUMNAS_NUMERICAS_INDIVIDUAL = (
     "ESTADO", "CAT_OCUP", "INTENSI", "PP07H", "PP07G1", "PP07G2", "PP07G4",
     "CH04", "CH06", "CH08", "CH09", "CH10", "NIVEL_ED", "P21", "P47T", "PONDERA",
+    "PONDIIO", "PONDII",
 )
 _COLUMNAS_NUMERICAS_HOGAR = ("IPCF", "IX_TOT", "II1", "IV7", "II7", "V5", "V15", "V17")
 
@@ -277,19 +278,52 @@ def _indicadores_laborales_core(ind: pd.DataFrame) -> dict:
     poblacion_pea = pea["PONDERA"].sum()
     poblacion_ocupada = ocupados["PONDERA"].sum()
 
+    # informalidad: PP07H (1=le descuentan jubilación/formal, 2=no le
+    # descuentan/informal) solo se pregunta a asalariados (CAT_OCUP==3) --
+    # para patrón/cuentapropia vale 0 ("no corresponde", la pregunta no se
+    # les hace), no es nulo. Excluirlos del denominador, no solo del
+    # numerador, o la tasa queda subestimada y el sesgo crece con el
+    # cuentapropismo. Un residual de no-respuesta de ítem dentro de
+    # asalariados (PP07H fuera de {1,2}, visto en datos reales 2011T1
+    # histórico) también se excluye de numerador y denominador -- no se
+    # puede afirmar si esos casos son formales o informales.
+    asalariados = ocupados[ocupados["CAT_OCUP"] == 3]
+    asalariados_validos = asalariados[asalariados["PP07H"].isin([1, 2])]
+    poblacion_asalariada_valida = asalariados_validos["PONDERA"].sum()
+    tasa_informalidad = _tasa(
+        _peso(asalariados_validos["PP07H"] == 2, asalariados_validos["PONDERA"]),
+        poblacion_asalariada_valida,
+    )
+
+    # ingreso de la ocupación principal: dos estimandos distintos, expuestos
+    # por separado -- no se mezclan. P21 == -9 es no respuesta, NO ingreso
+    # cero; INDEC marca esos mismos casos con PONDIIO == 0 en la base.
+    # PONDIIO (ponderador de ingreso de ocupación principal, corregido por
+    # no respuesta) no existe en las bases DBF históricas (2011-2015) --
+    # usa PONDERA en su lugar, mismo patrón que PONDIH en agregados_gran_la_plata.
+    columna_pondiio = "PONDIIO" if "PONDIIO" in ocupados.columns else "PONDERA"
+    p21_valido = ocupados["P21"] >= 0
+    p21_con_cero_explicito = ocupados["P21"].where(p21_valido, 0)
+    ingreso_todos_ocupados = (
+        (p21_con_cero_explicito * ocupados["PONDERA"]).sum() / poblacion_ocupada
+        if poblacion_ocupada
+        else None
+    )
+    perceptores = ocupados[p21_valido]
+    peso_perceptores = perceptores[columna_pondiio].sum()
+    ingreso_perceptores = (
+        (perceptores["P21"] * perceptores[columna_pondiio]).sum() / peso_perceptores
+        if peso_perceptores
+        else None
+    )
+
     return {
         "tasa_actividad": _tasa(poblacion_pea, pob_total),
         "tasa_empleo": _tasa(poblacion_ocupada, pob_total),
         "tasa_desocupacion": _tasa(_peso(ind["ESTADO"] == 2, ind["PONDERA"]), poblacion_pea),
-        # PP07H: 1 = le descuentan jubilación (formal), 2 = no le descuentan (informal).
-        "tasa_informalidad": _tasa(
-            _peso(ocupados["PP07H"] == 2, ocupados["PONDERA"]), poblacion_ocupada
-        ),
-        "ingreso_ocupacion_principal_medio": (
-            (ocupados["P21"] * ocupados["PONDERA"]).sum() / poblacion_ocupada
-            if poblacion_ocupada
-            else None
-        ),
+        "tasa_informalidad": tasa_informalidad,
+        "ingreso_ocupacion_principal_medio_todos_ocupados": ingreso_todos_ocupados,
+        "ingreso_ocupacion_principal_medio_perceptores": ingreso_perceptores,
     }
 
 
@@ -298,9 +332,10 @@ def agregados_gran_la_plata(individual: pd.DataFrame, hogar: pd.DataFrame) -> di
     personas/hogares, sin desagregar) a partir de las bases individual y
     hogar ya filtradas o completas (se filtra acá por
     `AGLOMERADO_GRAN_LA_PLATA`). Todos los indicadores están ponderados por
-    `PONDERA`/`PONDIH`, como exige la EPH al ser una encuesta muestral.
-    En las bases históricas (2011-2015, DBF) la base hogar no tiene columna
-    `PONDIH` -- usa `PONDERA` en su lugar.
+    `PONDERA`/`PONDIH`/`PONDIIO`/`PONDII`, según corresponda a cada
+    pregunta, como exige la EPH al ser una encuesta muestral. En las bases
+    históricas (2011-2015, DBF) ninguno de esos ponderadores dedicados
+    existe (solo `PONDERA`) -- todos caen a `PONDERA` en ese caso.
     """
     ind = individual[individual["AGLOMERADO"] == AGLOMERADO_GRAN_LA_PLATA].copy()
     hog = hogar[hogar["AGLOMERADO"] == AGLOMERADO_GRAN_LA_PLATA].copy()
@@ -348,23 +383,58 @@ def agregados_gran_la_plata(individual: pd.DataFrame, hogar: pd.DataFrame) -> di
 
     # vivienda (a nivel hogar): hacinamiento, agua de red, tenencia.
     hog_con_ambientes = hog[hog["II1"] > 0]
+    peso_hac = hog_con_ambientes[columna_pondih]
+    peso_hac_total = peso_hac.sum()
     hacinamiento_medio = (
-        ((hog_con_ambientes["IX_TOT"] / hog_con_ambientes["II1"]) * hog_con_ambientes[columna_pondih]).sum()
-        / hog_con_ambientes[columna_pondih].sum()
-        if hog_con_ambientes[columna_pondih].sum()
+        ((hog_con_ambientes["IX_TOT"] / hog_con_ambientes["II1"]) * peso_hac).sum() / peso_hac_total
+        if peso_hac_total
         else None
     )
+    # distribución de hacinamiento sobre la misma población que hacinamiento_medio
+    # (hogares con II1>0) -- los 3 buckets deben sumar 1.0. Umbral >3 personas/cuarto
+    # = "hacinamiento crítico", convención estándar INDEC/CEPAL.
+    ratio_hacinamiento = hog_con_ambientes["IX_TOT"] / hog_con_ambientes["II1"]
+    pct_hacinamiento_bajo = _tasa(_peso(ratio_hacinamiento <= 2, peso_hac), peso_hac_total)
+    pct_hacinamiento_moderado = _tasa(
+        _peso((ratio_hacinamiento > 2) & (ratio_hacinamiento <= 3), peso_hac), peso_hac_total
+    )
+    pct_hacinamiento_critico = _tasa(_peso(ratio_hacinamiento > 3, peso_hac), peso_hac_total)
+
     peso_hogares = hog[columna_pondih].sum()
     pct_agua_red_publica = _tasa(_peso(hog["IV7"] == 1, hog[columna_pondih]), peso_hogares)
+    # tenencia (II7): 1 propietario de la vivienda y el terreno, 2 propietario
+    # solo de la vivienda, 3 inquilino, 4-8 otras situaciones (ocupante, cedida...).
     pct_vivienda_propia = _tasa(_peso(hog["II7"].isin([1, 2]), hog[columna_pondih]), peso_hogares)
+    pct_inquilino = _tasa(_peso(hog["II7"] == 3, hog[columna_pondih]), peso_hogares)
+    tamanio_hogar_medio = (
+        (hog["IX_TOT"] * hog[columna_pondih]).sum() / peso_hogares if peso_hogares else None
+    )
 
     # estrategias de subsistencia del hogar, últimos 3 meses.
     pct_hogares_ayuda_social_gobierno = _tasa(_peso(hog["V5"] == 1, hog[columna_pondih]), peso_hogares)
     pct_hogares_prestamo_bancario = _tasa(_peso(hog["V15"] == 1, hog[columna_pondih]), peso_hogares)
     pct_hogares_vendio_pertenencias = _tasa(_peso(hog["V17"] == 1, hog[columna_pondih]), peso_hogares)
 
-    ingreso_total_individual_medio = (
-        (poblacion["P47T"] * poblacion["PONDERA"]).sum() / poblacion_total if poblacion_total else None
+    # ingreso total individual: mismo problema y mismo criterio que el
+    # ingreso de ocupación principal en _indicadores_laborales_core --
+    # P47T == -9 es no respuesta (confirmado en datos reales: coincide con
+    # PONDII == 0 en la base), no ingreso cero. PONDII (ponderador de
+    # ingreso individual total) no existe en las bases DBF históricas
+    # (2011-2015) -- usa PONDERA en su lugar.
+    columna_pondii = "PONDII" if "PONDII" in poblacion.columns else "PONDERA"
+    p47t_valido = poblacion["P47T"] >= 0
+    p47t_con_cero_explicito = poblacion["P47T"].where(p47t_valido, 0)
+    ingreso_total_individual_medio_todos = (
+        (p47t_con_cero_explicito * poblacion["PONDERA"]).sum() / poblacion_total
+        if poblacion_total
+        else None
+    )
+    perceptores_p47t = poblacion[p47t_valido]
+    peso_perceptores_p47t = perceptores_p47t[columna_pondii].sum()
+    ingreso_total_individual_medio_perceptores = (
+        (perceptores_p47t["P47T"] * perceptores_p47t[columna_pondii]).sum() / peso_perceptores_p47t
+        if peso_perceptores_p47t
+        else None
     )
     ipcf_medio = (
         (hog["IPCF"] * hog[columna_pondih]).sum() / hog[columna_pondih].sum()
@@ -388,12 +458,18 @@ def agregados_gran_la_plata(individual: pd.DataFrame, hogar: pd.DataFrame) -> di
         "tasa_analfabetismo": tasa_analfabetismo,
         "tasa_asistencia_escolar": tasa_asistencia_escolar,
         "hacinamiento_medio": hacinamiento_medio,
+        "pct_hacinamiento_bajo": pct_hacinamiento_bajo,
+        "pct_hacinamiento_moderado": pct_hacinamiento_moderado,
+        "pct_hacinamiento_critico": pct_hacinamiento_critico,
         "pct_agua_red_publica": pct_agua_red_publica,
         "pct_vivienda_propia": pct_vivienda_propia,
+        "pct_inquilino": pct_inquilino,
+        "tamanio_hogar_medio": tamanio_hogar_medio,
         "pct_hogares_ayuda_social_gobierno": pct_hogares_ayuda_social_gobierno,
         "pct_hogares_prestamo_bancario": pct_hogares_prestamo_bancario,
         "pct_hogares_vendio_pertenencias": pct_hogares_vendio_pertenencias,
-        "ingreso_total_individual_medio": ingreso_total_individual_medio,
+        "ingreso_total_individual_medio_todos": ingreso_total_individual_medio_todos,
+        "ingreso_total_individual_medio_perceptores": ingreso_total_individual_medio_perceptores,
         "ipcf_medio": ipcf_medio,
     }
 

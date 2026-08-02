@@ -19,14 +19,14 @@ agrupables en:
 
 | Dimensión | Variables | Fuente EPH |
 |---|---|---|
-| Mercado de trabajo | tasa de actividad, empleo, desocupación, informalidad | `ESTADO`, `PP07H` |
+| Mercado de trabajo | tasa de actividad, empleo, desocupación, informalidad (sobre asalariados con `PP07H` válido, no sobre el total de ocupados -- ver §5) | `ESTADO`, `PP07H`, `CAT_OCUP` |
 | Composición ocupacional | % patrón, cuentapropia, asalariado, trab. familiar | `CAT_OCUP` |
 | Calidad del empleo asalariado | % con obra social, aguinaldo, vacaciones pagas | `PP07G1/G2/G4` |
-| Salud | % sin cobertura | `CH08` |
+| Salud | % sin cobertura (de mecanismos ligados al empleo formal -- no implica ausencia de acceso al sistema público, ver §5) | `CH08` |
 | Educación | % secundario completo o más (25+), analfabetismo (10+), asistencia escolar (5-24) | `NIVEL_ED`, `CH09`, `CH10` |
-| Vivienda | hacinamiento (personas/cuarto), % agua de red pública, % vivienda propia | `II1`/`IX_TOT`, `IV7`, `II7` |
-| Estrategias de subsistencia del hogar (últimos 3 meses) | % recibió ayuda social del gobierno, % pidió préstamo bancario, % vendió pertenencias | `V5`, `V15`, `V17` |
-| Ingresos | ingreso medio de la ocupación principal, ingreso total individual, IPCF | `P21`, `P47T`, `IPCF` — **nominales, no deflactados** |
+| Vivienda | hacinamiento medio (personas/cuarto) y su distribución (% bajo/moderado/crítico), % agua de red pública, tenencia (% propia, % inquilino), tamaño de hogar medio | `II1`/`IX_TOT`, `IV7`, `II7` |
+| Estrategias de subsistencia del hogar (últimos 3 meses) | % recibió ayuda social del gobierno, % pidió préstamo bancario, % vendió pertenencias -- conceptualmente distintas, no combinar en un índice (ver §5) | `V5`, `V15`, `V17` |
+| Ingresos | ingreso de la ocupación principal e ingreso total individual, cada uno en dos estimandos (`_todos_ocupados`/`_todos` incluye no-respondentes como 0; `_perceptores` los excluye y pondera con `PONDIIO`/`PONDII`), más IPCF | `P21` (+`PONDIIO`), `P47T` (+`PONDII`), `IPCF` — **nominales, no deflactados** |
 
 Además, **`eph_gran_la_plata_por_sexo.csv`** y **`_por_edad.csv`** abren el
 núcleo laboral (actividad/empleo/desocupación/informalidad/ingreso) por
@@ -83,9 +83,14 @@ densificación observada.
 **a) Desocupación e informalidad no vuelven al nivel de partida.**
 Desocupación anual promedio: 6,3% (2011) → picos en 2019 (9,4%) y 2024
 (9,0%), con un valle 2021-2022 (~6%) entre medio — dos crisis distintas, no
-una tendencia lineal. Informalidad: 20-21% (2011-2013) → estable en el
-rango 25-30% desde 2016 en adelante, sin volver nunca al nivel inicial —
-más que un pico coyuntural, parece un cambio de piso.
+una tendencia lineal. Informalidad (recalculada tras corregir el bug del
+denominador, ver §5): 25-26% (2011-2013) → 30-38% desde 2017 en adelante
+(con un valle puntual en 2020, 26,1%, por la caída de actividad de la
+pandemia, no una mejora de calidad del empleo), sin volver nunca al nivel
+inicial — más que un pico coyuntural, parece un cambio de piso. **Los
+niveles de este párrafo no son comparables con versiones anteriores de
+este documento**: el bug corregido subestimaba la tasa en todo el período,
+más en los años recientes (más cuentapropismo → más denominador espurio).
 
 **b) Cobertura de salud y hacinamiento empeoran de forma sostenida,
 no cíclica.** % sin cobertura de salud: 26,4% (2011) → 33,9% (2025), subida
@@ -107,12 +112,16 @@ tendencia única.** La brecha de desocupación mujer-varón, históricamente
 favorable a los varones en 2-4 puntos porcentuales (2011-2020), se achicó y
 llegó a **invertirse** en 2022 (-1,4pp, varones con más desocupación que
 mujeres) y 2024 (-0,9pp), volviendo a +1,7pp en 2025 — no es un cierre
-sostenido de la brecha, es una oscilación. El ratio de ingreso
-mujer/varón (ocupación principal) mejoró de 0,75 (2011) a un máximo de 0,88
-(2021), pero se **revirtió con fuerza** después: 0,84 (2023) → 0,72 (2025) —
-la brecha de ingresos volvió a ensancharse en los últimos años, en la
-dirección opuesta a lo que sugeriría solo mirar la brecha de desocupación
-en el mismo período.
+sostenido de la brecha, es una oscilación. El ratio de ingreso mujer/varón
+(ocupación principal, estimando solo sobre perceptores — ver §5, recalculado
+tras el fix de ingresos): 0,75 (2011) → 0,75 (2021, estable, no en máximo
+como se estimaba antes de corregir el bug) → 0,78 (2023) → 0,70 (2025) — la
+brecha de ingresos se ensancha en 2025, en la dirección opuesta a lo que
+sugeriría solo mirar la brecha de desocupación en el mismo período. **Estos
+niveles tampoco son comparables con versiones anteriores de este
+documento**: el bug de ingresos corregido en §5 afectaba a varones y
+mujeres de forma distinta (no se puede asumir que un sesgo se cancela en
+un cociente si el sesgo mismo no es igual entre los dos grupos).
 
 **e) La desocupación juvenil no es solo "más alta" — se mueve distinto.**
 El tramo 10-24 años tiene una desocupación 3-5 veces la de 25-39 y 40-59 en
@@ -132,14 +141,57 @@ fuerza relativa que a la población general.
   diseño de registro consultado, de 2014, y los datos actuales? ¿falta
   cruzar con otra condición?) — se decidió no publicar el indicador en vez
   de publicar uno probablemente mal. Sigue sin resolverse.
-- **Ingresos sin deflactar.** `ingreso_ocupacion_principal_medio`, `P47T`
-  medio e `IPCF` medio están en pesos corrientes — con la inflación
-  argentina del período, los niveles nominales de la tabla de §3 arriba
-  (ej. $2.833 en 2011T1 vs. $638.453 en 2025T4) no dicen nada sobre poder
-  adquisitivo sin una serie de IPC, que no está en el repo. El ratio
-  mujer/varón de §4d es válido igual (es un cociente dentro del mismo
-  trimestre, la inflación se cancela), pero ningún nivel de ingreso en
-  pesos debe leerse como "más" o "menos" real sin deflactar primero.
+- **Ingresos sin deflactar.** `ingreso_ocupacion_principal_medio_todos_ocupados`/
+  `_perceptores`, `ingreso_total_individual_medio_todos`/`_perceptores` e
+  `IPCF` medio están en pesos corrientes — con la inflación argentina del
+  período, los niveles nominales no dicen nada sobre poder adquisitivo sin
+  una serie de IPC, que no está en el repo. El ratio mujer/varón de §4d es
+  válido igual (es un cociente dentro del mismo trimestre, la inflación se
+  cancela), pero ningún nivel de ingreso en pesos debe leerse como "más" o
+  "menos" real sin deflactar primero.
+- **Bug de ingreso corregido (`P21`/`PONDIIO`, `P47T`/`PONDII`).** Hasta la
+  corrección de esta sesión, `ingreso_ocupacion_principal_medio` promediaba
+  `P21` (incluyendo `-9`, código de no respuesta, no ingreso cero) ponderado
+  por `PONDERA` en vez de `PONDIIO` (el ponderador que INDEC construye
+  específicamente para esta pregunta, corregido por no respuesta) —
+  confirmado empíricamente en 2023T4 Gran La Plata: 34% de los ocupados no
+  respondía, y el ingreso medio quedaba subestimado. Se expone ahora en dos
+  estimandos separados y nombrados explícitamente (`_todos_ocupados`/`_todos`
+  trata la no-respuesta como 0; `_perceptores` la excluye y usa
+  `PONDIIO`/`PONDII`) para que no se mezclen sin darse cuenta. Mismo bug y
+  mismo fix en `ingreso_total_individual_medio` (`P47T`/`PONDII`, ~27% de
+  no-respuesta en el mismo trimestre). `PONDIIO` y `PONDII` no existen en
+  las bases DBF históricas (2011-2015) — ahí se usa `PONDERA`, igual que ya
+  pasaba con `PONDIH`.
+- **Bug de informalidad corregido (denominador).** `PP07H` (formal/informal)
+  solo se pregunta a asalariados — para patrón/cuentapropia vale `0` ("no
+  corresponde"), no nulo. Hasta esta corrección, el denominador de
+  `tasa_informalidad` era el total de ocupados (incluía patrón/cuentapropia,
+  que nunca podían entrar al numerador), subestimando la tasa con un sesgo
+  creciente a medida que crece el cuentapropismo. Ahora el denominador es
+  solo asalariados con `PP07H` en {1,2}; un residual de no-respuesta de
+  ítem dentro de asalariados (visto en 2011T1 histórico: `PP07H==0` para 2
+  casos que sí deberían tener respuesta) también se excluye de numerador y
+  denominador — se decide no imputar, no se puede afirmar si son formales
+  o informales.
+- **Ruido trimestral en un aglomerado chico.** Gran La Plata tiene ~1.100
+  viviendas relevadas por trimestre — el movimiento promedio entre
+  trimestres consecutivos es del mismo orden de magnitud que el cambio
+  total 2011-2025 en varios indicadores (desocupación, cobertura de salud,
+  informalidad). Un salto trimestral no se puede leer como cambio real sin
+  intervalos de confianza (no calculados en este repo). Recomendación de
+  uso: trabajar con promedios anuales o medias móviles de 4 trimestres para
+  cualquier lectura de tendencia — esto es responsabilidad de quien
+  consume `eph_gran_la_plata.csv`, no un cambio al cálculo trimestral crudo
+  (que debe seguir existiendo tal cual, es el insumo de esos promedios).
+- **Pendientes año a año solo válidas 2016-2025.** El cambio de fuente de
+  2016 (DBF histórico → bases actuales INDEC) es un quiebre metodológico
+  real, no solo un cambio de formato — especialmente visible en la serie
+  de ingresos (ver el bug de arriba, ya corregido, pero el quiebre de
+  fuente en sí sigue estando). Cualquier regresión, pendiente o comparación
+  año a año debe partirse en el corte de 2016, nunca calcularse sobre toda
+  la serie 2011-2025 de corrido — mezclaría el quiebre de fuente con la
+  tendencia real.
 - **Cambios de cuestionario a mitad de serie.** Desde 2023T4 INDEC dividió
   la pregunta `V5` (ayuda social del gobierno) en `V5_01/02/03` — se
   reconstruyó una `V5` equivalente (client-side, ver `eph_client.py`), pero
@@ -169,3 +221,38 @@ fuerza relativa que a la población general.
   económica (Partido de La Plata), no de condiciones de vida de los
   hogares; su propia sistematización (con el hallazgo de que revisa su
   serie entre boletines) ya está en `EXTRACCION_IAELAP.md`.
+
+## 6. Cortes temporales marcados en los gráficos
+
+`src/socioeconomia/graficos_eph_iaelap.py` marca automáticamente
+(`marcar_cortes=True` por default) los cortes metodológicos de la serie
+EPH en todos sus gráficos de línea temporal, excepto los de IAELaP (otra
+fuente, otro rango temporal — no aplican):
+
+- **Banda gris**: hueco sin dato 2015T3-2016T1 (INDEC no publicó,
+  "emergencia estadística") junto con el cambio de fuente/ponderación
+  (DBF histórico vía Wayback Machine → bases actuales de INDEC) que ocurre
+  justo después — se representan juntos porque son, en la práctica, el
+  mismo punto de quiebre en la serie.
+- **Línea punteada, 2020**: cambio de operativo EPH (encuesta telefónica
+  por la pandemia).
+- **Línea punteada, 2023T4** (solo en `graficar_estrategias_subsistencia`,
+  vía `incluir_v5=True`): split de la pregunta `V5` en `V5_01/02/03`,
+  reconstruida en `eph_client.py`.
+
+En `graficar_contraste_eph_iaelap`, el marcado aplica solo al panel EPH,
+nunca al panel IAELaP. Ninguna de estas marcas modifica los datos — son
+señales visuales para no leer una ruptura de método como una tendencia real.
+
+## 7. Nota de versión
+
+Esta sesión corrigió dos bugs de cómputo (`ingreso_ocupacion_principal_medio`
+y `tasa_informalidad`, más el mismo bug en `ingreso_total_individual_medio`),
+cambió el esquema de columnas de `eph_gran_la_plata*.csv` (renombres y
+columnas nuevas) y regeneró esos tres CSV versionados con datos 2011-2025
+completos (antes el notebook committeado solo cubría 2017-2025 para
+`eph_gran_la_plata.csv`, y no generaba `_por_sexo.csv`/`_por_edad.csv` en
+absoluto). Siguiendo la convención SemVer de este repo (ver skill
+`laplata-electoral`), esto es un cambio **MAJOR**: rompe el esquema de un
+CSV versionado que otro código (gráficos, notebooks) ya asumía, no un
+agregado compatible hacia atrás.

@@ -1,4 +1,4 @@
-# Estado de la auditoría (`NOTA_METODOLOGICA.md`, Sección 8) — a v2.0.1
+# Estado de la auditoría (`NOTA_METODOLOGICA.md`, Sección 8) — a v3.0.1
 
 Este documento existe porque la nota metodológica es un documento de trabajo
 fechado sobre `v1.0.0`. Se actualiza cada vez que se cierra un punto.

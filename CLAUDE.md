@@ -80,15 +80,17 @@ order, 01→04) are the pipeline**.
   Presidente 2019").
 
 - **`data/agrupaciones/`** holds the cross-cutting reference tables:
-  `agrupaciones.csv` / `agrupaciones_legislativas.csv` (party lists +
-  hand-classified `campo_ideologico`, 1-6 left→radical-right) and
-  `circuito_id_correspondencias.csv` (raw per-year circuito ids → canonical
-  form). **These are hand-curated and must never be regenerated from
-  scratch** — notebooks 02/03 only append newly-seen agrupaciones (with
-  empty `campo_ideologico`, printed as a warning) and never overwrite
-  existing rows; this is what keeps re-running the pipeline from clobbering
-  manual classification work. If you touch this merge logic, preserve that
-  invariant.
+  `clasificacion_ideologica_agrupaciones.csv` (party lists + hand-classified
+  `campo_ideologico`, 1-6 left→radical-right, covering both executive and
+  legislative `nivel` values) and `circuito_id_correspondencias.csv`
+  (raw per-year circuito ids → canonical form). **These are hand-curated
+  and must never be regenerated from scratch** — notebooks 02 (executive)
+  and 03 (legislative) both append newly-seen agrupaciones to the shared
+  classification file (with empty `campo_ideologico`, printed as a
+  warning) and never overwrite existing rows, including rows added by the
+  other notebook; this is what keeps re-running the pipeline from
+  clobbering manual classification work. If you touch this merge logic,
+  preserve that invariant.
 
 - **`data/fuentes_extra/circuito_localidad.csv`** is a second, unrelated
   hand-curated crosswalk (`circuito_id` -> `localidad`/barrio name, not
@@ -113,9 +115,11 @@ order, 01→04) are the pipeline**.
   `graficos.py` has the reusable `graficar_barras`/`graficar_torta`
   functions; `generar_graficos.py`, `serie_temporal.py`, and
   `cuadros_anualizados.py` are scripts that call them to bulk-write PNGs
-  under `graficos/distrito/`. Only `graficos/distrito/serie_temporal/` is
-  git-tracked — the rest of `graficos/` is `.gitignore`d and regenerated
-  on demand from `data/`.
+  under `graficos/distrito/`. Only `graficos/distrito/serie_temporal/` and
+  `graficos/socioeconomia/eph/` (the EPH charts from
+  `src/socioeconomia/graficos_eph_iaelap.py`, not the IAELaP or
+  EPH-vs-IAELaP contrast ones) are git-tracked — the rest of `graficos/`
+  is `.gitignore`d and regenerated on demand from `data/`.
 
 - **Circuito id normalization**: the same circuito is zero-padded
   differently across years in the raw source data (`"0460"` vs `"000460"`

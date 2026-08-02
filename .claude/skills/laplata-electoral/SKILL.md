@@ -46,7 +46,7 @@ que ya están marcados como resueltos en `AUDITORIA_ESTADO.md`.
 data/distrito/<año>/<nivel>/{generales,paso,balotaje}/        # crudo (JSON + CSV oficial)
 data/distrito/<año>/<nivel>/generales/circuito_<nivel>.json   # derivado por circuito -- SOLO generales tiene este derivado
 data/por_localidad/<año>_<nivel>_<etapa>_localidad.csv        # cuadros por localidad, derivado, NO versionado
-data/agrupaciones/agrupaciones*.csv                            # clasificación ideológica manual -- append-only
+data/agrupaciones/clasificacion_ideologica_agrupaciones.csv    # clasificación ideológica manual -- append-only
 data/agrupaciones/circuito_id_correspondencias.csv             # normalización circuito_id entre años
 data/fuentes_extra/circuito_localidad.csv                      # crosswalk circuito -> localidad, dos niveles
 data/fuentes_extra/LOCALIDADES_README.md                       # estado + qué falta
@@ -77,10 +77,12 @@ Presidente 2015/2023).
   que `suma(salida) == suma(entrada)`. Mismo criterio se usó al separar
   `blanco_nulo` de `otros` en `cuadros_por_localidad.py`: ambas columnas
   quedan explícitas, ninguna absorbe a la otra en silencio.
-- **`agrupaciones*.csv` (columna `campo_ideologico`) es append-only.**
-  Nunca se regenera desde cero ni se sobreescribe con un script
-  automático -- es curaduría manual. Los notebooks que regeneran esos
-  CSV desde la API NO deben tocar esa columna en filas existentes.
+- **`clasificacion_ideologica_agrupaciones.csv` (columna `campo_ideologico`)
+  es append-only.** Nunca se regenera desde cero ni se sobreescribe con un
+  script automático -- es curaduría manual. Es un único archivo compartido
+  por los notebooks 02 (ejecutivos) y 03 (legislativos); ninguno de los
+  dos debe tocar esa columna en filas existentes, ni las que agregó el
+  otro notebook.
 - **`circuito_id` no es comparable entre años sin normalizar.** Usar
   `circuito_id_correspondencias.csv` (formatos: con cero a la izquierda
   vs. sin, con o sin sufijo de letra) antes de cualquier cruce
@@ -106,9 +108,11 @@ Presidente 2015/2023).
 - **Los CSV/PNG derivados (bajo `data/por_localidad/` y casi todo
   `graficos/`) no se versionan.** Se regeneran en segundos corriendo el
   script correspondiente; no hace falta commitear la salida ni pedir
-  permiso para borrarla y regenerarla. La excepción es
-  `graficos/distrito/serie_temporal/`, que sí está trackeado -- ver
-  `.gitignore` y `CLAUDE.md` antes de asumir cuál es cuál.
+  permiso para borrarla y regenerarla. Las excepciones son
+  `graficos/distrito/serie_temporal/` y `graficos/socioeconomia/eph/`
+  (gráficos EPH -- no los de IAELaP ni el de contraste EPH/IAELaP, que
+  siguen sin trackear), que sí están trackeadas -- ver `.gitignore` y
+  `CLAUDE.md` antes de asumir cuál es cuál.
 
 ## Estilo de código de este repo
 

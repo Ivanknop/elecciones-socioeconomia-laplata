@@ -30,7 +30,107 @@ def _quitar_spines(ax) -> None:
     ax.spines[["top", "right"]].set_visible(False)
 
 
-def graficar_desocupacion_informalidad(data_dir: Path | str, ax=None):
+def _indice_hueco_no_publicado(filas: list[dict]) -> tuple[int, int] | None:
+    """Índice (antes, después) del primer salto >1 trimestre entre filas
+    consecutivas ya ordenadas por (anio, trimestre) -- hoy corresponde al
+    hueco 2015T3-2016T1 (INDEC no publicó, "emergencia estadística"), pero
+    la función no asume ese período específico: detecta cualquier hueco
+    real en los datos ya leídos del CSV, no en el CSV entero.
+    """
+    periodos = [(int(f["anio"]), int(f["trimestre"])) for f in filas]
+    for i in range(len(periodos) - 1):
+        anio_a, trim_a = periodos[i]
+        anio_b, trim_b = periodos[i + 1]
+        trimestres_transcurridos = (anio_b - anio_a) * 4 + (trim_b - trim_a)
+        if trimestres_transcurridos > 1:
+            return i, i + 1
+    return None
+
+
+def _indice_primer_trimestre_desde(filas: list[dict], anio: int, trimestre: int) -> int | None:
+    """Índice de la primera fila con (anio, trimestre) >= al valor dado."""
+    for i, f in enumerate(filas):
+        if (int(f["anio"]), int(f["trimestre"])) >= (anio, trimestre):
+            return i
+    return None
+
+
+_NOTA_HUECO = (
+    "sin dato 2015T3-2016T1 (INDEC no publicó, \"emergencia estadística\"); "
+    "cambio de fuente y ponderación en el mismo punto (bases DBF históricas -> bases actuales INDEC)"
+)
+_NOTA_2020 = "desde 2020, encuesta telefónica (pandemia) -- cambio de operativo, no solo de coyuntura"
+_NOTA_V5 = "desde 2023T4, la pregunta de ayuda social (V5) se reconstruye a partir de V5_01/02/03"
+
+_SIMBOLOS_NOTA = ("¹", "²", "³")
+
+
+def _marcar_nota(ax, x: float, simbolo: str) -> None:
+    """Marca puntual y discreta en el eje x -- un símbolo de nota al pie,
+    sin banda ni línea que atraviese los datos. El texto explicativo se
+    agrega una sola vez por figura con `_agregar_notas_al_pie`, no acá."""
+    ax.annotate(
+        simbolo, xy=(x, 0), xycoords=("data", "axes fraction"),
+        xytext=(0, -3), textcoords="offset points",
+        ha="center", va="top", fontsize="small", color="gray", annotation_clip=False,
+    )
+
+
+def _marcar_cortes_metodologicos(ax, filas: list[dict], incluir_v5: bool = False) -> list[str]:
+    """Marca en `ax` los cortes metodológicos conocidos de la serie EPH
+    Gran La Plata (ver `SISTEMATIZACION_VARIABLES.md`) con un símbolo de
+    nota al pie puntual -- sin bandas ni líneas que atraviesen los datos.
+    Devuelve la lista de notas al pie (texto completo, ya con su símbolo)
+    para que el llamador las agregue una única vez a la figura completa
+    (`_agregar_notas_al_pie`) -- evita duplicarlas en grillas de subplots.
+
+    - hueco 2015T3-2016T1 (sin dato) + cambio de fuente/ponderación (DBF
+      histórico -> bases actuales INDEC), casi el mismo punto en la serie
+      -- se marcan juntos, una sola nota.
+    - 2020: cambio de operativo EPH (encuesta telefónica, pandemia).
+    - 2023T4: split de la pregunta V5 en V5_01/02/03 (reconstruida en
+      `eph_client.py`) -- solo si `incluir_v5=True` (gráficos que no usan
+      estrategias de subsistencia no lo necesitan).
+    """
+    notas = []
+
+    hueco = _indice_hueco_no_publicado(filas)
+    if hueco is not None:
+        simbolo = _SIMBOLOS_NOTA[len(notas)]
+        _marcar_nota(ax, sum(hueco) / 2, simbolo)
+        notas.append(f"{simbolo} {_NOTA_HUECO}")
+
+    idx_2020 = _indice_primer_trimestre_desde(filas, 2020, 1)
+    if idx_2020 is not None:
+        simbolo = _SIMBOLOS_NOTA[len(notas)]
+        _marcar_nota(ax, idx_2020, simbolo)
+        notas.append(f"{simbolo} {_NOTA_2020}")
+
+    if incluir_v5:
+        idx_v5 = _indice_primer_trimestre_desde(filas, 2023, 4)
+        if idx_v5 is not None:
+            simbolo = _SIMBOLOS_NOTA[len(notas)]
+            _marcar_nota(ax, idx_v5, simbolo)
+            notas.append(f"{simbolo} {_NOTA_V5}")
+
+    return notas
+
+
+def _agregar_notas_al_pie(fig, notas: list[str]) -> None:
+    """Agrega `notas` como texto al pie de la figura completa, una sola
+    vez -- nunca por eje individual (evita duplicados en grillas de
+    subplots). No-op si `notas` está vacío. Llamar después de
+    `fig.tight_layout()`: reserva margen inferior extra a partir del que
+    ya calculó `tight_layout` (que varía según el tamaño/rotación de las
+    etiquetas del eje x de cada gráfico), en vez de asumir un valor fijo."""
+    if not notas:
+        return
+    margen_extra = 0.045 * len(notas) + 0.02
+    fig.subplots_adjust(bottom=fig.subplotpars.bottom + margen_extra)
+    fig.text(0.01, 0.01, "\n".join(notas), fontsize="x-small", color="gray", ha="left", va="bottom")
+
+
+def graficar_desocupacion_informalidad(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
     """Desocupación e informalidad, EPH Gran La Plata, 2011-2025. Dos
     líneas sobre un único eje (ambas son %, comparables sin normalizar).
     """
@@ -49,8 +149,10 @@ def graficar_desocupacion_informalidad(data_dir: Path | str, ax=None):
     ax.set_ylabel("%")
     ax.set_title("EPH Gran La Plata — desocupación e informalidad")
     _quitar_spines(ax)
+    notas = _marcar_cortes_metodologicos(ax, filas) if marcar_cortes else []
     ax.legend(frameon=False)
     ax.figure.tight_layout()
+    _agregar_notas_al_pie(ax.figure, notas)
     return ax.figure
 
 
@@ -62,10 +164,12 @@ def _graficar_series_eph(
     ylabel: str,
     escala_pct: bool = True,
     ax=None,
+    marcar_cortes: bool = True,
+    incluir_v5: bool = False,
 ):
     """Helper compartido: N series de línea (`columnas` = {columna_csv: etiqueta})
     desde `eph_gran_la_plata.csv`, sobre un único eje. `colores` debe tener
-    tantos elementos como `columnas` y venir ya validado 
+    tantos elementos como `columnas` y venir ya validado
     """
     filas = _leer_csv(Path(data_dir) / "eph_gran_la_plata.csv")
     etiquetas = [_etiqueta_trimestre(f["anio"], f["trimestre"]) for f in filas]
@@ -82,13 +186,15 @@ def _graficar_series_eph(
     ax.set_ylabel(ylabel)
     ax.set_title(titulo)
     _quitar_spines(ax)
+    notas = _marcar_cortes_metodologicos(ax, filas, incluir_v5=incluir_v5) if marcar_cortes else []
     if len(columnas) > 1:
         ax.legend(frameon=False)
     ax.figure.tight_layout()
+    _agregar_notas_al_pie(ax.figure, notas)
     return ax.figure
 
 
-def graficar_tasas_actividad_empleo(data_dir: Path | str, ax=None):
+def graficar_tasas_actividad_empleo(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
     """Tasa de actividad y tasa de empleo, EPH Gran La Plata, 2011-2025."""
     return _graficar_series_eph(
         data_dir,
@@ -97,10 +203,11 @@ def graficar_tasas_actividad_empleo(data_dir: Path | str, ax=None):
         "EPH Gran La Plata — tasa de actividad y de empleo",
         "%",
         ax=ax,
+        marcar_cortes=marcar_cortes,
     )
 
 
-def graficar_calidad_empleo(data_dir: Path | str, ax=None):
+def graficar_calidad_empleo(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
     """% de asalariados con obra social/aguinaldo/vacaciones pagas, EPH Gran
     La Plata, 2011-2025 — calidad del empleo, no solo el binario formal/informal.
     """
@@ -115,10 +222,11 @@ def graficar_calidad_empleo(data_dir: Path | str, ax=None):
         "EPH Gran La Plata — calidad del empleo asalariado",
         "% de asalariados",
         ax=ax,
+        marcar_cortes=marcar_cortes,
     )
 
 
-def graficar_cobertura_salud(data_dir: Path | str, ax=None):
+def graficar_cobertura_salud(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
     """% de la población sin cobertura de salud, EPH Gran La Plata, 2011-2025."""
     return _graficar_series_eph(
         data_dir,
@@ -127,10 +235,11 @@ def graficar_cobertura_salud(data_dir: Path | str, ax=None):
         "EPH Gran La Plata — población sin cobertura de salud",
         "%",
         ax=ax,
+        marcar_cortes=marcar_cortes,
     )
 
 
-def graficar_educacion(data_dir: Path | str, ax=None):
+def graficar_educacion(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
     """% con secundario completo o más (25+) y tasa de asistencia escolar
     (5-24), EPH Gran La Plata, 2011-2025.
     """
@@ -144,10 +253,11 @@ def graficar_educacion(data_dir: Path | str, ax=None):
         "EPH Gran La Plata — educación",
         "%",
         ax=ax,
+        marcar_cortes=marcar_cortes,
     )
 
 
-def graficar_hacinamiento(data_dir: Path | str, ax=None):
+def graficar_hacinamiento(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
     """Personas por cuarto (hacinamiento medio de los hogares), EPH Gran La
     Plata, 2011-2025.
     """
@@ -159,10 +269,11 @@ def graficar_hacinamiento(data_dir: Path | str, ax=None):
         "Personas por cuarto",
         escala_pct=False,
         ax=ax,
+        marcar_cortes=marcar_cortes,
     )
 
 
-def graficar_estrategias_subsistencia(data_dir: Path | str, ax=None):
+def graficar_estrategias_subsistencia(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
     """% de hogares que recurrió a cada estrategia en los últimos 3 meses,
     EPH Gran La Plata, 2011-2025.
     """
@@ -177,10 +288,12 @@ def graficar_estrategias_subsistencia(data_dir: Path | str, ax=None):
         "EPH Gran La Plata — estrategias de subsistencia del hogar",
         "% de hogares",
         ax=ax,
+        marcar_cortes=marcar_cortes,
+        incluir_v5=True,
     )
 
 
-def graficar_desocupacion(data_dir: Path | str, ax=None):
+def graficar_desocupacion(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
     """Tasa de desocupación, EPH Gran La Plata, 2011-2025 — serie general
     (población total), sin desagregar por sexo. Contraparte de
     `graficar_brecha_genero(data_dir, "tasa_desocupacion", ...)`, que abre
@@ -193,10 +306,11 @@ def graficar_desocupacion(data_dir: Path | str, ax=None):
         "EPH Gran La Plata — tasa de desocupación",
         "%",
         ax=ax,
+        marcar_cortes=marcar_cortes,
     )
 
 
-def graficar_informalidad(data_dir: Path | str, ax=None):
+def graficar_informalidad(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
     """Tasa de informalidad laboral, EPH Gran La Plata, 2011-2025 — serie
     general (población total), sin desagregar por sexo. Contraparte de
     `graficar_brecha_genero(data_dir, "tasa_informalidad", ...)`.
@@ -208,10 +322,11 @@ def graficar_informalidad(data_dir: Path | str, ax=None):
         "EPH Gran La Plata — informalidad laboral",
         "%",
         ax=ax,
+        marcar_cortes=marcar_cortes,
     )
 
 
-def graficar_actividad(data_dir: Path | str, ax=None):
+def graficar_actividad(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
     """Tasa de actividad, EPH Gran La Plata, 2011-2025 — serie general
     (población total), sin desagregar por sexo. Contraparte de
     `graficar_brecha_genero(data_dir, "tasa_actividad", ...)`.
@@ -223,14 +338,15 @@ def graficar_actividad(data_dir: Path | str, ax=None):
         "EPH Gran La Plata — tasa de actividad",
         "%",
         ax=ax,
+        marcar_cortes=marcar_cortes,
     )
 
 
-def graficar_brecha_genero(data_dir: Path | str, indicador: str, titulo: str, ax=None):
+def graficar_brecha_genero(data_dir: Path | str, indicador: str, titulo: str, ax=None, marcar_cortes: bool = True):
     """Un indicador del núcleo laboral (`tasa_actividad`, `tasa_empleo`,
     `tasa_desocupacion`, `tasa_informalidad`) para varones y mujeres,
-    `eph_gran_la_plata_por_sexo.csv`, 2011-2025. `ingreso_ocupacion_principal_medio`
-    también está disponible en ese CSV pero no es %, no usar `escala_pct` con eso.
+    `eph_gran_la_plata_por_sexo.csv`, 2011-2025. `ingreso_ocupacion_principal_medio_todos_ocupados`/
+    `_perceptores` también están disponibles en ese CSV pero no son %, no usar `escala_pct` con eso.
     """
     filas = _leer_csv(Path(data_dir) / "eph_gran_la_plata_por_sexo.csv")
     trimestres = sorted({(f["anio"], f["trimestre"]) for f in filas}, key=lambda t: (int(t[0]), int(t[1])))
@@ -251,12 +367,17 @@ def graficar_brecha_genero(data_dir: Path | str, indicador: str, titulo: str, ax
     ax.set_ylabel("%")
     ax.set_title(f"EPH Gran La Plata — {titulo}, por sexo")
     _quitar_spines(ax)
+    notas = []
+    if marcar_cortes:
+        filas_x = [{"anio": a, "trimestre": t} for a, t in trimestres]
+        notas = _marcar_cortes_metodologicos(ax, filas_x)
     ax.legend(frameon=False)
     ax.figure.tight_layout()
+    _agregar_notas_al_pie(ax.figure, notas)
     return ax.figure
 
 
-def graficar_desocupacion_por_edad(data_dir: Path | str):
+def graficar_desocupacion_por_edad(data_dir: Path | str, marcar_cortes: bool = True):
     """Tasa de desocupación por tramo etario.
     """
     filas = _leer_csv(Path(data_dir) / "eph_gran_la_plata_por_edad.csv")
@@ -264,12 +385,14 @@ def graficar_desocupacion_por_edad(data_dir: Path | str):
     trimestres = sorted({(f["anio"], f["trimestre"]) for f in filas}, key=lambda t: (int(t[0]), int(t[1])))
     etiquetas = [_etiqueta_trimestre(a, t) for a, t in trimestres]
     x = range(len(trimestres))
+    filas_x = [{"anio": a, "trimestre": t} for a, t in trimestres]
 
     por_tramo = {tramo: {} for tramo in tramos}
     for f in filas:
         por_tramo[f["tramo_etario"]][(f["anio"], f["trimestre"])] = float(f["tasa_desocupacion"])
 
     fig, ejes = plt.subplots(2, 2, figsize=(13, 8), sharex=True, sharey=True)
+    notas = []
     for tramo, ax in zip(tramos, ejes.flat):
         valores = [por_tramo[tramo][t] * 100 for t in trimestres]
         ax.plot(x, valores, color=_AZUL, linewidth=2)
@@ -278,15 +401,19 @@ def graficar_desocupacion_por_edad(data_dir: Path | str):
         ax.set_title(f"{tramo} años", fontsize="small")
         ax.set_ylabel("% desocupación")
         _quitar_spines(ax)
+        if marcar_cortes:
+            notas = _marcar_cortes_metodologicos(ax, filas_x)  # misma nota en cada subplot, se agrega una sola vez
     fig.suptitle("EPH Gran La Plata — tasa de desocupación por tramo etario")
     fig.tight_layout()
+    _agregar_notas_al_pie(fig, notas)
     return fig
 
 
 def graficar_iaelap_general(data_dir: Path | str, ax=None):
     """Variación % interanual del índice IAELaP, Partido de La Plata,
     2018T1-2025T4. Barras, un eje. No incluye el nivel del índice (2018=100)
-    en el mismo gráfico.
+    en el mismo gráfico. No marca los cortes metodológicos de la EPH (fuente
+    y rango temporal distintos, ver `_marcar_cortes_metodologicos`).
     """
     filas = _leer_csv(Path(data_dir) / "iaelap_la_plata.csv")
     etiquetas = [_etiqueta_trimestre(f["anio"], f["trimestre"]) for f in filas]
@@ -316,7 +443,8 @@ def graficar_iaelap_sectorial(
 ):
     """Desagregación sectorial IAELaP para un período puntual (`periodo_tipo`
     'trimestral' u 'anual'). Barras horizontales, coloreadas por signo
-    (positivo/negativo).
+    (positivo/negativo). No aplica el marcado de cortes de la EPH -- es un
+    corte transversal de un único período, no una serie temporal.
     """
     filas = _leer_csv(Path(data_dir) / "iaelap_la_plata_ramas.csv")
     filas = [
@@ -354,7 +482,8 @@ def graficar_contraste_eph_iaelap(eph_dir: Path | str, iaelap_dir: Path | str = 
     (Partido de La Plata) en paneles apilados con el mismo eje temporal —
     nunca superpuestos en un dual-axis: son unidades y geografías distintas
     (aglomerado vs. partido), compartir un solo eje sugeriría una
-    comparabilidad que no existe.
+    comparabilidad que no existe. Los cortes metodológicos de la EPH se
+    marcan solo en el panel EPH (`ax1`), nunca en el panel IAELaP (`ax2`).
     """
     iaelap_dir = iaelap_dir or eph_dir
     eph = _leer_csv(Path(eph_dir) / "eph_gran_la_plata.csv")
@@ -370,6 +499,7 @@ def graficar_contraste_eph_iaelap(eph_dir: Path | str, iaelap_dir: Path | str = 
     ax1.set_ylabel("% desocupación")
     ax1.set_title("EPH Gran La Plata — tasa de desocupación")
     _quitar_spines(ax1)
+    notas = _marcar_cortes_metodologicos(ax1, eph)
 
     etiquetas_iaelap = [_etiqueta_trimestre(f["anio"], f["trimestre"]) for f in iaelap]
     var_pct = [float(f["var_interanual_pct"]) if f["var_interanual_pct"] else None for f in iaelap]
@@ -388,4 +518,5 @@ def graficar_contraste_eph_iaelap(eph_dir: Path | str, iaelap_dir: Path | str = 
         y=1.0,
     )
     fig.tight_layout()
+    _agregar_notas_al_pie(fig, notas)
     return fig
