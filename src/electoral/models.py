@@ -7,6 +7,7 @@ el parseo falle.
 """
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass, field
 
 
@@ -55,6 +56,36 @@ class ValorAgrupacion:
             listas=[Lista.from_json(l) for l in raw.get("listas", [])],
             extra=_extra(raw, cls._CAMPOS_CONOCIDOS),
         )
+
+
+def totalizar_agrupaciones(valores: Iterable[ValorAgrupacion]) -> list[ValorAgrupacion]:
+    """Suma varios `ValorAgrupacion` (ej. uno por mesa o por circuito) en un
+    único total por `id_agrupacion` -- para combinar resultados parciales
+    (mesas, circuitos) en el resultado total de una agrupación.
+
+    `votos_porcentaje` se recalcula sobre el nuevo total (el de cada
+    `ValorAgrupacion` de entrada es relativo a su propia consulta parcial, no
+    sirve para promediar). `listas` no se combina -- no tiene un criterio de
+    fusión obvio (mismo número de lista puede corresponder a categorías
+    distintas entre consultas) y no hace falta para un total por agrupación.
+    Devuelve la lista ordenada de mayor a menor por votos.
+    """
+    por_id: dict[str, dict] = {}
+    for v in valores:
+        acumulado = por_id.setdefault(v.id_agrupacion, {"nombre_agrupacion": v.nombre_agrupacion, "votos": 0})
+        acumulado["votos"] += v.votos
+
+    total = sum(info["votos"] for info in por_id.values())
+    combinados = [
+        ValorAgrupacion(
+            id_agrupacion=id_agrupacion,
+            nombre_agrupacion=info["nombre_agrupacion"],
+            votos=info["votos"],
+            votos_porcentaje=(info["votos"] / total * 100) if total else 0.0,
+        )
+        for id_agrupacion, info in por_id.items()
+    ]
+    return sorted(combinados, key=lambda v: v.votos, reverse=True)
 
 
 @dataclass

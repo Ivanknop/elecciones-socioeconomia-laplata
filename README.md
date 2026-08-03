@@ -17,6 +17,7 @@ src/electoral/
   client.py
   models.py
   localidades.py
+  totales.py
 src/analisis/
   graficos.py
   generar_graficos.py
@@ -25,6 +26,7 @@ src/analisis/
   cuadros_anualizados.py
   cuadros_por_localidad.py
   serie_temporal_por_localidad.py
+  totales_por_lista.py
 src/socioeconomia/
   geo.py
   eph_client.py
@@ -38,6 +40,7 @@ notebooks/
   06_graficos_eph_iaelap.ipynb
 data/distrito/<año>/<categoría o nivel>/<etapa>/
 data/por_localidad/
+data/totales/<nivel>/<año>/
 data/agrupaciones/clasificacion_ideologica_agrupaciones.csv
 data/agrupaciones/tabla_referencia_filiacion_politica.csv
 data/agrupaciones/campo_ideologico.csv
@@ -281,6 +284,27 @@ votantes`), así que su gráfico muestra 100% `ausentismo` puntual. No es
 abstención real: es el mismo hueco de cobertura ya documentado, expresado
 ahora en la nueva métrica.
 
+### Resultado total por agrupación (`src/electoral/totales.py`)
+
+`data/totales/<nivel>/<año>/resultado_total.csv` — una fila por agrupación
+con el total de votos de todo (año, nivel) en La Plata, sumando los
+circuitos de `circuito_<nivel>.json` (no el JSON agregado crudo, por la
+misma razón que "Totales por circuito" más arriba: ese agregado subestima
+Presidente 2019). Columnas: `id_agrupacion`, `agrupacion`, `votos`,
+`votos_porcentaje` (recalculado sobre el total de esa consulta, no heredado
+de otra). Derivado, no versionado — se regenera en segundos, mismo criterio
+que `graficos/`.
+
+La suma se hace con `electoral.models.totalizar_agrupaciones`, una función
+de propósito general (no atada a este script): combina cualquier lista de
+`ValorAgrupacion` por `id_agrupacion` -- sirve igual para totalizar mesas,
+circuitos, o cualquier otro nivel de detalle que use ese mismo dataclass.
+
+```bash
+PYTHONPATH=src python -m electoral.totales --anio 2023 --nivel intendente
+PYTHONPATH=src python -m electoral.totales                    # todo lo disponible
+```
+
 ## Gráficos (`src/analisis/`, salida en `graficos/`)
 
 Barras y torta por **campo ideológico** (izquierda → derecha radical, con
@@ -298,13 +322,13 @@ ahora el total de cada gráfico incluye ausentismo, el % que muestra cada
 categoría pasa a ser aproximadamente "% del padrón" en vez de "% de los
 positivos".
 
-**Solo `graficos/distrito/serie_temporal/` está versionado en git.** El resto
-de `graficos/distrito/<año>/<nivel>/` (circuito por circuito, más el cuadro
-anual de todos los cargos de ese año) está en `.gitignore` — se genera on
-demand con los scripts de abajo y no hace falta subirlo (son miles de
-archivos, se regeneran en segundos desde `data/`). Para la capa
-socioeconómica, `graficos/socioeconomia/eph/` (los gráficos de la EPH,
-generados por `notebooks/06_graficos_eph_iaelap.ipynb` /
+**Solo `graficos/distrito/serie_temporal/` y `graficos/distrito/totales_por_lista/`
+están versionados en git.** El resto de `graficos/distrito/<año>/<nivel>/`
+(circuito por circuito, más el cuadro anual de todos los cargos de ese año)
+está en `.gitignore` — se genera on demand con los scripts de abajo y no
+hace falta subirlo (son miles de archivos, se regeneran en segundos desde
+`data/`). Para la capa socioeconómica, `graficos/socioeconomia/eph/` (los
+gráficos de la EPH, generados por `notebooks/06_graficos_eph_iaelap.ipynb` /
 `src/socioeconomia/graficos_eph_iaelap.py`) sigue el mismo criterio y
 también está versionado — los de IAELaP y el de contraste EPH/IAELaP no,
 quedan en `graficos/socioeconomia/` sin trackear.
@@ -366,6 +390,25 @@ quedan en `graficos/socioeconomia/` sin trackear.
 
   ```bash
   PYTHONPATH=src python -m analisis.cuadros_anualizados --anio 2023
+  ```
+
+- **`totales_por_lista.py`**: **un gráfico por (año, nivel)**, barras
+  horizontales con el resultado total por agrupación (lista) — a diferencia
+  del resto de esta sección, no agrupa por campo ideológico en el eje: cada
+  agrupación es su propia barra, ordenada de mayor a menor voto, coloreada
+  por `campo_ideologico` (mismo join en vivo contra
+  `clasificacion_ideologica_agrupaciones.csv` que usa
+  `serie_temporal_filiacion.py` para `filiacion_politica`). Usa
+  `electoral.totales.resultado_total_por_agrupacion` — la función que
+  también arma `data/totales/` — en vez de releer ese CSV. Escribe en
+  `graficos/distrito/totales_por_lista/<año>_<nivel>_barras.png` — a
+  diferencia del resto de `graficos/distrito/<año>/`, **esta carpeta sí está
+  versionada** (excepción explícita en `.gitignore`, mismo criterio que
+  `serie_temporal/`).
+
+  ```bash
+  PYTHONPATH=src python -m analisis.totales_por_lista --anio 2023 --nivel intendente
+  PYTHONPATH=src python -m analisis.totales_por_lista                    # todo lo disponible
   ```
 
 ## PASO y balotaje

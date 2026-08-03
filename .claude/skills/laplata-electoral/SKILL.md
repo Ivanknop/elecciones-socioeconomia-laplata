@@ -44,8 +44,9 @@ que ya están marcados como resueltos en `AUDITORIA_ESTADO.md`.
 
 ```
 data/distrito/<año>/<nivel>/{generales,paso,balotaje}/        # crudo (JSON + CSV oficial)
-data/distrito/<año>/<nivel>/generales/circuito_<nivel>.json   # derivado por circuito -- SOLO generales tiene este derivado
-data/por_localidad/<año>_<nivel>_<etapa>_localidad.csv        # cuadros por localidad, derivado, NO versionado
+data/distrito/<año>/<nivel>/generales/circuito_<nivel>.json   # derivado por circuito 
+data/por_localidad/<año>_<nivel>_<etapa>_localidad.csv        # cuadros por localidad, derivado,
+data/totales/<nivel>/<año>/resultado_total.csv                # total por agrupación, derivado
 data/agrupaciones/clasificacion_ideologica_agrupaciones.csv    # clasificación ideológica manual -- append-only
 data/agrupaciones/tabla_referencia_filiacion_politica.csv       # fuente de filiacion_politica + confianza/nota de cada valor
 data/agrupaciones/circuito_id_correspondencias.csv             # normalización circuito_id entre años
@@ -55,8 +56,8 @@ data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md                  # auditoría ofic
 data/fuentes_extra/resolucion_1990-2007.md                     # fuente legal completa (familia 496/497/503)
 data/socioeconomia/circuito_radio_correspondencia.csv           # correspondencia espacial circuito<->radio censal (peso_area)
 data/socioeconomia/radios_censales_{2010,2022}_la_plata.geojson
-src/electoral/          # cliente API, modelos, parsing, agrupamiento por localidad (localidades.py)
-src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a partir de circuito_<nivel>.json
+src/electoral/          # cliente API, modelos, parsing, agrupamiento por localidad (localidades.py), totales por agrupación (totales.py)
+src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a partir de circuito_<nivel>.json; totales_por_lista.py grafica data/totales/
 src/socioeconomia/      # EPH, geo, IAELaP
 notebooks/               # 01-06, la pipeline real corre acá (ver CLAUDE.md)
 graficos/distrito/, graficos/por_localidad/, graficos/socioeconomia/   # salida, mayormente no versionada
@@ -121,9 +122,9 @@ Presidente 2015/2023).
   `graficos/`) no se versionan.** Se regeneran en segundos corriendo el
   script correspondiente; no hace falta commitear la salida ni pedir
   permiso para borrarla y regenerarla. Las excepciones son
-  `graficos/distrito/serie_temporal/` y `graficos/socioeconomia/eph/`
-  (gráficos EPH -- no los de IAELaP ni el de contraste EPH/IAELaP, que
-  siguen sin trackear), que sí están trackeadas -- ver `.gitignore` y
+  `graficos/distrito/serie_temporal/`, `graficos/distrito/totales_por_lista/`
+  y `graficos/socioeconomia/eph/` (gráficos EPH -- no los de IAELaP ni el de
+  contraste EPH/IAELaP, que siguen sin trackear), que sí están trackeadas -- ver `.gitignore` y
   `CLAUDE.md` antes de asumir cuál es cuál.
 
 ## Estilo de código de este repo

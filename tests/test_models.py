@@ -8,6 +8,7 @@ from electoral.models import (
     ResultadoElectoral,
     ValoresOtros,
     ValorAgrupacion,
+    totalizar_agrupaciones,
 )
 
 
@@ -63,6 +64,43 @@ class TestValorAgrupacion:
         raw_valor_agrupacion["campoQueLaApiAgregueMañana"] = 42
         valor = ValorAgrupacion.from_json(raw_valor_agrupacion)
         assert valor.extra["campoQueLaApiAgregueMañana"] == 42
+
+
+class TestTotalizarAgrupaciones:
+    def test_suma_votos_de_la_misma_agrupacion_por_id(self):
+        valores = [
+            ValorAgrupacion("0131", "Frente A", 100, 0.0),
+            ValorAgrupacion("0131", "Frente A", 50, 0.0),
+            ValorAgrupacion("0047", "Frente B", 30, 0.0),
+        ]
+        totales = totalizar_agrupaciones(valores)
+        assert {v.id_agrupacion: v.votos for v in totales} == {"0131": 150, "0047": 30}
+
+    def test_ordena_de_mayor_a_menor_por_votos(self):
+        valores = [
+            ValorAgrupacion("0047", "Frente B", 30, 0.0),
+            ValorAgrupacion("0131", "Frente A", 150, 0.0),
+        ]
+        totales = totalizar_agrupaciones(valores)
+        assert [v.id_agrupacion for v in totales] == ["0131", "0047"]
+
+    def test_recalcula_votos_porcentaje_sobre_el_nuevo_total(self):
+        valores = [
+            ValorAgrupacion("0131", "Frente A", 75, 99.0),  # porcentaje viejo, de otra consulta
+            ValorAgrupacion("0047", "Frente B", 25, 1.0),
+        ]
+        totales = totalizar_agrupaciones(valores)
+        por_id = {v.id_agrupacion: v.votos_porcentaje for v in totales}
+        assert por_id["0131"] == 75.0
+        assert por_id["0047"] == 25.0
+
+    def test_lista_vacia_no_rompe(self):
+        assert totalizar_agrupaciones([]) == []
+
+    def test_conserva_el_nombre_de_agrupacion(self):
+        valores = [ValorAgrupacion("0131", "Frente A", 10, 0.0), ValorAgrupacion("0131", "Frente A", 5, 0.0)]
+        totales = totalizar_agrupaciones(valores)
+        assert totales[0].nombre_agrupacion == "Frente A"
 
 
 class TestEstadoRecuento:

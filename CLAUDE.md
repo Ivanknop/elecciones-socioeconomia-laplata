@@ -31,16 +31,21 @@ PYTHONPATH=src python -m analisis.serie_temporal_filiacion  # same, by filiacion
 PYTHONPATH=src python -m analisis.cuadros_anualizados --anio 2023  # one chart per año, all cargos side by side
 PYTHONPATH=src python -m analisis.cuadros_por_localidad --anio 2023 --nivel intendente  # votes-by-locality table for one (año, nivel)
 PYTHONPATH=src python -m analisis.serie_temporal_por_localidad --nivel municipal  # per-locality time series, reads the tables above
+PYTHONPATH=src python -m electoral.totales --anio 2023 --nivel intendente  # total votes per agrupación for one (año, nivel)
+PYTHONPATH=src python -m analisis.totales_por_lista --anio 2023 --nivel intendente  # bar chart of that total, one per (año, nivel)
 ```
 
 There is no build/lint step configured. Tests cover `src/electoral/models.py`
-(pure parsing, no network) and the locality-aggregation layer added on top of
-it — `src/electoral/localidades.py`, `src/analisis/cuadros_por_localidad.py`,
-and the non-plotting helpers of `src/analisis/serie_temporal_por_localidad.py`
+(pure parsing, no network), `src/electoral/totales.py` (pure logic and file
+I/O, no network — see `tests/test_totales.py`), and the locality-aggregation
+layer added on top of it — `src/electoral/localidades.py`,
+`src/analisis/cuadros_por_localidad.py`, and the non-plotting helpers of
+`src/analisis/serie_temporal_por_localidad.py`
 (pure logic and file I/O, no network; see `tests/test_localidades.py`,
 `tests/test_cuadros_por_localidad.py`, `tests/test_serie_temporal_por_localidad.py`).
 `src/electoral/client.py` and the rest of `src/analisis/*` (`graficos.py`,
-`generar_graficos.py`, `serie_temporal.py`, `cuadros_anualizados.py`, plus the
+`generar_graficos.py`, `serie_temporal.py`, `cuadros_anualizados.py`,
+`serie_temporal_filiacion.py`, `totales_por_lista.py`, plus the
 matplotlib-rendering half of the locality scripts) still have no automated
 tests; changes there are validated by re-running the notebooks end to end
 (see README "Cómo reproducir") or by running the scripts against `data/` directly.
@@ -130,6 +135,26 @@ order, 01→04) are the pipeline**.
   `AUDITORIA_DISCREPANCIAS.md` — read those before changing the crosswalk
   or the grouping precedence.
 
+- **`src/electoral/totales.py`** (not `src/analisis/`, since it stays inside
+  the electoral layer next to `models.py`) sums the `circuito_<nivel>.json`
+  files into one row per agrupación — total votes for the whole (año, nivel),
+  via `models.totalizar_agrupaciones` (a general-purpose combinator: sums any
+  `ValorAgrupacion` list by `id_agrupacion` and recomputes `votos_porcentaje`,
+  usable for mesas or circuitos alike, not tied to this one script). Writes
+  `data/totales/<nivel>/<año>/resultado_total.csv` — derived, not
+  git-tracked, same criterion as `graficos/`. Reads `circuito_<nivel>.json`
+  (CSV-derived) rather than the raw aggregate JSON on purpose — that JSON is
+  known-wrong for Presidente 2019 (see README anomaly below).
+  `src/analisis/totales_por_lista.py` charts that same total (via
+  `resultado_total_por_agrupacion`, not by rereading the CSV): one horizontal
+  bar chart per (año, nivel), one bar per agrupación (not grouped by
+  ideology), colored by `campo_ideologico` via a live join against
+  `clasificacion_ideologica_agrupaciones.csv` (same pattern as
+  `serie_temporal_filiacion.py`). Writes to
+  `graficos/distrito/totales_por_lista/`, which **is** git-tracked (explicit
+  `.gitignore` exception, same as `graficos/distrito/serie_temporal/`) even
+  though the rest of `graficos/distrito/<año>/` is not.
+
 - **`src/analisis/`** reads only the derived `circuito_<nivel>.json` files
   (never the client/models layer directly) and plots by `campo_ideologico`.
   Every chart (this module, `serie_temporal_filiacion.py`, and the
@@ -148,7 +173,8 @@ order, 01→04) are the pipeline**.
   embedded in the JSON — `circuito_<nivel>.json`/notebook 04 were
   deliberately left untouched when this was added) and only writes the
   `_filiacion_porcentaje.png` time series, no per-circuito bar/pie or raw-votes
-  variant. Only `graficos/distrito/serie_temporal/` and
+  variant. Only `graficos/distrito/serie_temporal/`,
+  `graficos/distrito/totales_por_lista/`, and
   `graficos/socioeconomia/eph/` (the EPH charts from
   `src/socioeconomia/graficos_eph_iaelap.py`, not the IAELaP or
   EPH-vs-IAELaP contrast ones) are git-tracked — the rest of `graficos/`
