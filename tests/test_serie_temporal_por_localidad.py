@@ -96,6 +96,32 @@ class TestSerieLocalidad:
         assert serie["izquierda"] == [10, 30]
         assert serie["derecha"] == [40, 20]
 
+    def test_cuadro_sin_columnas_nuevas_cuenta_blanco_nulo_y_ausentismo_como_cero(self, data_dir, cuadros_dir):
+        """Los cuadros de la fixture (`_escribir_cuadro`) solo tienen columnas
+        de ideología"""
+        puntos = _puntos_con_cuadro(data_dir, cuadros_dir, "municipal")
+        serie, _ = _serie_localidad(cuadros_dir, puntos, "BARRIO_A")
+        assert serie["blanco_nulo"] == [0, 0]
+        assert serie["ausentismo"] == [0, 0]
+
+    def test_devuelve_blanco_nulo_y_ausentismo_cuando_el_cuadro_los_trae(self, data_dir, tmp_path):
+        cuadros_dir = tmp_path / "por_localidad_con_ausentismo"
+        cuadros_dir.mkdir()
+        df = pd.DataFrame([{
+            "localidad": "BARRIO_A", "izquierda": 10, "derecha": 40,
+            "blanco_nulo": 5, "otros": 1, "votos": 56, "ausentismo": 20,
+        }])
+        ruta = cuadros_dir / "2019_intendente_generales_localidad.csv"
+        with ruta.open("w", encoding="utf-8", newline="") as f:
+            f.write("# comentario de cobertura\n")
+            df.to_csv(f, index=False)
+
+        puntos = _puntos_con_cuadro(data_dir, cuadros_dir, "municipal")
+        serie, totales = _serie_localidad(cuadros_dir, puntos, "BARRIO_A")
+        assert serie["blanco_nulo"] == [5]
+        assert serie["ausentismo"] == [20]
+        assert totales == [10 + 40 + 5 + 20]  # ideologías + blanco_nulo + ausentismo, sin "otros"
+
     def test_localidad_ausente_en_un_punto_cuenta_como_cero(self, data_dir, cuadros_dir):
         puntos = _puntos_con_cuadro(data_dir, cuadros_dir, "municipal")
         serie, totales = _serie_localidad(cuadros_dir, puntos, "BARRIO_B")

@@ -12,7 +12,15 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 
-from analisis.graficos import IDEOLOGIAS, _COLOR_IDEOLOGIA, _cargar_circuito, _votos_por_ideologia
+from analisis.graficos import (
+    CATEGORIAS_NO_IDEOLOGICAS,
+    IDEOLOGIAS,
+    _cargar_circuito,
+    _votos_no_ideologicos,
+    _votos_por_ideologia,
+    color_categoria,
+    etiqueta_categoria,
+)
 
 NIVELES = {
     "nacional": ("presidente", "nacional"),
@@ -51,20 +59,24 @@ def _puntos_del_nivel(data_dir: Path | str, nivel: str) -> list[tuple[int, str]]
 
 
 def _serie_por_anio(data_dir: Path | str, nivel: str):
-    """Devuelve (puntos, {ideologia: [votos por punto]}, [total por punto])
-    con `puntos` = [(año, cargo_especifico), ...] ordenado."""
+    """Devuelve (puntos, {categoria: [votos por punto]}, [total por punto])
+    con `puntos` = [(año, cargo_especifico), ...] ordenado. `categoria`
+    recorre `IDEOLOGIAS.values()` + `CATEGORIAS_NO_IDEOLOGICAS`
+    (blanco_nulo, ausentismo)."""
     puntos = _puntos_del_nivel(data_dir, nivel)
     if not puntos:
         raise FileNotFoundError(f"no hay datos para el nivel {nivel!r} en {data_dir!r}")
 
-    serie = {ideologia: [] for ideologia in IDEOLOGIAS.values()}
+    categorias = list(IDEOLOGIAS.values()) + CATEGORIAS_NO_IDEOLOGICAS
+    serie = {categoria: [] for categoria in categorias}
     totales = []
     for anio, cargo in puntos:
         contenido = _cargar_circuito(data_dir, anio, cargo)
         votos = _votos_por_ideologia(contenido, circuito_id=None)
+        votos.update(_votos_no_ideologicos(contenido, circuito_id=None))
         totales.append(sum(votos.values()))
-        for ideologia in IDEOLOGIAS.values():
-            serie[ideologia].append(votos.get(ideologia, 0))
+        for categoria in categorias:
+            serie[categoria].append(votos.get(categoria, 0))
     return puntos, serie, totales
 
 
@@ -76,16 +88,16 @@ def graficar_serie_temporal(data_dir: Path | str, nivel: str, en_porcentaje: boo
     if ax is None:
         _, ax = plt.subplots(figsize=(10, 5))
 
-    for ideologia in IDEOLOGIAS.values():
-        valores = serie[ideologia]
+    for categoria in list(IDEOLOGIAS.values()) + CATEGORIAS_NO_IDEOLOGICAS:
+        valores = serie[categoria]
         if en_porcentaje:
             valores = [v / t * 100 if t else 0 for v, t in zip(valores, totales)]
-        ax.plot(anios, valores, marker="o", label=ideologia, color=_COLOR_IDEOLOGIA[ideologia])
+        ax.plot(anios, valores, marker="o", label=etiqueta_categoria(categoria), color=color_categoria(categoria))
 
     ax.set_xticks(anios, labels=etiquetas_x, fontsize="small")
-    ax.set_ylabel("% de los positivos" if en_porcentaje else "votos")
-    metrica = "% por campo ideológico" if en_porcentaje else "votos por campo ideológico"
-    ax.set_title(f"La Plata — {nivel} — {metrica}, {anios[0]}-{anios[-1]}")
+    ax.set_ylabel("% del padrón" if en_porcentaje else "votos / personas")
+    metrica = "% del padrón" if en_porcentaje else "votos y ausentismo"
+    ax.set_title(f"La Plata — {nivel} — {metrica}, por campo ideológico + blanco/nulo + ausentismo, {anios[0]}-{anios[-1]}")
     ax.legend(loc="center left", bbox_to_anchor=(1.0, 0.5), fontsize="small", frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
     ax.figure.tight_layout()

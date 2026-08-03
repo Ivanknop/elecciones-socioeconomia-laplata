@@ -119,7 +119,10 @@ order, 01→04) are the pipeline**.
   to a `SIN_DETERMINAR` row) and `src/analisis/cuadros_por_localidad.py`
   applies it on top of the `circuito_<nivel>.json` files notebook 04
   already produces, writing CSVs to `data/por_localidad/` (derived, not
-  git-tracked — regenerated in seconds, same as `graficos/`).
+  git-tracked — regenerated in seconds, same as `graficos/`). Each row has,
+  besides the 6 `campo_ideologico` columns, `blanco_nulo`, `otros`
+  (procedural: impugnado/recurrido/comando) and `ausentismo` (circuit
+  `electores` minus its valid votes).
   `src/analisis/serie_temporal_por_localidad.py` reads those CSVs and
   plots to `graficos/por_localidad/`. Details, coverage-by-circuito, and
   the discrepancy audit between the two source levels are in
@@ -129,6 +132,12 @@ order, 01→04) are the pipeline**.
 
 - **`src/analisis/`** reads only the derived `circuito_<nivel>.json` files
   (never the client/models layer directly) and plots by `campo_ideologico`.
+  Every chart (this module, `serie_temporal_filiacion.py`, and the
+  `por_localidad` variants) always adds two more series alongside the
+  ideological/filiación breakdown — `blanco_nulo` and `ausentismo`
+  (`electores` minus votos válidos) — computed by
+  `graficos._votos_no_ideologicos`, in neutral gray so they don't compete
+  with the ideology palette.
   `graficos.py` has the reusable `graficar_barras`/`graficar_torta`
   functions; `generar_graficos.py`, `serie_temporal.py`, and
   `cuadros_anualizados.py` are scripts that call them to bulk-write PNGs

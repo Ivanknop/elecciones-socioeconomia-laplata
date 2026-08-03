@@ -194,3 +194,24 @@ class TestGenerarCuadroLocalidad:
         assert cuadro["votos"].sum() == 5
         assert cuadro["blanco_nulo"].sum() == 5
         assert cuadro["otros"].sum() == 0
+
+    def test_columna_ausentismo_es_padron_menos_votos_validos(self, circuito_json_path, crosswalk_path, tmp_path):
+        salida = generar_cuadro_localidad(
+            circuito_json_path, tmp_path / "por_localidad", 2023, "intendente", "generales", crosswalk_path,
+        )
+        cuadro = _leer_cuadro(salida)
+        fila = cuadro.set_index("localidad").loc["BARRIO_A"]
+        # circuito 100: electores=100, votos=60+20+5+1=86 -> ausentismo=14
+        # circuito 101: electores=100, votos=30+2=32 -> ausentismo=68
+        assert fila["ausentismo"] == 14 + 68
+
+    def test_ausentismo_no_pierde_electores_de_ningun_circuito(self, circuito_json_path, crosswalk_path, tmp_path):
+        contenido = json.loads(
+            (circuito_json_path / "2023" / "intendente" / "generales" / "circuito_intendente.json").read_text()
+        )
+        electores_totales = sum(c["electores"] for c in contenido["circuitos"].values())
+        salida = generar_cuadro_localidad(
+            circuito_json_path, tmp_path / "por_localidad", 2023, "intendente", "generales", crosswalk_path,
+        )
+        cuadro = _leer_cuadro(salida)
+        assert cuadro["ausentismo"].sum() == electores_totales - cuadro["votos"].sum()

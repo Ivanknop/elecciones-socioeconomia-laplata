@@ -257,11 +257,46 @@ cacheó, sin corregir, porque es el crudo devuelto por la API en su momento.
 `"coincide_con_agregado_json": false` y una `"advertencia_fuente"` explícita.
 Ningún paso del pipeline debería tomar los totales de ese JSON agregado.
 
+### Anomalía conocida: circuito 508G (2013) con más votos que electores
+
+Al calcular `ausentismo` (`electores` del circuito menos sus votos válidos —
+ver sección "Gráficos" más abajo) surgió un caso puntual: el circuito
+`508G`, en los tres cargos legislativos de 2013 (`municipal`, `nacional`,
+`provincial`, que comparten mesas), tiene más votos emitidos que `electores`
+registrados (ej. `municipal`: 619 votos vs. 429 electores, `ausentismo` =
+-190). `508G` es parte de la familia de circuitos subdivididos 504/505/508/509
+sin resolución equivalente a la 1990/2007 (ver skill `laplata-electoral`,
+"Gaps conocidos"), consistente con un problema de asignación de `mesa_electores`
+entre subdivisiones más que con un error de conteo de votos. No se corrigió
+el dato: `graficar_torta` detecta cualquier categoría negativa y muestra un
+aviso en vez de graficar la torta para ese circuito puntual (una torta no
+puede representar un gajo negativo); `graficar_barras` sí puede, y el bar
+label muestra el valor y % negativos tal cual.
+
+`ausentismo` también puede leerse mal en el sentido contrario: el circuito
+`493` en Presidente/Gobernador/Intendente 2023 tiene `electores=109` con
+`positivos=0` y `otros=0` (`AUDITORIA_ESTADO.md` ítem 8.1.5, `circuito
+entero sin ningún voto cargado — hueco de telegrama, no jornada sin
+votantes`), así que su gráfico muestra 100% `ausentismo` puntual. No es
+abstención real: es el mismo hueco de cobertura ya documentado, expresado
+ahora en la nueva métrica.
+
 ## Gráficos (`src/analisis/`, salida en `graficos/`)
 
 Barras y torta por **campo ideológico** (izquierda → derecha radical, con
 una paleta divergente azul↔rojo — es un dato de polaridad, no de identidad),
 a partir de `circuito_<nivel>.json`.
+
+**Todo gráfico de `src/analisis/` que desglosa por campo ideológico o
+filiación política suma siempre dos muestras más, en gris para no competir
+con la paleta de ideología**: `blanco_nulo` (votos en blanco + nulos — fue a
+votar, no eligió agrupación) y `ausentismo` (`electores` del circuito/nivel
+menos sus votos válidos — no fue a votar). `ausentismo` resta también los
+procedimentales del año (recurridos/impugnados/comando), aunque esos no se
+grafican como categoría propia (`graficos._votos_no_ideologicos`). Como
+ahora el total de cada gráfico incluye ausentismo, el % que muestra cada
+categoría pasa a ser aproximadamente "% del padrón" en vez de "% de los
+positivos".
 
 **Solo `graficos/distrito/serie_temporal/` está versionado en git.** El resto
 de `graficos/distrito/<año>/<nivel>/` (circuito por circuito, más el cuadro
@@ -352,8 +387,7 @@ fijados de forma sistemática.
 `filiacion_politica` (misma tabla) es un segundo campo, ortogonal a
 `campo_ideologico`: familia o identidad partidaria (peronistas,
 progresistas, liberales, marxistas, nacionalistas, conservadores,
-Centro-republicanos, peronismo provincial, vecinalistas_locales,
-terceras_vias_federales, sin_clasificar), no posición ideológico-programática
+peronismo provincial, otros), no posición ideológico-programática
 por elección. No varía por `anio`/`nivel` (una agrupación tiene una única
 `filiacion_politica` en todo el período, a diferencia de `campo_ideologico`,
 que sí puede cambiar elección a elección). Atiende el señalamiento de la
@@ -485,9 +519,10 @@ Lorenzo, Melchor Romero, etc.) con nombres legibles, no censales.
   no imagen), pero no se versiona: se regenera en segundos, igual criterio
   que `graficos/`. Cada cuadro trae, además de las 6 columnas de campo
   ideológico, una columna `blanco_nulo` (votos en blanco + nulos — no es
-  una ideología, pero tampoco se mezcla en un "otros" genérico) y una
+  una ideología, pero tampoco se mezcla en un "otros" genérico), una
   columna `otros` con el resto (impugnado/recurrido/comando,
-  procedimental), más la cobertura de circuitos/votos lograda como
+  procedimental) y una columna `ausentismo` (`electores` del circuito menos
+  sus votos válidos), más la cobertura de circuitos/votos lograda como
   comentario `#` en el encabezado.
 
   ```bash
@@ -497,10 +532,11 @@ Lorenzo, Melchor Romero, etc.) con nombres legibles, no censales.
 
 - **`src/analisis/serie_temporal_por_localidad.py`**: a partir de esos
   cuadros (no relee `circuito_<nivel>.json` ni el crosswalk), un gráfico
-  de serie temporal por campo ideológico por localidad y nivel de
-  gobierno (2011-2025), reusando la fusión ejecutivo+legislativo de
-  `serie_temporal.py`. Escribe en `graficos/por_localidad/`.
-  `SIN_DETERMINAR` se grafica siempre como una serie más, nunca se oculta.
+  de serie temporal por campo ideológico + `blanco_nulo` + `ausentismo`
+  por localidad y nivel de gobierno (2011-2025), reusando la fusión
+  ejecutivo+legislativo de `serie_temporal.py`. Escribe en
+  `graficos/por_localidad/`. `SIN_DETERMINAR` se grafica siempre como una
+  serie más, nunca se oculta.
 
   ```bash
   PYTHONPATH=src python -m analisis.serie_temporal_por_localidad                # todas las localidades, los 3 niveles

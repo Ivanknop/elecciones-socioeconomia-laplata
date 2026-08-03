@@ -77,7 +77,13 @@ Presidente 2015/2023).
   se redistribuye. Cualquier función de agregación debe poder probar
   que `suma(salida) == suma(entrada)`. Mismo criterio se usó al separar
   `blanco_nulo` de `otros` en `cuadros_por_localidad.py`: ambas columnas
-  quedan explícitas, ninguna absorbe a la otra en silencio.
+  quedan explícitas, ninguna absorbe a la otra en silencio. Todo gráfico
+  de `src/analisis/` (barras/torta, las tres series temporales,
+  `cuadros_anualizados`, y las variantes `por_localidad`) suma además
+  `blanco_nulo` y `ausentismo` (`electores` del circuito/nivel menos votos
+  válidos, vía `graficos._votos_no_ideologicos`) junto al desglose
+  ideológico/de filiación -- ningún gráfico se queda solo con "% de los
+  positivos".
 - **`clasificacion_ideologica_agrupaciones.csv` (columnas `campo_ideologico`
   y `filiacion_politica`) es append-only.** Nunca se regenera desde cero ni
   se sobreescribe con un script automático -- es curaduría manual. Es un
@@ -169,6 +175,17 @@ Presidente 2015/2023).
 - El cruce electoral↔socioeconómico completo (H1-H8 de
   `nota_metodologica.md`) todavía no existe. No asumir que sí al leer
   el nombre del repositorio.
+- El circuito **508G** (2013, `municipal`/`nacional`/`provincial`) tiene
+  más votos emitidos que `electores` registrados -> `ausentismo` negativo
+  para ese circuito puntual. Es de la misma familia subdivida sin
+  resolución (504/505/508/509) del punto anterior -- ver README, sección
+  "Anomalía conocida: circuito 508G". `graficar_torta` ya lo maneja (avisa
+  en vez de graficar); no es un bug a "corregir" ajustando el dato.
+- El circuito **493** en Presidente/Gobernador/Intendente 2023 tiene
+  `electores=109` con `positivos=0` y `otros=0` (ítem 8.1.5 de
+  `AUDITORIA_ESTADO.md`, hueco de telegrama). Su `ausentismo` puntual da
+  100% -- no es abstención real, es el mismo hueco de cobertura ya
+  documentado, no una fila nueva a investigar.
 
 ## Referencias
 

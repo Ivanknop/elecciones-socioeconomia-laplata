@@ -54,6 +54,7 @@ def _votos_por_circuito(contenido: dict) -> dict[str, dict[str, float]]:
         for categoria, votos in circuito["otros"].items():
             fila[_clasificar_no_positivo(categoria)] += votos
         fila[COLUMNA_TOTAL] = sum(v for k, v in fila.items() if k != COLUMNA_TOTAL)
+        fila["ausentismo"] = circuito["electores"] - fila[COLUMNA_TOTAL]
         resultados[circuito_id] = fila
     return resultados
 
@@ -90,6 +91,7 @@ def generar_cuadro_localidad(
         f"# Cobertura circuitos: {reporte.circuitos_agrupados}/{reporte.circuitos_totales} ({reporte.porcentaje_circuitos:.1f}%)",
         f"# Cobertura votos: {reporte.votos_agrupados:,.0f}/{reporte.votos_totales:,.0f} ({reporte.porcentaje_votos:.1f}%)",
         "# Columna blanco_nulo: votos en blanco + nulos",
+        "# Columna ausentismo: electores (padron) - votos (positivos + blanco_nulo + otros)",
         f"# Circuitos sin determinar: {sin_determinar}",
         f"# Confiabilidad de la clasificación por localidad: ver {AUDITORIA_PATH}",
     ])

@@ -1,4 +1,4 @@
-# Estado de la auditoría (`NOTA_METODOLOGICA.md`, Sección 8) — a v3.0.1
+# Estado de la auditoría (`NOTA_METODOLOGICA.md`, Sección 8) — a v3.1.1
 
 Este documento existe porque la nota metodológica es un documento de trabajo
 fechado sobre `v1.0.0`. Se actualiza cada vez que se cierra un punto.
@@ -19,10 +19,10 @@ Convención: 🟢 resuelto · 🟡 parcial · 🔴 abierto
 | 8 | Inconsistencias del README (3 vs 4 columnas, "años pares", instrucción truncada) | 🟢 | README reescrito en `3899006` |
 | 9 | Escala ideológica duplicada (CSV sin usar) | 🔴 | sigue sin verificar en v2.0.0 — revisar si `graficos.py` ya lee `campo_ideologico.csv` o sigue con el diccionario propio |
 | 10 | Series unen cargos distintos sin marcarlo | 🟡 | está documentado en README con tabla explícita; **falta** el panel/serie separada por cargo que pide la nota |
-| 11 | Gráficos omiten blancos/nulos/abstención; volumen de PNG | 🔴 | sin cambios conocidos |
+| 11 | Gráficos omiten blancos/nulos/abstención; volumen de PNG | 🟡 | resuelta la primera mitad (blancos/nulos/abstención): todo gráfico de `src/analisis/` (barras/torta, las tres series temporales, `cuadros_anualizados`, y las variantes `por_localidad`) suma ahora `blanco_nulo` y `ausentismo` (`electores` del circuito/nivel menos votos válidos) junto al desglose por `campo_ideologico`/`filiacion_politica`, vía `graficos._votos_no_ideologicos` — el % que muestra cada gráfico pasa de "% de los positivos" a "% del padrón" (ver README, sección "Gráficos"). Cambio sin commitear todavía. **Sigue abierto**: el volumen de PNG (miles de archivos por circuito) y la tabla maestra analítica que pide la nota como reemplazo no cambiaron. |
 | 12 | Dependencia de notebooks y cwd; sin tests de `client.py`/`analisis/` | 🟡 | se agregaron tests de `models.py` (`909760e`); con `d006699` también se agregó cobertura para la capa de localidades (`test_localidades.py`, `test_cuadros_por_localidad.py`, `test_serie_temporal_por_localidad.py`) — pero `client.py` y el resto de `src/analisis/*` (`graficos.py`, `generar_graficos.py`, `serie_temporal.py`, `cuadros_anualizados.py`) siguen sin cobertura |
 | 13 | Falta procedencia (hash, fecha, versión del libro de códigos) por archivo derivado | 🔴 | sin cambios conocidos |
-| 14 | Repositorio pesado (PNG + datos) | 🔴 | sin cambios conocidos; v2.0.0 además suma varios GeoJSON grandes |
+| 14 | Repositorio pesado (PNG + datos) | 🟡 |  `.gitignore` solo trackea `graficos/distrito/serie_temporal/` + `graficos/socioeconomia/eph/` — 23 archivos, 3,0 MB — el resto de `graficos/` se regenera on demand y no se sube. La mitad "datos" es la real y sigue pesando: `data/distrito/**/*.csv` (46 CSV crudos por mesa — uno por año/nivel/etapa, incluye PASO) suma 223 MB en el working tree (86 MB empaquetado en `.git`, medido con `git count-objects -v`) y es la gran mayoría del repo (233 MB trackeados en total). Pero no es bloat: son la caché de la API que el propio README pide mantener para no depender de red en cada reproducción del pipeline (notebooks 01-04 ya "ejecutados" contra `resultados.mininterior.gob.ar`, cuyo re-fetch completo no tendría sentido hacer de forma rutinaria). **Conclusión**: no hay bloat desperdiciado para limpiar; si se quisiera reducir en serio, la única palanca real es dejar de trackear `data/distrito/**/*.csv` y aceptar que reproducir el pipeline exige red. |
 
 ## 8.2 — Codificaciones políticas a revisar
 
@@ -67,7 +67,7 @@ oficialismo, dimensiones programáticas separadas) — solo familia política.
 
 ## Sección 10
 
-| Pieza pedida | Estado a v2.0.1 |
+| Pieza pedida | Estado a v3.1.1 |
 |---|---|
 | Hoja de pregunta/objetivos/hipótesis | 🟢 esta misma nota, incorporada |
 | Libro de códigos político | 🟡 ver "Construir el libro de códigos" arriba y 8.2 |
@@ -77,7 +77,7 @@ oficialismo, dimensiones programáticas separadas) — solo familia política.
 
 ## Lectura del conjunto
 
-De los 14 puntos técnicos de 8.1, **6 están resueltos, 3 parciales y 5
+De los 14 puntos técnicos de 8.1, **6 están resueltos, 5 parciales y 3
 abiertos**. De las 5 piezas del "producto mínimo" que pedía la Sección 10,
 la primera (esta nota) está resuelta y el libro de códigos político pasó a
 parcial (`filiacion_politica`, ver 8.2) — tabla maestra y cruce

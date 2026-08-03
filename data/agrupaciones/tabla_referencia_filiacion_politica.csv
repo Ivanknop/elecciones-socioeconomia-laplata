@@ -66,9 +66,9 @@ VAMOS CREANDO CIUDAD NUEVA,progresistas,media,Patria Grande
 ALIANZA FRENTE AMPLIO PROGRESISTA,progresistas,alta,Frente Amplio Progresista (Binner/Solanas)
 ALIANZA PROGRESISTAS,progresistas,alta,Ver Frente Amplio Progresista
 ALIANZA PROYECTO SUR,progresistas,alta,"Proyecto Sur, Pino Solanas"
-COALICION CIVICA ARI,Centro-republicanos,media,"CC-ARI, origen en ARI/FREPASO, republicanismo progresista"
-COALICIÓN CÍVICA - A.R.I.,Centro-republicanos,media,Ver Coalición Cívica
-COALICIÓN CÍVICA - AFIRMACIÓN PARA UNA REPÚBLICA IGUALITARIA ARI,Centro-republicanos,media,Idem CC-ARI
+COALICION CIVICA ARI,otros,Centro-republicanos,"CC-ARI, origen en ARI/FREPASO, republicanismo progresista"
+COALICIÓN CÍVICA - A.R.I.,otros,Centro-republicanos,Ver Coalición Cívica
+COALICIÓN CÍVICA - AFIRMACIÓN PARA UNA REPÚBLICA IGUALITARIA ARI,otros,Centro-republicanos,Idem CC-ARI
 ENCUENTRO POPULAR POR TIERRA TECHO Y TRABAJO,progresistas,media,Movimientos populares/piqueteros de izquierda no marxista
 FRENTE AMPLIO PROGRESISTA,progresistas,alta,Ver arriba
 FRENTE POPULAR DEMOCRATICO Y SOCIAL (PODEMOS),progresistas,media,Frente de centroizquierda
@@ -102,12 +102,12 @@ PARTIDO NUEVO BUENOS AIRES,sin_clasificar,baja,Sin información suficiente
 PROYECTO JOVEN,sin_clasificar,baja,Sin información suficiente
 ALIANZA COMPROMISO FEDERAL,peronismo provincial,media,Idem Compromiso Federal
 ALIANZA PROVINCIAS UNIDAS,peronismo provincial,media,"Alianza de gobernadores 2025, mezcla peronismo federal no kirchnerista y radicalismo (Pullaro)"
-ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO,Centro-republicanos,baja,ricardo alfonsin +  de narvaez
+ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO,otros,Centro-republicanos,ricardo alfonsin +  de narvaez
 ALIANZA UNIÓN FEDERAL,peronismo provincial,baja,Sin información suficiente
-ALIANZA UNIÓN PARA EL DESARROLLO SOCIAL,Centro-republicanos,baja,ricardo alfonsin +  de narvaez
+ALIANZA UNIÓN PARA EL DESARROLLO SOCIAL,otros,Centro-republicanos,ricardo alfonsin +  de narvaez
 COMPROMISO FEDERAL,peronismo provincial,media,Peronismo federal/disidente (espacio de A. Rodríguez Saá 2011)
 CONSENSO FEDERAL,peronismo provincial,media,"Espacio de R. Lavagna, desarrollismo/peronismo federal moderado"
-DEL CAMPO POPULAR,terceras_vias_federales,baja,Sin información suficiente; nombre sugiere espacio nacional-popular
+DEL CAMPO POPULAR,otros,otros,Sin información suficiente; nombre sugiere espacio nacional-popular
 FEDERAL,peronismo provincial,baja,"Nombre genérico, sin información suficiente"
 FRENTE FEDERAL DE ACCION SOLIDARIA DE LA PROVINCIA DE BUENOS AIRES,peronismo provincial,baja,Sin información suficiente
 FRENTE UNION FEDERAL,peronismo provincial,baja,Sin información suficiente
@@ -116,7 +116,7 @@ PARTIDO POPULAR,peronismo provincial,alta,"Vigo, platense"
 PARTIDO RENOVADOR FEDERAL,peronistas,alta,massismo
 PROPUESTA FEDERAL PARA EL CAMBIO,liberales,alta,pro
 TODOS POR BUENOS AIRES,conservadores,alta,https://www.laizquierdadiario.com/Los-defensores-de-los-genocidas-tambien-tienen-su-partido-en-las-PASO
-ALTERNATIVA VECINAL PLATENSE,vecinalistas_locales,alta,Frente vecinalista platense
-MOVIMIENTO DE ACCION VECINAL,vecinalistas_locales,media,Frente vecinalista
+ALTERNATIVA VECINAL PLATENSE,otros,vecinalistas_locales,Frente vecinalista platense
+MOVIMIENTO DE ACCION VECINAL,otros,vecinalistas_locales,Frente vecinalista
 UNION DEL PUEBLO LA PLATA,marxistas,alta,Son la JG
-UVEP-U. VECINALISTA PLATENSE,vecinalistas_locales,alta,Frente vecinalista platense
+UVEP-U. VECINALISTA PLATENSE,otros,vecinalistas_locales,Frente vecinalista platense

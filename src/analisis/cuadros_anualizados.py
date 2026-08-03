@@ -16,7 +16,15 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-from analisis.graficos import IDEOLOGIAS, _COLOR_IDEOLOGIA, _cargar_circuito, _votos_por_ideologia
+from analisis.graficos import (
+    CATEGORIAS_NO_IDEOLOGICAS,
+    IDEOLOGIAS,
+    _cargar_circuito,
+    _votos_no_ideologicos,
+    _votos_por_ideologia,
+    color_categoria,
+    etiqueta_categoria,
+)
 
 NIVELES_POR_ANIO = {
     2011: ["presidente", "gobernador", "intendente"],
@@ -56,37 +64,39 @@ def graficar_cuadro_anual(data_dir: Path | str, anio: int, en_porcentaje: bool =
     if not niveles:
         raise FileNotFoundError(f"no hay datos de {anio} en {data_dir!r}")
 
-    ideologias = list(IDEOLOGIAS.values())
+    categorias = list(IDEOLOGIAS.values()) + CATEGORIAS_NO_IDEOLOGICAS
     totales_por_nivel = {}
     for nivel in niveles:
         contenido = _cargar_circuito(data_dir, anio, nivel)
-        totales_por_nivel[nivel] = _votos_por_ideologia(contenido, circuito_id=None)
+        totales = _votos_por_ideologia(contenido, circuito_id=None)
+        totales.update(_votos_no_ideologicos(contenido, circuito_id=None))
+        totales_por_nivel[nivel] = totales
 
     if ax is None:
         _, ax = plt.subplots(figsize=(11, 5))
 
     n_niveles = len(niveles)
     ancho = 0.8 / n_niveles
-    x = np.arange(len(ideologias))
+    x = np.arange(len(categorias))
     alphas = np.linspace(0.5, 1.0, n_niveles)
 
     for i, nivel in enumerate(niveles):
         totales = totales_por_nivel[nivel]
         total_nivel = sum(totales.values())
-        valores = [totales.get(ideologia, 0) for ideologia in ideologias]
+        valores = [totales.get(categoria, 0) for categoria in categorias]
         if en_porcentaje:
             valores = [v / total_nivel * 100 if total_nivel else 0 for v in valores]
-        colores = [_COLOR_IDEOLOGIA[ideologia] for ideologia in ideologias]
+        colores = [color_categoria(categoria) for categoria in categorias]
         ax.bar(
             x + i * ancho, valores, width=ancho * 0.92, label=CARGO_LABEL[nivel],
             color=colores, edgecolor="white", linewidth=0.5, alpha=alphas[i],
         )
 
     ax.set_xticks(x + ancho * (n_niveles - 1) / 2)
-    ax.set_xticklabels(ideologias, rotation=20, ha="right")
-    ax.set_ylabel("% de los positivos" if en_porcentaje else "votos")
-    metrica = "% por campo ideológico" if en_porcentaje else "votos por campo ideológico"
-    ax.set_title(f"La Plata {anio} — {metrica}, por cargo")
+    ax.set_xticklabels([etiqueta_categoria(categoria) for categoria in categorias], rotation=20, ha="right")
+    ax.set_ylabel("% del padrón" if en_porcentaje else "votos / personas")
+    metrica = "% del padrón" if en_porcentaje else "votos y ausentismo"
+    ax.set_title(f"La Plata {anio} — {metrica}, por campo ideológico + blanco/nulo + ausentismo, por cargo")
     ax.legend(frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
     ax.figure.tight_layout()

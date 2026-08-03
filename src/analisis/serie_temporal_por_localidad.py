@@ -21,8 +21,10 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from analisis.graficos import IDEOLOGIAS, _COLOR_IDEOLOGIA
+from analisis.graficos import CATEGORIAS_NO_IDEOLOGICAS, IDEOLOGIAS, color_categoria, etiqueta_categoria
 from analisis.serie_temporal import CARGO_LABEL, NIVELES, _puntos_del_nivel
+
+CATEGORIAS = list(IDEOLOGIAS.values()) + CATEGORIAS_NO_IDEOLOGICAS
 
 
 def _ruta_cuadro(cuadros_dir: Path | str, anio: int, cargo: str) -> Path:
@@ -51,19 +53,22 @@ def _localidades_en_puntos(cuadros_dir: Path | str, puntos: list[tuple[int, str]
 
 
 def _serie_localidad(cuadros_dir: Path | str, puntos: list[tuple[int, str]], localidad: str):
-    """Devuelve ({ideologia: [votos por punto]}, [total_positivos por punto])."""
-    serie = {ideologia: [] for ideologia in IDEOLOGIAS.values()}
+    """Devuelve ({categoria: [votos por punto]}, [total por punto]), con
+    `categoria` recorriendo `CATEGORIAS` (ideologías + blanco_nulo +
+    ausentismo). Cuadros viejos sin las columnas nuevas cuentan como 0 en
+    vez de fallar."""
+    serie = {categoria: [] for categoria in CATEGORIAS}
     totales = []
     for anio, cargo in puntos:
         df = _cargar_cuadro(cuadros_dir, anio, cargo)
         fila = df[df["localidad"] == localidad]
         valores = {
-            ideologia: (fila[ideologia].iloc[0] if not fila.empty else 0)
-            for ideologia in IDEOLOGIAS.values()
+            categoria: (fila[categoria].iloc[0] if not fila.empty and categoria in df.columns else 0)
+            for categoria in CATEGORIAS
         }
         totales.append(sum(valores.values()))
-        for ideologia in IDEOLOGIAS.values():
-            serie[ideologia].append(valores[ideologia])
+        for categoria in CATEGORIAS:
+            serie[categoria].append(valores[categoria])
     return serie, totales
 
 
@@ -82,16 +87,16 @@ def graficar_serie_localidad(
     if ax is None:
         _, ax = plt.subplots(figsize=(10, 5))
 
-    for ideologia in IDEOLOGIAS.values():
-        valores = serie[ideologia]
+    for categoria in CATEGORIAS:
+        valores = serie[categoria]
         if en_porcentaje:
             valores = [v / t * 100 if t else 0 for v, t in zip(valores, totales)]
-        ax.plot(anios, valores, marker="o", label=ideologia, color=_COLOR_IDEOLOGIA[ideologia])
+        ax.plot(anios, valores, marker="o", label=etiqueta_categoria(categoria), color=color_categoria(categoria))
 
     ax.set_xticks(anios, labels=etiquetas_x, fontsize="small")
-    ax.set_ylabel("% de los positivos" if en_porcentaje else "votos")
-    metrica = "% por campo ideológico" if en_porcentaje else "votos por campo ideológico"
-    ax.set_title(f"La Plata — {localidad} — {nivel} — {metrica}, {anios[0]}-{anios[-1]}")
+    ax.set_ylabel("% del padrón" if en_porcentaje else "votos / personas")
+    metrica = "% del padrón" if en_porcentaje else "votos y ausentismo"
+    ax.set_title(f"La Plata — {localidad} — {nivel} — {metrica}, por campo ideológico + blanco/nulo + ausentismo, {anios[0]}-{anios[-1]}")
     ax.legend(loc="center left", bbox_to_anchor=(1.0, 0.5), fontsize="small", frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
     ax.figure.tight_layout()

@@ -21,19 +21,12 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 
-from analisis.graficos import _cargar_circuito
+from analisis.graficos import CATEGORIAS_NO_IDEOLOGICAS, _cargar_circuito, _votos_no_ideologicos, color_categoria, etiqueta_categoria
 from analisis.serie_temporal import CARGO_LABEL, NIVELES, _puntos_del_nivel
 
 # Orden fijo por volumen total de filas clasificadas en
 # clasificacion_ideologica_agrupaciones.csv (no se cicla ni se reordena por
-# año/nivel). 11 categorías -- más de las ~8 que family el validador de la
-# skill de dataviz de este proyecto puede confirmar como colorblind-safe
-# (`scripts/validate_palette.js` solo cubre hasta 8 slots); decisión explícita
-# de mantener las 11 tal como las clasificó `tabla_referencia_filiacion_politica.csv`,
-# sin plegar las minoritarias en "Otros". Las primeras 8 usan los slots
-# categóricos ya validados de ese sistema; las últimas 3 (categorías chicas)
-# usan colores adicionales elegidos por contraste visual, sin validación
-# formal de daltonismo.
+# año/nivel).
 _COLOR_FILIACION = {
     "peronistas": "#2a78d6",
     "progresistas": "#eb6834",
@@ -42,10 +35,7 @@ _COLOR_FILIACION = {
     "nacionalistas": "#e87ba4",
     "peronismo provincial": "#008300",
     "conservadores": "#4a3aa7",
-    "Centro-republicanos": "#e34948",
-    "sin_clasificar": "#9e9e9e",
-    "vecinalistas_locales": "#8b5a2b",
-    "terceras_vias_federales": "#546e7a",
+    "otros": "#9e9e9e",
 }
 
 
@@ -80,28 +70,30 @@ def _votos_por_filiacion(contenido: dict, filiaciones: dict[str, str], circuito_
 
 
 def _serie_por_anio_filiacion(data_dir: Path | str, agrupaciones_dir: Path | str, nivel: str):
-    """Devuelve (puntos, {filiacion: [votos por punto]}, [total por punto])
-    con `puntos` = [(año, cargo_especifico), ...] ordenado."""
+    """Devuelve (puntos, {filiacion|categoria: [votos por punto]}, [total por
+    punto]) con `puntos` = [(año, cargo_especifico), ...] ordenado. Además de
+    las filiaciones, la serie siempre trae `blanco_nulo` y `ausentismo`
+    (`CATEGORIAS_NO_IDEOLOGICAS`)."""
     puntos = _puntos_del_nivel(data_dir, nivel)
     if not puntos:
         raise FileNotFoundError(f"no hay datos para el nivel {nivel!r} en {data_dir!r}")
 
     filiaciones = _cargar_filiaciones(agrupaciones_dir)
-    serie = {f: [] for f in _COLOR_FILIACION}
+    categorias = list(_COLOR_FILIACION) + CATEGORIAS_NO_IDEOLOGICAS
+    serie = {c: [] for c in categorias}
     totales = []
     for anio, cargo in puntos:
         contenido = _cargar_circuito(data_dir, anio, cargo)
         votos = _votos_por_filiacion(contenido, filiaciones, circuito_id=None)
+        votos.update(_votos_no_ideologicos(contenido, circuito_id=None))
         totales.append(sum(votos.values()))
-        for f in _COLOR_FILIACION:
-            serie[f].append(votos.get(f, 0))
+        for c in categorias:
+            serie[c].append(votos.get(c, 0))
     return puntos, serie, totales
 
 
 def graficar_serie_temporal_filiacion(data_dir: Path | str, agrupaciones_dir: Path | str, nivel: str, ax=None):
-    """% de los positivos por filiación política, un punto por (año, cargo
-    específico del nivel) -- única variante (no hay versión en votos crudos,
-    a diferencia de `serie_temporal.graficar_serie_temporal`)."""
+    """% del padrón por filiación política + blanco/nulo + ausentismo."""
     puntos, serie, totales = _serie_por_anio_filiacion(data_dir, agrupaciones_dir, nivel)
     anios = [a for a, _ in puntos]
     etiquetas_x = [f"{a}\n{CARGO_LABEL[cargo]}" for a, cargo in puntos]
@@ -116,9 +108,14 @@ def graficar_serie_temporal_filiacion(data_dir: Path | str, agrupaciones_dir: Pa
         porcentajes = [v / t * 100 if t else 0 for v, t in zip(valores, totales)]
         ax.plot(anios, porcentajes, marker="o", label=filiacion, color=color)
 
+    for categoria in CATEGORIAS_NO_IDEOLOGICAS:
+        valores = serie[categoria]
+        porcentajes = [v / t * 100 if t else 0 for v, t in zip(valores, totales)]
+        ax.plot(anios, porcentajes, marker="o", label=etiqueta_categoria(categoria), color=color_categoria(categoria))
+
     ax.set_xticks(anios, labels=etiquetas_x, fontsize="small")
-    ax.set_ylabel("% de los positivos")
-    ax.set_title(f"La Plata — {nivel} — % por filiación política, {anios[0]}-{anios[-1]}")
+    ax.set_ylabel("% del padrón")
+    ax.set_title(f"La Plata — {nivel} — % por filiación política + blanco/nulo + ausentismo, {anios[0]}-{anios[-1]}")
     ax.legend(loc="center left", bbox_to_anchor=(1.0, 0.5), fontsize="small", frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
     ax.figure.tight_layout()
