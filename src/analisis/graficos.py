@@ -63,6 +63,23 @@ def color_categoria(categoria: str) -> str:
     return _COLOR_IDEOLOGIA.get(categoria) or _COLOR_NO_IDEOLOGICA[categoria]
 
 
+def etiquetar_puntos(ax, x, y, color: str, arriba: bool = True) -> None:
+    """Escribe el valor exacto (`{:.1f}%`) sobre cada punto de una serie --
+    para series temporales de porcentaje, donde leer el valor a ojo en el eje
+    y no alcanza. Usa el mismo color de la serie para que quede asociada al
+    trazo, con un offset chico en vez de tocar el marcador. `arriba` alterna
+    la etiqueta entre arriba/abajo del punto según la serie (llamador decide
+    el patrón)
+    """
+    offset = (0, 6) if arriba else (0, -10)
+    va = "bottom" if arriba else "top"
+    for xi, yi in zip(x, y):
+        ax.annotate(
+            f"{yi:.1f}%", (xi, yi), textcoords="offset points", xytext=offset,
+            ha="center", va=va, fontsize="x-small", color=color,
+        )
+
+
 def _cargar_circuito(data_dir: Path | str, anio: int, nivel: str) -> dict:
     path = Path(data_dir) / str(anio) / nivel / "generales" / f"circuito_{nivel}.json"
     return json.loads(path.read_text(encoding="utf-8"))

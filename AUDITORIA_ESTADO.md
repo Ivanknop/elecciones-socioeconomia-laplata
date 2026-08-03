@@ -1,4 +1,4 @@
-# Estado de la auditoría (`NOTA_METODOLOGICA.md`, Sección 8) — a v3.1.1
+# Estado de la auditoría (`NOTA_METODOLOGICA.md`, Sección 8) — a v3.3.0
 
 Este documento existe porque la nota metodológica es un documento de trabajo
 fechado sobre `v1.0.0`. Se actualiza cada vez que se cierra un punto.
@@ -18,7 +18,7 @@ Convención: 🟢 resuelto · 🟡 parcial · 🔴 abierto
 | 7 | Todo el repo usa escrutinio provisorio | 🔴 | sigue sin sustituir/contrastar con definitivos; falta registrar fecha de descarga por archivo. El caso del circuito 493/2023 (ítem 5) es compatible con esto — un circuito remoto ("límite incierto", cabecera "Isla Martín García" según `README.md`) sin telegrama cargado al momento de la consulta — pero sigue siendo una hipótesis, no un diagnóstico confirmado |
 | 8 | Inconsistencias del README (3 vs 4 columnas, "años pares", instrucción truncada) | 🟢 | README reescrito en `3899006` |
 | 9 | Escala ideológica duplicada (CSV sin usar) | 🔴 | sigue sin verificar en v2.0.0 — revisar si `graficos.py` ya lee `campo_ideologico.csv` o sigue con el diccionario propio |
-| 10 | Series unen cargos distintos sin marcarlo | 🟡 | está documentado en README con tabla explícita; **falta** el panel/serie separada por cargo que pide la nota |
+| 10 | Series unen cargos distintos sin marcarlo | 🟡 | está documentado en README con tabla explícita; el panel/serie separada por cargo que pedía la nota ya existe en dos formas -- `cuadros_anualizados.py` (bar chart por año, cargos lado a lado, sin sumarlos) y, esta sesión, `comparativo_nivel.py` (cuadro Markdown por año con el % de cada agrupación en Municipio/Provincia/Nación más las tres diferencias entre pares). **Sigue faltando**: marcar visualmente el cambio de tipo de elección dentro de la serie fusionada de `serie_temporal.py` en sí (hoy solo está en el sub-label de texto del eje x, no en el trazo) |
 | 11 | Gráficos omiten blancos/nulos/abstención; volumen de PNG | 🟡 | resuelta la primera mitad (blancos/nulos/abstención): todo gráfico de `src/analisis/` (barras/torta, las tres series temporales, `cuadros_anualizados`, y las variantes `por_localidad`) suma ahora `blanco_nulo` y `ausentismo` (`electores` del circuito/nivel menos votos válidos) junto al desglose por `campo_ideologico`/`filiacion_politica`, vía `graficos._votos_no_ideologicos` — el % que muestra cada gráfico pasa de "% de los positivos" a "% del padrón" (ver README, sección "Gráficos"). Cambio sin commitear todavía. **Sigue abierto**: el volumen de PNG (miles de archivos por circuito) y la tabla maestra analítica que pide la nota como reemplazo no cambiaron. |
 | 12 | Dependencia de notebooks y cwd; sin tests de `client.py`/`analisis/` | 🟡 | se agregaron tests de `models.py` (`909760e`); con `d006699` también se agregó cobertura para la capa de localidades (`test_localidades.py`, `test_cuadros_por_localidad.py`, `test_serie_temporal_por_localidad.py`) — pero `client.py` y el resto de `src/analisis/*` (`graficos.py`, `generar_graficos.py`, `serie_temporal.py`, `cuadros_anualizados.py`) siguen sin cobertura |
 | 13 | Falta procedencia (hash, fecha, versión del libro de códigos) por archivo derivado | 🔴 | sin cambios conocidos |
@@ -67,7 +67,7 @@ oficialismo, dimensiones programáticas separadas) — solo familia política.
 
 ## Sección 10
 
-| Pieza pedida | Estado a v3.1.1 |
+| Pieza pedida | Estado a v3.3.0 |
 |---|---|
 | Hoja de pregunta/objetivos/hipótesis | 🟢 esta misma nota, incorporada |
 | Libro de códigos político | 🟡 ver "Construir el libro de códigos" arriba y 8.2 |

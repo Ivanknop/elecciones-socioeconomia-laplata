@@ -20,6 +20,7 @@ from analisis.graficos import (
     _votos_por_ideologia,
     color_categoria,
     etiqueta_categoria,
+    etiquetar_puntos,
 )
 
 NIVELES = {
@@ -88,11 +89,14 @@ def graficar_serie_temporal(data_dir: Path | str, nivel: str, en_porcentaje: boo
     if ax is None:
         _, ax = plt.subplots(figsize=(10, 5))
 
-    for categoria in list(IDEOLOGIAS.values()) + CATEGORIAS_NO_IDEOLOGICAS:
+    for i, categoria in enumerate(list(IDEOLOGIAS.values()) + CATEGORIAS_NO_IDEOLOGICAS):
         valores = serie[categoria]
         if en_porcentaje:
             valores = [v / t * 100 if t else 0 for v, t in zip(valores, totales)]
-        ax.plot(anios, valores, marker="o", label=etiqueta_categoria(categoria), color=color_categoria(categoria))
+        color = color_categoria(categoria)
+        ax.plot(anios, valores, marker="o", label=etiqueta_categoria(categoria), color=color)
+        if en_porcentaje:
+            etiquetar_puntos(ax, anios, valores, color, arriba=(i % 2 == 0))
 
     ax.set_xticks(anios, labels=etiquetas_x, fontsize="small")
     ax.set_ylabel("% del padrón" if en_porcentaje else "votos / personas")

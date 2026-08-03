@@ -33,6 +33,7 @@ PYTHONPATH=src python -m analisis.cuadros_por_localidad --anio 2023 --nivel inte
 PYTHONPATH=src python -m analisis.serie_temporal_por_localidad --nivel municipal  # per-locality time series, reads the tables above
 PYTHONPATH=src python -m electoral.totales --anio 2023 --nivel intendente  # total votes per agrupación for one (año, nivel)
 PYTHONPATH=src python -m analisis.totales_por_lista --anio 2023 --nivel intendente  # bar chart of that total, one per (año, nivel)
+PYTHONPATH=src python -m analisis.comparativo_nivel --anio 2019  # Municipio/Provincia/Nación comparison table, one per año
 ```
 
 There is no build/lint step configured. Tests cover `src/electoral/models.py`
@@ -145,15 +146,26 @@ order, 01→04) are the pipeline**.
   git-tracked, same criterion as `graficos/`. Reads `circuito_<nivel>.json`
   (CSV-derived) rather than the raw aggregate JSON on purpose — that JSON is
   known-wrong for Presidente 2019 (see README anomaly below).
-  `src/analisis/totales_por_lista.py` charts that same total (via
-  `resultado_total_por_agrupacion`, not by rereading the CSV): one horizontal
-  bar chart per (año, nivel), one bar per agrupación (not grouped by
-  ideology), colored by `campo_ideologico` via a live join against
-  `clasificacion_ideologica_agrupaciones.csv` (same pattern as
-  `serie_temporal_filiacion.py`). Writes to
+  `src/analisis/totales_por_lista.py` charts that same total plus
+  `blanco_nulo` (via `resultado_total_por_agrupacion`, not by rereading the
+  CSV — `blanco_nulo` is added and `votos_porcentaje` is recalculated over
+  the new total with `models.totalizar_agrupaciones`): one horizontal bar
+  chart per (año, nivel), one bar per agrupación (not grouped by ideology),
+  all ranked together by votes, colored by `campo_ideologico` via a live
+  join against `clasificacion_ideologica_agrupaciones.csv` (same pattern as
+  `serie_temporal_filiacion.py`; `blanco_nulo` gets the same gray used
+  everywhere else). Writes to
   `graficos/distrito/totales_por_lista/`, which **is** git-tracked (explicit
   `.gitignore` exception, same as `graficos/distrito/serie_temporal/`) even
   though the rest of `graficos/distrito/<año>/` is not.
+  `src/analisis/comparativo_nivel.py` writes a Markdown table (not a chart)
+  per año to `graficos/distrito/totales_por_lista/comparativos_nivel/`
+  (inherits the tracked exception from its parent dir, no extra
+  `.gitignore` rule needed): each agrupación's % in
+  Municipio/Provincia/Nación that year plus the three pairwise diffs, by
+  exact-name join across the three same-year cargos (empirically the same
+  alliance keeps one name across categories within a year). Skips years
+  with only one cargo (2025).
 
 - **`src/analisis/`** reads only the derived `circuito_<nivel>.json` files
   (never the client/models layer directly) and plots by `campo_ideologico`.

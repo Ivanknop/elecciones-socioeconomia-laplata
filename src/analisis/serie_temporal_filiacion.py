@@ -21,7 +21,14 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 
-from analisis.graficos import CATEGORIAS_NO_IDEOLOGICAS, _cargar_circuito, _votos_no_ideologicos, color_categoria, etiqueta_categoria
+from analisis.graficos import (
+    CATEGORIAS_NO_IDEOLOGICAS,
+    _cargar_circuito,
+    _votos_no_ideologicos,
+    color_categoria,
+    etiqueta_categoria,
+    etiquetar_puntos,
+)
 from analisis.serie_temporal import CARGO_LABEL, NIVELES, _puntos_del_nivel
 
 # Orden fijo por volumen total de filas clasificadas en
@@ -101,17 +108,23 @@ def graficar_serie_temporal_filiacion(data_dir: Path | str, agrupaciones_dir: Pa
     if ax is None:
         _, ax = plt.subplots(figsize=(10, 5))
 
+    i = 0
     for filiacion, color in _COLOR_FILIACION.items():
         valores = serie[filiacion]
         if not any(valores):
             continue  # esta filiación no tuvo votos en ningún punto de este nivel -- no ensucia la leyenda
         porcentajes = [v / t * 100 if t else 0 for v, t in zip(valores, totales)]
         ax.plot(anios, porcentajes, marker="o", label=filiacion, color=color)
+        etiquetar_puntos(ax, anios, porcentajes, color, arriba=(i % 2 == 0))
+        i += 1
 
     for categoria in CATEGORIAS_NO_IDEOLOGICAS:
         valores = serie[categoria]
         porcentajes = [v / t * 100 if t else 0 for v, t in zip(valores, totales)]
-        ax.plot(anios, porcentajes, marker="o", label=etiqueta_categoria(categoria), color=color_categoria(categoria))
+        color = color_categoria(categoria)
+        ax.plot(anios, porcentajes, marker="o", label=etiqueta_categoria(categoria), color=color)
+        etiquetar_puntos(ax, anios, porcentajes, color, arriba=(i % 2 == 0))
+        i += 1
 
     ax.set_xticks(anios, labels=etiquetas_x, fontsize="small")
     ax.set_ylabel("% del padrón")

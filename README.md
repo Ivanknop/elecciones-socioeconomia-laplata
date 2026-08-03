@@ -27,6 +27,7 @@ src/analisis/
   cuadros_por_localidad.py
   serie_temporal_por_localidad.py
   totales_por_lista.py
+  comparativo_nivel.py
 src/socioeconomia/
   geo.py
   eph_client.py
@@ -276,14 +277,6 @@ aviso en vez de graficar la torta para ese circuito puntual (una torta no
 puede representar un gajo negativo); `graficar_barras` sí puede, y el bar
 label muestra el valor y % negativos tal cual.
 
-`ausentismo` también puede leerse mal en el sentido contrario: el circuito
-`493` en Presidente/Gobernador/Intendente 2023 tiene `electores=109` con
-`positivos=0` y `otros=0` (`AUDITORIA_ESTADO.md` ítem 8.1.5, `circuito
-entero sin ningún voto cargado — hueco de telegrama, no jornada sin
-votantes`), así que su gráfico muestra 100% `ausentismo` puntual. No es
-abstención real: es el mismo hueco de cobertura ya documentado, expresado
-ahora en la nueva métrica.
-
 ### Resultado total por agrupación (`src/electoral/totales.py`)
 
 `data/totales/<nivel>/<año>/resultado_total.csv` — una fila por agrupación
@@ -292,11 +285,10 @@ circuitos de `circuito_<nivel>.json` (no el JSON agregado crudo, por la
 misma razón que "Totales por circuito" más arriba: ese agregado subestima
 Presidente 2019). Columnas: `id_agrupacion`, `agrupacion`, `votos`,
 `votos_porcentaje` (recalculado sobre el total de esa consulta, no heredado
-de otra). Derivado, no versionado — se regenera en segundos, mismo criterio
-que `graficos/`.
+de otra).
 
 La suma se hace con `electoral.models.totalizar_agrupaciones`, una función
-de propósito general (no atada a este script): combina cualquier lista de
+de propósito general: combina cualquier lista de
 `ValorAgrupacion` por `id_agrupacion` -- sirve igual para totalizar mesas,
 circuitos, o cualquier otro nivel de detalle que use ese mismo dataclass.
 
@@ -393,14 +385,19 @@ quedan en `graficos/socioeconomia/` sin trackear.
   ```
 
 - **`totales_por_lista.py`**: **un gráfico por (año, nivel)**, barras
-  horizontales con el resultado total por agrupación (lista) — a diferencia
-  del resto de esta sección, no agrupa por campo ideológico en el eje: cada
-  agrupación es su propia barra, ordenada de mayor a menor voto, coloreada
-  por `campo_ideologico` (mismo join en vivo contra
+  horizontales con el resultado total por agrupación (lista) más
+  `blanco_nulo` — a diferencia del resto de esta sección, no agrupa por
+  campo ideológico en el eje: cada agrupación (y blanco+nulo) es su propia
+  barra, todas ordenadas juntas de mayor a menor voto, coloreadas por
+  `campo_ideologico` (mismo join en vivo contra
   `clasificacion_ideologica_agrupaciones.csv` que usa
-  `serie_temporal_filiacion.py` para `filiacion_politica`). Usa
+  `serie_temporal_filiacion.py` para `filiacion_politica`; blanco+nulo usa
+  el mismo gris que el resto de los gráficos). Parte de
   `electoral.totales.resultado_total_por_agrupacion` — la función que
-  también arma `data/totales/` — en vez de releer ese CSV. Escribe en
+  también arma `data/totales/` — pero le agrega blanco+nulo y **recalcula
+  `votos_porcentaje` sobre el nuevo total** con
+  `electoral.models.totalizar_agrupaciones` (no relee `data/totales/`, que
+  es agnóstico de blanco/nulo a propósito). Escribe en
   `graficos/distrito/totales_por_lista/<año>_<nivel>_barras.png` — a
   diferencia del resto de `graficos/distrito/<año>/`, **esta carpeta sí está
   versionada** (excepción explícita en `.gitignore`, mismo criterio que
@@ -409,6 +406,28 @@ quedan en `graficos/socioeconomia/` sin trackear.
   ```bash
   PYTHONPATH=src python -m analisis.totales_por_lista --anio 2023 --nivel intendente
   PYTHONPATH=src python -m analisis.totales_por_lista                    # todo lo disponible
+  ```
+
+- **`comparativo_nivel.py`**: **un cuadro Markdown por año**, compara el % de cada agrupación (+ `blanco_nulo`) en los tres
+  cargos disputados ese año (Municipio/Provincia/Nación, ej. 2019:
+  Intendente/Gobernador/Presidente) más las tres diferencias entre pares,
+  en puntos porcentuales (pp). El cruce entre categorías es por nombre
+  exacto de agrupación — dentro de un mismo año la misma alianza corre bajo
+  el mismo nombre en los tres cargos (verificado contra los datos, no
+  asumido). Una agrupación que no compitió en alguna categoría queda con
+  `—` en esa columna y en sus diferencias, en vez de tratarse como 0%. Las
+  filas de partidos se ordenan por % en Nación, de mayor a menor;
+  `BLANCO + NULO` queda siempre última. Reutiliza
+  `totales_por_lista.resultado_total_con_blanco_nulo` (mismos porcentajes
+  que el gráfico de barras, no un cálculo aparte). Años con un solo cargo
+  disputado (2025: solo nacional) no tienen comparación posible y se
+  omiten. Escribe en
+  `graficos/distrito/totales_por_lista/comparativos_nivel/<año>.md` —
+  versionado, mismo criterio que el resto de `totales_por_lista/`.
+
+  ```bash
+  PYTHONPATH=src python -m analisis.comparativo_nivel --anio 2019
+  PYTHONPATH=src python -m analisis.comparativo_nivel               # todos los años disponibles
   ```
 
 ## PASO y balotaje
