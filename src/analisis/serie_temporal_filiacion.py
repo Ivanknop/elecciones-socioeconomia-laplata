@@ -2,7 +2,7 @@
 gobierno -- complementa `serie_temporal.py` (que grafica por `campo_ideologico`,
 posición ideológico-programática por elección) con la dimensión de familia/identidad
 partidaria (`data/agrupaciones/tabla_referencia_filiacion_politica.csv`), que no
-varía por año/nivel -- ver nota_metodologica.md §5.2 y AUDITORIA_ESTADO.md.
+varía por año/nivel -- ver docs/nota_metodologica.md §5.2 y docs/AUDITORIA_ESTADO.md.
 
 No genera el gráfico "_votos" (solo "_filiacion_porcentaje.png") ni toca
 `circuito_<nivel>.json`/notebook 04 -- lee `filiacion_politica` en el momento de

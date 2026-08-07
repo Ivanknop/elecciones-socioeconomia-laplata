@@ -1,7 +1,8 @@
 """Construye la tabla mensual unificada de series macroeconómicas nacionales
 (2011-2025) a partir del catálogo `data/macroeconomia/catalogo_series.csv` y
-de datos.gob.ar (`macroeconomia.datos_gob_client`). Ver `plan_macroeconomia.md`
-para el detalle de cada variable y las decisiones metodológicas.
+de datos.gob.ar (`macroeconomia.datos_gob_client`). Ver
+`docs/plan_macroeconomia.md` para el detalle de cada variable y las
+decisiones metodológicas.
 
 ## Reglas de normalización
 

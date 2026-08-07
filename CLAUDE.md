@@ -12,10 +12,19 @@ Intendente, 2011-2023) and legislative offices (national/provincial/municipal,
 but outbound network access to `resultados.mininterior.gob.ar` is required to
 refresh the cache.
 
-The README.md is extensive and authoritative on data semantics, known
-anomalies, and the ideological classification methodology — read it before
-touching `data/`, the notebooks, or `src/analisis/`. Do not duplicate its
-content here; this file only orients you to commands and architecture.
+`README.md` is a short landing page (structure, install, reproduce order,
+what's git-tracked vs. derived); `docs/FUNCIONALIDADES.md` is the
+extensive, authoritative doc on data semantics, known anomalies, and the
+ideological classification methodology (split out of README to keep it
+from growing without bound — see README's own "Dónde está cada cosa"
+table for the full map of docs). `docs/` holds every root-level narrative
+doc (methodology, specs, per-domain functionality, audit status) — the
+domain-specific docs that live next to their data
+(`data/fuentes_extra/*.md`, `data/macroeconomia/*.md`,
+`data/socioeconomia/*.md`) stay where they are, on purpose, not in
+`docs/`. Read `docs/FUNCIONALIDADES.md` before touching `data/`, the
+notebooks, or `src/analisis/`. Do not duplicate its content here; this
+file only orients you to commands and architecture.
 
 ## Commands
 
@@ -92,8 +101,9 @@ order, 01→04) are the pipeline**.
     `data/distrito/<anio_eleccion>/<categoria_nombre>/...`).
     `categoria_nombre` (e.g. `"presidente"`) is a caller-chosen label, not
     something the API returns — `categoriaId` mappings are local to
-    distrito/año and must be resolved empirically (see README "Extender a
-    otro distrito, sección o cargo").
+    distrito/año and must be resolved empirically (see
+    `docs/FUNCIONALIDADES.md` "Extender a otro distrito, sección o
+    cargo").
   - Every model dataclass keeps an `extra: dict` of unmodeled JSON fields
     (see `_extra()` in `models.py`) so an API field added later shows up
     there instead of breaking parsing or silently vanishing — tests in
@@ -103,8 +113,8 @@ order, 01→04) are the pipeline**.
   `paso`, or `balotaje` (only for Presidente, only 2015/2023). Each leaf has
   the raw aggregate `.json`, the official `.csv`, and (for `generales`) a
   derived `circuito_<nivel>.json` built by notebook 04 from the CSV (not the
-  JSON aggregate — see README's "Anomalía conocida: JSON agregado de
-  Presidente 2019").
+  JSON aggregate — see `docs/FUNCIONALIDADES.md`'s "Anomalía conocida:
+  JSON agregado de Presidente 2019").
 
 - **`data/agrupaciones/`** holds the cross-cutting reference tables:
   `clasificacion_ideologica_agrupaciones.csv` (party lists + hand-classified
@@ -128,8 +138,8 @@ order, 01→04) are the pipeline**.
   deliberately **not** merged into `clasificacion_ideologica_agrupaciones.csv`
   to keep it lean; consult the reference file directly to audit a
   `filiacion_politica` value. Addresses the "familia política vs. posición
-  ideológica" gap flagged in `nota_metodologica.md` §5.2 and
-  `AUDITORIA_ESTADO.md` §8.2 — e.g. FPV/Unidad Ciudadana/Frente de
+  ideológica" gap flagged in `docs/nota_metodologica.md` §5.2 and
+  `docs/AUDITORIA_ESTADO.md` §8.2 — e.g. FPV/Unidad Ciudadana/Frente de
   Todos/Unión por la Patria all share `filiacion_politica=peronistas` despite
   different `campo_ideologico` values across years, which is now expected
   (same family, different programmatic position) rather than a dataset
@@ -165,7 +175,8 @@ order, 01→04) are the pipeline**.
   `data/totales/<nivel>/<año>/resultado_total.csv` — derived, not
   git-tracked, same criterion as `graficos/`. Reads `circuito_<nivel>.json`
   (CSV-derived) rather than the raw aggregate JSON on purpose — that JSON is
-  known-wrong for Presidente 2019 (see README anomaly below).
+  known-wrong for Presidente 2019 (see `docs/FUNCIONALIDADES.md`'s
+  "Anomalía conocida: JSON agregado de Presidente 2019").
   `src/analisis/totales_por_lista.py` charts that same total plus
   `blanco_nulo` (via `resultado_total_por_agrupacion`, not by rereading the
   CSV — `blanco_nulo` is added and `votos_porcentaje` is recalculated over
@@ -222,8 +233,8 @@ order, 01→04) are the pipeline**.
 - **`src/macroeconomia/`** is a separate analytical domain from
   electoral/socioeconomic: **national-grain only** (no circuito, no
   localidad, no region), related to the rest of the repo by date, never by
-  spatial join — see `plan_macroeconomia.md` (repo root) for the full
-  source evaluation and per-variable design, and
+  spatial join — see `docs/plan_macroeconomia.md` for the full source
+  evaluation and per-variable design, and
   `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` for what actually
   got pulled and its coverage. `datos_gob_client.py` fetches+caches raw
   series from `datos.gob.ar`'s Series de Tiempo API (paginating past its
@@ -244,7 +255,8 @@ order, 01→04) are the pipeline**.
   `observaciones` with the reason; months before a series' first-ever data
   point are blank for the same reason (no exact-month data), never
   invented. This is a deliberate design choice (revised from an earlier
-  forward-fill design — see `plan_macroeconomia.md`, "Rediseño posterior"):
+  forward-fill design — see `docs/plan_macroeconomia.md`, "Rediseño
+  posterior"):
   a filled-forward value makes a sparse series look like it has real
   monthly granularity, so the CSV leaves gaps explicit and pushes any
   repeat/interpolate decision onto the consumer instead of making it
@@ -269,12 +281,14 @@ order, 01→04) are the pipeline**.
 - `campo_ideologico` is an intentionally strict join: `notebooks/04_totales_por_circuito.ipynb`
   raises `KeyError` if an agrupación isn't classified, by design — don't add
   a fallback/default that would silently mask an unclassified party.
-  `agrupacion` names are uppercased for the join key (see README) except
-  where noted for Generales 2011.
+  `agrupacion` names are uppercased for the join key (see
+  `docs/FUNCIONALIDADES.md`) except where noted for Generales 2011.
 - `mesas_esperadas` / `mesas_totalizadas_porcentaje` are always `0` in the
   already-downloaded data (the API only fills them for live elections) —
   don't treat this as a bug to fix or backfill.
-- A prior audit (`PLAN_CORRECCIONES_ELECTORALES.md`) tracked known
+- A prior audit (`docs/PLAN_CORRECCIONES_ELECTORALES.md`) tracked known
   data-quality issues and fixes; it's still on disk but untracked
   (`.gitignore`d as an internal working document, not deleted) — check it
-  directly, or `git log` for the commit that stopped tracking it.
+  directly, or `git log` for the commit that stopped tracking it (it was
+  untracked before the `docs/` move, so `git log` won't show it under its
+  new path).

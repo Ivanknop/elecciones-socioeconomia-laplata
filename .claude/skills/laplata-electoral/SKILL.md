@@ -13,9 +13,10 @@ Unidad de análisis: `circuito_id`. `seccionId=63` = La Plata,
 Además tiene una tercera capa, `src/macroeconomia/`, de grano
 **nacional exclusivamente** (sin `circuito_id`, sin localidad) que da
 contexto temporal a las dos anteriores y no comparte nada de lo que sigue
-en este archivo -- para esa capa, andá directo a `plan_macroeconomia.md`
-(raíz) y `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md`, no
-hace falta leer el resto de este skill.
+en este archivo -- para esa capa, andá directo a
+`docs/plan_macroeconomia.md` y
+`data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md`, no hace falta
+leer el resto de este skill.
 
 Este archivo es el mapa de arranque. Para el detalle de cada decisión,
 andá directo al documento de referencia indicado -- no re-derives nada
@@ -33,9 +34,9 @@ detalle -- y avisá para que esto se corrija.
 1. `data/fuentes_extra/LOCALIDADES_README.md` -- estado de la
    agrupación circuito→localidad, los dos niveles de cobertura y sus
    fuentes.
-2. `AUDITORIA_ESTADO.md` (raíz) -- qué puntos de la auditoría
+2. `docs/AUDITORIA_ESTADO.md` -- qué puntos de la auditoría
    metodológica original están resueltos, parciales o abiertos.
-3. `nota_metodologica.md` (raíz) -- el diseño de investigación completo:
+3. `docs/nota_metodologica.md` -- el diseño de investigación completo:
    problema, objetivos, sistema de hipótesis con estatus diferenciado
    (exploratorio vs. confirmatorio), y el alcance válido de las
    inferencias con estos datos (cuidado con la falacia ecológica).
@@ -45,7 +46,7 @@ detalle -- y avisá para que esto se corrija.
 
 Si la tarea es sobre localidades específicamente, con el punto 1
 alcanza. No hace falta releer `git log` completo ni re-auditar archivos
-que ya están marcados como resueltos en `AUDITORIA_ESTADO.md`.
+que ya están marcados como resueltos en `docs/AUDITORIA_ESTADO.md`.
 
 ## Estructura de datos (no listar el directorio para redescubrir esto)
 
@@ -73,7 +74,7 @@ tests/
 
 `<nivel>` = presidente | gobernador | intendente | nacional | provincial
 | municipal, según el año (la nomenclatura cambió entre 2011-2017 y
-2019-2025; ver `nota_metodologica.md` sección "Series unen cargos
+2019-2025; ver `docs/nota_metodologica.md` sección "Series unen cargos
 distintos"). `<etapa>` = generales | paso | balotaje (balotaje solo
 Presidente 2015/2023).
 
@@ -123,7 +124,7 @@ Presidente 2015/2023).
   EPH-aglomerado NO se cruzan a nivel circuito.** Decisión tomada
   explícitamente: el desajuste entre las tres mallas (circuito, radio
   censal, localidad) es estructural, no un bug -- documentado con
-  evidencia cuantitativa en `AUDITORIA_ESTADO.md`. No reabrir esto sin
+  evidencia cuantitativa en `docs/AUDITORIA_ESTADO.md`. No reabrir esto sin
   releer esa sección primero.
 - **Los CSV/PNG derivados (bajo `data/por_localidad/` y casi todo
   `graficos/`) no se versionan.** Se regeneran en segundos corriendo el
@@ -181,17 +182,18 @@ Presidente 2015/2023).
   **496A** (Villa Elvira vs. Villa Montoro) -- ver
   `AUDITORIA_DISCREPANCIAS.md`.
 - El cruce electoral↔socioeconómico completo (H1-H8 de
-  `nota_metodologica.md`) todavía no existe. No asumir que sí al leer
+  `docs/nota_metodologica.md`) todavía no existe. No asumir que sí al leer
   el nombre del repositorio.
 - El circuito **508G** (2013, `municipal`/`nacional`/`provincial`) tiene
   más votos emitidos que `electores` registrados -> `ausentismo` negativo
   para ese circuito puntual. Es de la misma familia subdivida sin
-  resolución (504/505/508/509) del punto anterior -- ver README, sección
-  "Anomalía conocida: circuito 508G". `graficar_torta` ya lo maneja (avisa
-  en vez de graficar); no es un bug a "corregir" ajustando el dato.
+  resolución (504/505/508/509) del punto anterior -- ver
+  `docs/FUNCIONALIDADES.md`, sección "Anomalía conocida: circuito 508G".
+  `graficar_torta` ya lo maneja (avisa en vez de graficar); no es un bug a
+  "corregir" ajustando el dato.
 - El circuito **493** en Presidente/Gobernador/Intendente 2023 tiene
   `electores=109` con `positivos=0` y `otros=0` (ítem 8.1.5 de
-  `AUDITORIA_ESTADO.md`, hueco de telegrama). Su `ausentismo` puntual da
+  `docs/AUDITORIA_ESTADO.md`, hueco de telegrama). Su `ausentismo` puntual da
   100% -- no es abstención real, es el mismo hueco de cobertura ya
   documentado, no una fila nueva a investigar.
 
@@ -202,7 +204,7 @@ Presidente 2015/2023).
 - `data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md` -- comparación fila
   por fila entre oficial y periodístico para los 16 circuitos con
   fuente oficial.
-- `AUDITORIA_ESTADO.md` -- tabla de estado de cada punto de auditoría,
+- `docs/AUDITORIA_ESTADO.md` -- tabla de estado de cada punto de auditoría,
   con referencia a qué commit lo resolvió.
 - `CLAUDE.md` -- comandos, arquitectura, y la estructura de directorios
   que manda si este archivo y la realidad difieren.

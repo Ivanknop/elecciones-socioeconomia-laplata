@@ -1,5 +1,5 @@
 """Auditoría externa contra `estadisticasbcra.com`, una corrida manual (ver
-`plan_macroeconomia.md` §1 y §5, punto 5): para cada concepto marcado
+`docs/plan_macroeconomia.md` §1 y §5, punto 5): para cada concepto marcado
 `auditable_estadisticasbcra` en `catalogo_series.csv`, compara nuestro dato
 crudo de datos.gob.ar (mismo id cacheado que usa `macroeconomia.series`)
 contra el de estadisticasbcra.com, en el **mes más reciente que ambas

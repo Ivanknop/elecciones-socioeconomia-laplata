@@ -91,7 +91,7 @@ hace falta que sea la única o la mayoritaria— es base suficiente para
 clasificarlos como `oficial_confirmada` → `MELCHOR_ROMERO`, en vez de
 dejarlos sin agrupar. Con este criterio no hace falta ningún reparto por
 área (el problema que sí sigue sin resolverse para el cruce
-circuito↔radio censal, ver `AUDITORIA_ESTADO.md`): alcanza con que el
+circuito↔radio censal, ver `docs/AUDITORIA_ESTADO.md`): alcanza con que el
 nombre de la localidad aparezca en la tabla del circuito. Hoy no quedan
 circuitos marcados `oficial_no_agrupable` en el crosswalk (el nivel
 sigue existiendo en el código por si aparece un caso futuro sin ninguna
@@ -134,9 +134,9 @@ lo que hoy solo tiene fuente periodística**, en orden de esfuerzo:
    Nacional Electoral -- esto serviría también para cubrir **521**, el
    único circuito sin ninguna fuente, y para confirmar la identidad real
    del circuito 493 (ver `AUDITORIA_DISCREPANCIAS.md`: hoy solo tiene
-   etiqueta periodística `MELCHOR_ROMERO`, pero el propio `README.md` del
-   repositorio lo señala como circuito de "límite incierto" con cabecera
-   oficial "Isla Martín García").
+   etiqueta periodística `MELCHOR_ROMERO`, pero `docs/FUNCIONALIDADES.md`
+   (ex-`README.md`) lo señala como circuito de "límite incierto" con
+   cabecera oficial "Isla Martín García").
 3. **Contrastar contra la nota de 0221.com.ar** (24 localidades oficiales
    de la Junta Electoral, ver enlace más abajo) para verificar si el
    relevamiento de El Día usa exactamente esas 24 categorías o las

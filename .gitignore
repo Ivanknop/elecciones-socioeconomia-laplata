@@ -24,5 +24,5 @@ data/macroeconomia/_cache/
 data/macroeconomia/series_macro_*.csv
 
 # Documentos de trabajo interno
-PLAN_CORRECCIONES_ELECTORALES.md
+docs/PLAN_CORRECCIONES_ELECTORALES.md
 Nota_metodologica_La_Plata_para_Ivan.docx

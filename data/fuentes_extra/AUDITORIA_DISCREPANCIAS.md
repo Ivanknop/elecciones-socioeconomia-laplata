@@ -186,17 +186,20 @@ propio repositorio, no una fuente externa nueva.
 `493,MELCHOR_ROMERO,eldia_2025_barrio_por_barrio,periodistico_no_oficial` —
 periodística, sin contraparte oficial.
 
-**Lo que dice el propio `README.md` del repositorio sobre este mismo
-circuito** (no una fuente externa, sino documentación ya existente en el
-proyecto, escrita antes de que existiera este crosswalk):
+**Lo que dice la documentación del repositorio sobre este mismo circuito**
+(no una fuente externa, sino documentación ya existente en el proyecto,
+escrita antes de que existiera este crosswalk — al momento de esta
+auditoría vivía en `README.md`; después del split README/FUNCIONALIDADES
+y la reorganización a `docs/`, vive en `docs/FUNCIONALIDADES.md`, sección
+"Totales por circuito"):
 
-- línea 199: 493 es uno de los tres circuitos (junto con 496F y 504C) que
-  "no es común a todos los años procesados... no es un problema de formato
-  sino de altas/bajas/subdivisiones reales de circuito, y requiere revisión
-  manual de límites".
-- línea 349: 493 queda señalado explícitamente como circuito de **"límite
-  incierto"** en la capa de circuitos electorales descargada por el
-  proyecto (`mapa2.electoral.gob.ar`).
+- 493 es uno de los tres circuitos (junto con 496F y 504C) que "no es común
+  a todos los años procesados... no es un problema de formato sino de
+  altas/bajas/subdivisiones reales de circuito, y requiere revisión manual
+  de límites".
+- 493 queda señalado explícitamente como circuito de **"límite incierto"**
+  en la capa de circuitos electorales descargada por el proyecto
+  (`mapa2.electoral.gob.ar`).
 
 Y `LOCALIDADES_README.md` (línea 102), citando el catálogo oficial de datos
 abiertos de la Provincia, agrega que la `cabecera` catastral de 493 es
