@@ -20,6 +20,8 @@ graficos/socioeconomia/*
 data/socioeconomia/eph_cache/
 data/por_localidad/*
 data/totales/*
+data/macroeconomia/_cache/
+data/macroeconomia/series_macro_*.csv
 
 # Documentos de trabajo interno
 PLAN_CORRECCIONES_ELECTORALES.md

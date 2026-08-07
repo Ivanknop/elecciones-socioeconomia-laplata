@@ -34,6 +34,8 @@ PYTHONPATH=src python -m analisis.serie_temporal_por_localidad --nivel municipal
 PYTHONPATH=src python -m electoral.totales --anio 2023 --nivel intendente  # total votes per agrupación for one (año, nivel)
 PYTHONPATH=src python -m analisis.totales_por_lista --anio 2023 --nivel intendente  # bar chart of that total, one per (año, nivel)
 PYTHONPATH=src python -m analisis.comparativo_nivel --anio 2019  # Municipio/Provincia/Nación comparison table, one per año
+PYTHONPATH=src python -m macroeconomia.series  # national macroeconomic series, one CSV row per month 2011-2025 (needs network to refresh; runs from cache otherwise)
+ESTADISTICASBCRA_TOKEN=... PYTHONPATH=src python -m macroeconomia.auditoria_estadisticasbcra  # manual one-off cross-check against estadisticasbcra.com; needs a user token (never committed), not part of the regular pipeline
 ```
 
 There is no build/lint step configured. Tests cover `src/electoral/models.py`
@@ -50,6 +52,13 @@ layer added on top of it — `src/electoral/localidades.py`,
 matplotlib-rendering half of the locality scripts) still have no automated
 tests; changes there are validated by re-running the notebooks end to end
 (see README "Cómo reproducir") or by running the scripts against `data/` directly.
+`src/macroeconomia/series.py`'s normalization logic (catalog loading,
+monthly resolution for daily/monthly/quarterly/annual sources, coverage
+report) is covered by `tests/test_macroeconomia_series.py`, no network;
+`src/macroeconomia/datos_gob_client.py` (the fetch+cache HTTP layer) and
+`src/macroeconomia/auditoria_estadisticasbcra.py` (fetch+compare against a
+third-party HTTP API) have no automated tests, same criterion as
+`electoral/client.py`.
 
 ## Architecture
 
@@ -198,6 +207,49 @@ order, 01→04) are the pipeline**.
   zeros, letter suffixes preserved, e.g. `"0496F"` → `"496F"`) before any
   aggregation — never compare raw `circuito_id` values across years without
   going through this normalization.
+
+- **`src/macroeconomia/`** is a separate analytical domain from
+  electoral/socioeconomic: **national-grain only** (no circuito, no
+  localidad, no region), related to the rest of the repo by date, never by
+  spatial join — see `plan_macroeconomia.md` (repo root) for the full
+  source evaluation and per-variable design, and
+  `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` for what actually
+  got pulled and its coverage. `datos_gob_client.py` fetches+caches raw
+  series from `datos.gob.ar`'s Series de Tiempo API (paginating past its
+  5000-row-per-request cap); `series.py` reads
+  `data/macroeconomia/catalogo_series.csv` (hand-curated, append-only, same
+  spirit as `clasificacion_ideologica_agrupaciones.csv`) and builds
+  `data/macroeconomia/series_macro_2011_2025.csv` — one row per **month**,
+  one column per concept, plus `observaciones`. **No cell is ever
+  forward-filled or repeated** — a cell only has a value if the source
+  published data with an origin date exactly matching that month; a
+  quarterly/annual source therefore only fills its origin month (e.g.
+  Jan/Apr/Jul/Oct for quarterly), every other month in the period is left
+  blank rather than inheriting the prior value. Daily sources collapse to
+  the month's last business-day value (falling back to the nearest earlier
+  business day within the month if that day has no data; if no business
+  day in the month has data, the cell is blank too) — this is aggregation
+  of a real data point, not filling. Every blank cell is flagged in
+  `observaciones` with the reason; months before a series' first-ever data
+  point are blank for the same reason (no exact-month data), never
+  invented. This is a deliberate design choice (revised from an earlier
+  forward-fill design — see `plan_macroeconomia.md`, "Rediseño posterior"):
+  a filled-forward value makes a sparse series look like it has real
+  monthly granularity, so the CSV leaves gaps explicit and pushes any
+  repeat/interpolate decision onto the consumer instead of making it
+  silently. Neither the cache (`data/macroeconomia/_cache/`) nor the
+  generated CSV are git-tracked — `catalogo_series.csv` is (same criterion
+  as `data/totales/` vs. `clasificacion_ideologica_agrupaciones.csv`).
+  `auditoria_estadisticasbcra.py` is a separate, manually-run script (not
+  part of the regular pipeline, needs a user-supplied token never stored in
+  the repo) that cross-checks each `auditable_estadisticasbcra` concept
+  against `estadisticasbcra.com` — see
+  `SISTEMATIZACION_VARIABLES_MACRO.md` §3 for the last run's results,
+  including a catalog mapping fix it caught (`tipo_cambio_oficial` was
+  pointed at the informal/blue-dollar endpoint, not the official one) and
+  the finding that endpoint is unevenly stale (~1.5-2 years behind
+  depending on the series), so it only audits closed historical stretches,
+  never the CSV's most recent months.
 
 ## Working conventions specific to this repo
 
