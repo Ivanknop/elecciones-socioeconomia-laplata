@@ -98,10 +98,15 @@ juntan bajo ese `nivel` y se deduplican.
 
 ## Totales por circuito
 
-`data/distrito/<año>/<nivel>/generales/circuito_<nivel>.json` — agrega, por
+`data/distrito/<año>/<nivel>/<etapa>/circuito_<nivel>.json` — agrega, por
 `circuito_id`, los positivos por agrupación y los "otros"
 (blanco/nulo/recurrido/impugnado/comando, lo que exista ese año). Sale del
-CSV oficial.
+CSV oficial. `etapa` es `generales`, `paso` o `balotaje` — las tres se
+construyen con la misma lógica (notebook 04, secciones 1-5 para Generales,
+6-7 para PASO/balotaje), pero PASO y balotaje solo existen para los (año,
+nivel) donde efectivamente hubo esa instancia (ver "PASO y balotaje" más
+abajo) — la disponibilidad se detecta chequeando si el CSV crudo de esa
+etapa ya está cacheado en disco, no una lista fija a mano.
 
 **`circuito_id`**: el mismo circuito se identifica con distinto
 ancho/relleno de ceros según el año (`"0460"` en 2011/2015, `"000460"` en
@@ -182,15 +187,39 @@ aviso en vez de graficar la torta para ese circuito puntual (una torta no
 puede representar un gajo negativo); `graficar_barras` sí puede, y el bar
 label muestra el valor y % negativos tal cual.
 
+### Anomalía conocida: PASO 2013 legislativas, mesas/electores por debajo del agregado
+
+`circuito_nacional.json`/`circuito_provincial.json`/`circuito_municipal.json`
+de PASO 2013 quedan con `coincide_con_agregado_json: false`, pero **no por
+los votos**: `positivos` y `otros` suman exactamente lo mismo que el JSON
+agregado (nacional 2013: 354.290 positivos y 29.149 "otros" en ambas
+fuentes). La diferencia está en `mesas`/`electores`: sumando el `cobertura`
+de todos los circuitos da 1.524 mesas y 524.733 electores, contra 2.550
+mesas y 878.293 electores que informa el agregado — como si al CSV oficial
+le faltaran filas de mesas enteras (sin ningún voto, ni siquiera en blanco)
+para esta categoría puntual. Es un tipo de discrepancia distinto al de
+Presidente 2019 (ahí el agregado subestimaba los votos; acá los votos están
+bien, falta cobertura de mesas/electores). No se investigó la causa raíz
+todavía — no usar la `cobertura` de estos tres archivos de PASO 2013 para
+calcular `ausentismo` sin tener esto presente; los tres quedan igual con
+`advertencia_fuente` explícita.
+
 ## Resultado total por agrupación (`src/electoral/totales.py`)
 
 `data/totales/<nivel>/<año>/resultado_total.csv` — una fila por agrupación
-con el total de votos de todo (año, nivel) en La Plata, sumando los
-circuitos de `circuito_<nivel>.json` (no el JSON agregado crudo, por la
-misma razón que "Totales por circuito" más arriba: ese agregado subestima
-Presidente 2019). Columnas: `id_agrupacion`, `agrupacion`, `votos`,
-`votos_porcentaje` (recalculado sobre el total de esa consulta, no heredado
-de otra).
+con el total de votos de todo (año, nivel) en La Plata para **Generales**,
+sumando los circuitos de `circuito_<nivel>.json` (no el JSON agregado
+crudo, por la misma razón que "Totales por circuito" más arriba: ese
+agregado subestima Presidente 2019). Columnas: `id_agrupacion`,
+`agrupacion`, `votos`, `votos_porcentaje` (recalculado sobre el total de
+esa consulta, no heredado de otra).
+
+**PASO y balotaje** usan el mismo formato, en
+`data/totales/<nivel>/<año>/<etapa>/resultado_total.csv` (subcarpeta
+hermana de la ruta de Generales, que no cambia) — solo para los (año,
+nivel) donde esa etapa existió (ver "PASO y balotaje" más abajo);
+`_combos_disponibles` los descubre igual que a Generales, buscando
+cualquier `circuito_<nivel>.json` bajo `data/distrito/`, no una lista fija.
 
 La suma se hace con `electoral.models.totalizar_agrupaciones`, una función
 de propósito general: combina cualquier lista de
@@ -198,8 +227,9 @@ de propósito general: combina cualquier lista de
 circuitos, o cualquier otro nivel de detalle que use ese mismo dataclass.
 
 ```bash
-PYTHONPATH=src python -m electoral.totales --anio 2023 --nivel intendente
-PYTHONPATH=src python -m electoral.totales                    # todo lo disponible
+PYTHONPATH=src python -m electoral.totales --anio 2023 --nivel intendente                # solo Generales de ese (año, nivel)
+PYTHONPATH=src python -m electoral.totales --anio 2023 --nivel intendente --etapa paso    # solo PASO de ese (año, nivel)
+PYTHONPATH=src python -m electoral.totales                    # todo lo disponible -- generales + paso + balotaje
 ```
 
 ## Gráficos (`src/analisis/`, salida en `graficos/`)
@@ -338,10 +368,23 @@ quedan en `graficos/socioeconomia/` sin trackear.
 ## PASO y balotaje
 
 Además de Generales (`tipo_eleccion=2`, en `data/distrito/<año>/<cargo>/generales/`),
-el pipeline también trae **PASO** (`tipo_eleccion=1`) para todas las
-combinaciones (año, cargo) ya cubiertas, y **balotaje/segunda vuelta**
-(`tipo_eleccion=3`) para Presidente en los años en que efectivamente hubo —
-2015 y 2023 (2011 y 2019 se definieron en primera vuelta).
+el pipeline también trae **PASO** (`tipo_eleccion=1`) y
+**balotaje/segunda vuelta** (`tipo_eleccion=3`) — con dos excepciones reales
+confirmadas contra la API (no asumidas): **2011/intendente** no tuvo PASO
+(la interna de esa categoría no estuvo disputada ese año) y **2025** no tuvo
+PASO en ningún nivel (Ley 27.781, que las suspendió a nivel nacional).
+Balotaje solo existe para Presidente, y solo en los años en que efectivamente
+hubo segunda vuelta — 2015 y 2023 (2011 y 2019 se definieron en primera
+vuelta); Gobernador/Intendente no tienen segunda vuelta en la Provincia de
+Buenos Aires (se definen por pluralidad simple).
+
+**`circuito_<nivel>.json` y `resultado_total.csv` también existen para PASO
+y balotaje** (notebook 04 §6-7; `electoral.totales`), no solo para
+Generales — ver "Totales por circuito" y "Resultado total por agrupación"
+más arriba. La disponibilidad real de cada (año, nivel, etapa) se detecta
+comprobando si el CSV crudo ya está cacheado en disco, no una lista fija:
+así el pipeline no necesita mantener la lista de excepciones (2011/intendente,
+2025) en dos lugares distintos.
 
 ## Libro de códigos ideológico — estado actual
 

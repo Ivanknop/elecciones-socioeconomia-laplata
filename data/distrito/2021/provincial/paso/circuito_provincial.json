@@ -1,0 +1,7194 @@
+{
+  "anio": 2021,
+  "nivel": "provincial",
+  "categoria_id": 6,
+  "fuente": "csv",
+  "coincide_con_agregado_json": true,
+  "advertencia_fuente": null,
+  "cobertura": {
+    "mesas_esperadas": 0,
+    "mesas_totalizadas": 1651,
+    "mesas_totalizadas_porcentaje": 0,
+    "cantidad_electores": 583962,
+    "cantidad_votantes": 388400,
+    "participacion_porcentaje": 66.51
+  },
+  "circuitos": {
+    "460": {
+      "mesas": 8,
+      "electores": 2870,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 7,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 14,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 14,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 15,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 7,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 4,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 57,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 73,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 700,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 493,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 53,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 5,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 41,
+        "COMANDO": 13,
+        "IMPUGNADOS": 5,
+        "NULOS": 15,
+        "RECURRIDOS": 0
+      }
+    },
+    "461": {
+      "mesas": 5,
+      "electores": 1551,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 9,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 1,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 23,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 4,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 9,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 37,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 80,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 523,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 207,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 44,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 1,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 28,
+        "COMANDO": 1,
+        "IMPUGNADOS": 0,
+        "NULOS": 19,
+        "RECURRIDOS": 0
+      }
+    },
+    "462": {
+      "mesas": 5,
+      "electores": 1730,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 7,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 9,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 6,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 6,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 51,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 38,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 653,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 256,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 28,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 35,
+        "COMANDO": 2,
+        "IMPUGNADOS": 0,
+        "NULOS": 13,
+        "RECURRIDOS": 0
+      }
+    },
+    "463": {
+      "mesas": 3,
+      "electores": 1012,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 7,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 0,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 8,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 27,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 28,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 388,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 160,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 26,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 25,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 5,
+        "RECURRIDOS": 5
+      }
+    },
+    "464": {
+      "mesas": 7,
+      "electores": 2340,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 22,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 9,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 16,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 9,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 5,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 9,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 14,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 70,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 168,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 841,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 414,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 72,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 45,
+        "COMANDO": 1,
+        "IMPUGNADOS": 0,
+        "NULOS": 20,
+        "RECURRIDOS": 0
+      }
+    },
+    "465": {
+      "mesas": 6,
+      "electores": 1973,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 12,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 1,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 18,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 8,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 7,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 54,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 78,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 757,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 357,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 54,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 40,
+        "COMANDO": 1,
+        "IMPUGNADOS": 3,
+        "NULOS": 23,
+        "RECURRIDOS": 1
+      }
+    },
+    "466": {
+      "mesas": 11,
+      "electores": 4128,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 11,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 6,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 11,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 21,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 8,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 79,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 84,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 944,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 446,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 57,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 47,
+        "COMANDO": 0,
+        "IMPUGNADOS": 4,
+        "NULOS": 11,
+        "RECURRIDOS": 0
+      }
+    },
+    "467": {
+      "mesas": 6,
+      "electores": 1976,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 10,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 1,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 16,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 69,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 55,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 785,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 343,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 51,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 1,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 42,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 14,
+        "RECURRIDOS": 0
+      }
+    },
+    "468": {
+      "mesas": 6,
+      "electores": 1961,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 4,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 1,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 7,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 73,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 90,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 664,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 380,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 45,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 51,
+        "COMANDO": 1,
+        "IMPUGNADOS": 0,
+        "NULOS": 19,
+        "RECURRIDOS": 0
+      }
+    },
+    "469": {
+      "mesas": 7,
+      "electores": 2121,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 14,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 4,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 28,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 8,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 7,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 11,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 75,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 100,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 614,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 440,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 58,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 37,
+        "COMANDO": 2,
+        "IMPUGNADOS": 0,
+        "NULOS": 24,
+        "RECURRIDOS": 0
+      }
+    },
+    "471": {
+      "mesas": 6,
+      "electores": 1809,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 7,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 16,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 11,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 56,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 84,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 515,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 394,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 45,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 49,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 31,
+        "RECURRIDOS": 0
+      }
+    },
+    "472": {
+      "mesas": 4,
+      "electores": 1336,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 7,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 0,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 5,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 6,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 44,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 50,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 371,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 276,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 35,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 1,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 33,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 19,
+        "RECURRIDOS": 1
+      }
+    },
+    "473": {
+      "mesas": 15,
+      "electores": 5683,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 11,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 13,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 11,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 41,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 15,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 21,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 7,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 137,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 223,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1552,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 918,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 126,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 15,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 109,
+        "COMANDO": 0,
+        "IMPUGNADOS": 11,
+        "NULOS": 53,
+        "RECURRIDOS": 0
+      }
+    },
+    "474": {
+      "mesas": 14,
+      "electores": 4892,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 9,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 18,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 0,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 28,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 17,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 7,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 22,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 12,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 158,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 239,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1873,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 803,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 131,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 15,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 4,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 110,
+        "COMANDO": 2,
+        "IMPUGNADOS": 4,
+        "NULOS": 46,
+        "RECURRIDOS": 2
+      }
+    },
+    "475": {
+      "mesas": 46,
+      "electores": 16302,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 22,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 86,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 15,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 132,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 47,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 20,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 21,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 56,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 30,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 522,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 619,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 6008,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2700,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 397,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 26,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 15,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 325,
+        "COMANDO": 13,
+        "IMPUGNADOS": 6,
+        "NULOS": 160,
+        "RECURRIDOS": 1
+      }
+    },
+    "476": {
+      "mesas": 9,
+      "electores": 2915,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 7,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 12,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 5,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 9,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 16,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 13,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 97,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 97,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1153,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 507,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 60,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 3,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 66,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 35,
+        "RECURRIDOS": 0
+      }
+    },
+    "477": {
+      "mesas": 19,
+      "electores": 6600,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 14,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 39,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 11,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 59,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 6,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 57,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 6,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 13,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 39,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 23,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 188,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 279,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1970,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1436,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 180,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 7,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 5,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 140,
+        "COMANDO": 4,
+        "IMPUGNADOS": 1,
+        "NULOS": 69,
+        "RECURRIDOS": 1
+      }
+    },
+    "480": {
+      "mesas": 8,
+      "electores": 2660,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 19,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 1,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 28,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 10,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 16,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 4,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 89,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 98,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 928,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 467,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 59,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 53,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 24,
+        "RECURRIDOS": 0
+      }
+    },
+    "481": {
+      "mesas": 10,
+      "electores": 3158,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 16,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 4,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 19,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 7,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 7,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 15,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 7,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 106,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 124,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1124,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 544,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 99,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 4,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 70,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 36,
+        "RECURRIDOS": 0
+      }
+    },
+    "482": {
+      "mesas": 8,
+      "electores": 2786,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 4,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 19,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 16,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 23,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 9,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 78,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 124,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 965,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 534,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 74,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 63,
+        "COMANDO": 0,
+        "IMPUGNADOS": 4,
+        "NULOS": 31,
+        "RECURRIDOS": 1
+      }
+    },
+    "483": {
+      "mesas": 8,
+      "electores": 2713,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 4,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 18,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 1,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 27,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 22,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 26,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 71,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 126,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 987,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 512,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 82,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 1,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 155,
+        "COMANDO": 9,
+        "IMPUGNADOS": 2,
+        "NULOS": 33,
+        "RECURRIDOS": 0
+      }
+    },
+    "484": {
+      "mesas": 7,
+      "electores": 2405,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 15,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 0,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 23,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 6,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 61,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 137,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 818,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 495,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 74,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 1,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 41,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 34,
+        "RECURRIDOS": 0
+      }
+    },
+    "485": {
+      "mesas": 7,
+      "electores": 2375,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 8,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 7,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 10,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 26,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 6,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 9,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 67,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 100,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 808,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 472,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 51,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 1,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 56,
+        "COMANDO": 0,
+        "IMPUGNADOS": 4,
+        "NULOS": 27,
+        "RECURRIDOS": 0
+      }
+    },
+    "486": {
+      "mesas": 8,
+      "electores": 2760,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 7,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 13,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 1,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 28,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 19,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 84,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 146,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 954,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 565,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 118,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 51,
+        "COMANDO": 0,
+        "IMPUGNADOS": 1,
+        "NULOS": 14,
+        "RECURRIDOS": 2
+      }
+    },
+    "487": {
+      "mesas": 9,
+      "electores": 3186,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 11,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 17,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 10,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 26,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 6,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 9,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 14,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 88,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 127,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 858,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 544,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 87,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 1,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 54,
+        "COMANDO": 1,
+        "IMPUGNADOS": 2,
+        "NULOS": 40,
+        "RECURRIDOS": 6
+      }
+    },
+    "488": {
+      "mesas": 10,
+      "electores": 3293,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 11,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 26,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 4,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 31,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 16,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 8,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 8,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 25,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 7,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 99,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 265,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1117,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 675,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 77,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 3,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 91,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 26,
+        "RECURRIDOS": 0
+      }
+    },
+    "493": {
+      "mesas": 1,
+      "electores": 103,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 0,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 0,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 0,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 12,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 40,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 6,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 4,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 1,
+        "RECURRIDOS": 0
+      }
+    },
+    "495": {
+      "mesas": 72,
+      "electores": 25171,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 54,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 173,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 23,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 210,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 13,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 126,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 45,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 47,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 120,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 68,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 752,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1016,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 8988,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 4674,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 654,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 18,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 45,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 18,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 514,
+        "COMANDO": 12,
+        "IMPUGNADOS": 4,
+        "NULOS": 286,
+        "RECURRIDOS": 5
+      }
+    },
+    "496": {
+      "mesas": 84,
+      "electores": 30044,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 63,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 156,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 74,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 246,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 25,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 259,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 60,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 61,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 194,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 103,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 758,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1208,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 8593,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 6037,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 758,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 52,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 74,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 45,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 809,
+        "COMANDO": 11,
+        "IMPUGNADOS": 19,
+        "NULOS": 355,
+        "RECURRIDOS": 13
+      }
+    },
+    "496A": {
+      "mesas": 40,
+      "electores": 14615,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 36,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 101,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 34,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 101,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 16,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 170,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 29,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 48,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 79,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 82,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 253,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 500,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2677,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 4073,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 330,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 31,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 40,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 22,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 543,
+        "COMANDO": 8,
+        "IMPUGNADOS": 39,
+        "NULOS": 166,
+        "RECURRIDOS": 13
+      }
+    },
+    "496B": {
+      "mesas": 39,
+      "electores": 14701,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 36,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 79,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 28,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 107,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 159,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 34,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 45,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 73,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 68,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 275,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 454,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2973,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3432,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 376,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 57,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 59,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 27,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 452,
+        "COMANDO": 19,
+        "IMPUGNADOS": 36,
+        "NULOS": 163,
+        "RECURRIDOS": 3
+      }
+    },
+    "496C": {
+      "mesas": 40,
+      "electores": 14331,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 20,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 78,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 33,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 113,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 171,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 47,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 38,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 59,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 96,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 338,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 494,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 3321,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3386,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 403,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 113,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 27,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 34,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 427,
+        "COMANDO": 18,
+        "IMPUGNADOS": 5,
+        "NULOS": 128,
+        "RECURRIDOS": 0
+      }
+    },
+    "496D": {
+      "mesas": 51,
+      "electores": 18075,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 26,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 88,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 102,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 130,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 35,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 234,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 50,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 49,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 86,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 182,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 385,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 684,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 3907,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 4056,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 534,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 68,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 85,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 56,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 711,
+        "COMANDO": 3,
+        "IMPUGNADOS": 39,
+        "NULOS": 277,
+        "RECURRIDOS": 6
+      }
+    },
+    "496E": {
+      "mesas": 14,
+      "electores": 4683,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 7,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 34,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 5,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 42,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 6,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 42,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 8,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 16,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 29,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 11,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 141,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 250,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1097,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1288,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 185,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 7,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 19,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 15,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 155,
+        "COMANDO": 0,
+        "IMPUGNADOS": 1,
+        "NULOS": 52,
+        "RECURRIDOS": 0
+      }
+    },
+    "496F": {
+      "mesas": 1,
+      "electores": 246,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 4,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 1,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 2,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 2,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 6,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 52,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 51,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 14,
+        "COMANDO": 2,
+        "IMPUGNADOS": 0,
+        "NULOS": 1,
+        "RECURRIDOS": 0
+      }
+    },
+    "497": {
+      "mesas": 38,
+      "electores": 13501,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 30,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 70,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 31,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 94,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 100,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 50,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 29,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 78,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 45,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 445,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 512,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 4621,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2430,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 347,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 27,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 27,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 26,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 334,
+        "COMANDO": 10,
+        "IMPUGNADOS": 6,
+        "NULOS": 164,
+        "RECURRIDOS": 8
+      }
+    },
+    "497A": {
+      "mesas": 2,
+      "electores": 632,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 2,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 2,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 9,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 5,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 19,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 10,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 113,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 103,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 3,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 13,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 3,
+        "RECURRIDOS": 0
+      }
+    },
+    "497B": {
+      "mesas": 29,
+      "electores": 10040,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 22,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 55,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 23,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 61,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 7,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 132,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 17,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 42,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 34,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 66,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 259,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 410,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2449,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2086,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 275,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 27,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 29,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 15,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 326,
+        "COMANDO": 4,
+        "IMPUGNADOS": 1,
+        "NULOS": 113,
+        "RECURRIDOS": 2
+      }
+    },
+    "497C": {
+      "mesas": 29,
+      "electores": 10584,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 21,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 70,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 20,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 59,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 13,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 115,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 17,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 34,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 43,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 56,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 270,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 384,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2239,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2312,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 265,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 53,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 36,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 28,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 339,
+        "COMANDO": 7,
+        "IMPUGNADOS": 10,
+        "NULOS": 127,
+        "RECURRIDOS": 2
+      }
+    },
+    "497D": {
+      "mesas": 31,
+      "electores": 10887,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 15,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 74,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 21,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 72,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 27,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 133,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 29,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 45,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 44,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 44,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 280,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 438,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2795,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2238,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 293,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 44,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 45,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 26,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 309,
+        "COMANDO": 0,
+        "IMPUGNADOS": 19,
+        "NULOS": 109,
+        "RECURRIDOS": 8
+      }
+    },
+    "497E": {
+      "mesas": 31,
+      "electores": 10845,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 20,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 67,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 29,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 54,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 15,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 199,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 31,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 46,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 47,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 78,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 258,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 441,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2663,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2444,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 282,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 28,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 44,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 29,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 425,
+        "COMANDO": 3,
+        "IMPUGNADOS": 0,
+        "NULOS": 133,
+        "RECURRIDOS": 3
+      }
+    },
+    "497F": {
+      "mesas": 13,
+      "electores": 5244,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 4,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 25,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 7,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 35,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 28,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 9,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 27,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 16,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 21,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 107,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 100,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 744,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 917,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 126,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 19,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 23,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 8,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 161,
+        "COMANDO": 0,
+        "IMPUGNADOS": 1,
+        "NULOS": 41,
+        "RECURRIDOS": 0
+      }
+    },
+    "498": {
+      "mesas": 4,
+      "electores": 1136,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 10,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 6,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 7,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 4,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 38,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 30,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 256,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 309,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 35,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 7,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 3,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 36,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 1,
+        "RECURRIDOS": 0
+      }
+    },
+    "501": {
+      "mesas": 126,
+      "electores": 44919,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 93,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 257,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 80,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 356,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 33,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 312,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 91,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 88,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 194,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 177,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 1331,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1626,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 14188,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 8228,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 1221,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 70,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 120,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 53,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 1079,
+        "COMANDO": 43,
+        "IMPUGNADOS": 35,
+        "NULOS": 504,
+        "RECURRIDOS": 10
+      }
+    },
+    "502": {
+      "mesas": 122,
+      "electores": 43606,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 92,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 205,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 125,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 298,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 29,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 295,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 122,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 74,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 168,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 154,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 1189,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1586,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 12872,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 9384,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 1165,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 49,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 105,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 59,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 1105,
+        "COMANDO": 31,
+        "IMPUGNADOS": 15,
+        "NULOS": 415,
+        "RECURRIDOS": 10
+      }
+    },
+    "503": {
+      "mesas": 16,
+      "electores": 5587,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 8,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 58,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 8,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 34,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 72,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 16,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 20,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 33,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 4,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 165,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 197,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1751,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1320,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 223,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 27,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 11,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 158,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 73,
+        "RECURRIDOS": 3
+      }
+    },
+    "503A": {
+      "mesas": 27,
+      "electores": 9655,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 19,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 44,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 29,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 61,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 71,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 14,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 42,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 45,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 44,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 262,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 435,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2338,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2219,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 275,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 17,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 28,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 15,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 513,
+        "COMANDO": 0,
+        "IMPUGNADOS": 13,
+        "NULOS": 93,
+        "RECURRIDOS": 0
+      }
+    },
+    "504": {
+      "mesas": 99,
+      "electores": 34591,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 59,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 196,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 67,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 332,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 18,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 297,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 66,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 70,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 167,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 41,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 1131,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1489,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 11458,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 7064,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 1071,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 40,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 93,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 58,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 923,
+        "COMANDO": 41,
+        "IMPUGNADOS": 5,
+        "NULOS": 398,
+        "RECURRIDOS": 8
+      }
+    },
+    "504A": {
+      "mesas": 80,
+      "electores": 29056,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 60,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 161,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 34,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 240,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 17,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 171,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 44,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 26,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 117,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 34,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 983,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1060,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 9897,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 5439,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 1005,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 39,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 55,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 30,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 607,
+        "COMANDO": 9,
+        "IMPUGNADOS": 5,
+        "NULOS": 297,
+        "RECURRIDOS": 7
+      }
+    },
+    "504C": {
+      "mesas": 1,
+      "electores": 331,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 1,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 1,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 0,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 27,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 65,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 0,
+        "COMANDO": 0,
+        "IMPUGNADOS": 1,
+        "NULOS": 0,
+        "RECURRIDOS": 0
+      }
+    },
+    "505": {
+      "mesas": 47,
+      "electores": 16459,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 29,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 130,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 31,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 142,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 16,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 188,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 32,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 51,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 98,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 48,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 442,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 641,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 4712,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3513,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 482,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 30,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 119,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 33,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 443,
+        "COMANDO": 5,
+        "IMPUGNADOS": 4,
+        "NULOS": 209,
+        "RECURRIDOS": 3
+      }
+    },
+    "505A": {
+      "mesas": 30,
+      "electores": 10534,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 18,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 79,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 16,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 90,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 14,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 166,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 15,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 33,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 78,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 27,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 254,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 386,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2171,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2609,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 229,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 26,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 44,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 33,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 333,
+        "COMANDO": 16,
+        "IMPUGNADOS": 9,
+        "NULOS": 131,
+        "RECURRIDOS": 3
+      }
+    },
+    "505B": {
+      "mesas": 12,
+      "electores": 4545,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 7,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 16,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 6,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 47,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 57,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 15,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 24,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 16,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 12,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 87,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 144,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 592,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1145,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 78,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 30,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 25,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 5,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 127,
+        "COMANDO": 0,
+        "IMPUGNADOS": 13,
+        "NULOS": 22,
+        "RECURRIDOS": 0
+      }
+    },
+    "508": {
+      "mesas": 31,
+      "electores": 10971,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 21,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 38,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 26,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 82,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 21,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 127,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 20,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 40,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 44,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 57,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 251,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 502,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2532,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2513,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 425,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 38,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 120,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 27,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 293,
+        "COMANDO": 3,
+        "IMPUGNADOS": 11,
+        "NULOS": 91,
+        "RECURRIDOS": 4
+      }
+    },
+    "508A": {
+      "mesas": 41,
+      "electores": 14535,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 38,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 77,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 65,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 112,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 15,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 139,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 40,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 37,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 42,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 75,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 407,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 531,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 3942,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2753,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 353,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 40,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 76,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 29,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 463,
+        "COMANDO": 3,
+        "IMPUGNADOS": 42,
+        "NULOS": 178,
+        "RECURRIDOS": 1
+      }
+    },
+    "508B": {
+      "mesas": 20,
+      "electores": 6732,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 26,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 23,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 28,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 43,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 74,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 21,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 29,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 35,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 34,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 104,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 232,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1217,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1837,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 195,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 15,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 174,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 10,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 236,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 88,
+        "RECURRIDOS": 2
+      }
+    },
+    "508C": {
+      "mesas": 25,
+      "electores": 8569,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 13,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 37,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 24,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 51,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 128,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 25,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 28,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 48,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 70,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 188,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 297,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1767,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2091,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 281,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 29,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 82,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 24,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 291,
+        "COMANDO": 6,
+        "IMPUGNADOS": 0,
+        "NULOS": 90,
+        "RECURRIDOS": 0
+      }
+    },
+    "508D": {
+      "mesas": 37,
+      "electores": 13936,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 33,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 89,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 29,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 83,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 15,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 164,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 22,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 49,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 42,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 78,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 286,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 361,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2482,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3357,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 308,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 55,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 181,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 24,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 442,
+        "COMANDO": 8,
+        "IMPUGNADOS": 11,
+        "NULOS": 109,
+        "RECURRIDOS": 2
+      }
+    },
+    "508E": {
+      "mesas": 22,
+      "electores": 7681,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 12,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 56,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 20,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 66,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 86,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 21,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 27,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 26,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 33,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 192,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 426,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1839,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1730,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 241,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 17,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 36,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 12,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 233,
+        "COMANDO": 0,
+        "IMPUGNADOS": 18,
+        "NULOS": 53,
+        "RECURRIDOS": 0
+      }
+    },
+    "508F": {
+      "mesas": 6,
+      "electores": 2109,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 18,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 9,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 13,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 7,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 74,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 83,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 489,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 466,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 49,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 17,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 4,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 55,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 16,
+        "RECURRIDOS": 1
+      }
+    },
+    "508G": {
+      "mesas": 3,
+      "electores": 1179,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 19,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 5,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 19,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 12,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 142,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 139,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 14,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 3,
+        "COMANDO": 0,
+        "IMPUGNADOS": 3,
+        "NULOS": 0,
+        "RECURRIDOS": 0
+      }
+    },
+    "509": {
+      "mesas": 22,
+      "electores": 8073,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 12,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 70,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 15,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 43,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 12,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 72,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 11,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 24,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 33,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 24,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 173,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 210,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1421,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2107,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 155,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 40,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 82,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 11,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 245,
+        "COMANDO": 5,
+        "IMPUGNADOS": 13,
+        "NULOS": 81,
+        "RECURRIDOS": 0
+      }
+    },
+    "509A": {
+      "mesas": 29,
+      "electores": 10555,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 21,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 69,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 24,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 94,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 119,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 27,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 37,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 49,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 29,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 334,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 401,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2409,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2069,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 303,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 28,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 88,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 21,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 365,
+        "COMANDO": 12,
+        "IMPUGNADOS": 8,
+        "NULOS": 107,
+        "RECURRIDOS": 0
+      }
+    },
+    "516": {
+      "mesas": 9,
+      "electores": 3105,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 8,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 9,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 31,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 16,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 7,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 94,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 176,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 897,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 511,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 75,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 68,
+        "COMANDO": 0,
+        "IMPUGNADOS": 0,
+        "NULOS": 23,
+        "RECURRIDOS": 0
+      }
+    },
+    "517": {
+      "mesas": 10,
+      "electores": 3375,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 14,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 2,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 32,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 17,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 6,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 13,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 92,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 153,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1148,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 653,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 79,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 4,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 80,
+        "COMANDO": 3,
+        "IMPUGNADOS": 1,
+        "NULOS": 37,
+        "RECURRIDOS": 3
+      }
+    },
+    "518": {
+      "mesas": 9,
+      "electores": 2967,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 9,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 10,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 19,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 11,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 6,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 4,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 79,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 115,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 851,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 553,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 56,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 3,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 47,
+        "COMANDO": 1,
+        "IMPUGNADOS": 5,
+        "NULOS": 27,
+        "RECURRIDOS": 0
+      }
+    },
+    "519": {
+      "mesas": 19,
+      "electores": 6699,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 17,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 20,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 8,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 63,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 36,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 7,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 6,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 27,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 13,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 175,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 289,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1823,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1329,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 111,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 6,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 6,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 7,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 161,
+        "COMANDO": 0,
+        "IMPUGNADOS": 7,
+        "NULOS": 74,
+        "RECURRIDOS": 3
+      }
+    },
+    "520": {
+      "mesas": 26,
+      "electores": 9138,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 17,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 49,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 14,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 76,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 50,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 12,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 18,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 49,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 24,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 242,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 440,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 2604,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1705,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 222,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 14,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 6,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 173,
+        "COMANDO": 1,
+        "IMPUGNADOS": 6,
+        "NULOS": 94,
+        "RECURRIDOS": 1
+      }
+    },
+    "521": {
+      "mesas": 11,
+      "electores": 3682,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "106": {
+          "nombre": "HUMANISTA",
+          "votos": 7,
+          "campo_ideologico": "2"
+        },
+        "112": {
+          "nombre": "UNION POR TODOS",
+          "votos": 16,
+          "campo_ideologico": "5"
+        },
+        "19": {
+          "nombre": "CONSERVADOR POPULAR",
+          "votos": 3,
+          "campo_ideologico": "5"
+        },
+        "255": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 30,
+          "campo_ideologico": "1"
+        },
+        "258": {
+          "nombre": "CORRIENTE DE PENSAMIENTO BONAERENSE",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "27": {
+          "nombre": "UNION CELESTE Y BLANCO",
+          "votos": 16,
+          "campo_ideologico": "5"
+        },
+        "298": {
+          "nombre": "TODOS POR BUENOS AIRES",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "312": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 7,
+          "campo_ideologico": "6"
+        },
+        "314": {
+          "nombre": "REPUBLICANO FEDERAL",
+          "votos": 23,
+          "campo_ideologico": "4"
+        },
+        "317": {
+          "nombre": "VOCACION SOCIAL",
+          "votos": 10,
+          "campo_ideologico": "2"
+        },
+        "503": {
+          "nombre": "AVANZA LIBERTAD",
+          "votos": 113,
+          "campo_ideologico": "6"
+        },
+        "504": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 170,
+          "campo_ideologico": "1"
+        },
+        "506": {
+          "nombre": "JUNTOS",
+          "votos": 1221,
+          "campo_ideologico": "5"
+        },
+        "507": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 777,
+          "campo_ideologico": "3"
+        },
+        "508": {
+          "nombre": "FRENTE VAMOS CON VOS",
+          "votos": 86,
+          "campo_ideologico": "4"
+        },
+        "766": {
+          "nombre": "RENOVADOR FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "8": {
+          "nombre": "FEDERAL",
+          "votos": 8,
+          "campo_ideologico": "4"
+        },
+        "864": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        }
+      },
+      "otros": {
+        "BLANCOS": 59,
+        "COMANDO": 1,
+        "IMPUGNADOS": 1,
+        "NULOS": 35,
+        "RECURRIDOS": 1
+      }
+    }
+  }
+}

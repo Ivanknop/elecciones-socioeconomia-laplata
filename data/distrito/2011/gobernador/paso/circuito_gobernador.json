@@ -1,0 +1,3962 @@
+{
+  "anio": 2011,
+  "nivel": "gobernador",
+  "categoria_id": 4,
+  "fuente": "csv",
+  "coincide_con_agregado_json": true,
+  "advertencia_fuente": null,
+  "cobertura": {
+    "mesas_esperadas": 0,
+    "mesas_totalizadas": 1441,
+    "mesas_totalizadas_porcentaje": 0,
+    "cantidad_electores": 492046,
+    "cantidad_votantes": 343799,
+    "participacion_porcentaje": 69.87
+  },
+  "circuitos": {
+    "460": {
+      "mesas": 6,
+      "electores": 1986,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 107,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 34,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 369,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 99,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 334,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 106,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 45,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 245,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 60,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 71,
+        "IMPUGNADO": 2,
+        "NULO": 12,
+        "RECURRIDO": 1
+      }
+    },
+    "461": {
+      "mesas": 5,
+      "electores": 1656,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 56,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 28,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 253,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 44,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 232,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 108,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 22,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 162,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 46,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 63,
+        "IMPUGNADO": 0,
+        "NULO": 5,
+        "RECURRIDO": 0
+      }
+    },
+    "462": {
+      "mesas": 6,
+      "electores": 1816,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 84,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 30,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 283,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 80,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 287,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 108,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 34,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 217,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 38,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 67,
+        "IMPUGNADO": 0,
+        "NULO": 13,
+        "RECURRIDO": 1
+      }
+    },
+    "463": {
+      "mesas": 4,
+      "electores": 1102,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 56,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 17,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 162,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 48,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 167,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 75,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 13,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 140,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 38,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 39,
+        "IMPUGNADO": 1,
+        "NULO": 4,
+        "RECURRIDO": 0
+      }
+    },
+    "464": {
+      "mesas": 7,
+      "electores": 2161,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 96,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 33,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 380,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 100,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 393,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 127,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 46,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 321,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 77,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 97,
+        "IMPUGNADO": 0,
+        "NULO": 13,
+        "RECURRIDO": 0
+      }
+    },
+    "465": {
+      "mesas": 15,
+      "electores": 5492,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 176,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 50,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 514,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 102,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 890,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 103,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 74,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 233,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 74,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 122,
+        "IMPUGNADO": 3,
+        "NULO": 7,
+        "RECURRIDO": 0
+      }
+    },
+    "466": {
+      "mesas": 7,
+      "electores": 2150,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 96,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 30,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 421,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 110,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 342,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 218,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 58,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 251,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 70,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 63,
+        "IMPUGNADO": 0,
+        "NULO": 15,
+        "RECURRIDO": 0
+      }
+    },
+    "467": {
+      "mesas": 6,
+      "electores": 2073,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 112,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 33,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 380,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 72,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 427,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 147,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 51,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 235,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 77,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 68,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 1
+      }
+    },
+    "468": {
+      "mesas": 7,
+      "electores": 2224,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 81,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 39,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 397,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 98,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 407,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 130,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 48,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 264,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 75,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 119,
+        "IMPUGNADO": 0,
+        "NULO": 4,
+        "RECURRIDO": 0
+      }
+    },
+    "469": {
+      "mesas": 7,
+      "electores": 2384,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 90,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 54,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 352,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 131,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 501,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 114,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 54,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 295,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 81,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 81,
+        "IMPUGNADO": 0,
+        "NULO": 11,
+        "RECURRIDO": 1
+      }
+    },
+    "471": {
+      "mesas": 6,
+      "electores": 1931,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 61,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 19,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 190,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 47,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 414,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 100,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 52,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 105,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 49,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 76,
+        "IMPUGNADO": 2,
+        "NULO": 10,
+        "RECURRIDO": 0
+      }
+    },
+    "472": {
+      "mesas": 4,
+      "electores": 1370,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 33,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 16,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 142,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 50,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 245,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 61,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 32,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 102,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 34,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 34,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 0
+      }
+    },
+    "473": {
+      "mesas": 13,
+      "electores": 4325,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 211,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 69,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 524,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 157,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 665,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 295,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 96,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 494,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 135,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 241,
+        "IMPUGNADO": 0,
+        "NULO": 15,
+        "RECURRIDO": 0
+      }
+    },
+    "474": {
+      "mesas": 15,
+      "electores": 4906,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 205,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 75,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 815,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 230,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 857,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 325,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 87,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 561,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 148,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 204,
+        "IMPUGNADO": 1,
+        "NULO": 35,
+        "RECURRIDO": 1
+      }
+    },
+    "475": {
+      "mesas": 54,
+      "electores": 18969,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 660,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 254,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 2959,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 599,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 3334,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 1172,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 294,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 1906,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 516,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 665,
+        "IMPUGNADO": 5,
+        "NULO": 93,
+        "RECURRIDO": 4
+      }
+    },
+    "476": {
+      "mesas": 9,
+      "electores": 3019,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 154,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 40,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 595,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 143,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 638,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 225,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 389,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 95,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 151,
+        "IMPUGNADO": 0,
+        "NULO": 24,
+        "RECURRIDO": 0
+      }
+    },
+    "477": {
+      "mesas": 21,
+      "electores": 6991,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 213,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 121,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 1041,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 244,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1559,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 465,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 34,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 578,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 202,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 337,
+        "IMPUGNADO": 0,
+        "NULO": 48,
+        "RECURRIDO": 1
+      }
+    },
+    "480": {
+      "mesas": 9,
+      "electores": 2821,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 108,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 48,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 378,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 94,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 453,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 146,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 73,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 293,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 139,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 99,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 0
+      }
+    },
+    "481": {
+      "mesas": 9,
+      "electores": 3061,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 140,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 46,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 594,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 152,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 543,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 233,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 49,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 367,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 97,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 153,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 0
+      }
+    },
+    "482": {
+      "mesas": 9,
+      "electores": 2849,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 149,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 48,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 548,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 153,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 541,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 258,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 336,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 132,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 109,
+        "IMPUGNADO": 0,
+        "NULO": 21,
+        "RECURRIDO": 0
+      }
+    },
+    "483": {
+      "mesas": 8,
+      "electores": 2643,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 121,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 54,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 515,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 136,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 487,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 204,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 16,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 346,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 107,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 105,
+        "IMPUGNADO": 2,
+        "NULO": 17,
+        "RECURRIDO": 0
+      }
+    },
+    "484": {
+      "mesas": 9,
+      "electores": 2887,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 103,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 33,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 430,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 83,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 448,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 96,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 62,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 265,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 87,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 107,
+        "IMPUGNADO": 0,
+        "NULO": 20,
+        "RECURRIDO": 0
+      }
+    },
+    "485": {
+      "mesas": 7,
+      "electores": 2341,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 110,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 35,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 331,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 112,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 454,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 88,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 36,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 205,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 74,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 89,
+        "IMPUGNADO": 3,
+        "NULO": 11,
+        "RECURRIDO": 4
+      }
+    },
+    "486": {
+      "mesas": 8,
+      "electores": 2716,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 81,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 69,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 476,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 136,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 492,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 151,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 105,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 310,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 119,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 272,
+        "IMPUGNADO": 0,
+        "NULO": 17,
+        "RECURRIDO": 2
+      }
+    },
+    "487": {
+      "mesas": 7,
+      "electores": 2317,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 46,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 33,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 368,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 109,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 427,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 120,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 65,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 214,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 78,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 87,
+        "IMPUGNADO": 0,
+        "NULO": 13,
+        "RECURRIDO": 1
+      }
+    },
+    "488": {
+      "mesas": 9,
+      "electores": 3143,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 119,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 66,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 434,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 134,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 686,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 190,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 377,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 132,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 162,
+        "IMPUGNADO": 0,
+        "NULO": 19,
+        "RECURRIDO": 0
+      }
+    },
+    "493": {
+      "mesas": 1,
+      "electores": 119,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 0,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 0,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "495": {
+      "mesas": 73,
+      "electores": 25280,
+      "mesas_sin_votos_positivos": 5,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 931,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 377,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 4142,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 883,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 5251,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 1678,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 250,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 2453,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 867,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1354,
+        "IMPUGNADO": 5,
+        "NULO": 200,
+        "RECURRIDO": 8
+      }
+    },
+    "496": {
+      "mesas": 79,
+      "electores": 27321,
+      "mesas_sin_votos_positivos": 15,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 801,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 308,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 2887,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 619,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 6772,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 1589,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 916,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 1348,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 664,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1560,
+        "IMPUGNADO": 9,
+        "NULO": 253,
+        "RECURRIDO": 5
+      }
+    },
+    "496A": {
+      "mesas": 26,
+      "electores": 8923,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 80,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 81,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 642,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 84,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 3081,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 357,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 58,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 217,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 82,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 690,
+        "IMPUGNADO": 1,
+        "NULO": 60,
+        "RECURRIDO": 1
+      }
+    },
+    "496B": {
+      "mesas": 24,
+      "electores": 8230,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 145,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 61,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 751,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 152,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2725,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 400,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 233,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 260,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 127,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 684,
+        "IMPUGNADO": 3,
+        "NULO": 63,
+        "RECURRIDO": 4
+      }
+    },
+    "496C": {
+      "mesas": 29,
+      "electores": 10130,
+      "mesas_sin_votos_positivos": 5,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 162,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 128,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 1034,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 169,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 3075,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 498,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 329,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 382,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 188,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 528,
+        "IMPUGNADO": 5,
+        "NULO": 45,
+        "RECURRIDO": 3
+      }
+    },
+    "496D": {
+      "mesas": 40,
+      "electores": 13761,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 223,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 83,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 1354,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 213,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 4463,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 931,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 435,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 462,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 257,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1138,
+        "IMPUGNADO": 0,
+        "NULO": 133,
+        "RECURRIDO": 23
+      }
+    },
+    "496E": {
+      "mesas": 14,
+      "electores": 5074,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 102,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 24,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 275,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 53,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1378,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 164,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 82,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 43,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 174,
+        "IMPUGNADO": 0,
+        "NULO": 48,
+        "RECURRIDO": 2
+      }
+    },
+    "496F": {
+      "mesas": 3,
+      "electores": 377,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 18,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 23,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 10,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 13,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 1,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 22,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "497": {
+      "mesas": 47,
+      "electores": 16395,
+      "mesas_sin_votos_positivos": 3,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 401,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 164,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 2218,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 234,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 4112,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 923,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 300,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 1026,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 371,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1051,
+        "IMPUGNADO": 1,
+        "NULO": 53,
+        "RECURRIDO": 5
+      }
+    },
+    "497A": {
+      "mesas": 2,
+      "electores": 360,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 104,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 50,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 102,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 23,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 19,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 2,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 49,
+        "IMPUGNADO": 0,
+        "NULO": 2,
+        "RECURRIDO": 0
+      }
+    },
+    "497B": {
+      "mesas": 22,
+      "electores": 7575,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 167,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 68,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 917,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 114,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2279,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 528,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 113,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 341,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 131,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 797,
+        "IMPUGNADO": 2,
+        "NULO": 76,
+        "RECURRIDO": 4
+      }
+    },
+    "497C": {
+      "mesas": 22,
+      "electores": 7414,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 120,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 66,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 689,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 104,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2777,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 446,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 180,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 235,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 103,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 823,
+        "IMPUGNADO": 6,
+        "NULO": 36,
+        "RECURRIDO": 2
+      }
+    },
+    "497D": {
+      "mesas": 24,
+      "electores": 8198,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 157,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 76,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 1091,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 89,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2777,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 574,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 328,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 376,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 178,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 970,
+        "IMPUGNADO": 0,
+        "NULO": 72,
+        "RECURRIDO": 4
+      }
+    },
+    "497E": {
+      "mesas": 24,
+      "electores": 8104,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 251,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 57,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 798,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 79,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2297,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 371,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 96,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 276,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 128,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 427,
+        "IMPUGNADO": 2,
+        "NULO": 41,
+        "RECURRIDO": 0
+      }
+    },
+    "497F": {
+      "mesas": 7,
+      "electores": 2376,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 45,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 16,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 178,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 16,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 610,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 67,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 77,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 18,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 321,
+        "IMPUGNADO": 0,
+        "NULO": 13,
+        "RECURRIDO": 0
+      }
+    },
+    "498": {
+      "mesas": 2,
+      "electores": 669,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 81,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 301,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 57,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 32,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 5,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 25,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "501": {
+      "mesas": 126,
+      "electores": 44284,
+      "mesas_sin_votos_positivos": 6,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 1544,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 614,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 5865,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 1112,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 10943,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 2720,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 684,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 3344,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 1142,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 2714,
+        "IMPUGNADO": 3,
+        "NULO": 203,
+        "RECURRIDO": 6
+      }
+    },
+    "502": {
+      "mesas": 118,
+      "electores": 41071,
+      "mesas_sin_votos_positivos": 5,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 1323,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 737,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 5224,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 1167,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 11292,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 2186,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 515,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 3234,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 1169,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 3030,
+        "IMPUGNADO": 14,
+        "NULO": 273,
+        "RECURRIDO": 8
+      }
+    },
+    "503": {
+      "mesas": 10,
+      "electores": 3255,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 32,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 27,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 235,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 39,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 903,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 133,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 7,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 116,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 33,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 198,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 1
+      }
+    },
+    "503A": {
+      "mesas": 16,
+      "electores": 5390,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 121,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 66,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 754,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 88,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2105,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 338,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 281,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 132,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 499,
+        "IMPUGNADO": 0,
+        "NULO": 35,
+        "RECURRIDO": 0
+      }
+    },
+    "504": {
+      "mesas": 83,
+      "electores": 28895,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 941,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 478,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 3596,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 1070,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 7583,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 1600,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 145,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 3080,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 837,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1896,
+        "IMPUGNADO": 11,
+        "NULO": 199,
+        "RECURRIDO": 8
+      }
+    },
+    "504A": {
+      "mesas": 60,
+      "electores": 20939,
+      "mesas_sin_votos_positivos": 3,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 700,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 426,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 3198,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 880,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 4888,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 1327,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 268,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 2549,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 834,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1115,
+        "IMPUGNADO": 10,
+        "NULO": 149,
+        "RECURRIDO": 0
+      }
+    },
+    "505": {
+      "mesas": 49,
+      "electores": 17011,
+      "mesas_sin_votos_positivos": 5,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 394,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 187,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 2064,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 439,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 4467,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 1057,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 145,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 1177,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 383,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 1039,
+        "IMPUGNADO": 11,
+        "NULO": 133,
+        "RECURRIDO": 6
+      }
+    },
+    "505A": {
+      "mesas": 15,
+      "electores": 5204,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 82,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 56,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 427,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 118,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2070,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 237,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 150,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 180,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 86,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 308,
+        "IMPUGNADO": 3,
+        "NULO": 34,
+        "RECURRIDO": 3
+      }
+    },
+    "505B": {
+      "mesas": 5,
+      "electores": 1683,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 18,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 13,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 122,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 23,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 527,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 91,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 55,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 11,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 8,
+        "IMPUGNADO": 0,
+        "NULO": 33,
+        "RECURRIDO": 8
+      }
+    },
+    "508": {
+      "mesas": 25,
+      "electores": 8294,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 128,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 54,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 854,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 138,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2888,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 566,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 281,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 297,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 127,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 802,
+        "IMPUGNADO": 0,
+        "NULO": 53,
+        "RECURRIDO": 4
+      }
+    },
+    "508A": {
+      "mesas": 30,
+      "electores": 10285,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 174,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 109,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 1063,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 132,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 3096,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 535,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 376,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 485,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 174,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 768,
+        "IMPUGNADO": 2,
+        "NULO": 69,
+        "RECURRIDO": 0
+      }
+    },
+    "508B": {
+      "mesas": 16,
+      "electores": 5282,
+      "mesas_sin_votos_positivos": 3,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 52,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 32,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 354,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 74,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2067,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 285,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 158,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 101,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 47,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 606,
+        "IMPUGNADO": 0,
+        "NULO": 54,
+        "RECURRIDO": 1
+      }
+    },
+    "508C": {
+      "mesas": 16,
+      "electores": 5457,
+      "mesas_sin_votos_positivos": 3,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 49,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 31,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 361,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 37,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1851,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 302,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 116,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 153,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 69,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 358,
+        "IMPUGNADO": 0,
+        "NULO": 19,
+        "RECURRIDO": 0
+      }
+    },
+    "508D": {
+      "mesas": 22,
+      "electores": 7396,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 132,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 45,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 784,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 93,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 3083,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 318,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 183,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 127,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 75,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 482,
+        "IMPUGNADO": 0,
+        "NULO": 19,
+        "RECURRIDO": 0
+      }
+    },
+    "508E": {
+      "mesas": 16,
+      "electores": 5283,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 113,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 36,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 522,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 50,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1831,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 307,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 122,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 208,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 87,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 335,
+        "IMPUGNADO": 0,
+        "NULO": 21,
+        "RECURRIDO": 0
+      }
+    },
+    "508F": {
+      "mesas": 5,
+      "electores": 1656,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 24,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 13,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 163,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 23,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 433,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 112,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 23,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 32,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 13,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 101,
+        "IMPUGNADO": 0,
+        "NULO": 8,
+        "RECURRIDO": 0
+      }
+    },
+    "508G": {
+      "mesas": 2,
+      "electores": 396,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 6,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 47,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 7,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 181,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 13,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 14,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 2,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 23,
+        "IMPUGNADO": 0,
+        "NULO": 1,
+        "RECURRIDO": 0
+      }
+    },
+    "509": {
+      "mesas": 19,
+      "electores": 6436,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 165,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 31,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 797,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 71,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2203,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 287,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 121,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 51,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 411,
+        "IMPUGNADO": 14,
+        "NULO": 24,
+        "RECURRIDO": 1
+      }
+    },
+    "509A": {
+      "mesas": 18,
+      "electores": 6032,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 127,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 29,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 691,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 69,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 2288,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 512,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 203,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 244,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 94,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 617,
+        "IMPUGNADO": 0,
+        "NULO": 69,
+        "RECURRIDO": 2
+      }
+    },
+    "516": {
+      "mesas": 9,
+      "electores": 2846,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 136,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 47,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 479,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 139,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 502,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 145,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 376,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 100,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 92,
+        "IMPUGNADO": 1,
+        "NULO": 15,
+        "RECURRIDO": 0
+      }
+    },
+    "517": {
+      "mesas": 11,
+      "electores": 3724,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 171,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 66,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 645,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 186,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 630,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 203,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 73,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 450,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 154,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 156,
+        "IMPUGNADO": 1,
+        "NULO": 17,
+        "RECURRIDO": 2
+      }
+    },
+    "518": {
+      "mesas": 9,
+      "electores": 2898,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 157,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 55,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 485,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 175,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 541,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 243,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 374,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 121,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 108,
+        "IMPUGNADO": 0,
+        "NULO": 21,
+        "RECURRIDO": 1
+      }
+    },
+    "519": {
+      "mesas": 18,
+      "electores": 6162,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 177,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 119,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 796,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 225,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1023,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 267,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 549,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 210,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 289,
+        "IMPUGNADO": 0,
+        "NULO": 44,
+        "RECURRIDO": 1
+      }
+    },
+    "520": {
+      "mesas": 26,
+      "electores": 8831,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 246,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 147,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 1243,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 325,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 1957,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 631,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 818,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 342,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 485,
+        "IMPUGNADO": 2,
+        "NULO": 58,
+        "RECURRIDO": 0
+      }
+    },
+    "521": {
+      "mesas": 11,
+      "electores": 3697,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "0047": {
+          "nombre": "COALICION CIVICA ARI",
+          "votos": 132,
+          "campo_ideologico": "4"
+        },
+        "0136": {
+          "nombre": "ALIANZA PROYECTO SUR",
+          "votos": 68,
+          "campo_ideologico": "2"
+        },
+        "0137": {
+          "nombre": "ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO",
+          "votos": 595,
+          "campo_ideologico": "4"
+        },
+        "0199": {
+          "nombre": "NUEVO ENCUENTRO",
+          "votos": 178,
+          "campo_ideologico": "2"
+        },
+        "0501": {
+          "nombre": "ALIANZA FRENTE PARA LA VICTORIA",
+          "votos": 875,
+          "campo_ideologico": "3"
+        },
+        "0505": {
+          "nombre": "ALIANZA FRENTE POPULAR",
+          "votos": 234,
+          "campo_ideologico": "3"
+        },
+        "0509": {
+          "nombre": "COMPROMISO FEDERAL",
+          "votos": 67,
+          "campo_ideologico": "4"
+        },
+        "0510": {
+          "nombre": "FRENTE AMPLIO PROGRESISTA",
+          "votos": 445,
+          "campo_ideologico": "2"
+        },
+        "0517": {
+          "nombre": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+          "votos": 167,
+          "campo_ideologico": "1"
+        }
+      },
+      "otros": {
+        "EN BLANCO": 151,
+        "IMPUGNADO": 0,
+        "NULO": 4,
+        "RECURRIDO": 0
+      }
+    }
+  }
+}

@@ -40,7 +40,7 @@ PYTHONPATH=src python -m analisis.serie_temporal_filiacion  # same, by filiacion
 PYTHONPATH=src python -m analisis.cuadros_anualizados --anio 2023  # one chart per año, all cargos side by side
 PYTHONPATH=src python -m analisis.cuadros_por_localidad --anio 2023 --nivel intendente  # votes-by-locality table for one (año, nivel)
 PYTHONPATH=src python -m analisis.serie_temporal_por_localidad --nivel municipal  # per-locality time series, reads the tables above
-PYTHONPATH=src python -m electoral.totales --anio 2023 --nivel intendente  # total votes per agrupación for one (año, nivel)
+PYTHONPATH=src python -m electoral.totales --anio 2023 --nivel intendente  # total votes per agrupación, generales by default; add --etapa paso/balotaje for those
 PYTHONPATH=src python -m analisis.totales_por_lista --anio 2023 --nivel intendente  # bar chart of that total, one per (año, nivel)
 PYTHONPATH=src python -m analisis.comparativo_nivel --anio 2019  # Municipio/Provincia/Nación comparison table, one per año
 PYTHONPATH=src python -m macroeconomia.series  # national macroeconomic series, one CSV row per month 2011-2025 (needs network to refresh; runs from cache otherwise)
@@ -109,12 +109,17 @@ order, 01→04) are the pipeline**.
     there instead of breaking parsing or silently vanishing — tests in
     `tests/test_models.py` specifically assert on this behavior.
 
-- **`data/distrito/<año>/<categoría|nivel>/<etapa>/`** where `etapa` is `generales`,
-  `paso`, or `balotaje` (only for Presidente, only 2015/2023). Each leaf has
-  the raw aggregate `.json`, the official `.csv`, and (for `generales`) a
-  derived `circuito_<nivel>.json` built by notebook 04 from the CSV (not the
-  JSON aggregate — see `docs/FUNCIONALIDADES.md`'s "Anomalía conocida:
-  JSON agregado de Presidente 2019").
+- **`data/distrito/<año>/<categoría|nivel>/<etapa>/`** where `etapa` is
+  `generales` (always present), `paso` (present for every combo except
+  2011/intendente and all of 2025, per Ley 27.781 suspending PASO), or
+  `balotaje` (Presidente only, 2015/2023 only — no second round elsewhere).
+  Each leaf has the raw aggregate `.json`, the official `.csv`, and a
+  derived `circuito_<nivel>.json` built by notebook 04 from the CSV (not
+  the JSON aggregate — see `docs/FUNCIONALIDADES.md`'s "Anomalía
+  conocida: JSON agregado de Presidente 2019") — notebook 04 §1-5 builds
+  it for `generales`, §6-7 for `paso`/`balotaje`, discovering which (año,
+  nivel) combos actually have a cached raw CSV for that etapa instead of
+  assuming a fixed list.
 
 - **`data/agrupaciones/`** holds the cross-cutting reference tables:
   `clasificacion_ideologica_agrupaciones.csv` (party lists + hand-classified
@@ -168,12 +173,19 @@ order, 01→04) are the pipeline**.
 
 - **`src/electoral/totales.py`** (not `src/analisis/`, since it stays inside
   the electoral layer next to `models.py`) sums the `circuito_<nivel>.json`
-  files into one row per agrupación — total votes for the whole (año, nivel),
-  via `models.totalizar_agrupaciones` (a general-purpose combinator: sums any
-  `ValorAgrupacion` list by `id_agrupacion` and recomputes `votos_porcentaje`,
-  usable for mesas or circuitos alike, not tied to this one script). Writes
-  `data/totales/<nivel>/<año>/resultado_total.csv` — derived, not
-  git-tracked, same criterion as `graficos/`. Reads `circuito_<nivel>.json`
+  files into one row per agrupación — total votes for the whole (año,
+  nivel, etapa), via `models.totalizar_agrupaciones` (a general-purpose
+  combinator: sums any `ValorAgrupacion` list by `id_agrupacion` and
+  recomputes `votos_porcentaje`, usable for mesas or circuitos alike, not
+  tied to this one script). `etapa` defaults to `"generales"` everywhere
+  (backward compatible) and writes to the historical
+  `data/totales/<nivel>/<año>/resultado_total.csv` path; `"paso"`/
+  `"balotaje"` write to the sibling
+  `data/totales/<nivel>/<año>/<etapa>/resultado_total.csv` instead — both
+  derived, not git-tracked, same criterion as `graficos/`.
+  `_combos_disponibles` discovers every `circuito_<nivel>.json` on disk
+  under `data/distrito/`, generales/paso/balotaje alike, rather than
+  hardcoding which combos have which etapa. Reads `circuito_<nivel>.json`
   (CSV-derived) rather than the raw aggregate JSON on purpose — that JSON is
   known-wrong for Presidente 2019 (see `docs/FUNCIONALIDADES.md`'s
   "Anomalía conocida: JSON agregado de Presidente 2019").

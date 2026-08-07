@@ -1,0 +1,6070 @@
+{
+  "anio": 2023,
+  "nivel": "presidente",
+  "categoria_id": 1,
+  "fuente": "csv",
+  "coincide_con_agregado_json": true,
+  "advertencia_fuente": null,
+  "cobertura": {
+    "mesas_esperadas": 0,
+    "mesas_totalizadas": 1653,
+    "mesas_totalizadas_porcentaje": 0,
+    "cantidad_electores": 566757,
+    "cantidad_votantes": 386486,
+    "participacion_porcentaje": 68.19
+  },
+  "circuitos": {
+    "460": {
+      "mesas": 6,
+      "electores": 1856,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 10,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 5,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 596,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 23,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 411,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 155,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 55,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 23,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 31,
+        "IMPUGNADO": 0,
+        "NULO": 14,
+        "RECURRIDO": 1
+      }
+    },
+    "461": {
+      "mesas": 5,
+      "electores": 1484,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 8,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 2,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 457,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 71,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 305,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 151,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 44,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 3,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 25,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 0
+      }
+    },
+    "462": {
+      "mesas": 5,
+      "electores": 1657,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 2,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 2,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 562,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 303,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 145,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 28,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 9,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 29,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 1
+      }
+    },
+    "463": {
+      "mesas": 3,
+      "electores": 998,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 118,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 71,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 23,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 9,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 2,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 8,
+        "IMPUGNADO": 0,
+        "NULO": 1,
+        "RECURRIDO": 0
+      }
+    },
+    "464": {
+      "mesas": 7,
+      "electores": 2287,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 10,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 6,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 6,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 749,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 28,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 462,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 219,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 74,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 16,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 62,
+        "IMPUGNADO": 0,
+        "NULO": 16,
+        "RECURRIDO": 0
+      }
+    },
+    "465": {
+      "mesas": 6,
+      "electores": 1952,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 10,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 691,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 15,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 402,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 188,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 69,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 15,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 34,
+        "IMPUGNADO": 0,
+        "NULO": 7,
+        "RECURRIDO": 0
+      }
+    },
+    "466": {
+      "mesas": 7,
+      "electores": 2111,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 5,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 2,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 749,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 16,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 359,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 183,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 65,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 11,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 44,
+        "IMPUGNADO": 1,
+        "NULO": 16,
+        "RECURRIDO": 0
+      }
+    },
+    "467": {
+      "mesas": 6,
+      "electores": 1897,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 11,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 4,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 5,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 690,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 14,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 341,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 160,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 55,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 14,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 38,
+        "IMPUGNADO": 1,
+        "NULO": 8,
+        "RECURRIDO": 0
+      }
+    },
+    "468": {
+      "mesas": 6,
+      "electores": 1858,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 8,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 464,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 7,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 328,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 141,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 53,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 13,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 42,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 0
+      }
+    },
+    "469": {
+      "mesas": 6,
+      "electores": 2081,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 12,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 6,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 10,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 546,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 11,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 496,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 213,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 77,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 18,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 52,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 1
+      }
+    },
+    "471": {
+      "mesas": 6,
+      "electores": 1770,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 4,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 6,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 9,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 432,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 11,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 445,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 216,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 62,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 13,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 67,
+        "IMPUGNADO": 0,
+        "NULO": 11,
+        "RECURRIDO": 1
+      }
+    },
+    "472": {
+      "mesas": 4,
+      "electores": 1274,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 8,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 5,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 5,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 298,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 10,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 262,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 157,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 52,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 8,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 33,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 0
+      }
+    },
+    "473": {
+      "mesas": 12,
+      "electores": 4098,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 8,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 14,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1186,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 39,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 785,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 317,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 106,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 33,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 77,
+        "IMPUGNADO": 0,
+        "NULO": 21,
+        "RECURRIDO": 0
+      }
+    },
+    "474": {
+      "mesas": 14,
+      "electores": 4833,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 19,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 4,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 9,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1626,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 39,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 974,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 476,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 162,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 33,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 92,
+        "IMPUGNADO": 0,
+        "NULO": 37,
+        "RECURRIDO": 2
+      }
+    },
+    "475": {
+      "mesas": 46,
+      "electores": 15835,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 47,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 21,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 6,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 48,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 16,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 15,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 13,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 10,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 5371,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 124,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 3106,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1638,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 514,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 95,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 373,
+        "IMPUGNADO": 0,
+        "NULO": 84,
+        "RECURRIDO": 7
+      }
+    },
+    "476": {
+      "mesas": 9,
+      "electores": 2863,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 15,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 6,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 5,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 2,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1033,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 30,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 605,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 260,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 89,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 18,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 68,
+        "IMPUGNADO": 0,
+        "NULO": 11,
+        "RECURRIDO": 2
+      }
+    },
+    "477": {
+      "mesas": 20,
+      "electores": 6827,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 23,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 10,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 8,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 40,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 4,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 9,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 7,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 6,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1781,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 59,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1640,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 742,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 242,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 71,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 190,
+        "IMPUGNADO": 1,
+        "NULO": 48,
+        "RECURRIDO": 4
+      }
+    },
+    "480": {
+      "mesas": 8,
+      "electores": 2654,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 4,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 2,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 697,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 16,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 490,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 192,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 84,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 23,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 59,
+        "IMPUGNADO": 2,
+        "NULO": 11,
+        "RECURRIDO": 1
+      }
+    },
+    "481": {
+      "mesas": 9,
+      "electores": 3109,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 8,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 8,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 5,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1033,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 29,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 653,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 274,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 108,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 38,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 50,
+        "IMPUGNADO": 0,
+        "NULO": 18,
+        "RECURRIDO": 1
+      }
+    },
+    "482": {
+      "mesas": 8,
+      "electores": 2774,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 11,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 10,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 892,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 23,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 607,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 282,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 104,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 29,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 69,
+        "IMPUGNADO": 0,
+        "NULO": 19,
+        "RECURRIDO": 4
+      }
+    },
+    "483": {
+      "mesas": 8,
+      "electores": 2699,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 8,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 874,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 25,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 609,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 248,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 103,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 27,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 52,
+        "IMPUGNADO": 1,
+        "NULO": 13,
+        "RECURRIDO": 2
+      }
+    },
+    "484": {
+      "mesas": 8,
+      "electores": 2701,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 9,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 11,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 5,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 846,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 15,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 574,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 205,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 123,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 21,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 66,
+        "IMPUGNADO": 1,
+        "NULO": 14,
+        "RECURRIDO": 2
+      }
+    },
+    "485": {
+      "mesas": 7,
+      "electores": 2278,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 10,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 4,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 9,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 2,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 637,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 22,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 578,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 202,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 97,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 22,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 65,
+        "IMPUGNADO": 0,
+        "NULO": 17,
+        "RECURRIDO": 0
+      }
+    },
+    "486": {
+      "mesas": 8,
+      "electores": 2770,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 9,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 69,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 5,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 841,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 32,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 639,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 242,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 126,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 21,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 62,
+        "IMPUGNADO": 0,
+        "NULO": 7,
+        "RECURRIDO": 1
+      }
+    },
+    "487": {
+      "mesas": 7,
+      "electores": 2291,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 11,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 3,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 4,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 5,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 711,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 23,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 503,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 258,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 106,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 18,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 26,
+        "IMPUGNADO": 0,
+        "NULO": 16,
+        "RECURRIDO": 0
+      }
+    },
+    "488": {
+      "mesas": 10,
+      "electores": 3205,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 16,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 6,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 4,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 965,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 14,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 787,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 358,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 142,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 24,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 164,
+        "IMPUGNADO": 0,
+        "NULO": 33,
+        "RECURRIDO": 0
+      }
+    },
+    "493": {
+      "mesas": 1,
+      "electores": 103,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 0,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 0,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 0,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "495": {
+      "mesas": 73,
+      "electores": 25300,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 97,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 24,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 15,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 94,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 29,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 39,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 29,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 21,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 8097,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 197,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 5287,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2757,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 805,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 192,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 625,
+        "IMPUGNADO": 1,
+        "NULO": 182,
+        "RECURRIDO": 1
+      }
+    },
+    "496": {
+      "mesas": 84,
+      "electores": 29367,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 84,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 19,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 68,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 35,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 112,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 49,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 43,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 44,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 62,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 7052,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 185,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 6383,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 3970,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 982,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 189,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 965,
+        "IMPUGNADO": 2,
+        "NULO": 182,
+        "RECURRIDO": 8
+      }
+    },
+    "496A": {
+      "mesas": 38,
+      "electores": 13292,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 41,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 16,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 61,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 17,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 32,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 12,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 22,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 37,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 46,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1972,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 73,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 3211,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1894,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 327,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 27,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 706,
+        "IMPUGNADO": 0,
+        "NULO": 105,
+        "RECURRIDO": 2
+      }
+    },
+    "496B": {
+      "mesas": 37,
+      "electores": 12923,
+      "mesas_sin_votos_positivos": 3,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 35,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 15,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 59,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 14,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 46,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 18,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 22,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 20,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 31,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1971,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 54,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2515,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2035,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 279,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 65,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 515,
+        "IMPUGNADO": 6,
+        "NULO": 108,
+        "RECURRIDO": 12
+      }
+    },
+    "496C": {
+      "mesas": 42,
+      "electores": 14455,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 45,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 52,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 23,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 41,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 18,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 20,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 16,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 44,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2693,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 91,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 3348,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2296,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 326,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 65,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 10,
+        "EN BLANCO": 508,
+        "IMPUGNADO": 0,
+        "NULO": 78,
+        "RECURRIDO": 4
+      }
+    },
+    "496D": {
+      "mesas": 51,
+      "electores": 17857,
+      "mesas_sin_votos_positivos": 6,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 28,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 19,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 58,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 21,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 53,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 19,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 36,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 24,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 31,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2976,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 72,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 3704,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2371,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 394,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 45,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 677,
+        "IMPUGNADO": 0,
+        "NULO": 96,
+        "RECURRIDO": 2
+      }
+    },
+    "496E": {
+      "mesas": 16,
+      "electores": 5357,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 19,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 34,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 21,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 11,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 5,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 13,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 15,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1003,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 39,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1496,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 792,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 212,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 48,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 149,
+        "IMPUGNADO": 8,
+        "NULO": 39,
+        "RECURRIDO": 8
+      }
+    },
+    "496F": {
+      "mesas": 1,
+      "electores": 269,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 4,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 55,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 49,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 34,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 11,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 2,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 0,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 3
+      }
+    },
+    "497": {
+      "mesas": 39,
+      "electores": 13618,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 46,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 7,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 24,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 13,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 32,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 18,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 14,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 15,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 9,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 3972,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 94,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2488,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1996,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 407,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 102,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 460,
+        "IMPUGNADO": 5,
+        "NULO": 56,
+        "RECURRIDO": 3
+      }
+    },
+    "497A": {
+      "mesas": 3,
+      "electores": 730,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 0,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 82,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 104,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 184,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 9,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 0,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 0,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "497B": {
+      "mesas": 30,
+      "electores": 10286,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 37,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 12,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 52,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 16,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 33,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 11,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 13,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 25,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 19,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1985,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 53,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2113,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1614,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 284,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 45,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 476,
+        "IMPUGNADO": 4,
+        "NULO": 50,
+        "RECURRIDO": 3
+      }
+    },
+    "497C": {
+      "mesas": 29,
+      "electores": 9808,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 38,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 49,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 29,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 11,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 12,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 23,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 25,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1651,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 46,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1979,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1582,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 227,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 35,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 484,
+        "IMPUGNADO": 0,
+        "NULO": 76,
+        "RECURRIDO": 2
+      }
+    },
+    "497D": {
+      "mesas": 31,
+      "electores": 10554,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 20,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 40,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 23,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 17,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 17,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 21,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 20,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 26,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2323,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 63,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2132,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1856,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 249,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 57,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 526,
+        "IMPUGNADO": 1,
+        "NULO": 76,
+        "RECURRIDO": 6
+      }
+    },
+    "497E": {
+      "mesas": 35,
+      "electores": 12082,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 23,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 37,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 15,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 30,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 13,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 16,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 29,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 32,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2104,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 72,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2467,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1963,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 305,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 46,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 543,
+        "IMPUGNADO": 0,
+        "NULO": 89,
+        "RECURRIDO": 2
+      }
+    },
+    "497F": {
+      "mesas": 10,
+      "electores": 3458,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 12,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 7,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 13,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 8,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 9,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 16,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 540,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 19,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 654,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 651,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 81,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 16,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 36,
+        "EN BLANCO": 145,
+        "IMPUGNADO": 14,
+        "NULO": 22,
+        "RECURRIDO": 0
+      }
+    },
+    "498": {
+      "mesas": 5,
+      "electores": 1425,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 5,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 5,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 9,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 278,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 300,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 326,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 13,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 7,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 87,
+        "IMPUGNADO": 1,
+        "NULO": 1,
+        "RECURRIDO": 0
+      }
+    },
+    "501": {
+      "mesas": 131,
+      "electores": 45552,
+      "mesas_sin_votos_positivos": 10,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 132,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 82,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 39,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 143,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 50,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 60,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 47,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 30,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 12205,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 296,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 8487,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 5704,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1241,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 240,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 1287,
+        "IMPUGNADO": 4,
+        "NULO": 322,
+        "RECURRIDO": 9
+      }
+    },
+    "502": {
+      "mesas": 123,
+      "electores": 42983,
+      "mesas_sin_votos_positivos": 7,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 98,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 27,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 83,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 43,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 119,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 56,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 93,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 54,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 42,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 10440,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 266,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 9145,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 5167,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1136,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 276,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 7,
+        "EN BLANCO": 1221,
+        "IMPUGNADO": 9,
+        "NULO": 325,
+        "RECURRIDO": 30
+      }
+    },
+    "503": {
+      "mesas": 19,
+      "electores": 6368,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 13,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 7,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 15,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 10,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 16,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 16,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1570,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 47,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1258,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 906,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 146,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 22,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 8,
+        "EN BLANCO": 234,
+        "IMPUGNADO": 0,
+        "NULO": 45,
+        "RECURRIDO": 0
+      }
+    },
+    "503A": {
+      "mesas": 27,
+      "electores": 9145,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 26,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 15,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 12,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 31,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 15,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 10,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 17,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 12,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2275,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 67,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2021,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1486,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 264,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 51,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 408,
+        "IMPUGNADO": 7,
+        "NULO": 51,
+        "RECURRIDO": 3
+      }
+    },
+    "504": {
+      "mesas": 104,
+      "electores": 36182,
+      "mesas_sin_votos_positivos": 3,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 135,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 17,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 45,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 25,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 86,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 26,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 62,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 45,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 39,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 10471,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 383,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 7577,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 4536,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 994,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 211,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 73,
+        "EN BLANCO": 1051,
+        "IMPUGNADO": 2,
+        "NULO": 228,
+        "RECURRIDO": 4
+      }
+    },
+    "504A": {
+      "mesas": 78,
+      "electores": 27108,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 79,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 33,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 20,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 66,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 30,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 42,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 27,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 25,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 9021,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 296,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 5704,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 3188,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 773,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 176,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 6,
+        "EN BLANCO": 729,
+        "IMPUGNADO": 2,
+        "NULO": 147,
+        "RECURRIDO": 12
+      }
+    },
+    "505": {
+      "mesas": 48,
+      "electores": 16526,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 50,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 20,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 52,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 18,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 69,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 21,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 32,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 43,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 4133,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 70,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 3451,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2413,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 475,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 118,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 26,
+        "EN BLANCO": 463,
+        "IMPUGNADO": 0,
+        "NULO": 126,
+        "RECURRIDO": 7
+      }
+    },
+    "505A": {
+      "mesas": 33,
+      "electores": 11212,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 49,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 23,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 14,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 55,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 16,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 23,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 21,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 21,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2181,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 58,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2865,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1743,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 325,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 78,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 8,
+        "EN BLANCO": 415,
+        "IMPUGNADO": 0,
+        "NULO": 92,
+        "RECURRIDO": 5
+      }
+    },
+    "505B": {
+      "mesas": 10,
+      "electores": 3468,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 6,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 8,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 6,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 6,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 5,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 446,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 24,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 847,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 590,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 103,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 15,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 202,
+        "IMPUGNADO": 0,
+        "NULO": 27,
+        "RECURRIDO": 0
+      }
+    },
+    "508": {
+      "mesas": 33,
+      "electores": 11268,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 34,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 8,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 42,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 22,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 43,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 13,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 19,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 20,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 16,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2222,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 52,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2417,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1894,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 307,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 54,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 425,
+        "IMPUGNADO": 0,
+        "NULO": 59,
+        "RECURRIDO": 1
+      }
+    },
+    "508A": {
+      "mesas": 38,
+      "electores": 13030,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 31,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 42,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 17,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 42,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 15,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 12,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 23,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 18,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2875,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 72,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2322,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 2064,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 327,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 57,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 13,
+        "EN BLANCO": 391,
+        "IMPUGNADO": 2,
+        "NULO": 84,
+        "RECURRIDO": 7
+      }
+    },
+    "508B": {
+      "mesas": 25,
+      "electores": 8479,
+      "mesas_sin_votos_positivos": 5,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 17,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 6,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 30,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 13,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 13,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 11,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 20,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 9,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1044,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 29,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1637,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1189,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 191,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 18,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 421,
+        "IMPUGNADO": 0,
+        "NULO": 35,
+        "RECURRIDO": 0
+      }
+    },
+    "508C": {
+      "mesas": 26,
+      "electores": 9058,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 12,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 96,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 16,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 19,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 10,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 14,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 22,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 17,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1462,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 34,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1836,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1398,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 211,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 32,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 18,
+        "EN BLANCO": 343,
+        "IMPUGNADO": 2,
+        "NULO": 64,
+        "RECURRIDO": 1
+      }
+    },
+    "508D": {
+      "mesas": 32,
+      "electores": 11096,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 24,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 13,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 38,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 16,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 17,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 24,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 31,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1606,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 123,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 2577,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1850,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 204,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 19,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 661,
+        "IMPUGNADO": 0,
+        "NULO": 25,
+        "RECURRIDO": 5
+      }
+    },
+    "508E": {
+      "mesas": 24,
+      "electores": 8309,
+      "mesas_sin_votos_positivos": 3,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 17,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 13,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 31,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 23,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 14,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 32,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 15,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 16,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1372,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 37,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1471,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1428,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 204,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 30,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 286,
+        "IMPUGNADO": 3,
+        "NULO": 32,
+        "RECURRIDO": 9
+      }
+    },
+    "508F": {
+      "mesas": 7,
+      "electores": 2239,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 6,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 7,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 386,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 7,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 432,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 485,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 8,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 55,
+        "IMPUGNADO": 0,
+        "NULO": 9,
+        "RECURRIDO": 0
+      }
+    },
+    "508G": {
+      "mesas": 2,
+      "electores": 653,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 4,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 81,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 6,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 160,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 121,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 6,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 2,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 46,
+        "IMPUGNADO": 0,
+        "NULO": 4,
+        "RECURRIDO": 0
+      }
+    },
+    "509": {
+      "mesas": 20,
+      "electores": 6887,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 13,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 18,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 10,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 12,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 4,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 9,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 9,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 30,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 907,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 17,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1435,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1324,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 134,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 16,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 298,
+        "IMPUGNADO": 0,
+        "NULO": 43,
+        "RECURRIDO": 1
+      }
+    },
+    "509A": {
+      "mesas": 27,
+      "electores": 9332,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 31,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 29,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 21,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 27,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 21,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 47,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1783,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 38,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1556,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 1925,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 194,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 25,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 399,
+        "IMPUGNADO": 0,
+        "NULO": 67,
+        "RECURRIDO": 0
+      }
+    },
+    "516": {
+      "mesas": 10,
+      "electores": 3178,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 9,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 2,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 5,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 808,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 33,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 574,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 263,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 92,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 25,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 49,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 0
+      }
+    },
+    "517": {
+      "mesas": 10,
+      "electores": 3337,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 12,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 5,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 6,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1045,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 37,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 703,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 261,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 143,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 22,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 73,
+        "IMPUGNADO": 0,
+        "NULO": 9,
+        "RECURRIDO": 1
+      }
+    },
+    "518": {
+      "mesas": 8,
+      "electores": 2725,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 10,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 2,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 1,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 821,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 27,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 643,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 249,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 113,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 34,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 45,
+        "IMPUGNADO": 0,
+        "NULO": 9,
+        "RECURRIDO": 1
+      }
+    },
+    "519": {
+      "mesas": 17,
+      "electores": 5630,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 22,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 9,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 23,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 8,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 9,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 8,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1431,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 32,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1199,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 555,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 242,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 46,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 136,
+        "IMPUGNADO": 0,
+        "NULO": 31,
+        "RECURRIDO": 4
+      }
+    },
+    "520": {
+      "mesas": 24,
+      "electores": 8339,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 29,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 13,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 29,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 10,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 8,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 13,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2288,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 56,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 1990,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 940,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 312,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 84,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 222,
+        "IMPUGNADO": 0,
+        "NULO": 61,
+        "RECURRIDO": 3
+      }
+    },
+    "521": {
+      "mesas": 11,
+      "electores": 3607,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "13": {
+          "nombre": "MOVIMIENTO AL SOCIALISMO",
+          "votos": 8,
+          "campo_ideologico": "1"
+        },
+        "20": {
+          "nombre": "UNION DEL CENTRO DEMOCRATICO",
+          "votos": 1,
+          "campo_ideologico": "4"
+        },
+        "40": {
+          "nombre": "MOVIMIENTO LIBRES DEL SUR",
+          "votos": 6,
+          "campo_ideologico": "2"
+        },
+        "57": {
+          "nombre": "MOVIMIENTO DE ACCION VECINAL",
+          "votos": 0,
+          "campo_ideologico": "4"
+        },
+        "90": {
+          "nombre": "MOVIMIENTO IZQUIERDA JUVENTUD Y DIGNIDAD",
+          "votos": 12,
+          "campo_ideologico": "1"
+        },
+        "92": {
+          "nombre": "POLITICA OBRERA",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "94": {
+          "nombre": "PROYECTO JOVEN",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "95": {
+          "nombre": "FRENTE PATRIOTA FEDERAL",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "131": {
+          "nombre": "FRENTE LIBER.AR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "132": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1056,
+          "campo_ideologico": "5"
+        },
+        "133": {
+          "nombre": "HACEMOS POR NUESTRO PAIS",
+          "votos": 26,
+          "campo_ideologico": "3"
+        },
+        "134": {
+          "nombre": "UNION POR LA PATRIA",
+          "votos": 869,
+          "campo_ideologico": "3"
+        },
+        "135": {
+          "nombre": "LA LIBERTAD AVANZA",
+          "votos": 318,
+          "campo_ideologico": "6"
+        },
+        "136": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 161,
+          "campo_ideologico": "1"
+        },
+        "137": {
+          "nombre": "PRINCIPIOS Y VALORES",
+          "votos": 37,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 96,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 0
+      }
+    }
+  }
+}

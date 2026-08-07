@@ -49,7 +49,7 @@ para borrarlo y correrlo de nuevo):
 | Ruta | Contenido | ¿Versionado en git? |
 |---|---|---|
 | `data/distrito/<año>/<nivel>/<etapa>/` | JSON+CSV crudo bajado de la API | No — se descarga con los notebooks |
-| `data/distrito/<año>/<nivel>/generales/circuito_<nivel>.json` | agregado por circuito | No — derivado (notebook 04) |
+| `data/distrito/<año>/<nivel>/<etapa>/circuito_<nivel>.json` | agregado por circuito (generales siempre; paso/balotaje solo donde existió esa instancia) | No — derivado (notebook 04) |
 | `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` | clasificación ideológica manual, append-only | **Sí** |
 | `data/agrupaciones/tabla_referencia_filiacion_politica.csv` | fuente/confianza de `filiacion_politica` | **Sí** |
 | `data/agrupaciones/campo_ideologico.csv` | escala 1-6 (sin usar por el código actual — ver `docs/FUNCIONALIDADES.md`) | **Sí** |
@@ -60,7 +60,7 @@ para borrarlo y correrlo de nuevo):
 | `data/macroeconomia/series_macro_2011_2025.csv` | CSV mensual generado | No — derivado, se regenera desde `_cache/` |
 | `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` | doc de cobertura/auditoría | **Sí** |
 | `data/por_localidad/` | cuadros por localidad | No — derivado (`cuadros_por_localidad.py`) |
-| `data/totales/<nivel>/<año>/` | total de votos por agrupación | No — derivado (`electoral.totales`) |
+| `data/totales/<nivel>/<año>/[<etapa>/]` | total de votos por agrupación (`<etapa>` solo para paso/balotaje) | No — derivado (`electoral.totales`) |
 | `graficos/distrito/<año>/<nivel>/` | barras/torta circuito por circuito | No — se regenera on demand |
 | `graficos/distrito/serie_temporal/` | series temporales por ideología/filiación | **Sí** |
 | `graficos/distrito/totales_por_lista/` | barras de total + comparativos Municipio/Provincia/Nación | **Sí** |
@@ -104,7 +104,9 @@ datos.gob.ar) son públicos. Sí hace falta acceso de red saliente a
    "otros" (blanco, nulo, recurrido, impugnado...) para cada (año, nivel) ya
    descargado, cruza contra el libro de códigos ideológico, y escribe
    `data/distrito/<año>/<nivel>/generales/circuito_<nivel>.json` y
-   `data/agrupaciones/circuito_id_correspondencias.csv`.
+   `data/agrupaciones/circuito_id_correspondencias.csv` -- después hace lo
+   mismo para PASO y balotaje, en los (año, nivel) donde existieron (ver
+   `docs/FUNCIONALIDADES.md`, "PASO y balotaje").
 6. Si ya existe la caché en `data/`, los notebooks corren instantáneo (leen
    de disco, no vuelven a pedirle nada a la API). Para forzar una
    actualización real, pasar `force_refresh=True` a los métodos del cliente.

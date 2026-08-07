@@ -52,9 +52,10 @@ que ya están marcados como resueltos en `docs/AUDITORIA_ESTADO.md`.
 
 ```
 data/distrito/<año>/<nivel>/{generales,paso,balotaje}/        # crudo (JSON + CSV oficial)
-data/distrito/<año>/<nivel>/generales/circuito_<nivel>.json   # derivado por circuito -- SOLO generales tiene este derivado
+data/distrito/<año>/<nivel>/<etapa>/circuito_<nivel>.json     # derivado por circuito -- las tres etapas lo tienen, pero paso/balotaje solo donde existió esa instancia (ver notebook 04, secciones 6-7)
 data/por_localidad/<año>_<nivel>_<etapa>_localidad.csv        # cuadros por localidad, derivado, NO versionado
-data/totales/<nivel>/<año>/resultado_total.csv                # total por agrupación, derivado, NO versionado
+data/totales/<nivel>/<año>/resultado_total.csv                # total por agrupación (generales), derivado, NO versionado
+data/totales/<nivel>/<año>/<etapa>/resultado_total.csv        # ídem para paso/balotaje, hermana de la ruta de arriba
 data/agrupaciones/clasificacion_ideologica_agrupaciones.csv    # clasificación ideológica manual -- append-only
 data/agrupaciones/tabla_referencia_filiacion_politica.csv       # fuente de filiacion_politica + confianza/nota de cada valor
 data/agrupaciones/circuito_id_correspondencias.csv             # normalización circuito_id entre años
@@ -196,6 +197,19 @@ Presidente 2015/2023).
   `docs/AUDITORIA_ESTADO.md`, hueco de telegrama). Su `ausentismo` puntual da
   100% -- no es abstención real, es el mismo hueco de cobertura ya
   documentado, no una fila nueva a investigar.
+- **PASO 2013 legislativas** (`nacional`/`provincial`/`municipal`) tienen
+  `coincide_con_agregado_json=false`, pero no por votos: `positivos` y
+  `otros` suman exactamente igual que el JSON agregado. La diferencia está
+  en `mesas`/`electores` -- el CSV de esas tres categorías cubre bastantes
+  menos mesas que las que el agregado dice totalizadas (ej. nacional 2013:
+  1524 mesas/524.733 electores sumados desde el CSV vs. 2550
+  mesas/878.293 electores que informa el agregado), como si al CSV le
+  faltaran filas de mesas enteras sin votos para esa categoría puntual.
+  Es distinto de la anomalía de Presidente 2019 (ahí el agregado
+  subestimaba votos) -- acá los votos están bien, lo que falta es
+  cobertura de mesas/electores. No se investigó la causa a fondo todavía;
+  no usar `cobertura` de estos tres `circuito_<nivel>.json` de PASO 2013
+  para calcular `ausentismo` sin tener esto presente.
 
 ## Referencias
 

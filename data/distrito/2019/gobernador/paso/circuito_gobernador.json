@@ -1,0 +1,3971 @@
+{
+  "anio": 2019,
+  "nivel": "gobernador",
+  "categoria_id": 4,
+  "fuente": "csv",
+  "coincide_con_agregado_json": true,
+  "advertencia_fuente": null,
+  "cobertura": {
+    "mesas_esperadas": 0,
+    "mesas_totalizadas": 1636,
+    "mesas_totalizadas_porcentaje": 0,
+    "cantidad_electores": 571044,
+    "cantidad_votantes": 410814,
+    "participacion_porcentaje": 71.94
+  },
+  "circuitos": {
+    "460": {
+      "mesas": 6,
+      "electores": 2048,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 18,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 14,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 553,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 69,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 724,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 91,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 46,
+        "IMPUGNADO": 0,
+        "NULO": 14,
+        "RECURRIDO": 0
+      }
+    },
+    "461": {
+      "mesas": 5,
+      "electores": 1719,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 20,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 417,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 57,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 605,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 69,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 50,
+        "IMPUGNADO": 0,
+        "NULO": 13,
+        "RECURRIDO": 1
+      }
+    },
+    "462": {
+      "mesas": 6,
+      "electores": 1814,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 19,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 9,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 401,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 45,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 720,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 70,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 42,
+        "IMPUGNADO": 6,
+        "NULO": 11,
+        "RECURRIDO": 1
+      }
+    },
+    "463": {
+      "mesas": 4,
+      "electores": 1107,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 6,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 6,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 159,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 16,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 311,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 42,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 13,
+        "IMPUGNADO": 1,
+        "NULO": 5,
+        "RECURRIDO": 0
+      }
+    },
+    "464": {
+      "mesas": 7,
+      "electores": 2416,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 17,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 23,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 544,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 75,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 759,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 114,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 56,
+        "IMPUGNADO": 3,
+        "NULO": 3,
+        "RECURRIDO": 1
+      }
+    },
+    "465": {
+      "mesas": 6,
+      "electores": 1940,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 15,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 17,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 502,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 12,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 52,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 744,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 110,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 9,
+        "EN BLANCO": 50,
+        "IMPUGNADO": 0,
+        "NULO": 3,
+        "RECURRIDO": 1
+      }
+    },
+    "466": {
+      "mesas": 9,
+      "electores": 3166,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 31,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 13,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 582,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 87,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 961,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 106,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 72,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 1
+      }
+    },
+    "467": {
+      "mesas": 9,
+      "electores": 3540,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 17,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 662,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 11,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 77,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 948,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 116,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 71,
+        "IMPUGNADO": 3,
+        "NULO": 5,
+        "RECURRIDO": 0
+      }
+    },
+    "468": {
+      "mesas": 7,
+      "electores": 2137,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 20,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 29,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 579,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 67,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 747,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 84,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 7,
+        "EN BLANCO": 44,
+        "IMPUGNADO": 0,
+        "NULO": 9,
+        "RECURRIDO": 0
+      }
+    },
+    "469": {
+      "mesas": 6,
+      "electores": 1802,
+      "mesas_sin_votos_positivos": 3,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 9,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 8,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 207,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 31,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 220,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 37,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 29,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 3
+      }
+    },
+    "471": {
+      "mesas": 6,
+      "electores": 1934,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 14,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 17,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 632,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 78,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 567,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 99,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 70,
+        "IMPUGNADO": 0,
+        "NULO": 10,
+        "RECURRIDO": 1
+      }
+    },
+    "472": {
+      "mesas": 4,
+      "electores": 1391,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 16,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 14,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 394,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 60,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 419,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 69,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 24,
+        "IMPUGNADO": 0,
+        "NULO": 9,
+        "RECURRIDO": 0
+      }
+    },
+    "473": {
+      "mesas": 13,
+      "electores": 4401,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 27,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 29,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 949,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 13,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 141,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1368,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 169,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 94,
+        "IMPUGNADO": 0,
+        "NULO": 17,
+        "RECURRIDO": 2
+      }
+    },
+    "474": {
+      "mesas": 15,
+      "electores": 4987,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 26,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 46,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1282,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 179,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1940,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 276,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 95,
+        "IMPUGNADO": 1,
+        "NULO": 22,
+        "RECURRIDO": 0
+      }
+    },
+    "475": {
+      "mesas": 48,
+      "electores": 16931,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 139,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 122,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 19,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3916,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 13,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 23,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 563,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 6057,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 910,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 9,
+        "EN BLANCO": 422,
+        "IMPUGNADO": 8,
+        "NULO": 74,
+        "RECURRIDO": 3
+      }
+    },
+    "476": {
+      "mesas": 10,
+      "electores": 3474,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 26,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 11,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 5,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 733,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 84,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1055,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 155,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 88,
+        "IMPUGNADO": 0,
+        "NULO": 7,
+        "RECURRIDO": 0
+      }
+    },
+    "477": {
+      "mesas": 21,
+      "electores": 7138,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 74,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 58,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 13,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2061,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 8,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 16,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 232,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1974,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 364,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 5,
+        "EN BLANCO": 218,
+        "IMPUGNADO": 0,
+        "NULO": 36,
+        "RECURRIDO": 23
+      }
+    },
+    "480": {
+      "mesas": 8,
+      "electores": 2788,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 24,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 23,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 742,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 78,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1006,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 124,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 61,
+        "IMPUGNADO": 3,
+        "NULO": 18,
+        "RECURRIDO": 0
+      }
+    },
+    "481": {
+      "mesas": 12,
+      "electores": 4070,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 39,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 15,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 7,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 923,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 10,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 113,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1270,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 170,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 116,
+        "IMPUGNADO": 1,
+        "NULO": 18,
+        "RECURRIDO": 6
+      }
+    },
+    "482": {
+      "mesas": 9,
+      "electores": 2853,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 28,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 27,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 5,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 798,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 7,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 103,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1051,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 165,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 55,
+        "IMPUGNADO": 0,
+        "NULO": 14,
+        "RECURRIDO": 1
+      }
+    },
+    "483": {
+      "mesas": 8,
+      "electores": 2740,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 26,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 5,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 764,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 111,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1021,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 142,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 5,
+        "EN BLANCO": 58,
+        "IMPUGNADO": 2,
+        "NULO": 21,
+        "RECURRIDO": 0
+      }
+    },
+    "484": {
+      "mesas": 2,
+      "electores": 703,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 8,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 187,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 20,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 248,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 34,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 16,
+        "IMPUGNADO": 0,
+        "NULO": 3,
+        "RECURRIDO": 0
+      }
+    },
+    "485": {
+      "mesas": 8,
+      "electores": 2462,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 13,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 23,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 4,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 634,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 7,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 93,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 717,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 114,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 42,
+        "IMPUGNADO": 1,
+        "NULO": 13,
+        "RECURRIDO": 0
+      }
+    },
+    "486": {
+      "mesas": 9,
+      "electores": 2855,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 31,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 882,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 11,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 124,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 947,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 199,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 6,
+        "EN BLANCO": 84,
+        "IMPUGNADO": 0,
+        "NULO": 19,
+        "RECURRIDO": 0
+      }
+    },
+    "487": {
+      "mesas": 7,
+      "electores": 2439,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 13,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 27,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 596,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 111,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 746,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 95,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 75,
+        "IMPUGNADO": 1,
+        "NULO": 7,
+        "RECURRIDO": 3
+      }
+    },
+    "488": {
+      "mesas": 10,
+      "electores": 3337,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 22,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 40,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 7,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 988,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 146,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1104,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 202,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 109,
+        "IMPUGNADO": 2,
+        "NULO": 31,
+        "RECURRIDO": 2
+      }
+    },
+    "495": {
+      "mesas": 77,
+      "electores": 26754,
+      "mesas_sin_votos_positivos": 6,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 205,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 214,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 38,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 6733,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 37,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 49,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 875,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 8719,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 1491,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 29,
+        "EN BLANCO": 630,
+        "IMPUGNADO": 3,
+        "NULO": 172,
+        "RECURRIDO": 11
+      }
+    },
+    "496": {
+      "mesas": 90,
+      "electores": 31971,
+      "mesas_sin_votos_positivos": 6,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 364,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 242,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 39,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 9798,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 40,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 69,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 996,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 8195,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 1522,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 6,
+        "EN BLANCO": 933,
+        "IMPUGNADO": 15,
+        "NULO": 200,
+        "RECURRIDO": 16
+      }
+    },
+    "496A": {
+      "mesas": 35,
+      "electores": 12144,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 123,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 44,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 20,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 5238,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 27,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 28,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 280,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1979,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 415,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 13,
+        "EN BLANCO": 403,
+        "IMPUGNADO": 0,
+        "NULO": 77,
+        "RECURRIDO": 0
+      }
+    },
+    "496B": {
+      "mesas": 38,
+      "electores": 13651,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 164,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 87,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 15,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 5471,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 22,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 30,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 332,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2581,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 479,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 7,
+        "EN BLANCO": 489,
+        "IMPUGNADO": 19,
+        "NULO": 63,
+        "RECURRIDO": 5
+      }
+    },
+    "496C": {
+      "mesas": 29,
+      "electores": 10631,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 109,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 82,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 21,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3968,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 17,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 21,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 295,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2309,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 461,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 7,
+        "EN BLANCO": 300,
+        "IMPUGNADO": 2,
+        "NULO": 49,
+        "RECURRIDO": 1
+      }
+    },
+    "496D": {
+      "mesas": 50,
+      "electores": 17663,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 289,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 131,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 46,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 6496,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 39,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 33,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 505,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 3742,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 764,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 4,
+        "EN BLANCO": 724,
+        "IMPUGNADO": 3,
+        "NULO": 137,
+        "RECURRIDO": 5
+      }
+    },
+    "496E": {
+      "mesas": 12,
+      "electores": 3945,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 63,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 24,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 6,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1625,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 7,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 14,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 132,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 893,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 205,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 8,
+        "EN BLANCO": 147,
+        "IMPUGNADO": 3,
+        "NULO": 21,
+        "RECURRIDO": 4
+      }
+    },
+    "496F": {
+      "mesas": 1,
+      "electores": 196,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 3,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 0,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 67,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 2,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 55,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 6,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 17,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 1
+      }
+    },
+    "497": {
+      "mesas": 43,
+      "electores": 14722,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 180,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 102,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 24,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 4234,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 13,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 21,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 514,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 4826,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 918,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 396,
+        "IMPUGNADO": 8,
+        "NULO": 71,
+        "RECURRIDO": 9
+      }
+    },
+    "497A": {
+      "mesas": 2,
+      "electores": 578,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 4,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 1,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 186,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 10,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 114,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 7,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 7,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "497B": {
+      "mesas": 28,
+      "electores": 9455,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 164,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 46,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 11,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3279,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 20,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 29,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 313,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2310,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 456,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 4,
+        "EN BLANCO": 366,
+        "IMPUGNADO": 3,
+        "NULO": 47,
+        "RECURRIDO": 0
+      }
+    },
+    "497C": {
+      "mesas": 28,
+      "electores": 9924,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 167,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 64,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 13,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3653,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 22,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 17,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 269,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1900,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 387,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 492,
+        "IMPUGNADO": 1,
+        "NULO": 41,
+        "RECURRIDO": 1
+      }
+    },
+    "497D": {
+      "mesas": 28,
+      "electores": 10026,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 157,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 63,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 18,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3213,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 15,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 19,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 310,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2293,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 533,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 407,
+        "IMPUGNADO": 0,
+        "NULO": 50,
+        "RECURRIDO": 0
+      }
+    },
+    "497E": {
+      "mesas": 32,
+      "electores": 11075,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 234,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 63,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 25,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 4194,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 25,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 36,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 280,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2403,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 535,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 16,
+        "EN BLANCO": 450,
+        "IMPUGNADO": 2,
+        "NULO": 82,
+        "RECURRIDO": 5
+      }
+    },
+    "497F": {
+      "mesas": 10,
+      "electores": 3499,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 49,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 18,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 10,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1211,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 5,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 9,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 71,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 654,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 149,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 133,
+        "IMPUGNADO": 3,
+        "NULO": 12,
+        "RECURRIDO": 0
+      }
+    },
+    "498": {
+      "mesas": 5,
+      "electores": 1818,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 11,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 6,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 743,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 1,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 23,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 248,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 43,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 57,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "501": {
+      "mesas": 133,
+      "electores": 47034,
+      "mesas_sin_votos_positivos": 3,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 500,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 396,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 67,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 13338,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 65,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 81,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1531,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 14609,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 2568,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 21,
+        "EN BLANCO": 1424,
+        "IMPUGNADO": 19,
+        "NULO": 298,
+        "RECURRIDO": 18
+      }
+    },
+    "502": {
+      "mesas": 126,
+      "electores": 44456,
+      "mesas_sin_votos_positivos": 6,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 475,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 275,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 50,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 13881,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 32,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 69,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1235,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 12346,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 2154,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 29,
+        "EN BLANCO": 1308,
+        "IMPUGNADO": 33,
+        "NULO": 232,
+        "RECURRIDO": 22
+      }
+    },
+    "503": {
+      "mesas": 16,
+      "electores": 5425,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 94,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 44,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2024,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 25,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 9,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 155,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1392,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 251,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 205,
+        "IMPUGNADO": 3,
+        "NULO": 31,
+        "RECURRIDO": 0
+      }
+    },
+    "503A": {
+      "mesas": 25,
+      "electores": 9010,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 84,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 65,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 8,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3102,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 14,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 11,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 277,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1782,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 305,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 1,
+        "EN BLANCO": 336,
+        "IMPUGNADO": 0,
+        "NULO": 35,
+        "RECURRIDO": 10
+      }
+    },
+    "504": {
+      "mesas": 100,
+      "electores": 35153,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 447,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 297,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 43,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 10708,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 50,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 47,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 1192,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 10719,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 1752,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 78,
+        "EN BLANCO": 1001,
+        "IMPUGNADO": 18,
+        "NULO": 225,
+        "RECURRIDO": 19
+      }
+    },
+    "504A": {
+      "mesas": 75,
+      "electores": 26133,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 245,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 224,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 22,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 7255,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 30,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 33,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 862,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 8921,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 1392,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 25,
+        "EN BLANCO": 727,
+        "IMPUGNADO": 13,
+        "NULO": 152,
+        "RECURRIDO": 11
+      }
+    },
+    "505": {
+      "mesas": 48,
+      "electores": 16638,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 336,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 115,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 29,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 4930,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 27,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 36,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 479,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 4530,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 777,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 16,
+        "EN BLANCO": 399,
+        "IMPUGNADO": 13,
+        "NULO": 121,
+        "RECURRIDO": 7
+      }
+    },
+    "505A": {
+      "mesas": 29,
+      "electores": 10319,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 229,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 74,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 16,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 4387,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 28,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 21,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 288,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2050,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 416,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 4,
+        "EN BLANCO": 354,
+        "IMPUGNADO": 8,
+        "NULO": 60,
+        "RECURRIDO": 5
+      }
+    },
+    "505B": {
+      "mesas": 12,
+      "electores": 4217,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 38,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 15,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1816,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 66,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 522,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 111,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 152,
+        "IMPUGNADO": 1,
+        "NULO": 21,
+        "RECURRIDO": 0
+      }
+    },
+    "508": {
+      "mesas": 43,
+      "electores": 17410,
+      "mesas_sin_votos_positivos": 4,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 184,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 93,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 14,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 5708,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 19,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 11,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 358,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2433,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 459,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 627,
+        "IMPUGNADO": 18,
+        "NULO": 39,
+        "RECURRIDO": 0
+      }
+    },
+    "508A": {
+      "mesas": 37,
+      "electores": 12771,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 198,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 95,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 18,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 4048,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 20,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 37,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 401,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 3622,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 731,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 18,
+        "EN BLANCO": 475,
+        "IMPUGNADO": 0,
+        "NULO": 83,
+        "RECURRIDO": 1
+      }
+    },
+    "508B": {
+      "mesas": 20,
+      "electores": 6939,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 117,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 36,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 8,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3259,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 15,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 15,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 160,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1133,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 247,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 20,
+        "EN BLANCO": 223,
+        "IMPUGNADO": 0,
+        "NULO": 61,
+        "RECURRIDO": 0
+      }
+    },
+    "508C": {
+      "mesas": 21,
+      "electores": 7268,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 122,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 32,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 11,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2928,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 16,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 12,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 200,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1394,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 291,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 6,
+        "EN BLANCO": 303,
+        "IMPUGNADO": 0,
+        "NULO": 30,
+        "RECURRIDO": 1
+      }
+    },
+    "508D": {
+      "mesas": 28,
+      "electores": 9573,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 139,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 39,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 12,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 3948,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 25,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 15,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 203,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1828,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 347,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 385,
+        "IMPUGNADO": 0,
+        "NULO": 32,
+        "RECURRIDO": 0
+      }
+    },
+    "508E": {
+      "mesas": 21,
+      "electores": 7050,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 113,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 41,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 15,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2579,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 14,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 9,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 218,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1514,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 392,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 6,
+        "EN BLANCO": 265,
+        "IMPUGNADO": 3,
+        "NULO": 27,
+        "RECURRIDO": 0
+      }
+    },
+    "508F": {
+      "mesas": 7,
+      "electores": 2250,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 29,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 12,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 1,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 867,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 60,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 441,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 99,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 86,
+        "IMPUGNADO": 0,
+        "NULO": 6,
+        "RECURRIDO": 0
+      }
+    },
+    "508G": {
+      "mesas": 2,
+      "electores": 567,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 5,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 3,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 0,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 272,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 0,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 7,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 104,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 20,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 0,
+        "EN BLANCO": 5,
+        "IMPUGNADO": 0,
+        "NULO": 0,
+        "RECURRIDO": 0
+      }
+    },
+    "509": {
+      "mesas": 19,
+      "electores": 7094,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 67,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 41,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 8,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2733,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 11,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 8,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 119,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1179,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 173,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 27,
+        "EN BLANCO": 213,
+        "IMPUGNADO": 0,
+        "NULO": 28,
+        "RECURRIDO": 3
+      }
+    },
+    "509A": {
+      "mesas": 25,
+      "electores": 8516,
+      "mesas_sin_votos_positivos": 1,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 94,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 59,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 18,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2897,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 14,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 13,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 238,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2259,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 444,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 316,
+        "IMPUGNADO": 1,
+        "NULO": 65,
+        "RECURRIDO": 2
+      }
+    },
+    "516": {
+      "mesas": 9,
+      "electores": 2879,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 20,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 32,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 738,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 89,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 965,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 139,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 9,
+        "EN BLANCO": 85,
+        "IMPUGNADO": 1,
+        "NULO": 15,
+        "RECURRIDO": 0
+      }
+    },
+    "517": {
+      "mesas": 11,
+      "electores": 3662,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 19,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 31,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 767,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 115,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1056,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 149,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 2,
+        "EN BLANCO": 69,
+        "IMPUGNADO": 0,
+        "NULO": 15,
+        "RECURRIDO": 0
+      }
+    },
+    "518": {
+      "mesas": 9,
+      "electores": 2967,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 33,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 29,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 2,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 864,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 4,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 3,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 135,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1050,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 125,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 3,
+        "EN BLANCO": 58,
+        "IMPUGNADO": 0,
+        "NULO": 13,
+        "RECURRIDO": 1
+      }
+    },
+    "519": {
+      "mesas": 15,
+      "electores": 5082,
+      "mesas_sin_votos_positivos": 0,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 46,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 69,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 8,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 1575,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 7,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 9,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 215,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1548,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 238,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 8,
+        "EN BLANCO": 126,
+        "IMPUGNADO": 0,
+        "NULO": 16,
+        "RECURRIDO": 2
+      }
+    },
+    "520": {
+      "mesas": 30,
+      "electores": 10449,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 86,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 62,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 25,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 2742,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 7,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 31,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 370,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 2696,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 469,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 4,
+        "EN BLANCO": 231,
+        "IMPUGNADO": 2,
+        "NULO": 43,
+        "RECURRIDO": 4
+      }
+    },
+    "521": {
+      "mesas": 12,
+      "electores": 3938,
+      "mesas_sin_votos_positivos": 2,
+      "positivos": {
+        "02-1911": {
+          "nombre": "FRENTE NOS",
+          "votos": 19,
+          "campo_ideologico": "4"
+        },
+        "02-276": {
+          "nombre": "MOVIMIENTO DE AVANZADA SOCIALISTA",
+          "votos": 32,
+          "campo_ideologico": "1"
+        },
+        "02-309": {
+          "nombre": "MOVIMIENTO ORGANIZACION DEMOCRATICA",
+          "votos": 3,
+          "campo_ideologico": "3"
+        },
+        "02-503": {
+          "nombre": "FRENTE DE TODOS",
+          "votos": 988,
+          "campo_ideologico": "3"
+        },
+        "02-816": {
+          "nombre": "PARTIDO DIGNIDAD POPULAR",
+          "votos": 2,
+          "campo_ideologico": "6"
+        },
+        "02-865": {
+          "nombre": "FRENTE PATRIOTA",
+          "votos": 6,
+          "campo_ideologico": "6"
+        },
+        "133": {
+          "nombre": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+          "votos": 117,
+          "campo_ideologico": "1"
+        },
+        "135": {
+          "nombre": "JUNTOS POR EL CAMBIO",
+          "votos": 1048,
+          "campo_ideologico": "5"
+        },
+        "137": {
+          "nombre": "CONSENSO FEDERAL",
+          "votos": 145,
+          "campo_ideologico": "4"
+        }
+      },
+      "otros": {
+        "COMANDO": 6,
+        "EN BLANCO": 72,
+        "IMPUGNADO": 3,
+        "NULO": 16,
+        "RECURRIDO": 0
+      }
+    }
+  }
+}
