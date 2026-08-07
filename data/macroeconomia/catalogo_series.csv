@@ -17,7 +17,5 @@ ripte,158.1_REPTE_0_0_5,mensual,ingresos,1994-07,no,serie más larga y estable d
 indice_salarios_total,149.1_TL_INDIIOS_OCTU_0_21,mensual,ingresos,2016-10,no,índice base oct-2016=100
 indice_salarios_privado_registrado,149.1_SOR_PRIADO_OCTU_0_25,mensual,ingresos,2015-10,no,índice base oct-2016=100
 indice_salarios_publico,149.1_SOR_PUBICO_OCTU_0_14,mensual,ingresos,2015-10,no,índice base oct-2016=100
-gasto_deuda_publica_nivel,451.3_GPN_SERVICICA_0_0_27_85,anual,finanzas_publicas,1980-01,no,millones de pesos
-gasto_deuda_publica_pib,451.4_GPN_SERVICPIB_0_0_31_93,anual,finanzas_publicas,1980-01,no,% del PBI
 comercio_exterior_cobros,183.1_COBROS_EXPNES_0_M_27,mensual,sector_externo,2003-01,no,"Total agregado (dataset 183, ""cobros de exportaciones de bienes""), no un sector -- ver nota en el plan sobre el error de id inicial (dataset 184 es por sector, no trae total). Balance Cambiario BCRA -- base caja, no aduanero"
 comercio_exterior_pagos,183.1_PAGOS_IMPONES_0_M_26,mensual,sector_externo,2003-01,no,idem

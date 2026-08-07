@@ -13,11 +13,17 @@ catálogo (columna `auditable_estadisticasbcra`), no dependencia del
 pipeline — la auditoría efectiva contra esa fuente se corrió y está
 documentada en la sección 3.1.
 
-22 conceptos, todos de grano **nacional** (sin apertura regional), en
+20 conceptos de frecuencia diaria/mensual/trimestral, todos de grano
+**nacional** (sin apertura regional), en
 `data/macroeconomia/catalogo_series.csv`, volcados a
 `data/macroeconomia/series_macro_2011_2025.csv`: una fila por mes
 (2011-01 a 2025-12, 180 filas), una columna por concepto, más
-`observaciones`.
+`observaciones`. Los 2 conceptos de frecuencia **anual**
+(`gasto_deuda_publica_nivel`/`_pib`) viven aparte, en
+`data/macroeconomia/catalogo_series_anuales.csv` /
+`series_macro_anuales_2011_2025.csv` — una fila por **año** en vez de por
+mes (ver "Split a catálogo anual" en `docs/plan_macroeconomia.md`; motivo
+y cobertura en la sección 2.1 de este documento).
 
 **Rediseño (2026-08): sin forward-fill.** La primera versión de este
 pipeline repetía el último valor publicado en los meses siguientes para
@@ -51,33 +57,50 @@ celda repetida como si fuera un dato nuevo de ese mes.
 | indice_salarios_total | 111 | 69 | 2016-10 a 2025-12 |
 | indice_salarios_privado_registrado | 123 | 57 | 2015-10 a 2025-12 |
 | indice_salarios_publico | 123 | 57 | 2015-10 a 2025-12 |
-| gasto_deuda_publica_nivel | 13 | 167 | 2011-01 a 2023-01 |
-| gasto_deuda_publica_pib | 13 | 167 | 2011-01 a 2023-01 |
 | comercio_exterior_cobros | 180 | 0 | 2011-01 a 2025-12 |
 | comercio_exterior_pagos | 180 | 0 | 2011-01 a 2025-12 |
 
-Total: **2689/3960 celdas con dato real (67,9%)**, 1271 vacías (32,1%).
+Total: **2663/3600 celdas con dato real (74,0%)**, 937 vacías (26,0%).
 "Primer dato – último dato" es el rango entre la primera y la última celda
 con valor real de esa columna — **no implica cobertura continua dentro de
-ese rango**: para las series trimestrales/anuales (`pbi`,
-`tasa_desocupacion`/`_empleo`/`_actividad`, `gasto_deuda_publica_*`), la
-mayoría de los meses dentro de ese rango están vacíos por diseño (solo el
-mes de origen de cada publicación tiene valor — ver `observaciones` fila
-por fila). Para las demás series, "vacío" es siempre un mes anterior al
-primer dato publicado (nunca un hueco en medio de la cobertura real) — es
-lo esperado dado que varias series (IPC nacional, canasta básica, índice de
-salarios, tasa de política monetaria) recién existen a nivel nacional desde
-2015/2016, no antes (ver `docs/plan_macroeconomia.md` §3 para el porqué de cada
-corte).
+ese rango**: para las series trimestrales (`pbi`,
+`tasa_desocupacion`/`_empleo`/`_actividad`), la mayoría de los meses
+dentro de ese rango están vacíos por diseño (solo el mes de origen de cada
+publicación tiene valor — ver `observaciones` fila por fila). Para las
+demás series, "vacío" es siempre un mes anterior al primer dato publicado
+(nunca un hueco en medio de la cobertura real) — es lo esperado dado que
+varias series (IPC nacional, canasta básica, índice de salarios, tasa de
+política monetaria) recién existen a nivel nacional desde 2015/2016, no
+antes (ver `docs/plan_macroeconomia.md` §3 para el porqué de cada corte).
 
-**Caso a mirar con atención al usar el CSV**: `gasto_deuda_publica_nivel`/
-`_pib` tienen solo 13 valores reales (2011-2023, publicación anual) — la
-fuente todavía no publicó 2024/2025 al momento de esta corrida, así que
-esos dos años quedan vacíos para estas dos columnas (antes del rediseño,
-arrastraban el valor de 2023 sin que se pudiera distinguir eso de un
-"repetido normal" de mitad de año). `pbi` real termina en 2024-10 (Q4 2024)
-por el mismo motivo de rezago de publicación de INDEC — todo 2025 queda
-vacío para esa columna.
+**`pbi` real termina en 2024-10 (Q4 2024)** por rezago de publicación de
+INDEC — todo 2025 queda vacío para esa columna.
+
+### 2.1 Catálogo anual (`series_macro_anuales_2011_2025.csv`)
+
+Los 2 conceptos de frecuencia anual del catálogo original
+(`gasto_deuda_publica_nivel`/`_pib`) se sacaron de la tabla mensual de
+arriba y pasaron a su propio catálogo/CSV, de grano anual (una fila por
+año, no por mes). Motivo: dentro del CSV mensual, una serie anual solo
+puede tener dato real en 1 de cada 12 filas -- sin forward-fill (regla
+vigente en todo el pipeline, ver sección 1), ninguna de las otras 11 lo
+tiene nunca -- así que estas dos columnas eran, por lejos, las más vacías
+de las 22 originales: **92,8% vacías (13/180 celdas con dato)**. A grano
+anual, la misma información queda así:
+
+| Concepto | Con dato real | Vacíos | Primer año – último año |
+|---|---:|---:|---|
+| gasto_deuda_publica_nivel | 13/15 | 2 | 2011 a 2023 |
+| gasto_deuda_publica_pib | 13/15 | 2 | 2011 a 2023 |
+
+**86,7% de celdas con dato real (26/30)** — los 2 años vacíos son 2024 y
+2025, porque la fuente todavía no los publicó al momento de esta corrida
+(no un hueco real dentro del período cubierto). En términos del viejo
+grano mensual, esos 2 años sin publicar equivalían a 24 de las 167 celdas
+vacías de cada columna (2 años × 12 meses); las 143 restantes (13 años ×
+11 meses "no-enero" cada uno) no eran información faltante — eran el
+artefacto de forzar un dato anual dentro de una fila por mes, exactamente
+lo que el split elimina.
 
 ## 3. Auditoría externa contra `estadisticasbcra.com`
 
@@ -218,15 +241,18 @@ Heredado de `docs/plan_macroeconomia.md` §7, con la auditoría ya corrida (§3)
 ```bash
 PYTHONPATH=src python -m macroeconomia.series                    # usa caché si existe
 PYTHONPATH=src python -m macroeconomia.series --force-refresh    # vuelve a pedir todo a la API
+PYTHONPATH=src python -m macroeconomia.series_anuales             # ídem, catálogo/CSV anual (gasto_deuda_publica_*)
 ```
 
 Corre en segundos con caché (`data/macroeconomia/_cache/datos_gob/`, un
-JSON crudo por concepto, no versionado); sin caché hace 22 pedidos a
+JSON crudo por concepto, no versionado, **compartido** entre `series.py` y
+`series_anuales.py` -- cada uno lo lee por `id_datos_gob`, sin pisarse);
+sin caché, `series.py` hace 20 pedidos y `series_anuales.py` 2 más a
 `apis.datos.gob.ar` (algunas series diarias largas pagina en más de un
-pedido internamente, ver `macroeconomia/datos_gob_client.py`).
-`data/macroeconomia/series_macro_2011_2025.csv` tampoco está versionado
-(se regenera en segundos, mismo criterio que `data/totales/`) —
-`catalogo_series.csv` sí, es la curaduría manual.
+pedido internamente, ver `macroeconomia/datos_gob_client.py`). Ninguno de
+los dos CSV generados está versionado (se regeneran en segundos, mismo
+criterio que `data/totales/`) — `catalogo_series.csv` y
+`catalogo_series_anuales.csv` sí, son la curaduría manual.
 
 Para repetir la auditoría externa de la sección 3 (por ejemplo, si se
 agregan conceptos auditables nuevos al catálogo):

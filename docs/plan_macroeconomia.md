@@ -1,12 +1,31 @@
 # Plan: capa macroeconómica nacional (2011-2025)
 
 **Estado:** implementado. `src/macroeconomia/` (cliente + normalización),
-`data/macroeconomia/catalogo_series.csv` (22 conceptos) y
-`data/macroeconomia/series_macro_2011_2025.csv` (generado, 180 filas) ya
-existen y corren contra la API real — ver
+`data/macroeconomia/catalogo_series.csv` (20 conceptos de frecuencia
+diaria/mensual/trimestral) y `data/macroeconomia/series_macro_2011_2025.csv`
+(generado, 180 filas) ya existen y corren contra la API real — ver
 `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` para el resultado y
 las salvedades encontradas durante la implementación (una de ellas corrigió
-un id mal elegido en este mismo plan, sección 3.7).
+un id mal elegido en este mismo plan, sección 3.7). Los 2 conceptos de
+frecuencia anual (`gasto_deuda_publica_nivel`/`_pib`) viven aparte, en
+`data/macroeconomia/catalogo_series_anuales.csv` y
+`data/macroeconomia/series_macro_anuales_2011_2025.csv` (ver "Split a
+catálogo anual" más abajo).
+
+**Split a catálogo anual (2026-08):** `gasto_deuda_publica_nivel`/`_pib`
+(las únicas dos series `anual` del catálogo original de 22) se sacaron de
+`catalogo_series.csv`/`series_macro_2011_2025.csv` y pasaron a un catálogo
+y CSV propios, de grano anual en vez de mensual. Motivo: dentro de la
+tabla fila-por-mes, una serie anual solo puede tener dato real en 1 de
+cada 12 filas -- y sin forward-fill (ver "Rediseño posterior" arriba)
+ninguna de las otras 11 lo tiene nunca -- así que esas dos columnas
+quedaban con 92,8% de celdas vacías (13/180), la peor cobertura de todo
+el catálogo por lejos. A grano anual, las mismas dos columnas quedan con
+86,7% de celdas reales (13/15 años) -- mismo dato, sin el ruido de un
+grano que no le corresponde. `series_anuales.py` reusa
+`ConceptoCatalogo`/`cargar_catalogo`/`_parsear_puntos` de `series.py` en
+vez de duplicarlos; la regla de "nunca forward-fill" es la misma, solo
+cambia la unidad de fila (año en vez de mes).
 
 **Rediseño posterior (celdas vacías en vez de forward-fill):** la primera
 versión de este plan (sección 2, decisión original) hacía que series con
@@ -56,14 +75,17 @@ Se evaluaron tres fuentes (`estadisticasbcra.com`, `api.bcra.gob.ar`,
 ```
 src/macroeconomia/
   datos_gob_client.py           # fetch+caché por id de serie, sin transformar (mismo contrato que client.py/eph_client.py)
-  series.py                      # lee catalogo_series.csv + caché crudo, resuelve por fuente declarada, escribe el CSV ancho unificado
+  series.py                      # lee catalogo_series.csv + caché crudo, resuelve por fuente declarada, escribe el CSV ancho mensual
+  series_anuales.py              # ídem, para catalogo_series_anuales.csv -- escribe el CSV ancho anual (reusa ConceptoCatalogo/cargar_catalogo/_parsear_puntos de series.py)
   auditoria_estadisticasbcra.py  # auditoría manual puntual contra estadisticasbcra.com (sección 5, punto 5) -- no forma parte del pipeline regular
 
 data/macroeconomia/
-  catalogo_series.csv                  # una fila por concepto: concepto lógico → id en datos.gob.ar → periodicidad de la fuente → cobertura real → auditable sí/no. Hand-curated, append-only (mismo criterio que clasificacion_ideologica_agrupaciones.csv)
+  catalogo_series.csv                  # una fila por concepto de frecuencia diaria/mensual/trimestral: concepto lógico → id en datos.gob.ar → periodicidad de la fuente → cobertura real → auditable sí/no. Hand-curated, append-only (mismo criterio que clasificacion_ideologica_agrupaciones.csv)
   series_macro_2011_2025.csv           # una fila por MES: fecha, una columna por concepto, observaciones
+  catalogo_series_anuales.csv          # mismo formato que catalogo_series.csv, solo para conceptos de frecuencia anual
+  series_macro_anuales_2011_2025.csv   # una fila por AÑO: anio, una columna por concepto, observaciones
   SISTEMATIZACION_VARIABLES_MACRO.md   # mismo formato que el de EPH: qué se relevó, qué falta, quiebres metodológicos
-  _cache/datos_gob/<id>.json           # crudo cacheado, gitignored
+  _cache/datos_gob/<id>.json           # crudo cacheado, gitignored -- compartido entre series.py y series_anuales.py, mismo cache_dir
 ```
 
 **Formato ancho, una fila por mes** (`series_macro_2011_2025.csv`), ordenado
@@ -86,12 +108,15 @@ por `fecha` ascendente:
   canasta_basica_alimentaria,canasta_basica_total,emae,pbi,
   tasa_desocupacion,tasa_empleo,tasa_actividad,ripte,indice_salarios_total,
   indice_salarios_privado_registrado,indice_salarios_publico,
-  gasto_deuda_publica_nivel,gasto_deuda_publica_pib,
   comercio_exterior_cobros,comercio_exterior_pagos,observaciones
   ```
   (implementado tal cual en `data/macroeconomia/catalogo_series.csv` — el
   orden real de columnas del CSV generado es el de ese archivo, esta lista
-  es ilustrativa)
+  es ilustrativa). Los conceptos de frecuencia anual
+  (`gasto_deuda_publica_nivel`/`_pib`) no aparecen acá -- viven en
+  `catalogo_series_anuales.csv`/`series_macro_anuales_2011_2025.csv`, con
+  `anio` en vez de `fecha` como primera columna (ver "Split a catálogo
+  anual" al inicio de este documento).
 - **Ninguna celda se rellena ni repite un valor anterior** (decisión
   revisada — ver "Rediseño posterior" al inicio de este documento). Una
   celda tiene valor únicamente si la fuente publicó un dato con fecha de

@@ -1,0 +1,3 @@
+concepto,id_datos_gob,periodicidad_fuente,dimension,cobertura_desde,auditable_estadisticasbcra,notas
+gasto_deuda_publica_nivel,451.3_GPN_SERVICICA_0_0_27_85,anual,finanzas_publicas,1980-01,no,millones de pesos
+gasto_deuda_publica_pib,451.4_GPN_SERVICPIB_0_0_31_93,anual,finanzas_publicas,1980-01,no,% del PBI

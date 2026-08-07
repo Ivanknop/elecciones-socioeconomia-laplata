@@ -56,8 +56,10 @@ para borrarlo y correrlo de nuevo):
 | `data/agrupaciones/circuito_id_correspondencias.csv` | normalización de `circuito_id` entre años | **Sí** |
 | `data/fuentes_extra/` | crosswalks hand-curated (localidad, etc.) + sus README | **Sí** |
 | `data/socioeconomia/` | EPH, correspondencia circuito↔radio censal | **Sí**, salvo `eph_cache/` (gitignored) |
-| `data/macroeconomia/catalogo_series.csv` | catálogo de series, hand-curated | **Sí** |
+| `data/macroeconomia/catalogo_series.csv` | catálogo de series mensuales/diarias/trimestrales, hand-curated | **Sí** |
 | `data/macroeconomia/series_macro_2011_2025.csv` | CSV mensual generado | No — derivado, se regenera desde `_cache/` |
+| `data/macroeconomia/catalogo_series_anuales.csv` | catálogo de series de frecuencia anual, hand-curated | **Sí** |
+| `data/macroeconomia/series_macro_anuales_2011_2025.csv` | CSV anual generado | No — derivado, se regenera desde `_cache/` |
 | `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` | doc de cobertura/auditoría | **Sí** |
 | `data/por_localidad/` | cuadros por localidad | No — derivado (`cuadros_por_localidad.py`) |
 | `data/totales/<nivel>/<año>/[<etapa>/]` | total de votos por agrupación (`<etapa>` solo para paso/balotaje) | No — derivado (`electoral.totales`) |

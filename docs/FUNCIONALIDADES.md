@@ -611,26 +611,37 @@ auditoría externa están en
   transforma, solo pagina y cachea en disco (`data/macroeconomia/_cache/`,
   no versionado).
 - **`src/macroeconomia/series.py`**: lee
-  `data/macroeconomia/catalogo_series.csv` (22 conceptos — monetario/
-  cambiario, precios, actividad, empleo, ingresos, finanzas públicas,
-  sector externo — hand-curated y append-only, mismo criterio que
-  `clasificacion_ideologica_agrupaciones.csv`) y arma
+  `data/macroeconomia/catalogo_series.csv` (20 conceptos de frecuencia
+  diaria/mensual/trimestral — monetario/cambiario, precios, actividad,
+  empleo, ingresos, sector externo — hand-curated y append-only, mismo
+  criterio que `clasificacion_ideologica_agrupaciones.csv`) y arma
   `data/macroeconomia/series_macro_2011_2025.csv`: una fila por **mes**
   (2011-01 a 2025-12), una columna por concepto, más `observaciones`. No
   versionado (se regenera en segundos desde la caché, igual criterio que
   `data/totales/`).
-- **Ninguna celda repite ni rellena un valor anterior**: solo tiene dato
-  el mes en que la fuente publicó exactamente para ese mes. Una serie
-  trimestral o anual, entonces, solo llena su mes de origen (ej.
-  enero/abril/julio/octubre para trimestral) — los demás meses quedan
-  vacíos (`""`), nunca con el dato del período anterior. Series diarias
-  (tipo de cambio, BADLAR, base monetaria) se agregan a mensual tomando el
-  último valor hábil del mes, sin promediar. Es una decisión de diseño
-  deliberada: un valor repetido hacia adelante le da apariencia de dato
-  mensual real a una serie que en verdad es trimestral o anual, y traslada
-  a quien consume el CSV la decisión de repetir/interpolar en vez de
-  tomarla por adelantado. Cada celda vacía queda explicada en
-  `observaciones`.
+- **`src/macroeconomia/series_anuales.py`**: mismo patrón, pero para los
+  conceptos de frecuencia **anual** (finanzas públicas:
+  `gasto_deuda_publica_nivel`/`_pib`), separados en su propio catálogo
+  `data/macroeconomia/catalogo_series_anuales.csv` y su propio CSV
+  `data/macroeconomia/series_macro_anuales_2011_2025.csv` — **una fila por
+  año** (2011-2025), no por mes. Se separaron del catálogo mensual porque
+  forzar una serie anual dentro de una tabla fila-por-mes la dejaba con
+  ~93% de celdas vacías (solo 1 de cada 12 filas puede tener dato, y sin
+  forward-fill ninguna de las otras 11 lo tiene nunca) — a grano anual,
+  esas mismas dos columnas quedan con 13/15 años reales (86,7%), sin ese
+  ruido. Reusa `ConceptoCatalogo`/`cargar_catalogo`/`_parsear_puntos` de
+  `series.py` en vez de duplicarlos.
+- **Ninguna celda repite ni rellena un valor anterior, en ninguno de los
+  dos catálogos**: solo tiene dato el mes/año en que la fuente publicó
+  exactamente para ese período. Una serie trimestral, entonces, solo llena
+  su mes de origen (ej. enero/abril/julio/octubre) — los demás meses
+  quedan vacíos (`""`), nunca con el dato del período anterior. Series
+  diarias (tipo de cambio, BADLAR, base monetaria) se agregan a mensual
+  tomando el último valor hábil del mes, sin promediar. Es una decisión de
+  diseño deliberada: un valor repetido hacia adelante le da apariencia de
+  dato real a un período que en verdad no lo tiene, y traslada a quien
+  consume el CSV la decisión de repetir/interpolar en vez de tomarla por
+  adelantado. Cada celda vacía queda explicada en `observaciones`.
 - **Auditoría externa** (`src/macroeconomia/auditoria_estadisticasbcra.py`):
   script manual, no integrado al pipeline regular, que compara cada
   concepto marcado `auditable_estadisticasbcra` en el catálogo contra
@@ -644,7 +655,8 @@ auditoría externa están en
   `SISTEMATIZACION_VARIABLES_MACRO.md` §3.
 
   ```bash
-  PYTHONPATH=src python -m macroeconomia.series                    # arma/actualiza el CSV, usa caché si existe
+  PYTHONPATH=src python -m macroeconomia.series                    # arma/actualiza el CSV mensual, usa caché si existe
+  PYTHONPATH=src python -m macroeconomia.series_anuales             # ídem, catálogo/CSV anual
   ESTADISTICASBCRA_TOKEN=<tu_token> PYTHONPATH=src python -m macroeconomia.auditoria_estadisticasbcra  # auditoría manual puntual
   ```
 

@@ -44,6 +44,7 @@ PYTHONPATH=src python -m electoral.totales --anio 2023 --nivel intendente  # tot
 PYTHONPATH=src python -m analisis.totales_por_lista --anio 2023 --nivel intendente  # bar chart of that total, one per (año, nivel)
 PYTHONPATH=src python -m analisis.comparativo_nivel --anio 2019  # Municipio/Provincia/Nación comparison table, one per año
 PYTHONPATH=src python -m macroeconomia.series  # national macroeconomic series, one CSV row per month 2011-2025 (needs network to refresh; runs from cache otherwise)
+PYTHONPATH=src python -m macroeconomia.series_anuales  # same, annual-frequency concepts only, one CSV row per year
 ESTADISTICASBCRA_TOKEN=... PYTHONPATH=src python -m macroeconomia.auditoria_estadisticasbcra  # manual one-off cross-check against estadisticasbcra.com; needs a user token (never committed), not part of the regular pipeline
 ```
 
@@ -73,11 +74,13 @@ join, tested against synthetic polygons, not real data) by
 repo, pure logic tested, the matplotlib-rendering and IAELaP-loading parts
 of `graficos_eph_iaelap.py` itself validated by running notebooks 05/06.
 `src/macroeconomia/series.py`'s normalization logic (catalog loading,
-monthly resolution for daily/monthly/quarterly/annual sources, coverage
-report) is covered by `tests/test_macroeconomia_series.py`, no network;
-`src/macroeconomia/datos_gob_client.py` (the fetch+cache HTTP layer) and
-`src/macroeconomia/auditoria_estadisticasbcra.py` (fetch+compare against a
-third-party HTTP API) have no automated tests, same criterion as
+monthly resolution for daily/monthly/quarterly sources, coverage report)
+is covered by `tests/test_macroeconomia_series.py`, no network;
+`src/macroeconomia/series_anuales.py`'s equivalent yearly-resolution
+logic is covered by `tests/test_macroeconomia_series_anuales.py`, same
+criterion. `src/macroeconomia/datos_gob_client.py` (the fetch+cache HTTP
+layer) and `src/macroeconomia/auditoria_estadisticasbcra.py` (fetch+compare
+against a third-party HTTP API) have no automated tests, same criterion as
 `electoral/client.py`.
 
 ## Architecture
@@ -251,30 +254,42 @@ order, 01→04) are the pipeline**.
   got pulled and its coverage. `datos_gob_client.py` fetches+caches raw
   series from `datos.gob.ar`'s Series de Tiempo API (paginating past its
   5000-row-per-request cap); `series.py` reads
-  `data/macroeconomia/catalogo_series.csv` (hand-curated, append-only, same
-  spirit as `clasificacion_ideologica_agrupaciones.csv`) and builds
+  `data/macroeconomia/catalogo_series.csv` (20 concepts, daily/monthly/
+  quarterly frequency only — hand-curated, append-only, same spirit as
+  `clasificacion_ideologica_agrupaciones.csv`) and builds
   `data/macroeconomia/series_macro_2011_2025.csv` — one row per **month**,
   one column per concept, plus `observaciones`. **No cell is ever
   forward-filled or repeated** — a cell only has a value if the source
   published data with an origin date exactly matching that month; a
-  quarterly/annual source therefore only fills its origin month (e.g.
-  Jan/Apr/Jul/Oct for quarterly), every other month in the period is left
-  blank rather than inheriting the prior value. Daily sources collapse to
-  the month's last business-day value (falling back to the nearest earlier
-  business day within the month if that day has no data; if no business
-  day in the month has data, the cell is blank too) — this is aggregation
-  of a real data point, not filling. Every blank cell is flagged in
-  `observaciones` with the reason; months before a series' first-ever data
-  point are blank for the same reason (no exact-month data), never
-  invented. This is a deliberate design choice (revised from an earlier
-  forward-fill design — see `docs/plan_macroeconomia.md`, "Rediseño
-  posterior"):
-  a filled-forward value makes a sparse series look like it has real
+  quarterly source therefore only fills its origin month (e.g.
+  Jan/Apr/Jul/Oct), every other month in the period is left blank rather
+  than inheriting the prior value. Daily sources collapse to the month's
+  last business-day value (falling back to the nearest earlier business
+  day within the month if that day has no data; if no business day in the
+  month has data, the cell is blank too) — this is aggregation of a real
+  data point, not filling. Every blank cell is flagged in `observaciones`
+  with the reason; months before a series' first-ever data point are
+  blank for the same reason (no exact-month data), never invented. This
+  is a deliberate design choice (revised from an earlier forward-fill
+  design — see `docs/plan_macroeconomia.md`, "Rediseño posterior"): a
+  filled-forward value makes a sparse series look like it has real
   monthly granularity, so the CSV leaves gaps explicit and pushes any
   repeat/interpolate decision onto the consumer instead of making it
-  silently. Neither the cache (`data/macroeconomia/_cache/`) nor the
-  generated CSV are git-tracked — `catalogo_series.csv` is (same criterion
-  as `data/totales/` vs. `clasificacion_ideologica_agrupaciones.csv`).
+  silently. `series_anuales.py` applies the exact same no-forward-fill
+  rule to the **annual-frequency** concepts (`gasto_deuda_publica_nivel`/
+  `_pib`), kept in their own catalog
+  (`data/macroeconomia/catalogo_series_anuales.csv`) and their own
+  one-row-per-**year** CSV
+  (`data/macroeconomia/series_macro_anuales_2011_2025.csv`) instead of
+  the monthly one — folding an annual source into a monthly grid left it
+  ~93% blank (only 1 of every 12 rows can ever have data, and with no
+  forward-fill none of the other 11 ever will); at yearly grain the same
+  two columns are 86.7% real (13/15 years). `series_anuales.py` reuses
+  `ConceptoCatalogo`/`cargar_catalogo`/`_parsear_puntos` from `series.py`
+  rather than duplicating them. Neither cache (`data/macroeconomia/_cache/`)
+  nor either generated CSV are git-tracked — both `catalogo_series.csv`
+  and `catalogo_series_anuales.csv` are (same criterion as `data/totales/`
+  vs. `clasificacion_ideologica_agrupaciones.csv`).
   `auditoria_estadisticasbcra.py` is a separate, manually-run script (not
   part of the regular pipeline, needs a user-supplied token never stored in
   the repo) that cross-checks each `auditable_estadisticasbcra` concept
