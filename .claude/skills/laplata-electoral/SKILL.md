@@ -1,6 +1,6 @@
 ---
 name: laplata-electoral
-description: Estructura de datos, convenciones de código y decisiones de diseño del repositorio elecciones-socioeconomia-laplata (electoral + socioeconómico de La Plata, 2011-2025). Usar SIEMPRE al trabajar en este repositorio -- leer o escribir datos electorales/socioeconómicos, tocar el crosswalk de localidades, escribir o correr tests, o decidir cómo versionar un cambio. Evita tener que re-explorar la estructura del repo, releer el historial de git o re-derivar reglas ya decididas en cada sesión nueva.
+description: Estructura de datos, convenciones de código y decisiones de diseño del repositorio elecciones-socioeconomia-laplata (electoral + socioeconómico de La Plata 2011-2025, más una capa macroeconómica nacional separada). Usar SIEMPRE al trabajar en este repositorio -- leer o escribir datos electorales/socioeconómicos/macroeconómicos, tocar el crosswalk de localidades, escribir o correr tests, o decidir cómo versionar un cambio. Evita tener que re-explorar la estructura del repo, releer el historial de git o re-derivar reglas ya decididas en cada sesión nueva.
 ---
 
 # elecciones-socioeconomia-laplata
@@ -9,6 +9,13 @@ Repositorio de investigación que cruza resultados electorales con
 indicadores socioeconómicos para La Plata, Argentina (2011-2025).
 Unidad de análisis: `circuito_id`. `seccionId=63` = La Plata,
 `seccionProvincialId=8` = Sección Capital.
+
+Además tiene una tercera capa, `src/macroeconomia/`, de grano
+**nacional exclusivamente** (sin `circuito_id`, sin localidad) que da
+contexto temporal a las dos anteriores y no comparte nada de lo que sigue
+en este archivo -- para esa capa, andá directo a `plan_macroeconomia.md`
+(raíz) y `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md`, no
+hace falta leer el resto de este skill.
 
 Este archivo es el mapa de arranque. Para el detalle de cada decisión,
 andá directo al documento de referencia indicado -- no re-derives nada

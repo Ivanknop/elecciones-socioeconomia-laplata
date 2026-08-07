@@ -8,7 +8,9 @@ Gobernador, Intendente— entre 2011 y 2023, y los cargos legislativos —nacion
 Provinciales), municipal (Concejales)— entre 2013 y 2025. También recopila una
 capa socioeconómica (EPH Gran La Plata, IAELaP y su correspondencia espacial
 con el Censo) para poder cruzar, más adelante, resultados electorales con
-condiciones socioeconómicas del mismo territorio.
+condiciones socioeconómicas del mismo territorio; y una capa macroeconómica
+nacional (2011-2025, sin apertura espacial) que da contexto temporal a las
+dos anteriores.
 
 ## Estructura del repositorio
 
@@ -32,6 +34,10 @@ src/socioeconomia/
   geo.py
   eph_client.py
   graficos_eph_iaelap.py
+src/macroeconomia/
+  datos_gob_client.py
+  series.py
+  auditoria_estadisticasbcra.py
 notebooks/
   01_explorar_resultados.ipynb
   02_la_plata_cargos_ejecutivos.ipynb
@@ -48,11 +54,15 @@ data/agrupaciones/campo_ideologico.csv
 data/agrupaciones/circuito_id_correspondencias.csv
 data/fuentes_extra/
 data/socioeconomia/
+data/macroeconomia/catalogo_series.csv
+data/macroeconomia/series_macro_2011_2025.csv
+data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md
 graficos/distrito/<año>/<nivel>/
 graficos/distrito/serie_temporal/
 graficos/socioeconomia/
 graficos/socioeconomia/eph/
 graficos/por_localidad/
+plan_macroeconomia.md
 requirements.txt
 ```
 
@@ -441,10 +451,18 @@ combinaciones (año, cargo) ya cubiertas, y **balotaje/segunda vuelta**
 ## Libro de códigos ideológico — estado actual
 
 `campo_ideologico` (columna en `clasificacion_ideologica_agrupaciones.csv`,
-escala 1-6 en `campo_ideologico.csv`) es
-hoy una clasificación cargada a mano. La unidad de clasificación (alianza vs.
-candidatura vs. programa) y el criterio de asignación todavía no están
-fijados de forma sistemática.
+escala 1-6) es hoy una clasificación cargada a mano. La unidad de
+clasificación (alianza vs. candidatura vs. programa) y el criterio de
+asignación todavía no están fijados de forma sistemática.
+
+**`data/agrupaciones/campo_ideologico.csv` está sin usar por el código
+actual** — `src/analisis/graficos.py` define su propio diccionario
+`IDEOLOGIAS` hardcodeado en vez de leer este CSV (ítem 9,
+`AUDITORIA_ESTADO.md`, abierto desde antes de este release). No se
+corrigió acá porque cambiar `graficos.py` para que lea de un CSV externo
+es un cambio de comportamiento que necesita su propia verificación, no un
+ajuste de documentación — queda como pendiente explícito, no hay que
+asumir que este archivo está en uso solo porque existe en `data/`.
 
 `filiacion_politica` (misma tabla) es un segundo campo, ortogonal a
 `campo_ideologico`: familia o identidad partidaria (peronistas,
@@ -610,6 +628,71 @@ Falta subir de nivel a `oficial_confirmada` las familias de circuitos 504,
 `LOCALIDADES_README.md` para el resto del plan (pedido de acceso a la
 información a la Junta Electoral, contraste contra las 24 localidades
 oficiales usadas por la cobertura de 0221.com.ar).
+
+## Capa macroeconómica nacional — estado actual
+
+Un dominio analítico separado del electoral y del socioeconómico:
+**grano exclusivamente nacional** (sin circuito, sin localidad, sin
+apertura regional), se relaciona con el resto del repositorio por fecha,
+nunca por unidad espacial ni por join territorial. El detalle completo de
+fuentes evaluadas, decisiones de diseño y catálogo variable por variable
+está en `plan_macroeconomia.md` (raíz del repositorio); la cobertura real
+obtenida, las salvedades encontradas al implementar y el resultado de la
+auditoría externa están en
+`data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md`.
+
+- **`src/macroeconomia/datos_gob_client.py`**: cliente de descarga+caché
+  para la API pública de Series de Tiempo de `datos.gob.ar` (sin
+  autenticación), mismo contrato que `electoral/client.py` — nunca
+  transforma, solo pagina y cachea en disco (`data/macroeconomia/_cache/`,
+  no versionado).
+- **`src/macroeconomia/series.py`**: lee
+  `data/macroeconomia/catalogo_series.csv` (22 conceptos — monetario/
+  cambiario, precios, actividad, empleo, ingresos, finanzas públicas,
+  sector externo — hand-curated y append-only, mismo criterio que
+  `clasificacion_ideologica_agrupaciones.csv`) y arma
+  `data/macroeconomia/series_macro_2011_2025.csv`: una fila por **mes**
+  (2011-01 a 2025-12), una columna por concepto, más `observaciones`. No
+  versionado (se regenera en segundos desde la caché, igual criterio que
+  `data/totales/`).
+- **Ninguna celda repite ni rellena un valor anterior**: solo tiene dato
+  el mes en que la fuente publicó exactamente para ese mes. Una serie
+  trimestral o anual, entonces, solo llena su mes de origen (ej.
+  enero/abril/julio/octubre para trimestral) — los demás meses quedan
+  vacíos (`""`), nunca con el dato del período anterior. Series diarias
+  (tipo de cambio, BADLAR, base monetaria) se agregan a mensual tomando el
+  último valor hábil del mes, sin promediar. Es una decisión de diseño
+  deliberada: un valor repetido hacia adelante le da apariencia de dato
+  mensual real a una serie que en verdad es trimestral o anual, y traslada
+  a quien consume el CSV la decisión de repetir/interpolar en vez de
+  tomarla por adelantado. Cada celda vacía queda explicada en
+  `observaciones`.
+- **Auditoría externa** (`src/macroeconomia/auditoria_estadisticasbcra.py`):
+  script manual, no integrado al pipeline regular, que compara cada
+  concepto marcado `auditable_estadisticasbcra` en el catálogo contra
+  `estadisticasbcra.com` (requiere token propio de
+  `estadisticasbcra.com/api/registracion`, nunca guardado en el
+  repositorio). La corrida de 2026-08 corrigió un mapeo del catálogo
+  (`tipo_cambio_oficial` apuntaba al dólar informal/blue, no al oficial) y
+  encontró que esa fuente externa está atrasada entre 1,5 y 2 años según
+  el endpoint — solo sirve para auditar tramos históricos ya cerrados, no
+  los meses más recientes del CSV. Resultado completo en
+  `SISTEMATIZACION_VARIABLES_MACRO.md` §3.
+
+  ```bash
+  PYTHONPATH=src python -m macroeconomia.series                    # arma/actualiza el CSV, usa caché si existe
+  ESTADISTICASBCRA_TOKEN=<tu_token> PYTHONPATH=src python -m macroeconomia.auditoria_estadisticasbcra  # auditoría manual puntual
+  ```
+
+- **Qué falta / queda fuera de alcance a propósito**: riesgo país (no está
+  en ninguna de las tres fuentes evaluadas), resultado fiscal real
+  (solo había expectativas del REM, se prefirió omitir antes que publicar
+  un proxy bajo el nombre de un dato ejecutado), pobreza/indigencia
+  moderna (no se ubicó el id exacto del total de 31 aglomerados en
+  `datos.gob.ar`), y cualquier apertura regional/provincial (alcance
+  nacional exclusivo, por decisión explícita). Ningún cruce contra la capa
+  electoral o socioeconómica del repositorio todavía — esta capa es de
+  adquisición y documentación únicamente.
 
 ## Extender a otro distrito, sección o cargo
 

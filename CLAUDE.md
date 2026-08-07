@@ -20,7 +20,7 @@ content here; this file only orients you to commands and architecture.
 ## Commands
 
 ```bash
-pip install -r requirements.txt        # deps: pandas, geopandas, statsmodels, matplotlib, seaborn, jupyter, requests, pytest
+pip install -r requirements.txt        # deps: pandas, geopandas, statsmodels, matplotlib, seaborn, jupyter, requests, pytest, dbfread
 
 pytest                                  # run the full test suite (pythonpath=src, testpaths=tests, configured in pytest.ini)
 pytest tests/test_models.py::TestValorAgrupacion::test_from_json_campos_basicos  # single test
@@ -48,10 +48,21 @@ layer added on top of it — `src/electoral/localidades.py`,
 `tests/test_cuadros_por_localidad.py`, `tests/test_serie_temporal_por_localidad.py`).
 `src/electoral/client.py` and the rest of `src/analisis/*` (`graficos.py`,
 `generar_graficos.py`, `serie_temporal.py`, `cuadros_anualizados.py`,
-`serie_temporal_filiacion.py`, `totales_por_lista.py`, plus the
-matplotlib-rendering half of the locality scripts) still have no automated
-tests; changes there are validated by re-running the notebooks end to end
-(see README "Cómo reproducir") or by running the scripts against `data/` directly.
+`serie_temporal_filiacion.py`, `totales_por_lista.py`, `comparativo_nivel.py`,
+plus the matplotlib-rendering half of the locality scripts) still have no
+automated tests; changes there are validated by re-running the notebooks
+end to end (see README "Cómo reproducir") or by running the scripts
+against `data/` directly.
+`src/socioeconomia/eph_client.py` (URL/filename resolution, the historical
+DBF-era file lookup, and the labor-indicator aggregation core — no
+network) is covered by `tests/test_eph_client.py`; `src/socioeconomia/geo.py`
+(circuito_id canonicalization and the area-weighted circuito↔radio spatial
+join, tested against synthetic polygons, not real data) by
+`tests/test_geo.py`; the pure gap-detection helpers of
+`src/socioeconomia/graficos_eph_iaelap.py` by
+`tests/test_graficos_eph_iaelap.py` — same split as everywhere else in the
+repo, pure logic tested, the matplotlib-rendering and IAELaP-loading parts
+of `graficos_eph_iaelap.py` itself validated by running notebooks 05/06.
 `src/macroeconomia/series.py`'s normalization logic (catalog loading,
 monthly resolution for daily/monthly/quarterly/annual sources, coverage
 report) is covered by `tests/test_macroeconomia_series.py`, no network;
@@ -263,6 +274,7 @@ order, 01→04) are the pipeline**.
 - `mesas_esperadas` / `mesas_totalizadas_porcentaje` are always `0` in the
   already-downloaded data (the API only fills them for live elections) —
   don't treat this as a bug to fix or backfill.
-- A prior audit (formerly `PLAN_CORRECCIONES_ELECTORALES.md`, now removed
-  from the repo per the most recent commit) tracked known data-quality
-  issues and fixes; check `git log` if you need that history.
+- A prior audit (`PLAN_CORRECCIONES_ELECTORALES.md`) tracked known
+  data-quality issues and fixes; it's still on disk but untracked
+  (`.gitignore`d as an internal working document, not deleted) — check it
+  directly, or `git log` for the commit that stopped tracking it.
