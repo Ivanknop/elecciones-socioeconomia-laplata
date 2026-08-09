@@ -35,7 +35,6 @@
     font-family:var(--serif); font-weight:600; font-size:19px; letter-spacing:.2px; margin:0;
     color:var(--ink);
   }
-  header h1 small{display:block;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:3px;}
   header .meta{font-family:var(--mono); font-size:11px; color:var(--ink-dim); text-align:right; line-height:1.5;}
   .back-link{
     display:inline-block; font-family:var(--mono); font-size:11px; color:var(--accent-2);
@@ -75,6 +74,13 @@
   .modebar button:hover{color:var(--ink);}
   .modebar button.active{background:var(--accent); color:#1a1608;}
 
+  #resumen-bar{
+    display:flex; flex-wrap:wrap; column-gap:20px; row-gap:4px; align-items:baseline;
+    padding:7px 20px; background:var(--bg); border-bottom:1px solid var(--line);
+    font-family:var(--mono); font-size:11px; color:var(--ink-dim);
+  }
+  #resumen-bar b{ color:var(--ink); font-weight:600; font-variant-numeric:tabular-nums; }
+
   #main{flex:1; display:flex; min-height:0;}
   #mapwrap{flex:1; position:relative; min-width:0;}
   #map{width:100%; height:100%; background:var(--map-bg);}
@@ -90,6 +96,12 @@
   .panel{margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--line);}
   .panel:last-child{border-bottom:none;}
   .panel h3{font-size:10.5px; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); margin:0 0 10px 0; font-weight:700;}
+  .close-btn{
+    font-family:var(--mono); font-size:10px; text-transform:none; letter-spacing:0; font-weight:600;
+    background:none; border:1px solid var(--line); border-radius:3px; color:var(--ink-dim);
+    padding:3px 7px; cursor:pointer; transition:color .12s, border-color .12s;
+  }
+  .close-btn:hover{ color:var(--ink); border-color:var(--accent-2); }
 
   .row{display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:12px;}
   .row.dim .name{color:var(--ink-dim); font-style:italic;}
@@ -123,16 +135,18 @@
   }
   .loc-dot{width:4px;height:4px;border-radius:50%;background:#dcd6c4;border:1px solid #000;}
 
-  footer{
-    padding:6px 20px; font-family:var(--mono); font-size:10px; color:var(--ink-dim);
-    border-top:1px solid var(--line); background:var(--bg-panel-2); line-height:1.6;
-  }
-  footer .scope{color:var(--ink-dim); opacity:.8;}
-
   @media (max-width: 820px){
     #main{flex-direction:column;}
     #side{width:100%; flex:0 0 auto; max-height:42vh; border-left:none; border-top:1px solid var(--line);}
     #mapwrap{flex:1 1 auto; min-height:260px;}
+  }
+  @media (max-width: 560px){
+    #resumen-bar{ font-size:10px; column-gap:12px; padding:6px 14px; }
+    /* La barra "Ver por" (4 botones) es la que desborda en pantallas
+       angostas -- deja que se parta en dos filas dentro de su propia
+       píldora en vez de forzar scroll horizontal a toda la página. */
+    .modebar{ flex-wrap:wrap; }
+    .modebar button{ flex:1 1 auto; }
   }
 
   ::-webkit-scrollbar{width:9px;}
@@ -145,7 +159,7 @@
   <header>
     <div>
       <a class="back-link" href="index.html">&larr; Inicio</a>
-      <h1><small>Especialización en Inteligencia de Datos · UNLP</small>Geografía electoral del Partido de La Plata</h1>
+      <h1>Geografía electoral del Partido de La Plata</h1>
     </div>
     <div class="meta" id="header-meta">circuitos × localidades · 2011–2025<br>fuente: DINE / Ministerio del Interior</div>
   </header>
@@ -181,6 +195,14 @@
     </div>
   </div>
 
+  <div id="resumen-bar">
+    <span><b id="resumen-circuitos">—</b> circuitos con datos</span>
+    <span><b id="resumen-electores">—</b> electores</span>
+    <span><b id="resumen-votoslistas">—</b> votos a listas</span>
+    <span><b id="resumen-ausentismo">—</b> ausentismo</span>
+    <span><b id="resumen-blanco">—</b> voto en blanco</span>
+  </div>
+
   <div id="main">
     <div id="mapwrap"><div id="map"></div></div>
     <div id="side">
@@ -194,7 +216,10 @@
         </div>
 
         <div class="panel" id="panel-circuito" style="display:none;">
-          <h3>Circuito seleccionado</h3>
+          <h3 style="display:flex; align-items:center; justify-content:space-between;">
+            <span>Circuito seleccionado</span>
+            <button id="btn-deseleccionar" type="button" class="close-btn" title="Ver el distrito completo">✕ distrito</button>
+          </h3>
           <div id="circuito-list"></div>
         </div>
 
@@ -205,7 +230,6 @@
       </div>
     </div>
   </div>
-  <footer id="foot"></footer>
 </div>
 
 <script>
@@ -442,22 +466,32 @@ function colorAusentismo(circ, scale){
   return lerpColor(AUS_LOW, AUS_HIGH, Math.max(0, Math.min(1, t)));
 }
 
-function buildLegend(mode, top7, rankColorMap, scale){
+// `porCategoria` es `elec.por_campo` o `elec.por_familia` (o el de un
+// circuito puntual, ver bloqueCampoOFamilia) -- {clave: [votos, pct]},
+// "" agrupa lo sin clasificar. `etiquetaDe(k)` da el texto de cada fila.
+function filasPorCategoria(porCategoria, colores, etiquetaDe){
+  let html = "";
+  Object.keys(colores).forEach(k=>{
+    const entry = porCategoria[k];
+    html += filaNoIdeologica(etiquetaDe(k), colores[k], entry ? entry[0] : 0, entry ? entry[1] : 0, false);
+  });
+  const sinClasificar = porCategoria[""];
+  if(sinClasificar){
+    html += filaNoIdeologica("sin clasificar", NO_DATA_COLOR, sinClasificar[0], sinClasificar[1], true);
+  }
+  return html;
+}
+
+function buildLegend(mode, elec, rankColorMap, scale){
   const box = document.getElementById('legend-list');
   const title = document.getElementById('legend-title');
   box.innerHTML = "";
   if(mode === "campo"){
-    title.textContent = "Campo ideológico (agrupación ganadora)";
-    Object.keys(CAMPO_LABELS).forEach(k=>{
-      box.innerHTML += `<div class="row"><div class="swatch" style="background:${CAMPO_COLORS[k]}"></div><div class="name">${CAMPO_LABELS[k]}</div></div>`;
-    });
-    box.innerHTML += `<div class="row dim"><div class="swatch" style="background:${NO_DATA_COLOR}"></div><div class="name">sin dato / sin clasificar</div></div>`;
+    title.textContent = "Campo ideológico — % del distrito";
+    box.innerHTML = filasPorCategoria(elec.por_campo, CAMPO_COLORS, k => CAMPO_LABELS[k]);
   } else if(mode === "fam"){
-    title.textContent = "Familia política (agrupación ganadora)";
-    Object.keys(FAM_COLORS).forEach(k=>{
-      box.innerHTML += `<div class="row"><div class="swatch" style="background:${FAM_COLORS[k]}"></div><div class="name">${fmtFam(k)}</div></div>`;
-    });
-    box.innerHTML += `<div class="row dim"><div class="swatch" style="background:${NO_DATA_COLOR}"></div><div class="name">sin dato / sin clasificar</div></div>`;
+    title.textContent = "Familia política — % del distrito";
+    box.innerHTML = filasPorCategoria(elec.por_familia, FAM_COLORS, fmtFam);
   } else if(mode === "ausentismo"){
     title.textContent = "Ausentismo (electores − votos válidos, % del total)";
     [0, 0.25, 0.5, 0.75, 1].forEach(t=>{
@@ -467,7 +501,7 @@ function buildLegend(mode, top7, rankColorMap, scale){
     box.innerHTML += `<div class="row"><div class="swatch hatch"></div><div class="name">ausentismo negativo (anomalía de padrón conocida, ver popup)</div></div>`;
   } else {
     title.textContent = "Agrupación ganadora (entre las 7 más votadas del distrito)";
-    top7.forEach((t)=>{
+    elec.top7.forEach((t)=>{
       const color = rankColorMap[t[0]] || "#555";
       box.innerHTML += `<div class="row"><div class="swatch" style="background:${color}"></div><div class="name">${AGRUP[t[0]]}</div></div>`;
     });
@@ -533,11 +567,27 @@ function circuitoPopupHtml(cid, circ, locName){
   return `<div class="popup-title">Circuito ${cid}</div><div class="popup-sub">${locName||"localidad sin identificar"} · ${fmtVotos(circ.elec)} electores</div>${rows}${extra}${anomalia}`;
 }
 
+// Desglose por campo ideológico o familia política del circuito
+// seleccionado -- solo en esos dos modos de "Ver por" (en "Agrupación" o
+// "Ausentismo" no aporta nada que el ranking de arriba no diga ya).
+function bloqueCampoOFamilia(circ){
+  if(currentMode === "campo"){
+    return `<div style="margin:10px 0 6px;font-family:var(--mono);font-size:10px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.08em;">Campo ideológico (circuito)</div>`
+      + filasPorCategoria(circ.por_campo, CAMPO_COLORS, k => CAMPO_LABELS[k]);
+  }
+  if(currentMode === "fam"){
+    return `<div style="margin:10px 0 6px;font-family:var(--mono);font-size:10px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.08em;">Familia política (circuito)</div>`
+      + filasPorCategoria(circ.por_familia, FAM_COLORS, fmtFam);
+  }
+  return "";
+}
+
 function showCircuitoPanel(cid, circ, locName){
-  document.getElementById('side-title').textContent = `Circuito ${cid}`;
-  document.getElementById('side-sub').textContent = locName || "localidad sin identificar";
+  document.getElementById('panel-top7').style.display = "none";
   const panel = document.getElementById('panel-circuito');
   panel.style.display = "block";
+  document.getElementById('side-title').textContent = `Circuito ${cid}`;
+  document.getElementById('side-sub').textContent = locName || "localidad sin identificar";
   const box = document.getElementById('circuito-list');
   if(!circ){
     box.innerHTML = `<div id="placeholder">Sin datos para esta elección en este circuito.</div>`;
@@ -552,17 +602,43 @@ function showCircuitoPanel(cid, circ, locName){
       <div class="bar-bg" style="margin-bottom:7px;"><div class="bar-fill" style="width:${(votos/maxVotos*100).toFixed(1)}%; background:${color};"></div></div>
     `;
   }).join("");
+  box.innerHTML += bloqueCampoOFamilia(circ);
   box.innerHTML += `<div style="margin:10px 0 2px;font-family:var(--mono);font-size:10px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.08em;">Sobre el total del circuito (listas + blanco/nulo + ausentismo)</div>`;
   box.innerHTML += bloqueNoIdeologico(circ);
   box.innerHTML += `<div style="margin-top:8px;font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);">${fmtVotos(circ.elec)} electores · ${fmtVotos(circ.pos)} votos a listas</div>`;
 }
 
+// El panel de circuito solo aparece cuando hay uno clickeado -- volver al
+// resumen del distrito completo es tanto el botón "✕ distrito" como
+// clickear el mapa fuera de cualquier circuito (el propio click sobre un
+// circuito llega acá también por defecto, ver stopPropagation en
+// onEachFeature más abajo).
+function deseleccionarCircuito(){
+  if(!selectedCircuito) return;
+  selectedCircuito = null;
+  document.getElementById('panel-circuito').style.display = "none";
+  document.getElementById('panel-top7').style.display = "block";
+  document.getElementById('side-title').textContent = "—";
+  document.getElementById('side-sub').textContent = "Seleccioná un circuito en el mapa";
+  render();
+}
+document.getElementById('btn-deseleccionar').addEventListener('click', deseleccionarCircuito);
+map.on('click', deseleccionarCircuito);
+
 function render(){
   const key = currentKey();
   const elec = DATA.elecciones[key];
-  document.getElementById('foot').innerHTML =
-    `${elec.anio} · ${elec.cargo_label} · ${Object.keys(elec.circuitos).length} circuitos con datos · ${fmtVotos(elec.elec)} electores · ${fmtVotos(elec.pos)} votos a listas` +
-    `<br><span class="scope">Generales únicamente (no incluye PASO ni balotaje) · generado ${DATA.generado} por <code>analisis.mapa_interactivo</code> · fuente: DINE / Ministerio del Interior, vía este repositorio</span>`;
+
+  // Franja fija bajo los controles: solo los 5 números que importan para
+  // orientarse en la elección actual (cargo/año ya están en los selects
+  // de arriba, no hace falta repetirlos acá). Sin footer aparte con la
+  // nota de alcance/generación/fuente -- decisión explícita: esa fila
+  // extra molestaba en mobile y "fuente: DINE..." ya está en el header.
+  document.getElementById('resumen-circuitos').textContent = Object.keys(elec.circuitos).length;
+  document.getElementById('resumen-electores').textContent = fmtVotos(elec.elec);
+  document.getElementById('resumen-votoslistas').textContent = fmtVotos(elec.pos);
+  document.getElementById('resumen-ausentismo').textContent = fmtPct(elec.resumen.ausentismo_pct);
+  document.getElementById('resumen-blanco').textContent = fmtPct(elec.resumen.blanco_pct);
 
   buildTop7Panel(elec);
 
@@ -570,7 +646,7 @@ function render(){
   elec.top7.forEach((t,i)=>{ rankColorMap[t[0]] = RANK_COLORS[i % RANK_COLORS.length]; });
 
   const scale = ausentismoScale(elec);
-  buildLegend(currentMode, elec.top7, rankColorMap, scale);
+  buildLegend(currentMode, elec, rankColorMap, scale);
 
   if(geoLayer){ map.removeLayer(geoLayer); }
 
@@ -605,7 +681,8 @@ function render(){
       layer.bindPopup(circuitoPopupHtml(cid, circ, locName));
       layer.on('mouseover', ()=> layer.setStyle({weight:2, color:"#f2ead2"}));
       layer.on('mouseout', ()=> { if(selectedCircuito !== cid) layer.setStyle({weight:0.8, color:"#0c1116"}); });
-      layer.on('click', ()=>{
+      layer.on('click', (e)=>{
+        L.DomEvent.stopPropagation(e); // si no, el click también le llega a map.on('click', deseleccionarCircuito) y se deselecciona solo
         selectedCircuito = cid;
         showCircuitoPanel(cid, circ, locName);
         geoLayer.eachLayer(l=>{
@@ -615,6 +692,15 @@ function render(){
       });
     }
   }).addTo(map);
+
+  // Si había un circuito seleccionado antes de este render (cambio de
+  // año/nivel/modo con el panel de circuito abierto), refresca su
+  // contenido con los datos de la nueva elección en vez de dejar el panel
+  // desactualizado -- showCircuitoPanel ya maneja el caso "este circuito
+  // no tiene datos acá" mostrando el aviso correspondiente.
+  if(selectedCircuito){
+    showCircuitoPanel(selectedCircuito, elec.circuitos[selectedCircuito], DATA.circuito_localidad[selectedCircuito]);
+  }
 
   // L.LayerGroup no tiene bringToFront -- solo los CircleMarker (dots,
   // capa vectorial junto al geoJSON) lo necesitan; los L.Marker (labels)

@@ -266,8 +266,7 @@ order, 01→04) are the pipeline**.
   GitHub Pages can serve without a separate Actions workflow; both are
   git-tracked, the one interactive deliverable in the repo, not a bulk
   per-circuito PNG) instead of a static chart, covering all 68 circuitos ×
-  22 (año, nivel) **generales** combos at once (no PASO/balotaje — the
-  page's own footer says so explicitly). It's the only script in the repo
+  22 (año, nivel) **generales** combos at once (no PASO/balotaje). It's the only script in the repo
   that joins circuito polygon geometry (`data/socioeconomia/circuitos_electorales_la_plata.geojson`)
   with electoral results and the geolocalización catalog
   (`data/geolocalizacion/localidades_la_plata.csv`) in the same place.

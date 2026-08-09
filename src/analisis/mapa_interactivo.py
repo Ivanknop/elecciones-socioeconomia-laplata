@@ -83,6 +83,9 @@ _COLOR_AUSENTISMO = _COLOR_NO_IDEOLOGICA["ausentismo"]
 _SIN_DATO = "#2a323c"  # "sin datos para esta elección" en el mapa -- no es una categoría de graficos.py, es propio de este visor
 
 
+_CLAVES_BLANCO = {"EN BLANCO", "BLANCOS"}
+
+
 def _resolver_no_ideologicos(circuito: dict) -> tuple[int, int, int]:
     """`(positivos_total, blanco_nulo, ausentismo)` -- misma fórmula que
     `analisis.graficos._votos_no_ideologicos`, adaptada a un único
@@ -95,6 +98,36 @@ def _resolver_no_ideologicos(circuito: dict) -> tuple[int, int, int]:
     otros_total = sum(circuito["otros"].values())
     ausentismo = circuito["electores"] - positivos_total - otros_total
     return positivos_total, blanco_nulo, ausentismo
+
+
+def _votos_en_blanco(circuito: dict) -> int:
+    """Solo "EN BLANCO"/"BLANCOS" -- a diferencia de `blanco_nulo` (que ya
+    se usa en el resto del mapa para la leyenda/panel de circuito), acá se
+    aísla del voto nulo porque el resumen del distrito (`resumen_distrito`)
+    pide específicamente el voto en blanco solo."""
+    return sum(v for k, v in circuito["otros"].items() if k.upper() in _CLAVES_BLANCO)
+
+
+def _votos_por_campo(circuito: dict) -> dict[str, int]:
+    """`{codigo_campo_ideologico: votos}` sumado sobre **todas** las
+    agrupaciones del circuito (no solo el top-N) -- `""` agrupa las
+    agrupaciones sin `campo_ideologico` clasificado todavía (ver
+    `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv`), nunca
+    se descartan esos votos."""
+    votos: dict[str, int] = {}
+    for info in circuito["positivos"].values():
+        clave = info["campo_ideologico"] or ""
+        votos[clave] = votos.get(clave, 0) + info["votos"]
+    return votos
+
+
+def _votos_por_familia(circuito: dict, filiaciones: dict[str, str]) -> dict[str, int]:
+    """Igual que `_votos_por_campo` pero por `filiacion_politica`."""
+    votos: dict[str, int] = {}
+    for info in circuito["positivos"].values():
+        clave = filiaciones.get(info["nombre"]) or ""
+        votos[clave] = votos.get(clave, 0) + info["votos"]
+    return votos
 
 
 def _construir_circuito(circuito: dict, filiaciones: dict[str, str], agrup_index: dict[str, int]) -> dict:
@@ -129,6 +162,9 @@ def _construir_circuito(circuito: dict, filiaciones: dict[str, str], agrup_index
 
     ganador_nombre, ganador_info = ranked[0] if ranked else (None, None)
 
+    por_campo = {k: [v, pct(v)] for k, v in _votos_por_campo(circuito).items()}
+    por_familia = {k: [v, pct(v)] for k, v in _votos_por_familia(circuito, filiaciones).items()}
+
     return {
         "pos": positivos_total,
         "bn": [blanco_nulo, pct(blanco_nulo)],
@@ -140,6 +176,8 @@ def _construir_circuito(circuito: dict, filiaciones: dict[str, str], agrup_index
         "g7": agrup_index[ganador_info["nombre"]] if ganador_info else None,
         "cg": (ganador_info["campo_ideologico"] or None) if ganador_info else None,
         "fg": filiaciones.get(ganador_info["nombre"]) if ganador_info else None,
+        "por_campo": por_campo,
+        "por_familia": por_familia,
     }
 
 
@@ -149,9 +187,11 @@ def _construir_eleccion(contenido: dict, filiaciones: dict[str, str], agrup_inde
     la misma fórmula/total que cada circuito -- no solo la suma de los top7
     de cada uno, que subestimaría a las listas chicas."""
     circuitos_out = {}
-    positivos_d = blanco_nulo_d = ausentismo_d = electores_d = 0
+    positivos_d = blanco_nulo_d = ausentismo_d = electores_d = blanco_d = 0
     votos_por_agrup: dict[str, int] = {}
     campo_por_agrup: dict[str, str | None] = {}
+    votos_por_campo_d: dict[str, int] = {}
+    votos_por_familia_d: dict[str, int] = {}
 
     for cid_crudo, circuito in contenido["circuitos"].items():
         cid = canonicalizar_circuito_id(cid_crudo)
@@ -162,9 +202,14 @@ def _construir_eleccion(contenido: dict, filiaciones: dict[str, str], agrup_inde
         blanco_nulo_d += blanco_nulo
         ausentismo_d += ausentismo
         electores_d += circuito["electores"]
+        blanco_d += _votos_en_blanco(circuito)
         for info in circuito["positivos"].values():
             votos_por_agrup[info["nombre"]] = votos_por_agrup.get(info["nombre"], 0) + info["votos"]
             campo_por_agrup[info["nombre"]] = info["campo_ideologico"] or None
+        for clave, votos in _votos_por_campo(circuito).items():
+            votos_por_campo_d[clave] = votos_por_campo_d.get(clave, 0) + votos
+        for clave, votos in _votos_por_familia(circuito, filiaciones).items():
+            votos_por_familia_d[clave] = votos_por_familia_d.get(clave, 0) + votos
 
     total_d = positivos_d + blanco_nulo_d + ausentismo_d
 
@@ -179,6 +224,19 @@ def _construir_eleccion(contenido: dict, filiaciones: dict[str, str], agrup_inde
     ]
     otros_d_votos = sum(v for _, v in ranked_d[TOP_N:])
 
+    # Resumen para la franja fija bajo los controles (no el desglose de
+    # arriba): denominadores distintos a propósito, sobre pedido explícito
+    # -- ausentismo relativo al padrón completo (`electores_d`, no `total_d`,
+    # que ya excluye los votos procedimentales) y blanco relativo a los
+    # votos efectivamente emitidos (`electores_d - ausentismo_d`, es decir
+    # positivos + todo "otros" -- válidos, blancos, nulos o procedimentales).
+    votos_emitidos_d = electores_d - ausentismo_d
+    resumen = {
+        "ausentismo_pct": round(ausentismo_d / electores_d * 100, 2) if electores_d else 0.0,
+        "blanco_pct": round(blanco_d / votos_emitidos_d * 100, 2) if votos_emitidos_d else 0.0,
+        "blanco_votos": blanco_d,
+    }
+
     return {
         "anio": contenido["anio"],
         "cargo": contenido["nivel"],
@@ -190,6 +248,9 @@ def _construir_eleccion(contenido: dict, filiaciones: dict[str, str], agrup_inde
         "tot": total_d,
         "top7": top7,
         "otros_l": [otros_d_votos, pct_d(otros_d_votos)] if len(ranked_d) > TOP_N else None,
+        "por_campo": {k: [v, pct_d(v)] for k, v in votos_por_campo_d.items()},
+        "por_familia": {k: [v, pct_d(v)] for k, v in votos_por_familia_d.items()},
+        "resumen": resumen,
         "circuitos": circuitos_out,
     }
 
