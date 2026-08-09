@@ -37,6 +37,11 @@
   }
   header h1 small{display:block;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:3px;}
   header .meta{font-family:var(--mono); font-size:11px; color:var(--ink-dim); text-align:right; line-height:1.5;}
+  .back-link{
+    display:inline-block; font-family:var(--mono); font-size:11px; color:var(--accent-2);
+    text-decoration:none; margin-bottom:8px;
+  }
+  .back-link:hover{ text-decoration:underline; }
 
   #controls{
     display:flex; align-items:center; gap:18px; flex-wrap:wrap;
@@ -49,6 +54,16 @@
     padding:6px 10px; font-family:var(--mono); font-size:12.5px; cursor:pointer;
   }
   select:focus{outline:1px solid var(--accent-2);}
+
+  .play-btn{
+    width:30px; height:30px; flex:0 0 auto; border-radius:50%; border:1px solid var(--line);
+    background:var(--bg); color:var(--ink); font-size:12px; line-height:1; cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center;
+    transition:background .12s, color .12s, border-color .12s;
+  }
+  .play-btn:hover{ border-color:var(--accent-2); }
+  .play-btn.playing{ background:var(--accent); border-color:var(--accent); color:#1a1608; }
+  .play-btn:focus-visible{ outline:1px solid var(--accent-2); outline-offset:2px; }
 
   .modebar{display:flex; border:1px solid var(--line); border-radius:4px; overflow:hidden;}
   .modebar button{
@@ -128,14 +143,29 @@
 <body>
 <div id="app">
   <header>
-    <h1><small>Especialización en Inteligencia de Datos · UNLP</small>Geografía electoral del Partido de La Plata</h1>
+    <div>
+      <a class="back-link" href="index.html">&larr; Inicio</a>
+      <h1><small>Especialización en Inteligencia de Datos · UNLP</small>Geografía electoral del Partido de La Plata</h1>
+    </div>
     <div class="meta" id="header-meta">circuitos × localidades · 2011–2025<br>fuente: DINE / Ministerio del Interior</div>
   </header>
 
   <div id="controls">
     <div class="ctrl-group">
-      <span class="ctrl-label">Elección</span>
-      <select id="sel-eleccion"></select>
+      <span class="ctrl-label">Elegir por</span>
+      <div class="modebar" id="eje-bar">
+        <button data-eje="cargo" class="active">Cargo</button>
+        <button data-eje="nivel">Nivel</button>
+      </div>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label" id="label-valor">Cargo</span>
+      <select id="sel-valor"></select>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Año</span>
+      <select id="sel-anio"></select>
+      <button id="btn-play" class="play-btn" type="button" aria-pressed="false" title="Reproducir la secuencia de años, desde el primero">▶</button>
     </div>
     <div class="ctrl-group">
       <span class="ctrl-label">Ver por</span>
@@ -195,23 +225,164 @@ function fmtFam(f){ return f ? f.charAt(0).toUpperCase()+f.slice(1) : "sin clasi
 function fmtPct(p){ return `${p >= 0 ? "" : "−"}${Math.abs(p).toFixed(1)}%`; }
 function fmtVotos(v){ return v.toLocaleString('es-AR'); }
 
-// ---- build election select ----
-const selEl = document.getElementById('sel-eleccion');
+// ---- eje "Cargo" (los 6 cargos tal cual los pide la API) vs "Nivel"
+// (nacional/provincial/municipal, cada uno combinando su cargo ejecutivo
+// y su cargo legislativo para poder recorrer 2011-2023 sin cortes,
+// alternando entre ambos según qué año tenga cada uno) ----
 const CARGO_ORDER = ["presidente","gobernador","intendente","nacional","provincial","municipal"];
-const keys = Object.keys(DATA.elecciones).sort((a,b)=>{
-  const ea = DATA.elecciones[a], eb = DATA.elecciones[b];
-  if(ea.anio !== eb.anio) return ea.anio - eb.anio;
-  return CARGO_ORDER.indexOf(ea.cargo) - CARGO_ORDER.indexOf(eb.cargo);
+const PARES_NIVEL = {
+  nacional: ["presidente", "nacional"],
+  provincial: ["gobernador", "provincial"],
+  municipal: ["intendente", "municipal"],
+};
+const NIVEL_ORDER = ["nacional", "provincial", "municipal"];
+
+const ejeBar = document.getElementById('eje-bar');
+const labelValor = document.getElementById('label-valor');
+const selValor = document.getElementById('sel-valor');
+const selAnio = document.getElementById('sel-anio');
+const btnPlay = document.getElementById('btn-play');
+
+// No todos los cargos tienen los mismos años (ej. 2025 hoy solo tiene
+// "nacional" -- provincial/municipal de ese año todavía no están
+// descargados, ver CLAUDE.md) -- todo esto se arma dinámicamente desde
+// DATA en vez de asumir un calendario fijo.
+function aniosDeCargo(cargo){
+  return Object.values(DATA.elecciones)
+    .filter(e => e.cargo === cargo)
+    .map(e => e.anio)
+    .sort((a,b)=>a-b);
+}
+function cargoLabelDe(cargo){
+  const ejemplo = Object.values(DATA.elecciones).find(e => e.cargo === cargo);
+  return ejemplo ? ejemplo.cargo_label : cargo;
+}
+
+const cargosDisponibles = CARGO_ORDER.filter(cargo => aniosDeCargo(cargo).length > 0);
+const nivelesDisponibles = NIVEL_ORDER.filter(nivel => PARES_NIVEL[nivel].some(cargo => aniosDeCargo(cargo).length > 0));
+
+// El año del modo "Nivel" es el mismo para los tres niveles (para poder
+// comparar nacional/provincial/municipal año a año) -- la intersección de
+// lo que cada uno puede mostrar, no la unión: si un solo nivel no llega a
+// determinado año (ej. 2025 provincial/municipal todavía no están
+// descargados), ese año se cae para los tres, no solo para el que falta.
+function aniosUnionDeNivel(nivel){
+  const anios = new Set();
+  PARES_NIVEL[nivel].forEach(cargo => aniosDeCargo(cargo).forEach(a => anios.add(a)));
+  return anios;
+}
+function interseccion(conjuntos){
+  if(conjuntos.length === 0) return new Set();
+  return conjuntos.reduce((acc, s) => new Set([...acc].filter(a => s.has(a))));
+}
+const aniosNivel = [...interseccion(nivelesDisponibles.map(aniosUnionDeNivel))].sort((a,b)=>a-b);
+
+function cargoParaNivelYAnio(nivel, anio){
+  return PARES_NIVEL[nivel].find(cargo => aniosDeCargo(cargo).includes(anio)) || null;
+}
+
+let ejeActual = "cargo"; // "cargo" | "nivel"
+
+function poblarSelectorPrincipal(){
+  selValor.innerHTML = "";
+  const opciones = ejeActual === "cargo" ? cargosDisponibles : nivelesDisponibles;
+  opciones.forEach(valor=>{
+    const opt = document.createElement('option');
+    opt.value = valor;
+    opt.textContent = ejeActual === "cargo"
+      ? cargoLabelDe(valor)
+      : `${valor.charAt(0).toUpperCase()}${valor.slice(1)} (${cargoLabelDe(PARES_NIVEL[valor][0])} + ${cargoLabelDe(PARES_NIVEL[valor][1])})`;
+    selValor.appendChild(opt);
+  });
+}
+
+function aniosDelValorActual(){
+  return ejeActual === "cargo" ? aniosDeCargo(selValor.value) : aniosNivel;
+}
+
+function poblarAnios(){
+  const anios = aniosDelValorActual();
+  selAnio.innerHTML = "";
+  anios.forEach(anio=>{
+    const opt = document.createElement('option');
+    opt.value = anio;
+    opt.textContent = anio;
+    selAnio.appendChild(opt);
+  });
+  selAnio.value = anios[anios.length - 1]; // el más reciente, por defecto
+}
+
+const cargoPorDefecto = cargosDisponibles.includes("municipal") ? "municipal" : cargosDisponibles[cargosDisponibles.length - 1];
+labelValor.textContent = "Cargo";
+poblarSelectorPrincipal();
+selValor.value = cargoPorDefecto;
+poblarAnios();
+
+function currentKey(){
+  const anio = Number(selAnio.value);
+  if(ejeActual === "cargo") return `${anio}_${selValor.value}`;
+  const cargo = cargoParaNivelYAnio(selValor.value, anio);
+  return `${anio}_${cargo}`;
+}
+
+ejeBar.querySelectorAll('button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    if(btn.dataset.eje === ejeActual) return;
+    const seguirReproduciendo = !!playInterval;
+    if(seguirReproduciendo) detenerReproduccion();
+    ejeBar.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    ejeActual = btn.dataset.eje;
+    labelValor.textContent = ejeActual === "cargo" ? "Cargo" : "Nivel";
+    poblarSelectorPrincipal();
+    selValor.value = ejeActual === "cargo" ? cargoPorDefecto : nivelesDisponibles[0];
+    poblarAnios();
+    render();
+    if(seguirReproduciendo) iniciarReproduccion();
+  });
 });
-keys.forEach(k=>{
-  const e = DATA.elecciones[k];
-  const opt = document.createElement('option');
-  opt.value = k;
-  opt.textContent = `${e.anio} — ${e.cargo_label}`;
-  selEl.appendChild(opt);
+
+// ---- reproducción automática: recorre los años de lo elegido (cargo o nivel) ----
+const MS_ENTRE_ANIOS = 2800; // velocidad del autoplay -- único lugar donde se regula
+let playInterval = null;
+
+function detenerReproduccion(){
+  if(playInterval){ clearInterval(playInterval); playInterval = null; }
+  btnPlay.textContent = "▶";
+  btnPlay.classList.remove('playing');
+  btnPlay.setAttribute('aria-pressed', 'false');
+  btnPlay.title = "Reproducir la secuencia de años, desde el primero";
+}
+function avanzarAnio(){
+  const anios = aniosDelValorActual();
+  const idxActual = anios.indexOf(Number(selAnio.value));
+  selAnio.value = anios[(idxActual + 1) % anios.length];
+  render();
+}
+function iniciarReproduccion(){
+  selAnio.value = aniosDelValorActual()[0];
+  render();
+  btnPlay.textContent = "⏸";
+  btnPlay.classList.add('playing');
+  btnPlay.setAttribute('aria-pressed', 'true');
+  btnPlay.title = "Pausar";
+  playInterval = setInterval(avanzarAnio, MS_ENTRE_ANIOS);
+}
+btnPlay.addEventListener('click', ()=>{
+  if(playInterval) detenerReproduccion(); else iniciarReproduccion();
 });
-let defaultKey = keys.filter(k=>DATA.elecciones[k].cargo==="municipal").pop() || keys[keys.length-1];
-selEl.value = defaultKey;
+
+selValor.addEventListener('change', ()=>{
+  const seguirReproduciendo = !!playInterval;
+  if(seguirReproduciendo) detenerReproduccion();
+  poblarAnios();
+  render();
+  if(seguirReproduciendo) iniciarReproduccion();
+});
+selAnio.addEventListener('change', ()=>{
+  detenerReproduccion(); // elegir un año a mano corta la reproducción, para que la selección no se pise sola
+  render();
+});
 
 let currentMode = "agrup";
 document.querySelectorAll('.modebar button').forEach(btn=>{
@@ -222,7 +393,6 @@ document.querySelectorAll('.modebar button').forEach(btn=>{
     render();
   });
 });
-selEl.addEventListener('change', render);
 
 // ---- map setup ----
 const map = L.map('map', {zoomControl:true, minZoom:10, maxZoom:16, attributionControl:true})
@@ -388,7 +558,7 @@ function showCircuitoPanel(cid, circ, locName){
 }
 
 function render(){
-  const key = selEl.value;
+  const key = currentKey();
   const elec = DATA.elecciones[key];
   document.getElementById('foot').innerHTML =
     `${elec.anio} · ${elec.cargo_label} · ${Object.keys(elec.circuitos).length} circuitos con datos · ${fmtVotos(elec.elec)} electores · ${fmtVotos(elec.pos)} votos a listas` +
