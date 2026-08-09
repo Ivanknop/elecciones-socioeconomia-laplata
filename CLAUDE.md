@@ -43,6 +43,7 @@ PYTHONPATH=src python -m analisis.serie_temporal_por_localidad --nivel municipal
 PYTHONPATH=src python -m electoral.totales --anio 2023 --nivel intendente  # total votes per agrupación, generales by default; add --etapa paso/balotaje for those
 PYTHONPATH=src python -m analisis.totales_por_lista --anio 2023 --nivel intendente  # bar chart of that total, one per (año, nivel)
 PYTHONPATH=src python -m analisis.comparativo_nivel --anio 2019  # Municipio/Provincia/Nación comparison table, one per año
+PYTHONPATH=src python -m analisis.mapa_interactivo  # single interactive Leaflet HTML, all circuitos × all 22 (año, nivel) generales combos, writes visualizaciones/mapa_electoral_la_plata.html
 PYTHONPATH=src python -m macroeconomia.series  # national macroeconomic series, one CSV row per month 2011-2025 (needs network to refresh; runs from cache otherwise)
 PYTHONPATH=src python -m macroeconomia.series_anuales  # same, annual-frequency concepts only, one CSV row per year
 PYTHONPATH=src python -m macroeconomia.graficos  # one PNG per concept (mensual + anual, 22 total) from the two CSVs above; --concepto for a single one
@@ -66,6 +67,17 @@ plus the matplotlib-rendering half of the locality scripts) still have no
 automated tests; changes there are validated by re-running the notebooks
 end to end (see README "Cómo reproducir") or by running the scripts
 against `data/` directly.
+`src/analisis/mapa_interactivo.py`'s aggregation logic (the exact same
+`electores - positivos - otros_total` ausentismo formula as
+`graficos._votos_no_ideologicos`, top-N-plus-residual per circuito,
+distrito-level rollup) is covered by `tests/test_mapa_interactivo.py`,
+no network, no HTML rendering; the Leaflet/HTML template itself
+(`mapa_interactivo_template.html`) has no automated test, same
+criterion as the rest of `src/analisis/*` — validated with a headless
+Chromium pass (page loads with zero console errors, all four "ver por"
+modes render, known negative-`ausentismo` circuitos are visually
+flagged) rather than by running notebooks, since there's no notebook in
+this path.
 `src/socioeconomia/eph_client.py` (URL/filename resolution, the historical
 DBF-era file lookup, and the labor-indicator aggregation core — no
 network) is covered by `tests/test_eph_client.py`; `src/socioeconomia/geo.py`
@@ -163,6 +175,22 @@ order, 01→04) are the pipeline**.
   (same family, different programmatic position) rather than a dataset
   inconsistency.
 
+  `colorimetria_campo_ideologico.csv` (`campo_ideologico` value → hex, one
+  row per one of the 6 labels in `campo_ideologico.csv`) and
+  `colorimetria_familia_politica.csv` (`filiacion_politica` value → hex,
+  one row per one of the 8 `filiacion_politica` values used in
+  `clasificacion_ideologica_agrupaciones.csv`) are the **only** source of
+  color for those two dimensions anywhere in the repo — hand-picked,
+  git-tracked. `src/analisis/graficos.py` loads both once
+  (`_COLOR_IDEOLOGIA`, `_COLOR_FILIACION`) the same way it already loaded
+  `campo_ideologico.csv` into `IDEOLOGIAS`; every other module that needs
+  to color by campo ideológico or filiación política
+  (`totales_por_lista.py`, `serie_temporal_filiacion.py`,
+  `mapa_interactivo.py`) imports those two dicts from `graficos.py`
+  instead of defining its own palette. `blanco_nulo`/`ausentismo` stay
+  outside this — they're not a political space, they keep their own
+  fixed neutral grays in `graficos._COLOR_NO_IDEOLOGICA`.
+
 - **`data/fuentes_extra/circuito_localidad.csv`** is a second, unrelated
   hand-curated crosswalk (`circuito_id` -> `localidad`/barrio name, not
   census geography) built from an official 2007 resolution plus a
@@ -222,6 +250,34 @@ order, 01→04) are the pipeline**.
   exact-name join across the three same-year cargos (empirically the same
   alliance keeps one name across categories within a year). Skips years
   with only one cargo (2025).
+  `src/analisis/mapa_interactivo.py` is the odd one out in this module: it
+  writes one interactive Leaflet HTML (`visualizaciones/mapa_electoral_la_plata.html`,
+  git-tracked — the one interactive deliverable in the repo, not a bulk
+  per-circuito PNG) instead of a static chart, covering all 68 circuitos ×
+  22 (año, nivel) **generales** combos at once (no PASO/balotaje — the
+  page's own footer says so explicitly). It's the only script in the repo
+  that joins circuito polygon geometry (`data/socioeconomia/circuitos_electorales_la_plata.geojson`)
+  with electoral results and the geolocalización catalog
+  (`data/geolocalizacion/localidades_la_plata.csv`) in the same place.
+  Same non-negotiable rule as the rest of `src/analisis/`: every
+  percentage (per circuito and distrito-wide) is computed over
+  `positivos + blanco_nulo + ausentismo`, never over `positivos` alone —
+  and the top-7-agrupaciones-per-circuito view (kept for file size; a
+  full per-circuito breakdown across 22 elections would be far heavier)
+  always shows an explicit "otros" residual row instead of silently
+  showing bars that don't add up to 100%. `ausentismo` reuses the exact
+  formula from `graficos._votos_no_ideologicos`
+  (`electores - positivos - otros_total`) and is never clamped at
+  zero — the known negative-`ausentismo` circuitos (504/505/508/509
+  family) get a distinct color on the map's "Ausentismo" choropleth mode
+  and an explicit warning in their popup, same spirit as
+  `graficos.graficar_torta`'s refusal to plot that case. Colors for
+  campo ideológico/familia política are `graficos._COLOR_IDEOLOGIA`/
+  `_COLOR_FILIACION` (loaded from the two `colorimetria_*.csv`, see
+  `data/agrupaciones/` above), reindexed here from label to the numeric
+  code `circuito_<nivel>.json` actually uses — not a separate palette.
+  Leaflet itself and the map tiles load from a CDN — the page needs
+  internet to render, it isn't a fully offline artifact.
 
 - **`src/analisis/`** reads only the derived `circuito_<nivel>.json` files
   (never the client/models layer directly) and plots by `campo_ideologico`.

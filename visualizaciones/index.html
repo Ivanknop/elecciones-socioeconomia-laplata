@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>elecciones-socioeconomia-laplata</title>
+<style>
+  :root{
+    --bg: #12181f;
+    --bg-panel: #1a2129;
+    --bg-panel-2: #212a34;
+    --ink: #e9e3d3;
+    --ink-dim: #a9a48f;
+    --line: #3a4350;
+    --accent: #c9a227;
+    --accent-2: #7db8d8;
+    --serif: "Iowan Old Style", "Palatino Linotype", Georgia, "Source Serif Pro", serif;
+    --mono: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, monospace;
+    --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--sans);}
+  body{min-height:100vh;}
+
+  header{
+    padding:34px 24px 26px 24px; max-width:920px; margin:0 auto;
+    border-bottom:1px solid var(--line);
+  }
+  header .eyebrow{
+    font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:8px;
+  }
+  header h1{
+    font-family:var(--serif); font-weight:600; font-size:28px; margin:0 0 10px 0; letter-spacing:.1px; line-height:1.25;
+  }
+  header p{
+    font-family:var(--sans); font-size:13.5px; color:var(--ink-dim); line-height:1.6; max-width:640px; margin:0;
+  }
+  header .repolink{
+    font-family:var(--mono); font-size:11.5px; margin-top:14px; display:inline-block; color:var(--accent-2); text-decoration:none;
+  }
+  header .repolink:hover{ text-decoration:underline; }
+
+  main{max-width:920px; margin:0 auto; padding:36px 24px 60px 24px;}
+
+  section{margin-bottom:44px;}
+  section .sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:18px; border-bottom:1px solid var(--line); padding-bottom:10px;}
+  section .sec-num{font-family:var(--mono); font-size:12px; color:var(--accent); flex:0 0 auto;}
+  section h2{font-family:var(--serif); font-size:19px; margin:0; font-weight:600;}
+  section .sec-note{font-family:var(--sans); font-size:11.5px; color:var(--ink-dim); margin-left:auto;}
+
+  .subgroup{margin-bottom:22px;}
+  .subgroup h3{
+    font-family:var(--sans); font-size:10.5px; text-transform:uppercase; letter-spacing:.1em;
+    color:var(--ink-dim); font-weight:700; margin:0 0 10px 0;
+  }
+
+  .doc-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px;}
+  .doc-list li{border-top:1px solid var(--line);}
+  .doc-list li:first-child{border-top:none;}
+  .doc-list a{
+    display:flex; align-items:baseline; gap:12px; padding:10px 4px; text-decoration:none; color:var(--ink);
+    transition:background .12s;
+  }
+  .doc-list a:hover{background:var(--bg-panel-2);}
+  .doc-list .doc-name{font-family:var(--sans); font-size:13.5px; flex:0 0 auto;}
+  .doc-list .doc-path{font-family:var(--mono); font-size:10.5px; color:var(--ink-dim); flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .doc-list .doc-arrow{font-family:var(--mono); font-size:12px; color:var(--accent-2); flex:0 0 auto;}
+
+  .viz-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:14px;}
+  .viz-card{
+    display:block; text-decoration:none; color:var(--ink); background:var(--bg-panel);
+    border:1px solid var(--line); border-radius:6px; padding:18px 18px 16px 18px; transition:border-color .12s, transform .12s;
+  }
+  .viz-card:hover{border-color:var(--accent); transform:translateY(-2px);}
+  .viz-card .viz-tag{
+    font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--accent);
+    margin-bottom:8px; display:block;
+  }
+  .viz-card h3{font-family:var(--serif); font-size:16px; margin:0 0 8px 0; font-weight:600;}
+  .viz-card p{font-family:var(--sans); font-size:12.5px; color:var(--ink-dim); line-height:1.55; margin:0;}
+
+  .viz-card.placeholder{
+    border-style:dashed; opacity:.55; cursor:default;
+  }
+  .viz-card.placeholder:hover{ transform:none; border-color:var(--line); }
+
+  footer{
+    max-width:920px; margin:0 auto; padding:20px 24px 40px 24px;
+    font-family:var(--mono); font-size:10.5px; color:var(--ink-dim); border-top:1px solid var(--line);
+  }
+  footer a{
+    color:inherit; font-family:inherit; font-size:inherit; font-style:italic; text-decoration:underline;
+    transition:color .12s;
+  }
+  footer a:hover{ color:var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Voto económico y geografía electoral — Partido de La Plata (2011–2025)</h1>
+  <p>Cruce de resultados electorales con condiciones socioeconómicas, familias políticas y campos ideológicos, a nivel de circuito electoral y localidad.</p>
+  <a class="repolink" href="https://github.com/Ivanknop/elecciones-socioeconomia-laplata" target="_blank" rel="noopener">github.com/Ivanknop/elecciones-socioeconomia-laplata →</a>
+</header>
+
+<main>
+
+  <section id="visualizacion">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Visualización</h2>
+      <span class="sec-note">interactivo, en este sitio</span>
+    </div>
+
+    <div class="viz-grid">
+      <a class="viz-card" href="mapa_electoral_la_plata.html">
+        <span class="viz-tag">Mapa · 2011–2025</span>
+        <h3>Geografía electoral del Partido de La Plata</h3>
+        <p>Circuitos electorales y localidades, coloreados por agrupación ganadora (top 7 del distrito), familia política, campo ideológico o ausentismo, elección por elección — generales 2011–2025, no incluye PASO ni balotaje.</p>
+      </a>
+
+
+      <div class="viz-card placeholder">
+        <span class="viz-tag">Próximamente</span>
+        <h3>Voto económico y quiebres estructurales</h3>
+        <p>Series electorales y macroeconómicas.</p>
+      </div>
+    </div>
+  </section>
+  <section id="documentacion">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>Documentación</h2>
+      <span class="sec-note">se renderiza en GitHub</span>
+    </div>
+
+    <div class="subgroup">
+      <h3>General</h3>
+      <ul class="doc-list">
+        <li><a href="https://github.com/Ivanknop/elecciones-socioeconomia-laplata/blob/main/README.md" target="_blank" rel="noopener"><span class="doc-name">README</span><span class="doc-path">README.md</span><span class="doc-arrow">↗</span></a></li>
+        <li><a href="https://github.com/Ivanknop/elecciones-socioeconomia-laplata/blob/main/docs/ESPECIFICACION_NO_TECNICA.md" target="_blank" rel="noopener"><span class="doc-name">Especificación no técnica</span><span class="doc-path">docs/ESPECIFICACION_NO_TECNICA.md</span><span class="doc-arrow">↗</span></a></li>
+        <li><a href="https://github.com/Ivanknop/elecciones-socioeconomia-laplata/blob/main/docs/FUNCIONALIDADES.md" target="_blank" rel="noopener"><span class="doc-name">Funcionalidades</span><span class="doc-path">docs/FUNCIONALIDADES.md</span><span class="doc-arrow">↗</span></a></li>
+        <li><a href="https://github.com/Ivanknop/elecciones-socioeconomia-laplata/blob/main/docs/nota_metodologica.md" target="_blank" rel="noopener"><span class="doc-name">Nota metodológica</span><span class="doc-path">docs/nota_metodologica.md</span><span class="doc-arrow">↗</span></a></li>
+        <li><a href="https://github.com/Ivanknop/elecciones-socioeconomia-laplata/blob/main/docs/AUDITORIA_ESTADO.md" target="_blank" rel="noopener"><span class="doc-name">Auditoría de estado</span><span class="doc-path">docs/AUDITORIA_ESTADO.md</span><span class="doc-arrow">↗</span></a></li>
+      </ul>
+    </div>
+
+    <div class="subgroup">
+      <h3>Datos electorales</h3>
+      <ul class="doc-list">
+        <li><a href="https://github.com/Ivanknop/elecciones-socioeconomia-laplata/blob/main/docs/ESPECIFICACION_CAPA_ELECTORAL.md" target="_blank" rel="noopener"><span class="doc-name">Especificación de la capa electoral</span><span class="doc-path">docs/ESPECIFICACION_CAPA_ELECTORAL.md</span><span class="doc-arrow">↗</span></a></li>
+        <li><a href="https://github.com/Ivanknop/elecciones-socioeconomia-laplata/blob/main/data/fuentes_extra/CIRCUITOS_LOCALIDADES.md" target="_blank" rel="noopener"><span class="doc-name">Circuitos ↔ localidades</span><span class="doc-path">data/fuentes_extra/CIRCUITOS_LOCALIDADES.md</span><span class="doc-arrow">↗</span></a></li>
+      </ul>
+    </div>
+
+    <div class="subgroup">
+      <h3>Geolocalización</h3>
+      <ul class="doc-list">
+        <li><a href="https://github.com/Ivanknop/elecciones-socioeconomia-laplata/blob/main/data/geolocalizacion/LOCALIDADES.md" target="_blank" rel="noopener"><span class="doc-name">Catálogo de localidades</span><span class="doc-path">data/geolocalizacion/LOCALIDADES.md</span><span class="doc-arrow">↗</span></a></li>
+      </ul>
+    </div>
+
+    <div class="subgroup">
+      <h3>Socioeconomía y macroeconomía</h3>
+      <ul class="doc-list">
+        <li><a href="https://github.com/Ivanknop/elecciones-socioeconomia-laplata/blob/main/data/socioeconomia/SISTEMATIZACION_VARIABLES.md" target="_blank" rel="noopener"><span class="doc-name">Sistematización de variables socioeconómicas</span><span class="doc-path">data/socioeconomia/SISTEMATIZACION_VARIABLES.md</span><span class="doc-arrow">↗</span></a></li>
+        <li><a href="https://github.com/Ivanknop/elecciones-socioeconomia-laplata/blob/main/data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md" target="_blank" rel="noopener"><span class="doc-name">Sistematización de variables macro</span><span class="doc-path">data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md</span><span class="doc-arrow">↗</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+
+</main>
+<footer>
+  <p>© 2026 Iván Knopoff. <a href="https://github.com/Ivanknop/elecciones-socioeconomia-laplata" target="_blank" rel="noopener">github.com/Ivanknop/elecciones-socioeconomia-laplata</a>
+  <a href="https://www.linkedin.com/in/ivan-knopoff/" target="_blank" rel="noopener">linkedin.com/in/ivan-knopoff</a></p>
+</footer>
+</body>
+</html>

@@ -31,7 +31,8 @@ src/electoral/       client.py, models.py, localidades.py, totales.py
 src/analisis/         graficos.py, generar_graficos.py, serie_temporal.py,
                        serie_temporal_filiacion.py, cuadros_anualizados.py,
                        cuadros_por_localidad.py, serie_temporal_por_localidad.py,
-                       totales_por_lista.py, comparativo_nivel.py
+                       totales_por_lista.py, comparativo_nivel.py,
+                       mapa_interactivo.py
 src/socioeconomia/    geo.py, eph_client.py, graficos_eph_iaelap.py
 src/macroeconomia/    datos_gob_client.py, series.py, graficos.py, auditoria_estadisticasbcra.py
 src/geolocalizacion/  georef_client.py, catalogo.py, mapa.py
@@ -57,6 +58,8 @@ para borrarlo y correrlo de nuevo):
 | `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` | clasificación ideológica manual| **Sí** |
 | `data/agrupaciones/tabla_referencia_filiacion_politica.csv` | fuente/confianza de `filiacion_politica` | **Sí** |
 | `data/agrupaciones/campo_ideologico.csv` | escala 1-6  | **Sí** |
+| `data/agrupaciones/colorimetria_campo_ideologico.csv` | color por `campo_ideologico`, única fuente en todo el repo | **Sí** |
+| `data/agrupaciones/colorimetria_familia_politica.csv` | color por `filiacion_politica`, única fuente en todo el repo | **Sí** |
 | `data/agrupaciones/circuito_id_correspondencias.csv` | normalización de `circuito_id` entre años | **Sí** |
 | `data/socioeconomia/` | EPH, correspondencia circuito↔radio censal | **Sí**, salvo `eph_cache/` (gitignored) |
 | `data/macroeconomia/catalogo_series.csv` | catálogo de series mensuales/diarias/trimestrales | **Sí** |
@@ -74,6 +77,7 @@ para borrarlo y correrlo de nuevo):
 | `graficos/socioeconomia/eph/` | gráficos de la EPH | **Sí** |
 | `graficos/socioeconomia/` (resto) | IAELaP y contraste EPH/IAELaP | No |
 | `graficos/por_localidad/` | series temporales por localidad | No — derivado |
+| `visualizaciones/mapa_electoral_la_plata.html` | mapa interactivo (Leaflet), 68 circuitos × 22 elecciones generales | **Sí** |
 
 Toda la documentación narrativa (`docs/`) también está versionada — es
 documentación, no datos. Detalle de cada archivo en "Documentación" más
@@ -129,7 +133,9 @@ geolocalización, a `apis.datos.gob.ar` (esta última incluye
 A partir de `circuito_<nivel>.json`, todos los scripts de `src/analisis/`
 (gráficos, series temporales, totales, cuadros comparativos) se corren
 independientemente unos de otros — comandos exactos de cada uno en
-`docs/FUNCIONALIDADES.md`.
+`docs/FUNCIONALIDADES.md`. `analisis.mapa_interactivo` es la excepción:
+necesita tanto `circuito_<nivel>.json` (paso 5) como el catálogo de
+geolocalización (paso 8) ya generados.
 
 ## Tests
 

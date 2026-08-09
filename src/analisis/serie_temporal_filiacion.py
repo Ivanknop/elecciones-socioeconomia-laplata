@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt
 
 from analisis.graficos import (
     CATEGORIAS_NO_IDEOLOGICAS,
+    _COLOR_FILIACION,
     _cargar_circuito,
     _votos_no_ideologicos,
     color_categoria,
@@ -31,19 +32,10 @@ from analisis.graficos import (
 )
 from analisis.serie_temporal import CARGO_LABEL, NIVELES, _puntos_del_nivel
 
-# Orden fijo por volumen total de filas clasificadas en
-# clasificacion_ideologica_agrupaciones.csv (no se cicla ni se reordena por
-# año/nivel).
-_COLOR_FILIACION = {
-    "peronistas": "#2a78d6",
-    "progresistas": "#eb6834",
-    "marxistas": "#1baf7a",
-    "liberales": "#eda100",
-    "nacionalistas": "#e87ba4",
-    "peronismo provincial": "#008300",
-    "conservadores": "#4a3aa7",
-    "otros": "#9e9e9e",
-}
+# `_COLOR_FILIACION` (import de arriba) es la única fuente de estos colores
+# -- viene de `data/agrupaciones/colorimetria_familia_politica.csv` vía
+# `graficos.py`, no se hardcodea acá. El orden de sus filas es el que fija
+# el orden de graficado/leyenda (no se cicla ni se reordena por año/nivel).
 
 
 def _cargar_filiaciones(agrupaciones_dir: Path | str) -> dict[str, str]:

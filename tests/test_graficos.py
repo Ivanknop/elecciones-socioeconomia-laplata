@@ -10,6 +10,7 @@ import pytest
 
 from analisis.graficos import (
     IDEOLOGIAS,
+    _COLOR_IDEOLOGIA,
     _cargar_circuito,
     _cargar_escala_ideologica,
     _circuitos_seleccionados,
@@ -107,7 +108,9 @@ class TestCircuitosSeleccionados:
 
 class TestColorCategoria:
     def test_categoria_ideologica(self):
-        assert color_categoria("centro") == "#86b6ef"
+        # el color real vive en data/agrupaciones/colorimetria_campo_ideologico.csv,
+        # no se hardcodea acá un segundo literal que pueda quedar desactualizado
+        assert color_categoria("centro") == _COLOR_IDEOLOGIA["centro"]
 
     def test_categoria_no_ideologica(self):
         assert color_categoria("blanco_nulo") == "#c9c9c9"

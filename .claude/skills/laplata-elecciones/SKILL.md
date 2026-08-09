@@ -58,10 +58,11 @@ data/fuentes_extra/resolucion_1990-2007.md                     # fuente legal co
 data/socioeconomia/circuito_radio_correspondencia.csv           # correspondencia espacial circuito<->radio censal (peso_area)
 data/socioeconomia/radios_censales_{2010,2022}_la_plata.geojson
 src/electoral/          # cliente API, modelos, parsing, agrupamiento por localidad (localidades.py), totales por agrupación (totales.py)
-src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a partir de circuito_<nivel>.json; totales_por_lista.py grafica data/totales/ + blanco_nulo; comparativo_nivel.py compara Municipio/Provincia/Nación en Markdown
+src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a partir de circuito_<nivel>.json; totales_por_lista.py grafica data/totales/ + blanco_nulo; comparativo_nivel.py compara Municipio/Provincia/Nación en Markdown; mapa_interactivo.py cruza esto con geolocalizacion y el geojson de circuitos
 src/socioeconomia/      # EPH, geo, IAELaP
 notebooks/               # 01-06, la pipeline real corre acá (ver CLAUDE.md)
 graficos/distrito/, graficos/por_localidad/, graficos/socioeconomia/   # salida, mayormente no versionada
+visualizaciones/mapa_electoral_la_plata.html   # el único gráfico interactivo del repo (Leaflet), git-tracked
 tests/
 ```
 

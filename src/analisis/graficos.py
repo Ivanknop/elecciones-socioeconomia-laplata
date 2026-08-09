@@ -9,6 +9,18 @@ falta y devuelven la figura. `circuito_id=None` agrega todos los circuitos
 de ese (año, nivel) — el acumulado de La Plata. Para generar los gráficos de
 todos los circuitos de un (año, nivel) de una sola vez, ver
 `generar_graficos.py`.
+
+## Colores de cada espacio político: una sola fuente, nunca hardcodeados
+
+`_COLOR_IDEOLOGIA` (por `campo_ideologico`) y `_COLOR_FILIACION` (por
+`filiacion_politica`) se cargan acá una única vez desde
+`data/agrupaciones/colorimetria_campo_ideologico.csv` y
+`colorimetria_familia_politica.csv` respectivamente -- son la única fuente
+de esos colores en todo el repo. Cualquier módulo que necesite pintar por
+campo ideológico o filiación política los importa desde acá
+(`totales_por_lista.py`, `serie_temporal_filiacion.py`,
+`mapa_interactivo.py`) en vez de definir su propia paleta -- si un color
+cambia, cambia en un solo CSV y se propaga solo.
 """
 from __future__ import annotations
 
@@ -23,6 +35,8 @@ import matplotlib.pyplot as plt
 # fuente de la escala, resuelto por ruta absoluta a partir de este archivo
 # para no depender del cwd desde el que se importe el módulo.
 _CAMPO_IDEOLOGICO_CSV = Path(__file__).resolve().parents[2] / "data" / "agrupaciones" / "campo_ideologico.csv"
+_COLORIMETRIA_CAMPO_CSV = Path(__file__).resolve().parents[2] / "data" / "agrupaciones" / "colorimetria_campo_ideologico.csv"
+_COLORIMETRIA_FAMILIA_CSV = Path(__file__).resolve().parents[2] / "data" / "agrupaciones" / "colorimetria_familia_politica.csv"
 
 
 def _cargar_escala_ideologica(path: Path | str = _CAMPO_IDEOLOGICO_CSV) -> dict[str, str]:
@@ -36,21 +50,22 @@ def _cargar_escala_ideologica(path: Path | str = _CAMPO_IDEOLOGICO_CSV) -> dict[
         return {fila["valor"]: fila["ideologia"] for fila in csv.DictReader(f)}
 
 
-IDEOLOGIAS = _cargar_escala_ideologica()
+def _cargar_colorimetria(path: Path | str, columna_clave: str) -> dict[str, str]:
+    """`{valor: color_hex}` desde un CSV de colorimetría de dos columnas
+    (`<columna_clave>,color`) -- `strip()` en ambas porque las fuentes
+    traen espacio después de la coma (` #FF0000`)."""
+    with Path(path).open(encoding="utf-8", newline="") as f:
+        return {fila[columna_clave].strip(): fila["color"].strip() for fila in csv.DictReader(f)}
 
-_COLOR_IDEOLOGIA = {
-    "izquierda": "#0d366b",
-    "centro izquierda": "#256abf",
-    "centro": "#86b6ef",
-    "centro derecha": "#f4a889",
-    "derecha": "#d9573f",
-    "derecha radical": "#8f1d0f",
-}
+
+IDEOLOGIAS = _cargar_escala_ideologica()
+_COLOR_IDEOLOGIA = _cargar_colorimetria(_COLORIMETRIA_CAMPO_CSV, "campo_ideologico")
+_COLOR_FILIACION = _cargar_colorimetria(_COLORIMETRIA_FAMILIA_CSV, "familia_politica")
 
 # Dos muestras que no son posición ideológica pero tienen que aparecer siempre
 # junto al desglose por campo_ideologico/filiacion_politica -- ver
 # `_votos_no_ideologicos`. Colores neutros (gris), para no competir con la
-# paleta divergente azul-rojo de la ideología.
+# paleta de la colorimetría de ideología/filiación.
 CATEGORIAS_NO_IDEOLOGICAS = ["blanco_nulo", "ausentismo"]
 
 _ETIQUETA_NO_IDEOLOGICA = {

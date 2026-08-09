@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geografía electoral — Partido de La Plata (2011–2025)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<style>
+  :root{
+    --bg: #12181f;
+    --bg-panel: #1a2129;
+    --bg-panel-2: #212a34;
+    --ink: #e9e3d3;
+    --ink-dim: #a9a48f;
+    --line: #3a4350;
+    --accent: #c9a227;
+    --accent-2: #7db8d8;
+    --map-bg: #0c1116;
+    --serif: "Iowan Old Style", "Palatino Linotype", Georgia, "Source Serif Pro", serif;
+    --mono: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, monospace;
+    --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);}
+  #app{display:flex;flex-direction:column;height:100vh;min-height:560px;}
+
+  header{
+    padding:14px 20px 12px 20px;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg, var(--bg-panel), var(--bg));
+    display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px 24px;
+  }
+  header h1{
+    font-family:var(--serif); font-weight:600; font-size:19px; letter-spacing:.2px; margin:0;
+    color:var(--ink);
+  }
+  header h1 small{display:block;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:3px;}
+  header .meta{font-family:var(--mono); font-size:11px; color:var(--ink-dim); text-align:right; line-height:1.5;}
+
+  #controls{
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+    padding:10px 20px; background:var(--bg-panel-2); border-bottom:1px solid var(--line);
+  }
+  .ctrl-group{display:flex; align-items:center; gap:8px;}
+  .ctrl-label{font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-dim); font-weight:600;}
+  select{
+    background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:3px;
+    padding:6px 10px; font-family:var(--mono); font-size:12.5px; cursor:pointer;
+  }
+  select:focus{outline:1px solid var(--accent-2);}
+
+  .modebar{display:flex; border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+  .modebar button{
+    background:var(--bg); color:var(--ink-dim); border:none; border-right:1px solid var(--line);
+    padding:6px 13px; font-family:var(--sans); font-size:12px; font-weight:600; cursor:pointer;
+    transition:background .12s, color .12s;
+  }
+  .modebar button:last-child{border-right:none;}
+  .modebar button:hover{color:var(--ink);}
+  .modebar button.active{background:var(--accent); color:#1a1608;}
+
+  #main{flex:1; display:flex; min-height:0;}
+  #mapwrap{flex:1; position:relative; min-width:0;}
+  #map{width:100%; height:100%; background:var(--map-bg);}
+
+  #side{
+    width:340px; flex:0 0 340px; background:var(--bg-panel); border-left:1px solid var(--line);
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+  #side-scroll{overflow-y:auto; padding:16px 18px 24px 18px; flex:1;}
+  #side h2{font-family:var(--serif); font-size:15px; margin:0 0 2px 0; color:var(--ink);}
+  #side .sub{font-family:var(--mono); font-size:10.5px; color:var(--ink-dim); margin-bottom:14px;}
+
+  .panel{margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--line);}
+  .panel:last-child{border-bottom:none;}
+  .panel h3{font-size:10.5px; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); margin:0 0 10px 0; font-weight:700;}
+
+  .row{display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:12px;}
+  .row.dim .name{color:var(--ink-dim); font-style:italic;}
+  .swatch{width:11px; height:11px; border-radius:2px; flex:0 0 11px; border:1px solid rgba(255,255,255,.15);}
+  .swatch.hatch{background-image:repeating-linear-gradient(45deg, currentColor 0 2px, transparent 2px 4px); color:#b23a48;}
+  .row .name{flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .row .val{font-family:var(--mono); color:var(--ink-dim); flex:0 0 auto; font-size:11px;}
+
+  .bar-bg{background:#000000aa; border-radius:2px; height:5px; margin-top:2px; overflow:hidden;}
+  .bar-fill{height:100%; border-radius:2px;}
+
+  #placeholder{color:var(--ink-dim); font-size:12.5px; line-height:1.6; font-style:italic;}
+  .anomalia{
+    margin-top:8px; padding:8px 10px; border:1px solid #b23a48; border-radius:4px;
+    background:#b23a4822; font-size:11px; line-height:1.5; color:var(--ink);
+  }
+
+  .leaflet-popup-content-wrapper{background:var(--bg-panel); color:var(--ink); border-radius:5px; border:1px solid var(--line);}
+  .leaflet-popup-tip{background:var(--bg-panel); border:1px solid var(--line);}
+  .leaflet-popup-content{font-family:var(--sans); font-size:12px; margin:12px 14px; min-width:210px;}
+  .popup-title{font-family:var(--serif); font-size:14px; margin-bottom:2px; color:var(--accent);}
+  .popup-sub{font-family:var(--mono); font-size:10.5px; color:var(--ink-dim); margin-bottom:8px;}
+  .leaflet-container{font-family:var(--sans);}
+  .leaflet-control-zoom a{background:var(--bg-panel) !important; color:var(--ink) !important; border-color:var(--line) !important;}
+  .leaflet-control-attribution{background:rgba(18,24,31,.8) !important; color:var(--ink-dim) !important;}
+  .leaflet-control-attribution a{color:var(--accent-2) !important;}
+
+  .loc-label{
+    font-family:var(--mono); font-size:9.5px; color:#dcd6c4; text-shadow:0 0 3px #000, 0 0 5px #000;
+    white-space:nowrap; pointer-events:none; letter-spacing:.02em;
+  }
+  .loc-dot{width:4px;height:4px;border-radius:50%;background:#dcd6c4;border:1px solid #000;}
+
+  footer{
+    padding:6px 20px; font-family:var(--mono); font-size:10px; color:var(--ink-dim);
+    border-top:1px solid var(--line); background:var(--bg-panel-2); line-height:1.6;
+  }
+  footer .scope{color:var(--ink-dim); opacity:.8;}
+
+  @media (max-width: 820px){
+    #main{flex-direction:column;}
+    #side{width:100%; flex:0 0 auto; max-height:42vh; border-left:none; border-top:1px solid var(--line);}
+    #mapwrap{flex:1 1 auto; min-height:260px;}
+  }
+
+  ::-webkit-scrollbar{width:9px;}
+  ::-webkit-scrollbar-track{background:var(--bg-panel);}
+  ::-webkit-scrollbar-thumb{background:var(--line); border-radius:5px;}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1><small>Especialización en Inteligencia de Datos · UNLP</small>Geografía electoral del Partido de La Plata</h1>
+    <div class="meta" id="header-meta">circuitos × localidades · 2011–2025<br>fuente: DINE / Ministerio del Interior</div>
+  </header>
+
+  <div id="controls">
+    <div class="ctrl-group">
+      <span class="ctrl-label">Elección</span>
+      <select id="sel-eleccion"></select>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Ver por</span>
+      <div class="modebar">
+        <button data-mode="agrup" class="active">Agrupación (top 7)</button>
+        <button data-mode="fam">Familia política</button>
+        <button data-mode="campo">Campo ideológico</button>
+        <button data-mode="ausentismo">Ausentismo</button>
+      </div>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label"><label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="toggle-loc" checked style="accent-color:var(--accent);"> localidades</label></span>
+    </div>
+  </div>
+
+  <div id="main">
+    <div id="mapwrap"><div id="map"></div></div>
+    <div id="side">
+      <div id="side-scroll">
+        <h2 id="side-title">—</h2>
+        <div class="sub" id="side-sub">Seleccioná un circuito en el mapa</div>
+
+        <div class="panel" id="panel-top7">
+          <h3 id="top7-title">Primeras 7 agrupaciones — distrito</h3>
+          <div id="top7-list"></div>
+        </div>
+
+        <div class="panel" id="panel-circuito" style="display:none;">
+          <h3>Circuito seleccionado</h3>
+          <div id="circuito-list"></div>
+        </div>
+
+        <div class="panel">
+          <h3 id="legend-title">Referencias</h3>
+          <div id="legend-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+const DATA = /*__RAW_DATA__*/;
+const CAMPO_LABELS = DATA.campo_labels;
+const CAMPO_COLORS = DATA.campo_colors;
+const FAM_COLORS = DATA.fam_colors;
+const COLOR_BLANCO_NULO = DATA.color_blanco_nulo;
+const COLOR_AUSENTISMO = DATA.color_ausentismo;
+const AGRUP = DATA.agrup_names;
+
+const RANK_COLORS = ["#c9a227","#7db8d8","#a63a3a","#4e8b6b","#8a6fb8","#d98c4a","#5c7a8a"];
+const NO_DATA_COLOR = "#2a323c";
+const ANOMALIA_COLOR = "#b23a48";
+
+function fmtFam(f){ return f ? f.charAt(0).toUpperCase()+f.slice(1) : "sin clasificar"; }
+function fmtPct(p){ return `${p >= 0 ? "" : "−"}${Math.abs(p).toFixed(1)}%`; }
+function fmtVotos(v){ return v.toLocaleString('es-AR'); }
+
+// ---- build election select ----
+const selEl = document.getElementById('sel-eleccion');
+const CARGO_ORDER = ["presidente","gobernador","intendente","nacional","provincial","municipal"];
+const keys = Object.keys(DATA.elecciones).sort((a,b)=>{
+  const ea = DATA.elecciones[a], eb = DATA.elecciones[b];
+  if(ea.anio !== eb.anio) return ea.anio - eb.anio;
+  return CARGO_ORDER.indexOf(ea.cargo) - CARGO_ORDER.indexOf(eb.cargo);
+});
+keys.forEach(k=>{
+  const e = DATA.elecciones[k];
+  const opt = document.createElement('option');
+  opt.value = k;
+  opt.textContent = `${e.anio} — ${e.cargo_label}`;
+  selEl.appendChild(opt);
+});
+let defaultKey = keys.filter(k=>DATA.elecciones[k].cargo==="municipal").pop() || keys[keys.length-1];
+selEl.value = defaultKey;
+
+let currentMode = "agrup";
+document.querySelectorAll('.modebar button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.modebar button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMode = btn.dataset.mode;
+    render();
+  });
+});
+selEl.addEventListener('change', render);
+
+// ---- map setup ----
+const map = L.map('map', {zoomControl:true, minZoom:10, maxZoom:16, attributionControl:true})
+  .setView([-34.945, -57.98], 12);
+L.control.attribution({prefix:false}).addTo(map);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap &copy; CARTO',
+  subdomains: 'abcd', maxZoom: 19
+}).addTo(map);
+
+let geoLayer = null;
+let locLayerGroup = L.layerGroup();
+let selectedCircuito = null;
+
+DATA.localidades.forEach(loc=>{
+  L.circleMarker([loc.lat, loc.lon], {radius:2.5, color:"#0c1116", weight:1, fillColor:"#dcd6c4", fillOpacity:0.95}).addTo(locLayerGroup);
+  L.marker([loc.lat, loc.lon], {
+    icon: L.divIcon({className:'', html:`<div class="loc-label">${loc.nombre}</div>`, iconAnchor:[-6,6]}),
+    interactive:false
+  }).addTo(locLayerGroup);
+});
+document.getElementById('toggle-loc').addEventListener('change', (e)=>{
+  if(e.target.checked) locLayerGroup.addTo(map); else map.removeLayer(locLayerGroup);
+});
+locLayerGroup.addTo(map);
+
+// ---- escala secuencial para el modo "ausentismo" ----
+function hexToRgb(hex){ const n = parseInt(hex.slice(1),16); return [(n>>16)&255,(n>>8)&255,n&255]; }
+function lerpColor(a, b, t){
+  const [ar,ag,ab] = hexToRgb(a), [br,bg,bb] = hexToRgb(b);
+  const r = Math.round(ar+(br-ar)*t), g = Math.round(ag+(bg-ag)*t), bl = Math.round(ab+(bb-ab)*t);
+  return `rgb(${r},${g},${bl})`;
+}
+const AUS_LOW = "#101b28", AUS_HIGH = "#c9a227";
+
+function ausentismoScale(elec){
+  const valores = Object.values(elec.circuitos).filter(c=>c.aus[1] >= 0).map(c=>c.aus[1]);
+  const min = valores.length ? Math.min(...valores) : 0;
+  const max = valores.length ? Math.max(...valores) : 1;
+  return {min, max: max > min ? max : min+1};
+}
+
+function colorAusentismo(circ, scale){
+  if(!circ) return NO_DATA_COLOR;
+  if(circ.aus[1] < 0) return ANOMALIA_COLOR;
+  const t = (circ.aus[1]-scale.min)/(scale.max-scale.min);
+  return lerpColor(AUS_LOW, AUS_HIGH, Math.max(0, Math.min(1, t)));
+}
+
+function buildLegend(mode, top7, rankColorMap, scale){
+  const box = document.getElementById('legend-list');
+  const title = document.getElementById('legend-title');
+  box.innerHTML = "";
+  if(mode === "campo"){
+    title.textContent = "Campo ideológico (agrupación ganadora)";
+    Object.keys(CAMPO_LABELS).forEach(k=>{
+      box.innerHTML += `<div class="row"><div class="swatch" style="background:${CAMPO_COLORS[k]}"></div><div class="name">${CAMPO_LABELS[k]}</div></div>`;
+    });
+    box.innerHTML += `<div class="row dim"><div class="swatch" style="background:${NO_DATA_COLOR}"></div><div class="name">sin dato / sin clasificar</div></div>`;
+  } else if(mode === "fam"){
+    title.textContent = "Familia política (agrupación ganadora)";
+    Object.keys(FAM_COLORS).forEach(k=>{
+      box.innerHTML += `<div class="row"><div class="swatch" style="background:${FAM_COLORS[k]}"></div><div class="name">${fmtFam(k)}</div></div>`;
+    });
+    box.innerHTML += `<div class="row dim"><div class="swatch" style="background:${NO_DATA_COLOR}"></div><div class="name">sin dato / sin clasificar</div></div>`;
+  } else if(mode === "ausentismo"){
+    title.textContent = "Ausentismo (electores − votos válidos, % del total)";
+    [0, 0.25, 0.5, 0.75, 1].forEach(t=>{
+      const v = scale.min + (scale.max-scale.min)*t;
+      box.innerHTML += `<div class="row"><div class="swatch" style="background:${lerpColor(AUS_LOW, AUS_HIGH, t)}"></div><div class="name">${v.toFixed(1)}%</div></div>`;
+    });
+    box.innerHTML += `<div class="row"><div class="swatch hatch"></div><div class="name">ausentismo negativo (anomalía de padrón conocida, ver popup)</div></div>`;
+  } else {
+    title.textContent = "Agrupación ganadora (entre las 7 más votadas del distrito)";
+    top7.forEach((t)=>{
+      const color = rankColorMap[t[0]] || "#555";
+      box.innerHTML += `<div class="row"><div class="swatch" style="background:${color}"></div><div class="name">${AGRUP[t[0]]}</div></div>`;
+    });
+    box.innerHTML += `<div class="row dim"><div class="swatch" style="background:${NO_DATA_COLOR}"></div><div class="name">sin dato / fuera del top 7</div></div>`;
+  }
+}
+
+function filaNoIdeologica(label, color, votos, pct, dim){
+  return `
+    <div class="row${dim?" dim":""}"><div class="swatch" style="background:${color}"></div><div class="name">${label}</div><div class="val">${fmtPct(pct)}</div></div>
+    <div class="bar-bg" style="margin-bottom:7px;"><div class="bar-fill" style="width:${Math.max(0,Math.min(100,pct)).toFixed(1)}%; background:${color};"></div></div>
+  `;
+}
+
+function bloqueNoIdeologico(elec){
+  let html = "";
+  if(elec.otros_l){
+    html += filaNoIdeologica(`otros (listas fuera del top ${7})`, "#6b665a", elec.otros_l[0], elec.otros_l[1], true);
+  }
+  html += filaNoIdeologica("Blanco + nulo", COLOR_BLANCO_NULO, elec.bn[0], elec.bn[1], true);
+  html += filaNoIdeologica("Ausentismo", COLOR_AUSENTISMO, elec.aus[0], elec.aus[1], true);
+  if(elec.aus[1] < 0){
+    html += `<div class="anomalia">Ausentismo negativo: más votos emitidos que electores registrados en este recorte. Anomalía de padrón conocida (familia de circuitos 504/505/508/509 sin resolución de subdivisión) -- no es abstención real, ver <code>docs/FUNCIONALIDADES.md</code>.</div>`;
+  }
+  return html;
+}
+
+function buildTop7Panel(elec){
+  document.getElementById('top7-title').textContent = `Primeras 7 agrupaciones — distrito (${elec.anio})`;
+  const box = document.getElementById('top7-list');
+  box.innerHTML = "";
+  const maxVotos = elec.top7.length ? elec.top7[0][1] : 1;
+  elec.top7.forEach((t, i)=>{
+    const [aIdx, votos, pct] = t;
+    const color = RANK_COLORS[i % RANK_COLORS.length];
+    box.innerHTML += `
+      <div class="row" style="margin-bottom:2px;">
+        <div class="swatch" style="background:${color}"></div>
+        <div class="name" title="${AGRUP[aIdx]}">${i+1}. ${AGRUP[aIdx]}</div>
+        <div class="val">${fmtPct(pct)}</div>
+      </div>
+      <div class="bar-bg" style="margin-bottom:8px;"><div class="bar-fill" style="width:${(votos/maxVotos*100).toFixed(1)}%; background:${color};"></div></div>
+    `;
+  });
+  box.innerHTML += `<div style="margin:10px 0 2px;font-family:var(--mono);font-size:10px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.08em;">Sobre el total del distrito (listas + blanco/nulo + ausentismo)</div>`;
+  box.innerHTML += bloqueNoIdeologico(elec);
+}
+
+function circuitoPopupHtml(cid, circ, locName){
+  if(!circ){
+    return `<div class="popup-title">Circuito ${cid}</div><div class="popup-sub">${locName||"—"}</div><div>Sin datos para esta elección.</div>`;
+  }
+  let rows = circ.r.map(item=>{
+    const [aIdx, votos, pct] = item;
+    return `<div style="margin-bottom:4px;"><b>${fmtPct(pct)}</b> — ${AGRUP[aIdx]} <span style="opacity:.6">(${fmtVotos(votos)})</span></div>`;
+  }).join("");
+  let extra = `<div style="margin-top:6px;border-top:1px solid var(--line);padding-top:6px;">`;
+  if(circ.otros_l) extra += `<div style="margin-bottom:2px;opacity:.75;"><b>${fmtPct(circ.otros_l[1])}</b> — otros (fuera del top 7)</div>`;
+  extra += `<div style="margin-bottom:2px;opacity:.75;"><b>${fmtPct(circ.bn[1])}</b> — blanco + nulo</div>`;
+  extra += `<div style="opacity:.75;"><b>${fmtPct(circ.aus[1])}</b> — ausentismo</div>`;
+  extra += `</div>`;
+  const anomalia = circ.aus[1] < 0 ? `<div class="anomalia">ausentismo negativo -- anomalía de padrón conocida</div>` : "";
+  return `<div class="popup-title">Circuito ${cid}</div><div class="popup-sub">${locName||"localidad sin identificar"} · ${fmtVotos(circ.elec)} electores</div>${rows}${extra}${anomalia}`;
+}
+
+function showCircuitoPanel(cid, circ, locName){
+  document.getElementById('side-title').textContent = `Circuito ${cid}`;
+  document.getElementById('side-sub').textContent = locName || "localidad sin identificar";
+  const panel = document.getElementById('panel-circuito');
+  panel.style.display = "block";
+  const box = document.getElementById('circuito-list');
+  if(!circ){
+    box.innerHTML = `<div id="placeholder">Sin datos para esta elección en este circuito.</div>`;
+    return;
+  }
+  const maxVotos = circ.r.length ? circ.r[0][1] : 1;
+  box.innerHTML = circ.r.map((item, i)=>{
+    const [aIdx, votos, pct, campo] = item;
+    const color = campo ? CAMPO_COLORS[campo] : "#555";
+    return `
+      <div class="row"><div class="swatch" style="background:${color}"></div><div class="name" title="${AGRUP[aIdx]}">${i+1}. ${AGRUP[aIdx]}</div><div class="val">${fmtPct(pct)}</div></div>
+      <div class="bar-bg" style="margin-bottom:7px;"><div class="bar-fill" style="width:${(votos/maxVotos*100).toFixed(1)}%; background:${color};"></div></div>
+    `;
+  }).join("");
+  box.innerHTML += `<div style="margin:10px 0 2px;font-family:var(--mono);font-size:10px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.08em;">Sobre el total del circuito (listas + blanco/nulo + ausentismo)</div>`;
+  box.innerHTML += bloqueNoIdeologico(circ);
+  box.innerHTML += `<div style="margin-top:8px;font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);">${fmtVotos(circ.elec)} electores · ${fmtVotos(circ.pos)} votos a listas</div>`;
+}
+
+function render(){
+  const key = selEl.value;
+  const elec = DATA.elecciones[key];
+  document.getElementById('foot').innerHTML =
+    `${elec.anio} · ${elec.cargo_label} · ${Object.keys(elec.circuitos).length} circuitos con datos · ${fmtVotos(elec.elec)} electores · ${fmtVotos(elec.pos)} votos a listas` +
+    `<br><span class="scope">Generales únicamente (no incluye PASO ni balotaje) · generado ${DATA.generado} por <code>analisis.mapa_interactivo</code> · fuente: DINE / Ministerio del Interior, vía este repositorio</span>`;
+
+  buildTop7Panel(elec);
+
+  const rankColorMap = {};
+  elec.top7.forEach((t,i)=>{ rankColorMap[t[0]] = RANK_COLORS[i % RANK_COLORS.length]; });
+
+  const scale = ausentismoScale(elec);
+  buildLegend(currentMode, elec.top7, rankColorMap, scale);
+
+  if(geoLayer){ map.removeLayer(geoLayer); }
+
+  geoLayer = L.geoJSON(DATA.geojson, {
+    style: feature => {
+      const cid = feature.properties.circuito_id;
+      const circ = elec.circuitos[cid];
+      let fill = NO_DATA_COLOR;
+      if(circ){
+        if(currentMode === "campo"){
+          fill = circ.cg ? CAMPO_COLORS[circ.cg] : NO_DATA_COLOR;
+        } else if(currentMode === "fam"){
+          fill = circ.fg ? (FAM_COLORS[circ.fg] || "#555") : NO_DATA_COLOR;
+        } else if(currentMode === "ausentismo"){
+          fill = colorAusentismo(circ, scale);
+        } else {
+          fill = (circ.g7 !== null && circ.g7 !== undefined) ? (rankColorMap[circ.g7] || NO_DATA_COLOR) : NO_DATA_COLOR;
+        }
+      }
+      const isSelected = selectedCircuito === cid;
+      return {
+        color: isSelected ? "#f2ead2" : "#0c1116",
+        weight: isSelected ? 2.4 : 0.8,
+        fillColor: fill,
+        fillOpacity: 0.82,
+      };
+    },
+    onEachFeature: (feature, layer) => {
+      const cid = feature.properties.circuito_id;
+      const circ = elec.circuitos[cid];
+      const locName = DATA.circuito_localidad[cid];
+      layer.bindPopup(circuitoPopupHtml(cid, circ, locName));
+      layer.on('mouseover', ()=> layer.setStyle({weight:2, color:"#f2ead2"}));
+      layer.on('mouseout', ()=> { if(selectedCircuito !== cid) layer.setStyle({weight:0.8, color:"#0c1116"}); });
+      layer.on('click', ()=>{
+        selectedCircuito = cid;
+        showCircuitoPanel(cid, circ, locName);
+        geoLayer.eachLayer(l=>{
+          const c2 = l.feature.properties.circuito_id;
+          l.setStyle({weight: c2===cid ? 2.4:0.8, color: c2===cid ? "#f2ead2":"#0c1116"});
+        });
+      });
+    }
+  }).addTo(map);
+
+  // L.LayerGroup no tiene bringToFront -- solo los CircleMarker (dots,
+  // capa vectorial junto al geoJSON) lo necesitan; los L.Marker (labels)
+  // ya viven en el markerPane, por encima del overlayPane, sin hacer nada.
+  locLayerGroup.eachLayer(l => { if (l.bringToFront) l.bringToFront(); });
+}
+
+render();
+</script>
+</body>
+</html>
