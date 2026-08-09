@@ -45,6 +45,7 @@ PYTHONPATH=src python -m analisis.totales_por_lista --anio 2023 --nivel intenden
 PYTHONPATH=src python -m analisis.comparativo_nivel --anio 2019  # Municipio/Provincia/Nación comparison table, one per año
 PYTHONPATH=src python -m macroeconomia.series  # national macroeconomic series, one CSV row per month 2011-2025 (needs network to refresh; runs from cache otherwise)
 PYTHONPATH=src python -m macroeconomia.series_anuales  # same, annual-frequency concepts only, one CSV row per year
+PYTHONPATH=src python -m macroeconomia.graficos  # one PNG per concept (mensual + anual, 22 total) from the two CSVs above; --concepto for a single one
 ESTADISTICASBCRA_TOKEN=... PYTHONPATH=src python -m macroeconomia.auditoria_estadisticasbcra  # manual one-off cross-check against estadisticasbcra.com; needs a user token (never committed), not part of the regular pipeline
 PYTHONPATH=src python -m geolocalizacion.catalogo  # validated localidad×lat/lon catalog for La Plata, Georef-AR cross-checked against the Ministerio de Obras Públicas export (needs network to refresh; runs from cache otherwise)
 PYTHONPATH=src python -m geolocalizacion.mapa      # one PNG with all 36 localidades over the partido boundary, reads the catalog above
@@ -81,7 +82,8 @@ is covered by `tests/test_macroeconomia_series.py`, no network;
 `src/macroeconomia/series_anuales.py`'s equivalent yearly-resolution
 logic is covered by `tests/test_macroeconomia_series_anuales.py`, same
 criterion. `src/macroeconomia/datos_gob_client.py` (the fetch+cache HTTP
-layer) and `src/macroeconomia/auditoria_estadisticasbcra.py` (fetch+compare
+layer), `src/macroeconomia/graficos.py` (matplotlib rendering), and
+`src/macroeconomia/auditoria_estadisticasbcra.py` (fetch+compare
 against a third-party HTTP API) have no automated tests, same criterion as
 `electoral/client.py`.
 `src/geolocalizacion/catalogo.py`'s merge logic (name normalization, the
@@ -298,6 +300,13 @@ order, 01→04) are the pipeline**.
   nor either generated CSV are git-tracked — both `catalogo_series.csv`
   and `catalogo_series_anuales.csv` are (same criterion as `data/totales/`
   vs. `clasificacion_ideologica_agrupaciones.csv`).
+  `graficos.py` reads both generated CSVs (mensual + anual) and both
+  catalogs and writes one PNG per concept to `graficos/macroeconomia/`
+  (not git-tracked, same criterion as the rest of `graficos/`) — same
+  no-forward-fill rule as the CSVs, so a blank cell shows as a visible
+  gap in the line, never an interpolated/repeated point; the y-axis unit
+  comes from the cached API response metadata, not a hardcoded label, so
+  it stays correct if a source changes units.
   `auditoria_estadisticasbcra.py` is a separate, manually-run script (not
   part of the regular pipeline, needs a user-supplied token never stored in
   the repo) that cross-checks each `auditable_estadisticasbcra` concept

@@ -12,19 +12,31 @@ todos los circuitos de un (año, nivel) de una sola vez, ver
 """
 from __future__ import annotations
 
+import csv
 import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 
-IDEOLOGIAS = {
-    "1": "izquierda",
-    "2": "centro izquierda",
-    "3": "centro",
-    "4": "centro derecha",
-    "5": "derecha",
-    "6": "derecha radical",
-}
+# Antes hardcodeada acá mismo (duplicando `data/agrupaciones/campo_ideologico.csv`,
+# que no tenía ningún lector en todo el repo) -- ahora ese CSV es la única
+# fuente de la escala, resuelto por ruta absoluta a partir de este archivo
+# para no depender del cwd desde el que se importe el módulo.
+_CAMPO_IDEOLOGICO_CSV = Path(__file__).resolve().parents[2] / "data" / "agrupaciones" / "campo_ideologico.csv"
+
+
+def _cargar_escala_ideologica(path: Path | str = _CAMPO_IDEOLOGICO_CSV) -> dict[str, str]:
+    """`{valor: ideologia}`, en el mismo orden (izquierda -> derecha radical)
+    en que aparecen las filas del CSV -- `list(IDEOLOGIAS.values())` depende
+    de ese orden en toda la capa de gráficos. Los valores 1-6 son
+    **ordinales, no cardinales**: no promediarlos ni asumir que la distancia
+    entre dos categorías consecutivas es igual a la de otro par sin
+    justificarlo aparte."""
+    with Path(path).open(encoding="utf-8", newline="") as f:
+        return {fila["valor"]: fila["ideologia"] for fila in csv.DictReader(f)}
+
+
+IDEOLOGIAS = _cargar_escala_ideologica()
 
 _COLOR_IDEOLOGIA = {
     "izquierda": "#0d366b",

@@ -102,7 +102,11 @@ def main():
     parser.add_argument("--graficos-dir", default="graficos/distrito/totales_por_lista")
     args = parser.parse_args()
 
-    combos = _combos_disponibles(args.data_dir)
+    # `_combos_disponibles` devuelve (año, nivel, etapa) desde que soporta PASO/balotaje
+    # (ver electoral/totales.py) -- este script sigue sin saber leer otra etapa que no sea
+    # "generales" (mismo gap documentado en docs/PLAN_CORRECCIONES_ELECTORALES.md §2.3),
+    # así que se filtra acá en vez de romper al desempaquetar una tupla de 3 en 2 variables.
+    combos = [(anio, nivel) for anio, nivel, etapa in _combos_disponibles(args.data_dir) if etapa == "generales"]
     if args.anio:
         combos = [(anio, nivel) for anio, nivel in combos if anio == args.anio]
     if args.nivel:

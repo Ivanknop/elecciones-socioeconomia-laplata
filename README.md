@@ -33,7 +33,7 @@ src/analisis/         graficos.py, generar_graficos.py, serie_temporal.py,
                        cuadros_por_localidad.py, serie_temporal_por_localidad.py,
                        totales_por_lista.py, comparativo_nivel.py
 src/socioeconomia/    geo.py, eph_client.py, graficos_eph_iaelap.py
-src/macroeconomia/    datos_gob_client.py, series.py, auditoria_estadisticasbcra.py
+src/macroeconomia/    datos_gob_client.py, series.py, graficos.py, auditoria_estadisticasbcra.py
 src/geolocalizacion/  georef_client.py, catalogo.py, mapa.py
 notebooks/             01_explorar_resultados.ipynb
                        02_la_plata_cargos_ejecutivos.ipynb

@@ -17,7 +17,7 @@ Convención: 🟢 resuelto · 🟡 parcial · 🔴 abierto
 | 6 | JSON agregado Presidente 2019 incompleto | 🟢 | documentado en README + `coincide_con_agregado_json`/`advertencia_fuente` |
 | 7 | Todo el repo usa escrutinio provisorio | 🔴 | sigue sin sustituir/contrastar con definitivos; falta registrar fecha de descarga por archivo. El caso del circuito 493/2023 (ítem 5) es compatible con esto — un circuito remoto ("límite incierto", cabecera "Isla Martín García" según `README.md`) sin telegrama cargado al momento de la consulta — pero sigue siendo una hipótesis, no un diagnóstico confirmado |
 | 8 | Inconsistencias del README (3 vs 4 columnas, "años pares", instrucción truncada) | 🟢 | README reescrito en `3899006` |
-| 9 | Escala ideológica duplicada (CSV sin usar) | 🔴 | sigue sin verificar en v2.0.0 — revisar si `graficos.py` ya lee `campo_ideologico.csv` o sigue con el diccionario propio |
+| 9 | Escala ideológica duplicada (CSV sin usar) | 🟢 | `graficos.py` ya lee `campo_ideologico.csv` (vía `_cargar_escala_ideologica()`, ruta resuelta por `__file__` para no depender del cwd) en vez del dict `IDEOLOGIAS` hardcodeado; CSV pasado a separador `,` para consistencia con el resto de `data/agrupaciones/`. Ver `docs/PLAN_CORRECCIONES_ELECTORALES.md` §2.1 |
 | 10 | Series unen cargos distintos sin marcarlo | 🟡 | está documentado en README con tabla explícita; el panel/serie separada por cargo que pedía la nota ya existe en dos formas -- `cuadros_anualizados.py` (bar chart por año, cargos lado a lado, sin sumarlos) y, esta sesión, `comparativo_nivel.py` (cuadro Markdown por año con el % de cada agrupación en Municipio/Provincia/Nación más las tres diferencias entre pares). **Sigue faltando**: marcar visualmente el cambio de tipo de elección dentro de la serie fusionada de `serie_temporal.py` en sí (hoy solo está en el sub-label de texto del eje x, no en el trazo) |
 | 11 | Gráficos omiten blancos/nulos/abstención; volumen de PNG | 🟡 | resuelta la primera mitad (blancos/nulos/abstención): todo gráfico de `src/analisis/` (barras/torta, las tres series temporales, `cuadros_anualizados`, y las variantes `por_localidad`) suma ahora `blanco_nulo` y `ausentismo` (`electores` del circuito/nivel menos votos válidos) junto al desglose por `campo_ideologico`/`filiacion_politica`, vía `graficos._votos_no_ideologicos` — el % que muestra cada gráfico pasa de "% de los positivos" a "% del padrón" (ver README, sección "Gráficos"). Cambio sin commitear todavía. **Sigue abierto**: el volumen de PNG (miles de archivos por circuito) y la tabla maestra analítica que pide la nota como reemplazo no cambiaron. |
 | 12 | Dependencia de notebooks y cwd; sin tests de `client.py`/`analisis/` | 🟡 | se agregaron tests de `models.py` (`909760e`); con `d006699` también se agregó cobertura para la capa de localidades (`test_localidades.py`, `test_cuadros_por_localidad.py`, `test_serie_temporal_por_localidad.py`) — pero `client.py` y el resto de `src/analisis/*` (`graficos.py`, `generar_graficos.py`, `serie_temporal.py`, `cuadros_anualizados.py`) siguen sin cobertura |
@@ -77,8 +77,9 @@ oficialismo, dimensiones programáticas separadas) — solo familia política.
 
 ## Lectura del conjunto
 
-De los 14 puntos técnicos de 8.1, **6 están resueltos, 5 parciales y 3
-abiertos**. De las 5 piezas del "producto mínimo" que pedía la Sección 10,
+De los 14 puntos técnicos de 8.1, **7 están resueltos, 5 parciales y 2
+abiertos** (punto 9, escala ideológica duplicada, pasó a resuelto — ver
+tabla arriba). De las 5 piezas del "producto mínimo" que pedía la Sección 10,
 la primera (esta nota) está resuelta y el libro de códigos político pasó a
 parcial (`filiacion_politica`, ver 8.2) — tabla maestra y cruce
 elecciones-socioeconomía siguen siendo el trabajo pendiente central del
