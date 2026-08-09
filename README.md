@@ -77,7 +77,7 @@ para borrarlo y correrlo de nuevo):
 | `graficos/socioeconomia/eph/` | gráficos de la EPH | **Sí** |
 | `graficos/socioeconomia/` (resto) | IAELaP y contraste EPH/IAELaP | No |
 | `graficos/por_localidad/` | series temporales por localidad | No — derivado |
-| `visualizaciones/mapa_electoral_la_plata.html` | mapa interactivo (Leaflet), 68 circuitos × 22 elecciones generales | **Sí** |
+| `docs/index.html`, `docs/mapa_electoral_la_plata.html` | sitio de GitHub Pages: landing + mapa interactivo (Leaflet), 68 circuitos × 22 elecciones generales | **Sí** |
 
 Toda la documentación narrativa (`docs/`) también está versionada — es
 documentación, no datos. Detalle de cada archivo en "Documentación" más

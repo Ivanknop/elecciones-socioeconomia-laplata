@@ -62,7 +62,7 @@ src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a pa
 src/socioeconomia/      # EPH, geo, IAELaP
 notebooks/               # 01-06, la pipeline real corre acá (ver CLAUDE.md)
 graficos/distrito/, graficos/por_localidad/, graficos/socioeconomia/   # salida, mayormente no versionada
-visualizaciones/mapa_electoral_la_plata.html   # el único gráfico interactivo del repo (Leaflet), git-tracked
+docs/index.html, docs/mapa_electoral_la_plata.html   # sitio de GitHub Pages -- el único gráfico interactivo del repo (Leaflet), git-tracked, vive en docs/ (no graficos/) porque ahí lo sirve Pages
 tests/
 ```
 

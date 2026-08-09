@@ -1,9 +1,13 @@
 """Mapa interactivo (Leaflet) de resultados electorales de La Plata por
 circuito, 2011-2025, **generales únicamente** (no incluye PASO ni
-balotaje -- ver "Qué falta" en `visualizaciones/README.md` si se agrega
-después). Construye un único HTML autocontenido salvo Leaflet y las
+balotaje). Construye un único HTML autocontenido salvo Leaflet y las
 teselas del mapa base, que se cargan por CDN (sin eso no hay conexión a
-internet que lo evite: es un mapa, no un artefacto aislable).
+internet que lo evite: es un mapa, no un artefacto aislable). Escribe a
+`docs/mapa_electoral_la_plata.html` -- no `graficos/`, porque este
+archivo (junto con `docs/index.html`) es el sitio que sirve GitHub
+Pages desde la carpeta `docs/` del repo, y ese es uno de los dos únicos
+directorios que GitHub permite elegir como raíz de Pages sin un
+workflow de Actions aparte.
 
 ## Fuentes (todas ya versionadas, ninguna se recalcula acá)
 
@@ -287,7 +291,7 @@ _HTML_TEMPLATE = None  # cargado de mapa_interactivo_template.html, ver generar_
 
 
 def generar_mapa_interactivo(
-    destino: Path | str = "visualizaciones/mapa_electoral_la_plata.html",
+    destino: Path | str = "docs/mapa_electoral_la_plata.html",
     data_dir: Path | str = "data/distrito",
 ) -> Path:
     payload = construir_payload(data_dir=data_dir)
@@ -307,7 +311,7 @@ def generar_mapa_interactivo(
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--destino", default="visualizaciones/mapa_electoral_la_plata.html")
+    parser.add_argument("--destino", default="docs/mapa_electoral_la_plata.html")
     parser.add_argument("--data-dir", default="data/distrito")
     args = parser.parse_args()
 
