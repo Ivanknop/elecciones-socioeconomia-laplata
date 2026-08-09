@@ -253,6 +253,6 @@ columnas nuevas) y regeneró esos tres CSV versionados con datos 2011-2025
 completos (antes el notebook committeado solo cubría 2017-2025 para
 `eph_gran_la_plata.csv`, y no generaba `_por_sexo.csv`/`_por_edad.csv` en
 absoluto). Siguiendo la convención SemVer de este repo (ver skill
-`laplata-electoral`), esto es un cambio **MAJOR**: rompe el esquema de un
+`laplata-general`), esto es un cambio **MAJOR**: rompe el esquema de un
 CSV versionado que otro código (gráficos, notebooks) ya asumía, no un
 agregado compatible hacia atrás.

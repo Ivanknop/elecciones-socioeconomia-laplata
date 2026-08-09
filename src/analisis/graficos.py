@@ -191,14 +191,14 @@ def graficar_torta(data_dir: Path | str, anio: int, nivel: str, circuito_id: str
         ax.axis("off")
     elif any(v < 0 for v in valores):
         # Circuitos chicos subdivididos (ej. familia 504/505/508/509, sin
-        # resolución equivalente a la 1990/2007 -- ver skill laplata-electoral)
+        # resolución equivalente a la 1990/2007 -- ver skill laplata-elecciones)
         # pueden traer más votos que `electores` para ese circuito puntual,
         # lo que da `ausentismo` negativo. Una torta no puede representar un
         # gajo negativo -- se documenta la anomalía en vez de recortar el
         # valor a cero, que ocultaría el problema de padrón subyacente.
         ax.text(
             0.5, 0.5,
-            "no se puede graficar: ausentismo negativo en este circuito\n(posible anomalía de padrón, ver skill laplata-electoral)",
+            "no se puede graficar: ausentismo negativo en este circuito\n(posible anomalía de padrón, ver skill laplata-elecciones)",
             ha="center", va="center", wrap=True, transform=ax.transAxes,
         )
         ax.axis("off")

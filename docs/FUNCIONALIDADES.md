@@ -179,7 +179,7 @@ ver sección "Gráficos" más abajo) surgió un caso puntual: el circuito
 `provincial`, que comparten mesas), tiene más votos emitidos que `electores`
 registrados (ej. `municipal`: 619 votos vs. 429 electores, `ausentismo` =
 -190). `508G` es parte de la familia de circuitos subdivididos 504/505/508/509
-sin resolución equivalente a la 1990/2007 (ver skill `laplata-electoral`,
+sin resolución equivalente a la 1990/2007 (ver skill `laplata-elecciones`,
 "Gaps conocidos"), consistente con un problema de asignación de `mesa_electores`
 entre subdivisiones más que con un error de conteo de votos. No se corrigió
 el dato: `graficar_torta` detecta cualquier categoría negativa y muestra un
