@@ -8,9 +8,12 @@ Gobernador, Intendente— entre 2011 y 2023, y los cargos legislativos —nacion
 Provinciales), municipal (Concejales)— entre 2013 y 2025. También recopila una
 capa socioeconómica (EPH Gran La Plata, IAELaP y su correspondencia espacial
 con el Censo) para poder cruzar, más adelante, resultados electorales con
-condiciones socioeconómicas del mismo territorio; y una capa macroeconómica
+condiciones socioeconómicas del mismo territorio; una capa macroeconómica
 nacional (2011-2025, sin apertura espacial) que da contexto temporal a las
-dos anteriores.
+dos anteriores; y una capa de geolocalización (catálogo validado de las 36
+localidades del partido, Georef-AR cruzado contra el Ministerio de Obras
+Públicas) pensada para, más adelante, cruzar circuitos y series censales
+por localidad.
 
 Este archivo es la puerta de entrada: qué es el repo, cómo se instala, cómo
 se reproduce desde cero, y qué está versionado. El detalle operativo de cada
@@ -31,6 +34,7 @@ src/analisis/         graficos.py, generar_graficos.py, serie_temporal.py,
                        totales_por_lista.py, comparativo_nivel.py
 src/socioeconomia/    geo.py, eph_client.py, graficos_eph_iaelap.py
 src/macroeconomia/    datos_gob_client.py, series.py, auditoria_estadisticasbcra.py
+src/geolocalizacion/  georef_client.py, catalogo.py, mapa.py
 notebooks/             01_explorar_resultados.ipynb
                        02_la_plata_cargos_ejecutivos.ipynb
                        03_la_plata_legislativas.ipynb
@@ -49,18 +53,19 @@ para borrarlo y correrlo de nuevo):
 | Ruta | Contenido | ¿Versionado en git? |
 |---|---|---|
 | `data/distrito/<año>/<nivel>/<etapa>/` | JSON+CSV crudo bajado de la API | No — se descarga con los notebooks |
-| `data/distrito/<año>/<nivel>/<etapa>/circuito_<nivel>.json` | agregado por circuito (generales siempre; paso/balotaje solo donde existió esa instancia) | No — derivado (notebook 04) |
-| `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` | clasificación ideológica manual, append-only | **Sí** |
+| `data/distrito/<año>/<nivel>/<etapa>/circuito_<nivel>.json` | agregado por circuito  | No — derivado (notebook 04) |
+| `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` | clasificación ideológica manual| **Sí** |
 | `data/agrupaciones/tabla_referencia_filiacion_politica.csv` | fuente/confianza de `filiacion_politica` | **Sí** |
-| `data/agrupaciones/campo_ideologico.csv` | escala 1-6 (sin usar por el código actual — ver `docs/FUNCIONALIDADES.md`) | **Sí** |
+| `data/agrupaciones/campo_ideologico.csv` | escala 1-6  | **Sí** |
 | `data/agrupaciones/circuito_id_correspondencias.csv` | normalización de `circuito_id` entre años | **Sí** |
-| `data/fuentes_extra/` | crosswalks hand-curated (localidad, etc.) + sus README | **Sí** |
 | `data/socioeconomia/` | EPH, correspondencia circuito↔radio censal | **Sí**, salvo `eph_cache/` (gitignored) |
-| `data/macroeconomia/catalogo_series.csv` | catálogo de series mensuales/diarias/trimestrales, hand-curated | **Sí** |
+| `data/macroeconomia/catalogo_series.csv` | catálogo de series mensuales/diarias/trimestrales | **Sí** |
 | `data/macroeconomia/series_macro_2011_2025.csv` | CSV mensual generado | No — derivado, se regenera desde `_cache/` |
-| `data/macroeconomia/catalogo_series_anuales.csv` | catálogo de series de frecuencia anual, hand-curated | **Sí** |
+| `data/macroeconomia/catalogo_series_anuales.csv` | catálogo de series de frecuencia anual | **Sí** |
 | `data/macroeconomia/series_macro_anuales_2011_2025.csv` | CSV anual generado | No — derivado, se regenera desde `_cache/` |
 | `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` | doc de cobertura/auditoría | **Sí** |
+| `data/geolocalizacion/localidades_la_plata.csv` | catálogo validado de localidades (Georef-AR × Ministerio de Obras Públicas) | **Sí** |
+| `data/geolocalizacion/LOCALIDADES.md` | doc de metodología/hallazgos de ese catálogo | **Sí** |
 | `data/por_localidad/` | cuadros por localidad | No — derivado (`cuadros_por_localidad.py`) |
 | `data/totales/<nivel>/<año>/[<etapa>/]` | total de votos por agrupación (`<etapa>` solo para paso/balotaje) | No — derivado (`electoral.totales`) |
 | `graficos/distrito/<año>/<nivel>/` | barras/torta circuito por circuito | No — se regenera on demand |
@@ -80,10 +85,11 @@ abajo.
 pip install -r requirements.txt
 ```
 
-No hace falta API key: los dos endpoints usados (Resultados Electorales,
+No hace falta API key: los endpoints usados (Resultados Electorales,
 datos.gob.ar) son públicos. Sí hace falta acceso de red saliente a
-`resultados.mininterior.gob.ar` y, para la capa macro, a
-`apis.datos.gob.ar`.
+`resultados.mininterior.gob.ar` y, para las capas macro y de
+geolocalización, a `apis.datos.gob.ar` (esta última incluye
+`apis.datos.gob.ar/georef`).
 
 ## Cómo reproducir
 
@@ -115,6 +121,10 @@ datos.gob.ar) son públicos. Sí hace falta acceso de red saliente a
 7. (Opcional, capa macro) `PYTHONPATH=src python -m macroeconomia.series` —
    no depende de los notebooks anteriores, es un dominio separado por fecha,
    no por circuito (ver `docs/FUNCIONALIDADES.md`, "Capa macroeconómica").
+8. (Opcional, capa de geolocalización) `PYTHONPATH=src python -m geolocalizacion.catalogo`
+   seguido de `PYTHONPATH=src python -m geolocalizacion.mapa` — tampoco
+   depende de los notebooks anteriores; ver
+   `data/geolocalizacion/LOCALIDADES.md`.
 
 A partir de `circuito_<nivel>.json`, todos los scripts de `src/analisis/`
 (gráficos, series temporales, totales, cuadros comparativos) se corren
@@ -132,10 +142,6 @@ por test y qué se valida corriendo los notebooks/scripts directamente está
 detallado en `CLAUDE.md`.
 
 ## Documentación
-
-Todo documento narrativo suelto del repo (metodología, specs, estado de
-auditoría, funcionalidades) vive en `docs/`. Cada uno resuelve una
-pregunta puntual:
 
 - Para el **detalle operativo de cada script, comando y anomalía
   conocida**, ver [`docs/FUNCIONALIDADES.md`](docs/FUNCIONALIDADES.md).
@@ -161,13 +167,15 @@ pregunta puntual:
 
 Documentos que **no** están en `docs/` porque describen un dataset
 puntual y viven al lado de él (ver `CLAUDE.md` para el detalle de cada
-uno): `data/fuentes_extra/LOCALIDADES_README.md` y
+uno): `data/fuentes_extra/CIRCUITOS_LOCALIDADES.md` y
 `AUDITORIA_DISCREPANCIAS.md` (crosswalk circuito↔localidad),
 `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` (cobertura de la
-capa macro), `data/socioeconomia/EXTRACCION_REDATAM.md` y
+capa macro), `data/geolocalizacion/LOCALIDADES.md` (catálogo validado de
+localidades geolocalizadas), `data/socioeconomia/EXTRACCION_REDATAM.md` y
 `EXTRACCION_IAELAP.md`/`SISTEMATIZACION_VARIABLES.md` (capa
 socioeconómica).
 
 Para **comandos, arquitectura y convenciones para trabajar en el repo**
 (orientado a agentes/devs), ver `CLAUDE.md` (raíz, no se movió — es el
 archivo que usa Claude Code para orientarse en el proyecto).
+

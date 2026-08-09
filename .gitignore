@@ -22,6 +22,13 @@ data/por_localidad/*
 data/totales/*
 data/macroeconomia/_cache/
 data/macroeconomia/series_macro_*.csv
+data/geolocalizacion/_cache/
+
+# Descarga cruda del exportador de SNOP/Ministerio de Obras Públicas
+# (todo el país, ~13.500 filas) -- data/fuentes_extra/localidades.csv es el
+# recorte a La Plata ya filtrado y sí versionado; ver data/geolocalizacion/LOCALIDADES.md
+# para cómo reproducir la descarga y el filtro sin necesidad de trackear esto.
+data/fuentes_extra/Listado de Localidades*.xlsx
 
 # Documentos de trabajo interno
 docs/PLAN_CORRECCIONES_ELECTORALES.md

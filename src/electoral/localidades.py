@@ -1,7 +1,7 @@
 """Agrupa resultados electorales por circuito en localidades de La Plata,
 usando el crosswalk circuito_id -> localidad de
 `data/fuentes_extra/circuito_localidad.csv` (diseño y estado documentados en
-`data/fuentes_extra/LOCALIDADES_README.md`; auditoría de confiabilidad de
+`data/fuentes_extra/CIRCUITOS_LOCALIDADES.md`; auditoría de confiabilidad de
 cada localidad en `data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md`).
 
 Dos niveles de cobertura agrupables, que nunca se mezclan sin pedirlo

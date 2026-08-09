@@ -1,5 +1,13 @@
 # Agrupación de circuitos electorales por localidad — estado
 
+> **No confundir con `data/geolocalizacion/LOCALIDADES.md`.** Este
+> documento es sobre el crosswalk `circuito_id → nombre de barrio`
+> (resolución 1990/2007 + relevamiento periodístico de El Día), que no
+> tiene coordenadas ni geometría. El catálogo de localidades
+> geolocalizadas (georef + Ministerio de Obras Públicas, con lat/lon
+> validadas) vive aparte, en `data/geolocalizacion/`, y todavía no está
+> cruzado con `circuito_id` — ver la nota al final de ese documento.
+
 ## Qué es esto
 
 `circuito_localidad.csv` es el crosswalk que permite agrupar los

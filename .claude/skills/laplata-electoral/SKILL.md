@@ -18,6 +18,16 @@ en este archivo -- para esa capa, andá directo a
 `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md`, no hace falta
 leer el resto de este skill.
 
+Y una cuarta, `src/geolocalizacion/`: catálogo validado de las 36
+localidades del partido (nombre + lat/lon, Georef-AR cruzado contra el
+Ministerio de Obras Públicas), **todavía sin cruzar contra `circuito_id`
+ni contra este skill** -- para esa capa, andá directo a
+`data/geolocalizacion/LOCALIDADES.md`. No confundirla con
+`data/fuentes_extra/CIRCUITOS_LOCALIDADES.md` (el crosswalk
+`circuito_id → nombre de barrio` que sí describe el resto de este
+archivo): son dos capas paralelas, sin coordenadas una, sin `circuito_id`
+la otra.
+
 Este archivo es el mapa de arranque. Para el detalle de cada decisión,
 andá directo al documento de referencia indicado -- no re-derives nada
 de esto leyendo el código o el git log desde cero, ya está resuelto.
@@ -31,7 +41,7 @@ detalle -- y avisá para que esto se corrija.
 
 ## Antes de escribir código: leé esto, en este orden
 
-1. `data/fuentes_extra/LOCALIDADES_README.md` -- estado de la
+1. `data/fuentes_extra/CIRCUITOS_LOCALIDADES.md` -- estado de la
    agrupación circuito→localidad, los dos niveles de cobertura y sus
    fuentes.
 2. `docs/AUDITORIA_ESTADO.md` -- qué puntos de la auditoría
@@ -60,14 +70,18 @@ data/agrupaciones/clasificacion_ideologica_agrupaciones.csv    # clasificación 
 data/agrupaciones/tabla_referencia_filiacion_politica.csv       # fuente de filiacion_politica + confianza/nota de cada valor
 data/agrupaciones/circuito_id_correspondencias.csv             # normalización circuito_id entre años
 data/fuentes_extra/circuito_localidad.csv                      # crosswalk circuito -> localidad, dos niveles
-data/fuentes_extra/LOCALIDADES_README.md                       # estado + qué falta
+data/fuentes_extra/CIRCUITOS_LOCALIDADES.md                       # estado + qué falta
 data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md                  # auditoría oficial vs. periodístico
 data/fuentes_extra/resolucion_1990-2007.md                     # fuente legal completa (familia 496/497/503)
+data/fuentes_extra/localidades.csv                              # fuente Ministerio de Obras Públicas (SNOP), recorte a La Plata -- ver data/geolocalizacion/LOCALIDADES.md
 data/socioeconomia/circuito_radio_correspondencia.csv           # correspondencia espacial circuito<->radio censal (peso_area)
 data/socioeconomia/radios_censales_{2010,2022}_la_plata.geojson
+data/geolocalizacion/localidades_la_plata.csv                  # catálogo validado de localidades (Georef-AR × Ministerio), sin cruzar aún contra circuito_id
+data/geolocalizacion/LOCALIDADES.md                             # metodología, hallazgos, qué falta
 src/electoral/          # cliente API, modelos, parsing, agrupamiento por localidad (localidades.py), totales por agrupación (totales.py)
 src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a partir de circuito_<nivel>.json; totales_por_lista.py grafica data/totales/ + blanco_nulo; comparativo_nivel.py compara Municipio/Provincia/Nación en Markdown
 src/socioeconomia/      # EPH, geo, IAELaP
+src/geolocalizacion/    # georef_client.py (fetch+cache), catalogo.py (cruce por nombre), mapa.py (PNG del partido)
 notebooks/               # 01-06, la pipeline real corre acá (ver CLAUDE.md)
 graficos/distrito/, graficos/por_localidad/, graficos/socioeconomia/   # salida, mayormente no versionada
 tests/
@@ -151,7 +165,7 @@ Presidente 2015/2023).
 - Cuando se agregue una fuente nueva (una resolución, un relevamiento
   periodístico, un dataset oficial), documentarla con: nombre de fuente,
   fecha, URL, y qué porción del universo de circuitos cubre -- siguiendo
-  el formato ya usado en `LOCALIDADES_README.md`.
+  el formato ya usado en `CIRCUITOS_LOCALIDADES.md`.
 
 ## Versionado (SemVer real, no solo la convención previa del repo)
 

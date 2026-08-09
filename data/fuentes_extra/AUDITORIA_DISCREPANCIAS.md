@@ -10,7 +10,7 @@ circuitos restantes del partido** (68 en total según el dataset de
 resultados): para esos no hay ninguna fuente oficial equivalente, así que su
 etiqueta de `periodistico_no_oficial` en `circuito_localidad.csv` queda sin
 auditar y debe tratarse con la confiabilidad "fuente periodística" que ya
-indica su columna `cobertura` — ver `LOCALIDADES_README.md`.
+indica su columna `cobertura` — ver `CIRCUITOS_LOCALIDADES.md`.
 
 De los 16 circuitos, **2 (496E y 496F) no tienen etiqueta de El Día en
 absoluto** (el relevamiento de El Día no los cubre), así que no hay nada que
@@ -57,7 +57,7 @@ clasificó en:
    Día). Se tratan como equivalentes tras normalizar (mayúsculas, sin
    tildes/abreviaturas, ignorando el prefijo "BARRIO_"/"B°"/"V°" y los
    sufijos "(PARTE)"/"(CTEL. 5°)"). Esto afecta el resultado de 496B.
-2. **496A — reclasificación respecto de `LOCALIDADES_README.md`.** El README
+2. **496A — reclasificación respecto de `CIRCUITOS_LOCALIDADES.md`.** El README
    describe a 496A como "el único caso que parece ser una discrepancia real,
    no solo de granularidad". Al reconstruir la tabla completa del Anexo I
    para 496A, el primer código listado es justamente `1QW — VILLA MONTORO
@@ -133,7 +133,7 @@ no). De esos 14: **3 coincidencia_exacta** (496, 497, 497B), **3
 sub_localidad_valida** (496A, 496B, 497A), **8 discrepancia_real** (496C,
 496D, 497C, 497D, 497E, 497F, 503, 503A).
 
-Esto es más discrepante de lo que sugiere `LOCALIDADES_README.md`, que
+Esto es más discrepante de lo que sugiere `CIRCUITOS_LOCALIDADES.md`, que
 describe la situación general como "no es una contradicción sino una
 diferencia de resolución" con "el único caso que parece ser una discrepancia
 real" siendo 496A. La auditoría completa (tabla por tabla, no solo el
@@ -201,7 +201,7 @@ y la reorganización a `docs/`, vive en `docs/FUNCIONALIDADES.md`, sección
   en la capa de circuitos electorales descargada por el proyecto
   (`mapa2.electoral.gob.ar`).
 
-Y `LOCALIDADES_README.md` (línea 102), citando el catálogo oficial de datos
+Y `CIRCUITOS_LOCALIDADES.md` (línea 102), citando el catálogo oficial de datos
 abiertos de la Provincia, agrega que la `cabecera` catastral de 493 es
 **"Isla Martín García"** — no Melchor Romero. Ninguna de las dos cosas
 prueba por sí sola que la etiqueta de El Día esté mal (la `cabecera`
@@ -234,7 +234,7 @@ dudosa — ver arriba), 503 y 503A (oficial, ahora agrupados). La cobertura
 oficial subió de 14/68 a 16/68 circuitos (~30,6% de los votos en
 Intendente 2023, antes ~27,5%), y `SIN_DETERMINAR` bajó a un único
 circuito estructural: **521** (sin ninguna fila en el crosswalk). Ver
-`LOCALIDADES_README.md` para el detalle completo de la decisión.
+`CIRCUITOS_LOCALIDADES.md` para el detalle completo de la decisión.
 
 **Hueco de datos en el circuito 493 (2023, no en otros años) — sigue
 existiendo, ya no se nota a simple vista**: en Gobernador, Intendente y

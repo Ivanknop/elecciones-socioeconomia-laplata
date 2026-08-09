@@ -46,6 +46,8 @@ PYTHONPATH=src python -m analisis.comparativo_nivel --anio 2019  # Municipio/Pro
 PYTHONPATH=src python -m macroeconomia.series  # national macroeconomic series, one CSV row per month 2011-2025 (needs network to refresh; runs from cache otherwise)
 PYTHONPATH=src python -m macroeconomia.series_anuales  # same, annual-frequency concepts only, one CSV row per year
 ESTADISTICASBCRA_TOKEN=... PYTHONPATH=src python -m macroeconomia.auditoria_estadisticasbcra  # manual one-off cross-check against estadisticasbcra.com; needs a user token (never committed), not part of the regular pipeline
+PYTHONPATH=src python -m geolocalizacion.catalogo  # validated localidad×lat/lon catalog for La Plata, Georef-AR cross-checked against the Ministerio de Obras Públicas export (needs network to refresh; runs from cache otherwise)
+PYTHONPATH=src python -m geolocalizacion.mapa      # one PNG with all 36 localidades over the partido boundary, reads the catalog above
 ```
 
 There is no build/lint step configured. Tests cover `src/electoral/models.py`
@@ -82,6 +84,12 @@ criterion. `src/macroeconomia/datos_gob_client.py` (the fetch+cache HTTP
 layer) and `src/macroeconomia/auditoria_estadisticasbcra.py` (fetch+compare
 against a third-party HTTP API) have no automated tests, same criterion as
 `electoral/client.py`.
+`src/geolocalizacion/catalogo.py`'s merge logic (name normalization, the
+two Georef/Ministerio alias cases, asentamiento deduplication, coverage
+report) is covered by `tests/test_geolocalizacion_catalogo.py`, no
+network; `src/geolocalizacion/georef_client.py` (fetch+cache) and
+`src/geolocalizacion/mapa.py` (matplotlib rendering) have no automated
+tests, same criterion as `electoral/client.py`.
 
 ## Architecture
 
@@ -170,7 +178,7 @@ order, 01→04) are the pipeline**.
   `src/analisis/serie_temporal_por_localidad.py` reads those CSVs and
   plots to `graficos/por_localidad/`. Details, coverage-by-circuito, and
   the discrepancy audit between the two source levels are in
-  `data/fuentes_extra/LOCALIDADES_README.md` and
+  `data/fuentes_extra/CIRCUITOS_LOCALIDADES.md` and
   `AUDITORIA_DISCREPANCIAS.md` — read those before changing the crosswalk
   or the grouping precedence.
 
@@ -300,6 +308,31 @@ order, 01→04) are the pipeline**.
   the finding that endpoint is unevenly stale (~1.5-2 years behind
   depending on the series), so it only audits closed historical stretches,
   never the CSV's most recent months.
+
+- **`src/geolocalizacion/`** is a fourth analytical domain: a validated
+  catalog of La Plata's 36 localidades (name + lat/lon), cross-checking
+  the Georef-AR API against an official Ministerio de Obras Públicas
+  export — see `data/geolocalizacion/LOCALIDADES.md` for the full
+  methodology, findings (a median 575 m / max 7,034 m coordinate delta
+  between the two sources, and an independent cross-signal on the
+  circuito 493 / Isla Martín García "límite incierto" question already
+  tracked in `AUDITORIA_DISCREPANCIAS.md`), and what's explicitly out of
+  scope for now (joining this against `circuito_id` or census
+  indicators). `georef_client.py` fetches+caches the `asentamientos`
+  endpoint and the one department polygon feature it needs out of
+  Georef's country-wide bulk `departamentos.geojson` download;
+  `catalogo.py` merges that against
+  `data/fuentes_extra/localidades.csv` (the Ministerio export, hand-filtered
+  to La Plata from a national dump — see that CSV's own provenance note
+  in `LOCALIDADES.md`) by normalized name, with two hand-documented name
+  aliases, and writes `data/geolocalizacion/localidades_la_plata.csv`
+  (git-tracked, same criterion as `catalogo_series.csv`); `mapa.py` plots
+  it against the partido boundary to
+  `graficos/geolocalizacion/mapa_localidades.png` (not tracked, same
+  criterion as the rest of `graficos/`). One locality present only in
+  Georef (Buchanan) is kept in the catalog with a `nota` explaining the
+  single-source status rather than dropped — same
+  never-lose-data-silently spirit as the rest of the repo.
 
 ## Working conventions specific to this repo
 

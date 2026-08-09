@@ -546,7 +546,7 @@ Lorenzo, Melchor Romero, etc.) con nombres legibles, no censales.
   16/68 circuitos) y `periodistico_no_oficial` (relevamiento "barrio por
   barrio" de El Día, octubre 2025, 65/68 circuitos). El detalle completo
   del armado, la cobertura circuito a circuito y qué falta está en
-  `data/fuentes_extra/LOCALIDADES_README.md`; la auditoría de qué tan
+  `data/fuentes_extra/CIRCUITOS_LOCALIDADES.md`; la auditoría de qué tan
   bien coincide cada localidad `oficial_confirmada` contra el texto
   completo de la resolución (no solo el título de la subsección) está en
   `data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md`.
@@ -586,12 +586,6 @@ Lorenzo, Melchor Romero, etc.) con nombres legibles, no censales.
   PYTHONPATH=src python -m analisis.serie_temporal_por_localidad                # todas las localidades, los 3 niveles
   PYTHONPATH=src python -m analisis.serie_temporal_por_localidad --nivel municipal
   ```
-
-Falta subir de nivel a `oficial_confirmada` las familias de circuitos 504,
-505, 508 y 509 (hoy solo tienen la etiqueta de El Día) — ver "Qué falta" en
-`LOCALIDADES_README.md` para el resto del plan (pedido de acceso a la
-información a la Junta Electoral, contraste contra las 24 localidades
-oficiales usadas por la cobertura de 0221.com.ar).
 
 ## Capa macroeconómica nacional — estado actual
 
@@ -637,11 +631,7 @@ auditoría externa están en
   su mes de origen (ej. enero/abril/julio/octubre) — los demás meses
   quedan vacíos (`""`), nunca con el dato del período anterior. Series
   diarias (tipo de cambio, BADLAR, base monetaria) se agregan a mensual
-  tomando el último valor hábil del mes, sin promediar. Es una decisión de
-  diseño deliberada: un valor repetido hacia adelante le da apariencia de
-  dato real a un período que en verdad no lo tiene, y traslada a quien
-  consume el CSV la decisión de repetir/interpolar en vez de tomarla por
-  adelantado. Cada celda vacía queda explicada en `observaciones`.
+  tomando el último valor hábil del mes, sin promediar. Cada celda vacía queda explicada en `observaciones`.
 - **Auditoría externa** (`src/macroeconomia/auditoria_estadisticasbcra.py`):
   script manual, no integrado al pipeline regular, que compara cada
   concepto marcado `auditable_estadisticasbcra` en el catálogo contra
@@ -659,16 +649,6 @@ auditoría externa están en
   PYTHONPATH=src python -m macroeconomia.series_anuales             # ídem, catálogo/CSV anual
   ESTADISTICASBCRA_TOKEN=<tu_token> PYTHONPATH=src python -m macroeconomia.auditoria_estadisticasbcra  # auditoría manual puntual
   ```
-
-- **Qué falta / queda fuera de alcance a propósito**: riesgo país (no está
-  en ninguna de las tres fuentes evaluadas), resultado fiscal real
-  (solo había expectativas del REM, se prefirió omitir antes que publicar
-  un proxy bajo el nombre de un dato ejecutado), pobreza/indigencia
-  moderna (no se ubicó el id exacto del total de 31 aglomerados en
-  `datos.gob.ar`), y cualquier apertura regional/provincial (alcance
-  nacional exclusivo, por decisión explícita). Ningún cruce contra la capa
-  electoral o socioeconómica del repositorio todavía — esta capa es de
-  adquisición y documentación únicamente.
 
 ## Extender a otro distrito, sección o cargo
 

@@ -4,7 +4,7 @@ gobierno (2011-2025), a partir de los cuadros ya agregados en
 
 Cada localidad incluye siempre `SIN_DETERMINAR` como una serie más -- son
 votos reales de circuitos sin localidad asignada ese año, nunca se ocultan
-(ver `data/fuentes_extra/LOCALIDADES_README.md`). La confiabilidad de la
+(ver `data/fuentes_extra/CIRCUITOS_LOCALIDADES.md`). La confiabilidad de la
 clasificación de cada localidad está en
 `data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md`.
 
