@@ -1,11 +1,36 @@
 # V-Party (V-Dem Institute) — partidos argentinos 2011-2019
 
-`vparty_argentina_2011_2019.csv`: extracto del dataset **V-Party v2**
-(Varieties of Party Identity and Organization, V-Dem Institute, publicado
-feb. 2022) filtrado a `country_text_id == "ARG"` y `2011 <= year <= 2019`.
-35 filas partido-elección (elecciones a Diputados 2011, 2013, 2015, 2017 y
-2019), **384 columnas, todas con su nombre técnico original** — no se
-renombró, derivó ni mapeó ninguna columna.
+**De los archivos descriptos en este README, sólo dos están efectivamente
+versionados en esta carpeta**: este `README.md` y
+`v_party_argentina_2011_2019_espaniol.csv` (ver su sección propia más
+abajo — **es el que se usa para cruzar contra
+`clasificacion_ideologica_agrupaciones.csv` y `oficialismos.csv`**, porque
+las agrupaciones de este repo están en español, y es el que lee
+`src/analisis/vparty_cuadrantes.py`). Dos archivos más existen en el
+filesystem pero **no** están versionados, por dos motivos distintos —no
+confundir uno con otro:
+
+- `v_party_argentina_2011_2019.csv` (sin traducir, ver su sección más
+  abajo): existe en disco pero está en `.gitignore` a propósito — es
+  estrictamente un subconjunto de columnas de
+  `v_party_argentina_2011_2019_espaniol.csv` (le falta sólo
+  `v2paenname_espaniol`), así que versionar los dos sería duplicar datos;
+  sólo se conserva localmente por comparación con el nombre en inglés. Si
+  falta tras un clon nuevo del repo, no rompe nada: ningún script de este
+  repo lo lee.
+- El CSV crudo de 384 columnas y el derivado `_variables_solicitadas` que
+  se describen a continuación **nunca llegaron a existir en este
+  repositorio** — fueron pasos intermedios de la extracción original,
+  hechos fuera de este repo. Se documentan igual por procedencia/
+  trazabilidad; quien necesite reproducirlos parte de la fuente en
+  "Procedencia" de abajo.
+
+`vparty_argentina_2011_2019.csv` (nunca existió en este repo, ver nota arriba): extracto
+del dataset **V-Party v2** (Varieties of Party Identity and Organization,
+V-Dem Institute, publicado feb. 2022) filtrado a `country_text_id == "ARG"`
+y `2011 <= year <= 2019`. 35 filas partido-elección (elecciones a Diputados
+2011, 2013, 2015, 2017 y 2019), **384 columnas, todas con su nombre técnico
+original** — no se renombró, derivó ni mapeó ninguna columna.
 
 ## Procedencia
 
@@ -55,7 +80,7 @@ al. 2022, V-Dem Institute, Universidad de Gotemburgo.
 - La unidad de observación son elecciones a **Diputados** (cámara baja),
   no elecciones presidenciales.
 
-## `vparty_argentina_2011_2019_variables_solicitadas.csv`
+## `vparty_argentina_2011_2019_variables_solicitadas.csv` (nunca existió en este repo, ver nota al inicio)
 
 Derivado del CSV completo de arriba: mismas 35 filas, recortado a
 identificadores de partido/elección + solo el **valor puntual** (escala
@@ -80,10 +105,10 @@ Los intervalos de incertidumbre (`_codelow`/`_codehigh`) y las demás
 versiones de escala (`_osp`, `_ord`, etc.) de estas mismas variables
 siguen disponibles en el CSV completo (`vparty_argentina_2011_2019.csv`).
 
-## `v_party_argentina_2011_2019.csv`
+## `v_party_argentina_2011_2019.csv` (gitignoreado, ver nota al inicio)
 
-Segundo derivado, calibrado contra un cuestionario propio de expertos
-(no versionado en este repo). Mismas 35 filas, 63 columnas:
+Segundo derivado, calibrado contra un cuestionario propio de expertos.
+Mismas 35 filas, 63 columnas:
 
 - **Identificación**: `v2paenname`, `v2paorname`, `v2pashname`, `year`,
   `historical_date`, `v2pavote` (% de votos, dato de contexto — no es
@@ -119,17 +144,27 @@ confirmada. Resultado, sin forzar ninguna equivalencia:
   instituciones representativas puntualmente — no está incluida en este
   CSV.
 
-**Filas con las 10 variables de posicionamiento completamente vacías: 9
-de 35.** Dos patrones distintos:
+## `v_party_argentina_2011_2019_espaniol.csv`
 
-1. `Generation for a National Encounter`, `Popular Union`, `Socialist
-   Party` (2011): tampoco tienen `v2pavote` — no llegaron al umbral de
-   cobertura de expertos (>5% de votos/bancas).
-2. `Let's change`/Cambiemos (2015, 2017, 2019) y `alliance: Frente de
-   Todos` (2019): sí tienen `v2pavote` (32–45%), pero igual están vacías
-   en posicionamiento. No es falta de cobertura — V-Party codificó la
-   identidad ideológica de los partidos que integran cada alianza por
-   separado (`Republican Proposal`/PRO y `Radical Civic Union`/UCR
-   dentro de Cambiemos; `Front for Victory`/FPV-PJ y `Frente
-   Justicialista`/PJ dentro de Frente de Todos), no de la alianza como
-   entidad. No hay un valor directo para la alianza en el dataset.
+Mismo archivo que `v_party_argentina_2011_2019.csv` (35 filas, misma
+procedencia, mismas 63 columnas de identificación/posicionamiento) más
+una columna agregada: `v2paenname_espaniol`, la traducción al español de
+`v2paenname` (nombre del partido en inglés) — 64 columnas en total. Es
+**el archivo que corresponde usar** para cualquier cruce contra los CSV de
+este repo (`data/agrupaciones/clasificacion_ideologica_agrupaciones.csv`,
+`data/agrupaciones/oficialismos.csv`), porque ahí las agrupaciones están
+en español y el cruce se hace por coincidencia (exacta o cuasi-exacta,
+salvando puntuación) de nombre normalizado — `v_party_argentina_2011_2019.csv`
+(sin traducir) no sirve para ese propósito y se mantiene sólo por
+procedencia/comparación con el original en inglés.
+
+`src/analisis/vparty_cuadrantes.py` también lee este archivo (no
+`v_party_argentina_2011_2019.csv`, que dejó de estar versionado — ver nota
+al inicio): sus etiquetas de gráfico usan `v2pashname` (sigla, ej.
+"FPV-PJ"), no `v2paenname_espaniol`, pero necesita apuntar a un CSV que
+exista tras un clon nuevo del repo. Y toda la carga puntual de
+`vparty_economico`/`vparty_progresismo`/`vparty_populismo` en
+`clasificacion_ideologica_agrupaciones.csv` hecha por cruce de nombre
+contra agrupaciones de este repo (ver `docs/vparty_cuadrantes.md`,
+sección "Integración con `clasificacion_ideologica_agrupaciones.csv`")
+usa este mismo archivo.

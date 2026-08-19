@@ -69,13 +69,18 @@ layer added on top of it — `src/electoral/localidades.py`,
 `src/analisis/serie_temporal_por_localidad.py`
 (pure logic and file I/O, no network; see `tests/test_localidades.py`,
 `tests/test_cuadros_por_localidad.py`, `tests/test_serie_temporal_por_localidad.py`).
-`src/electoral/client.py` and the rest of `src/analisis/*` (`graficos.py`,
-`generar_graficos.py`, `serie_temporal.py`, `cuadros_anualizados.py`,
-`serie_temporal_filiacion.py`, `totales_por_lista.py`, `comparativo_nivel.py`,
-plus the matplotlib-rendering half of the locality scripts) still have no
-automated tests; changes there are validated by re-running the notebooks
-end to end (see README "Cómo reproducir") or by running the scripts
-against `data/` directly.
+The **pure-logic helpers** of `graficos.py`, `cuadros_anualizados.py`,
+`serie_temporal.py`, `serie_temporal_filiacion.py`, `totales_por_lista.py`
+and `comparativo_nivel.py` are covered too (`tests/test_graficos.py`,
+`tests/test_cuadros_anualizados.py`, `tests/test_serie_temporal.py`,
+`tests/test_serie_temporal_filiacion.py`, `tests/test_totales_por_lista.py`,
+`tests/test_comparativo_nivel.py` — e.g. `_votos_no_ideologicos`,
+`_cargar_escala_ideologica`, `_anios_disponibles`, `_serie_por_anio`,
+`resultado_total_con_blanco_nulo`, `tabla_comparativa`). `src/electoral/client.py`,
+`generar_graficos.py`, and the **matplotlib-rendering half** of every module
+above (plus of the locality scripts) still have no automated tests; changes
+there are validated by re-running the notebooks end to end (see README
+"Cómo reproducir") or by running the scripts against `data/` directly.
 `src/analisis/mapa_interactivo.py`'s aggregation logic (the exact same
 `electores - positivos - otros_total` ausentismo formula as
 `graficos._votos_no_ideologicos`, top-N-plus-residual per circuito,
@@ -183,6 +188,22 @@ order, 01→04) are the pipeline**.
   different `campo_ideologico` values across years, which is now expected
   (same family, different programmatic position) rather than a dataset
   inconsistency.
+
+  `clasificacion_ideologica_agrupaciones.csv` also carries three optional
+  columns — `vparty_economico`, `vparty_progresismo`, `vparty_populismo` —
+  loaded from the V-Party dataset (`data/agrupaciones/v-party/`, see that
+  folder's `README.md`) for 62 of 313 rows; see
+  `docs/vparty_cuadrantes.md` ("Integración con
+  `clasificacion_ideologica_agrupaciones.csv`") for exactly which rows,
+  loaded in which round, and under which matching criterion — two of the
+  rounds don't use the same discipline (one proxies an alliance's score
+  from its lead party, one carries the last V-Party wave forward past
+  2019), so don't treat a populated cell as uniformly sourced without
+  checking that doc. `data/agrupaciones/oficialismos.csv` (one row per
+  `(año, nivel)`, 2011-2025, `nivel ∈ {municipal, provincial, nacional}`
+  used as a generic label for intendente/gobernador/presidente in
+  executive years) is the other hand-curated file in this folder — same
+  never-regenerate-from-scratch spirit, no notebook writes to it.
 
   `colorimetria_campo_ideologico.csv` (`campo_ideologico` value → hex, one
   row per one of the 6 labels in `campo_ideologico.csv`) and

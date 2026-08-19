@@ -3,7 +3,10 @@
 Ubica cada fuerza política (partido-elección, Diputados 2011-2019) en un
 plano de dos ejes -- estatismo (eje X) y progresismo social (eje Y) -- con
 el índice de populismo representado como tamaño del punto. Fuente:
-``data/agrupaciones/v-party/v_party_argentina_2011_2019.csv``.
+``data/agrupaciones/v-party/v_party_argentina_2011_2019_espaniol.csv``
+(sólo se usa ``v2pashname`` para las etiquetas, no la columna en español;
+se lee este archivo y no ``v_party_argentina_2011_2019.csv`` porque este
+último no está versionado -- ver el README de esa carpeta).
 
 Para cada partido-elección se calcula la tupla ``(economico, progresismo,
 populismo)``:
@@ -24,7 +27,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-RUTA_DATOS = Path("data/agrupaciones/v-party/v_party_argentina_2011_2019.csv")
+RUTA_DATOS = Path("data/agrupaciones/v-party/v_party_argentina_2011_2019_espaniol.csv")
 RUTA_SALIDA = Path("graficos/agrupaciones/vparty_cuadrantes_economico_progresismo_populismo.png")
 
 # Columnas fuente de V-Party usadas para construir la tupla.
@@ -99,8 +102,8 @@ def _fusionar_por_cercania(df: pd.DataFrame, umbral: float = UMBRAL_FUSION) -> p
 
         for i in range(n):
             for j in range(i + 1, n):
-                dx = abs(grupo.loc[i, EJE_X] - grupo.loc[j, EJE_X]) / x_rango
-                dy = abs(grupo.loc[i, EJE_Y] - grupo.loc[j, EJE_Y]) / y_rango
+                dx = abs(float(grupo.loc[i, EJE_X]) - float(grupo.loc[j, EJE_X])) / x_rango
+                dy = abs(float(grupo.loc[i, EJE_Y]) - float(grupo.loc[j, EJE_Y])) / y_rango
                 if dx < umbral and dy < umbral:
                     unir(i, j)
 
