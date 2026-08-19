@@ -1,7 +1,7 @@
 anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vparty_progresismo,vparty_populismo
-2011,ALIANZA FRENTE AMPLIO PROGRESISTA,gobernacion,2,progresistas,,,
+2011,ALIANZA FRENTE AMPLIO PROGRESISTA,gobernacion,2,progresistas,-1.268,1.642,0.492
 2011,ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,gobernacion,1,marxistas,,,
-2011,ALIANZA FRENTE PARA LA VICTORIA,gobernacion,3,peronistas,,,
+2011,ALIANZA FRENTE PARA LA VICTORIA,gobernacion,3,peronistas,-1.686,2.097,0.871
 2011,ALIANZA FRENTE POPULAR,gobernacion,3,peronistas,,,
 2011,ALIANZA PROYECTO SUR,gobernacion,2,progresistas,,,
 2011,ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO,gobernacion,4,otros,,,
@@ -12,9 +12,9 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2011,FRENTE AMPLIO PROGRESISTA,gobernacion,2,progresistas,,,
 2011,NUEVO ENCUENTRO,gobernacion,2,progresistas,,,
 2011,ALIANZA COMPROMISO FEDERAL,intendente,4,peronismo provincial,,,
-2011,ALIANZA FRENTE AMPLIO PROGRESISTA,intendente,2,progresistas,,,
+2011,ALIANZA FRENTE AMPLIO PROGRESISTA,intendente,2,progresistas,-1.268,1.642,0.492
 2011,ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,intendente,1,marxistas,,,
-2011,ALIANZA FRENTE PARA LA VICTORIA,intendente,3,peronistas,,,
+2011,ALIANZA FRENTE PARA LA VICTORIA,intendente,3,peronistas,-1.686,2.097,0.871
 2011,ALIANZA FRENTE POPULAR,intendente,3,peronistas,,,
 2011,ALIANZA UNIÓN PARA EL DESARROLLO SOCIAL,intendente,4,otros,,,
 2011,COALICIÓN CÍVICA - AFIRMACIÓN PARA UNA REPÚBLICA IGUALITARIA ARI,intendente,4,otros,,,
@@ -22,9 +22,9 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2011,NUEVO ENCUENTRO,intendente,2,progresistas,,,
 2011,PROYECTO SUR,intendente,2,peronistas,,,
 2011,ALIANZA COMPROMISO FEDERAL,presidente,4,peronismo provincial,,,
-2011,ALIANZA FRENTE AMPLIO PROGRESISTA,presidente,2,progresistas,,,
+2011,ALIANZA FRENTE AMPLIO PROGRESISTA,presidente,2,progresistas,-1.268,1.642,0.492
 2011,ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,presidente,1,marxistas,,,
-2011,ALIANZA FRENTE PARA LA VICTORIA,presidente,3,peronistas,,,
+2011,ALIANZA FRENTE PARA LA VICTORIA,presidente,3,peronistas,-1.686,2.097,0.871
 2011,ALIANZA FRENTE POPULAR,presidente,3,peronistas,,,
 2011,ALIANZA PROYECTO SUR,presidente,2,progresistas,,,
 2011,ALIANZA UNION PARA EL DESARROLLO SOCIAL - UDESO,presidente,4,otros,,,
@@ -37,10 +37,10 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2013,ESPACIO UNION PRO,municipal,5,liberales,,,
 2013,FRENTE CIUDAD NUEVA,municipal,1,peronistas,,,
 2013,FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,municipal,1,marxistas,,,
-2013,FRENTE PARA LA VICTORIA,municipal,3,peronistas,,,
+2013,FRENTE PARA LA VICTORIA,municipal,3,peronistas,-1.663,2.033,0.872
 2013,FRENTE POPULAR DEMOCRATICO Y SOCIAL (PODEMOS),municipal,2,progresistas,,,
-2013,FRENTE PROGRESISTA CIVICO Y SOCIAL,municipal,3,progresistas,,,
-2013,FRENTE RENOVADOR,municipal,4,peronistas,,,
+2013,FRENTE PROGRESISTA CIVICO Y SOCIAL,municipal,3,progresistas,-0.692,1.546,0.461
+2013,FRENTE RENOVADOR,municipal,4,peronistas,0.376,-0.016,0.363
 2013,FRENTE SOCIAL DE LA PROVINCIA DE BUENOS AIRES,municipal,3,progresistas,,,
 2013,PARTIDO LEALTAD Y DIGNIDAD DE LA PROVINCIA DE BUENOS AIRES,municipal,4,peronistas,,,
 2013,UNIDOS POR LA LIBERTAD Y EL TRABAJO,municipal,4,liberales,,,
@@ -57,10 +57,10 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2013,UNION CON FE,nacional,4,nacionalistas,,,
 2013,COMPROMISO FEDERAL,provincial,4,peronismo provincial,,,
 2013,FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,provincial,1,marxistas,,,
-2013,FRENTE PARA LA VICTORIA,provincial,3,peronistas,,,
+2013,FRENTE PARA LA VICTORIA,provincial,3,peronistas,-1.663,2.033,0.872
 2013,FRENTE POPULAR DEMOCRATICO Y SOCIAL (PODEMOS),provincial,2,progresistas,,,
-2013,FRENTE PROGRESISTA CIVICO Y SOCIAL,provincial,3,progresistas,,,
-2013,FRENTE RENOVADOR,provincial,4,peronistas,,,
+2013,FRENTE PROGRESISTA CIVICO Y SOCIAL,provincial,3,progresistas,-0.692,1.546,0.461
+2013,FRENTE RENOVADOR,provincial,4,peronistas,0.376,-0.016,0.363
 2013,PARTIDO LEALTAD Y DIGNIDAD DE LA PROVINCIA DE BUENOS AIRES,provincial,4,peronistas,,,
 2013,UNIDOS POR LA LIBERTAD Y EL TRABAJO,provincial,4,liberales,,,
 2013,UNION CON FE,provincial,4,nacionalistas,,,
@@ -70,7 +70,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2015,ALIANZA FRENTE POPULAR,gobernacion,4,peronistas,,,
 2015,ALIANZA PROGRESISTAS,gobernacion,2,progresistas,,,
 2015,ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA),gobernacion,4,peronistas,,,
-2015,CAMBIEMOS BUENOS AIRES,gobernacion,5,liberales,,,
+2015,CAMBIEMOS BUENOS AIRES,gobernacion,5,liberales,1.427,0.001,0.148
 2015,MOVIMIENTO AL SOCIALISMO,gobernacion,1,marxistas,,,
 2015,MST-MOVIMIENTO SOCIALISTA DE LOS TRABAJADORES,gobernacion,1,marxistas,,,
 2015,PATRIA GRANDE,gobernacion,1,progresistas,,,
@@ -80,14 +80,14 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2015,ALIANZA FRENTE POPULAR,intendente,4,peronistas,,,
 2015,ALIANZA PROGRESISTAS,intendente,2,progresistas,,,
 2015,ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA),intendente,4,peronistas,,,
-2015,CAMBIEMOS BUENOS AIRES,intendente,5,liberales,,,
+2015,CAMBIEMOS BUENOS AIRES,intendente,5,liberales,1.427,0.001,0.148
 2015,MOVIMIENTO AL SOCIALISMO,intendente,1,marxistas,,,
 2015,MST-MOVIMIENTO SOCIALISTA DE LOS TRABAJADORES,intendente,1,marxistas,,,
 2015,PARTIDO POPULAR,intendente,4,peronismo provincial,,,
 2015,PATRIA GRANDE,intendente,1,progresistas,,,
 2015,TODOS POR BUENOS AIRES,intendente,3,conservadores,,,
 2015,UNION DEL PUEBLO LA PLATA,intendente,1,marxistas,,,
-2015,ALIANZA CAMBIEMOS,presidente,5,liberales,,,
+2015,ALIANZA CAMBIEMOS,presidente,5,liberales,1.427,0.001,0.148
 2015,ALIANZA COMPROMISO FEDERAL,presidente,4,peronismo provincial,,,
 2015,ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,presidente,1,marxistas,,,
 2015,ALIANZA FRENTE PARA LA VICTORIA,presidente,3,peronistas,,,
@@ -95,18 +95,18 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2015,ALIANZA PROGRESISTAS,presidente,2,progresistas,,,
 2015,ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA),presidente,4,peronistas,,,
 2015,CAMBIEMOS,presidente,5,liberales,,,
-2015,FRENTE PARA LA VICTORIA,presidente,3,peronistas,,,
+2015,FRENTE PARA LA VICTORIA,presidente,3,peronistas,-1.659,1.961,0.848
 2015,MOVIMIENTO AL SOCIALISMO,presidente,1,marxistas,,,
 2015,MOVIMIENTO DE ACCION VECINAL,presidente,4,otros,,,
 2015,MST - NUEVA IZQUIERDA,presidente,1,marxistas,,,
 2015,PARTIDO POPULAR,presidente,4,peronismo provincial,,,
 2017,1PAIS,municipal,3,peronistas,,,
-2017,CAMBIEMOS BUENOS AIRES,municipal,5,liberales,,,
+2017,CAMBIEMOS BUENOS AIRES,municipal,5,liberales,1.418,-0.055,0.145
 2017,CORRIENTE DE PENSAMIENTO BONAERENSE (CO.PE.BO),municipal,4,peronistas,,,
 2017,ENCUENTRO POPULAR POR TIERRA TECHO Y TRABAJO,municipal,1,progresistas,,,
 2017,FEDERAL,municipal,4,peronismo provincial,,,
 2017,FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,municipal,1,marxistas,,,
-2017,FRENTE JUSTICIALISTA,municipal,3,peronistas,,,
+2017,FRENTE JUSTICIALISTA,municipal,3,peronistas,-0.101,0.947,0.479
 2017,FRENTE UNION FEDERAL,municipal,4,peronismo provincial,,,
 2017,IZQUIERDA AL FRENTE POR EL SOCIALISMO,municipal,1,marxistas,,,
 2017,PARTIDO RENOVADOR FEDERAL,municipal,4,peronistas,,,
@@ -116,7 +116,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2017,UVEP-U. VECINALISTA PLATENSE,municipal,3,otros,,,
 2017,VAMOS CREANDO CIUDAD NUEVA,municipal,2,progresistas,,,
 2017,1PAIS,nacional,3,peronistas,0.369,0.123,0.43
-2017,CAMBIEMOS BUENOS AIRES,nacional,5,liberales,,,
+2017,CAMBIEMOS BUENOS AIRES,nacional,5,liberales,1.418,-0.055,0.145
 2017,CREO,nacional,5,liberales,,,
 2017,DEL CAMPO POPULAR,nacional,4,otros,,,
 2017,ENCUENTRO POPULAR POR TIERRA TECHO Y TRABAJO,nacional,1,progresistas,,,
@@ -133,12 +133,12 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2017,TODOS POR BUENOS AIRES,nacional,3,conservadores,,,
 2017,UNIDAD CIUDADANA,nacional,3,peronistas,-1.662,1.533,0.67
 2017,1PAIS,provincial,3,peronistas,,,
-2017,CAMBIEMOS BUENOS AIRES,provincial,5,liberales,,,
+2017,CAMBIEMOS BUENOS AIRES,provincial,5,liberales,1.418,-0.055,0.145
 2017,CORRIENTE DE PENSAMIENTO BONAERENSE (CO.PE.BO),provincial,4,peronistas,,,
 2017,ENCUENTRO POPULAR POR TIERRA TECHO Y TRABAJO,provincial,1,progresistas,,,
 2017,FEDERAL,provincial,4,peronismo provincial,,,
 2017,FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,provincial,1,marxistas,,,
-2017,FRENTE JUSTICIALISTA,provincial,3,peronistas,,,
+2017,FRENTE JUSTICIALISTA,provincial,3,peronistas,-0.101,0.947,0.479
 2017,FRENTE UNION FEDERAL,provincial,4,peronismo provincial,,,
 2017,IZQUIERDA AL FRENTE POR EL SOCIALISMO,provincial,1,marxistas,,,
 2017,PARTIDO RENOVADOR FEDERAL,provincial,4,peronistas,,,
@@ -146,32 +146,32 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2017,PATRIA GRANDE,provincial,2,progresistas,,,
 2017,TODOS POR BUENOS AIRES,provincial,3,conservadores,,,
 2017,UNIDAD CIUDADANA,provincial,3,peronistas,,,
-2019,CONSENSO FEDERAL,gobernacion,4,peronismo provincial,,,
+2019,CONSENSO FEDERAL,gobernacion,4,peronismo provincial,0.073,0.34,0.329
 2019,FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD,gobernacion,1,marxistas,,,
-2019,FRENTE DE TODOS,gobernacion,3,peronistas,,,
+2019,FRENTE DE TODOS,gobernacion,3,peronistas,-0.465,1.069,0.642
 2019,FRENTE NOS,gobernacion,4,nacionalistas,,,
 2019,FRENTE PATRIOTA,gobernacion,6,nacionalistas,,,
-2019,JUNTOS POR EL CAMBIO,gobernacion,5,liberales,,,
+2019,JUNTOS POR EL CAMBIO,gobernacion,5,liberales,1.401,-0.142,0.186
 2019,MOVIMIENTO DE AVANZADA SOCIALISTA,gobernacion,1,marxistas,,,
 2019,MOVIMIENTO ORGANIZACION DEMOCRATICA,gobernacion,3,otros,,,
 2019,PARTIDO DIGNIDAD POPULAR,gobernacion,6,nacionalistas,,,
 2019,ALTERNATIVA VECINAL PLATENSE,intendente,3,otros,,,
-2019,CONSENSO FEDERAL,intendente,4,peronismo provincial,,,
+2019,CONSENSO FEDERAL,intendente,4,peronismo provincial,0.073,0.34,0.329
 2019,FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD,intendente,1,marxistas,,,
-2019,FRENTE DE TODOS,intendente,3,peronistas,,,
+2019,FRENTE DE TODOS,intendente,3,peronistas,-0.465,1.069,0.642
 2019,FRENTE NOS,intendente,4,nacionalistas,,,
 2019,FRENTE PATRIOTA,intendente,6,nacionalistas,,,
-2019,JUNTOS POR EL CAMBIO,intendente,5,liberales,,,
+2019,JUNTOS POR EL CAMBIO,intendente,5,liberales,1.401,-0.142,0.186
 2019,MOVIMIENTO DE AVANZADA SOCIALISTA,intendente,1,marxistas,,,
 2019,MOVIMIENTO ORGANIZACION DEMOCRATICA,intendente,3,otros,,,
 2019,PARTIDO DIGNIDAD POPULAR,intendente,6,nacionalistas,,,
 2019,PARTIDO HUMANISTA,intendente,2,progresistas,,,
-2019,CONSENSO FEDERAL,presidente,4,peronismo provincial,,,
+2019,CONSENSO FEDERAL,presidente,4,peronismo provincial,0.073,0.34,0.329
 2019,FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD,presidente,1,marxistas,,,
-2019,FRENTE DE TODOS,presidente,3,peronistas,,,
+2019,FRENTE DE TODOS,presidente,3,peronistas,-0.465,1.069,0.642
 2019,FRENTE NOS,presidente,4,nacionalistas,,,
 2019,FRENTE PATRIOTA,presidente,6,nacionalistas,,,
-2019,JUNTOS POR EL CAMBIO,presidente,5,liberales,,,
+2019,JUNTOS POR EL CAMBIO,presidente,5,liberales,1.401,-0.142,0.186
 2019,MOVIMIENTO AL SOCIALISMO,presidente,1,marxistas,,,
 2019,MOVIMIENTO DE ACCION VECINAL,presidente,4,otros,,,
 2019,PARTIDO AUTONOMISTA,presidente,2,conservadores,,,
@@ -185,7 +185,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2021,FRENTE PATRIOTA,municipal,6,nacionalistas,,,
 2021,FRENTE VAMOS CON VOS,municipal,4,conservadores,,,
 2021,HUMANISTA,municipal,2,progresistas,,,
-2021,JUNTOS,municipal,5,liberales,,,
+2021,JUNTOS,municipal,5,liberales,1.401,-0.141,0.186
 2021,MOVIMIENTO AL SOCIALISMO,municipal,1,marxistas,,,
 2021,MOVIMIENTO ORGANIZACION DEMOCRATICA,municipal,3,otros,,,
 2021,RENOVADOR FEDERAL,municipal,4,peronistas,,,
@@ -206,7 +206,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2021,FRENTE PATRIOTA,nacional,6,nacionalistas,,,
 2021,FRENTE UNION POR EL FUTURO,nacional,5,liberales,,,
 2021,FRENTE VAMOS CON VOS,nacional,4,conservadores,,,
-2021,JUNTOS,nacional,5,liberales,,,
+2021,JUNTOS,nacional,5,liberales,1.401,-0.141,0.186
 2021,JUSTICIA Y DIGNIDAD PATRIOTICA,nacional,6,nacionalistas,,,
 2021,LABORISTA,nacional,3,peronistas,,,
 2021,MORAL Y PROGRESO,nacional,5,liberales,,,
@@ -228,7 +228,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2021,FRENTE PATRIOTA,provincial,6,nacionalistas,,,
 2021,FRENTE VAMOS CON VOS,provincial,4,conservadores,,,
 2021,HUMANISTA,provincial,2,progresistas,,,
-2021,JUNTOS,provincial,5,liberales,,,
+2021,JUNTOS,provincial,5,liberales,1.401,-0.141,0.186
 2021,MOVIMIENTO AL SOCIALISMO,provincial,1,marxistas,,,
 2021,MOVIMIENTO ORGANIZACION DEMOCRATICA,provincial,3,otros,,,
 2021,RENOVADOR FEDERAL,provincial,4,peronistas,,,
@@ -258,7 +258,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2023,PROYECTO JOVEN,gobernacion,3,otros,,,
 2023,TODOS POR BUENOS AIRES,gobernacion,3,conservadores,,,
 2023,UNIDAD SOCIAL,gobernacion,2,progresistas,,,
-2023,UNION POR LA PATRIA,gobernacion,3,peronistas,,,
+2023,UNION POR LA PATRIA,gobernacion,3,peronistas,-0.465,1.069,0.642
 2023,VOCACION SOCIAL,gobernacion,2,progresistas,,,
 2023,BUENOS AIRES PRIMERO (BAP),intendente,6,liberales,,,
 2023,CELESTE PROVIDA,intendente,6,nacionalistas,,,
@@ -280,7 +280,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2023,PRINCIPIOS Y VALORES,intendente,4,peronistas,,,
 2023,PROYECTO JOVEN,intendente,3,otros,,,
 2023,TODOS POR BUENOS AIRES,intendente,3,conservadores,,,
-2023,UNION POR LA PATRIA,intendente,3,peronistas,,,
+2023,UNION POR LA PATRIA,intendente,3,peronistas,-0.465,1.069,0.642
 2023,VOCACION SOCIAL,intendente,2,progresistas,,,
 2023,FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD,presidente,1,marxistas,,,
 2023,FRENTE LIBER.AR,presidente,6,liberales,,,
@@ -296,8 +296,8 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2023,PRINCIPIOS Y VALORES,presidente,4,peronistas,,,
 2023,PROYECTO JOVEN,presidente,3,otros,,,
 2023,UNION DEL CENTRO DEMOCRATICO,presidente,4,liberales,,,
-2023,UNION POR LA PATRIA,presidente,3,peronistas,,,
-2025,ALIANZA FUERZA PATRIA,nacional,3,peronistas,,,
+2023,UNION POR LA PATRIA,presidente,3,peronistas,-0.465,1.069,0.642
+2025,ALIANZA FUERZA PATRIA,nacional,3,peronistas,-0.465,1.069,0.642
 2025,ALIANZA LA LIBERTAD AVANZA,nacional,6,liberales,,,
 2025,ALIANZA NUEVOS AIRES,nacional,4,liberales,,,
 2025,ALIANZA POTENCIA,nacional,4,liberales,,,

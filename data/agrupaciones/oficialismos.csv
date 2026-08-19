@@ -1,0 +1,25 @@
+anio,nivel,agrupacion_ganadora,era_oficialismo,campo_ideologico,filiacion_politica,vparty_economico,vparty_progresismo,vparty_populismo
+2011,municipal,ALIANZA FRENTE PARA LA VICTORIA,true,3,peronistas,-1.686,2.097,0.871
+2011,provincial,ALIANZA FRENTE PARA LA VICTORIA,true,3,peronistas,-1.686,2.097,0.871
+2011,nacional,ALIANZA FRENTE PARA LA VICTORIA,true,3,peronistas,-1.686,2.097,0.871
+2013,municipal,FRENTE RENOVADOR,false,4,peronistas,0.376,-0.0155,0.363
+2013,provincial,FRENTE RENOVADOR,false,4,peronistas,0.376,-0.0155,0.363
+2013,nacional,FRENTE RENOVADOR,false,4,peronistas,0.376,-0.0155,0.363
+2015,municipal,CAMBIEMOS BUENOS AIRES,false,5,liberales,1.427,0.001,0.148
+2015,provincial,CAMBIEMOS BUENOS AIRES,false,5,liberales,1.427,0.001,0.148
+2015,nacional,ALIANZA CAMBIEMOS,false,5,liberales,1.427,0.001,0.148
+2017,municipal,CAMBIEMOS BUENOS AIRES,true,5,liberales,1.418,-0.0552,0.145
+2017,provincial,CAMBIEMOS BUENOS AIRES,true,5,liberales,1.418,-0.0552,0.145
+2017,nacional,CAMBIEMOS BUENOS AIRES,true,5,liberales,1.418,-0.0552,0.145
+2019,municipal,JUNTOS POR EL CAMBIO,true,5,liberales,1.401,-0.1415,0.186
+2019,provincial,JUNTOS POR EL CAMBIO,true,5,liberales,1.401,-0.1415,0.186
+2019,nacional,FRENTE DE TODOS,false,3,peronistas,-0.465,1.0688,0.642
+2021,municipal,JUNTOS,true,5,liberales,1.401,-0.1415,0.186
+2021,provincial,JUNTOS,false,5,liberales,1.401,-0.1415,0.186
+2021,nacional,JUNTOS,false,5,liberales,1.401,-0.1415,0.186
+2023,municipal,UNION POR LA PATRIA,false,3,peronistas,-0.465,1.0688,0.642
+2023,provincial,UNION POR LA PATRIA,true,3,peronistas,-0.465,1.0688,0.642
+2023,nacional,UNION POR LA PATRIA,true,3,peronistas,-0.465,1.0688,0.642
+2025,municipal,ALIANZA FUERZA PATRIA,true,3,peronistas,-0.465,1.0688,0.642
+2025,provincial,ALIANZA FUERZA PATRIA,true,3,peronistas,-0.465,1.0688,0.642
+2025,nacional,ALIANZA LA LIBERTAD AVANZA,true,6,liberales,,,
