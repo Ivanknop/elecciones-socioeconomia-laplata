@@ -22,6 +22,13 @@ from pathlib import Path
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 
+from constantes import (
+    MACRO_CACHE_DATOS_GOB_DIR,
+    MACRO_CATALOGO_SERIES_ANUALES_PATH,
+    MACRO_CATALOGO_SERIES_PATH,
+    MACRO_SERIES_ANUAL_PATH,
+    MACRO_SERIES_MENSUAL_PATH,
+)
 from macroeconomia.datos_gob_client import DatosGobClient
 from macroeconomia.series import ConceptoCatalogo, cargar_catalogo
 
@@ -128,11 +135,11 @@ def graficar_concepto_anual(filas: list[dict], concepto: ConceptoCatalogo, unida
 
 def generar_graficos(
     graficos_dir: Path | str = "graficos/macroeconomia",
-    catalogo_path: Path | str = "data/macroeconomia/catalogo_series.csv",
-    series_path: Path | str = "data/macroeconomia/series_macro_2011_2025.csv",
-    catalogo_anual_path: Path | str = "data/macroeconomia/catalogo_series_anuales.csv",
-    series_anual_path: Path | str = "data/macroeconomia/series_macro_anuales_2011_2025.csv",
-    cache_dir: Path | str = "data/macroeconomia/_cache/datos_gob",
+    catalogo_path: Path | str = MACRO_CATALOGO_SERIES_PATH,
+    series_path: Path | str = MACRO_SERIES_MENSUAL_PATH,
+    catalogo_anual_path: Path | str = MACRO_CATALOGO_SERIES_ANUALES_PATH,
+    series_anual_path: Path | str = MACRO_SERIES_ANUAL_PATH,
+    cache_dir: Path | str = MACRO_CACHE_DATOS_GOB_DIR,
     concepto_filtro: str | None = None,
 ) -> list[Path]:
     for p in (series_path, series_anual_path):
@@ -179,12 +186,12 @@ def generar_graficos(
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--concepto", help="si se omite, genera los 22 conceptos (mensuales + anuales)")
-    parser.add_argument("--catalogo", default="data/macroeconomia/catalogo_series.csv")
-    parser.add_argument("--series", default="data/macroeconomia/series_macro_2011_2025.csv")
-    parser.add_argument("--catalogo-anual", default="data/macroeconomia/catalogo_series_anuales.csv")
-    parser.add_argument("--series-anual", default="data/macroeconomia/series_macro_anuales_2011_2025.csv")
+    parser.add_argument("--catalogo", default=MACRO_CATALOGO_SERIES_PATH)
+    parser.add_argument("--series", default=MACRO_SERIES_MENSUAL_PATH)
+    parser.add_argument("--catalogo-anual", default=MACRO_CATALOGO_SERIES_ANUALES_PATH)
+    parser.add_argument("--series-anual", default=MACRO_SERIES_ANUAL_PATH)
     parser.add_argument("--graficos-dir", default="graficos/macroeconomia")
-    parser.add_argument("--cache-dir", default="data/macroeconomia/_cache/datos_gob")
+    parser.add_argument("--cache-dir", default=MACRO_CACHE_DATOS_GOB_DIR)
     args = parser.parse_args()
 
     generados = generar_graficos(

@@ -537,37 +537,57 @@ territorial, independiente y con otro propósito**: agrupar los resultados
 electorales por localidad/barrio de La Plata (Villa Elvira, Los Hornos, San
 Lorenzo, Melchor Romero, etc.) con nombres legibles, no censales.
 
-- **Crosswalk** (`data/fuentes_extra/circuito_localidad.csv`,
+- **Crosswalk por defecto** (`data/geolocalizacion/circuitos_por_localidad.csv`,
+  **derivado**, no hand-curated — se regenera en segundos con
+  `PYTHONPATH=src python -m geolocalizacion.circuitos_por_localidad`):
+  mapea `circuito` → `localidad` + `distancia_metros` por nearest-neighbor
+  contra el catálogo geolocalizado (36 localidades, Ministerio de Obras
+  Públicas + Georef-AR, ver skill `laplata-geolocalizacion`). Cubre los 68
+  circuitos de `circuitos_electorales_la_plata.geojson` con una fila cada
+  uno, sin niveles de cobertura que resolver. Metodología completa,
+  distancia media/máxima del match y localidades sin ningún circuito
+  asignado en `data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md`.
+- **Crosswalk histórico** (`data/geolocalizacion/fuentes_extra/circuito_localidad.csv`,
   hand-curated como `clasificacion_ideologica_agrupaciones.csv` — no se
-  regenera desde ningún notebook): mapea `circuito_id` → `localidad` con
-  dos niveles de cobertura
-  que nunca se mezclan sin pedirlo explícitamente —
-  `oficial_confirmada` (Resolución 1990/2007 del Ministerio del Interior,
-  16/68 circuitos) y `periodistico_no_oficial` (relevamiento "barrio por
-  barrio" de El Día, octubre 2025, 65/68 circuitos). El detalle completo
-  del armado, la cobertura circuito a circuito y qué falta está en
-  `data/fuentes_extra/CIRCUITOS_LOCALIDADES.md`; la auditoría de qué tan
-  bien coincide cada localidad `oficial_confirmada` contra el texto
-  completo de la resolución (no solo el título de la subsección) está en
-  `data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md`.
+  regenera desde ningún notebook, y ya no es el default): mapea
+  `circuito_id` → `localidad`/barrio con tres niveles de cobertura que
+  nunca se mezclan sin pedirlo explícitamente — `oficial_confirmada`
+  (Resolución 1990/2007 del Ministerio del Interior, 16/68 circuitos),
+  `revision_web` (relevamiento "barrio por barrio" de El Día, octubre
+  2025, con la etiqueta recontrastada contra fuentes adicionales en la
+  web, 6/68 circuitos) y `periodistico_no_oficial` (el mismo relevamiento
+  de El Día sin esa revisión adicional, 59/68 circuitos). Sigue disponible
+  para quien específicamente quiera nombre de barrio o reproducir
+  resultados previos a la reconstrucción sobre geolocalización. El
+  detalle completo del armado, la cobertura circuito a circuito y qué
+  falta está en `data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md`; la
+  auditoría de qué tan bien coincide cada localidad `oficial_confirmada`
+  contra el texto completo de la resolución (no solo el título de la
+  subsección) está en `data/geolocalizacion/fuentes_extra/AUDITORIA_DISCREPANCIAS.md`.
 - **`src/electoral/localidades.py`**: la lógica de agrupamiento pura
-  (`agrupar_resultados_por_localidad`), sin tocar `data/` ni la API.
-  `oficial_confirmada` prevalece siempre sobre `periodistico_no_oficial`
-  cuando ambas existen para un circuito; ningún voto se pierde nunca — lo
-  que no tiene localidad asignada queda en la fila `SIN_DETERMINAR`,
-  siempre presente en el resultado.
-- **`src/analisis/cuadros_por_localidad.py`**: script que combina ese
-  crosswalk con los `circuito_<nivel>.json` ya generados por el notebook
-  04 (no vuelve a tocar la API ni el CSV oficial) y escribe un CSV por
-  (año, nivel, etapa) en `data/por_localidad/` — es un CSV derivado (data,
-  no imagen), pero no se versiona: se regenera en segundos, igual criterio
-  que `graficos/`. Cada cuadro trae, además de las 6 columnas de campo
-  ideológico, una columna `blanco_nulo` (votos en blanco + nulos — no es
-  una ideología, pero tampoco se mezcla en un "otros" genérico), una
-  columna `otros` con el resto (impugnado/recurrido/comando,
-  procedimental) y una columna `ausentismo` (`electores` del circuito menos
-  sus votos válidos), más la cobertura de circuitos/votos lograda como
-  comentario `#` en el encabezado.
+  (`agrupar_resultados_por_localidad`), sin tocar `data/` ni la API —
+  agnóstica de qué crosswalk armó el mapa `circuito_id -> localidad` que
+  recibe (`cargar_circuito_localidad_geo` para el crosswalk geolocalizado,
+  o `cargar_crosswalk` + `mapa_localidad_por_circuito` para el histórico,
+  donde `oficial_confirmada` prevalece siempre sobre `revision_web`, y
+  `revision_web` sobre `periodistico_no_oficial`). Ningún voto se pierde
+  nunca en ninguno de los dos casos — lo que no tiene localidad asignada
+  (con el crosswalk geolocalizado, solo `circuito_id` de años anteriores
+  al recorte geojson vigente, ej. `504C`) queda en la fila
+  `SIN_DETERMINAR`, siempre presente en el resultado.
+- **`src/analisis/cuadros_por_localidad.py`**: script que combina el
+  crosswalk geolocalizado (default) con los `circuito_<nivel>.json` ya
+  generados por el notebook 04 (no vuelve a tocar la API ni el CSV
+  oficial) y escribe un CSV por (año, nivel, etapa) en
+  `data/por_localidad/` — es un CSV derivado (data, no imagen), pero no
+  se versiona: se regenera en segundos, igual criterio que `graficos/`.
+  Cada cuadro trae, además de las 6 columnas de campo ideológico, una
+  columna `blanco_nulo` (votos en blanco + nulos — no es una ideología,
+  pero tampoco se mezcla en un "otros" genérico), una columna `otros` con
+  el resto (impugnado/recurrido/comando, procedimental) y una columna
+  `ausentismo` (`electores` del circuito menos sus votos válidos), más la
+  cobertura de circuitos/votos lograda como comentario `#` en el
+  encabezado.
 
   ```bash
   PYTHONPATH=src python -m analisis.cuadros_por_localidad --anio 2023 --nivel intendente

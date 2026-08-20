@@ -17,6 +17,14 @@ absoluto** (el relevamiento de El Día no los cubre), así que no hay nada que
 comparar para ellos: quedan marcados como `sin_dato_periodistico`, no como
 una categoría de acuerdo/desacuerdo.
 
+Esta auditoría compara únicamente `oficial_confirmada` contra
+`periodistico_no_oficial` — no cubre `revision_web`, el tercer nivel de
+cobertura del crosswalk (relevamiento de El Día con la etiqueta
+recontrastada contra fuentes adicionales en la web, ver
+`CIRCUITOS_LOCALIDADES.md`), que se agrega con precedencia intermedia
+(`oficial_confirmada` > `revision_web` > `periodistico_no_oficial`) para
+los circuitos que fueron subiendo de nivel.
+
 Ver también, al final de este documento, un hallazgo adicional sobre el
 circuito 493 (`MELCHOR_ROMERO`) — está fuera de este alcance formal de 16
 circuitos (493 no es parte de la Resolución 1990/2007), pero se documenta
@@ -71,14 +79,14 @@ clasificó en:
    de tratarlo como una coincidencia exacta más — pero formalmente no cumple
    la definición de "no aparece en ningún código", así que no entra en la
    lista de discrepancias reales de abajo.
-3. **Asentamientos posteriores a 2007 (RENABAP).** Varias etiquetas de El Día
-   para la familia 497 (497C `RENABAP_46_EL_TRIUNFO`, 497E `BARRIO_RENABAP`)
-   refieren al Registro Nacional de Barrios Populares, creado en 2016 — no
-   puede haber coincidencia con una resolución de 2007 casi por definición.
-   Se clasifican igualmente como `discrepancia_real` (no aparecen en la
-   tabla), pero la causa más probable no es un error de El Día sino
-   crecimiento urbano/asentamientos informales posteriores a la fuente
-   oficial.
+3. **497C y 497E — etiqueta `SAN_CARLOS`, patrón "vecino".** La resolución
+   solo les asigna un código a cada uno (4VC y 4VE, ambos "LOS HORNOS"),
+   así que `SAN_CARLOS` no figura en la tabla de ninguno de los dos. Sí
+   figura, en cambio, como código `4VO — B° SAN CARLOS` dentro de la tabla
+   de **496E** (ver arriba). Se clasifican igual como `discrepancia_real`
+   (no aparecen en la tabla de *su propio* circuito), pero es el mismo
+   patrón "vecino" que 496C/496D/503A (ver más abajo), no un caso aislado
+   sin ninguna base oficial.
 4. **Circuitos sin localidad dominante (503, 503A).** Estos dos circuitos
    no tienen una única localidad que domine por superficie o cantidad de
    códigos: la resolución les asigna varios (503: Gorina, City Bell, Los
@@ -117,11 +125,11 @@ clasificó en:
 | 496E | oficial_confirmada | VILLA ELVIRA (PARTE) (dominante, 1221) + Arana, Villa Garibaldi, Villa San Antonio, Sicardi Parque, B° San Carlos | *(sin dato)* | **sin_dato_periodistico** — El Día no cubre este circuito |
 | 496F | oficial_confirmada | VILLA ELVIRA (PARTE) (dominante, 1222) + I. Correas | *(sin dato)* | **sin_dato_periodistico** — El Día no cubre este circuito |
 | 497 | oficial_confirmada | **LOS HORNOS** (único código, 1R9) | LOS_HORNOS | **coincidencia_exacta** |
-| 497A | oficial_confirmada | LOS HORNOS (PARTE) (dominante, 1246) + **POBLET (CTEL. 5°) (1RD)**, L. Olmos (Parte) | POBLET | **sub_localidad_valida** |
+| 497A | oficial_confirmada | LOS HORNOS (PARTE) (dominante, 1246) + **POBLET (CTEL. 5°) (1RD)**, L. Olmos (Parte) | POBLET_OLIDEN | **sub_localidad_valida** — "Poblet" coincide con el código 1RD; "Oliden" es una especificidad adicional que la resolución no desglosa (mismo tipo de caso que 496A/Villa Montoro) |
 | 497B | oficial_confirmada | **LOS HORNOS** (único código, 4VB) | LOS_HORNOS | **coincidencia_exacta** |
-| 497C | oficial_confirmada | **LOS HORNOS** (único código, 4VC) | RENABAP_46_EL_TRIUNFO | **discrepancia_real** — ver decisión de interpretación #3 |
+| 497C | oficial_confirmada | **LOS HORNOS** (único código, 4VC) | SAN_CARLOS | **discrepancia_real** — ver decisión de interpretación #3 |
 | 497D | oficial_confirmada | **LOS HORNOS** (único código, 4VD) | EL_RETIRO | **discrepancia_real** — "El Retiro" no figura en ningún código de 497D |
-| 497E | oficial_confirmada | **LOS HORNOS** (único código, 4VE) | BARRIO_RENABAP | **discrepancia_real** — ver decisión de interpretación #3 |
+| 497E | oficial_confirmada | **LOS HORNOS** (único código, 4VE) | SAN_CARLOS | **discrepancia_real** — ver decisión de interpretación #3 |
 | 497F | oficial_confirmada | LOS HORNOS (4VF) + Olmos (Parte) (4XL) | EL_RETIRO | **discrepancia_real** — "El Retiro" no figura en ningún código de 497F |
 | 503 | oficial_confirmada (antes `oficial_no_agrupable`, ver decisión #4) | Sin dominante: Gorina (Parte), City Bell (Parte), Los Porteños, **Melchor Romero (Parte)** | ABASTO | **discrepancia_real** vs. El Día — "Abasto" no figura en ningún código de 503; se agrupa igual en `MELCHOR_ROMERO` porque oficial prevalece (ver decisión #4) |
 | 503A | oficial_confirmada (antes `oficial_no_agrupable`, ver decisión #4) | Sin dominante: Hernández (Parte), La Josefa, La Granja Norte (Parte), **Melchor Romero (Parte)**, Gonnet (Parte) | GORINA | **discrepancia_real** vs. El Día — Gorina no figura en la tabla de 503A (figura en la de **503**); se agrupa igual en `MELCHOR_ROMERO` porque oficial prevalece (ver decisión #4) |
@@ -156,19 +164,20 @@ discrepante.
 |---|---|---|
 | 496C | San Lorenzo (Parte) [dominante]; también Villa Lenci (Parte), El Aeródromo, B° Altos de San Lorenzo. **Arana no está en esta tabla** (está en la de 496E). | ARANA |
 | 496D | San Lorenzo (Parte) [dominante]; también Elizalde (Sec. 5°), Villa Lenci (Parte), B° Cementerio, B° U.O.M., B° U.P.C.N., B° F.O.E.C.Y.T., Puente de Fierro. **I. Correas no está en esta tabla** (está en la de 496F). | IGNACIO_CORREAS |
-| 497C | Los Hornos (único código listado). | RENABAP_46_EL_TRIUNFO |
+| 497C | Los Hornos (único código listado). **San Carlos no está en esta tabla** (está en la de 496E). | SAN_CARLOS |
 | 497D | Los Hornos (único código listado). | EL_RETIRO |
-| 497E | Los Hornos (único código listado). | BARRIO_RENABAP |
+| 497E | Los Hornos (único código listado). **San Carlos no está en esta tabla** (está en la de 496E). | SAN_CARLOS |
 | 497F | Los Hornos; Olmos (Parte). | EL_RETIRO |
 | 503 | Sin dominante — Gorina (Parte), City Bell (Parte), Los Porteños, Melchor Romero (Parte). | ABASTO |
 | 503A | Sin dominante — Hernández (Parte), La Josefa, La Granja Norte (Parte), Melchor Romero (Parte), Gonnet (Parte). **Gorina no está en esta tabla** (está en la de 503). | GORINA |
 
-Tres de estos ocho (496C, 496D, 503A) son casos donde la etiqueta de El Día
-sí existe como código oficial de localidad, pero en la tabla del circuito
-**vecino**, no en la del circuito etiquetado — un patrón distinto del "no
-existe en ninguna fuente oficial" de los otros cinco (497C, 497D, 497E, 497F,
-503), y que probablemente refleje que el área urbana real de esas
-localidades desborda el límite catastral del circuito tal como lo fijó la
+Cinco de estos ocho (496C, 496D, 497C, 497E, 503A) son casos donde la
+etiqueta de El Día sí existe como código oficial de localidad, pero en la
+tabla del circuito **vecino**, no en la del circuito etiquetado — un
+patrón distinto del "no existe en ninguna fuente oficial" de los otros
+tres (497D, 497F, 503), y que probablemente refleje que el área urbana
+real de esas localidades desborda el límite catastral del circuito tal
+como lo fijó la
 resolución de 2007.
 
 ## Hallazgo adicional (fuera del alcance de los 16 circuitos): circuito 493 / `MELCHOR_ROMERO`
@@ -229,12 +238,15 @@ eso es base suficiente para clasificarlo como tal. `circuito_localidad.csv`
 se actualizó: 503 y 503A pasaron de `oficial_no_agrupable` a
 `oficial_confirmada` → `MELCHOR_ROMERO` (ver decisión de interpretación #4
 más arriba). Con esto, la fila `MELCHOR_ROMERO` de los cuadros por
-localidad ahora combina **tres circuitos**: 493 (periodístico, identidad
-dudosa — ver arriba), 503 y 503A (oficial, ahora agrupados). La cobertura
-oficial subió de 14/68 a 16/68 circuitos (~30,6% de los votos en
-Intendente 2023, antes ~27,5%), y `SIN_DETERMINAR` bajó a un único
-circuito estructural: **521** (sin ninguna fila en el crosswalk). Ver
-`CIRCUITOS_LOCALIDADES.md` para el detalle completo de la decisión.
+localidad ahora combina **cuatro circuitos**: 493 (periodístico, identidad
+dudosa — ver arriba), 503 y 503A (oficial, agrupados por la decisión #4),
+y 508D (`revision_web`, ver `CIRCUITOS_LOCALIDADES.md` — el relevamiento de
+El Día para 508D pasó de la etiqueta `BARRIO_NUEVO` a `MELCHOR_ROMERO` tras
+una revisión adicional contra fuentes web). La cobertura oficial subió de
+14/68 a 16/68 circuitos (~30,3% de los votos en Intendente 2023, antes
+~27,5%), y `SIN_DETERMINAR` bajó a un único circuito estructural: **521**
+(sin ninguna fila en el crosswalk). Ver `CIRCUITOS_LOCALIDADES.md` para el
+detalle completo de la decisión.
 
 **Hueco de datos en el circuito 493 (2023, no en otros años) — sigue
 existiendo, ya no se nota a simple vista**: en Gobernador, Intendente y
@@ -248,22 +260,24 @@ diagnóstico causal (podría ser un telegrama de escrutinio provisorio no
 cargado al momento de la consulta a la API, dado lo remoto del circuito,
 pero es una hipótesis, no algo confirmado). Antes de la reclasificación de
 503/503A esto se veía directo en la fila `MELCHOR_ROMERO` (quedaba en
-cero); ahora que esa fila combina los tres circuitos, el hueco de 493
-queda **diluido** por los votos reales de 503 y 503A y ya no es visible
-mirando solo el total de la fila — verificado: `MELCHOR_ROMERO` da 13.158
-votos en Gobernador 2023, 13.151 en Intendente, 12.422 en Presidente (3
-circuitos cada uno), nada de eso en cero. Quien necesite aislar el hueco de
-493 tiene que desagregar por circuito, no alcanza con leer el cuadro por
-localidad.
+cero); ahora que esa fila combina los cuatro circuitos, el hueco de 493
+queda **diluido** por los votos reales de 503, 503A y 508D y ya no es
+visible mirando solo el total de la fila — verificado: `MELCHOR_ROMERO` da
+20.963 votos en Gobernador 2023 (4.837 de 503 + 7.271 de 503A + 8.855 de
+508D + 0 de 493), 20.840 en Intendente, 19.988 en Presidente (4 circuitos
+cada uno), nada de eso en cero. Quien necesite aislar el hueco de 493 tiene
+que desagregar por circuito, no alcanza con leer el cuadro por localidad.
 
 **Conclusión**: la fila `MELCHOR_ROMERO` de los cuadros por localidad
 combina votos de confiabilidad muy distinta: 503 y 503A (fuente oficial,
 Resolución 1990/2007, aunque sin ser la única localidad de esos circuitos
-— ver decisión de interpretación #4) y 493 (sin fuente oficial, con
-etiqueta periodística de identidad dudosa — ver arriba — y con un hueco de
-datos real en 2023). El grueso del volumen de la fila viene de 503/503A
-(493 es un circuito chico, ~100-120 electores, contra miles en 503/503A),
-así que la fila en su conjunto es razonablemente confiable pese al ruido
-de 493 — pero cualquier análisis que necesite aislar específicamente el
-circuito 493 (por su identidad dudosa o por el hueco de 2023) tiene que
-trabajar por circuito, no por esta fila agregada.
+— ver decisión de interpretación #4), 508D (`revision_web`, la etiqueta de
+El Día recontrastada contra fuentes web adicionales) y 493 (sin fuente
+oficial ni revisión adicional, con etiqueta periodística de identidad
+dudosa — ver arriba — y con un hueco de datos real en 2023). El grueso del
+volumen de la fila viene de 503/503A/508D (493 es un circuito chico,
+~100-120 electores, contra miles en los otros tres), así que la fila en su
+conjunto es razonablemente confiable pese al ruido de 493 — pero cualquier
+análisis que necesite aislar específicamente el circuito 493 (por su
+identidad dudosa o por el hueco de 2023) tiene que trabajar por circuito,
+no por esta fila agregada.

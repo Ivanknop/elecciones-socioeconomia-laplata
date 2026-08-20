@@ -23,9 +23,11 @@ detalle — y avisá para que esto se corrija.
 
 ## Antes de escribir código: leé esto, en este orden
 
-1. `data/fuentes_extra/CIRCUITOS_LOCALIDADES.md` -- estado de la
-   agrupación circuito→localidad, los dos niveles de cobertura y sus
-   fuentes.
+1. `data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md` -- estado del crosswalk
+   histórico circuito→barrio (dos niveles de cobertura y sus fuentes) y su
+   relación con el crosswalk geolocalizado que ahora es el default (ver
+   nota al principio de ese documento y
+   `data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md`).
 2. `docs/AUDITORIA_ESTADO.md` -- qué puntos de la auditoría
    metodológica original están resueltos, parciales o abiertos.
 3. `docs/nota_metodologica.md` -- el diseño de investigación completo:
@@ -51,10 +53,11 @@ data/totales/<nivel>/<año>/<etapa>/resultado_total.csv        # ídem para paso
 data/agrupaciones/clasificacion_ideologica_agrupaciones.csv    # clasificación ideológica manual -- append-only
 data/agrupaciones/tabla_referencia_filiacion_politica.csv       # fuente de filiacion_politica + confianza/nota de cada valor
 data/agrupaciones/circuito_id_correspondencias.csv             # normalización circuito_id entre años
-data/fuentes_extra/circuito_localidad.csv                      # crosswalk circuito -> localidad, dos niveles
-data/fuentes_extra/CIRCUITOS_LOCALIDADES.md                    # estado + qué falta -- no confundir con data/geolocalizacion/LOCALIDADES.md (ver laplata-geolocalizacion), son dos capas paralelas sin cruzar
-data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md                  # auditoría oficial vs. periodístico
-data/fuentes_extra/resolucion_1990-2007.md                     # fuente legal completa (familia 496/497/503)
+data/geolocalizacion/circuitos_por_localidad.csv                # crosswalk circuito -> localidad geolocalizada, DEFAULT de analisis.cuadros_por_localidad (ver laplata-geolocalizacion)
+data/geolocalizacion/fuentes_extra/circuito_localidad.csv                      # crosswalk histórico circuito -> barrio, dos niveles -- ya no es el default, sigue disponible
+data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md                    # estado + qué falta del crosswalk histórico -- no confundir con data/geolocalizacion/LOCALIDADES.md (ver laplata-geolocalizacion)
+data/geolocalizacion/fuentes_extra/AUDITORIA_DISCREPANCIAS.md                  # auditoría oficial vs. periodístico
+data/geolocalizacion/fuentes_extra/resolucion_1990-2007.md                     # fuente legal completa (familia 496/497/503)
 data/socioeconomia/circuito_radio_correspondencia.csv           # correspondencia espacial circuito<->radio censal (peso_area)
 data/socioeconomia/radios_censales_{2010,2022}_la_plata.geojson
 src/electoral/          # cliente API, modelos, parsing, agrupamiento por localidad (localidades.py), totales por agrupación (totales.py)
@@ -102,15 +105,20 @@ Presidente 2015/2023).
   `circuito_id_correspondencias.csv` (formatos: con cero a la izquierda
   vs. sin, con o sin sufijo de letra) antes de cualquier cruce
   longitudinal.
-- **Los crosswalks tienen niveles de cobertura explícitos, y no se
-  mezclan sin que el código lo declare.** Ver el patrón en
-  `circuito_localidad.csv` (`oficial_confirmada` /
-  `oficial_no_agrupable` / `periodistico_no_oficial`, con
-  `oficial_confirmada` como default más conservador en
-  `agrupar_resultados_por_localidad`). Cualquier crosswalk nuevo que se
-  agregue a este repo debería seguir el mismo patrón: columna `fuente`,
-  columna `cobertura`, y una función de agregación que reciba
-  explícitamente qué niveles usar.
+- **`agrupar_resultados_por_localidad` (en `electoral/localidades.py`) es
+  agnóstica de la fuente del crosswalk**: recibe un mapa
+  `circuito_id -> localidad` ya resuelto, no el crosswalk crudo. Dos formas
+  de construir ese mapa, no intercambiables sin pensarlo: `cargar_circuito_localidad_geo`
+  (crosswalk geolocalizado, `data/geolocalizacion/circuitos_por_localidad.csv`,
+  sin niveles -- cada circuito tiene una sola fila, **default** de
+  `analisis.cuadros_por_localidad`) o `cargar_crosswalk` +
+  `mapa_localidad_por_circuito` (crosswalk histórico por nombre de barrio,
+  `circuito_localidad.csv`, con niveles de cobertura explícitos
+  `oficial_confirmada` / `oficial_no_agrupable` / `revision_web` /
+  `periodistico_no_oficial` que no se mezclan sin que el código lo
+  declare). Cualquier crosswalk nuevo con niveles debería seguir el mismo
+  patrón que este último: columna `fuente`, columna `cobertura`, y una
+  función de agregación que reciba explícitamente qué niveles usar.
 - **La correspondencia espacial circuito↔radio censal (Censo) y la capa
   EPH-aglomerado NO se cruzan a nivel circuito.** Decisión tomada
   explícitamente: el desajuste entre las tres mallas (circuito, radio
@@ -167,12 +175,29 @@ Presidente 2015/2023).
   cobertura de mesas/electores. No se investigó la causa a fondo todavía;
   no usar `cobertura` de estos tres `circuito_<nivel>.json` de PASO 2013
   para calcular `ausentismo` sin tener esto presente.
+- **(Resuelto)** `analisis.cuadros_por_localidad` rompía con
+  `KeyError('')` en 4 combos por `campo_ideologico` vacío/desactualizado:
+  2017 nacional/provincial/municipal PASO (`PARTIDO SOCIALISTA`/`FRENTE
+  SOCIALISTA Y POPULAR`, ya clasificados en el CSV -- el
+  `circuito_<nivel>.json` cacheado solo estaba desactualizado, un re-run
+  de notebook 04 lo corrigió) y 2023 gobernador PASO (`FRENTE FEDERAL DE
+  ACCION SOLIDARIA DE LA PROVINCIA DE BUENOS AIRES`, genuinamente sin
+  clasificar -- se clasificó `campo_ideologico=3` (centro),
+  `filiacion_politica=peronismo provincial` (ya estaba así en la fila
+  gemela de nivel `intendente`, consistente con "peronismo federal" según
+  Ivan), y se volvió a correr notebook 04). Los 44 combos de
+  `data/por_localidad/` generan limpio ahora. Si aparece un caso similar
+  a futuro (agrupación con `campo_ideologico` vacío bloqueando este
+  script), el diagnóstico es: 1) ¿está clasificada en el CSV pero el JSON
+  cacheado es viejo? -> re-correr notebook 04 (no hace falta red si el
+  CSV/JSON crudo de ese combo ya está en caché). 2) ¿no está clasificada
+  en el CSV? -> pedir la clasificación antes de tocar código.
 
 ## Referencias
 
-- `data/fuentes_extra/resolucion_1990-2007.md` -- fuente legal completa
+- `data/geolocalizacion/fuentes_extra/resolucion_1990-2007.md` -- fuente legal completa
   (texto + anexo de localidades) para la familia 496/497/503.
-- `data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md` -- comparación fila
+- `data/geolocalizacion/fuentes_extra/AUDITORIA_DISCREPANCIAS.md` -- comparación fila
   por fila entre oficial y periodístico para los 16 circuitos con
   fuente oficial.
 - `docs/AUDITORIA_ESTADO.md` -- tabla de estado de cada punto de auditoría,

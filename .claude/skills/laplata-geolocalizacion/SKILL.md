@@ -1,16 +1,21 @@
 ---
 name: laplata-geolocalizacion
-description: Estructura de datos y metodología de la capa de geolocalización del repositorio elecciones-socioeconomia-laplata (catálogo validado de las 36 localidades del Partido de La Plata, Georef-AR cruzado contra el Ministerio de Obras Públicas). Usar al trabajar con Georef-AR, data/fuentes_extra/localidades.csv, coordenadas de localidades, o el mapa de localidades. Para convenciones generales del repo ver primero el skill laplata-general; no confundir con el crosswalk circuito↔localidad de laplata-elecciones.
+description: Estructura de datos y metodología de la capa de geolocalización del repositorio elecciones-socioeconomia-laplata (catálogo validado de las 36 localidades del Partido de La Plata, Georef-AR cruzado contra el Ministerio de Obras Públicas). Usar al trabajar con Georef-AR, data/geolocalizacion/fuentes_extra/localidades.csv, coordenadas de localidades, o el mapa de localidades. Para convenciones generales del repo ver primero el skill laplata-general; no confundir con el crosswalk circuito↔localidad de laplata-elecciones.
 ---
 
 # Capa de geolocalización
 
 `src/geolocalizacion/` es un dominio separado: catálogo validado de
-localidades (nombre + lat/lon), **sin `circuito_id` todavía**. No
-confundir con el crosswalk `circuito_id → nombre de barrio` de
-`laplata-elecciones` (`data/fuentes_extra/circuito_localidad.csv` /
-`CIRCUITOS_LOCALIDADES.md`) -- son dos capas paralelas que hoy no están
-cruzadas entre sí.
+localidades (nombre + lat/lon), ya cruzado contra `circuito_id`
+(`data/geolocalizacion/circuitos_por_localidad.csv`, ver
+`CIRCUITOS_POR_LOCALIDAD.md` más abajo) -- ese crosswalk derivado es hoy
+el default de `analisis.cuadros_por_localidad` y de
+`analisis.mapa_interactivo`. No confundir con el crosswalk histórico
+`circuito_id → nombre de barrio` de `laplata-elecciones`
+(`data/geolocalizacion/fuentes_extra/circuito_localidad.csv` /
+`CIRCUITOS_LOCALIDADES.md`, otra fuente -- Resolución 1990/2007 +
+relevamiento periodístico -- y otro universo de nombres, sigue vivo pero
+ya no es el default) -- son dos crosswalks paralelos, no fusionados.
 
 Para convenciones que aplican a todo el repo, ver el skill
 `laplata-general` primero. Para la metodología completa y los hallazgos
@@ -26,7 +31,7 @@ Cruza dos fuentes oficiales independientes por nombre normalizado:
   asentamiento censal (INDEC) del municipio. Nunca trae geometría de
   polígono por localidad; el polígono del partido sí existe pero solo
   en la descarga masiva `v2.0/departamentos.geojson`.
-- **Ministerio de Obras Públicas** (`data/fuentes_extra/localidades.csv`,
+- **Ministerio de Obras Públicas** (`data/geolocalizacion/fuentes_extra/localidades.csv`,
   exportado a mano de <https://snop-ppo.obraspublicas.gob.ar/localities>,
   filtrado a La Plata, códigos UTA 2010/2020) -- mismo universo,
   coordenadas propias. Es un insumo, no un derivado: no borrar ni tratar
@@ -35,12 +40,17 @@ Cruza dos fuentes oficiales independientes por nombre normalizado:
 ## Estructura de datos
 
 ```
-data/fuentes_extra/localidades.csv                # fuente Ministerio (SNOP), recorte a La Plata -- insumo de catalogo.py
+data/geolocalizacion/fuentes_extra/localidades.csv                # fuente Ministerio (SNOP), recorte a La Plata -- insumo de catalogo.py
+data/geolocalizacion/fuentes_extra/circuito_localidad.csv          # crosswalk histórico circuito->barrio (ver laplata-elecciones) -- vive acá desde que se movió data/fuentes_extra/, no es del dominio geolocalización
+data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md, AUDITORIA_DISCREPANCIAS.md, resolucion_1990-2007.md   # docs del crosswalk histórico, idem
 data/geolocalizacion/localidades_la_plata.csv      # catálogo validado, 36 filas, git-tracked -- generado por catalogo.py
+data/geolocalizacion/circuitos_por_localidad.csv    # crosswalk circuito_id -> localidad geolocalizada, 68 filas, git-tracked -- generado por circuitos_por_localidad.py, DEFAULT de analisis.cuadros_por_localidad y analisis.mapa_interactivo
 data/geolocalizacion/LOCALIDADES.md                 # metodología, esquema de columnas, hallazgos, qué falta
+data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md     # metodología del cruce circuito<->localidad (nearest-neighbor), resultado, caso circuito 493
 data/geolocalizacion/_cache/                        # respuestas crudas de Georef, NO versionado
 src/geolocalizacion/georef_client.py    # fetch+cache de Georef (asentamientos + el feature del polígono del partido)
 src/geolocalizacion/catalogo.py         # cruce por nombre (con dos alias manuales), escribe el CSV validado
+src/geolocalizacion/circuitos_por_localidad.py   # nearest-neighbor circuito<->localidad, escribe circuitos_por_localidad.csv
 src/geolocalizacion/mapa.py             # PNG del partido con las 36 localidades -> graficos/geolocalizacion/, NO versionado
 ```
 
@@ -62,7 +72,7 @@ src/geolocalizacion/mapa.py             # PNG del partido con las 36 localidades
   del resto del partido, confirmado por ambas fuentes y por el propio
   polígono oficial (que tiene una segunda pieza geométrica separada
   ahí) -- consistente con la nota ya documentada en
-  `data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md` sobre el circuito 493
+  `data/geolocalizacion/fuentes_extra/AUDITORIA_DISCREPANCIAS.md` sobre el circuito 493
   como "límite incierto" en el crosswalk de `laplata-elecciones`. Dos
   fuentes de geolocalización independientes apuntan a que esa etiqueta
   amerita revisión, sin que esto sea todavía una corrección aplicada.
@@ -72,16 +82,18 @@ src/geolocalizacion/mapa.py             # PNG del partido con las 36 localidades
 
 ## Qué falta
 
-- Cruzar contra `circuito_id` (join espacial punto-en-polígono o
-  nearest-neighbor, análogo al cruce circuito↔radio censal de
-  `src/socioeconomia/geo.py`) para poder agrupar resultados electorales
-  por localidad geolocalizada en vez del crosswalk por nombre.
+- **(Resuelto)** Cruzar contra `circuito_id` -- ya está, ver
+  `circuitos_por_localidad.csv`/`CIRCUITOS_POR_LOCALIDAD.md` arriba
+  (nearest-neighbor, no punto-en-polígono: el catálogo no trae polígono
+  por localidad, solo un punto).
 - Cruzar contra series censales (INDEC) para ver crecimiento de
   indicadores socioeconómicos por localidad -- el objetivo original que
-  motivó este catálogo.
+  motivó este catálogo, sigue pendiente.
 
 ## Referencias
 
 - `data/geolocalizacion/LOCALIDADES.md` -- metodología completa, tabla
   de origen de cada columna, hallazgos con su detalle.
+- `data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md` -- metodología del
+  crosswalk circuito↔localidad, resultado, caso circuito 493.
 - `CLAUDE.md` -- comandos exactos y arquitectura autoritativa.

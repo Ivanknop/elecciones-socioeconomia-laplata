@@ -25,6 +25,7 @@ from analisis.graficos import (
     color_categoria,
     etiqueta_categoria,
 )
+from constantes import CARGO_LABEL, DATA_DISTRITO_DIR
 
 NIVELES_POR_ANIO = {
     2011: ["presidente", "gobernador", "intendente"],
@@ -36,16 +37,6 @@ NIVELES_POR_ANIO = {
     2023: ["presidente", "gobernador", "intendente"],
     2025: ["nacional"],
 }
-
-CARGO_LABEL = {
-    "presidente": "Presidente",
-    "gobernador": "Gobernador",
-    "intendente": "Intendente",
-    "nacional": "Diputados Nac.",
-    "provincial": "Diputados Prov.",
-    "municipal": "Concejales",
-}
-
 
 def _niveles_disponibles(data_dir: Path | str, anio: int) -> list[str]:
     data_dir = Path(data_dir)
@@ -121,7 +112,7 @@ def generar_cuadro_anual(data_dir: Path | str, graficos_dir: Path | str, anio: i
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--anio", type=int, help="si se omite, corre todos los años disponibles")
-    parser.add_argument("--data-dir", default="data/distrito")
+    parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
     parser.add_argument("--graficos-dir", default="graficos/distrito")
     args = parser.parse_args()
 

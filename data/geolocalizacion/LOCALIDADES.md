@@ -13,7 +13,7 @@ fuentes oficiales independientes por nombre:
    cada asentamiento censal (INDEC) dentro del municipio; nunca
    geometría de polígono por localidad (el polígono del partido sí está
    disponible, pero solo en la descarga masiva, ver más abajo).
-2. **Ministerio de Obras Públicas** (`data/fuentes_extra/localidades.csv`)
+2. **Ministerio de Obras Públicas** (`data/geolocalizacion/fuentes_extra/localidades.csv`)
    — exportado a mano desde <https://snop-ppo.obraspublicas.gob.ar/localities>
    (Sistema Nacional de Obras Públicas), filtrando por Municipio = LA
    PLATA, el 09/08/2026. Trae `Nombre`, `Código UTA 2020`,
@@ -24,10 +24,10 @@ fuentes oficiales independientes por nombre:
    referencias a capas OWS — **todas vacías para las 35 filas de La
    Plata** en esta exportación, así que no se copiaron al CSV filtrado.
    Esa descarga original queda en
-   `data/fuentes_extra/Listado de Localidades - 09-08-2026.xlsx`,
+   `data/geolocalizacion/fuentes_extra/Listado de Localidades - 09-08-2026.xlsx`,
    **no versionada** (`.gitignore`) por ser un dump nacional de ~1 MB
    casi todo irrelevante para este repo — el CSV filtrado sí lo está,
-   mismo criterio que el resto de `data/fuentes_extra/`.
+   mismo criterio que el resto de `data/geolocalizacion/fuentes_extra/`.
 
 Lo arma `src/geolocalizacion/catalogo.py`:
 
@@ -60,7 +60,7 @@ sola fuente concreta, o se calcula a partir de las otras:
 | `nombre` | Georef-AR | nombre del asentamiento tal como lo devuelve la API — es el nombre "canónico" de este catálogo; el nombre del Ministerio puede diferir en forma (ver los dos alias arriba) pero nunca se usa como nombre de salida |
 | `georef_id` | Georef-AR | id interno del asentamiento en Georef |
 | `lat`, `lon` | Georef-AR | centroide del asentamiento según Georef — son las coordenadas "principales" que usa `geolocalizacion.mapa` para graficar |
-| `uta_2020` | Ministerio de Obras Públicas | columna `Código UTA 2020` de `data/fuentes_extra/localidades.csv` |
+| `uta_2020` | Ministerio de Obras Públicas | columna `Código UTA 2020` de `data/geolocalizacion/fuentes_extra/localidades.csv` |
 | `uta_2010` | Ministerio de Obras Públicas | columna `Código UTA 2010` de la misma fuente. **En las 35 filas de La Plata coincide exactamente con `uta_2020`** — no es un bug de este script ni una columna duplicada por error, así viene la fuente (el código no se revisó entre 2010 y 2020 para este municipio) |
 | `lat_ministerio`, `lon_ministerio` | Ministerio de Obras Públicas | centroide de esa localidad según el Ministerio — ver la sección de deltas más abajo para por qué casi nunca coincide con `lat`/`lon` |
 | `delta_metros` | calculado (`catalogo.py`, `_haversine_metros`) | distancia entre `(lat, lon)` y `(lat_ministerio, lon_ministerio)`; vacío cuando `fuentes=solo_georef` (no hay con qué comparar) |
@@ -108,7 +108,7 @@ geométrica separada ahí (Isla Martín García, Río de la Plata). El
 crosswalk `circuito_localidad.csv`, en cambio, etiqueta el circuito
 `493` como `MELCHOR_ROMERO` (localidad continental) usando solo la
 fuente periodística de El Día — consistente con la nota ya documentada
-en `data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md` sobre 493 como
+en `data/geolocalizacion/fuentes_extra/AUDITORIA_DISCREPANCIAS.md` sobre 493 como
 "límite incierto". Dos fuentes de geolocalización independientes
 apuntan en la misma dirección: esa etiqueta amerita revisión cuando se
 haga el cruce circuito↔localidad geolocalizada.
@@ -129,21 +129,20 @@ falta o con `--force-refresh`).
 PYTHONPATH=src python -m geolocalizacion.mapa
 ```
 
+## Cruce contra `circuito_id`
+
+Ver `CIRCUITOS_POR_LOCALIDAD.md` — `data/geolocalizacion/circuitos_por_localidad.csv`
+asigna a cada uno de los 68 circuitos electorales la localidad de este
+catálogo más cercana (nearest-neighbor, no hay polígono por localidad
+para hacer punto-en-polígono).
+
 ## Qué falta
 
-Esto es geolocalización pura — nombre + punto, sin `circuito_id` y sin
-indicadores. Dos cruces quedan para después, explícitamente fuera de
-alcance de este catálogo por ahora:
+Esto es geolocalización pura — nombre + punto, sin indicadores. Un cruce
+queda para después, explícitamente fuera de alcance de este catálogo por
+ahora:
 
-1. **Cruzar contra `circuito_id`** (join espacial punto-en-polígono o
-   nearest-neighbor contra la capa de circuitos electorales que ya usa
-   `src/socioeconomia/geo.py` para el cruce circuito↔radio censal) — para
-   poder finalmente conjugar resultados electorales con localidad
-   geolocalizada en vez del crosswalk por nombre de
-   `CIRCUITOS_LOCALIDADES.md`. El margen de error de 1-7 km entre
-   fuentes (ver arriba) va a afectar la precisión de ese join cerca de
-   los límites de circuito.
-2. **Cruzar contra series censales** (INDEC) para poder ver crecimiento
+1. **Cruzar contra series censales** (INDEC) para poder ver crecimiento
    de indicadores socioeconómicos por localidad a lo largo del tiempo —
    el objetivo original que motivó armar este catálogo. Ninguna de las
    dos fuentes usadas acá trae esos indicadores todavía (`Población` y

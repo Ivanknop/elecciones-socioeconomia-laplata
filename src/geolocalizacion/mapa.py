@@ -23,6 +23,7 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 from shapely.geometry import shape
 
+from constantes import GEOLOCALIZACION_CACHE_DIR, LOCALIDADES_LA_PLATA_PATH
 from geolocalizacion.georef_client import GeorefClient
 
 DEPARTAMENTO_ID = "06441"
@@ -84,9 +85,9 @@ def graficar_mapa(catalogo: list[dict], feature_partido: dict, ax=None):
 
 
 def generar_mapa(
-    catalogo_path: Path | str = "data/geolocalizacion/localidades_la_plata.csv",
+    catalogo_path: Path | str = LOCALIDADES_LA_PLATA_PATH,
     destino: Path | str = "graficos/geolocalizacion/mapa_localidades.png",
-    cache_dir: Path | str = "data/geolocalizacion/_cache",
+    cache_dir: Path | str = GEOLOCALIZACION_CACHE_DIR,
     departamento_id: str = DEPARTAMENTO_ID,
     force_refresh: bool = False,
 ) -> Path:
@@ -107,9 +108,9 @@ def generar_mapa(
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--catalogo", default="data/geolocalizacion/localidades_la_plata.csv")
+    parser.add_argument("--catalogo", default=LOCALIDADES_LA_PLATA_PATH)
     parser.add_argument("--destino", default="graficos/geolocalizacion/mapa_localidades.png")
-    parser.add_argument("--cache-dir", default="data/geolocalizacion/_cache")
+    parser.add_argument("--cache-dir", default=GEOLOCALIZACION_CACHE_DIR)
     parser.add_argument("--departamento-id", default=DEPARTAMENTO_ID)
     parser.add_argument("--force-refresh", action="store_true")
     args = parser.parse_args()

@@ -42,6 +42,7 @@ from dataclasses import dataclass
 from datetime import date, timedelta
 from pathlib import Path
 
+from constantes import MACRO_CACHE_DATOS_GOB_DIR, MACRO_CATALOGO_SERIES_PATH, MACRO_SERIES_MENSUAL_PATH
 from macroeconomia.datos_gob_client import DatosGobClient
 
 
@@ -213,9 +214,9 @@ def construir_tabla_mensual(
 
 
 def generar_csv(
-    catalogo_path: Path | str = "data/macroeconomia/catalogo_series.csv",
-    destino: Path | str = "data/macroeconomia/series_macro_2011_2025.csv",
-    cache_dir: Path | str = "data/macroeconomia/_cache/datos_gob",
+    catalogo_path: Path | str = MACRO_CATALOGO_SERIES_PATH,
+    destino: Path | str = MACRO_SERIES_MENSUAL_PATH,
+    cache_dir: Path | str = MACRO_CACHE_DATOS_GOB_DIR,
     anio_inicio: int = 2011,
     anio_fin: int = 2025,
     force_refresh: bool = False,
@@ -243,9 +244,9 @@ def generar_csv(
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--catalogo", default="data/macroeconomia/catalogo_series.csv")
-    parser.add_argument("--destino", default="data/macroeconomia/series_macro_2011_2025.csv")
-    parser.add_argument("--cache-dir", default="data/macroeconomia/_cache/datos_gob")
+    parser.add_argument("--catalogo", default=MACRO_CATALOGO_SERIES_PATH)
+    parser.add_argument("--destino", default=MACRO_SERIES_MENSUAL_PATH)
+    parser.add_argument("--cache-dir", default=MACRO_CACHE_DATOS_GOB_DIR)
     parser.add_argument("--anio-inicio", type=int, default=2011)
     parser.add_argument("--anio-fin", type=int, default=2025)
     parser.add_argument("--force-refresh", action="store_true")

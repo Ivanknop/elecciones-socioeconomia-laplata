@@ -161,7 +161,7 @@
       <a class="back-link" href="index.html">&larr; Inicio</a>
       <h1>Geografía electoral del Partido de La Plata</h1>
     </div>
-    <div class="meta" id="header-meta">circuitos × localidades · 2011–2025<br>fuente: DINE / Ministerio del Interior</div>
+    <div class="meta" id="header-meta">circuitos × localidades · 2011–2025<br>resultados: DINE / Ministerio del Interior · localidades: Ministerio de Obras Públicas + Georef-AR</div>
   </header>
 
   <div id="controls">
@@ -552,7 +552,7 @@ function buildTop7Panel(elec){
 
 function circuitoPopupHtml(cid, circ, locName){
   if(!circ){
-    return `<div class="popup-title">Circuito ${cid}</div><div class="popup-sub">${locName||"—"}</div><div>Sin datos para esta elección.</div>`;
+    return `<div class="popup-title">${locName||"localidad sin identificar"}</div><div class="popup-sub">Circuito ${cid}</div><div>Sin datos para esta elección.</div>`;
   }
   let rows = circ.r.map(item=>{
     const [aIdx, votos, pct] = item;
@@ -564,7 +564,7 @@ function circuitoPopupHtml(cid, circ, locName){
   extra += `<div style="opacity:.75;"><b>${fmtPct(circ.aus[1])}</b> — ausentismo</div>`;
   extra += `</div>`;
   const anomalia = circ.aus[1] < 0 ? `<div class="anomalia">ausentismo negativo -- anomalía de padrón conocida</div>` : "";
-  return `<div class="popup-title">Circuito ${cid}</div><div class="popup-sub">${locName||"localidad sin identificar"} · ${fmtVotos(circ.elec)} electores</div>${rows}${extra}${anomalia}`;
+  return `<div class="popup-title">${locName||"localidad sin identificar"}</div><div class="popup-sub">Circuito ${cid} · ${fmtVotos(circ.elec)} electores</div>${rows}${extra}${anomalia}`;
 }
 
 // Desglose por campo ideológico o familia política del circuito
@@ -586,8 +586,8 @@ function showCircuitoPanel(cid, circ, locName){
   document.getElementById('panel-top7').style.display = "none";
   const panel = document.getElementById('panel-circuito');
   panel.style.display = "block";
-  document.getElementById('side-title').textContent = `Circuito ${cid}`;
-  document.getElementById('side-sub').textContent = locName || "localidad sin identificar";
+  document.getElementById('side-title').textContent = locName || "localidad sin identificar";
+  document.getElementById('side-sub').textContent = `Circuito ${cid}`;
   const box = document.getElementById('circuito-list');
   if(!circ){
     box.innerHTML = `<div id="placeholder">Sin datos para esta elección en este circuito.</div>`;

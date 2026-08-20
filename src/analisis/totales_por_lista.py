@@ -15,6 +15,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 from analisis.graficos import IDEOLOGIAS, _COLOR_IDEOLOGIA, _COLOR_NO_IDEOLOGICA, _cargar_circuito, _votos_no_ideologicos
+from constantes import AGRUPACIONES_DIR, DATA_DISTRITO_DIR
 from electoral.models import ValorAgrupacion, totalizar_agrupaciones
 from electoral.totales import _combos_disponibles, resultado_total_por_agrupacion
 
@@ -97,8 +98,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--anio", type=int, help="si se omite, corre todos los años disponibles")
     parser.add_argument("--nivel", help="si se omite, corre todos los niveles disponibles para ese año")
-    parser.add_argument("--data-dir", default="data/distrito")
-    parser.add_argument("--agrupaciones-dir", default="data/agrupaciones")
+    parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
+    parser.add_argument("--agrupaciones-dir", default=AGRUPACIONES_DIR)
     parser.add_argument("--graficos-dir", default="graficos/distrito/totales_por_lista")
     args = parser.parse_args()
 

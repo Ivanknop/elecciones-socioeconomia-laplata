@@ -1,40 +1,65 @@
 # Agrupación de circuitos electorales por localidad — estado
 
 > **No confundir con `data/geolocalizacion/LOCALIDADES.md`.** Este
-> documento es sobre el crosswalk `circuito_id → nombre de barrio`
-> (resolución 1990/2007 + relevamiento periodístico de El Día), que no
-> tiene coordenadas ni geometría. El catálogo de localidades
+> documento es sobre el crosswalk histórico `circuito_id → nombre de
+> barrio` (resolución 1990/2007 + relevamiento periodístico de El Día),
+> que no tiene coordenadas ni geometría. El catálogo de localidades
 > geolocalizadas (georef + Ministerio de Obras Públicas, con lat/lon
-> validadas) vive aparte, en `data/geolocalizacion/`, y todavía no está
-> cruzado con `circuito_id` — ver la nota al final de ese documento.
+> validadas) es otro archivo, `data/geolocalizacion/localidades_la_plata.csv`
+> -- este `fuentes_extra/` vive anidado dentro de `data/geolocalizacion/`
+> por conveniencia de organización, no porque este crosswalk histórico
+> sea parte de ese dominio (sigue siendo del dominio electoral, ver skill
+> `laplata-elecciones`).
+>
+> **Ya no es la fuente que usa `analisis.cuadros_por_localidad` por
+> defecto.** Desde la reconstrucción del flujo por localidad sobre la
+> capa de geolocalización, `data/por_localidad/` se genera por defecto
+> contra `data/geolocalizacion/circuitos_por_localidad.csv` (crosswalk
+> derivado, nearest-neighbor circuito↔localidad geolocalizada, ver
+> `data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md`), no contra
+> `circuito_localidad.csv`. Este documento y el crosswalk que describe
+> siguen vigentes y sin cambios -- quedan como fuente para quien
+> específicamente quiera nombre de barrio en vez de localidad oficial del
+> Ministerio, o quiera reproducir resultados previos a la reconstrucción.
 
 ## Qué es esto
 
-`circuito_localidad.csv` es el crosswalk que permite agrupar los
-resultados electorales (hoy solo disponibles por `circuito_id`) en
+`circuito_localidad.csv` es el crosswalk histórico que permite agrupar
+los resultados electorales (hoy solo disponibles por `circuito_id`) en
 localidades/barrios de La Plata (Villa Elvira, Los Hornos, San Lorenzo,
-etc.). Lo usa `src/electoral/localidades.py`.
+etc.). Lo usa `src/electoral/localidades.py`, vía `cargar_crosswalk` +
+`mapa_localidad_por_circuito`.
 
-## Dos niveles de cobertura, que nunca se mezclan sin pedirlo explícitamente
+## Tres niveles de cobertura, que nunca se mezclan sin pedirlo explícitamente
 
 | Nivel | Circuitos | Fuente | Confiabilidad |
 |---|---|---|---|
 | `oficial_confirmada` | 16/68 | Resolución 1990/2007 (Min. del Interior) | Norma legal — 14 con localidad dominante única, 2 (503, 503A) con varias localidades listadas y sin dominante pero clasificados igual (ver nota más abajo) |
-| `periodistico_no_oficial` | 65/68 | Diario *El Día*, relevamiento "barrio por barrio" de las elecciones de octubre 2025 | Fuente periodística, no administrativa |
+| `revision_web` | 6/68 | Diario *El Día*, relevamiento "barrio por barrio" de las elecciones de octubre 2025, con la etiqueta de localidad recontrastada contra fuentes adicionales en la web | Fuente periodística, no administrativa, pero con una revisión adicional sobre la etiqueta cruda |
+| `periodistico_no_oficial` | 59/68 | Diario *El Día*, relevamiento "barrio por barrio" de las elecciones de octubre 2025, sin esa revisión adicional | Fuente periodística, no administrativa |
 
-`agrupar_resultados_por_localidad` usa por default **solo**
-`oficial_confirmada` (16 circuitos, ~30,6% de los votos en el ejemplo de
+`mapa_localidad_por_circuito` usa por default `oficial_confirmada` +
+`revision_web` (20 circuitos, ~39,2% de los votos en el ejemplo de
 Intendente 2023). Para ampliar a 67/68 circuitos (~99,4% de los votos),
-hay que pedirlo explícitamente:
+hay que pedir además el nivel periodístico explícitamente:
 
 ```python
-from electoral.localidades import NIVEL_OFICIAL, NIVEL_PERIODISTICO
-
-agrupado, reporte = agrupar_resultados_por_localidad(
-    resultados, crosswalk,
-    niveles_cobertura=[NIVEL_OFICIAL, NIVEL_PERIODISTICO],
+from electoral.localidades import (
+    NIVEL_OFICIAL, NIVEL_PERIODISTICO, NIVEL_REVISION_WEB,
+    agrupar_resultados_por_localidad, cargar_crosswalk, mapa_localidad_por_circuito,
 )
+
+crosswalk = cargar_crosswalk("data/geolocalizacion/fuentes_extra/circuito_localidad.csv")
+mapa = mapa_localidad_por_circuito(
+    crosswalk, niveles_cobertura=[NIVEL_OFICIAL, NIVEL_REVISION_WEB, NIVEL_PERIODISTICO],
+)
+agrupado, reporte = agrupar_resultados_por_localidad(resultados, mapa)
 ```
+
+(`agrupar_resultados_por_localidad` en sí es agnóstica de la fuente --
+recibe el mapa `circuito_id -> localidad` ya resuelto, sea de acá o de
+`cargar_circuito_localidad_geo`, el default de
+`analisis.cuadros_por_localidad`.)
 
 Queda sin ninguna fuente, ni siquiera periodística: **521** (único
 circuito sin ninguna fila en el crosswalk).
@@ -58,10 +83,12 @@ en peso relativo entre 2007 y 2025, o que El Día haya usado el nombre más
 reconocible en vez del oficial. Se puede auditar con
 `circuitos_con_discrepancia(crosswalk)`.
 
-Cuando se piden ambos niveles, `agrupar_resultados_por_localidad` hace
-prevalecer siempre `oficial_confirmada` sobre `periodistico_no_oficial`.
+Cuando se piden varios niveles, `agrupar_resultados_por_localidad` hace
+prevalecer siempre `oficial_confirmada` sobre `revision_web`, y
+`revision_web` sobre `periodistico_no_oficial`, para cualquier circuito
+con fila en más de un nivel.
 
-## Cobertura con `oficial_confirmada` únicamente: 16 de 68 circuitos (23,5%), ~30,6% de los votos
+## Cobertura con `oficial_confirmada` únicamente: 16 de 68 circuitos (23,5%), ~30,3% de los votos
 
 La única fuente oficial con el detalle circuito → localidad que se pudo
 conseguir hasta ahora es la **Resolución 1990/2007** del Ministerio del
@@ -127,11 +154,15 @@ partido. Se probaron y descartaron estas vías:
 
 Con la incorporación del relevamiento de El Día, la prioridad cambia: ya
 no es "conseguir cobertura" (67/68 está cubierto) sino **subir de nivel
-lo que hoy solo tiene fuente periodística**, en orden de esfuerzo:
+lo que hoy solo tiene fuente periodística**, en orden de esfuerzo. Dentro
+de las familias 504, 505, 508 y 509, una revisión adicional contra
+fuentes web ya subió a `revision_web` los circuitos 504, 508D, 508F y
+508G; quedan en `periodistico_no_oficial` sin esa revisión: 504A, 505,
+505A, 505B, 508, 508A, 508B, 508C, 508E, 509 y 509A.
 
-1. **Buscar resoluciones equivalentes a la 1990/2007** para las familias
-   504, 505, 508 y 509 (504A; 505A/505B; 508A–508G; 509A), que también
-   están subdivididas y hoy solo tienen la etiqueta de El Día. No se
+1. **Buscar resoluciones equivalentes a la 1990/2007** para esos
+   circuitos, que también están subdivididos y hoy solo tienen la
+   etiqueta de El Día (con o sin la revisión web adicional). No se
    encontraron en la búsqueda inicial en InfoLEG/Boletín Oficial -- puede
    que estén en expedientes de la Cámara Nacional Electoral posteriores a
    la Acordada 49/2020, que no se indexan igual que las resoluciones
@@ -150,7 +181,12 @@ lo que hoy solo tiene fuente periodística**, en orden de esfuerzo:
    relevamiento de El Día usa exactamente esas 24 categorías o las
    subdivide más.
 
-### Fuente del nivel periodístico
+### Fuente de los niveles `periodistico_no_oficial` y `revision_web`
+
+Ambos niveles parten del mismo artículo -- `revision_web` es el
+subconjunto de filas de ese relevamiento cuya etiqueta de localidad se
+recontrastó además contra fuentes adicionales en la web, no una fuente
+distinta.
 
 El Día. "Elecciones 2025.- Resultados: barrio por barrio, cómo se votó en
 La Plata." 27 de octubre de 2025.
@@ -166,7 +202,7 @@ barrio por barrio y circuito por circuito, así votó la ciudad", 9/9/2025.
 ```python
 from electoral.localidades import agrupar_resultados_por_localidad, cargar_crosswalk
 
-crosswalk = cargar_crosswalk("data/fuentes_extra/circuito_localidad.csv")
+crosswalk = cargar_crosswalk("data/geolocalizacion/fuentes_extra/circuito_localidad.csv")
 agrupado, reporte = agrupar_resultados_por_localidad(resultados_por_circuito, crosswalk)
 
 print(reporte)  # SIEMPRE revisar esto antes de interpretar `agrupado`

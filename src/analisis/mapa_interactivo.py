@@ -16,11 +16,16 @@ workflow de Actions aparte.
   para los ids).
 - `data/geolocalizacion/localidades_la_plata.csv` -- las 36 localidades
   geolocalizadas (`geolocalizacion.catalogo`).
-- `data/fuentes_extra/circuito_localidad.csv` -- crosswalk circuito→localidad,
-  vía `electoral.localidades.mapa_localidad_por_circuito` con ambos niveles
-  de cobertura (oficial gana sobre periodístico, igual que en el resto del
-  repo); los circuitos sin ninguna fuente (hoy solo el 521) quedan en `null`,
-  nunca se inventan.
+- `data/geolocalizacion/circuitos_por_localidad.csv` -- crosswalk
+  circuito→localidad geolocalizada, vía
+  `electoral.localidades.cargar_circuito_localidad_geo` (nearest-neighbor
+  contra el catálogo de arriba, ver skill `laplata-geolocalizacion` y
+  `data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md`) -- mismo crosswalk que
+  usa por defecto `analisis.cuadros_por_localidad` desde la reconstrucción
+  del flujo por localidad. Cubre los 68 circuitos con una fila cada uno (a
+  diferencia del crosswalk histórico por nombre de barrio que usaba antes
+  esta vista, no quedan circuitos en `null` salvo que falten del propio
+  geojson).
 - `data/distrito/<año>/<nivel>/generales/circuito_<nivel>.json` -- resultados,
   descubiertos con `electoral.totales._combos_disponibles` filtrado a
   `etapa == "generales"` (mismo criterio que `totales_por_lista.py`).
@@ -64,7 +69,14 @@ from analisis.graficos import (
 )
 from analisis.serie_temporal import CARGO_LABEL
 from analisis.serie_temporal_filiacion import _cargar_filiaciones
-from electoral.localidades import NIVEL_OFICIAL, NIVEL_PERIODISTICO, cargar_crosswalk, mapa_localidad_por_circuito
+from constantes import (
+    AGRUPACIONES_DIR,
+    CIRCUITOS_GEOJSON_PATH,
+    CIRCUITOS_POR_LOCALIDAD_PATH,
+    DATA_DISTRITO_DIR,
+    LOCALIDADES_LA_PLATA_PATH,
+)
+from electoral.localidades import cargar_circuito_localidad_geo
 from electoral.totales import _combos_disponibles
 from socioeconomia.geo import canonicalizar_circuito_id
 
@@ -303,11 +315,11 @@ def _cargar_localidades(path: Path | str) -> list[dict]:
 
 
 def construir_payload(
-    data_dir: Path | str = "data/distrito",
-    geojson_path: Path | str = "data/socioeconomia/circuitos_electorales_la_plata.geojson",
-    localidades_path: Path | str = "data/geolocalizacion/localidades_la_plata.csv",
-    crosswalk_path: Path | str = "data/fuentes_extra/circuito_localidad.csv",
-    clasificacion_path: Path | str = "data/agrupaciones",
+    data_dir: Path | str = DATA_DISTRITO_DIR,
+    geojson_path: Path | str = CIRCUITOS_GEOJSON_PATH,
+    localidades_path: Path | str = LOCALIDADES_LA_PLATA_PATH,
+    crosswalk_path: Path | str = CIRCUITOS_POR_LOCALIDAD_PATH,
+    clasificacion_path: Path | str = AGRUPACIONES_DIR,
 ) -> dict:
     combos = [c for c in _combos_disponibles(data_dir) if c[2] == "generales"]
     filiaciones = _cargar_filiaciones(clasificacion_path)
@@ -321,12 +333,11 @@ def construir_payload(
         contenido = _cargar_circuito(data_dir, anio, nivel)
         elecciones[f"{anio}_{nivel}"] = _construir_eleccion(contenido, filiaciones, agrup_index)
 
-    crosswalk = cargar_crosswalk(crosswalk_path)
-    circuito_localidad_raw = mapa_localidad_por_circuito(crosswalk, (NIVEL_PERIODISTICO, NIVEL_OFICIAL))
-    # nombre legible (Title Case, espacios) en vez del UPPER_SNAKE_CASE interno
-    circuito_localidad = {
-        cid: localidad.replace("_", " ").title() for cid, localidad in circuito_localidad_raw.items()
-    }
+    # `circuito_localidad_geo.csv` ya trae el nombre legible tal cual figura
+    # en `localidades_la_plata.csv` (el mismo que usan los marcadores de
+    # `localidades` más abajo) -- a diferencia del crosswalk histórico que
+    # usaba esta vista antes, no hace falta reformatear UPPER_SNAKE_CASE.
+    circuito_localidad = cargar_circuito_localidad_geo(crosswalk_path)
     todos_los_circuitos = {f["properties"]["circuito"] for f in json.loads(Path(geojson_path).read_text(encoding="utf-8"))["features"]}
     for cid_crudo in todos_los_circuitos:
         cid = canonicalizar_circuito_id(cid_crudo)
@@ -353,7 +364,7 @@ _HTML_TEMPLATE = None  # cargado de mapa_interactivo_template.html, ver generar_
 
 def generar_mapa_interactivo(
     destino: Path | str = "docs/mapa_electoral_la_plata.html",
-    data_dir: Path | str = "data/distrito",
+    data_dir: Path | str = DATA_DISTRITO_DIR,
 ) -> Path:
     payload = construir_payload(data_dir=data_dir)
 
@@ -373,7 +384,7 @@ def generar_mapa_interactivo(
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--destino", default="docs/mapa_electoral_la_plata.html")
-    parser.add_argument("--data-dir", default="data/distrito")
+    parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
     args = parser.parse_args()
 
     destino = generar_mapa_interactivo(destino=args.destino, data_dir=args.data_dir)

@@ -28,6 +28,7 @@ import csv
 import json
 from pathlib import Path
 
+from constantes import DATA_DISTRITO_DIR, DATA_TOTALES_DIR
 from electoral.models import ValorAgrupacion, totalizar_agrupaciones
 
 
@@ -84,8 +85,8 @@ def main():
     parser.add_argument("--anio", type=int, help="si se omite, corre todos los años disponibles")
     parser.add_argument("--nivel", help="si se omite, corre todos los niveles disponibles para ese año")
     parser.add_argument("--etapa", help="generales/paso/balotaje -- si se omite, corre todas las etapas disponibles")
-    parser.add_argument("--data-dir", default="data/distrito")
-    parser.add_argument("--salida-dir", default="data/totales")
+    parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
+    parser.add_argument("--salida-dir", default=DATA_TOTALES_DIR)
     args = parser.parse_args()
 
     combos = _combos_disponibles(args.data_dir)

@@ -120,42 +120,7 @@ puntuación) en el mismo año — 8 partidos:
 | 2017 | UNIDAD CIUDADANA | Citizen's Unity (CU) |
 | 2019 | CONSENSO FEDERAL | Consensus Federal (CF) |
 
-Más **un caso de sustitución documentada, no nombre exacto**: 2017 1PAIS
-toma el valor de Renewal Front (RF) — es la alianza de Sergio Massa ese
-año y V-Party no codifica "1País" como entidad propia (ver "Cobertura"
-arriba). El valor de cada uno de estos 9 partidos se propaga a **todas**
-las filas de `clasificacion_ideologica_agrupaciones.csv` con ese mismo
-`(año, agrupacion)`, sin importar el `nivel` — mismo criterio de "la
-misma alianza mantiene un nombre a través de categorías dentro de un
-año" que usa `analisis/comparativo_nivel.py` (ej. FRENTE PARA LA VICTORIA
-2013 tiene fila en municipal/nacional/provincial, las tres reciben el
-mismo valor que vino del cruce con nacional).
-
-**2 — `data/agrupaciones/oficialismos.csv`**, para los `(año, agrupación)`
-que la fuente 1 no cubrió. Archivo nuevo, hand-curated aparte (no
-generado por ningún script de este repo), con una fila por `(año, nivel)`
-para **los 8 años electorales 2011-2025** — usa `nivel ∈ {municipal,
-provincial, nacional}` como sinónimo genérico de intendente/gobernador/
-presidente en los años ejecutivos, no en el sentido legislativo estricto
-de `clasificacion_ideologica_agrupaciones.csv`. Se cruza por `(año,
-agrupación)` y se propaga igual que la fuente 1. **Diferencia
-metodológica importante con la fuente 1**: para alianzas sin fila propia
-en V-Party (Cambiemos/Juntos, Frente de Todos/Unión por la Patria/Fuerza
-Patria), `oficialismos.csv` les asigna el valor del **partido líder de la
-alianza** dentro de V-Party como proxy (PRO para Cambiemos/Juntos,
-Frente Justicialista-PJ para el espacio peronista) — exactamente lo que
-la fuente 1 y la "Fusión de puntos" de más arriba **evitan a propósito**
-("no hay una fila de 'PRO'... sueltas... contra la cual adjuntar el
-valor"). Además, **desde 2021 en adelante los valores están repetidos
-(arrastre del último dato de V-Party, que no tiene ola posterior a
-2019)** — no hay encuesta de expertos más reciente todavía. Ninguna de
-las dos cosas es un error de `oficialismos.csv`: son decisiones de diseño
-de ese archivo, documentadas ahí, pero valen como advertencia para quien
-lea `vparty_economico`/`vparty_progresismo`/`vparty_populismo` en
-`clasificacion_ideologica_agrupaciones.csv` sin distinguir de qué fuente
-vino cada fila — el archivo en sí no guarda esa procedencia por fila.
-
-**3 — Proxy de la ola V-Party más cercana, cuando no hay superposición de
+**2 — Proxy de la ola V-Party más cercana, cuando no hay superposición de
 año.** Caso: **COALICIÓN CÍVICA ARI / COALICIÓN CÍVICA - AFIRMACIÓN PARA
 UNA REPÚBLICA IGUALITARIA ARI / COALICIÓN CÍVICA - A.R.I.** — mismo
 partido, tres grafías del nombre en distintos años de este repo (2011:
@@ -172,20 +137,6 @@ si hubiera tendencia marcada; el eje de progresismo sí varía año a año
 (0.299 en 2015, usado para 2011; 0.288 en 2019, usado para 2025) — es una
 aproximación, no un dato medido para esos años puntuales, a diferencia de
 las fuentes 1 y 2.
-
-**Filas cargadas a mano, fuera de las tres fuentes de arriba** — el
-mismo mantenedor de `clasificacion_ideologica_agrupaciones.csv` agregó
-directamente algunas filas más con su propio criterio editorial, sin que
-este documento pueda reconstruir automáticamente la justificación de
-cada una (no hay registro de fuente por fila en el CSV): `FRENTE AMPLIO
-PROGRESISTA` sin el prefijo `ALIANZA` (2011, gobernación) con el mismo
-valor que su fila hermana `ALIANZA FRENTE AMPLIO PROGRESISTA`; `PARTIDO
-SOCIALISTA` (2017, municipal/provincial) y `ALIANZA PROGRESISTAS` (2015,
-gobernación/intendente/presidente) con el mismo valor que `ALIANZA
-FRENTE AMPLIO PROGRESISTA` (2011); y `JUNTOS POR EL CAMBIO` (2023,
-gobernación y presidente) con el mismo valor que su propia fila de 2019.
-Mismo criterio de "se edita a mano, no se audita automáticamente" que el
-resto de este archivo.
 
 **Casos con fila propia en `clasificacion_ideologica_agrupaciones.csv`
 pero deliberadamente sin completar** (ninguna de las tres fuentes

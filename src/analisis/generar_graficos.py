@@ -14,6 +14,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 from analisis.graficos import graficar_barras, graficar_torta
+from constantes import DATA_DISTRITO_DIR
 
 
 def generar_graficos(data_dir: Path | str, graficos_dir: Path | str, anio: int, nivel: str) -> Path:
@@ -43,7 +44,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--anio", type=int, required=True)
     parser.add_argument("--nivel", required=True, help="presidente | gobernador | intendente | nacional | provincial | municipal")
-    parser.add_argument("--data-dir", default="data/distrito")
+    parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
     parser.add_argument("--graficos-dir", default="graficos/distrito")
     args = parser.parse_args()
 

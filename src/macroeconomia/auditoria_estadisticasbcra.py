@@ -28,6 +28,7 @@ from pathlib import Path
 
 import requests
 
+from constantes import MACRO_CACHE_DATOS_GOB_DIR, MACRO_CATALOGO_SERIES_PATH
 from macroeconomia.series import ConceptoCatalogo, _parsear_puntos, cargar_catalogo
 
 BASE_URL = "https://api.estadisticasbcra.com/"
@@ -144,8 +145,8 @@ def comparar(
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--catalogo", default="data/macroeconomia/catalogo_series.csv")
-    parser.add_argument("--cache-dir", default="data/macroeconomia/_cache/datos_gob")
+    parser.add_argument("--catalogo", default=MACRO_CATALOGO_SERIES_PATH)
+    parser.add_argument("--cache-dir", default=MACRO_CACHE_DATOS_GOB_DIR)
     parser.add_argument("--token", default=os.environ.get("ESTADISTICASBCRA_TOKEN"))
     args = parser.parse_args()
     if not args.token:

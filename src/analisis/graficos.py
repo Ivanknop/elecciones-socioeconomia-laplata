@@ -30,13 +30,21 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 
+from constantes import (
+    CAMPO_IDEOLOGICO_PATH,
+    COLORIMETRIA_CAMPO_IDEOLOGICO_PATH,
+    COLORIMETRIA_FAMILIA_POLITICA_PATH,
+    REPO_ROOT,
+)
+
 # Antes hardcodeada acá mismo (duplicando `data/agrupaciones/campo_ideologico.csv`,
 # que no tenía ningún lector en todo el repo) -- ahora ese CSV es la única
-# fuente de la escala, resuelto por ruta absoluta a partir de este archivo
-# para no depender del cwd desde el que se importe el módulo.
-_CAMPO_IDEOLOGICO_CSV = Path(__file__).resolve().parents[2] / "data" / "agrupaciones" / "campo_ideologico.csv"
-_COLORIMETRIA_CAMPO_CSV = Path(__file__).resolve().parents[2] / "data" / "agrupaciones" / "colorimetria_campo_ideologico.csv"
-_COLORIMETRIA_FAMILIA_CSV = Path(__file__).resolve().parents[2] / "data" / "agrupaciones" / "colorimetria_familia_politica.csv"
+# fuente de la escala, resuelto por ruta absoluta a partir de la raíz del
+# repo (`constantes.REPO_ROOT`) para no depender del cwd desde el que se
+# importe el módulo.
+_CAMPO_IDEOLOGICO_CSV = REPO_ROOT / CAMPO_IDEOLOGICO_PATH
+_COLORIMETRIA_CAMPO_CSV = REPO_ROOT / COLORIMETRIA_CAMPO_IDEOLOGICO_PATH
+_COLORIMETRIA_FAMILIA_CSV = REPO_ROOT / COLORIMETRIA_FAMILIA_POLITICA_PATH
 
 
 def _cargar_escala_ideologica(path: Path | str = _CAMPO_IDEOLOGICO_CSV) -> dict[str, str]:

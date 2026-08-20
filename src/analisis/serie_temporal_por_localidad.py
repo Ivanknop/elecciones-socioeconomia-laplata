@@ -4,9 +4,9 @@ gobierno (2011-2025), a partir de los cuadros ya agregados en
 
 Cada localidad incluye siempre `SIN_DETERMINAR` como una serie más -- son
 votos reales de circuitos sin localidad asignada ese año, nunca se ocultan
-(ver `data/fuentes_extra/CIRCUITOS_LOCALIDADES.md`). La confiabilidad de la
+(ver `data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md`). La confiabilidad de la
 clasificación de cada localidad está en
-`data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md`.
+`data/geolocalizacion/fuentes_extra/AUDITORIA_DISCREPANCIAS.md`.
 
 Uso:
     python -m analisis.serie_temporal_por_localidad                          # todas las localidades, los 3 niveles
@@ -23,6 +23,7 @@ import pandas as pd
 
 from analisis.graficos import CATEGORIAS_NO_IDEOLOGICAS, IDEOLOGIAS, color_categoria, etiqueta_categoria
 from analisis.serie_temporal import CARGO_LABEL, NIVELES, _puntos_del_nivel
+from constantes import DATA_DISTRITO_DIR, DATA_POR_LOCALIDAD_DIR
 
 CATEGORIAS = list(IDEOLOGIAS.values()) + CATEGORIAS_NO_IDEOLOGICAS
 
@@ -124,8 +125,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--nivel", choices=list(NIVELES), help="si se omite, corre los 3 niveles")
     parser.add_argument("--localidad", help="si se omite, corre todas las localidades disponibles para ese nivel")
-    parser.add_argument("--data-dir", default="data/distrito")
-    parser.add_argument("--cuadros-dir", default="data/por_localidad")
+    parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
+    parser.add_argument("--cuadros-dir", default=DATA_POR_LOCALIDAD_DIR)
     parser.add_argument("--graficos-dir", default="graficos/por_localidad")
     args = parser.parse_args()
 

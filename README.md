@@ -173,15 +173,11 @@ detallado en `CLAUDE.md`.
 
 Documentos que **no** están en `docs/` porque describen un dataset
 puntual y viven al lado de él (ver `CLAUDE.md` para el detalle de cada
-uno): `data/fuentes_extra/CIRCUITOS_LOCALIDADES.md` y
+uno): `data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md` y
 `AUDITORIA_DISCREPANCIAS.md` (crosswalk circuito↔localidad),
 `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` (cobertura de la
 capa macro), `data/geolocalizacion/LOCALIDADES.md` (catálogo validado de
 localidades geolocalizadas), `data/socioeconomia/EXTRACCION_REDATAM.md` y
 `EXTRACCION_IAELAP.md`/`SISTEMATIZACION_VARIABLES.md` (capa
 socioeconómica).
-
-Para **comandos, arquitectura y convenciones para trabajar en el repo**
-(orientado a agentes/devs), ver `CLAUDE.md` (raíz, no se movió — es el
-archivo que usa Claude Code para orientarse en el proyecto).
 

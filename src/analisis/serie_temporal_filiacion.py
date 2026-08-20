@@ -31,6 +31,7 @@ from analisis.graficos import (
     etiquetar_puntos,
 )
 from analisis.serie_temporal import CARGO_LABEL, NIVELES, _puntos_del_nivel
+from constantes import AGRUPACIONES_DIR, DATA_DISTRITO_DIR
 
 # `_COLOR_FILIACION` (import de arriba) es la única fuente de estos colores
 # -- viene de `data/agrupaciones/colorimetria_familia_politica.csv` vía
@@ -144,8 +145,8 @@ def generar_serie_temporal_filiacion(
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--nivel", choices=list(NIVELES), help="si se omite, corre los 3 niveles")
-    parser.add_argument("--data-dir", default="data/distrito")
-    parser.add_argument("--agrupaciones-dir", default="data/agrupaciones")
+    parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
+    parser.add_argument("--agrupaciones-dir", default=AGRUPACIONES_DIR)
     parser.add_argument("--graficos-dir", default="graficos/distrito")
     args = parser.parse_args()
 

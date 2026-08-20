@@ -24,12 +24,14 @@ from pathlib import Path
 
 import requests
 
+from constantes import MACRO_CACHE_DATOS_GOB_DIR
+
 BASE_URL = "https://apis.datos.gob.ar/series/api/series/"
 _LIMITE_MAXIMO = 5000
 
 
 class DatosGobClient:
-    def __init__(self, cache_dir: Path | str = "data/macroeconomia/_cache/datos_gob", timeout: float = 30.0):
+    def __init__(self, cache_dir: Path | str = MACRO_CACHE_DATOS_GOB_DIR, timeout: float = 30.0):
         self.cache_dir = Path(cache_dir)
         self.session = requests.Session()
         self.timeout = timeout

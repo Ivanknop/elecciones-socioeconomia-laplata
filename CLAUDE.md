@@ -20,7 +20,7 @@ from growing without bound — see README's own "Dónde está cada cosa"
 table for the full map of docs). `docs/` holds every root-level narrative
 doc (methodology, specs, per-domain functionality, audit status) — the
 domain-specific docs that live next to their data
-(`data/fuentes_extra/*.md`, `data/macroeconomia/*.md`,
+(`data/geolocalizacion/fuentes_extra/*.md`, `data/macroeconomia/*.md`,
 `data/socioeconomia/*.md`) stay where they are, on purpose, not in
 `docs/`. Read `docs/FUNCIONALIDADES.md` before touching `data/`, the
 notebooks, or `src/analisis/`. Do not duplicate its content here; this
@@ -41,7 +41,7 @@ still readable straight from GitHub's own blob viewer regardless.
 pip install -r requirements.txt        # deps: pandas, geopandas, statsmodels, matplotlib, seaborn, jupyter, requests, pytest, dbfread
 
 pytest                                  # run the full test suite (pythonpath=src, testpaths=tests, configured in pytest.ini)
-pytest tests/test_models.py::TestValorAgrupacion::test_from_json_campos_basicos  # single test
+pytest tests/electoral/test_models.py::TestValorAgrupacion::test_from_json_campos_basicos  # single test
 
 PYTHONPATH=src python -m analisis.generar_graficos --anio 2011 --nivel intendente  # per-circuit + accumulated charts for one (año, nivel)
 PYTHONPATH=src python -m analisis.serie_temporal    # one chart per nivel (nacional/provincial/municipal), 2011-2025
@@ -63,18 +63,18 @@ PYTHONPATH=src python -m geolocalizacion.mapa      # one PNG with all 36 localid
 
 There is no build/lint step configured. Tests cover `src/electoral/models.py`
 (pure parsing, no network), `src/electoral/totales.py` (pure logic and file
-I/O, no network — see `tests/test_totales.py`), and the locality-aggregation
+I/O, no network — see `tests/electoral/test_totales.py`), and the locality-aggregation
 layer added on top of it — `src/electoral/localidades.py`,
 `src/analisis/cuadros_por_localidad.py`, and the non-plotting helpers of
 `src/analisis/serie_temporal_por_localidad.py`
-(pure logic and file I/O, no network; see `tests/test_localidades.py`,
-`tests/test_cuadros_por_localidad.py`, `tests/test_serie_temporal_por_localidad.py`).
+(pure logic and file I/O, no network; see `tests/electoral/test_localidades.py`,
+`tests/analisis/test_cuadros_por_localidad.py`, `tests/analisis/test_serie_temporal_por_localidad.py`).
 The **pure-logic helpers** of `graficos.py`, `cuadros_anualizados.py`,
 `serie_temporal.py`, `serie_temporal_filiacion.py`, `totales_por_lista.py`
-and `comparativo_nivel.py` are covered too (`tests/test_graficos.py`,
-`tests/test_cuadros_anualizados.py`, `tests/test_serie_temporal.py`,
-`tests/test_serie_temporal_filiacion.py`, `tests/test_totales_por_lista.py`,
-`tests/test_comparativo_nivel.py` — e.g. `_votos_no_ideologicos`,
+and `comparativo_nivel.py` are covered too (`tests/analisis/test_graficos.py`,
+`tests/analisis/test_cuadros_anualizados.py`, `tests/analisis/test_serie_temporal.py`,
+`tests/analisis/test_serie_temporal_filiacion.py`, `tests/analisis/test_totales_por_lista.py`,
+`tests/analisis/test_comparativo_nivel.py` — e.g. `_votos_no_ideologicos`,
 `_cargar_escala_ideologica`, `_anios_disponibles`, `_serie_por_anio`,
 `resultado_total_con_blanco_nulo`, `tabla_comparativa`). `src/electoral/client.py`,
 `generar_graficos.py`, and the **matplotlib-rendering half** of every module
@@ -84,7 +84,7 @@ there are validated by re-running the notebooks end to end (see README
 `src/analisis/mapa_interactivo.py`'s aggregation logic (the exact same
 `electores - positivos - otros_total` ausentismo formula as
 `graficos._votos_no_ideologicos`, top-N-plus-residual per circuito,
-distrito-level rollup) is covered by `tests/test_mapa_interactivo.py`,
+distrito-level rollup) is covered by `tests/analisis/test_mapa_interactivo.py`,
 no network, no HTML rendering; the Leaflet/HTML template itself
 (`mapa_interactivo_template.html`) has no automated test, same
 criterion as the rest of `src/analisis/*` — validated with a headless
@@ -94,19 +94,19 @@ flagged) rather than by running notebooks, since there's no notebook in
 this path.
 `src/socioeconomia/eph_client.py` (URL/filename resolution, the historical
 DBF-era file lookup, and the labor-indicator aggregation core — no
-network) is covered by `tests/test_eph_client.py`; `src/socioeconomia/geo.py`
+network) is covered by `tests/socioeconomia/test_eph_client.py`; `src/socioeconomia/geo.py`
 (circuito_id canonicalization and the area-weighted circuito↔radio spatial
 join, tested against synthetic polygons, not real data) by
-`tests/test_geo.py`; the pure gap-detection helpers of
+`tests/socioeconomia/test_geo.py`; the pure gap-detection helpers of
 `src/socioeconomia/graficos_eph_iaelap.py` by
-`tests/test_graficos_eph_iaelap.py` — same split as everywhere else in the
+`tests/socioeconomia/test_graficos_eph_iaelap.py` — same split as everywhere else in the
 repo, pure logic tested, the matplotlib-rendering and IAELaP-loading parts
 of `graficos_eph_iaelap.py` itself validated by running notebooks 05/06.
 `src/macroeconomia/series.py`'s normalization logic (catalog loading,
 monthly resolution for daily/monthly/quarterly sources, coverage report)
-is covered by `tests/test_macroeconomia_series.py`, no network;
+is covered by `tests/macroeconomia/test_series.py`, no network;
 `src/macroeconomia/series_anuales.py`'s equivalent yearly-resolution
-logic is covered by `tests/test_macroeconomia_series_anuales.py`, same
+logic is covered by `tests/macroeconomia/test_series_anuales.py`, same
 criterion. `src/macroeconomia/datos_gob_client.py` (the fetch+cache HTTP
 layer), `src/macroeconomia/graficos.py` (matplotlib rendering), and
 `src/macroeconomia/auditoria_estadisticasbcra.py` (fetch+compare
@@ -114,7 +114,7 @@ against a third-party HTTP API) have no automated tests, same criterion as
 `electoral/client.py`.
 `src/geolocalizacion/catalogo.py`'s merge logic (name normalization, the
 two Georef/Ministerio alias cases, asentamiento deduplication, coverage
-report) is covered by `tests/test_geolocalizacion_catalogo.py`, no
+report) is covered by `tests/geolocalizacion/test_catalogo.py`, no
 network; `src/geolocalizacion/georef_client.py` (fetch+cache) and
 `src/geolocalizacion/mapa.py` (matplotlib rendering) have no automated
 tests, same criterion as `electoral/client.py`.
@@ -146,7 +146,7 @@ order, 01→04) are the pipeline**.
   - Every model dataclass keeps an `extra: dict` of unmodeled JSON fields
     (see `_extra()` in `models.py`) so an API field added later shows up
     there instead of breaking parsing or silently vanishing — tests in
-    `tests/test_models.py` specifically assert on this behavior.
+    `tests/electoral/test_models.py` specifically assert on this behavior.
 
 - **`data/distrito/<año>/<categoría|nivel>/<etapa>/`** where `etapa` is
   `generales` (always present), `paso` (present for every combo except
@@ -221,26 +221,45 @@ order, 01→04) are the pipeline**.
   outside this — they're not a political space, they keep their own
   fixed neutral grays in `graficos._COLOR_NO_IDEOLOGICA`.
 
-- **`data/fuentes_extra/circuito_localidad.csv`** is a second, unrelated
+- **`data/geolocalizacion/circuitos_por_localidad.csv`** is the crosswalk
+  `circuito` -> `localidad` (+ `distancia_metros`) that
+  `src/analisis/cuadros_por_localidad.py` groups against **by default**
+  since the localidad pipeline was rebuilt on the geolocalización layer
+  (see skill `laplata-geolocalizacion`,
+  `data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md`). Unlike the
+  hand-curated crosswalk below, it's **derived** — nearest-neighbor join
+  (`src/geolocalizacion/circuitos_por_localidad.py`) between each of the 68
+  circuito polygons and the 36-locality catalog
+  (`data/geolocalizacion/localidades_la_plata.csv`), regenerated in
+  seconds, no cobertura tiers to resolve (every one of the 68 circuitos
+  gets exactly one localidad). `src/electoral/localidades.py` has the pure
+  grouping logic, agnostic of which crosswalk built the
+  `circuito_id -> localidad` map it receives (never drops a vote —
+  anything unmapped, e.g. a `circuito_id` from an older election outside
+  today's 68-circuito geojson, goes to a `SIN_DETERMINAR` row).
+  `src/analisis/cuadros_por_localidad.py` applies that map on top of the
+  `circuito_<nivel>.json` files notebook 04 already produces, writing CSVs
+  to `data/por_localidad/` (derived, not git-tracked — regenerated in
+  seconds, same as `graficos/`). Each row has, besides the 6
+  `campo_ideologico` columns, `blanco_nulo`, `otros` (procedural:
+  impugnado/recurrido/comando) and `ausentismo` (circuit `electores` minus
+  its valid votes). `src/analisis/serie_temporal_por_localidad.py` reads
+  those CSVs and plots to `graficos/por_localidad/`.
+
+- **`data/geolocalizacion/fuentes_extra/circuito_localidad.csv`** is the older, unrelated
   hand-curated crosswalk (`circuito_id` -> `localidad`/barrio name, not
-  census geography) built from an official 2007 resolution plus a
-  newspaper survey — same "never regenerate, never silently overwrite"
-  spirit as `data/agrupaciones/`, but there is no notebook step that
-  builds or appends to it; it's edited by hand. `src/electoral/localidades.py`
-  has the pure grouping logic (never drops a vote — anything unmapped goes
-  to a `SIN_DETERMINAR` row) and `src/analisis/cuadros_por_localidad.py`
-  applies it on top of the `circuito_<nivel>.json` files notebook 04
-  already produces, writing CSVs to `data/por_localidad/` (derived, not
-  git-tracked — regenerated in seconds, same as `graficos/`). Each row has,
-  besides the 6 `campo_ideologico` columns, `blanco_nulo`, `otros`
-  (procedural: impugnado/recurrido/comando) and `ausentismo` (circuit
-  `electores` minus its valid votes).
-  `src/analisis/serie_temporal_por_localidad.py` reads those CSVs and
-  plots to `graficos/por_localidad/`. Details, coverage-by-circuito, and
-  the discrepancy audit between the two source levels are in
-  `data/fuentes_extra/CIRCUITOS_LOCALIDADES.md` and
-  `AUDITORIA_DISCREPANCIAS.md` — read those before changing the crosswalk
-  or the grouping precedence.
+  census geography, not the same 36-name universe as the geolocalización
+  catalog) built from an official 2007 resolution plus a newspaper survey
+  — same "never regenerate, never silently overwrite" spirit as
+  `data/agrupaciones/`, but there is no notebook step that builds or
+  appends to it; it's edited by hand. It's no longer the default source
+  for `data/por_localidad/`, but stays as-is — still usable via
+  `electoral.localidades.cargar_crosswalk` +
+  `mapa_localidad_por_circuito` for anything that specifically wants
+  barrio names or wants to reproduce pre-reconstruction output. Details,
+  coverage-by-circuito, and the discrepancy audit between its two source
+  levels are in `data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md` and
+  `AUDITORIA_DISCREPANCIAS.md`.
 
 - **`src/electoral/totales.py`** (not `src/analisis/`, since it stays inside
   the electoral layer next to `models.py`) sums the `circuito_<nivel>.json`
@@ -290,7 +309,14 @@ order, 01→04) are the pipeline**.
   22 (año, nivel) **generales** combos at once (no PASO/balotaje). It's the only script in the repo
   that joins circuito polygon geometry (`data/socioeconomia/circuitos_electorales_la_plata.geojson`)
   with electoral results and the geolocalización catalog
-  (`data/geolocalizacion/localidades_la_plata.csv`) in the same place.
+  (`data/geolocalizacion/localidades_la_plata.csv`) in the same place. The
+  per-circuito locality label shown in each popup comes from
+  `data/geolocalizacion/circuitos_por_localidad.csv` (same crosswalk
+  `analisis.cuadros_por_localidad` uses by default, via
+  `electoral.localidades.cargar_circuito_localidad_geo`), so every label
+  matches one of the 36 markers exactly, same name, same source — the
+  historical barrio crosswalk (`data/geolocalizacion/fuentes_extra/circuito_localidad.csv`)
+  isn't used here anymore.
   Same non-negotiable rule as the rest of `src/analisis/`: every
   percentage (per circuito and distrito-wide) is computed over
   `positivos + blanco_nulo + ausentismo`, never over `positivos` alone —
@@ -419,7 +445,7 @@ order, 01→04) are the pipeline**.
   endpoint and the one department polygon feature it needs out of
   Georef's country-wide bulk `departamentos.geojson` download;
   `catalogo.py` merges that against
-  `data/fuentes_extra/localidades.csv` (the Ministerio export, hand-filtered
+  `data/geolocalizacion/fuentes_extra/localidades.csv` (the Ministerio export, hand-filtered
   to La Plata from a national dump — see that CSV's own provenance note
   in `LOCALIDADES.md`) by normalized name, with two hand-documented name
   aliases, and writes `data/geolocalizacion/localidades_la_plata.csv`

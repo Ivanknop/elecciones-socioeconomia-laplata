@@ -1,6 +1,16 @@
 """Cuadros de votos por localidad de La Plata, agregando los resultados por
 circuito ya existentes en `data/distrito/<anio>/<nivel>/<etapa>/circuito_<nivel>.json`.
 
+Agrupa contra `data/geolocalizacion/circuitos_por_localidad.csv` (crosswalk
+geolocalizado, nearest-neighbor contra el catálogo del Ministerio de Obras
+Públicas + Georef-AR, ver skill `laplata-geolocalizacion` y
+`data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md`) -- **no** el crosswalk
+histórico por nombre de barrio de `data/geolocalizacion/fuentes_extra/circuito_localidad.csv`,
+que sigue existiendo pero dejó de ser el default acá. Cualquier circuito de
+un `circuito_<nivel>.json` que no esté en el crosswalk geolocalizado (hoy
+solo `504C`, ver `electoral.localidades`) cae en `SIN_DETERMINAR`, nunca se
+descarta.
+
 Uso:
     python -m analisis.cuadros_por_localidad --anio 2023 --nivel intendente
     python -m analisis.cuadros_por_localidad                    # todo lo disponible
@@ -13,17 +23,15 @@ from pathlib import Path
 
 from analisis.cuadros_anualizados import NIVELES_POR_ANIO
 from analisis.graficos import IDEOLOGIAS
-from electoral.localidades import (
-    NIVEL_OFICIAL,
-    NIVEL_PERIODISTICO,
-    agrupar_resultados_por_localidad,
-    cargar_crosswalk,
+from constantes import (
+    CIRCUITOS_POR_LOCALIDAD_DOC_PATH as CROSSWALK_DOC_PATH,
+    CIRCUITOS_POR_LOCALIDAD_PATH as CROSSWALK_PATH,
+    DATA_DISTRITO_DIR,
+    DATA_POR_LOCALIDAD_DIR,
 )
+from electoral.localidades import agrupar_resultados_por_localidad, cargar_circuito_localidad_geo
 
 ETAPAS = ["generales", "paso", "balotaje"]
-
-CROSSWALK_PATH = "data/fuentes_extra/circuito_localidad.csv"
-AUDITORIA_PATH = "data/fuentes_extra/AUDITORIA_DISCREPANCIAS.md"
 
 COLUMNA_TOTAL = "votos"
 
@@ -73,11 +81,9 @@ def generar_cuadro_localidad(
 
     contenido = json.loads(circuito_json.read_text(encoding="utf-8"))
     resultados = _votos_por_circuito(contenido)
-    crosswalk = cargar_crosswalk(crosswalk_path)
+    mapa = cargar_circuito_localidad_geo(crosswalk_path)
 
-    agrupado, reporte = agrupar_resultados_por_localidad(
-        resultados, crosswalk, niveles_cobertura=(NIVEL_OFICIAL, NIVEL_PERIODISTICO),
-    )
+    agrupado, reporte = agrupar_resultados_por_localidad(resultados, mapa, fuente=str(crosswalk_path))
 
     salida_dir = Path(salida_dir)
     salida_dir.mkdir(parents=True, exist_ok=True)
@@ -87,13 +93,12 @@ def generar_cuadro_localidad(
     encabezado = "\n".join([
         f"# Cuadro de votos por localidad -- La Plata, {nivel} {etapa} {anio}",
         f"# Fuente de votos: {circuito_json.as_posix()}",
-        f"# Crosswalk circuito->localidad: {crosswalk_path} (niveles: {NIVEL_OFICIAL} + {NIVEL_PERIODISTICO}, {NIVEL_OFICIAL} prevalece)",
+        f"# Crosswalk circuito->localidad: {crosswalk_path} (geolocalizado, nearest-neighbor contra el catálogo del Ministerio de Obras Públicas + Georef-AR, ver {CROSSWALK_DOC_PATH})",
         f"# Cobertura circuitos: {reporte.circuitos_agrupados}/{reporte.circuitos_totales} ({reporte.porcentaje_circuitos:.1f}%)",
         f"# Cobertura votos: {reporte.votos_agrupados:,.0f}/{reporte.votos_totales:,.0f} ({reporte.porcentaje_votos:.1f}%)",
         "# Columna blanco_nulo: votos en blanco + nulos",
         "# Columna ausentismo: electores (padron) - votos (positivos + blanco_nulo + otros)",
         f"# Circuitos sin determinar: {sin_determinar}",
-        f"# Confiabilidad de la clasificación por localidad: ver {AUDITORIA_PATH}",
     ])
     with salida.open("w", encoding="utf-8", newline="") as f:
         f.write(encabezado + "\n")
@@ -106,8 +111,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--anio", type=int, help="si se omite, corre todos los años disponibles")
     parser.add_argument("--nivel", help="si se omite, corre todos los niveles disputados ese año")
-    parser.add_argument("--data-dir", default="data/distrito")
-    parser.add_argument("--salida-dir", default="data/por_localidad")
+    parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
+    parser.add_argument("--salida-dir", default=DATA_POR_LOCALIDAD_DIR)
     args = parser.parse_args()
 
     anios = [args.anio] if args.anio else sorted(NIVELES_POR_ANIO)

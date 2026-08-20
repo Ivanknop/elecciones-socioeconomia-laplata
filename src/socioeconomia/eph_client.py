@@ -37,6 +37,8 @@ import pandas as pd
 import requests
 from dbfread import DBF
 
+from constantes import EPH_CACHE_DIR
+
 AGLOMERADO_GRAN_LA_PLATA = 2
 
 _URL_BASE = "https://www.indec.gob.ar/ftp/cuadros/menusuperior/eph/"
@@ -112,7 +114,7 @@ def _nombre_archivo_historico(anio: int, trimestre: int) -> str:
 
 class EphClient:
     def __init__(
-        self, cache_dir: Path | str = "data/socioeconomia/eph_cache", timeout: float = 60.0
+        self, cache_dir: Path | str = EPH_CACHE_DIR, timeout: float = 60.0
     ):
         self.cache_dir = Path(cache_dir)
         self.session = requests.Session()

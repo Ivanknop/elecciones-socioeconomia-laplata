@@ -30,12 +30,14 @@ from pathlib import Path
 
 import requests
 
+from constantes import GEOLOCALIZACION_CACHE_DIR
+
 BASE_URL = "https://apis.datos.gob.ar/georef/api"
 BULK_DEPARTAMENTOS_URL = "https://apis.datos.gob.ar/georef/api/v2.0/departamentos.geojson"
 
 
 class GeorefClient:
-    def __init__(self, cache_dir: Path | str = "data/geolocalizacion/_cache", timeout: float = 60.0):
+    def __init__(self, cache_dir: Path | str = GEOLOCALIZACION_CACHE_DIR, timeout: float = 60.0):
         self.cache_dir = Path(cache_dir)
         self.session = requests.Session()
         self.timeout = timeout

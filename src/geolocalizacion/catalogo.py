@@ -1,7 +1,7 @@
 """Catálogo validado de localidades geolocalizadas del Partido de La Plata:
 cruza los asentamientos de Georef-AR (`geolocalizacion.georef_client`) contra
 la fuente oficial del Ministerio de Obras Públicas
-(`data/fuentes_extra/localidades.csv`, exportada desde
+(`data/geolocalizacion/fuentes_extra/localidades.csv`, exportada desde
 <https://snop-ppo.obraspublicas.gob.ar/localities>, códigos UTA 2010/2020)
 y escribe `data/geolocalizacion/localidades_la_plata.csv`.
 
@@ -23,6 +23,7 @@ import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 
+from constantes import GEOLOCALIZACION_CACHE_DIR, LOCALIDADES_LA_PLATA_PATH, LOCALIDADES_MINISTERIO_PATH
 from geolocalizacion.georef_client import GeorefClient
 
 MUNICIPIO_ID = "060441"
@@ -186,9 +187,9 @@ def generar_reporte(catalogo: list[LocalidadValidada]) -> ReporteValidacion:
 
 
 def generar_csv(
-    ministerio_path: Path | str = "data/fuentes_extra/localidades.csv",
-    destino: Path | str = "data/geolocalizacion/localidades_la_plata.csv",
-    cache_dir: Path | str = "data/geolocalizacion/_cache",
+    ministerio_path: Path | str = LOCALIDADES_MINISTERIO_PATH,
+    destino: Path | str = LOCALIDADES_LA_PLATA_PATH,
+    cache_dir: Path | str = GEOLOCALIZACION_CACHE_DIR,
     municipio_id: str = MUNICIPIO_ID,
     force_refresh: bool = False,
 ) -> tuple[Path, ReporteValidacion]:
@@ -230,9 +231,9 @@ def generar_csv(
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--ministerio", default="data/fuentes_extra/localidades.csv")
-    parser.add_argument("--destino", default="data/geolocalizacion/localidades_la_plata.csv")
-    parser.add_argument("--cache-dir", default="data/geolocalizacion/_cache")
+    parser.add_argument("--ministerio", default=LOCALIDADES_MINISTERIO_PATH)
+    parser.add_argument("--destino", default=LOCALIDADES_LA_PLATA_PATH)
+    parser.add_argument("--cache-dir", default=GEOLOCALIZACION_CACHE_DIR)
     parser.add_argument("--municipio-id", default=MUNICIPIO_ID)
     parser.add_argument("--force-refresh", action="store_true")
     args = parser.parse_args()

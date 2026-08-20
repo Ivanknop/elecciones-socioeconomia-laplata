@@ -18,6 +18,7 @@ from pathlib import Path
 
 from analisis.cuadros_anualizados import NIVELES_POR_ANIO, _niveles_disponibles
 from analisis.totales_por_lista import _NOMBRE_BLANCO_NULO, resultado_total_con_blanco_nulo
+from constantes import DATA_DISTRITO_DIR
 
 CATEGORIA_NIVEL = {
     "presidente": "Nación",
@@ -107,7 +108,7 @@ def generar_comparativo_nivel(data_dir: Path | str, salida_dir: Path | str, anio
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--anio", type=int, help="si se omite, corre todos los años disponibles")
-    parser.add_argument("--data-dir", default="data/distrito")
+    parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
     parser.add_argument("--salida-dir", default="graficos/distrito/totales_por_lista/comparativos_nivel")
     args = parser.parse_args()
 

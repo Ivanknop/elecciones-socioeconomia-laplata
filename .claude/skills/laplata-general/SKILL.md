@@ -18,8 +18,10 @@ su propio skill de detalle:
    **`laplata-economia`**.
 3. **Geolocalización** (`src/geolocalizacion/`) — catálogo validado de
    las 36 localidades del Partido de La Plata (nombre + lat/lon),
-   cruzado entre Georef-AR y el Ministerio de Obras Públicas. Todavía no
-   cruzado con `circuito_id` ni con el Censo. Skill:
+   cruzado entre Georef-AR y el Ministerio de Obras Públicas, y ya
+   cruzado con `circuito_id` (`data/geolocalizacion/circuitos_por_localidad.csv`,
+   nearest-neighbor, es el crosswalk que usa por defecto la agrupación
+   por localidad del dominio 1). Todavía no cruzado con el Censo. Skill:
    **`laplata-geolocalizacion`**.
 
 Este archivo alcanza para trabajo puramente estructural (convenciones de
@@ -40,9 +42,10 @@ src/electoral/, src/analisis/, src/socioeconomia/   # dominio 1 -- ver laplata-e
 src/macroeconomia/                                    # dominio 2 -- ver laplata-economia
 src/geolocalizacion/                                  # dominio 3 -- ver laplata-geolocalizacion
 notebooks/               # 01-06, pipeline del dominio 1 (ver CLAUDE.md)
-data/agrupaciones/, data/fuentes_extra/, data/distrito/, data/socioeconomia/   # dominio 1
+data/agrupaciones/, data/distrito/, data/socioeconomia/   # dominio 1
 data/macroeconomia/                                                            # dominio 2
-data/geolocalizacion/                                                          # dominio 3
+data/geolocalizacion/                                                          # dominio 3, EXCEPTO el subdirectorio de abajo
+data/geolocalizacion/fuentes_extra/                                            # excepción: contenido del dominio 1 (crosswalk histórico circuito->barrio + su documentación), vive anidado acá porque es "información adicional" -- no confundir con el resto de data/geolocalizacion/, que sí es dominio 3
 docs/                     # documentación narrativa del repo entero
 tests/
 CLAUDE.md                 # comandos + arquitectura autoritativa -- manda si algo difiere de los skills
@@ -69,7 +72,7 @@ CLAUDE.md                 # comandos + arquitectura autoritativa -- manda si alg
   periodístico, un dataset oficial, un endpoint de API), documentarla
   con: nombre de fuente, fecha, URL, y qué porción del universo cubre —
   siguiendo el formato ya usado en
-  `data/fuentes_extra/CIRCUITOS_LOCALIDADES.md` o
+  `data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md` o
   `data/geolocalizacion/LOCALIDADES.md`.
 - **No tocar datos para que un número dé mejor.** Si un accuracy,
   cobertura o test da bajo, el resultado es que da bajo — se documenta,

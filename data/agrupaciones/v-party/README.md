@@ -58,8 +58,6 @@ al. 2022, V-Dem Institute, Universidad de Gotemburgo.
 
 ## Notas de uso
 
-- **Ninguna variable de V-Party mide "ley y orden"** (punitivismo penal).
-  No se agregó ninguna columna sustituta.
 - Las columnas `ep_*` (importadas de Chapel Hill Expert Survey / Global
   Party Survey, no son producto de V-Dem) están **vacías o casi vacías**
   para Argentina: `ep_people_vs_elite`, `ep_galtan`, `ep_antielite_salience`,
@@ -77,8 +75,7 @@ al. 2022, V-Dem Institute, Universidad de Gotemburgo.
   queda a criterio de quien lo consuma.
 - `v2parelig` está en escala invertida respecto de lo intuitivo: 0 =
   invoca religión siempre, 4 = nunca.
-- La unidad de observación son elecciones a **Diputados** (cámara baja),
-  no elecciones presidenciales.
+
 
 ## `vparty_argentina_2011_2019_variables_solicitadas.csv` (nunca existió en este repo, ver nota al inicio)
 
@@ -120,29 +117,6 @@ Mismas 35 filas, 63 columnas:
   agregada en esta ronda). `v2xpa_popul` solo trae `_codelow`/`_codehigh`
   — es un índice derivado (0–1), no tiene versión `_osp`.
 
-Se revisó el codebook completo buscando columnas adicionales para 4
-preguntas del cuestionario propio que todavía no tenían columna
-confirmada. Resultado, sin forzar ninguna equivalencia:
-
-- **Regulación económica y mercado** y **política fiscal/tributaria**:
-  no son variables separadas — el propio codebook de `v2pariglef` las
-  describe como componentes fusionados de ese único índice ("higher
-  taxes, more regulation... vs. privatization, lower taxes, less
-  regulation"), sin desagregar. No hay columna propia para ninguna de
-  las dos.
-- **Ley y orden**: cero coincidencias en todo el codebook (ni parciales).
-  `v2paviol` (violencia política contra opositores), `v2paminor`
-  (mayoría vs. derechos de minorías) y `v2paculsup` (superioridad
-  cultural/nacionalismo) tocan temas cercanos pero no son esto — no se
-  usaron como sustituto.
-- **Discurso sobre democracia representativa**: sin equivalente limpio.
-  `ep_people_vs_elite` coincide en la definición exacta pero está vacía
-  para Argentina (ver arriba). `v2paplur` (compromiso con elecciones
-  libres/multipartidarias y libertades civiles, 0–4) es el candidato
-  parcial más cercano si se necesita una referencia aproximada, pero
-  mide un concepto más amplio que el discurso refundacional sobre las
-  instituciones representativas puntualmente — no está incluida en este
-  CSV.
 
 ## `v_party_argentina_2011_2019_espaniol.csv`
 
@@ -157,14 +131,3 @@ en español y el cruce se hace por coincidencia (exacta o cuasi-exacta,
 salvando puntuación) de nombre normalizado — `v_party_argentina_2011_2019.csv`
 (sin traducir) no sirve para ese propósito y se mantiene sólo por
 procedencia/comparación con el original en inglés.
-
-`src/analisis/vparty_cuadrantes.py` también lee este archivo (no
-`v_party_argentina_2011_2019.csv`, que dejó de estar versionado — ver nota
-al inicio): sus etiquetas de gráfico usan `v2pashname` (sigla, ej.
-"FPV-PJ"), no `v2paenname_espaniol`, pero necesita apuntar a un CSV que
-exista tras un clon nuevo del repo. Y toda la carga puntual de
-`vparty_economico`/`vparty_progresismo`/`vparty_populismo` en
-`clasificacion_ideologica_agrupaciones.csv` hecha por cruce de nombre
-contra agrupaciones de este repo (ver `docs/vparty_cuadrantes.md`,
-sección "Integración con `clasificacion_ideologica_agrupaciones.csv`")
-usa este mismo archivo.

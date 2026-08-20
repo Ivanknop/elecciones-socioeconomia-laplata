@@ -60,11 +60,11 @@ def circuito_json_path(tmp_path):
 
 @pytest.fixture
 def crosswalk_path(tmp_path):
-    archivo = tmp_path / "crosswalk.csv"
+    archivo = tmp_path / "circuitos_por_localidad.csv"
     archivo.write_text(
-        "circuito_id,localidad,fuente,cobertura\n"
-        "100,BARRIO_A,resolucion,oficial_confirmada\n"
-        "101,BARRIO_A,resolucion,oficial_confirmada\n",
+        "circuito;localidad;distancia_metros\n"
+        "100;BARRIO_A;100.0\n"
+        "101;BARRIO_A;150.0\n",
         encoding="utf-8",
     )
     return archivo
@@ -147,12 +147,14 @@ class TestGenerarCuadroLocalidad:
         encabezado = salida.read_text(encoding="utf-8")
         assert "Cobertura votos:" in encabezado
 
-    def test_encabezado_referencia_la_auditoria_de_discrepancias(self, circuito_json_path, crosswalk_path, tmp_path):
+    def test_encabezado_referencia_la_documentacion_del_crosswalk_geolocalizado(
+        self, circuito_json_path, crosswalk_path, tmp_path,
+    ):
         salida = generar_cuadro_localidad(
             circuito_json_path, tmp_path / "por_localidad", 2023, "intendente", "generales", crosswalk_path,
         )
         encabezado = salida.read_text(encoding="utf-8")
-        assert "AUDITORIA_DISCREPANCIAS.md" in encabezado
+        assert "CIRCUITOS_POR_LOCALIDAD.md" in encabezado
 
     def test_columna_izquierda_refleja_campo_ideologico_1(self, circuito_json_path, crosswalk_path, tmp_path):
         salida = generar_cuadro_localidad(

@@ -27,7 +27,9 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-RUTA_DATOS = Path("data/agrupaciones/v-party/v_party_argentina_2011_2019_espaniol.csv")
+from constantes import VPARTY_PATH
+
+RUTA_DATOS = Path(VPARTY_PATH)
 RUTA_SALIDA = Path("graficos/agrupaciones/vparty_cuadrantes_economico_progresismo_populismo.png")
 
 # Columnas fuente de V-Party usadas para construir la tupla.

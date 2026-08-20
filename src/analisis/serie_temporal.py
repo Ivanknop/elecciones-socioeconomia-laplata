@@ -22,20 +22,12 @@ from analisis.graficos import (
     etiqueta_categoria,
     etiquetar_puntos,
 )
+from constantes import CARGO_LABEL, DATA_DISTRITO_DIR
 
 NIVELES = {
     "nacional": ("presidente", "nacional"),
     "provincial": ("gobernador", "provincial"),
     "municipal": ("intendente", "municipal"),
-}
-
-CARGO_LABEL = {
-    "presidente": "Presidente",
-    "nacional": "Diputados Nac.",
-    "gobernador": "Gobernador",
-    "provincial": "Diputados Prov.",
-    "intendente": "Intendente",
-    "municipal": "Concejales",
 }
 
 
@@ -126,7 +118,7 @@ def generar_serie_temporal(data_dir: Path | str, graficos_dir: Path | str, nivel
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--nivel", choices=list(NIVELES), help="si se omite, corre los 3 niveles")
-    parser.add_argument("--data-dir", default="data/distrito")
+    parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
     parser.add_argument("--graficos-dir", default="graficos/distrito")
     args = parser.parse_args()
 
