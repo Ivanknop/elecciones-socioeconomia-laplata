@@ -2,7 +2,7 @@
 puras (blanco_nulo/ausentismo, top-N + residuo, índice de agrupaciones) --
 sin red, sin Leaflet, sin generar HTML (misma línea divisoria que el resto
 del repo entre lógica pura testeada y renderizado validado a mano)."""
-from analisis.mapa_interactivo import (
+from visualizacion.mapa_interactivo import (
     TOP_N,
     _construir_agrup_index,
     _construir_circuito,

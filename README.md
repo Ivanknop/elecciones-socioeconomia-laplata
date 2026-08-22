@@ -32,8 +32,9 @@ src/analisis/         graficos.py, generar_graficos.py, serie_temporal.py,
                        serie_temporal_filiacion.py, cuadros_anualizados.py,
                        cuadros_por_localidad.py, serie_temporal_por_localidad.py,
                        totales_por_lista.py, comparativo_nivel.py,
-                       mapa_interactivo.py, vparty_cuadrantes.py,
-                       vparty_cuadrantes_local.py, generar_v_party_propio.py
+                       vparty_cuadrantes.py, vparty_cuadrantes_local.py,
+                       generar_v_party_propio.py
+src/visualizacion/    mapa_interactivo.py (+ template), distribucion_ideologica_interactiva.py (+ template)
 src/socioeconomia/    geo.py, eph_client.py, graficos_eph_iaelap.py
 src/macroeconomia/    datos_gob_client.py, series.py, graficos.py, auditoria_estadisticasbcra.py
 src/geolocalizacion/  georef_client.py, catalogo.py, mapa.py
@@ -48,9 +49,7 @@ docs/                  toda la documentación narrativa suelta del repo
 requirements.txt
 ```
 
-Datos y gráficos, mezcla de versionado (curaduría manual) y derivado
-(se regenera desde el código de arriba — nunca hace falta pedir permiso
-para borrarlo y correrlo de nuevo):
+Datos y gráficos, mezcla de versionado (curaduría manual):
 
 | Ruta | Contenido | ¿Versionado en git? |
 |---|---|---|
@@ -82,6 +81,7 @@ para borrarlo y correrlo de nuevo):
 | `graficos/agrupaciones/` | cuadrantes V-Party (nacional + La Plata por año/nivel) | **Sí** |
 | `graficos/por_localidad/` | series temporales por localidad; `vparty/` (cuadrantes por localidad) | No — derivado |
 | `docs/index.html`, `docs/mapa_electoral_la_plata.html` | sitio de GitHub Pages: landing + mapa interactivo (Leaflet), 68 circuitos × 22 elecciones generales | **Sí** |
+| `docs/distribucion_ideologica_la_plata.html` | cuadrantes ideológicos (V-Party) interactivos por nivel/año, distrito + mapa de localidades | **Sí** |
 
 Toda la documentación narrativa (`docs/`) también está versionada — es
 documentación, no datos. Detalle de cada archivo en "Documentación" más
@@ -137,9 +137,10 @@ geolocalización, a `apis.datos.gob.ar` (esta última incluye
 A partir de `circuito_<nivel>.json`, todos los scripts de `src/analisis/`
 (gráficos, series temporales, totales, cuadros comparativos) se corren
 independientemente unos de otros — comandos exactos de cada uno en
-`docs/FUNCIONALIDADES.md`. `analisis.mapa_interactivo` es la excepción:
-necesita tanto `circuito_<nivel>.json` (paso 5) como el catálogo de
-geolocalización (paso 8) ya generados.
+`docs/FUNCIONALIDADES.md`. Los dos scripts de `src/visualizacion/`
+(`mapa_interactivo`, `distribucion_ideologica_interactiva`) son la
+excepción: necesitan tanto `circuito_<nivel>.json` (paso 5) como el
+catálogo de geolocalización (paso 8) ya generados.
 
 ## Tests
 

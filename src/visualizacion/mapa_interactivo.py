@@ -49,7 +49,7 @@ renglón "otros" con el residuo (`positivos - suma del top7`) en vez de
 dejar que las barras visibles no sumen 100% sin explicación.
 
 Uso:
-    PYTHONPATH=src python -m analisis.mapa_interactivo
+    PYTHONPATH=src python -m visualizacion.mapa_interactivo
 """
 from __future__ import annotations
 

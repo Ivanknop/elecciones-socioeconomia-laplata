@@ -1,6 +1,6 @@
 ---
 name: laplata-general
-description: Mapa de arranque del repositorio elecciones-socioeconomia-laplata -- estructura de alto nivel, convenciones de código, y la regla de versionado SemVer. Usar SIEMPRE como primer skill al trabajar en este repositorio, antes de tocar cualquier dominio puntual -- después, según el tema de la tarea, invocar además el skill de dominio correspondiente (laplata-elecciones, laplata-economia, o laplata-geolocalizacion). Evita releer CLAUDE.md/git log desde cero en cada sesión para las convenciones que aplican a todo el repo por igual.
+description: Mapa de arranque del repositorio elecciones-socioeconomia-laplata -- estructura de alto nivel, convenciones de código, y la regla de versionado SemVer. Usar SIEMPRE como primer skill al trabajar en este repositorio, antes de tocar cualquier dominio puntual -- después, según el tema de la tarea, invocar además el skill de dominio correspondiente (laplata-elecciones, laplata-economia, laplata-geolocalizacion, o laplata-visualizacion). Evita releer CLAUDE.md/git log desde cero en cada sesión para las convenciones que aplican a todo el repo por igual.
 ---
 
 # analisis-politica-economia — mapa general
@@ -24,6 +24,13 @@ su propio skill de detalle:
    por localidad del dominio 1). Todavía no cruzado con el Censo. Skill:
    **`laplata-geolocalizacion`**.
 
+No es un cuarto dominio de datos, pero tiene su propio skill por ser una
+capa transversal con reglas propias: **Visualización interactiva**
+(`src/visualizacion/`) — los dos generadores de HTML completo para el
+sitio de GitHub Pages (mapa electoral Leaflet, cuadrantes ideológicos
+V-Party), sobre datos del dominio 1 (y del catálogo del dominio 3 para
+localidades). Skill: **`laplata-visualizacion`**.
+
 Este archivo alcanza para trabajo puramente estructural (convenciones de
 código, versionado, layout general). Para cualquier tarea sobre datos
 concretos de un dominio, invocá además el skill de ese dominio — ahí
@@ -39,6 +46,7 @@ detalle — y avisá para que esto se corrija.
 
 ```
 src/electoral/, src/analisis/, src/socioeconomia/   # dominio 1 -- ver laplata-elecciones
+src/visualizacion/                                    # generadores de HTML interactivo para docs/ (capa de presentación sobre el dominio 1, separada de src/analisis/ porque no bulk-escribe PNG/Markdown) -- ver laplata-visualizacion
 src/macroeconomia/                                    # dominio 2 -- ver laplata-economia
 src/geolocalizacion/                                  # dominio 3 -- ver laplata-geolocalizacion
 notebooks/               # 01-06, pipeline del dominio 1 (ver CLAUDE.md)
@@ -109,3 +117,4 @@ CLAUDE.md                 # comandos + arquitectura autoritativa -- manda si alg
 | Resultados electorales, `circuito_id`, crosswalk circuito↔localidad, clasificación ideológica, EPH/IAELaP, correspondencia circuito↔radio censal | `laplata-elecciones` |
 | Series macroeconómicas nacionales (IPC, tipo de cambio, deuda, PBI, datos.gob.ar, BCRA) | `laplata-economia` |
 | Localidades geolocalizadas, Georef-AR, Ministerio de Obras Públicas, mapa de localidades, lat/lon | `laplata-geolocalizacion` |
+| `src/visualizacion/` (mapa Leaflet, cuadrantes V-Party interactivos, cualquier HTML nuevo para `docs/`) | `laplata-visualizacion` |

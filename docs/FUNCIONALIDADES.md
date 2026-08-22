@@ -16,10 +16,11 @@ sin límite.
 6. [Gráficos (`src/analisis/`, salida en `graficos/`)](#gráficos-srcanalisis-salida-en-graficos)
 7. [PASO y balotaje](#paso-y-balotaje)
 8. [Libro de códigos ideológico — estado actual](#libro-de-códigos-ideológico--estado-actual)
-9. [Capa socioeconómica (EPH + Censo) — estado actual](#capa-socioeconómica-eph--censo--estado-actual)
-10. [Agrupación de resultados por localidad — estado actual](#agrupación-de-resultados-por-localidad--estado-actual)
-11. [Capa macroeconómica nacional — estado actual](#capa-macroeconómica-nacional--estado-actual)
-12. [Extender a otro distrito, sección o cargo](#extender-a-otro-distrito-sección-o-cargo)
+9. [Distribución ideológica interactiva (`src/visualizacion/distribucion_ideologica_interactiva.py`)](#distribución-ideológica-interactiva-srcvisualizaciondistribucion_ideologica_interactivapy)
+10. [Capa socioeconómica (EPH + Censo) — estado actual](#capa-socioeconómica-eph--censo--estado-actual)
+11. [Agrupación de resultados por localidad — estado actual](#agrupación-de-resultados-por-localidad--estado-actual)
+12. [Capa macroeconómica nacional — estado actual](#capa-macroeconómica-nacional--estado-actual)
+13. [Extender a otro distrito, sección o cargo](#extender-a-otro-distrito-sección-o-cargo)
 
 ---
 
@@ -459,6 +460,48 @@ programática en el espacio de V-Party (V-Dem Institute), ortogonal tanto a
 las filas (V-Party real más una estimación propia calibrada a su misma
 escala). De qué fuente viene cada fila puntual está documentado en un único
 lugar, `data/agrupaciones/v-party/README.md`, no acá.
+
+## Distribución ideológica interactiva (`src/visualizacion/distribucion_ideologica_interactiva.py`)
+
+Pestaña del sitio de GitHub Pages (`docs/distribucion_ideologica_la_plata.html`,
+enlazada desde `docs/index.html`), mismo patrón de interacción temporal que
+`visualizacion.mapa_interactivo` (selector + autoplay) — ambos generadores
+de HTML interactivo viven en `src/visualizacion/`, separado de
+`src/analisis/` (que solo bulk-escribe PNG/Markdown estáticos), ver
+CLAUDE.md. Acá el selector es solo **Nivel + Año**
+(nacional/provincial/municipal, sin el toggle Cargo/Nivel del mapa) — los
+cuadros V-Party de este repo solo existen por nivel unificado
+(`analisis.serie_temporal.NIVELES`), nunca por cargo suelto. El mapa de
+circuitos queda **sin colorear por ideología**, solo referencia geográfica:
+clickear un circuito resuelve su localidad (mismo crosswalk geolocalizado
+que `mapa_interactivo.py`,
+`electoral.localidades.cargar_circuito_localidad_geo`) y muestra
+"Distribución ideológica de *{localidad}* — próximamente" en vez de
+aproximar o reusar el cuadro distrital — **no hay cobertura V-Party a nivel
+localidad todavía**.
+
+El panel principal (columna derecha cuando no hay localidad seleccionada)
+es un bubble chart SVG con el mismo dato que ya grafica
+`vparty_cuadrantes_local.tabla_distrito` como PNG estático — acá como
+payload JSON reactivo en vez de un archivo por (año, nivel): eje X
+económico, eje Y progresismo, tamaño = % de votos del partido en esa
+elección, color = familia política (`filiacion_politica`, sombreada por
+partido dentro de la familia, mismas `_color_por_partido`/`_sombras` que ya
+usa el PNG). **Todos los puntos se muestran de la misma forma, sin
+distinguir V-Party real de estimación propia** — de qué fuente viene cada
+valor está documentado en un único lugar,
+`data/agrupaciones/v-party/README.md`, y no se refleja en ningún elemento
+visual ni interactivo de esta pestaña (ni color, ni trazo, ni filtro): la
+estimación propia calibrada se trata como igual de válida.
+
+No modifica `vparty_cuadrantes_local.py` ni la ruta que genera los PNG en
+`graficos/agrupaciones/` — es aditivo, reusa
+`tabla_distrito`/`cargar_posiciones_propias`/`cargar_filiaciones`/
+`_color_por_partido` tal cual.
+
+```bash
+PYTHONPATH=src python -m visualizacion.distribucion_ideologica_interactiva
+```
 
 ## Capa socioeconómica (EPH + Censo) — estado actual
 

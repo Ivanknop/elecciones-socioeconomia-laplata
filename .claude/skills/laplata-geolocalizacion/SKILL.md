@@ -10,7 +10,7 @@ localidades (nombre + lat/lon), ya cruzado contra `circuito_id`
 (`data/geolocalizacion/circuitos_por_localidad.csv`, ver
 `CIRCUITOS_POR_LOCALIDAD.md` más abajo) -- ese crosswalk derivado es hoy
 el default de `analisis.cuadros_por_localidad` y de
-`analisis.mapa_interactivo`. No confundir con el crosswalk histórico
+`visualizacion.mapa_interactivo`. No confundir con el crosswalk histórico
 `circuito_id → nombre de barrio` de `laplata-elecciones`
 (`data/geolocalizacion/fuentes_extra/circuito_localidad.csv` /
 `CIRCUITOS_LOCALIDADES.md`, otra fuente -- Resolución 1990/2007 +
@@ -44,7 +44,7 @@ data/geolocalizacion/fuentes_extra/localidades.csv                # fuente Minis
 data/geolocalizacion/fuentes_extra/circuito_localidad.csv          # crosswalk histórico circuito->barrio (ver laplata-elecciones) -- vive acá desde que se movió data/fuentes_extra/, no es del dominio geolocalización
 data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md, AUDITORIA_DISCREPANCIAS.md, resolucion_1990-2007.md   # docs del crosswalk histórico, idem
 data/geolocalizacion/localidades_la_plata.csv      # catálogo validado, 36 filas, git-tracked -- generado por catalogo.py
-data/geolocalizacion/circuitos_por_localidad.csv    # crosswalk circuito_id -> localidad geolocalizada, 68 filas, git-tracked -- generado por circuitos_por_localidad.py, DEFAULT de analisis.cuadros_por_localidad y analisis.mapa_interactivo
+data/geolocalizacion/circuitos_por_localidad.csv    # crosswalk circuito_id -> localidad geolocalizada, 68 filas, git-tracked -- generado por circuitos_por_localidad.py, DEFAULT de analisis.cuadros_por_localidad y visualizacion.mapa_interactivo
 data/geolocalizacion/LOCALIDADES.md                 # metodología, esquema de columnas, hallazgos, qué falta
 data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md     # metodología del cruce circuito<->localidad (nearest-neighbor), resultado, caso circuito 493
 data/geolocalizacion/_cache/                        # respuestas crudas de Georef, NO versionado

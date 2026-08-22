@@ -7,6 +7,7 @@ matplotlib ni red. El graficado en sí (`generar_distrito`/`generar_localidad`,
 que el resto de `src/analisis/*` -- se valida corriendo el script contra
 `data/` real (ver CLAUDE.md).
 """
+import csv
 import json
 
 import pytest
@@ -37,7 +38,6 @@ CAMPOS = [
 
 
 def _escribir_clasificacion(path, filas):
-    import csv
     with open(path, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=CAMPOS)
         w.writeheader()

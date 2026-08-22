@@ -63,11 +63,12 @@ data/geolocalizacion/fuentes_extra/resolucion_1990-2007.md                     #
 data/socioeconomia/circuito_radio_correspondencia.csv           # correspondencia espacial circuito<->radio censal (peso_area)
 data/socioeconomia/radios_censales_{2010,2022}_la_plata.geojson
 src/electoral/          # cliente API, modelos, parsing, agrupamiento por localidad (localidades.py), totales por agrupación (totales.py)
-src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a partir de circuito_<nivel>.json; totales_por_lista.py grafica data/totales/ + blanco_nulo; comparativo_nivel.py compara Municipio/Provincia/Nación en Markdown; mapa_interactivo.py cruza esto con geolocalizacion y el geojson de circuitos; vparty_cuadrantes_local.py grafica cuadrantes económico×progresismo por partido, distrito/localidad
+src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a partir de circuito_<nivel>.json; totales_por_lista.py grafica data/totales/ + blanco_nulo; comparativo_nivel.py compara Municipio/Provincia/Nación en Markdown; vparty_cuadrantes_local.py grafica cuadrantes económico×progresismo por partido, distrito/localidad
+src/visualizacion/      # generadores de HTML interactivo para docs/, sobre datos de este dominio -- ver skill laplata-visualizacion
 src/socioeconomia/      # EPH, geo, IAELaP
 notebooks/               # 01-06, la pipeline real corre acá (ver CLAUDE.md)
 graficos/distrito/, graficos/por_localidad/, graficos/socioeconomia/   # salida, mayormente no versionada
-docs/index.html, docs/mapa_electoral_la_plata.html   # sitio de GitHub Pages -- el único gráfico interactivo del repo (Leaflet), git-tracked, vive en docs/ (no graficos/) porque ahí lo sirve Pages
+docs/index.html, docs/mapa_electoral_la_plata.html, docs/distribucion_ideologica_la_plata.html   # sitio de GitHub Pages -- los dos gráficos interactivos del repo (Leaflet), git-tracked, viven en docs/ (no graficos/) porque ahí los sirve Pages
 tests/
 ```
 
