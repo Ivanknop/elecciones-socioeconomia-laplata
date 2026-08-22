@@ -1,9 +1,18 @@
-# Estado de la auditoría (`NOTA_METODOLOGICA.md`, Sección 8) — a v6.0.0
+# Estado de la auditoría (`NOTA_METODOLOGICA.md`, Sección 8) — a v7.1.0
 
 Este documento existe porque la nota metodológica es un documento de trabajo
 fechado sobre `v1.0.0`. Se actualiza cada vez que se cierra un punto.
 
 Convención: 🟢 resuelto · 🟡 parcial · 🔴 abierto
+
+**Alcance de esta pasada (v6.0.0 → v7.1.0):** re-auditada solo la Sección
+8.2 (V-Party), por ser lo que tocó el commit `cfb6309` (tag `v7.1.0`) —
+ver el bloque actualizado más abajo. Los commits de v7.0.0
+(`a9b84d5`..`72b54d2`, reconstrucción del flujo por localidad sobre
+geolocalización) no se re-auditaron en esta pasada; el resto del
+documento (8.1, Sección 10, "Lectura del conjunto") sigue reflejando la
+validación completa a v6.0.0 descripta ahí mismo, no una nueva pasada
+completa a v7.1.0.
 
 ## 8.1 — Correcciones y fragilidades confirmadas
 
@@ -20,7 +29,7 @@ Convención: 🟢 resuelto · 🟡 parcial · 🔴 abierto
 | 9 | Escala ideológica duplicada (CSV sin usar) | 🟢 | `graficos.py` ya lee `campo_ideologico.csv` (vía `_cargar_escala_ideologica()`, ruta resuelta por `__file__` para no depender del cwd) en vez del dict `IDEOLOGIAS` hardcodeado; CSV pasado a separador `,` para consistencia con el resto de `data/agrupaciones/`. Ver `docs/PLAN_CORRECCIONES_ELECTORALES.md` §2.1 |
 | 10 | Series unen cargos distintos sin marcarlo | 🟡 | está documentado en README con tabla explícita; el panel/serie separada por cargo que pedía la nota ya existe en dos formas -- `cuadros_anualizados.py` (bar chart por año, cargos lado a lado, sin sumarlos) y, esta sesión, `comparativo_nivel.py` (cuadro Markdown por año con el % de cada agrupación en Municipio/Provincia/Nación más las tres diferencias entre pares). **Sigue faltando**: marcar visualmente el cambio de tipo de elección dentro de la serie fusionada de `serie_temporal.py` en sí (hoy solo está en el sub-label de texto del eje x, no en el trazo) |
 | 11 | Gráficos omiten blancos/nulos/abstención; volumen de PNG | 🟡 | resuelta la primera mitad (blancos/nulos/abstención): todo gráfico de `src/analisis/` (barras/torta, las tres series temporales, `cuadros_anualizados`, y las variantes `por_localidad`) suma `blanco_nulo` y `ausentismo` (`electores` del circuito/nivel menos votos válidos) junto al desglose por `campo_ideologico`/`filiacion_politica`, vía `graficos._votos_no_ideologicos` — el % que muestra cada gráfico pasa de "% de los positivos" a "% del padrón" (ver README, sección "Gráficos"). **Corrección a esta misma auditoría**: la nota "cambio sin commitear todavía" que traía este ítem era vieja para cuando se congeló v3.3.0 — el commit real es `e41c8d0`, ya incluido en v3.3.0. `mapa_interactivo.py` (v4-v5) extiende el mismo criterio a su choropleth de "Ausentismo". **Sigue abierto**: el volumen de PNG (miles de archivos por circuito) y la tabla maestra analítica que pide la nota como reemplazo no cambiaron. |
-| 12 | Dependencia de notebooks y cwd; sin tests de `client.py`/`analisis/` | 🟡 | se agregaron tests de `models.py` (`909760e`); con `d006699` también se agregó cobertura para la capa de localidades (`test_localidades.py`, `test_cuadros_por_localidad.py`, `test_serie_temporal_por_localidad.py`). **Actualización relevante desde v3.3.0**: `11718f9` agregó tests de la lógica pura (no el renderizado matplotlib en sí) de `graficos.py`, `cuadros_anualizados.py`, `serie_temporal.py`, `serie_temporal_filiacion.py`, `totales_por_lista.py` y `comparativo_nivel.py` — la afirmación de `CLAUDE.md` de que esos módulos "still have no automated tests" quedó desactualizada por ese mismo commit y debería corregirse ahí también. Los tres dominios nuevos (macro, geolocalización, V-Party) siguen el mismo criterio ya establecido: lógica pura testeada, capa de red/rendering no — `macroeconomia/series.py` y `series_anuales.py` (`7e5e01d`/`b4ec146`), `geolocalizacion/catalogo.py` (`4746cbe`), y la lógica de agregación de `mapa_interactivo.py` (`dd12bb3`/`e45d43f`) tienen tests; `electoral/client.py`, `macroeconomia/datos_gob_client.py`/`graficos.py`/`auditoria_estadisticasbcra.py`, `geolocalizacion/georef_client.py`/`mapa.py`, `analisis/vparty_cuadrantes.py` y el resto de renderizado matplotlib siguen sin cobertura, por diseño (necesitan red o producen imágenes, no lógica a aserción directa). 265 tests en total (`pytest -q`), suite completa en ~5s. |
+| 12 | Dependencia de notebooks y cwd; sin tests de `client.py`/`analisis/` | 🟡 | se agregaron tests de `models.py` (`909760e`); con `d006699` también se agregó cobertura para la capa de localidades (`test_localidades.py`, `test_cuadros_por_localidad.py`, `test_serie_temporal_por_localidad.py`). **Actualización relevante desde v3.3.0**: `11718f9` agregó tests de la lógica pura (no el renderizado matplotlib en sí) de `graficos.py`, `cuadros_anualizados.py`, `serie_temporal.py`, `serie_temporal_filiacion.py`, `totales_por_lista.py` y `comparativo_nivel.py` — la afirmación de `CLAUDE.md` de que esos módulos "still have no automated tests" quedó desactualizada por ese mismo commit y debería corregirse ahí también. Los tres dominios nuevos (macro, geolocalización, V-Party) siguen el mismo criterio ya establecido: lógica pura testeada, capa de red/rendering no — `macroeconomia/series.py` y `series_anuales.py` (`7e5e01d`/`b4ec146`), `geolocalizacion/catalogo.py` (`4746cbe`), y la lógica de agregación de `mapa_interactivo.py` (`dd12bb3`/`e45d43f`) tienen tests; `electoral/client.py`, `macroeconomia/datos_gob_client.py`/`graficos.py`/`auditoria_estadisticasbcra.py`, `geolocalizacion/georef_client.py`/`mapa.py`, `analisis/vparty_cuadrantes.py`/`vparty_cuadrantes_local.py` (plotting) y el resto de renderizado matplotlib siguen sin cobertura, por diseño (necesitan red o producen imágenes, no lógica a aserción directa) — `generar_v_party_propio.py` y la lógica pura de `vparty_cuadrantes_local.py` (join/agregación/color, `cfb6309`) sí la tienen. 322 tests en total a v7.1.0 (`pytest -q`, eran 265 a v6.0.0), suite completa en ~5s. |
 | 13 | Falta procedencia (hash, fecha, versión del libro de códigos) por archivo derivado | 🔴 | sin cambios conocidos — los nuevos dominios (macro, geolocalización) documentan procedencia en prosa (`SISTEMATIZACION_VARIABLES_MACRO.md`, `LOCALIDADES.md`) pero tampoco embeben hash/fecha/versión por archivo derivado |
 | 14 | Repositorio pesado (PNG + datos) | 🟡 |  `.gitignore` sigue trackeando sólo `graficos/distrito/serie_temporal/` + `graficos/socioeconomia/eph/` + `graficos/geolocalizacion/` — 53 archivos trackeados en `graficos/` a v6.0.0 (creció por la incorporación de geolocalización, antes 23). La mitad "datos" sigue siendo la real y ahora pesa más porque se sumaron 3 dominios enteros desde v3.3.0 (macroeconomía, geolocalización, V-Party): `data/distrito/**/*.csv` solo (crudo por mesa, incluye PASO/balotaje, creció con `80a16db`) suma 227 MB en el working tree; `data/` completo son 413 MB; el `.git` empaquetado son ~95 MB (`git count-objects -v`, antes 86 MB). Sigue sin ser bloat desperdiciado — mismo diagnóstico que a v3.3.0, ahora con más dominios cacheando de la misma forma deliberada (macro cachea `datos.gob.ar`/BCRA en `data/macroeconomia/_cache/`, geolocalización cachea Georef-AR en `data/geolocalizacion/_cache/`, ninguno trackeado). **Conclusión sin cambios**: la única palanca real para reducir en serio sigue siendo dejar de trackear `data/distrito/**/*.csv` y aceptar que reproducir el pipeline exige red. |
 
@@ -50,20 +59,34 @@ alguien quiere disputar, por ejemplo, que Frente Patriota Federal 2025 sea
 `campo_ideologico=5` (derecha) y no `6` (derecha radical), eso sigue abierto
 como decisión de codificación aparte.
 
-🟡 Parcial, actualizado (commits `a9b84d5`/`8c5fa23`, posteriores a
-v3.3.0 — el resto de esta sección no fue reauditado, ver nota de cabecera
+🟡 Parcial, actualizado (commits `a9b84d5`/`8c5fa23`, v6.0.0; y `cfb6309`,
+v7.1.0 — el resto de esta sección no fue reauditado, ver nota de cabecera
 del documento). Dos de las tres piezas restantes de la Sección 5.3 tienen
 ahora un primer avance:
 
 - **Dimensiones programáticas separadas**: `vparty_economico`,
   `vparty_progresismo`, `vparty_populismo` (dataset V-Party, V-Dem
   Institute) se agregaron a `clasificacion_ideologica_agrupaciones.csv`
-  para 62 de 313 filas — ver `docs/vparty_cuadrantes.md` para la
-  metodología completa y sus dos criterios de carga no uniformes (una
-  ronda proxea el valor de una alianza desde su partido líder; la otra
-  arrastra la última ola de V-Party, 2019, para años posteriores sin
-  encuesta nueva). Cobertura parcial por diseño: V-Party sólo cubre
-  Diputados Nacionales 2011-2019, no todos los `nivel`/año de este repo.
+  para 115 de 313 filas (a v6.0.0 eran 62) — de qué fuente viene cada
+  fila puntual (V-Party real por match directo o proxy de ola, fila
+  hermana del mismo nombre exacto, o estimación propia calibrada por
+  encuesta de expertos) está documentado en un único lugar,
+  `data/agrupaciones/v-party/README.md` — no se duplica más en
+  `docs/vparty_cuadrantes.md` ni en `CLAUDE.md` (`cfb6309`, consolidación
+  de redundancia). Cobertura parcial por diseño: V-Party real sólo cubre
+  Diputados Nacionales 2011-2019, no todos los `nivel`/año de este repo;
+  el resto de la cobertura viene de la estimación propia
+  (`src/analisis/generar_v_party_propio.py`, calibrada por regresión
+  lineal contra los partidos con valor real, a partir de una encuesta a
+  expertos anonimizada y ahora git-tracked —
+  `data/agrupaciones/v-party/encuesta_partidos_propia.csv`). Nuevo en
+  `cfb6309`: `src/analisis/vparty_cuadrantes_local.py` grafica estas tres
+  variables contra los votos reales de La Plata (no el dataset nacional)
+  — un cuadrante económico×progresismo por partido, coloreado por familia
+  política y con tamaño = % de votos, un PNG por (año, nivel) para todo
+  el distrito (`graficos/agrupaciones/<año>/v_party_<nivel>.png`,
+  git-tracked) más un PNG por (nivel, localidad) (`graficos/por_localidad/vparty/`,
+  no tracked).
 - **Oficialismo**: `data/agrupaciones/oficialismos.csv` agrega, por
   `(año, nivel)` 2011-2025, quién ganó y si ya era oficialismo
   (`era_oficialismo`) — primera vez que esa dimensión queda explícita en
@@ -77,7 +100,7 @@ ahora un primer avance:
 |---|---|
 | Congelar v1.0.0 como punto de partida | 🟢 (tag existe) |
 | Corregir el repositorio (8.1 prioridad inmediata) | 🟡 ver tabla arriba |
-| Construir el libro de códigos | 🟡 `filiacion_politica` separada de `campo_ideologico` (ver 8.2); posición ideológica ya existía; grado de incertidumbre y justificación existen por agrupación en `tabla_referencia_filiacion_politica.csv` (`confianza_clasificacion`/`nota_clasificacion`, no fusionados al CSV principal); dimensiones programáticas (V-Party, parcial, 62/313 filas) y oficialismo (`oficialismos.csv`) ahora tienen un primer avance (ver 8.2 actualizado); **sigue faltando** oferta electoral |
+| Construir el libro de códigos | 🟡 `filiacion_politica` separada de `campo_ideologico` (ver 8.2); posición ideológica ya existía; grado de incertidumbre y justificación existen por agrupación en `tabla_referencia_filiacion_politica.csv` (`confianza_clasificacion`/`nota_clasificacion`, no fusionados al CSV principal); dimensiones programáticas (V-Party, parcial, 115/313 filas a v7.1.0) y oficialismo (`oficialismos.csv`) ahora tienen un primer avance (ver 8.2 actualizado); **sigue faltando** oferta electoral |
 | Ampliar etapas y fuentes (PASO/balotaje) | 🟢 base agregada en `909760e`; ampliado sustancialmente en `80a16db` (posterior a v3.3.0) — hoy cubre todo combo (año, nivel, etapa) con PASO/balotaje disponible salvo las excepciones documentadas por diseño (2011/intendente y todo 2025 sin PASO, Ley 27.781; balotaje sólo Presidente 2015/2023) |
 | Tabla maestra circuito × elección × cargo × etapa | 🔴 |
 | Armonizar territorio y Censo | 🟡 correspondencia espacial circuito↔radio lista (v2.0.0); **variables temáticas del Censo por radio, no extraídas todavía** (REDATAM manual, ver `EXTRACCION_REDATAM.md`) — sin cambios desde v3.3.0 |
@@ -93,7 +116,7 @@ Estas piezas **no estaban pedidas por `nota_metodologica.md`** (que es anterior 
 | Macroeconomía | Series nacionales 2011-2025 (IPC, tipo de cambio, deuda, PBI, mercado laboral), grano exclusivamente nacional, sin `circuito_id` ni localidad — nunca cruzada espacialmente con lo electoral, sólo por fecha | `docs/plan_macroeconomia.md`, `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` |
 | Geolocalización | Catálogo validado de las 36 localidades (Georef-AR × Ministerio de Obras Públicas), lat/lon por localidad — todavía no cruzado con `circuito_id` ni Censo (explícitamente fuera de alcance por ahora) | `data/geolocalizacion/LOCALIDADES.md` |
 | Mapa interactivo + GitHub Pages | `docs/mapa_electoral_la_plata.html`, único artefacto interactivo del repo, 68 circuitos × 22 combos (año, nivel) generales, choropleth por campo ideológico/familia política/ausentismo | `CLAUDE.md`, sección `mapa_interactivo.py` |
-| V-Party / oficialismo | `vparty_economico`/`progresismo`/`populismo` (62/313 filas de `clasificacion_ideologica_agrupaciones.csv`) y `oficialismos.csv` (oficialismo por año-nivel 2011-2025) — ver 8.2 arriba | `docs/vparty_cuadrantes.md`, `data/agrupaciones/v-party/README.md` |
+| V-Party / oficialismo | `vparty_economico`/`progresismo`/`populismo` (115/313 filas de `clasificacion_ideologica_agrupaciones.csv` a v7.1.0, antes 62/313) y `oficialismos.csv` (oficialismo por año-nivel 2011-2025) — ver 8.2 arriba | `data/agrupaciones/v-party/README.md` (fuente única de la metodología de carga), `docs/vparty_cuadrantes.md` |
 
 Ninguna de las cuatro resuelve por sí sola "Separar exploración y contraste" (fila de arriba) — son insumos nuevos para ese cruce, no el cruce en sí.
 
