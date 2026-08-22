@@ -452,6 +452,14 @@ deliberadamente **no** fusionadas al CSV principal para mantenerlo liviano;
 consultar ese archivo directamente para auditar el porqué de un valor de
 `filiacion_politica` puntual.
 
+El mismo CSV trae además tres columnas opcionales —
+`vparty_economico`/`vparty_progresismo`/`vparty_populismo`, posición
+programática en el espacio de V-Party (V-Dem Institute), ortogonal tanto a
+`campo_ideologico` como a `filiacion_politica` — pobladas para una parte de
+las filas (V-Party real más una estimación propia calibrada a su misma
+escala). De qué fuente viene cada fila puntual está documentado en un único
+lugar, `data/agrupaciones/v-party/README.md`, no acá.
+
 ## Capa socioeconómica (EPH + Censo) — estado actual
 
 **Correspondencia circuito electoral ↔ radio censal**

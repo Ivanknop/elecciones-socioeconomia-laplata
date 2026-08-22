@@ -32,7 +32,8 @@ src/analisis/         graficos.py, generar_graficos.py, serie_temporal.py,
                        serie_temporal_filiacion.py, cuadros_anualizados.py,
                        cuadros_por_localidad.py, serie_temporal_por_localidad.py,
                        totales_por_lista.py, comparativo_nivel.py,
-                       mapa_interactivo.py
+                       mapa_interactivo.py, vparty_cuadrantes.py,
+                       vparty_cuadrantes_local.py, generar_v_party_propio.py
 src/socioeconomia/    geo.py, eph_client.py, graficos_eph_iaelap.py
 src/macroeconomia/    datos_gob_client.py, series.py, graficos.py, auditoria_estadisticasbcra.py
 src/geolocalizacion/  georef_client.py, catalogo.py, mapa.py
@@ -61,6 +62,8 @@ para borrarlo y correrlo de nuevo):
 | `data/agrupaciones/colorimetria_campo_ideologico.csv` | color por `campo_ideologico`, única fuente en todo el repo | **Sí** |
 | `data/agrupaciones/colorimetria_familia_politica.csv` | color por `filiacion_politica`, única fuente en todo el repo | **Sí** |
 | `data/agrupaciones/circuito_id_correspondencias.csv` | normalización de `circuito_id` entre años | **Sí** |
+| `data/agrupaciones/oficialismos.csv` | oficialismo por `(año, nivel)`, 2011-2025 | **Sí** |
+| `data/agrupaciones/v-party/` | dataset V-Party (traducido), encuesta propia anonimizada y su estimación calibrada — ver el README de esa carpeta | **Sí**, salvo `reporte_validacion_vparty.md` y el CSV V-Party sin traducir (gitignored) |
 | `data/socioeconomia/` | EPH, correspondencia circuito↔radio censal | **Sí**, salvo `eph_cache/` (gitignored) |
 | `data/macroeconomia/catalogo_series.csv` | catálogo de series mensuales/diarias/trimestrales | **Sí** |
 | `data/macroeconomia/series_macro_2011_2025.csv` | CSV mensual generado | No — derivado, se regenera desde `_cache/` |
@@ -76,7 +79,8 @@ para borrarlo y correrlo de nuevo):
 | `graficos/distrito/totales_por_lista/` | barras de total + comparativos Municipio/Provincia/Nación | **Sí** |
 | `graficos/socioeconomia/eph/` | gráficos de la EPH | **Sí** |
 | `graficos/socioeconomia/` (resto) | IAELaP y contraste EPH/IAELaP | No |
-| `graficos/por_localidad/` | series temporales por localidad | No — derivado |
+| `graficos/agrupaciones/` | cuadrantes V-Party (nacional + La Plata por año/nivel) | **Sí** |
+| `graficos/por_localidad/` | series temporales por localidad; `vparty/` (cuadrantes por localidad) | No — derivado |
 | `docs/index.html`, `docs/mapa_electoral_la_plata.html` | sitio de GitHub Pages: landing + mapa interactivo (Leaflet), 68 circuitos × 22 elecciones generales | **Sí** |
 
 Toda la documentación narrativa (`docs/`) también está versionada — es
@@ -167,6 +171,12 @@ detallado en `CLAUDE.md`.
 - Para **qué puntos de la auditoría metodológica están resueltos o
   siguen abiertos**, ver
   [`docs/AUDITORIA_ESTADO.md`](docs/AUDITORIA_ESTADO.md).
+- Para el **gráfico de cuadrantes ideológicos V-Party** (qué indica cada
+  eje/punto del scatter nacional), ver
+  [`docs/vparty_cuadrantes.md`](docs/vparty_cuadrantes.md) — la
+  metodología de qué fila de `clasificacion_ideologica_agrupaciones.csv`
+  viene de V-Party real vs. estimación propia vive en
+  `data/agrupaciones/v-party/README.md` (ver más abajo), no ahí.
 - Para un **borrador de correcciones electorales fuera de git** (interno,
   no versionado), ver `docs/PLAN_CORRECCIONES_ELECTORALES.md` si existe
   en tu copia local.
@@ -179,5 +189,8 @@ uno): `data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md` y
 capa macro), `data/geolocalizacion/LOCALIDADES.md` (catálogo validado de
 localidades geolocalizadas), `data/socioeconomia/EXTRACCION_REDATAM.md` y
 `EXTRACCION_IAELAP.md`/`SISTEMATIZACION_VARIABLES.md` (capa
-socioeconómica).
+socioeconómica), `data/agrupaciones/v-party/README.md` (procedencia del
+dataset V-Party y de qué fuente viene cada `vparty_economico`/
+`progresismo`/`populismo` de `clasificacion_ideologica_agrupaciones.csv`
+— única fuente de esa distinción en todo el repo).
 

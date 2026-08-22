@@ -25,6 +25,7 @@ data/macroeconomia/_cache/
 data/macroeconomia/series_macro_*.csv
 data/geolocalizacion/_cache/
 data/agrupaciones/v-party/v_party_argentina_2011_2019.csv
+data/agrupaciones/v-party/reporte_validacion_vparty.md
 
 
 # Documentos de trabajo interno

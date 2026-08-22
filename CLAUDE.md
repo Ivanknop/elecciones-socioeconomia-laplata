@@ -16,8 +16,8 @@ refresh the cache.
 what's git-tracked vs. derived); `docs/FUNCIONALIDADES.md` is the
 extensive, authoritative doc on data semantics, known anomalies, and the
 ideological classification methodology (split out of README to keep it
-from growing without bound — see README's own "Dónde está cada cosa"
-table for the full map of docs). `docs/` holds every root-level narrative
+from growing without bound — see README's own "Documentación" section
+for the full map of docs). `docs/` holds every root-level narrative
 doc (methodology, specs, per-domain functionality, audit status) — the
 domain-specific docs that live next to their data
 (`data/geolocalizacion/fuentes_extra/*.md`, `data/macroeconomia/*.md`,
@@ -59,6 +59,9 @@ PYTHONPATH=src python -m macroeconomia.graficos  # one PNG per concept (mensual 
 ESTADISTICASBCRA_TOKEN=... PYTHONPATH=src python -m macroeconomia.auditoria_estadisticasbcra  # manual one-off cross-check against estadisticasbcra.com; needs a user token (never committed), not part of the regular pipeline
 PYTHONPATH=src python -m geolocalizacion.catalogo  # validated localidad×lat/lon catalog for La Plata, Georef-AR cross-checked against the Ministerio de Obras Públicas export (needs network to refresh; runs from cache otherwise)
 PYTHONPATH=src python -m geolocalizacion.mapa      # one PNG with all 36 localidades over the partido boundary, reads the catalog above
+PYTHONPATH=src python3 src/analisis/generar_v_party_propio.py --encuesta data/agrupaciones/v-party/encuesta_partidos_propia.csv --referencia data/agrupaciones/clasificacion_ideologica_agrupaciones.csv --salida data/agrupaciones/v-party/v_party_propio.csv  # estimates vparty_economico/progresismo/populismo from an own expert survey for partidos without real V-Party coverage
+PYTHONPATH=src python -m analisis.vparty_cuadrantes         # national V-Party cuadrantes scatter (Diputados 2011-2019), one PNG
+PYTHONPATH=src python -m analisis.vparty_cuadrantes_local   # same cuadrantes style but with La Plata's own votes, one PNG per (distrito|localidad) x nivel
 ```
 
 There is no build/lint step configured. Tests cover `src/electoral/models.py`
@@ -190,20 +193,125 @@ order, 01→04) are the pipeline**.
   inconsistency.
 
   `clasificacion_ideologica_agrupaciones.csv` also carries three optional
-  columns — `vparty_economico`, `vparty_progresismo`, `vparty_populismo` —
-  loaded from the V-Party dataset (`data/agrupaciones/v-party/`, see that
-  folder's `README.md`) for 62 of 313 rows; see
-  `docs/vparty_cuadrantes.md` ("Integración con
-  `clasificacion_ideologica_agrupaciones.csv`") for exactly which rows,
-  loaded in which round, and under which matching criterion — two of the
-  rounds don't use the same discipline (one proxies an alliance's score
-  from its lead party, one carries the last V-Party wave forward past
-  2019), so don't treat a populated cell as uniformly sourced without
-  checking that doc. `data/agrupaciones/oficialismos.csv` (one row per
-  `(año, nivel)`, 2011-2025, `nivel ∈ {municipal, provincial, nacional}`
-  used as a generic label for intendente/gobernador/presidente in
-  executive years) is the other hand-curated file in this folder — same
+  columns — `vparty_economico`, `vparty_progresismo`, `vparty_populismo`,
+  same scale regardless of source — populated for 115 of 313 rows. **Where
+  each row's value comes from (real V-Party vs. own-survey estimate vs.
+  sibling-row carry, and under which criterion) is documented in one place
+  only: `data/agrupaciones/v-party/README.md`.** Don't duplicate that
+  breakdown here or anywhere else — consumers of this column
+  (`vparty_cuadrantes_local.py` below, etc.) don't need to distinguish the
+  source, only whether the cell is populated. `data/agrupaciones/oficialismos.csv`
+  (one row per `(año, nivel)`, 2011-2025, `nivel ∈ {municipal, provincial,
+  nacional}` used as a generic label for intendente/gobernador/presidente
+  in executive years) is the other hand-curated file in this folder — same
   never-regenerate-from-scratch spirit, no notebook writes to it.
+
+  The rows without real V-Party coverage are addressed separately by
+  `src/analisis/generar_v_party_propio.py`, which estimates the same three
+  axes from a small **own expert survey**
+  (`data/agrupaciones/v-party/encuesta_partidos_propia.csv`, pipeline and
+  sourcing criteria in that README, not repeated here) rather than trying
+  to extend the V-Party dataset itself. That CSV is the **anonymized**
+  version of the raw Google Forms export: each row carries a sequential
+  `ID` instead of Marca temporal/Email/Nombre/Descripción, so a reviewer
+  can still trace a row back to the real form response without the file
+  itself holding PII — the raw export never lives in this repo. Because of
+  that, unlike most personal-data sources in this repo,
+  `encuesta_partidos_propia.csv` **is git-tracked**. Output:
+  `data/agrupaciones/v-party/v_party_propio.csv` plus a Markdown
+  validation report (`--reporte`, default `reporte_validacion_vparty.md`).
+  Run:
+
+  ```bash
+  PYTHONPATH=src python3 src/analisis/generar_v_party_propio.py \
+      --encuesta data/agrupaciones/v-party/encuesta_partidos_propia.csv \
+      --referencia data/agrupaciones/clasificacion_ideologica_agrupaciones.csv \
+      --salida data/agrupaciones/v-party/v_party_propio.csv
+  ```
+
+  Every function except `main()` (argparse/file-orchestration only, same
+  criterion as the rest of this file's untested scripts) is pure logic and
+  is covered by `tests/analisis/test_generar_v_party_propio.py`, no
+  network. The partidos from `v_party_propio.csv` without a real V-Party
+  match were merged by hand into `clasificacion_ideologica_agrupaciones.csv`
+  — same never-regenerate spirit as the rest of this file, a one-off
+  manual load, not something `generar_v_party_propio.py` or any notebook
+  does automatically; see the README above for the partido → agrupación
+  mapping before extending it further.
+
+  `src/analisis/vparty_cuadrantes_local.py` plots those same
+  `vparty_economico`/`progresismo`/`populismo` columns against La Plata's
+  own election results instead of the national V-Party dataset, for
+  **distrito** (whole La Plata, via
+  `electoral.totales.resultado_total_por_agrupacion`) and **localidad**
+  (one PNG per nivel × localidad, via
+  `electoral.localidades.agrupar_resultados_por_localidad` fed
+  agrupación-keyed vote dicts instead of the usual campo_ideologico
+  buckets). Only agrupaciones with a populated `vparty_economico` for that
+  (año, cargo) are plotted — same silent-skip criterion as
+  `vparty_cuadrantes.cargar_posiciones`, nothing is approximated here.
+
+  **Encoding differs by grain, on purpose**: localidad still reuses
+  `analisis.vparty_cuadrantes.graficar_cuadrantes` as-is (generalized to
+  take configurable column names/title/colors) — color = año, size =
+  populismo, points fused across nearby elections, since each localidad
+  PNG spans every available year for that nivel. Distrito is one PNG per
+  single election instead (see below), where color-by-year would collapse
+  to one color and populismo carries no comparative signal — so it plots
+  one point per party with **color = familia política** (`filiacion_politica`,
+  via a new `graficar_cuadrantes_partido`) and **size = % of that party's
+  votes** in that election; populismo is deliberately left out of the
+  encoding for now (still available as a `tabla_distrito` column for
+  whoever wants to add it back). Party color is never invented from
+  scratch: `_color_por_partido` looks up each party's `filiacion_politica`
+  and takes the base hex from `colorimetria_familia_politica.csv`
+  (`analisis.graficos._COLOR_FILIACION`, the repo's single source for that
+  color — see "Colores de cada espacio político" below), then
+  `_sombras` generates one HLS-lightness variant per party sharing that
+  family (alphabetical order, so re-runs are deterministic) so parties in
+  the same family stay visually related but distinguishable. A party with
+  no `filiacion_politica`, or one absent from the colorimetría CSV, falls
+  back to `totales_por_lista._COLOR_SIN_CLASIFICAR` (the same neutral gray
+  that script already uses for the same situation) instead of a new color.
+
+  **Nivel unificado, not per-cargo**: `presidente`/`nacional`,
+  `gobernador`/`provincial` and `intendente`/`municipal` are executive vs.
+  legislative years of the *same* level of government — a given year only
+  ever has one of the two (never both), so treating the 6 `data/distrito/`
+  directory names as 6 independent levels would split each into a sparse
+  ~4-election series instead of the full 2011-2025 run. This script reuses
+  `NIVELES`/`_puntos_del_nivel` from `analisis.serie_temporal` (the same
+  mapping that combined script already uses to merge both cargos into one
+  chart) instead of iterating the 6 directory names directly — `--nivel`
+  here takes one of `nacional`/`provincial`/`municipal`, not a
+  `data/distrito/` directory name. The `"gobernador"` → `"gobernacion"`
+  nivel-name mismatch between `data/distrito/` and
+  `clasificacion_ideologica_agrupaciones.csv` is resolved per-point (after
+  `_puntos_del_nivel` resolves which cargo applies to which año) via
+  `NIVEL_A_NIVEL_CSV`, imported from `totales_por_lista.py` rather than
+  redefined. Distrito output is one PNG per (año, nivel) — not one scatter
+  per nivel with every election combined and colored by year, that variant
+  stays available by calling `tabla_distrito` + `graficar_cuadrantes`
+  directly — at `graficos/agrupaciones/<año>/v_party_<nivel>.png`
+  (git-tracked, same folder as the national chart, ~22 PNGs across
+  2011-2025); localidad output (~80 PNGs, one per populated
+  nivel×localidad combo, elections still combined by color within each
+  PNG) goes to `graficos/por_localidad/vparty/` (not tracked, same
+  criterion as the rest of `graficos/por_localidad/`). Run:
+
+  ```bash
+  PYTHONPATH=src python -m analisis.vparty_cuadrantes_local --grano distrito
+  PYTHONPATH=src python -m analisis.vparty_cuadrantes_local --grano localidad --nivel municipal
+  PYTHONPATH=src python -m analisis.vparty_cuadrantes_local              # todo lo disponible (tarda ~2-3 min)
+  ```
+
+  The join/aggregation/color logic (`cargar_posiciones_propias`,
+  `cargar_filiaciones`, `tabla_distrito`, `_votos_por_circuito_agrupacion`,
+  `tabla_localidades`, `_sombras`, `_color_por_partido`) is pure and
+  covered by `tests/analisis/test_vparty_cuadrantes_local.py`, no network;
+  the plotting wrappers (`generar_distrito`/`generar_localidad`,
+  `graficar_cuadrantes_partido`) and `main()` are untested, same criterion
+  as the rest of `src/analisis/*`.
 
   `colorimetria_campo_ideologico.csv` (`campo_ideologico` value → hex, one
   row per one of the 6 labels in `campo_ideologico.csv`) and

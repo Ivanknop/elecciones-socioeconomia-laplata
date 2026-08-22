@@ -90,77 +90,11 @@ puntos cercanos no terminen con las etiquetas apiladas una sobre otra.
 ## Integración con `clasificacion_ideologica_agrupaciones.csv`
 
 Las mismas tres variables (`vparty_economico`, `vparty_progresismo`,
-`vparty_populismo`) se agregaron como columnas nuevas a
-`data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` — el archivo
-hand-curated que ya trae `campo_ideologico`/`filiacion_politica` por
-agrupación/año/nivel (ver `CLAUDE.md`, sección `data/agrupaciones/`: ese
-archivo **nunca se regenera desde cero**, se edita a mano). Esta carga es
-puntual (no hay un script que la repita automáticamente ni la mantenga
-sincronizada — si se agregan filas nuevas a `clasificacion_ideologica_agrupaciones.csv`
-o se corrige `oficialismos.csv`, hay que reaplicar el criterio de abajo a
-mano), igual que la edición manual de `campo_ideologico`/`filiacion_politica`
-en ese mismo archivo. **62 de 313 filas tienen las tres variables
-pobladas**, por tres fuentes (1 y 2 no se mezclan, una prevalece sobre la
-otra cuando ambas aplicarían; 3 es una extensión explícita de 1 para casos
-sin superposición de año; ver cada una abajo) más un puñado de filas
-cargadas a mano fuera de cualquiera de las tres:
-
-**1 — Cruce directo con V-Party** (`v_party_argentina_2011_2019_espaniol.csv`),
-por nombre exacto de agrupación normalizado (mayúsculas, sin acentos, sin
-puntuación) en el mismo año — 8 partidos:
-
-| Año | `agrupacion` en este repo | Partido V-Party |
-|---|---|---|
-| 2011 | ALIANZA FRENTE AMPLIO PROGRESISTA | alianza: Frente Amplio Progresista (el prefijo `alianza:` de V-Party ≡ la convención local `ALIANZA <NOMBRE>`) |
-| 2013 | FRENTE PARA LA VICTORIA | Front for Victory (FPV-PJ) |
-| 2013 | FRENTE PROGRESISTA CIVICO Y SOCIAL | Progressive, Civic and Social Front (FPCyS) |
-| 2013 | FRENTE RENOVADOR | Renewal Front (RF) |
-| 2015 | FRENTE PARA LA VICTORIA | Front for Victory (FPV-PJ) — fila distinta de "ALIANZA FRENTE PARA LA VICTORIA" (también 2015, sin match propio, ver abajo) |
-| 2017 | FRENTE JUSTICIALISTA | Frente Justicialista-Justicialist [Peronist] Party (FP-PJ) |
-| 2017 | UNIDAD CIUDADANA | Citizen's Unity (CU) |
-| 2019 | CONSENSO FEDERAL | Consensus Federal (CF) |
-
-**2 — Proxy de la ola V-Party más cercana, cuando no hay superposición de
-año.** Caso: **COALICIÓN CÍVICA ARI / COALICIÓN CÍVICA - AFIRMACIÓN PARA
-UNA REPÚBLICA IGUALITARIA ARI / COALICIÓN CÍVICA - A.R.I.** — mismo
-partido, tres grafías del nombre en distintos años de este repo (2011:
-gobernación/intendente/presidente; 2025: nacional), en años donde
-V-Party **no** tiene ola propia (V-Party sólo cubre 2015/2017/2019 para
-este partido). Se usó la ola más cercana disponible en cada dirección:
-2011 toma el valor de **2015** (la primera ola, hacia atrás en el
-tiempo — no hay ola anterior para "prestar"), 2025 toma el valor de
-**2019** (la última ola, hacia adelante — mismo criterio de arrastre que
-ya usa `oficialismos.csv` para 2021+, fuente 2 arriba). El eje económico
-de este partido no se mueve entre 2015/2017/2019 (`v2pariglef = 0.452`
-las tres olas), lo que da algo más de confianza al proxy hacia atrás que
-si hubiera tendencia marcada; el eje de progresismo sí varía año a año
-(0.299 en 2015, usado para 2011; 0.288 en 2019, usado para 2025) — es una
-aproximación, no un dato medido para esos años puntuales, a diferencia de
-las fuentes 1 y 2.
-
-**Casos con fila propia en `clasificacion_ideologica_agrupaciones.csv`
-pero deliberadamente sin completar** (ninguna de las tres fuentes
-aplica y no se cargaron a mano):
-
-- **UCR (Unión Cívica Radical) y PRO (Propuesta Republicana)**: V-Party
-  los cubre 2011-2019, pero en `clasificacion_ideologica_agrupaciones.csv`
-  nunca corren como línea propia — siempre están fusionados dentro de una
-  alianza más grande (CAMBIEMOS BUENOS AIRES, JUNTOS POR EL CAMBIO,
-  JUNTOS) que sí tiene fila, cubierta por la fuente 2 usando PRO como
-  proxy (ver arriba). No hay ninguna fila "UNION CIVICA RADICAL" ni
-  "PROPUESTA REPUBLICANA"/"PRO" sueltas contra las cuales adjuntar el
-  valor de V-Party directamente.
-- **ALIANZA FRENTE PARA LA VICTORIA (2015)**: fila hermana de `FRENTE
-  PARA LA VICTORIA` 2015 (completada vía fuente 1), pero con un nombre
-  distinto en el que V-Party no tiene una fila propia exacta que la
-  respalde.
-- **Peronismo Federal/Peronismo Disidente**: V-Party lo cubre 2011, pero
-  no hay ninguna fila con ese nombre (ni una traducción razonable de él)
-  en `clasificacion_ideologica_agrupaciones.csv` ningún año.
-
-No se generaron filas nuevas para llenar estos huecos ni se aproximó
-ningún valor por fuera de las fuentes 1 y 2.
-
-### Advertencia metodológica adicional
-
-V-Party codifica la posición de cada partido a escala **nacional**
+`vparty_populismo`) también viven en
+`data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` (115 de 313
+filas), combinando V-Party real con una estimación propia por encuesta de
+expertos calibrada para caer en la misma escala — mismo modelo, así que
+los consumidores de esa columna (`vparty_cuadrantes_local.py`, etc.) no
+necesitan distinguir el origen. El detalle de qué fila viene de qué
+fuente y bajo qué criterio vive **solo** en
+`data/agrupaciones/v-party/README.md` — no se repite acá.

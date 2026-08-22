@@ -68,11 +68,13 @@ UMBRAL_FUSION = 0.05
 COLOR_FUSIONADO = "#4d4d4d"
 
 
-def _fusionar_por_cercania(df: pd.DataFrame, umbral: float = UMBRAL_FUSION) -> pd.DataFrame:
+def _fusionar_por_cercania(
+    df: pd.DataFrame, umbral: float = UMBRAL_FUSION, col_etiqueta: str = "v2pashname", col_anio: str = "year",
+) -> pd.DataFrame:
     """Fusiona en un solo punto las elecciones de un mismo partido que
     estén cerca entre sí en el plano (economico, progresismo).
 
-    Agrupa por ``v2pashname`` y arma componentes conexas dentro de cada
+    Agrupa por ``col_etiqueta`` y arma componentes conexas dentro de cada
     partido: dos filas quedan en el mismo grupo si su distancia normalizada
     es menor a ``umbral`` en ambos ejes, con unión transitiva (si A está
     cerca de B y B cerca de C, las tres quedan juntas aunque A y C no lo
@@ -80,13 +82,17 @@ def _fusionar_por_cercania(df: pd.DataFrame, umbral: float = UMBRAL_FUSION) -> p
     elección en elección no queda partida en dos por un corte arbitrario.
     Cada grupo resultante promedia posición y populismo, y junta los años
     fusionados (p. ej. "FPV-PJ" 2011+2013+2015 → un punto con etiqueta
-    "FPV-PJ 2011-2013-2015").
+    "FPV-PJ 2011-2013-2015"). ``col_etiqueta``/``col_anio`` parametrizan el
+    nombre de columna de partido/año en ``df`` -- por defecto los de V-Party
+    nacional (``v2pashname``/``year``), para poder reusar esta función con
+    otras fuentes (ver ``analisis.vparty_cuadrantes_local``); la salida
+    siempre usa la clave fija ``etiqueta_base``, sin importar ``col_etiqueta``.
     """
     x_rango = df[EJE_X].max() - df[EJE_X].min() or 1
     y_rango = df[EJE_Y].max() - df[EJE_Y].min() or 1
 
     filas = []
-    for pashname, grupo in df.groupby("v2pashname", sort=False):
+    for etiqueta, grupo in df.groupby(col_etiqueta, sort=False):
         grupo = grupo.reset_index(drop=True)
         n = len(grupo)
         padre = list(range(n))
@@ -111,9 +117,9 @@ def _fusionar_por_cercania(df: pd.DataFrame, umbral: float = UMBRAL_FUSION) -> p
 
         grupo["_raiz"] = [encontrar(i) for i in range(n)]
         for _, sub in grupo.groupby("_raiz"):
-            anios = sorted(int(a) for a in sub["year"].unique())
+            anios = sorted(int(a) for a in sub[col_anio].unique())
             filas.append({
-                "v2pashname": pashname,
+                "etiqueta_base": etiqueta,
                 "anios": anios,
                 "n_fusionadas": len(sub),
                 EJE_X: sub[EJE_X].mean(),
@@ -126,8 +132,8 @@ def _fusionar_por_cercania(df: pd.DataFrame, umbral: float = UMBRAL_FUSION) -> p
 
 def _etiqueta_punto(fila: pd.Series) -> str:
     if fila["n_fusionadas"] == 1:
-        return f"{fila['v2pashname']} '{str(fila['anios'][0])[-2:]}"
-    return f"{fila['v2pashname']} {'-'.join(str(a) for a in fila['anios'])}"
+        return f"{fila['etiqueta_base']} '{str(fila['anios'][0])[-2:]}"
+    return f"{fila['etiqueta_base']} {'-'.join(str(a) for a in fila['anios'])}"
 
 
 def _asignar_offsets(df: pd.DataFrame, umbral: float = 0.05) -> list[tuple[int, int, str]]:
@@ -207,10 +213,23 @@ def _radio_por_populismo(
     return RADIO_MIN + (valores - v_min) / (v_max - v_min) * (RADIO_MAX - RADIO_MIN)
 
 
-def graficar_cuadrantes(df: pd.DataFrame, ruta_salida: Path = RUTA_SALIDA) -> Path:
+def graficar_cuadrantes(
+    df: pd.DataFrame,
+    ruta_salida: Path = RUTA_SALIDA,
+    col_etiqueta: str = "v2pashname",
+    col_anio: str = "year",
+    color_por_anio: dict[int, str] | None = None,
+    titulo: str = (
+        "Fuerzas políticas argentinas: económico × progresismo social (tamaño = populismo)\n"
+        "Elecciones a Diputados 2011-2019 (V-Party, V-Dem Institute)"
+    ),
+    xlabel: str = "Izquierda / Estatismo ← Regulación económica (v2pariglef) → Derecha / Mercado",
+    ylabel: str = "Conservador ← Índice de progresismo social → Progresista",
+) -> Path:
+    color_por_anio = color_por_anio or COLOR_POR_ANIO
     fig, ax = plt.subplots(figsize=(13, 10))
 
-    combinado = _fusionar_por_cercania(df)
+    combinado = _fusionar_por_cercania(df, col_etiqueta=col_etiqueta, col_anio=col_anio)
     combinado["etiqueta"] = combinado.apply(_etiqueta_punto, axis=1)
 
     v_min, v_max = df[TAMANO].min(), df[TAMANO].max()
@@ -222,7 +241,7 @@ def graficar_cuadrantes(df: pd.DataFrame, ruta_salida: Path = RUTA_SALIDA) -> Pa
     fusionadas = combinado[combinado["n_fusionadas"] > 1]
 
     for anio, grupo in singulares.groupby(singulares["anios"].map(lambda a: a[0])):
-        color = COLOR_POR_ANIO.get(int(anio), "#888888")
+        color = color_por_anio.get(int(anio), "#888888")
         ax.scatter(
             grupo[EJE_X], grupo[EJE_Y],
             s=grupo["radio"], color=color, edgecolor="white", linewidth=0.8,
@@ -263,13 +282,9 @@ def graficar_cuadrantes(df: pd.DataFrame, ruta_salida: Path = RUTA_SALIDA) -> Pa
     ax.text(x_min + 0.1, y_min + 0.03 * (y_max - y_min), "Izquierda · Conservador", ha="left", va="bottom", **estilo_cuadrante)
     ax.text(x_max - 0.1, y_min + 0.03 * (y_max - y_min), "Derecha · Conservador", ha="right", va="bottom", **estilo_cuadrante)
 
-    ax.set_xlabel("Izquierda / Estatismo ← Regulación económica (v2pariglef) → Derecha / Mercado")
-    ax.set_ylabel("Conservador ← Índice de progresismo social → Progresista")
-    ax.set_title(
-        "Fuerzas políticas argentinas: económico × progresismo social (tamaño = populismo)\n"
-        "Elecciones a Diputados 2011-2019 (V-Party, V-Dem Institute)",
-        fontsize=12,
-    )
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.set_title(titulo, fontsize=12)
 
     leyenda_anios = ax.legend(
         title="Elección\n(color)", loc="center left", bbox_to_anchor=(1.01, 0.68), frameon=False,

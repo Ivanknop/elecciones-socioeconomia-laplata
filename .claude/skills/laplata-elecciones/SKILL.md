@@ -50,9 +50,11 @@ data/distrito/<año>/<nivel>/<etapa>/circuito_<nivel>.json     # derivado por ci
 data/por_localidad/<año>_<nivel>_<etapa>_localidad.csv        # cuadros por localidad, derivado, NO versionado
 data/totales/<nivel>/<año>/resultado_total.csv                # total por agrupación (generales), derivado, NO versionado
 data/totales/<nivel>/<año>/<etapa>/resultado_total.csv        # ídem para paso/balotaje, hermana de la ruta de arriba
-data/agrupaciones/clasificacion_ideologica_agrupaciones.csv    # clasificación ideológica manual -- append-only
+data/agrupaciones/clasificacion_ideologica_agrupaciones.csv    # clasificación ideológica manual -- append-only; también trae vparty_economico/progresismo/populismo opcionales (de qué fuente viene cada fila: SOLO en data/agrupaciones/v-party/README.md)
 data/agrupaciones/tabla_referencia_filiacion_politica.csv       # fuente de filiacion_politica + confianza/nota de cada valor
 data/agrupaciones/circuito_id_correspondencias.csv             # normalización circuito_id entre años
+data/agrupaciones/oficialismos.csv                              # oficialismo por (año, nivel), 2011-2025 -- hand-curated, mismo criterio append-only
+data/agrupaciones/v-party/                                      # dataset V-Party + encuesta propia anonimizada + su estimación calibrada (ver README de esa carpeta)
 data/geolocalizacion/circuitos_por_localidad.csv                # crosswalk circuito -> localidad geolocalizada, DEFAULT de analisis.cuadros_por_localidad (ver laplata-geolocalizacion)
 data/geolocalizacion/fuentes_extra/circuito_localidad.csv                      # crosswalk histórico circuito -> barrio, dos niveles -- ya no es el default, sigue disponible
 data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md                    # estado + qué falta del crosswalk histórico -- no confundir con data/geolocalizacion/LOCALIDADES.md (ver laplata-geolocalizacion)
@@ -61,7 +63,7 @@ data/geolocalizacion/fuentes_extra/resolucion_1990-2007.md                     #
 data/socioeconomia/circuito_radio_correspondencia.csv           # correspondencia espacial circuito<->radio censal (peso_area)
 data/socioeconomia/radios_censales_{2010,2022}_la_plata.geojson
 src/electoral/          # cliente API, modelos, parsing, agrupamiento por localidad (localidades.py), totales por agrupación (totales.py)
-src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a partir de circuito_<nivel>.json; totales_por_lista.py grafica data/totales/ + blanco_nulo; comparativo_nivel.py compara Municipio/Provincia/Nación en Markdown; mapa_interactivo.py cruza esto con geolocalizacion y el geojson de circuitos
+src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a partir de circuito_<nivel>.json; totales_por_lista.py grafica data/totales/ + blanco_nulo; comparativo_nivel.py compara Municipio/Provincia/Nación en Markdown; mapa_interactivo.py cruza esto con geolocalizacion y el geojson de circuitos; vparty_cuadrantes_local.py grafica cuadrantes económico×progresismo por partido, distrito/localidad
 src/socioeconomia/      # EPH, geo, IAELaP
 notebooks/               # 01-06, la pipeline real corre acá (ver CLAUDE.md)
 graficos/distrito/, graficos/por_localidad/, graficos/socioeconomia/   # salida, mayormente no versionada
@@ -127,10 +129,12 @@ Presidente 2015/2023).
   releer esa sección primero.
 - **Los CSV/PNG derivados de esta capa (bajo `data/por_localidad/` y
   casi todo `graficos/`) no se versionan**, salvo
-  `graficos/distrito/serie_temporal/`, `graficos/distrito/totales_por_lista/`
-  y `graficos/socioeconomia/eph/` (gráficos EPH -- no los de IAELaP ni el
-  de contraste EPH/IAELaP, que siguen sin trackear) -- ver `.gitignore` y
-  `CLAUDE.md` antes de asumir cuál es cuál.
+  `graficos/distrito/serie_temporal/`, `graficos/distrito/totales_por_lista/`,
+  `graficos/socioeconomia/eph/` (gráficos EPH -- no los de IAELaP ni el
+  de contraste EPH/IAELaP, que siguen sin trackear) y `graficos/agrupaciones/`
+  (cuadrantes V-Party, nacional + La Plata por año/nivel -- pero
+  `graficos/por_localidad/vparty/`, el mismo gráfico por localidad, no se
+  trackea) -- ver `.gitignore` y `CLAUDE.md` antes de asumir cuál es cuál.
 
 ## Gaps conocidos, para no re-descubrirlos
 

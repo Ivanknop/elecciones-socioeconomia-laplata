@@ -1,46 +1,125 @@
 # V-Party (V-Dem Institute) — partidos argentinos 2011-2019
 
-**De los archivos descriptos en este README, sólo dos están efectivamente
-versionados en esta carpeta**: este `README.md` y
-`v_party_argentina_2011_2019_espaniol.csv` (ver su sección propia más
-abajo — **es el que se usa para cruzar contra
-`clasificacion_ideologica_agrupaciones.csv` y `oficialismos.csv`**, porque
-las agrupaciones de este repo están en español, y es el que lee
-`src/analisis/vparty_cuadrantes.py`). Dos archivos más existen en el
-filesystem pero **no** están versionados, por dos motivos distintos —no
-confundir uno con otro:
+## Fuentes de `vparty_economico`/`progresismo`/`populismo` en `clasificacion_ideologica_agrupaciones.csv`
 
-- `v_party_argentina_2011_2019.csv` (sin traducir, ver su sección más
-  abajo): existe en disco pero está en `.gitignore` a propósito — es
-  estrictamente un subconjunto de columnas de
-  `v_party_argentina_2011_2019_espaniol.csv` (le falta sólo
-  `v2paenname_espaniol`), así que versionar los dos sería duplicar datos;
-  sólo se conserva localmente por comparación con el nombre en inglés. Si
-  falta tras un clon nuevo del repo, no rompe nada: ningún script de este
-  repo lo lee.
-- El CSV crudo de 384 columnas y el derivado `_variables_solicitadas` que
-  se describen a continuación **nunca llegaron a existir en este
-  repositorio** — fueron pasos intermedios de la extracción original,
-  hechos fuera de este repo. Se documentan igual por procedencia/
-  trazabilidad; quien necesite reproducirlos parte de la fuente en
-  "Procedencia" de abajo.
+Estas tres columnas están pobladas en 115 de las 313 filas de
+`data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` (el archivo
+hand-curated que ya trae `campo_ideologico`/`filiacion_politica` por
+agrupación/año/nivel, ver `CLAUDE.md` sección `data/agrupaciones/`: nunca
+se regenera desde cero, se edita a mano). **Este README es el único lugar
+del repo donde se documenta de qué fuente viene cada fila** — no se repite
+en `CLAUDE.md` ni en `docs/vparty_cuadrantes.md`, aunque ambos lo
+mencionan de pasada. La carga es puntual (no hay script que la repita ni
+la mantenga sincronizada — si se agregan filas nuevas a
+`clasificacion_ideologica_agrupaciones.csv` o se corrige `oficialismos.csv`,
+hay que reaplicar el criterio de abajo a mano) y cada fila tiene un único
+origen — nunca se mezcla un valor real de V-Party con uno estimado.
 
-`vparty_argentina_2011_2019.csv` (nunca existió en este repo, ver nota arriba): extracto
-del dataset **V-Party v2** (Varieties of Party Identity and Organization,
-V-Dem Institute, publicado feb. 2022) filtrado a `country_text_id == "ARG"`
-y `2011 <= year <= 2019`. 35 filas partido-elección (elecciones a Diputados
-2011, 2013, 2015, 2017 y 2019), **384 columnas, todas con su nombre técnico
-original** — no se renombró, derivó ni mapeó ninguna columna.
+**1 — Cruce directo con V-Party** (`v_party_argentina_2011_2019_espaniol.csv`),
+por nombre exacto de agrupación normalizado (mayúsculas, sin acentos, sin
+puntuación) en el mismo año — 8 partidos, 62 filas:
+
+| Año | `agrupacion` en este repo | Partido V-Party |
+|---|---|---|
+| 2011 | ALIANZA FRENTE AMPLIO PROGRESISTA | alianza: Frente Amplio Progresista (el prefijo `alianza:` de V-Party ≡ la convención local `ALIANZA <NOMBRE>`) |
+| 2013 | FRENTE PARA LA VICTORIA | Front for Victory (FPV-PJ) |
+| 2013 | FRENTE PROGRESISTA CIVICO Y SOCIAL | Progressive, Civic and Social Front (FPCyS) |
+| 2013 | FRENTE RENOVADOR | Renewal Front (RF) |
+| 2015 | FRENTE PARA LA VICTORIA | Front for Victory (FPV-PJ) — fila distinta de "ALIANZA FRENTE PARA LA VICTORIA" (también 2015, completada vía fuente 3) |
+| 2017 | FRENTE JUSTICIALISTA | Frente Justicialista-Justicialist [Peronist] Party (FP-PJ) |
+| 2017 | UNIDAD CIUDADANA | Citizen's Unity (CU) |
+| 2019 | CONSENSO FEDERAL | Consensus Federal (CF) |
+
+**2 — Proxy de la ola V-Party más cercana, cuando no hay superposición de
+año.** Caso: **COALICIÓN CÍVICA ARI / COALICIÓN CÍVICA - AFIRMACIÓN PARA
+UNA REPÚBLICA IGUALITARIA ARI / COALICIÓN CÍVICA - A.R.I.** — mismo
+partido, tres grafías en distintos años de este repo (2011:
+gobernación/intendente/presidente; 2025: nacional), en años donde V-Party
+**no** tiene ola propia (solo cubre 2015/2017/2019 para este partido). Se
+usó la ola más cercana en cada dirección: 2011 toma **2015** (la primera
+ola, no hay ola anterior para "prestar"), 2025 toma **2019** (la última
+ola, mismo criterio de arrastre que ya usa `oficialismos.csv` para
+2021+). El eje económico de este partido no se mueve entre 2015/2017/2019
+(`v2pariglef = 0.452` las tres olas), lo que da algo más de confianza al
+proxy hacia atrás; el de progresismo sí varía año a año (0.299 en 2015,
+usado para 2011; 0.288 en 2019, usado para 2025) — es una aproximación,
+no un dato medido para esos años puntuales.
+
+**3 — Fila hermana o de la ola más cercana, mismo nombre exacto de
+`agrupacion`.** A diferencia de la fuente 2 (grafías *distintas* del
+mismo partido), esta completa huecos donde el nombre es **idéntico** en
+ambas filas — una tiene vparty poblado y su hermana (mismo año, otro
+nivel; o mismo nivel, año adyacente) no, típicamente porque una carga
+anterior sólo tocó una fila y no todas las que comparten nombre — 5
+partidos, 13 filas:
+
+| `agrupacion` | Filas completadas | Valor tomado de |
+|---|---|---|
+| ALIANZA FRENTE PARA LA VICTORIA | 2015 gobernacion, 2015 intendente | 2015 presidente (misma elección, real V-Party vía fuente 1) |
+| AVANZA LIBERTAD | 2021 municipal | 2021 nacional/provincial (misma elección, idénticos entre sí) |
+| FRENTE DE TODOS | 2021 municipal/nacional/provincial | 2019 (ola inmediata anterior, mismo criterio de arrastre que la fuente 2) |
+| JUNTOS POR EL CAMBIO | 2023 intendente | 2023 gobernacion/presidente (misma elección) |
+| MOVIMIENTO AL SOCIALISMO | 2015 y 2021, los 3 niveles cada uno | presidente 2019/2023 (única fila poblada de este partido; extrapola 4-8 años/niveles a la vez, más agresivo que los otros 4 casos de esta fuente) |
+
+
+## `v_party_propio.csv` — estimación propia para partidos sin cobertura V-Party
+
+Para los partidos sin cobertura V-Party (ni match directo ni proxy de ola
+cercana, fuentes 1/2 de arriba), `src/analisis/generar_v_party_propio.py`
+estima `vparty_economico`/`vparty_progresismo`/`vparty_populismo` a
+partir de una encuesta propia a expertos (`encuesta_partidos_propia.csv`),
+calibrada por regresión lineal contra los partidos que sí tienen valor
+real de V-Party — pipeline completo en el docstring del script, no se
+repite acá. A diferencia de las fuentes 1/2/3, **este valor no es
+V-Party** — es una aproximación propia calibrada para caer en su misma
+escala (mismos ejes, mismo rango), con su propio reporte de validación
+(`reporte_validacion_vparty.md`, no versionado). Ver `CLAUDE.md` (sección
+`data/agrupaciones/`) para el comando de regeneración.
+
+`encuesta_partidos_propia.csv` es la versión **anonimizada** del export
+crudo de Google Forms: cada fila trae una columna `ID` secuencial que
+solo sirve para referenciar la fila real del formulario si hace falta
+revisarla — el export crudo con esos datos personales no vive en este
+repo. Por eso, a diferencia del export original, `encuesta_partidos_propia.csv`
+**sí está versionado**.
+
+Solo los partidos sin match real se volcaron a
+`clasificacion_ideologica_agrupaciones.csv` — 40 filas en total, uno de
+los seis partidos encuestados (Frente de Izquierda) cubre solas 22 filas
+por abarcar el frente FIT/FIT-U a lo largo de todos sus renombres
+2011-2025:
+
+| Partido (encuesta) | Agrupación(es) en `clasificacion_ideologica_agrupaciones.csv` | Filas |
+|---|---|---|
+| Frente de Izquierda | ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES (2011/2015) / FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES (2013/2017) / FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD (2019-2025) — mismo frente, tres grafías por renombre | 22 |
+| La Libertad Avanza | LA LIBERTAD AVANZA (2023) / ALIANZA LA LIBERTAD AVANZA (2025) | 4 |
+| Proyecto Sur | ALIANZA PROYECTO SUR / PROYECTO SUR (2011) / MOVIMIENTO POLÍTICO SOCIAL Y CULTURAL PROYECTO SUR (2025, nombre legal completo del mismo partido) | 4 |
+| Principios y Valores | PRINCIPIOS Y VALORES (2023) | 3 |
+| Patria Grande | PATRIA GRANDE (2015/2017) | 4 |
+| Encuentro Republicano Federal | REPUBLICANO FEDERAL (2021) — nombre no idéntico, único candidato en el archivo | 3 |
+
+Dos de estos matches (Proyecto Sur 2025 y Encuentro Republicano Federal)
+tienen menos respaldo que el resto — nombre no idéntico o salto de más de
+una década sin filas intermedias — y se confirmaron a mano antes de
+cargarlos, no por coincidencia exacta de string.
+
+### Mapeos por similitud (extensión manual más allá de los 6 partidos encuestados)
+
+Además de los 6 partidos de la tabla de arriba, se mapearon a mano otras
+agrupaciones por similitud ideológica según el marco de alianzas que
+integraron, tomando el valor ya cargado del partido más afín en vez de
+correr una nueva estimación:
+
+- Nuevo Encuentro = Patria Grande
+- Ciudad Nueva = Patria Grande
+- Libres del Sur = Proyecto Sur
+- MST = FIT
+- NMAS = FIT
+- liber.ar = LLA
 
 ## Procedencia
 
-El dataset no tiene descarga directa pública: el formulario oficial en
-v-dem.net pide email/género/opt-in a newsletter, y el portal de QoG
-Data Finder (`datafinder.qog.gu.se/dataset/vparty`) requiere un selector
-interactivo en JS sin link directo. Se obtuvo en cambio el archivo de
-datos real, sin gate, desde el repositorio público de GitHub del propio
-V-Dem Institute (`vdeminstitute/vdemdata`, el paquete de R oficial para
-acceder a sus datasets):
+Paquete de R oficial para acceder a los datasets:
 
 ```
 https://raw.githubusercontent.com/vdeminstitute/vdemdata/master/data/vparty.RData
@@ -85,18 +164,6 @@ del modelo, sin sufijo — la versión que V-Dem recomienda para uso
 estadístico) de las variables de posicionamiento pedidas:
 `v2pariglef`, `v2pawelf`, `v2pawomlab`, `v2palgbt`, `v2paimmig`,
 `v2parelig`, `v2paanteli`, `v2papeople`, `v2xpa_popul`.
-
-Dos de las dimensiones originalmente pedidas **no están** en este
-derivado, sin sustituto, porque no hay una columna real que las mida sin
-forzar un mapeo:
-
-- **Ley y orden**: ninguna variable de V-Party mide esto.
-- **Discurso sobre democracia representativa**: la variable literal
-  (`ep_people_vs_elite`, importada de CHES) está vacía para Argentina
-  (0/35). `v2paplur` existe y tiene datos, pero mide compromiso con
-  elecciones libres/pluralismo partidario en general, no específicamente
-  la tensión democracia directa vs. representativa — se dejó afuera en
-  vez de usarla como sustituto.
 
 Los intervalos de incertidumbre (`_codelow`/`_codehigh`) y las demás
 versiones de escala (`_osp`, `_ord`, etc.) de estas mismas variables
