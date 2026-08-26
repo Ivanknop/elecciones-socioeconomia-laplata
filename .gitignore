@@ -15,9 +15,12 @@ graficos/distrito/*
 !graficos/socioeconomia/
 graficos/socioeconomia/*
 !graficos/socioeconomia/eph/
+!graficos/socioeconomia/icg/
 !graficos/geolocalizacion/
 !graficos/agrupaciones/
 
+data/socioeconomia/icg/*.dta
+data/socioeconomia/icg/*.pdf
 data/socioeconomia/eph_cache/
 data/por_localidad/*
 data/totales/*

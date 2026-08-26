@@ -133,6 +133,13 @@ geolocalización, a `apis.datos.gob.ar` (esta última incluye
    seguido de `PYTHONPATH=src python -m geolocalizacion.mapa` — tampoco
    depende de los notebooks anteriores; ver
    `data/geolocalizacion/LOCALIDADES.md`.
+9. (Opcional, capa ICG) colocar manualmente
+   `Base_histórica_2001-presente-ICG.dta` en `data/socioeconomia/icg/`
+   (no se distribuye en el repo, hay que conseguirlo con la Escuela de
+   Gobierno UTDT — ver `data/socioeconomia/icg/README.md`) y correr
+   `PYTHONPATH=src python -m socioeconomia.icg_exportar_csv` seguido de
+   `PYTHONPATH=src python -m socioeconomia.icg_graficos` — tampoco
+   depende de los notebooks anteriores; ver `data/socioeconomia/ICG.md`.
 
 A partir de `circuito_<nivel>.json`, todos los scripts de `src/analisis/`
 (gráficos, series temporales, totales, cuadros comparativos) se corren
@@ -190,7 +197,10 @@ uno): `data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md` y
 capa macro), `data/geolocalizacion/LOCALIDADES.md` (catálogo validado de
 localidades geolocalizadas), `data/socioeconomia/EXTRACCION_REDATAM.md` y
 `EXTRACCION_IAELAP.md`/`SISTEMATIZACION_VARIABLES.md` (capa
-socioeconómica), `data/agrupaciones/v-party/README.md` (procedencia del
+socioeconómica), `data/socioeconomia/ICG.md` (decisiones metodológicas
+del pipeline ICG — cobertura real vs. codebook, por qué "país" incluye a
+La Plata, asimetría de resolución mensual/anual, límites de la fuente),
+`data/agrupaciones/v-party/README.md` (procedencia del
 dataset V-Party y de qué fuente viene cada `vparty_economico`/
 `progresismo`/`populismo` de `clasificacion_ideologica_agrupaciones.csv`
 — única fuente de esa distinción en todo el repo).

@@ -32,7 +32,6 @@ CIRCUITOS_POR_LOCALIDAD_PATH = "data/geolocalizacion/circuitos_por_localidad.csv
 CIRCUITOS_POR_LOCALIDAD_DOC_PATH = "data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md"
 
 # --- Fuentes extra / crosswalk (data/geolocalizacion/fuentes_extra/ -- insumos
-# hand-curated adicionales, no derivados del catálogo de geolocalización en sí) ---
 FUENTES_EXTRA_DIR = "data/geolocalizacion/fuentes_extra"
 CROSSWALK_CIRCUITO_LOCALIDAD_PATH = "data/geolocalizacion/fuentes_extra/circuito_localidad.csv"
 LOCALIDADES_MINISTERIO_PATH = "data/geolocalizacion/fuentes_extra/localidades.csv"
@@ -48,6 +47,8 @@ MACRO_CACHE_DATOS_GOB_DIR = "data/macroeconomia/_cache/datos_gob"
 # --- Socioeconomía ---
 EPH_CACHE_DIR = "data/socioeconomia/eph_cache"
 CIRCUITOS_GEOJSON_PATH = "data/socioeconomia/circuitos_electorales_la_plata.geojson"
+ICG_RAW_PATH = "data/socioeconomia/icg/Base_histórica_2001-presente-ICG.dta"
+ICG_HEADLINE_PATH = "data/socioeconomia/icg_mensual_la_plata_pais_2011_presente.csv"
 
 # --- Panel (a completar a medida que se generen estos archivos) ---
 # PANEL_DIR = "data/panel"

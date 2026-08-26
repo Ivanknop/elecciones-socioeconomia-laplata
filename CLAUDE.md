@@ -71,6 +71,8 @@ PYTHONPATH=src python -m geolocalizacion.mapa      # one PNG with all 36 localid
 PYTHONPATH=src python3 src/analisis/generar_v_party_propio.py --encuesta data/agrupaciones/v-party/encuesta_partidos_propia.csv --referencia data/agrupaciones/clasificacion_ideologica_agrupaciones.csv --salida data/agrupaciones/v-party/v_party_propio.csv  # estimates vparty_economico/progresismo/populismo from an own expert survey for partidos without real V-Party coverage
 PYTHONPATH=src python -m analisis.vparty_cuadrantes         # national V-Party cuadrantes scatter (Diputados 2011-2019), one PNG
 PYTHONPATH=src python -m analisis.vparty_cuadrantes_local   # same cuadrantes style but with La Plata's own votes, one PNG per (distrito|localidad) x nivel
+PYTHONPATH=src python -m socioeconomia.icg_exportar_csv  # ICG (UTDT) headline + 6 demographic-cut CSVs to data/socioeconomia/; needs data/socioeconomia/icg/Base_histórica_2001-presente-ICG.dta placed manually first, see data/socioeconomia/icg/README.md
+PYTHONPATH=src python -m socioeconomia.icg_graficos  # La Plata vs. país ICG time series PNG from the headline CSV above
 ```
 
 There is no build/lint step configured. Tests cover `src/electoral/models.py`
@@ -121,6 +123,18 @@ join, tested against synthetic polygons, not real data) by
 `tests/socioeconomia/test_graficos_eph_iaelap.py` — same split as everywhere else in the
 repo, pure logic tested, the matplotlib-rendering and IAELaP-loading parts
 of `graficos_eph_iaelap.py` itself validated by running notebooks 05/06.
+`src/socioeconomia/icg_cargar.py` (loading + non-silent validation, tested
+via `pandas.read_stata` monkeypatched to a synthetic DataFrame — never the
+real 22 MB `.dta`) and `icg_construir_series.py` (weighted-average
+aggregation, both grains) are covered by `tests/socioeconomia/test_icg_cargar.py`/
+`test_icg_construir_series.py`, no network, no real microdato. `icg_exportar_csv.py`/
+`icg_graficos.py` (orchestration/matplotlib) have no automated test, same
+criterion as `macroeconomia.graficos`. See `data/socioeconomia/icg/README.md`
+for the raw `.dta`/codebook (external, non-redistributable, neither
+git-tracked — both must be placed manually) and `data/socioeconomia/ICG.md`
+for methodology
+decisions (why "país" includes La Plata, the mensual/anual resolution
+asymmetry, absence of an income variable).
 `src/macroeconomia/series.py`'s normalization logic (catalog loading,
 monthly resolution for daily/monthly/quarterly sources, coverage report)
 is covered by `tests/macroeconomia/test_series.py`, no network;
