@@ -1,31 +1,6 @@
-"""Crosswalk circuito electoral -> localidad geolocalizada, vía join espacial
-contra el catálogo validado (`geolocalizacion.catalogo`,
-`data/geolocalizacion/localidades_la_plata.csv`, 36 filas, fuente Ministerio
-de Obras Públicas + Georef-AR). Escribe `data/geolocalizacion/circuitos_por_localidad.csv`.
-
-A diferencia de `data/geolocalizacion/fuentes_extra/circuito_localidad.csv` (crosswalk
-hand-curated contra nombres de barrio de una resolución de 1990/2007 y un
-relevamiento periodístico, ver skill `laplata-elecciones`), este archivo es
-**derivado**, recalculable en segundos: `data/geolocalizacion/localidades_la_plata.csv`
-no trae polígono por localidad, solo un punto (centroide/asentamiento), así
-que la asignación es *nearest-neighbor* -- centroide de cada circuito
-(`data/socioeconomia/circuitos_electorales_la_plata.geojson`, 68 polígonos)
-contra el punto de localidad más cercano, ambos reproyectados a la UTM
-estimada de los circuitos para que la distancia se calcule en metros (mismo
-patrón que `socioeconomia.geo.calcular_correspondencia`). Cada circuito queda
-con exactamente una localidad -- nunca `SIN_DETERMINAR`, a diferencia del
-crosswalk por nombre, porque el nearest-neighbor siempre encuentra un punto
-más cercano.
-
-No todas las 36 localidades terminan usadas: varias comparten zona urbana
-con otra localidad más próxima al centroide de cualquier circuito que las
-rodea (ver `data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md`) -- no es un
-error, es la consecuencia esperada de tener más circuitos (68) que
-localidades (36) y un solo punto de referencia por localidad. La distancia
-del match queda en la columna `distancia_metros`: circuitos grandes y
-rurales (ej. 498, ~208 km²) quedan con distancias grandes porque su
-centroide cae lejos de cualquier área poblada -- eso tampoco se recorta ni
-se ajusta, se documenta.
+"""Crosswalk circuito electoral -> localidad geolocalizada, nearest-neighbor
+contra el catálogo validado. Escribe `circuitos_por_localidad.csv`. Detalle
+en `data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md`.
 
 Uso:
     PYTHONPATH=src python -m geolocalizacion.circuitos_por_localidad
@@ -74,17 +49,8 @@ def cargar_localidades(path: Path | str = LOCALIDADES_LA_PLATA_PATH) -> gpd.GeoD
 def asignar_localidad_mas_cercana(
     circuitos: gpd.GeoDataFrame, localidades: gpd.GeoDataFrame
 ) -> pd.DataFrame:
-    """Pura -- no hace red ni lee archivos. `circuitos` viene de
-    `socioeconomia.geo.cargar_circuitos_electorales` (columnas `circuito_id`
-    + `geometry`, polígonos); `localidades` de `cargar_localidades` (columnas
-    `nombre` + `geometry`, puntos). Devuelve una fila por circuito con
-    `circuito_id`, `localidad`, `distancia_metros` (centroide del circuito
-    al punto de localidad más cercano), ordenada por `circuito_id`.
-
-    Reproyecta ambas capas a la UTM estimada a partir de `circuitos` para
-    que la distancia salga en metros, no en grados (mismo criterio que
-    `socioeconomia.geo.calcular_correspondencia`).
-    """
+    """Pura; una fila por circuito con `circuito_id`/`localidad`/
+    `distancia_metros` (centroide más cercano), reproyectada a metros."""
     crs_metrico = circuitos.estimate_utm_crs()
     circuitos_m = circuitos.to_crs(crs_metrico)
     localidades_m = localidades.to_crs(crs_metrico)

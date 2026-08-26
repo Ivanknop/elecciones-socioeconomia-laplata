@@ -1,22 +1,6 @@
-"""Construye la tabla anual de series macroeconómicas nacionales de
-frecuencia anual (2011-2025), a partir del catálogo
-`data/macroeconomia/catalogo_series_anuales.csv` y de datos.gob.ar
-(`macroeconomia.datos_gob_client`).
-
-Separado de `macroeconomia.series` (grano mensual) a propósito: forzar una
-serie anual dentro de una tabla fila-por-mes deja esa columna con ~93%
-de celdas vacías (solo 1 de cada 12 filas puede tener dato real, y sin
-forward-fill -- ver `macroeconomia.series` -- ninguna de las otras 11 lo
-tiene nunca). Separar el grano evita ese ruido: acá cada fila es un año, y
-una serie anual con cobertura completa llena el 100% de sus celdas en vez
-de ~7%.
-
-## Reglas de normalización
-
-Mismo criterio que `macroeconomia.series`, adaptado a grano anual: una
-celda solo tiene valor si la fuente publicó exactamente para ese año; si
-no, queda vacía (`""`) y `observaciones` lo declara. Nunca se rellena ni
-se repite un valor de un año anterior.
+"""Tabla anual de series macroeconómicas de frecuencia anual, separada de
+`macroeconomia.series` (mensual) para no dejar ~93% de celdas vacías.
+Mismo criterio de no-relleno.
 
 Uso:
     PYTHONPATH=src python -m macroeconomia.series_anuales
@@ -35,9 +19,8 @@ from macroeconomia.series import ConceptoCatalogo, _parsear_puntos, cargar_catal
 
 
 def _valor_exacto_para_anio(puntos: list[tuple[date, float]], anio: int) -> float | None:
-    """Valor de la fuente con fecha de origen en el año `anio` -- las series
-    anuales de datos.gob.ar fechan cada punto al 1° de enero del año que
-    publican, así que comparar por año equivale a comparar la fecha exacta."""
+    """Valor con fecha de origen en el año `anio`; series anuales fechan
+    cada punto al 1° de enero."""
     for fecha, valor in puntos:
         if fecha.year == anio:
             return valor

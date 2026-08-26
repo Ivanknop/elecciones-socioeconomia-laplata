@@ -1,27 +1,7 @@
-"""Gráficos de barras y torta por campo ideológico, a partir de los JSON de
-totales por circuito (`data/<anio>/<nivel>/generales/circuito_<nivel>.json`,
-ver `notebooks/04_totales_por_circuito.ipynb`). Siempre incluyen, además de
-las categorías ideológicas, `blanco_nulo` y `ausentismo`
-(`CATEGORIAS_NO_IDEOLOGICAS`, `_votos_no_ideologicos`).
-
-Funciones reutilizables: se llaman con el (año, nivel, circuito) que haga
-falta y devuelven la figura. `circuito_id=None` agrega todos los circuitos
-de ese (año, nivel) — el acumulado de La Plata. Para generar los gráficos de
-todos los circuitos de un (año, nivel) de una sola vez, ver
-`generar_graficos.py`.
-
-## Colores de cada espacio político: una sola fuente, nunca hardcodeados
-
-`_COLOR_IDEOLOGIA` (por `campo_ideologico`) y `_COLOR_FILIACION` (por
-`filiacion_politica`) se cargan acá una única vez desde
-`data/agrupaciones/colorimetria_campo_ideologico.csv` y
-`colorimetria_familia_politica.csv` respectivamente -- son la única fuente
-de esos colores en todo el repo. Cualquier módulo que necesite pintar por
-campo ideológico o filiación política los importa desde acá
-(`totales_por_lista.py`, `serie_temporal_filiacion.py`,
-`mapa_interactivo.py`) en vez de definir su propia paleta -- si un color
-cambia, cambia en un solo CSV y se propaga solo.
-"""
+"""Gráficos de barras/torta por campo ideológico desde `circuito_<nivel>.json`.
+Incluye siempre `blanco_nulo`/`ausentismo`. Única fuente de colores por
+campo ideológico/filiación del repo -- ver CLAUDE.md, "Colores de cada
+espacio político"."""
 from __future__ import annotations
 
 import csv
@@ -48,20 +28,15 @@ _COLORIMETRIA_FAMILIA_CSV = REPO_ROOT / COLORIMETRIA_FAMILIA_POLITICA_PATH
 
 
 def _cargar_escala_ideologica(path: Path | str = _CAMPO_IDEOLOGICO_CSV) -> dict[str, str]:
-    """`{valor: ideologia}`, en el mismo orden (izquierda -> derecha radical)
-    en que aparecen las filas del CSV -- `list(IDEOLOGIAS.values())` depende
-    de ese orden en toda la capa de gráficos. Los valores 1-6 son
-    **ordinales, no cardinales**: no promediarlos ni asumir que la distancia
-    entre dos categorías consecutivas es igual a la de otro par sin
-    justificarlo aparte."""
+    """{valor: ideología}, mismo orden (izquierda→derecha radical) del CSV;
+    valores 1-6 ordinales, no cardinales."""
     with Path(path).open(encoding="utf-8", newline="") as f:
         return {fila["valor"]: fila["ideologia"] for fila in csv.DictReader(f)}
 
 
 def _cargar_colorimetria(path: Path | str, columna_clave: str) -> dict[str, str]:
-    """`{valor: color_hex}` desde un CSV de colorimetría de dos columnas
-    (`<columna_clave>,color`) -- `strip()` en ambas porque las fuentes
-    traen espacio después de la coma (` #FF0000`)."""
+    """{valor: color_hex} desde un CSV de colorimetría de dos columnas
+    (`<columna_clave>,color`)."""
     with Path(path).open(encoding="utf-8", newline="") as f:
         return {fila[columna_clave].strip(): fila["color"].strip() for fila in csv.DictReader(f)}
 
@@ -99,13 +74,8 @@ def color_categoria(categoria: str) -> str:
 
 
 def etiquetar_puntos(ax, x, y, color: str, arriba: bool = True) -> None:
-    """Escribe el valor exacto (`{:.1f}%`) sobre cada punto de una serie --
-    para series temporales de porcentaje, donde leer el valor a ojo en el eje
-    y no alcanza. Usa el mismo color de la serie para que quede asociada al
-    trazo, con un offset chico en vez de tocar el marcador. `arriba` alterna
-    la etiqueta entre arriba/abajo del punto según la serie (llamador decide
-    el patrón)
-    """
+    """Escribe el valor (`{:.1f}%`) sobre cada punto, mismo color que la
+    serie; `arriba` alterna la posición de la etiqueta."""
     offset = (0, 6) if arriba else (0, -10)
     va = "bottom" if arriba else "top"
     for xi, yi in zip(x, y):
@@ -138,14 +108,8 @@ def _votos_por_ideologia(contenido: dict, circuito_id: str | None) -> dict[str, 
 
 
 def _votos_no_ideologicos(contenido: dict, circuito_id: str | None) -> dict[str, int]:
-    """`blanco_nulo` (fue a votar, no eligió agrupación) y `ausentismo`
-    (padrón - votos válidos).
-
-    Votos válidos = positivos + todo `otros` (blanco, nulo, recurridos,
-    impugnados/comando -- lo que exista ese año). Los procedimentales
-    (recurridos/impugnados/comando) entran en la resta de `ausentismo` pero,
-    a diferencia de `blanco_nulo`, no se muestran como categoría propia.
-    """
+    """`blanco_nulo` y `ausentismo` (padrón - votos válidos); procedimentales
+    entran en `ausentismo` pero no como categoría propia."""
     electores = positivos = otros_total = blanco_nulo = 0
     for c in _circuitos_seleccionados(contenido, circuito_id):
         electores += c["electores"]
@@ -174,9 +138,8 @@ def _titulo(anio: int, nivel: str, circuito_id: str | None) -> str:
 
 
 def graficar_barras(data_dir: Path | str, anio: int, nivel: str, circuito_id: str | None = None, ax=None):
-    """Gráfico de barras de votos por campo ideológico, para un circuito puntual
-    o para el acumulado de todo el (año, nivel) si `circuito_id` es `None`.
-    """
+    """Barras de votos por campo ideológico: un circuito, o el acumulado
+    del (año, nivel) si `circuito_id` es `None`."""
     claves, valores, colores = _preparar(data_dir, anio, nivel, circuito_id)
     total = sum(valores)
 
@@ -200,9 +163,8 @@ def graficar_barras(data_dir: Path | str, anio: int, nivel: str, circuito_id: st
 
 
 def graficar_torta(data_dir: Path | str, anio: int, nivel: str, circuito_id: str | None = None, ax=None):
-    """Gráfico de torta (share de votos) por campo ideológico, para un circuito
-    puntual o para el acumulado de todo el (año, nivel) si `circuito_id` es `None`.
-    """
+    """Torta (share de votos) por campo ideológico: un circuito, o el
+    acumulado del (año, nivel) si `circuito_id` es `None`."""
     claves, valores, colores = _preparar(data_dir, anio, nivel, circuito_id)
     total = sum(valores)
 

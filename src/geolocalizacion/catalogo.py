@@ -1,14 +1,6 @@
-"""Catálogo validado de localidades geolocalizadas del Partido de La Plata:
-cruza los asentamientos de Georef-AR (`geolocalizacion.georef_client`) contra
-la fuente oficial del Ministerio de Obras Públicas
-(`data/geolocalizacion/fuentes_extra/localidades.csv`, exportada desde
-<https://snop-ppo.obraspublicas.gob.ar/localities>, códigos UTA 2010/2020)
-y escribe `data/geolocalizacion/localidades_la_plata.csv`.
-
-Ver `data/geolocalizacion/LOCALIDADES.md` para la metodología completa,
-los hallazgos (deltas de coordenadas entre las dos fuentes, el caso
-Martín García/circuito 493) y qué falta (cruzar esto con `circuito_id` y
-con series censales).
+"""Catálogo validado de localidades geolocalizadas de La Plata: cruza
+Georef-AR contra la fuente del Ministerio de Obras Públicas, escribe
+`localidades_la_plata.csv`. Metodología en `data/geolocalizacion/LOCALIDADES.md`.
 
 Uso:
     PYTHONPATH=src python -m geolocalizacion.catalogo
@@ -100,12 +92,8 @@ def cargar_ministerio(path: Path | str) -> list[LocalidadMinisterio]:
 
 
 def _deduplicar_asentamientos(asentamientos: list[dict]) -> list[dict]:
-    """Georef devuelve una fila por localidad censal (id corto, ej.
-    "06441030") y otra por el asentamiento puntual homónimo dentro de ella
-    (id largo, ej. "0644103015") cuando comparten nombre -- ej. "La Plata"
-    aparece dos veces. Nos quedamos con el id más largo (el asentamiento
-    puntual, más específico) y descartamos el contenedor, para no graficar
-    ni contar el mismo lugar dos veces."""
+    """Georef duplica localidad censal + asentamiento homónimo (mismo
+    nombre); nos quedamos con el id más largo, más específico."""
     por_nombre: dict[str, dict] = {}
     for a in asentamientos:
         clave = _normalizar(a["nombre"])

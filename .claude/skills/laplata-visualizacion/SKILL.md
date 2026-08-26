@@ -100,35 +100,32 @@ se repite acá. Puntos clave para no perder si se edita:
 
 ## `distribucion_ideologica_interactiva.py`
 
-Selector **Nivel + Año únicamente** (nacional/provincial/municipal) --
-sin el toggle Cargo/Nivel del mapa, porque los cuadros V-Party de este
-repo solo existen por nivel unificado
-(`analisis.serie_temporal.NIVELES`), nunca por cargo suelto. El mapa de
-circuitos queda neutro (sin choropleth): clickear un circuito solo
-resuelve su localidad y muestra un placeholder "próximamente" -- **no
-hay cobertura V-Party a nivel localidad**, así que nunca se aproxima ni
-se reusa el cuadro distrital para esa localidad.
+Documentado en detalle en `docs/FUNCIONALIDADES.md`, sección
+"Distribución ideológica interactiva" -- no se repite acá. Puntos clave
+para no perder si se edita:
 
-El panel principal es un bubble chart SVG hand-rolled (sin librería de
-gráficos, mismo criterio de "no traer una dependencia nueva para un solo
-gráfico" que el resto del repo): eje X económico, eje Y progresismo,
-tamaño = % de votos, color = familia política (sombreada por partido
-dentro de la familia, vía `vparty_cuadrantes_local._color_por_partido`).
-Reusa `tabla_distrito`/`cargar_posiciones_propias`/`cargar_filiaciones`/
-`_color_por_partido` de `analisis.vparty_cuadrantes_local` tal cual, sin
-modificarlos -- es aditivo sobre ese módulo, no toca la ruta que genera
-sus PNG en `graficos/agrupaciones/`.
+- Selector **Nivel + Año únicamente**, sin el toggle Cargo/Nivel del
+  mapa -- los cuadros V-Party solo existen por nivel unificado.
+- El panel de localidad usa el mismo `renderChart()` SVG que el panel
+  distrital (generalizado para recibir el id del SVG/tooltip/título
+  destino), pero el color de cada agrupación se calcula sobre el
+  universo de agrupaciones a nivel **distrito**, no el subconjunto de
+  cada localidad -- para que un partido tenga siempre el mismo color en
+  cualquier localidad.
+- Ambos paneles comparten una escala de ejes fija y simétrica respecto
+  de 0 (`vparty_cuadrantes_local._limites_globales`, mismo criterio que
+  los PNG estáticos), enviada una sola vez en el payload -- nunca
+  recalculada por render.
+- Reusa `tabla_distrito`/`tabla_localidades`/`cargar_posiciones_propias`/
+  `cargar_filiaciones`/`_color_por_partido`/`_limites_globales` de
+  `analisis.vparty_cuadrantes_local` tal cual, sin modificarlos.
 
 **Regla de diseño explícita, pedida por Ivan -- no reintroducir sin
 volver a preguntar**: esta pestaña **no distingue visualmente V-Party
-real de estimación propia calibrada** (nunca hubo, y se sacó
-deliberadamente un intento anterior con checkbox "excluir estimación
-propia" + trazo sólido/punteado + leyenda de procedencia). Todos los
-puntos se muestran igual porque la estimación propia se considera igual
-de válida. Esa distinción (de qué fuente viene cada valor V-Party) sigue
-existiendo, pero **solo en prosa, en un único lugar**:
-`data/agrupaciones/v-party/README.md`. Si se agrega cualquier feature
-nueva a esta pestaña, no derivar ni mostrar esa distinción acá.
+real de estimación propia calibrada** (se sacó deliberadamente un
+intento anterior con checkbox/trazo distinto/leyenda de procedencia). Esa
+distinción sigue existiendo, pero **solo en prosa, en un único lugar**:
+`data/agrupaciones/v-party/README.md`.
 
 ## Testing
 

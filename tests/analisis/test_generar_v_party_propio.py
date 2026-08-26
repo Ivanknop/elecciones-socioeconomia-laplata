@@ -1,10 +1,5 @@
-"""Tests de `src/analisis/generar_v_party_propio.py`: parseo de la encuesta
-propia de expertos, validación por experto, agregación (mediana) y
-calibración (regresión lineal) contra V-Party real, y la salida final --
-todo lógica pura/IO de archivos, sin red. La orquestación de `main()`
-(argparse + escritura del reporte) sigue sin test automatizado, se valida
-corriendo el script contra `data/agrupaciones/v-party/` real (ver CLAUDE.md).
-"""
+"""Tests de `generar_v_party_propio.py`: parseo, validación, agregación y
+calibración -- lógica pura, sin red. `main()` sin test, ver CLAUDE.md."""
 import csv
 
 import pytest
@@ -34,10 +29,8 @@ from analisis.generar_v_party_propio import (
 # ---------------------------------------------------------------------------
 
 def _bloque(econ, prog, pop, d1=0, d2="Alta"):
-    """A1-A4 uniformes en (4 - econ) para que la inversión de polaridad del
-    script devuelva `econ`; B1-B4 uniformes en `prog`; C1-C2 uniformes en
-    `pop`. D1/D2 no se usan en la agregación (D2 ni siquiera se convierte a
-    float, como en la encuesta real, donde trae "Alta"/"Ns/Nc")."""
+    """A1-A4 → econ (invertida), B1-B4 → prog, C1-C2 → pop; D1/D2 no se
+    usan en la agregación."""
     a = 4 - econ
     return [a, a, a, a, prog, prog, prog, prog, pop, pop, d1, d2]
 
@@ -345,15 +338,8 @@ class TestCalibrarYEstimar:
 
 class TestEscribirSalida:
     def test_pipeline_completo_reproduce_valores_y_marcado_con_numeral(self, tmp_path):
-        """Extremo a extremo: de targets/estimaciones a CSV final, verifica
-        a la vez (a) los 5 partidos con match real en MAPEO_VPARTY quedan
-        con fuente="real" y prefijo "#", (b) Union Civica Radical (en
-        NO_MAPEAR_ADICIONALES pero SIN match real) también sale con "#"
-        aunque su valor sea estimado, y (c) el resto sale sin "#". Los
-        valores numéricos fueron construidos para tener una relación lineal
-        exacta con la referencia (ver REF_ROWS/VALORES_BASE), así que se
-        pueden comprobar con precisión.
-        """
+        """Extremo a extremo: partidos con match real llevan fuente="real"
+        y prefijo "#"; valores lineales, comprobables con precisión."""
         targets = targets_vparty(REF_ROWS)
         survey = {}
         for e in ["E1", "E2", "E3"]:

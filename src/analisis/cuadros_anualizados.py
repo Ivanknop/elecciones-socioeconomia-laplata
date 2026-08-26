@@ -1,8 +1,5 @@
-"""Un gráfico por año que reúne, uno al lado del otro, el total (todos los
-circuitos) de cada cargo/nivel disputado ese año, por campo ideológico.
-
-**No suma los cargos entre sí**: cada uno se dibuja como su propia serie de
-barras.
+"""Un gráfico por año con el total (todos los circuitos) de cada cargo/nivel
+disputado ese año, por campo ideológico. No suma los cargos entre sí.
 
 Uso:
     python -m analisis.cuadros_anualizados --anio 2023

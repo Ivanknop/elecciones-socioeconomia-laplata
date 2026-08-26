@@ -18,6 +18,7 @@ graficos/socioeconomia/*
 !graficos/socioeconomia/icg/
 !graficos/geolocalizacion/
 !graficos/agrupaciones/
+graficos/agrupaciones/por_localidad/
 
 data/socioeconomia/icg/*.dta
 data/socioeconomia/icg/*.pdf

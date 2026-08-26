@@ -1,52 +1,6 @@
 """Mapa interactivo (Leaflet) de resultados electorales de La Plata por
-circuito, 2011-2025, **generales únicamente** (no incluye PASO ni
-balotaje). Construye un único HTML autocontenido salvo Leaflet y las
-teselas del mapa base, que se cargan por CDN (sin eso no hay conexión a
-internet que lo evite: es un mapa, no un artefacto aislable). Escribe a
-`docs/mapa_electoral_la_plata.html` -- no `graficos/`, porque este
-archivo (junto con `docs/index.html`) es el sitio que sirve GitHub
-Pages desde la carpeta `docs/` del repo, y ese es uno de los dos únicos
-directorios que GitHub permite elegir como raíz de Pages sin un
-workflow de Actions aparte.
-
-## Fuentes (todas ya versionadas, ninguna se recalcula acá)
-
-- `data/socioeconomia/circuitos_electorales_la_plata.geojson` -- polígonos
-  oficiales CNE/PBA de los 68 circuitos (`socioeconomia.geo.canonicalizar_circuito_id`
-  para los ids).
-- `data/geolocalizacion/localidades_la_plata.csv` -- las 36 localidades
-  geolocalizadas (`geolocalizacion.catalogo`).
-- `data/geolocalizacion/circuitos_por_localidad.csv` -- crosswalk
-  circuito→localidad geolocalizada, vía
-  `electoral.localidades.cargar_circuito_localidad_geo` (nearest-neighbor
-  contra el catálogo de arriba, ver skill `laplata-geolocalizacion` y
-  `data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md`) -- mismo crosswalk que
-  usa por defecto `analisis.cuadros_por_localidad` desde la reconstrucción
-  del flujo por localidad. Cubre los 68 circuitos con una fila cada uno (a
-  diferencia del crosswalk histórico por nombre de barrio que usaba antes
-  esta vista, no quedan circuitos en `null` salvo que falten del propio
-  geojson).
-- `data/distrito/<año>/<nivel>/generales/circuito_<nivel>.json` -- resultados,
-  descubiertos con `electoral.totales._combos_disponibles` filtrado a
-  `etapa == "generales"` (mismo criterio que `totales_por_lista.py`).
-- `data/agrupaciones/campo_ideologico.csv` (vía `analisis.graficos.IDEOLOGIAS`)
-  y `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` (vía
-  `analisis.serie_temporal_filiacion._cargar_filiaciones`) -- campo
-  ideológico y filiación política por agrupación.
-
-## Qué cambió respecto de la versión anterior (sin script, hecha a mano)
-
-Esa versión solo mostraba "% de los positivos" -- viola la regla del
-resto del repo de que ningún gráfico se queda solo con eso (ver skill
-`laplata-elecciones`, "Reglas que no se negocian"). Acá cada circuito y
-cada elección traen además `blanco_nulo` y `ausentismo`, con la misma
-fórmula exacta que usa `graficos._votos_no_ideologicos`
-(`ausentismo = electores - positivos - otros_total`, que puede dar
-negativo en la familia de circuitos 504/505/508/509 -- se preserva
-así, no se recorta a cero, y el mapa lo marca aparte en vez de
-mezclarlo en la escala de color). El top-7 por circuito ahora trae un
-renglón "otros" con el residuo (`positivos - suma del top7`) en vez de
-dejar que las barras visibles no sumen 100% sin explicación.
+circuito, 2011-2025, solo generales. Escribe `docs/mapa_electoral_la_plata.html`.
+Fuentes y metodología en CLAUDE.md y skill `laplata-visualizacion`.
 
 Uso:
     PYTHONPATH=src python -m visualizacion.mapa_interactivo
@@ -99,12 +53,8 @@ _CLAVES_BLANCO = {"EN BLANCO", "BLANCOS"}
 
 
 def _resolver_no_ideologicos(circuito: dict) -> tuple[int, int, int]:
-    """`(positivos_total, blanco_nulo, ausentismo)` -- misma fórmula que
-    `analisis.graficos._votos_no_ideologicos`, adaptada a un único
-    circuito en vez de un `circuito_id` opcional sobre todo el archivo.
-    `ausentismo` puede dar negativo (familia 504/505/508/509, ver
-    `docs/FUNCIONALIDADES.md` "Anomalía conocida: circuito 508G") -- nunca
-    se recorta a cero."""
+    """(positivos_total, blanco_nulo, ausentismo); `ausentismo` puede dar
+    negativo (familia 504/505/508/509), nunca se recorta a cero."""
     positivos_total = sum(info["votos"] for info in circuito["positivos"].values())
     blanco_nulo = sum(v for k, v in circuito["otros"].items() if k.upper() in _CLAVES_BLANCO_NULO)
     otros_total = sum(circuito["otros"].values())
@@ -113,19 +63,14 @@ def _resolver_no_ideologicos(circuito: dict) -> tuple[int, int, int]:
 
 
 def _votos_en_blanco(circuito: dict) -> int:
-    """Solo "EN BLANCO"/"BLANCOS" -- a diferencia de `blanco_nulo` (que ya
-    se usa en el resto del mapa para la leyenda/panel de circuito), acá se
-    aísla del voto nulo porque el resumen del distrito (`resumen_distrito`)
-    pide específicamente el voto en blanco solo."""
+    """Solo "EN BLANCO"/"BLANCOS", aislado de `blanco_nulo`, para
+    `resumen_distrito`."""
     return sum(v for k, v in circuito["otros"].items() if k.upper() in _CLAVES_BLANCO)
 
 
 def _votos_por_campo(circuito: dict) -> dict[str, int]:
-    """`{codigo_campo_ideologico: votos}` sumado sobre **todas** las
-    agrupaciones del circuito (no solo el top-N) -- `""` agrupa las
-    agrupaciones sin `campo_ideologico` clasificado todavía (ver
-    `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv`), nunca
-    se descartan esos votos."""
+    """{campo_ideologico: votos} sobre todas las agrupaciones; `""` agrupa
+    las sin clasificar, nunca se descartan."""
     votos: dict[str, int] = {}
     for info in circuito["positivos"].values():
         clave = info["campo_ideologico"] or ""
@@ -143,18 +88,8 @@ def _votos_por_familia(circuito: dict, filiaciones: dict[str, str]) -> dict[str,
 
 
 def _construir_circuito(circuito: dict, filiaciones: dict[str, str], agrup_index: dict[str, int]) -> dict:
-    """Pura. `circuito` es `contenido['circuitos'][cid]` de un
-    `circuito_<nivel>.json`; `filiaciones` viene de
-    `serie_temporal_filiacion._cargar_filiaciones`; `agrup_index` mapea
-    nombre de agrupación -> índice en la lista global `agrup_names`.
-
-    El total que se usa como denominador de **todos** los porcentajes
-    (listas + blanco_nulo + ausentismo) es `positivos + blanco_nulo +
-    ausentismo` -- el mismo total implícito de `graficos._preparar`, no
-    "positivos" solo. Con esto un mismo circuito con mucha abstención no
-    puede mostrar un ganador con "38%" que en realidad es 38% de la
-    mitad del padrón que efectivamente votó por una lista.
-    """
+    """Pura; total de cada % es `positivos + blanco_nulo + ausentismo`,
+    nunca solo `positivos`."""
     positivos_total, blanco_nulo, ausentismo = _resolver_no_ideologicos(circuito)
     total = positivos_total + blanco_nulo + ausentismo
 
@@ -194,10 +129,8 @@ def _construir_circuito(circuito: dict, filiaciones: dict[str, str], agrup_index
 
 
 def _construir_eleccion(contenido: dict, filiaciones: dict[str, str], agrup_index: dict[str, int]) -> dict:
-    """Pura. `contenido` es el `circuito_<nivel>.json` completo de un
-    (año, nivel) puntual. Agrega también el acumulado a nivel distrito con
-    la misma fórmula/total que cada circuito -- no solo la suma de los top7
-    de cada uno, que subestimaría a las listas chicas."""
+    """Pura; agrega también el acumulado distrital con la misma fórmula,
+    no solo la suma de los top7."""
     circuitos_out = {}
     positivos_d = blanco_nulo_d = ausentismo_d = electores_d = blanco_d = 0
     votos_por_agrup: dict[str, int] = {}
@@ -268,10 +201,8 @@ def _construir_eleccion(contenido: dict, filiaciones: dict[str, str], agrup_inde
 
 
 def _construir_agrup_index(combos: list[tuple[int, str, str]], data_dir: Path | str) -> dict[str, int]:
-    """Todas las agrupaciones que aparecen en algún `circuito_<nivel>.json`
-    de los combos pedidos, en orden alfabético (determinístico -- a
-    diferencia de "orden de aparición", no depende del orden de iteración
-    de un dict)."""
+    """Todas las agrupaciones de los combos pedidos, en orden alfabético
+    (determinístico)."""
     nombres = set()
     for anio, nivel, etapa in combos:
         contenido = _cargar_circuito(data_dir, anio, nivel) if etapa == "generales" else None
@@ -298,9 +229,8 @@ def _cargar_geojson_circuitos(path: Path | str) -> dict:
 
 
 def _redondear_coords(coords, tipo: str, decimales: int = 5):
-    """Redondea longitud/latitud a `decimales` (5 ~= 1.1 m de precisión,
-    de sobra para un mapa de referencia, no para un join espacial) --
-    reduce bastante el tamaño del HTML sin perder nada visible."""
+    """Redondea lat/lon a `decimales` (5 ≈ 1.1 m), para achicar el HTML
+    sin perder precisión visible."""
     if isinstance(coords[0], (int, float)):
         return [round(v, decimales) for v in coords]
     return [_redondear_coords(c, tipo, decimales) for c in coords]

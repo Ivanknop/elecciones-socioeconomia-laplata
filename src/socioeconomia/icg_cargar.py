@@ -19,11 +19,8 @@ COL_ICG = "ICG"
 
 
 def cargar_microdatos(path: Path | str = ICG_RAW_PATH) -> pd.DataFrame:
-    """Lee el `.dta` crudo y valida ICG/ponderación antes de devolverlo --
-    falla ruidosamente si no se cumple ninguna de las condiciones de validez.
-
-    Normaliza `año`/`mes` a `int` (llegan como float en el `.dta`).
-    """
+    """Lee el `.dta` crudo, normaliza `año`/`mes` a `int` y valida
+    ICG/ponderación -- falla ruidosamente si no se cumple."""
     df = pd.read_stata(path, convert_categoricals=False)
 
     # 17 de 314.817 filas (~0,005%) no tienen año/mes -- sin identificador

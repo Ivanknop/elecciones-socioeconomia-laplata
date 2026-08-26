@@ -1,15 +1,6 @@
-"""Cuadros de votos por localidad de La Plata, agregando los resultados por
-circuito ya existentes en `data/distrito/<anio>/<nivel>/<etapa>/circuito_<nivel>.json`.
-
-Agrupa contra `data/geolocalizacion/circuitos_por_localidad.csv` (crosswalk
-geolocalizado, nearest-neighbor contra el catálogo del Ministerio de Obras
-Públicas + Georef-AR, ver skill `laplata-geolocalizacion` y
-`data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md`) -- **no** el crosswalk
-histórico por nombre de barrio de `data/geolocalizacion/fuentes_extra/circuito_localidad.csv`,
-que sigue existiendo pero dejó de ser el default acá. Cualquier circuito de
-un `circuito_<nivel>.json` que no esté en el crosswalk geolocalizado (hoy
-solo `504C`, ver `electoral.localidades`) cae en `SIN_DETERMINAR`, nunca se
-descarta.
+"""Cuadros de votos por localidad de La Plata desde `circuito_<nivel>.json`,
+agrupados vía crosswalk geolocalizado (`data/geolocalizacion/circuitos_por_localidad.csv`).
+Detalle en `data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md`.
 
 Uso:
     python -m analisis.cuadros_por_localidad --anio 2023 --nivel intendente
@@ -37,9 +28,7 @@ COLUMNA_TOTAL = "votos"
 
 
 def _clasificar_no_positivo(nombre_categoria: str) -> str:
-    """Blanco y nulo son votos de gente que fue a votar y deliberadamente no eligió ninguna
-    agrupación.
-    """
+    """Blanco y nulo: votos de quien fue a votar y no eligió agrupación."""
     clave = nombre_categoria.upper()
     if "BLANCO" in clave or "NULO" in clave:
         return "blanco_nulo"
@@ -47,11 +36,8 @@ def _clasificar_no_positivo(nombre_categoria: str) -> str:
 
 
 def _votos_por_circuito(contenido: dict) -> dict[str, dict[str, float]]:
-    """Ninguna de las claves de `circuito["otros"]` participa del eje
-    izquierda-derecha que sí aplica a `positivos`, pero no se suman todas
-    juntas: `blanco_nulo` (gente que votó y no eligió agrupación) queda
-    separada de `otros`.
-    """
+    """`blanco_nulo` queda separado de `otros`; ninguno participa del eje
+    izquierda-derecha de `positivos`."""
     resultados = {}
     for circuito_id, circuito in contenido["circuitos"].items():
         fila = {ideologia: 0 for ideologia in IDEOLOGIAS.values()}

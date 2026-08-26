@@ -1,20 +1,7 @@
-"""Resultado total por agrupación política, un CSV por (año, nivel, etapa), a
-partir de `data/distrito/<año>/<nivel>/<etapa>/circuito_<nivel>.json` (no de
-la API ni del JSON agregado crudo -- ver docs/FUNCIONALIDADES.md, "Anomalía
-conocida: JSON agregado de Presidente 2019": ese agregado subestima Presidente
-2019, `circuito_<nivel>.json` ya está corregido porque sale del CSV oficial).
-`etapa` es `generales`, `paso`, o `balotaje` -- estas dos últimas solo existen
-para los (año, nivel) donde efectivamente hubo esa instancia (ver
-docs/FUNCIONALIDADES.md, "PASO y balotaje").
-
-Suma los `positivos` de todos los circuitos de ese (año, nivel, etapa) con
-`totalizar_agrupaciones` (`electoral.models`), la misma función que combinaría
-resultados parciales por mesa si hiciera falta ese nivel de detalle.
-
-Salida: `generales` mantiene la ruta histórica
-`data/totales/<nivel>/<año>/resultado_total.csv` (compatibilidad hacia atrás);
-`paso`/`balotaje` van a `data/totales/<nivel>/<año>/<etapa>/resultado_total.csv`,
-hermana de esa ruta.
+"""Resultado total por agrupación, un CSV por (año, nivel, etapa), desde
+`circuito_<nivel>.json` (no la API ni el JSON agregado crudo -- ver
+`docs/FUNCIONALIDADES.md`, "Anomalía conocida: JSON agregado de Presidente
+2019").
 
 Uso:
     PYTHONPATH=src python -m electoral.totales --anio 2023 --nivel intendente

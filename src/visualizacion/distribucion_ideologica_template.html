@@ -106,10 +106,10 @@
 
   #placeholder{color:var(--ink-dim); font-size:12.5px; line-height:1.6; font-style:italic; padding:12px 0;}
 
-  #chartwrap{position:relative;}
-  #chart{width:100%; height:auto; display:block;}
-  #chart circle{cursor:pointer; transition:opacity .12s;}
-  #chart circle:hover{opacity:.85;}
+  #chartwrap, #chartwrap-localidad{position:relative;}
+  #chart, #chart-localidad{width:100%; height:auto; display:block;}
+  #chart circle, #chart-localidad circle{cursor:pointer; transition:opacity .12s;}
+  #chart circle:hover, #chart-localidad circle:hover{opacity:.85;}
   .chart-tip{
     position:absolute; pointer-events:none; z-index:20; max-width:230px;
     background:var(--bg-panel); border:1px solid var(--line); border-radius:5px;
@@ -195,6 +195,11 @@
             <span>Localidad seleccionada</span>
             <button id="btn-deseleccionar" type="button" class="close-btn" title="Ver el distrito completo">✕ distrito</button>
           </h3>
+          <h3 id="chart-title-localidad" style="display:none;">Cuadrantes ideológicos — localidad</h3>
+          <div id="chartwrap-localidad" style="display:none;">
+            <svg id="chart-localidad" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg"></svg>
+            <div class="chart-tip" id="chart-tip-localidad"></div>
+          </div>
           <div id="placeholder"></div>
         </div>
 
@@ -211,6 +216,7 @@
 const DATA = /*__RAW_DATA__*/;
 const FAM_COLORS = DATA.fam_colors;
 const NIVEL_LABELS = DATA.nivel_labels;
+const EJE_LIMITES = DATA.eje_limites;
 
 function fmtFam(f){ return f ? f.charAt(0).toUpperCase()+f.slice(1) : "sin clasificar"; }
 function fmtPct(p){ return `${p.toFixed(1)}%`; }
@@ -383,30 +389,31 @@ locLayerGroup.eachLayer(l => { if (l.bringToFront) l.bringToFront(); });
 const SVG_SIZE = 380;
 const MARGIN = 34;
 const RADIO_MIN = 5, RADIO_MAX = 26;
-const tip = document.getElementById('chart-tip');
-const chartwrap = document.getElementById('chartwrap');
 
 function escalaLineal(v, dMin, dMax, rMin, rMax){
   if(dMax === dMin) return (rMin + rMax) / 2;
   return rMin + (v - dMin) / (dMax - dMin) * (rMax - rMin);
 }
 
-function renderChart(puntos){
-  const svg = document.getElementById('chart');
-  const titulo = document.getElementById('chart-title');
+function renderChart(puntos, {svgId, titleId, tipId, wrapId, contexto}){
+  const svg = document.getElementById(svgId);
+  const titulo = document.getElementById(titleId);
+  const tip = document.getElementById(tipId);
+  const chartwrap = document.getElementById(wrapId);
   svg.innerHTML = "";
 
   if(!puntos.length){
-    titulo.textContent = "Cuadrantes ideológicos — sin agrupaciones con cobertura V-Party";
+    titulo.textContent = `Cuadrantes ideológicos — ${contexto} (sin agrupaciones con cobertura V-Party)`;
     return;
   }
-  titulo.textContent = "Cuadrantes ideológicos — distrito (tamaño = % de votos)";
+  titulo.textContent = `Cuadrantes ideológicos — ${contexto} (tamaño = % de votos)`;
 
-  const xs = puntos.map(p=>p.economico), ys = puntos.map(p=>p.progresismo);
-  const xPad = Math.max(0.6, (Math.max(...xs)-Math.min(...xs)) * 0.15);
-  const yPad = Math.max(0.6, (Math.max(...ys)-Math.min(...ys)) * 0.15);
-  const xMin = Math.min(...xs) - xPad, xMax = Math.max(...xs) + xPad;
-  const yMin = Math.min(...ys) - yPad, yMax = Math.max(...ys) + yPad;
+  // dominio fijo y simétrico respecto de 0 -- mismo criterio que los PNG
+  // estáticos (`_limites_globales`): el (0,0) siempre queda en el centro
+  // visual, y el rango nunca cambia entre año/nivel/localidad, así el
+  // autoplay y el cambio de localidad no reescalan el gráfico.
+  const xMax = EJE_LIMITES.x, xMin = -xMax;
+  const yMax = EJE_LIMITES.y, yMin = -yMax;
   const pctMin = Math.min(...puntos.map(p=>p.votos_pct));
   const pctMax = Math.max(...puntos.map(p=>p.votos_pct));
 
@@ -491,10 +498,33 @@ function render(){
     document.getElementById('panel-localidad').style.display = "block";
     document.getElementById('side-title').textContent = selectedLocalidad || "localidad sin identificar";
     document.getElementById('side-sub').textContent = `Circuito ${selectedCircuito}`;
-    document.getElementById('placeholder').innerHTML =
-      `Distribución ideológica de <b>${selectedLocalidad || "esta localidad"}</b> — próximamente.<br><br>` +
-      `Todavía no hay cobertura V-Party a nivel localidad: los votos de cada partido están agregados por localidad ` +
-      `(ver <code>vparty_cuadrantes_local.py</code>, gráficos por localidad), pero no así el resto del CSV.`;
+
+    const locEntry = selectedLocalidad ? DATA.localidad_puntos[selectedLocalidad]?.[key] : undefined;
+    const locPuntos = locEntry ? locEntry.puntos : [];
+    const chartTituloLoc = document.getElementById('chart-title-localidad');
+    const chartwrapLoc = document.getElementById('chartwrap-localidad');
+    const placeholder = document.getElementById('placeholder');
+
+    if(locPuntos.length){
+      chartTituloLoc.style.display = "block";
+      chartwrapLoc.style.display = "block";
+      placeholder.style.display = "none";
+      renderChart(locPuntos, {
+        svgId: 'chart-localidad', titleId: 'chart-title-localidad',
+        tipId: 'chart-tip-localidad', wrapId: 'chartwrap-localidad',
+        contexto: selectedLocalidad,
+      });
+      buildLegend(locPuntos);
+    } else {
+      chartTituloLoc.style.display = "none";
+      chartwrapLoc.style.display = "none";
+      placeholder.style.display = "block";
+      const nivelCap = nivelActual.charAt(0).toUpperCase() + nivelActual.slice(1);
+      placeholder.innerHTML = selectedLocalidad
+        ? `Sin cobertura V-Party para <b>${selectedLocalidad}</b> en ${nivelCap} ${selAnio.value}.`
+        : `Distribución ideológica de esta localidad — no se pudo identificar la localidad de este circuito.`;
+      buildLegend([]);
+    }
     return;
   }
 
@@ -504,7 +534,7 @@ function render(){
   if(!elec){
     document.getElementById('side-title').textContent = "—";
     document.getElementById('side-sub').textContent = "Sin datos para este año/nivel";
-    renderChart([]);
+    renderChart([], {svgId:'chart', titleId:'chart-title', tipId:'chart-tip', wrapId:'chartwrap', contexto:'distrito'});
     buildLegend([]);
     return;
   }
@@ -512,7 +542,7 @@ function render(){
   document.getElementById('side-title').textContent = `${elec.nivel.charAt(0).toUpperCase()+elec.nivel.slice(1)} ${elec.anio}`;
   document.getElementById('side-sub').textContent = "";
 
-  renderChart(elec.puntos);
+  renderChart(elec.puntos, {svgId:'chart', titleId:'chart-title', tipId:'chart-tip', wrapId:'chartwrap', contexto:'distrito'});
   buildLegend(elec.puntos);
 }
 

@@ -11,11 +11,8 @@ carpeta.
 
 ## Cobertura real vs. codebook
 
-`Codebook_ICG.pdf` (edición 2023) documenta la variable `ola` con
-cobertura hasta oct-2022. El `.dta` real usado para construir este
-pipeline llega hasta **2026-08** — la fecha de corte real la determina
-siempre el `.dta` que haya en `data/socioeconomia/icg/`, nunca el PDF (que quedó
-desactualizado respecto de entregas más recientes de la UTDT).
+El codebook queda desactualizado frente al `.dta` real (detalle y fecha
+en `data/socioeconomia/icg/README.md`, no repetido acá).
 `icg_construir_series.construir_serie_headline`/`construir_series_demograficas`
 no hardcodean un año de corte: `anio_hasta=None` (default) resuelve al año
 máximo realmente presente en los datos cargados, así que la serie se

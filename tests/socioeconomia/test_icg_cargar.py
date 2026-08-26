@@ -1,10 +1,6 @@
-"""Tests de `src/socioeconomia/icg_cargar.py`. Nunca carga el `.dta` real
-(22 MB) -- monkeypatchea `pandas.read_stata` para devolver un DataFrame
-sintético en vez de escribir un `.dta` de prueba: Stata no acepta `ñ` en
-nombres de columna (`pd.DataFrame.to_stata` renombra `año` a `a_o` en
-silencio), así que un roundtrip real por disco no reproduciría fielmente
-el esquema de columnas que usa el resto del módulo.
-"""
+"""Tests de `icg_cargar.py`; nunca carga el `.dta` real (22 MB) --
+monkeypatchea `pandas.read_stata` con un DataFrame sintético (Stata no
+acepta `ñ` en nombres de columna, un roundtrip real no serviría)."""
 import pandas as pd
 import pytest
 

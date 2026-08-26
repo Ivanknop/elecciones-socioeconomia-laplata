@@ -24,8 +24,8 @@ def _escribir_circuito_json(data_dir, anio, nivel):
 
 
 def _escribir_cuadro(cuadros_dir, anio, cargo, filas):
-    """`filas` mapea localidad -> {ideologia: votos}, solo para las ideologías
-    que interesan en el test (las que no aparecen quedan en 0)."""
+    """`filas` mapea localidad -> {ideologia: votos}; las que no aparecen
+    quedan en 0."""
     cuadros_dir.mkdir(parents=True, exist_ok=True)
     columnas = ["localidad", *IDEOLOGIAS.values()]
     df = pd.DataFrame(

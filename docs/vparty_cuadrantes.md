@@ -91,7 +91,7 @@ puntos cercanos no terminen con las etiquetas apiladas una sobre otra.
 
 Las mismas tres variables (`vparty_economico`, `vparty_progresismo`,
 `vparty_populismo`) también viven en
-`data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` (115 de 313
+`data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` (151 de 313
 filas), combinando V-Party real con una estimación propia por encuesta de
 expertos calibrada para caer en la misma escala — mismo modelo, así que
 los consumidores de esa columna (`vparty_cuadrantes_local.py`, etc.) no

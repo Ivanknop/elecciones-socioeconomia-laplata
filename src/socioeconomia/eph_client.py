@@ -1,31 +1,7 @@
-"""Cliente de descarga+caché de microdatos trimestrales de la EPH (INDEC).
-
-## URLs de descarga
-
-Desde el 2do trimestre de 2017 en adelante, INDEC publica los zips con un
-patrón regular: `EPH_usu_<trimestre>_Trim_<año>_txt.zip`. Antes de eso usó
-nombres irregulares con el trimestre en palabra ("1er_Trim", "2doTrim", sin
-convención fija de guión bajo) — `_URLS_IRREGULARES` tiene los que se
-confirmaron navegando en esta sesión (2016 T2-T4, 2017 T1).
-
-## 2011-2015: microdatos históricos vía Wayback Machine
-`data/socioeconomia/eph_gran_la_plata.csv` cubre 2011-2025 casi
-completo (57 de 60 trimestres) en un único CSV.
-
-## Huecos conocidos en la serie 
-
-- 2015 T3, 2015 T4, 2016 T1: INDEC no publicó la EPH ("emergencia
-  estadística") — confirmado además porque no existen `t315`/`t415` en el
-  archivo histórico (sí existen `t115`/`t215`, 2015 T1/T2). Son los únicos
-  tres trimestres 2011-2025 que faltan en `eph_gran_la_plata.csv`.
-- 2007 T3: INDEC no relevó Gran La Plata ese trimestre (no afecta el rango
-  2011-2025 de este proyecto, se deja documentado igual).
-- 2007-2015: INDEC advierte que esas series deben "considerarse con
-  reservas".
-
-Fuente de los tres avisos:
-`indec.gob.ar/ftp/cuadros/sociedad/anexo_informe_eph_23_08_16.pdf`.
-"""
+"""Cliente de descarga+caché de microdatos trimestrales de la EPH (INDEC),
+2011-2025 (histórico vía Wayback Machine, 2017+ vía URL regular de INDEC).
+Huecos, URLs y metodología en `docs/FUNCIONALIDADES.md` y
+`data/socioeconomia/SISTEMATIZACION_VARIABLES.md`."""
 from __future__ import annotations
 
 import subprocess
@@ -150,8 +126,7 @@ class EphClient:
         return cache_path
 
     def leer_base(self, zip_path: Path, tipo: str) -> pd.DataFrame:
-        """Lee la base `individual` u `hogar` de un zip ya descargado.
-        """
+        """Lee la base `individual` u `hogar` de un zip ya descargado."""
         if tipo not in ("individual", "hogar"):
             raise ValueError("tipo debe ser 'individual' u 'hogar'")
         patrones = ("ind", "personas") if tipo == "individual" else ("hog",)
@@ -197,8 +172,7 @@ class EphClient:
 
     def leer_base_historica(self, archivo_path: Path, tipo: str) -> pd.DataFrame:
         """Lee la base `individual` u `hogar` de un .zip/.rar histórico
-        (2011-2015, formato DBF).
-        """
+        (2011-2015, formato DBF)."""
         if tipo not in ("individual", "hogar"):
             raise ValueError("tipo debe ser 'individual' u 'hogar'")
         patron = "individual" if tipo == "individual" else "hogar"
@@ -229,8 +203,7 @@ _COLUMNAS_NUMERICAS_HOGAR = ("IPCF", "IX_TOT", "II1", "IV7", "II7", "V5", "V15",
 
 
 def _numerico(df: pd.DataFrame, columnas: tuple[str, ...]) -> pd.DataFrame:
-    """Fuerza a numérico las columnas dadas que estén presentes 
-    """
+    """Fuerza a numérico las columnas dadas que estén presentes."""
     df = df.copy()
     for columna in columnas:
         if columna in df.columns:
@@ -247,11 +220,8 @@ def _tasa(numerador: float, denominador: float) -> float | None:
 
 
 def _resolver_v5_dividida(hog: pd.DataFrame) -> pd.DataFrame:
-    """Desde 2023 T4, INDEC dividió la pregunta V5 (ayuda social del
-    gobierno) en `V5_01`/`V5_02`/`V5_03` -- reconstruye una columna `V5`
-    (1=Sí/2=No) igual a "Sí" si cualquiera de las tres lo es, para no perder
-    continuidad de la serie. No modifica nada si `V5` ya existe tal cual.
-    """
+    """Desde 2023T4, reconstruye `V5` desde `V5_01/02/03` (1=Sí si alguna
+    lo es); no toca `V5` si ya existe."""
     if "V5" in hog.columns:
         return hog
     columnas_v5 = [c for c in ("V5_01", "V5_02", "V5_03") if c in hog.columns]
@@ -266,12 +236,7 @@ def _resolver_v5_dividida(hog: pd.DataFrame) -> pd.DataFrame:
 
 def _indicadores_laborales_core(ind: pd.DataFrame) -> dict:
     """Actividad/empleo/desocupación/informalidad/ingreso sobre un
-    subconjunto de la base individual ya filtrado (aglomerado, y
-    opcionalmente sexo/tramo etario). Población de referencia para
-    actividad/empleo: `ESTADO` en {1,2,3} (ocupado/desocupado/inactivo,
-    excluye menores de 10 y no-respuesta) -- la convención estándar de
-    "población de 10 años y más" que usa la propia EPH.
-    """
+    subconjunto filtrado; población de referencia `ESTADO` en {1,2,3}."""
     poblacion = ind[ind["ESTADO"].isin([1, 2, 3])]
     pea = ind[ind["ESTADO"].isin([1, 2])]
     ocupados = ind[ind["ESTADO"] == 1]
@@ -330,15 +295,8 @@ def _indicadores_laborales_core(ind: pd.DataFrame) -> dict:
 
 
 def agregados_gran_la_plata(individual: pd.DataFrame, hogar: pd.DataFrame) -> dict:
-    """Indicadores trimestrales para el aglomerado Gran La Plata (todas las
-    personas/hogares, sin desagregar) a partir de las bases individual y
-    hogar ya filtradas o completas (se filtra acá por
-    `AGLOMERADO_GRAN_LA_PLATA`). Todos los indicadores están ponderados por
-    `PONDERA`/`PONDIH`/`PONDIIO`/`PONDII`, según corresponda a cada
-    pregunta, como exige la EPH al ser una encuesta muestral. En las bases
-    históricas (2011-2015, DBF) ninguno de esos ponderadores dedicados
-    existe (solo `PONDERA`) -- todos caen a `PONDERA` en ese caso.
-    """
+    """Indicadores trimestrales para Gran La Plata, ponderados por
+    `PONDERA`/`PONDIH`/`PONDIIO`/`PONDII`; históricas (2011-2015) caen a `PONDERA`."""
     ind = individual[individual["AGLOMERADO"] == AGLOMERADO_GRAN_LA_PLATA].copy()
     hog = hogar[hogar["AGLOMERADO"] == AGLOMERADO_GRAN_LA_PLATA].copy()
     hog = _resolver_v5_dividida(hog)

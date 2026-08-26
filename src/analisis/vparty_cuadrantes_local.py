@@ -1,69 +1,7 @@
-"""Gráfico de cuadrantes ideológicos (económico × progresismo) con votos
-reales de La Plata, análogo a `vparty_cuadrantes.py` pero construido con
-los datos locales en vez del dataset nacional de V-Party -- el encoding de
-color/tamaño difiere por grano, ver más abajo.
-
-Fuente de posición: las columnas `vparty_economico`/`vparty_progresismo`/
-`vparty_populismo` ya cargadas en `clasificacion_ideologica_agrupaciones.csv`
-(fuente real V-Party + estimación propia por encuesta de expertos, ver
-`docs/vparty_cuadrantes.md`) -- **no** se recalcula ni se aproxima nada acá,
-solo se filtran las agrupaciones que ya tienen esas tres columnas pobladas
-para cada (año, cargo); el resto queda fuera del gráfico, mismo criterio
-que `vparty_cuadrantes.cargar_posiciones`.
-
-Cada punto es una agrupación en una elección "generales" (PASO/balotaje no
-se grafican, mismo alcance que `totales_por_lista.py`).
-
-**Encoding visual distinto por grano** -- son dos preguntas distintas, no
-una elección de estilo:
-
-- **distrito** (una elección a la vez, ver más abajo): color = familia
-  política (`filiacion_politica`, sombreada por partido dentro de la
-  familia -- ver `_color_por_partido`, misma colorimetría que
-  `colorimetria_familia_politica.csv`, la única fuente de esos colores en
-  el repo, ver CLAUDE.md "Colores de cada espacio político"), tamaño = %
-  de votos de ese partido en esa elección puntual. Populismo queda **fuera
-  del gráfico** por ahora (no ocupa ni color ni tamaño), aunque la columna
-  sigue disponible en `tabla_distrito` para quien la quiera agregar
-  después.
-- **localidad** (todas las elecciones juntas en un solo PNG, ver más
-  abajo): sigue el esquema original de `vparty_cuadrantes.graficar_cuadrantes`
-  -- color = año (para poder seguir a una misma fuerza de elección en
-  elección), tamaño = populismo, con fusión de puntos cercanos entre años
-  vía `vparty_cuadrantes._fusionar_por_cercania`. No se tocó todavía --
-  mismo encoding que antes de este cambio.
-
-**Nivel unificado, no por cargo**: `presidente`/`nacional`,
-`gobernador`/`provincial` e `intendente`/`municipal` son el mismo nivel de
-gobierno visto en años ejecutivos vs. legislativos -- graficarlos por
-separado los deja con la mitad de las elecciones cada uno (ejecutivo:
-2011/2015/2019/2023; legislativo: 2013/2017/2021/2025), cuando lo que
-importa acá es la serie completa 2011-2025 de ese nivel. Por eso este
-módulo reusa `NIVELES`/`_puntos_del_nivel` de `analisis.serie_temporal`
-(mismo mapeo que ya combina ambos cargos ahí) en vez de tratar los 6
-nombres de directorio de `data/distrito/` como niveles independientes --
-un año nunca tiene los dos cargos de un mismo nivel a la vez, así que no
-hay ambigüedad al fusionarlos en una sola serie por año.
-
-Dos grillas de agregación (fuente de votos, no de encoding visual -- eso ya
-está arriba):
-
-- **distrito**: sumando votos de toda La Plata -- a partir de
-  `electoral.totales.resultado_total_por_agrupacion`. Va a
-  `graficos/agrupaciones/<año>/v_party_<nivel>.png` (git-tracked, mismo
-  criterio que los PNG nacionales que ya viven en `graficos/agrupaciones/`).
-- **localidad**: sumando votos solo de los circuitos de esa localidad --
-  mismo crosswalk geolocalizado que usa `analisis.cuadros_por_localidad`
-  por defecto (`data/geolocalizacion/circuitos_por_localidad.csv`, vía
-  `electoral.localidades.agrupar_resultados_por_localidad`, agnóstica de
-  que acá se agrupa por agrupación en vez de por campo_ideologico). Va a
-  `graficos/por_localidad/vparty/` (no versionado, mismo criterio que el
-  resto de `graficos/por_localidad/`: se regenera en un par de minutos).
-
-El join año/cargo/agrupación usa `NIVEL_A_NIVEL_CSV` de
-`analisis.totales_por_lista` (mismo `"gobernador"` -> `"gobernacion"` que
-resuelve ese script) -- `clasificacion_ideologica_agrupaciones.csv` nombra
-ese cargo distinto al resto del pipeline, ver `docs/FUNCIONALIDADES.md`.
+"""Cuadrantes ideológicos V-Party (económico × progresismo) con votos
+reales de La Plata, análogo a `vparty_cuadrantes.py` pero a partir de
+datos locales. Encoding de color/tamaño y agregación difieren por grano
+(distrito/localidad) -- detalle en `docs/vparty_cuadrantes.md` y CLAUDE.md.
 
 Uso:
     PYTHONPATH=src python -m analisis.vparty_cuadrantes_local --grano distrito
@@ -96,6 +34,7 @@ from electoral.totales import resultado_total_por_agrupacion
 
 RUTA_DISTRITO_DIR = Path("graficos/agrupaciones")
 RUTA_LOCALIDAD_DIR = Path("graficos/por_localidad/vparty")
+RUTA_LOCALIDAD_POR_ANIO_DIR = Path("graficos/agrupaciones/por_localidad")
 
 _CMAP_ANIOS = plt.get_cmap("tab10")
 
@@ -112,10 +51,8 @@ _LUMINOSIDAD_MIN, _LUMINOSIDAD_MAX = 0.25, 0.78
 def cargar_posiciones_propias(
     path: Path | str = CLASIFICACION_IDEOLOGICA_PATH,
 ) -> dict[tuple[str, str, str], tuple[float, float, float]]:
-    """(anio, nivel_csv, agrupacion) -> (economico, progresismo, populismo)
-    para las filas de `clasificacion_ideologica_agrupaciones.csv` con
-    cobertura V-Party -- las demás quedan afuera de este gráfico.
-    """
+    """(año, nivel, agrupación) → posición V-Party (real o estimada) desde
+    `clasificacion_ideologica_agrupaciones.csv`, solo filas con cobertura."""
     posiciones = {}
     with open(path, encoding="utf-8") as f:
         for r in csv.DictReader(f):
@@ -133,12 +70,8 @@ def cargar_posiciones_propias(
 def cargar_filiaciones(
     path: Path | str = CLASIFICACION_IDEOLOGICA_PATH,
 ) -> dict[tuple[str, str, str], str]:
-    """(anio, nivel_csv, agrupacion) -> filiacion_politica, para colorear
-    cada partido en base al color de su familia política ya definido en
-    `colorimetria_familia_politica.csv` (ver `_color_por_partido`) en vez
-    de inventar una paleta nueva. Independiente del filtro de cobertura
-    V-Party de `cargar_posiciones_propias` -- una agrupación puede tener
-    `filiacion_politica` sin tener aún posición V-Party."""
+    """(año, nivel, agrupación) → filiación política, para colorear por
+    partido vía `_color_por_partido` -- independiente de la cobertura V-Party."""
     filiaciones = {}
     with open(path, encoding="utf-8") as f:
         for r in csv.DictReader(f):
@@ -157,10 +90,8 @@ def tabla_distrito(
     posiciones: dict[tuple[str, str, str], tuple[float, float, float]],
     data_dir: Path | str = DATA_DISTRITO_DIR,
 ) -> pd.DataFrame:
-    """Una fila por (agrupación, año) con cobertura V-Party, sumando votos
-    de todos los circuitos de La Plata para cada año "generales" disponible
-    del `nivel` unificado (combina el cargo ejecutivo y el legislativo de
-    ese nivel, ver `analisis.serie_temporal.NIVELES`)."""
+    """Votos por (agrupación, año), sumados en toda La Plata, para
+    agrupaciones con cobertura V-Party -- `nivel` combina ejecutivo/legislativo."""
     filas = []
     for anio, cargo in _puntos_del_nivel(data_dir, nivel):
         nivel_csv = NIVEL_A_NIVEL_CSV.get(cargo, cargo)
@@ -182,10 +113,7 @@ def tabla_distrito(
 # ---------------------------------------------------------------------------
 
 def _votos_por_circuito_agrupacion(contenido: dict) -> dict[str, dict[str, float]]:
-    """circuito_id -> {agrupacion: votos}, análogo a
-    `cuadros_por_localidad._votos_por_circuito` pero sin bucketizar por
-    campo_ideologico -- acá se necesita el detalle por agrupación para
-    poder unir contra las posiciones V-Party propias."""
+    """circuito_id → {agrupación: votos}, sin agrupar por campo_ideologico."""
     resultados: dict[str, dict[str, float]] = {}
     for circuito_id, circuito in contenido["circuitos"].items():
         fila: dict[str, float] = {}
@@ -201,10 +129,8 @@ def tabla_localidades(
     data_dir: Path | str = DATA_DISTRITO_DIR,
     crosswalk_path: Path | str = CIRCUITOS_POR_LOCALIDAD_PATH,
 ) -> pd.DataFrame:
-    """Una fila por (localidad, agrupación, año) con cobertura V-Party, para
-    las localidades de una vez -- evita recalcular el groupby por circuito
-    una vez por localidad. `nivel` es el nivel unificado (ver
-    `tabla_distrito`), no un nombre de directorio de `data/distrito/`."""
+    """Votos por (localidad, agrupación, año) con cobertura V-Party;
+    `votos_porcentaje` sobre el total de esa localidad, comparable con `tabla_distrito`."""
     mapa = cargar_circuito_localidad_geo(crosswalk_path)
 
     filas = []
@@ -218,6 +144,7 @@ def tabla_localidades(
         columnas_agrupacion = [c for c in agrupado.columns if c not in ("localidad", "circuitos")]
         for _, fila_loc in agrupado.iterrows():
             localidad = fila_loc["localidad"]
+            total_localidad = sum(fila_loc[c] for c in columnas_agrupacion)
             for nombre_agrup in columnas_agrupacion:
                 votos = fila_loc[nombre_agrup]
                 if not votos:
@@ -230,6 +157,7 @@ def tabla_localidades(
                     "localidad": localidad, "agrupacion": nombre_agrup, "year": anio,
                     "economico": econ, "progresismo": prog, "populismo": pop,
                     "votos": votos,
+                    "votos_porcentaje": (votos / total_localidad * 100) if total_localidad else 0.0,
                 })
     return pd.DataFrame(filas)
 
@@ -243,10 +171,8 @@ def _color_por_anio(anios: list[int]) -> dict[int, str]:
 
 
 def _sombras(color_hex: str, n: int) -> list[str]:
-    """`n` variaciones de luminosidad de `color_hex` (mismo matiz/saturación,
-    luminosidad repartida en `[_LUMINOSIDAD_MIN, _LUMINOSIDAD_MAX]`), para
-    distinguir partidos dentro de una misma familia política sin abandonar
-    el color de esa familia."""
+    """`n` variaciones de luminosidad de `color_hex`, para distinguir
+    partidos dentro de una misma familia política."""
     color_hex = color_hex.lstrip("#")
     r, g, b = (int(color_hex[i:i + 2], 16) / 255 for i in (0, 2, 4))
     h, l, s = colorsys.rgb_to_hls(r, g, b)
@@ -266,14 +192,8 @@ def _sombras(color_hex: str, n: int) -> list[str]:
 
 
 def _color_por_partido(agrupaciones: list[str], filiacion_de: dict[str, str]) -> dict[str, str]:
-    """agrupación -> color: sombras de `_COLOR_FILIACION[filiacion_politica]`
-    (ver `docs/vparty_cuadrantes.md`/CLAUDE.md, "Colores de cada espacio
-    político") agrupadas por familia -- todos los partidos de una misma
-    familia comparten matiz, cada uno con una luminosidad distinta dentro
-    de esa familia (orden alfabético, para que sea determinístico entre
-    corridas). Partidos sin `filiacion_politica` conocida, o con una que no
-    está en la colorimetría, van en el gris neutro que ya usa
-    `totales_por_lista._COLOR_SIN_CLASIFICAR` para el mismo caso."""
+    """agrupación → color: sombras del color de su familia política (CLAUDE.md);
+    gris si no clasificada."""
     agrupaciones_por_familia: dict[str | None, list[str]] = {}
     for agrupacion in agrupaciones:
         familia = filiacion_de.get(agrupacion)
@@ -292,22 +212,30 @@ def _color_por_partido(agrupaciones: list[str], filiacion_de: dict[str, str]) ->
     return colores
 
 
+def _limites_globales(
+    posiciones: dict[tuple[str, str, str], tuple[float, float, float]],
+) -> tuple[tuple[float, float], tuple[float, float]]:
+    """Límites de eje fijos y simétricos respecto de 0, sobre toda la
+    cobertura V-Party, para que los PNG sean comparables."""
+    if not posiciones:
+        return (-1.0, 1.0), (-1.0, 1.0)
+    x_max = max(abs(econ) for econ, _, _ in posiciones.values()) + 0.6
+    y_max = max(abs(prog) for _, prog, _ in posiciones.values()) + 0.4
+    return (-x_max, x_max), (-y_max, y_max)
+
+
 def graficar_cuadrantes_partido(
     df: pd.DataFrame,
     ruta_salida: Path,
     colores: dict[str, str],
     titulo: str,
+    xlim: tuple[float, float],
+    ylim: tuple[float, float],
     xlabel: str = "Izquierda / Estatismo ← posición económica → Derecha / Mercado",
     ylabel: str = "Conservador ← progresismo social → Progresista",
 ) -> Path:
-    """Scatter económico × progresismo, un punto por partido: color = familia
-    política (sombreada por partido, ver `_color_por_partido`), tamaño = %
-    de votos de ese partido en la elección. A diferencia de
-    `vparty_cuadrantes.graficar_cuadrantes` (color = año, tamaño =
-    populismo, pensado para comparar la misma fuerza a través de varias
-    elecciones) acá cada PNG es una sola elección -- no hay fusión de
-    puntos entre años, ni populismo en el gráfico (queda afuera del
-    encoding por ahora, sigue disponible como columna en `df`)."""
+    """Scatter económico × progresismo por partido: color = familia
+    política, tamaño = % de votos. `xlim`/`ylim` fijos, ver `_limites_globales`."""
     df = df.reset_index(drop=True)
     fig, ax = plt.subplots(figsize=(13, 10))
 
@@ -332,8 +260,8 @@ def graficar_cuadrantes_partido(
     ax.axvline(0, color="#999999", linewidth=1, linestyle="--", zorder=1)
     ax.axhline(0, color="#999999", linewidth=1, linestyle="--", zorder=1)
 
-    x_min, x_max = df[EJE_X].min() - 0.6, df[EJE_X].max() + 0.6
-    y_min, y_max = df[EJE_Y].min() - 0.4, df[EJE_Y].max() + 0.4
+    x_min, x_max = xlim
+    y_min, y_max = ylim
     ax.set_xlim(x_min, x_max)
     ax.set_ylim(y_min, y_max)
 
@@ -376,14 +304,13 @@ def generar_distrito(
     data_dir: Path | str = DATA_DISTRITO_DIR,
     salida_dir: Path | str = RUTA_DISTRITO_DIR,
 ) -> list[Path]:
-    """Un PNG por (año, nivel unificado) -- `<salida_dir>/<año>/v_party_<nivel>.png`,
-    una elección a la vez en vez de todas juntas en un solo scatter con
-    color por año (eso sigue disponible armando el df vos mismo con
-    `tabla_distrito` + `graficar_cuadrantes`)."""
+    """Un PNG por (año, nivel), distrito completo --
+    `<salida_dir>/<año>/v_party_<nivel>.png`."""
     df_todo = tabla_distrito(nivel, posiciones, data_dir)
     if df_todo.empty:
         return []
 
+    xlim, ylim = _limites_globales(posiciones)
     cargo_por_anio = dict(_puntos_del_nivel(data_dir, nivel))
     salida_dir = Path(salida_dir)
     destinos = []
@@ -401,7 +328,7 @@ def generar_distrito(
         salida_anio_dir.mkdir(parents=True, exist_ok=True)
         destino = salida_anio_dir / f"v_party_{nivel}.png"
         graficar_cuadrantes_partido(
-            df_anio, destino, colores,
+            df_anio, destino, colores, xlim=xlim, ylim=ylim,
             titulo=(
                 f"La Plata — {nivel} {anio} ({CARGO_LABEL[cargo]}): "
                 "económico × progresismo social (tamaño = % de votos)\n"
@@ -440,6 +367,50 @@ def generar_localidad(
     return destino
 
 
+def generar_localidad_por_anio(
+    nivel: str,
+    posiciones: dict[tuple[str, str, str], tuple[float, float, float]],
+    filiaciones: dict[tuple[str, str, str], str],
+    data_dir: Path | str = DATA_DISTRITO_DIR,
+    crosswalk_path: Path | str = CIRCUITOS_POR_LOCALIDAD_PATH,
+    salida_dir: Path | str = RUTA_LOCALIDAD_POR_ANIO_DIR,
+    tabla_larga: pd.DataFrame | None = None,
+) -> list[Path]:
+    """Un PNG por (localidad, año, nivel), mismo encoding y límites de eje
+    que `generar_distrito` -- va a `graficos/agrupaciones/por_localidad/` (no versionado)."""
+    if tabla_larga is None:
+        tabla_larga = tabla_localidades(nivel, posiciones, data_dir, crosswalk_path)
+    if tabla_larga.empty:
+        return []
+
+    xlim, ylim = _limites_globales(posiciones)
+    cargo_por_anio = dict(_puntos_del_nivel(data_dir, nivel))
+    salida_dir = Path(salida_dir)
+    destinos = []
+    for (localidad, anio), grupo in tabla_larga.groupby(["localidad", "year"]):
+        cargo = cargo_por_anio[anio]
+        nivel_csv = NIVEL_A_NIVEL_CSV.get(cargo, cargo)
+        filiacion_de = {
+            agrupacion: filiaciones.get((str(anio), nivel_csv, agrupacion))
+            for agrupacion in grupo["agrupacion"]
+        }
+        colores = _color_por_partido(list(grupo["agrupacion"]), filiacion_de)
+
+        salida_anio_dir = salida_dir / str(anio)
+        salida_anio_dir.mkdir(parents=True, exist_ok=True)
+        destino = salida_anio_dir / f"v_party_{nivel}_{localidad}.png"
+        graficar_cuadrantes_partido(
+            grupo, destino, colores, xlim=xlim, ylim=ylim,
+            titulo=(
+                f"{localidad} — {nivel} {anio} ({CARGO_LABEL[cargo]}): "
+                "económico × progresismo social (tamaño = % de votos)\n"
+                "color por familia política (clasificación propia calibrada contra V-Party)"
+            ),
+        )
+        destinos.append(destino)
+    return destinos
+
+
 # ---------------------------------------------------------------------------
 # MAIN
 # ---------------------------------------------------------------------------
@@ -476,6 +447,13 @@ def main():
                 destino = generar_localidad(nivel, localidad, tabla_larga)
                 if destino:
                     print(f"localidad {nivel} {localidad} -> {destino}")
+
+            destinos_por_anio = generar_localidad_por_anio(
+                nivel, posiciones, filiaciones, args.data_dir, args.crosswalk,
+                tabla_larga=tabla_larga,
+            )
+            for destino in destinos_por_anio:
+                print(f"localidad por año {nivel} -> {destino}")
 
 
 if __name__ == "__main__":

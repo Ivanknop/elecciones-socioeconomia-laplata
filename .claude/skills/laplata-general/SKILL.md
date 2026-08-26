@@ -62,6 +62,13 @@ CLAUDE.md                 # comandos + arquitectura autoritativa -- manda si alg
 ## Convenciones de código, para los tres dominios por igual
 
 - Docstrings, comentarios y mensajes de error en **español**.
+- **Docstrings sintéticos**: máximo 20 palabras por función/método,
+  máximo 40 para la introducción de un módulo/script. Decir qué hace, no
+  justificarlo en extenso -- si hace falta más contexto, apuntar a
+  `CLAUDE.md`/`docs/FUNCIONALIDADES.md`/el README o `.md` propio del
+  dominio en vez de repetirlo inline. Mismo criterio de síntesis para
+  toda la documentación del repo: cada hecho vive en un solo lugar, no
+  se duplica entre archivos.
 - Reportes de resultados como `@dataclass` con propiedades calculadas
   (ver `ReporteCobertura` en `src/electoral/localidades.py`,
   `ReporteValidacion` en `src/geolocalizacion/catalogo.py`) en vez de

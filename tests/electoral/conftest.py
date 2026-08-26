@@ -1,10 +1,6 @@
 """Fixtures con JSON crudo representativo de la API, recortado del real
-(`data/distrito/2011/intendente/generales/tipoEleccion-2_categoriaId-7_..._.json`) pero
-con menos agrupaciones para que los tests sean legibles. Incluye el mismo
-padding de espacios en `nombreAgrupacion` y los mismos campos "extra"
-(`idAgrupacionTelegrama`, `urlLogo`) que trae la API real y que el modelo no
-mapea explícitamente, para poder probar `extra` sin inventar un caso irreal.
-"""
+para que los tests sean legibles; incluye los mismos campos "extra" que
+el modelo no mapea, para probar `extra` sin inventar un caso irreal."""
 import pytest
 
 

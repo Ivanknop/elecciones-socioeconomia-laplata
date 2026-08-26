@@ -1,12 +1,6 @@
-"""Tests de `src/analisis/vparty_cuadrantes_local.py`: carga de posiciones
-V-Party propias y filiaciones, las dos tablas de agregación
-(distrito/localidad), y el armado de colores por partido (sombras dentro de
-una familia política) -- toda lógica pura de join/agregación/color, sin
-matplotlib ni red. El graficado en sí (`generar_distrito`/`generar_localidad`,
-`graficar_cuadrantes_partido`) sigue sin test automatizado, mismo criterio
-que el resto de `src/analisis/*` -- se valida corriendo el script contra
-`data/` real (ver CLAUDE.md).
-"""
+"""Tests de `vparty_cuadrantes_local.py`: carga de posiciones/filiaciones,
+tablas de agregación y color por partido -- lógica pura, sin matplotlib.
+Graficado sin test, ver CLAUDE.md."""
 import csv
 import json
 

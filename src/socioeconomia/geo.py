@@ -1,20 +1,6 @@
-"""Correspondencia espacial entre circuitos electorales y radios censales.
-
-Circuitos electorales (Cámara Nacional Electoral) y radios censales (INDEC)
-son geografías de instituciones distintas, sin identificador compartido: no
-hay forma de unirlos por id, como sí se puede con `circuito_id` entre años
-electorales (ver `notebooks/04_totales_por_circuito.ipynb`). Este módulo
-resuelve esa correspondencia con un join espacial (`geopandas`): cada radio
-censal se reparte entre los circuitos que intersecta, ponderado por área.
-
-Los radios que caen enteros dentro de un solo circuito quedan con
-`peso_area=1.0` y `match_limpio=True`. Los radios que cruzan un límite de
-circuito quedan repartidos en varias filas cuyos pesos suman 1.0 para ese
-radio, con `match_limpio=False` — cualquier cifra socioeconómica por
-circuito construida a partir de esas filas es una estimación por área, no
-un conteo censal, y debe tratarse como tal (ver README, sección de la capa
-socioeconómica).
-"""
+"""Correspondencia espacial entre circuitos electorales y radios censales,
+vía join espacial ponderado por área (`geopandas`). Detalle en
+`docs/FUNCIONALIDADES.md`."""
 from __future__ import annotations
 
 import re
@@ -26,10 +12,8 @@ _CIRCUITO_RE = re.compile(r"^0*(\d+)([A-Za-z]*)$")
 
 
 def canonicalizar_circuito_id(raw: str) -> str:
-    """Misma regla de normalización que `notebooks/04_totales_por_circuito.ipynb`:
-    sin ceros a la izquierda, con cualquier sufijo de letra en mayúsculas
-    (ej. "0496F" -> "496F").
-    """
+    """Misma normalización que notebook 04: sin ceros a la izquierda,
+    sufijo de letra en mayúsculas (ej. "0496F" -> "496F")."""
     m = _CIRCUITO_RE.match(raw.strip())
     if not m:
         return raw.strip()
@@ -38,10 +22,8 @@ def canonicalizar_circuito_id(raw: str) -> str:
 
 
 def cargar_circuitos_electorales(path: str, departamento: str | None = None) -> gpd.GeoDataFrame:
-    """Carga la capa de circuitos electorales (formato CNE/PBA, ver README) y
-    agrega `circuito_id` canónico. `departamento` filtra por el nombre exacto
-    de la columna `departamen` si se pasa (ej. "La Plata").
-    """
+    """Carga circuitos electorales (formato CNE/PBA) y agrega `circuito_id`
+    canónico; `departamento` filtra por nombre exacto."""
     gdf = gpd.read_file(path)
     if departamento is not None:
         gdf = gdf[gdf["departamen"].str.strip() == departamento].copy()
@@ -50,11 +32,8 @@ def cargar_circuitos_electorales(path: str, departamento: str | None = None) -> 
 
 
 def cargar_radios_censales(path: str, censo_anio: int) -> gpd.GeoDataFrame:
-    """Carga una capa de radios censales (formato armonizado CONICET
-    1991/2001/2010/2022, ver README) para un censo puntual. El id de radio es
-    la columna `COD_<censo_anio>` de esa capa (código compuesto
-    provincia+departamento+fracción+radio).
-    """
+    """Carga radios censales (formato CONICET) para un censo puntual; id
+    de radio = columna `COD_<censo_anio>`."""
     gdf = gpd.read_file(path)
     columna_id = f"COD_{censo_anio}"
     gdf = gdf.rename(columns={columna_id: "radio_censal_id"})
@@ -65,14 +44,8 @@ def cargar_radios_censales(path: str, censo_anio: int) -> gpd.GeoDataFrame:
 def calcular_correspondencia(
     circuitos: gpd.GeoDataFrame, radios: gpd.GeoDataFrame
 ) -> pd.DataFrame:
-    """Reparte cada radio censal entre los circuitos electorales que
-    intersecta, ponderado por área. Devuelve una fila por (radio, circuito)
-    con `peso_area` (los pesos de un mismo radio suman 1.0) y `match_limpio`
-    (True si el radio cayó entero dentro de un único circuito).
-
-    Ambas capas se reproyectan a un CRS UTM estimado a partir de los
-    circuitos, para que el área se calcule en metros y no en grados.
-    """
+    """Reparte cada radio censal entre los circuitos que intersecta,
+    ponderado por área; `match_limpio=True` si cayó en uno solo."""
     crs_metrico = circuitos.estimate_utm_crs()
     circuitos_m = circuitos.to_crs(crs_metrico)
     radios_m = radios.to_crs(crs_metrico)

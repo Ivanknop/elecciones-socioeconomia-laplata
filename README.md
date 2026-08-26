@@ -8,9 +8,11 @@ Gobernador, Intendente— entre 2011 y 2023, y los cargos legislativos —nacion
 Provinciales), municipal (Concejales)— entre 2013 y 2025. También recopila una
 capa socioeconómica (EPH Gran La Plata, IAELaP y su correspondencia espacial
 con el Censo) para poder cruzar, más adelante, resultados electorales con
-condiciones socioeconómicas del mismo territorio; una capa macroeconómica
+condiciones socioeconómicas del mismo territorio; el Índice de Confianza en
+el Gobierno (ICG, UTDT) para comparar la confianza declarada de La Plata
+contra el resto del país, 2011 en adelante; una capa macroeconómica
 nacional (2011-2025, sin apertura espacial) que da contexto temporal a las
-dos anteriores; y una capa de geolocalización (catálogo validado de las 36
+anteriores; y una capa de geolocalización (catálogo validado de las 36
 localidades del partido, Georef-AR cruzado contra el Ministerio de Obras
 Públicas) pensada para, más adelante, cruzar circuitos y series censales
 por localidad.
@@ -24,68 +26,32 @@ auditoría) vive en `docs/` — ver la sección "Documentación" más abajo.
 
 ## Estructura del repositorio
 
-Código, siempre versionado:
-
 ```
-src/electoral/       client.py, models.py, localidades.py, totales.py
-src/analisis/         graficos.py, generar_graficos.py, serie_temporal.py,
-                       serie_temporal_filiacion.py, cuadros_anualizados.py,
-                       cuadros_por_localidad.py, serie_temporal_por_localidad.py,
-                       totales_por_lista.py, comparativo_nivel.py,
-                       vparty_cuadrantes.py, vparty_cuadrantes_local.py,
-                       generar_v_party_propio.py
-src/visualizacion/    mapa_interactivo.py (+ template), distribucion_ideologica_interactiva.py (+ template)
-src/socioeconomia/    geo.py, eph_client.py, graficos_eph_iaelap.py
-src/macroeconomia/    datos_gob_client.py, series.py, graficos.py, auditoria_estadisticasbcra.py
-src/geolocalizacion/  georef_client.py, catalogo.py, mapa.py
-notebooks/             01_explorar_resultados.ipynb
-                       02_la_plata_cargos_ejecutivos.ipynb
-                       03_la_plata_legislativas.ipynb
-                       04_totales_por_circuito.ipynb
-                       05_capa_socioeconomica.ipynb
-                       06_graficos_eph_iaelap.ipynb
-docs/                  toda la documentación narrativa suelta del repo
-                       (ver sección "Documentación" más abajo)
+src/electoral/         cliente HTTP + modelo de dominio + agrupación por localidad
+src/analisis/           gráficos y series estáticas (PNG/Markdown) desde circuito_<nivel>.json
+src/visualizacion/      generadores de HTML interactivo para docs/ (mapa, cuadrantes V-Party)
+src/socioeconomia/      EPH, correspondencia circuito↔radio censal, ICG (UTDT)
+src/macroeconomia/      series macroeconómicas nacionales (sin apertura espacial)
+src/geolocalizacion/    catálogo validado de localidades geolocalizadas
+notebooks/               pipeline: 01-04 capa electoral, 05-06 capa socioeconómica
+data/                    insumos crudos + datos derivados, un subdirectorio por dominio
+graficos/                salidas estáticas (PNG/Markdown); casi todo derivado, no versionado
+docs/                    documentación narrativa del repo + sitio de GitHub Pages
 requirements.txt
 ```
 
-Datos y gráficos, mezcla de versionado (curaduría manual):
+Cada subcarpeta de `data/` y `graficos/` mezcla archivos versionados
+(insumos hand-curated, catálogos de referencia, algunos gráficos puntuales)
+con archivos derivados (no versionados, se regeneran corriendo el
+script/notebook correspondiente) — el criterio general es: lo que no se
+puede reconstruir automáticamente desde otra fuente queda versionado, lo
+que sí, no. El detalle exacto de qué está versionado en cada subcarpeta
+vive en [`docs/FUNCIONALIDADES.md`](docs/FUNCIONALIDADES.md) y en el
+README/`.md` propio de esa subcarpeta (ver "Documentación" más abajo), no
+acá.
 
-| Ruta | Contenido | ¿Versionado en git? |
-|---|---|---|
-| `data/distrito/<año>/<nivel>/<etapa>/` | JSON+CSV crudo bajado de la API | No — se descarga con los notebooks |
-| `data/distrito/<año>/<nivel>/<etapa>/circuito_<nivel>.json` | agregado por circuito  | No — derivado (notebook 04) |
-| `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` | clasificación ideológica manual| **Sí** |
-| `data/agrupaciones/tabla_referencia_filiacion_politica.csv` | fuente/confianza de `filiacion_politica` | **Sí** |
-| `data/agrupaciones/campo_ideologico.csv` | escala 1-6  | **Sí** |
-| `data/agrupaciones/colorimetria_campo_ideologico.csv` | color por `campo_ideologico`, única fuente en todo el repo | **Sí** |
-| `data/agrupaciones/colorimetria_familia_politica.csv` | color por `filiacion_politica`, única fuente en todo el repo | **Sí** |
-| `data/agrupaciones/circuito_id_correspondencias.csv` | normalización de `circuito_id` entre años | **Sí** |
-| `data/agrupaciones/oficialismos.csv` | oficialismo por `(año, nivel)`, 2011-2025 | **Sí** |
-| `data/agrupaciones/v-party/` | dataset V-Party (traducido), encuesta propia anonimizada y su estimación calibrada — ver el README de esa carpeta | **Sí**, salvo `reporte_validacion_vparty.md` y el CSV V-Party sin traducir (gitignored) |
-| `data/socioeconomia/` | EPH, correspondencia circuito↔radio censal | **Sí**, salvo `eph_cache/` (gitignored) |
-| `data/macroeconomia/catalogo_series.csv` | catálogo de series mensuales/diarias/trimestrales | **Sí** |
-| `data/macroeconomia/series_macro_2011_2025.csv` | CSV mensual generado | No — derivado, se regenera desde `_cache/` |
-| `data/macroeconomia/catalogo_series_anuales.csv` | catálogo de series de frecuencia anual | **Sí** |
-| `data/macroeconomia/series_macro_anuales_2011_2025.csv` | CSV anual generado | No — derivado, se regenera desde `_cache/` |
-| `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` | doc de cobertura/auditoría | **Sí** |
-| `data/geolocalizacion/localidades_la_plata.csv` | catálogo validado de localidades (Georef-AR × Ministerio de Obras Públicas) | **Sí** |
-| `data/geolocalizacion/LOCALIDADES.md` | doc de metodología/hallazgos de ese catálogo | **Sí** |
-| `data/por_localidad/` | cuadros por localidad | No — derivado (`cuadros_por_localidad.py`) |
-| `data/totales/<nivel>/<año>/[<etapa>/]` | total de votos por agrupación (`<etapa>` solo para paso/balotaje) | No — derivado (`electoral.totales`) |
-| `graficos/distrito/<año>/<nivel>/` | barras/torta circuito por circuito | No — se regenera on demand |
-| `graficos/distrito/serie_temporal/` | series temporales por ideología/filiación | **Sí** |
-| `graficos/distrito/totales_por_lista/` | barras de total + comparativos Municipio/Provincia/Nación | **Sí** |
-| `graficos/socioeconomia/eph/` | gráficos de la EPH | **Sí** |
-| `graficos/socioeconomia/` (resto) | IAELaP y contraste EPH/IAELaP | No |
-| `graficos/agrupaciones/` | cuadrantes V-Party (nacional + La Plata por año/nivel) | **Sí** |
-| `graficos/por_localidad/` | series temporales por localidad; `vparty/` (cuadrantes por localidad) | No — derivado |
-| `docs/index.html`, `docs/mapa_electoral_la_plata.html` | sitio de GitHub Pages: landing + mapa interactivo (Leaflet), 68 circuitos × 22 elecciones generales | **Sí** |
-| `docs/distribucion_ideologica_la_plata.html` | cuadrantes ideológicos (V-Party) interactivos por nivel/año, distrito + mapa de localidades | **Sí** |
-
-Toda la documentación narrativa (`docs/`) también está versionada — es
-documentación, no datos. Detalle de cada archivo en "Documentación" más
-abajo.
+Toda la documentación narrativa (`docs/`) está versionada — es
+documentación, no datos.
 
 ## Instalación
 
@@ -200,6 +166,8 @@ localidades geolocalizadas), `data/socioeconomia/EXTRACCION_REDATAM.md` y
 socioeconómica), `data/socioeconomia/ICG.md` (decisiones metodológicas
 del pipeline ICG — cobertura real vs. codebook, por qué "país" incluye a
 La Plata, asimetría de resolución mensual/anual, límites de la fuente),
+`data/socioeconomia/icg/README.md` (qué es el microdato ICG, cómo
+conseguirlo — no se distribuye en el repo),
 `data/agrupaciones/v-party/README.md` (procedencia del
 dataset V-Party y de qué fuente viene cada `vparty_economico`/
 `progresismo`/`populismo` de `clasificacion_ideologica_agrupaciones.csv`

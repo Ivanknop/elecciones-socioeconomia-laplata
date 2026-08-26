@@ -52,10 +52,8 @@ def _puntos_del_nivel(data_dir: Path | str, nivel: str) -> list[tuple[int, str]]
 
 
 def _serie_por_anio(data_dir: Path | str, nivel: str):
-    """Devuelve (puntos, {categoria: [votos por punto]}, [total por punto])
-    con `puntos` = [(año, cargo_especifico), ...] ordenado. `categoria`
-    recorre `IDEOLOGIAS.values()` + `CATEGORIAS_NO_IDEOLOGICAS`
-    (blanco_nulo, ausentismo)."""
+    """(puntos, {categoria: [votos por punto]}, [total por punto]); categoria
+    recorre ideologías + blanco_nulo + ausentismo."""
     puntos = _puntos_del_nivel(data_dir, nivel)
     if not puntos:
         raise FileNotFoundError(f"no hay datos para el nivel {nivel!r} en {data_dir!r}")

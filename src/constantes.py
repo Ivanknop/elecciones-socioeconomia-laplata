@@ -1,9 +1,6 @@
-"""Constantes centralizadas para toda la capa de `src/`: rutas de datos que
-antes estaban repetidas como string literal (default de `argparse` o de
-parámetro de función) en varios scripts, y constantes de dominio
-compartidas entre módulos (ej. `CARGO_LABEL`, antes duplicado literal en
-`analisis/serie_temporal.py` y `analisis/cuadros_anualizados.py`).
-"""
+"""Constantes centralizadas de `src/`: rutas de datos y constantes de
+dominio compartidas entre módulos, antes duplicadas como string literal
+en varios scripts."""
 from __future__ import annotations
 
 from pathlib import Path

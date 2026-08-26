@@ -31,12 +31,8 @@ def _quitar_spines(ax) -> None:
 
 
 def _indice_hueco_no_publicado(filas: list[dict]) -> tuple[int, int] | None:
-    """Índice (antes, después) del primer salto >1 trimestre entre filas
-    consecutivas ya ordenadas por (anio, trimestre) -- hoy corresponde al
-    hueco 2015T3-2016T1 (INDEC no publicó, "emergencia estadística"), pero
-    la función no asume ese período específico: detecta cualquier hueco
-    real en los datos ya leídos del CSV, no en el CSV entero.
-    """
+    """Índice (antes, después) del primer salto >1 trimestre; detecta
+    cualquier hueco real, no asume un período fijo."""
     periodos = [(int(f["anio"]), int(f["trimestre"])) for f in filas]
     for i in range(len(periodos) - 1):
         anio_a, trim_a = periodos[i]
@@ -66,9 +62,7 @@ _SIMBOLOS_NOTA = ("¹", "²", "³")
 
 
 def _marcar_nota(ax, x: float, simbolo: str) -> None:
-    """Marca puntual y discreta en el eje x -- un símbolo de nota al pie,
-    sin banda ni línea que atraviese los datos. El texto explicativo se
-    agrega una sola vez por figura con `_agregar_notas_al_pie`, no acá."""
+    """Marca puntual en el eje x (nota al pie), sin banda ni línea sobre los datos."""
     ax.annotate(
         simbolo, xy=(x, 0), xycoords=("data", "axes fraction"),
         xytext=(0, -3), textcoords="offset points",
@@ -77,21 +71,8 @@ def _marcar_nota(ax, x: float, simbolo: str) -> None:
 
 
 def _marcar_cortes_metodologicos(ax, filas: list[dict], incluir_v5: bool = False) -> list[str]:
-    """Marca en `ax` los cortes metodológicos conocidos de la serie EPH
-    Gran La Plata (ver `SISTEMATIZACION_VARIABLES.md`) con un símbolo de
-    nota al pie puntual -- sin bandas ni líneas que atraviesen los datos.
-    Devuelve la lista de notas al pie (texto completo, ya con su símbolo)
-    para que el llamador las agregue una única vez a la figura completa
-    (`_agregar_notas_al_pie`) -- evita duplicarlas en grillas de subplots.
-
-    - hueco 2015T3-2016T1 (sin dato) + cambio de fuente/ponderación (DBF
-      histórico -> bases actuales INDEC), casi el mismo punto en la serie
-      -- se marcan juntos, una sola nota.
-    - 2020: cambio de operativo EPH (encuesta telefónica, pandemia).
-    - 2023T4: split de la pregunta V5 en V5_01/02/03 (reconstruida en
-      `eph_client.py`) -- solo si `incluir_v5=True` (gráficos que no usan
-      estrategias de subsistencia no lo necesitan).
-    """
+    """Marca los cortes metodológicos de la EPH en `ax`; devuelve las notas
+    para agregarlas una vez. Detalle en `SISTEMATIZACION_VARIABLES.md`."""
     notas = []
 
     hueco = _indice_hueco_no_publicado(filas)
@@ -117,12 +98,8 @@ def _marcar_cortes_metodologicos(ax, filas: list[dict], incluir_v5: bool = False
 
 
 def _agregar_notas_al_pie(fig, notas: list[str]) -> None:
-    """Agrega `notas` como texto al pie de la figura completa, una sola
-    vez -- nunca por eje individual (evita duplicados en grillas de
-    subplots). No-op si `notas` está vacío. Llamar después de
-    `fig.tight_layout()`: reserva margen inferior extra a partir del que
-    ya calculó `tight_layout` (que varía según el tamaño/rotación de las
-    etiquetas del eje x de cada gráfico), en vez de asumir un valor fijo."""
+    """Agrega `notas` al pie de la figura completa, una sola vez; no-op si
+    vacío. Llamar después de `fig.tight_layout()`."""
     if not notas:
         return
     margen_extra = 0.045 * len(notas) + 0.02
@@ -167,10 +144,8 @@ def _graficar_series_eph(
     marcar_cortes: bool = True,
     incluir_v5: bool = False,
 ):
-    """Helper compartido: N series de línea (`columnas` = {columna_csv: etiqueta})
-    desde `eph_gran_la_plata.csv`, sobre un único eje. `colores` debe tener
-    tantos elementos como `columnas` y venir ya validado
-    """
+    """N series de línea desde `eph_gran_la_plata.csv`, sobre un único eje;
+    `colores` ya validado contra `columnas`."""
     filas = _leer_csv(Path(data_dir) / "eph_gran_la_plata.csv")
     etiquetas = [_etiqueta_trimestre(f["anio"], f["trimestre"]) for f in filas]
     x = range(len(filas))
@@ -208,9 +183,8 @@ def graficar_tasas_actividad_empleo(data_dir: Path | str, ax=None, marcar_cortes
 
 
 def graficar_calidad_empleo(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """% de asalariados con obra social/aguinaldo/vacaciones pagas, EPH Gran
-    La Plata, 2011-2025 — calidad del empleo, no solo el binario formal/informal.
-    """
+    """% de asalariados con obra social/aguinaldo/vacaciones pagas -- calidad
+    del empleo, no solo formal/informal."""
     return _graficar_series_eph(
         data_dir,
         {
@@ -294,11 +268,8 @@ def graficar_estrategias_subsistencia(data_dir: Path | str, ax=None, marcar_cort
 
 
 def graficar_desocupacion(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """Tasa de desocupación, EPH Gran La Plata, 2011-2025 — serie general
-    (población total), sin desagregar por sexo. Contraparte de
-    `graficar_brecha_genero(data_dir, "tasa_desocupacion", ...)`, que abre
-    este mismo indicador en varones/mujeres.
-    """
+    """Tasa de desocupación EPH, serie general -- ver `graficar_brecha_genero`
+    para el desglose por sexo."""
     return _graficar_series_eph(
         data_dir,
         {"tasa_desocupacion": "Desocupación"},
@@ -311,10 +282,8 @@ def graficar_desocupacion(data_dir: Path | str, ax=None, marcar_cortes: bool = T
 
 
 def graficar_informalidad(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """Tasa de informalidad laboral, EPH Gran La Plata, 2011-2025 — serie
-    general (población total), sin desagregar por sexo. Contraparte de
-    `graficar_brecha_genero(data_dir, "tasa_informalidad", ...)`.
-    """
+    """Tasa de informalidad EPH, serie general -- ver `graficar_brecha_genero`
+    para el desglose por sexo."""
     return _graficar_series_eph(
         data_dir,
         {"tasa_informalidad": "Informalidad"},
@@ -327,10 +296,8 @@ def graficar_informalidad(data_dir: Path | str, ax=None, marcar_cortes: bool = T
 
 
 def graficar_actividad(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """Tasa de actividad, EPH Gran La Plata, 2011-2025 — serie general
-    (población total), sin desagregar por sexo. Contraparte de
-    `graficar_brecha_genero(data_dir, "tasa_actividad", ...)`.
-    """
+    """Tasa de actividad EPH, serie general -- ver `graficar_brecha_genero`
+    para el desglose por sexo."""
     return _graficar_series_eph(
         data_dir,
         {"tasa_actividad": "Actividad"},
@@ -343,11 +310,8 @@ def graficar_actividad(data_dir: Path | str, ax=None, marcar_cortes: bool = True
 
 
 def graficar_brecha_genero(data_dir: Path | str, indicador: str, titulo: str, ax=None, marcar_cortes: bool = True):
-    """Un indicador del núcleo laboral (`tasa_actividad`, `tasa_empleo`,
-    `tasa_desocupacion`, `tasa_informalidad`) para varones y mujeres,
-    `eph_gran_la_plata_por_sexo.csv`, 2011-2025. `ingreso_ocupacion_principal_medio_todos_ocupados`/
-    `_perceptores` también están disponibles en ese CSV pero no son %, no usar `escala_pct` con eso.
-    """
+    """Un indicador laboral por sexo desde `eph_gran_la_plata_por_sexo.csv`;
+    columnas de ingreso no son %, no usar `escala_pct`."""
     filas = _leer_csv(Path(data_dir) / "eph_gran_la_plata_por_sexo.csv")
     trimestres = sorted({(f["anio"], f["trimestre"]) for f in filas}, key=lambda t: (int(t[0]), int(t[1])))
     etiquetas = [_etiqueta_trimestre(a, t) for a, t in trimestres]
@@ -378,8 +342,7 @@ def graficar_brecha_genero(data_dir: Path | str, indicador: str, titulo: str, ax
 
 
 def graficar_desocupacion_por_edad(data_dir: Path | str, marcar_cortes: bool = True):
-    """Tasa de desocupación por tramo etario.
-    """
+    """Tasa de desocupación por tramo etario."""
     filas = _leer_csv(Path(data_dir) / "eph_gran_la_plata_por_edad.csv")
     tramos = ["10-24", "25-39", "40-59", "60+"]
     trimestres = sorted({(f["anio"], f["trimestre"]) for f in filas}, key=lambda t: (int(t[0]), int(t[1])))
@@ -410,11 +373,8 @@ def graficar_desocupacion_por_edad(data_dir: Path | str, marcar_cortes: bool = T
 
 
 def graficar_iaelap_general(data_dir: Path | str, ax=None):
-    """Variación % interanual del índice IAELaP, Partido de La Plata,
-    2018T1-2025T4. Barras, un eje. No incluye el nivel del índice (2018=100)
-    en el mismo gráfico. No marca los cortes metodológicos de la EPH (fuente
-    y rango temporal distintos, ver `_marcar_cortes_metodologicos`).
-    """
+    """Variación % interanual IAELaP. Barras; no incluye el nivel del
+    índice ni cortes metodológicos de la EPH."""
     filas = _leer_csv(Path(data_dir) / "iaelap_la_plata.csv")
     etiquetas = [_etiqueta_trimestre(f["anio"], f["trimestre"]) for f in filas]
     valores = [float(f["var_interanual_pct"]) if f["var_interanual_pct"] else None for f in filas]
@@ -441,11 +401,8 @@ def graficar_iaelap_general(data_dir: Path | str, ax=None):
 def graficar_iaelap_sectorial(
     data_dir: Path | str, periodo_tipo: str, anio: int, trimestre: int | None = None, ax=None
 ):
-    """Desagregación sectorial IAELaP para un período puntual (`periodo_tipo`
-    'trimestral' u 'anual'). Barras horizontales, coloreadas por signo
-    (positivo/negativo). No aplica el marcado de cortes de la EPH -- es un
-    corte transversal de un único período, no una serie temporal.
-    """
+    """Desagregación sectorial IAELaP para un período puntual, barras
+    horizontales por signo -- sin marcado de cortes de la EPH."""
     filas = _leer_csv(Path(data_dir) / "iaelap_la_plata_ramas.csv")
     filas = [
         f
@@ -478,13 +435,8 @@ def graficar_iaelap_sectorial(
 
 
 def graficar_contraste_eph_iaelap(eph_dir: Path | str, iaelap_dir: Path | str = None):
-    """Desocupación EPH (Gran La Plata) y variación % interanual IAELaP
-    (Partido de La Plata) en paneles apilados con el mismo eje temporal —
-    nunca superpuestos en un dual-axis: son unidades y geografías distintas
-    (aglomerado vs. partido), compartir un solo eje sugeriría una
-    comparabilidad que no existe. Los cortes metodológicos de la EPH se
-    marcan solo en el panel EPH (`ax1`), nunca en el panel IAELaP (`ax2`).
-    """
+    """EPH (Gran La Plata) e IAELaP (Partido) en paneles apilados, nunca en
+    dual-axis -- geografías distintas."""
     iaelap_dir = iaelap_dir or eph_dir
     eph = _leer_csv(Path(eph_dir) / "eph_gran_la_plata.csv")
     iaelap = _leer_csv(Path(iaelap_dir) / "iaelap_la_plata.csv")

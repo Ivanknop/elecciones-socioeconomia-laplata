@@ -1,12 +1,6 @@
-"""Serie temporal por campo ideológico, un gráfico por localidad y nivel de
-gobierno (2011-2025), a partir de los cuadros ya agregados en
-`data/por_localidad/*.csv`.
-
-Cada localidad incluye siempre `SIN_DETERMINAR` como una serie más -- son
-votos reales de circuitos sin localidad asignada ese año, nunca se ocultan
-(ver `data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md`). La confiabilidad de la
-clasificación de cada localidad está en
-`data/geolocalizacion/fuentes_extra/AUDITORIA_DISCREPANCIAS.md`.
+"""Serie temporal por campo ideológico, un gráfico por localidad y nivel
+(2011-2025), desde `data/por_localidad/*.csv`. `SIN_DETERMINAR` incluida
+siempre -- detalle en `data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md`.
 
 Uso:
     python -m analisis.serie_temporal_por_localidad                          # todas las localidades, los 3 niveles
@@ -54,10 +48,8 @@ def _localidades_en_puntos(cuadros_dir: Path | str, puntos: list[tuple[int, str]
 
 
 def _serie_localidad(cuadros_dir: Path | str, puntos: list[tuple[int, str]], localidad: str):
-    """Devuelve ({categoria: [votos por punto]}, [total por punto]), con
-    `categoria` recorriendo `CATEGORIAS` (ideologías + blanco_nulo +
-    ausentismo). Cuadros viejos sin las columnas nuevas cuentan como 0 en
-    vez de fallar."""
+    """({categoria: [votos por punto]}, [total por punto]); cuadros viejos
+    sin columnas nuevas cuentan como 0."""
     serie = {categoria: [] for categoria in CATEGORIAS}
     totales = []
     for anio, cargo in puntos:

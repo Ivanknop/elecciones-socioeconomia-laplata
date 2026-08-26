@@ -311,8 +311,8 @@ class TestAgregadosGranLaPlataViviendaYEstrategias:
 
 @pytest.fixture
 def individual_con_no_respuesta_ingreso():
-    """3 ocupados: 2 asalariados con ingreso válido y PONDIIO==PONDERA, 1
-    con P21==-9 (no responde) y PONDIIO==0 -- patrón real de 2023T4."""
+    """3 ocupados: 2 con ingreso válido, 1 con P21==-9 (no responde) --
+    patrón real 2023T4."""
     return pd.DataFrame(
         {
             "ESTADO": [1, 1, 1],
@@ -346,9 +346,8 @@ class TestIngresoOcupacionPrincipalDosEstimandos:
 
 @pytest.fixture
 def individual_con_no_asalariados_y_pp07h_cero():
-    """Patrón y cuentapropista con PP07H==0 ('no corresponde'), más un
-    asalariado formal y uno informal -- replica CAT_OCUP 1/2/3 con PP07H
-    real confirmado en 2023T4 y 2011T1."""
+    """Patrón/cuentapropista con PP07H==0 ('no corresponde'), más
+    asalariado formal e informal -- CAT_OCUP 1/2/3 real."""
     return pd.DataFrame(
         {
             "ESTADO": [1, 1, 1, 1],
@@ -363,8 +362,8 @@ def individual_con_no_asalariados_y_pp07h_cero():
 
 @pytest.fixture
 def individual_asalariados_con_no_respuesta_item():
-    """3 asalariados: formal, informal, y uno con PP07H==0 -- no-respuesta
-    de ítem real (no "no corresponde", la pregunta sí les aplica)."""
+    """3 asalariados: formal, informal, y uno con PP07H==0 (no-respuesta
+    real, la pregunta sí aplica)."""
     return pd.DataFrame(
         {
             "ESTADO": [1, 1, 1],

@@ -1,10 +1,5 @@
-"""Serie temporal individual por cada concepto del catálogo macroeconómico
-(`catalogo_series.csv` + `catalogo_series_anuales.csv`), un PNG por concepto.
-Lee `series_macro_2011_2025.csv` (mensual) y
-`series_macro_anuales_2011_2025.csv` (anual) -- ver `macroeconomia.series` /
-`macroeconomia.series_anuales` para cómo se generan. No rellena huecos: una
-celda vacía en el CSV queda como corte visible en la línea, no se interpola
-ni se repite el valor anterior (mismo criterio de esos dos módulos).
+"""Un PNG por concepto del catálogo macroeconómico, mensual + anual. No
+rellena huecos -- corte visible, mismo criterio que `macroeconomia.series`.
 
 Uso:
     PYTHONPATH=src python -m macroeconomia.graficos                        # los 22 conceptos
@@ -57,13 +52,8 @@ def _valor(fila: dict, concepto: str) -> float | None:
 
 
 def unidad_de(client: DatosGobClient, concepto: ConceptoCatalogo) -> str:
-    """Unidad real del dato, tal como la informa la fuente en su metadata
-    cacheada (`meta[1].field.units`) -- no una etiqueta inventada. Para
-    series de índice sin base en `units` (ej. IPC: solo dice "Índice"), la
-    completa con la base que sí figura en el título del dataset. Necesita
-    la serie en caché (ya la deja `macroeconomia.series`); si falta y no
-    hay red, degrada a una etiqueta explícita en vez de fallar todo el
-    batch de gráficos."""
+    """Unidad real del dato desde la metadata cacheada; si falta, degrada
+    a una etiqueta explícita en vez de fallar."""
     override = _UNIDAD_OVERRIDE.get(concepto.concepto)
     if override:
         return override

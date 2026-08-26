@@ -1,9 +1,5 @@
-"""Gráfico de la serie ICG headline (La Plata vs. país, mensual) a partir
-de `data/socioeconomia/icg_mensual_la_plata_pais_2011_presente.csv` (ver
-`icg_construir_series.construir_serie_headline`/`icg_exportar_csv.py`
-para cómo se genera). Un panel, dos líneas -- la brecha queda como
-columna del CSV, sin panel secundario por ahora (ver
-`data/socioeconomia/ICG.md`).
+"""Gráfico de la serie ICG headline (La Plata vs. país, mensual), un
+panel dos líneas, desde el CSV de `icg_exportar_csv.py`.
 
 Uso:
     PYTHONPATH=src python -m socioeconomia.icg_graficos
@@ -36,11 +32,8 @@ def _quitar_spines(ax) -> None:
 
 
 def graficar_serie_headline(filas: list[dict], ax=None):
-    """Serie mensual La Plata vs. país, ICG ponderado (0-5). Un hueco (no
-    debería haber ninguno, cobertura ya verificada sin huecos 2011 en
-    adelante) queda como corte visible en la línea -- ningún valor
-    faltante se interpola ni repite el anterior, mismo criterio que
-    `macroeconomia/graficos.py`."""
+    """Serie mensual La Plata vs. país, ICG ponderado (0-5); huecos quedan
+    visibles, nunca interpolados."""
     fechas = [date(int(f["año"]), int(f["mes"]), 1) for f in filas]
     la_plata = [float(f["icg_la_plata"]) if f["icg_la_plata"] else None for f in filas]
     pais = [float(f["icg_pais"]) if f["icg_pais"] else None for f in filas]

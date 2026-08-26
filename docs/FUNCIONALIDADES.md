@@ -474,11 +474,14 @@ cuadros V-Party de este repo solo existen por nivel unificado
 (`analisis.serie_temporal.NIVELES`), nunca por cargo suelto. El mapa de
 circuitos queda **sin colorear por ideología**, solo referencia geográfica:
 clickear un circuito resuelve su localidad (mismo crosswalk geolocalizado
-que `mapa_interactivo.py`,
-`electoral.localidades.cargar_circuito_localidad_geo`) y muestra
-"Distribución ideológica de *{localidad}* — próximamente" en vez de
-aproximar o reusar el cuadro distrital — **no hay cobertura V-Party a nivel
-localidad todavía**.
+que `mapa_interactivo.py`, `electoral.localidades.cargar_circuito_localidad_geo`)
+y muestra el cuadrante ideológico real de esa localidad para el (año,
+nivel) seleccionado, vía `vparty_cuadrantes_local.tabla_localidades` — el
+mismo dato que ya alimenta los PNG de
+`generar_localidad`/`generar_localidad_por_anio`. Si esa combinación
+puntual (localidad, año, nivel) no tiene cobertura V-Party, se muestra
+"Sin cobertura V-Party para *{localidad}* en *{Nivel}* *{año}*." en vez de
+aproximar o reusar el cuadro distrital.
 
 El panel principal (columna derecha cuando no hay localidad seleccionada)
 es un bubble chart SVG con el mismo dato que ya grafica
@@ -487,17 +490,32 @@ payload JSON reactivo en vez de un archivo por (año, nivel): eje X
 económico, eje Y progresismo, tamaño = % de votos del partido en esa
 elección, color = familia política (`filiacion_politica`, sombreada por
 partido dentro de la familia, mismas `_color_por_partido`/`_sombras` que ya
-usa el PNG). **Todos los puntos se muestran de la misma forma, sin
-distinguir V-Party real de estimación propia** — de qué fuente viene cada
-valor está documentado en un único lugar,
-`data/agrupaciones/v-party/README.md`, y no se refleja en ningún elemento
-visual ni interactivo de esta pestaña (ni color, ni trazo, ni filtro): la
-estimación propia calibrada se trata como igual de válida.
+usa el PNG). El panel de localidad usa el mismo bubble chart, pero el
+color de cada agrupación se calcula sobre el universo de agrupaciones a
+nivel **distrito** de ese (año, nivel), no con el subconjunto presente en
+cada localidad — así una agrupación tiene siempre el mismo color en
+cualquier localidad y en el cuadro distrital de ese año (lo único que se
+reusa del distrito es el color, no la posición ni el tamaño, que siguen
+siendo los votos reales de esa localidad puntual). **Todos los puntos se
+muestran de la misma forma, sin distinguir V-Party real de estimación
+propia** — de qué fuente viene cada valor está documentado en un único
+lugar, `data/agrupaciones/v-party/README.md`, y no se refleja en ningún
+elemento visual ni interactivo de esta pestaña (ni color, ni trazo, ni
+filtro): la estimación propia calibrada se trata como igual de válida.
+
+Los ejes de ambos paneles (distrito y localidad) usan una **escala fija y
+simétrica respecto de 0** — mismos límites (`_limites_globales`, calculados
+sobre toda la cobertura V-Party) que ya usan los PNG estáticos de
+`graficos/agrupaciones/<año>/` — enviados una sola vez en el payload
+(`eje_limites`) y nunca recalculados por render: el (0,0) siempre cae en
+el centro visual del gráfico, y el rango no cambia al pasar de año, nivel
+o localidad, así el autoplay y el cambio de selección no reescalan el
+chart.
 
 No modifica `vparty_cuadrantes_local.py` ni la ruta que genera los PNG en
 `graficos/agrupaciones/` — es aditivo, reusa
-`tabla_distrito`/`cargar_posiciones_propias`/`cargar_filiaciones`/
-`_color_por_partido` tal cual.
+`tabla_distrito`/`tabla_localidades`/`cargar_posiciones_propias`/
+`cargar_filiaciones`/`_color_por_partido`/`_limites_globales` tal cual.
 
 ```bash
 PYTHONPATH=src python -m visualizacion.distribucion_ideologica_interactiva

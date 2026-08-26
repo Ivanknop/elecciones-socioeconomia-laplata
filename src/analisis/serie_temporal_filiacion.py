@@ -1,13 +1,6 @@
-"""Serie temporal por filiación política (2011-2025), un gráfico por nivel de
-gobierno -- complementa `serie_temporal.py` (que grafica por `campo_ideologico`,
-posición ideológico-programática por elección) con la dimensión de familia/identidad
-partidaria (`data/agrupaciones/tabla_referencia_filiacion_politica.csv`), que no
-varía por año/nivel -- ver docs/nota_metodologica.md §5.2 y docs/AUDITORIA_ESTADO.md.
-
-No genera el gráfico "_votos" (solo "_filiacion_porcentaje.png") ni toca
-`circuito_<nivel>.json`/notebook 04 -- lee `filiacion_politica` en el momento de
-graficar, uniendo por `nombre`/`agrupacion` contra
-`data/agrupaciones/clasificacion_ideologica_agrupaciones.csv`.
+"""Serie temporal por filiación política (2011-2025), un gráfico por nivel
+de gobierno -- complementa `serie_temporal.py` (que grafica por
+`campo_ideologico`). Detalle en docs/nota_metodologica.md §5.2.
 
 Uso:
     python -m analisis.serie_temporal_filiacion                     # los 3 niveles
@@ -40,10 +33,8 @@ from constantes import AGRUPACIONES_DIR, DATA_DISTRITO_DIR
 
 
 def _cargar_filiaciones(agrupaciones_dir: Path | str) -> dict[str, str]:
-    """`{agrupacion: filiacion_politica}` desde
-    `clasificacion_ideologica_agrupaciones.csv` -- no varía por año/nivel, así
-    que alcanza con deduplicar por `agrupacion` (verificado 1:1 al fusionar
-    `tabla_referencia_filiacion_politica.csv`)."""
+    """{agrupacion: filiacion_politica} desde
+    `clasificacion_ideologica_agrupaciones.csv`, deduplicado por agrupación."""
     archivo = Path(agrupaciones_dir) / "clasificacion_ideologica_agrupaciones.csv"
     with open(archivo, encoding="utf-8") as f:
         filas = csv.DictReader(f)
@@ -70,10 +61,8 @@ def _votos_por_filiacion(contenido: dict, filiaciones: dict[str, str], circuito_
 
 
 def _serie_por_anio_filiacion(data_dir: Path | str, agrupaciones_dir: Path | str, nivel: str):
-    """Devuelve (puntos, {filiacion|categoria: [votos por punto]}, [total por
-    punto]) con `puntos` = [(año, cargo_especifico), ...] ordenado. Además de
-    las filiaciones, la serie siempre trae `blanco_nulo` y `ausentismo`
-    (`CATEGORIAS_NO_IDEOLOGICAS`)."""
+    """(puntos, {filiación|categoría: [votos por punto]}, [total por punto]);
+    incluye siempre `blanco_nulo`/`ausentismo`."""
     puntos = _puntos_del_nivel(data_dir, nivel)
     if not puntos:
         raise FileNotFoundError(f"no hay datos para el nivel {nivel!r} en {data_dir!r}")

@@ -1,35 +1,7 @@
-"""Construye la tabla mensual unificada de series macroeconómicas nacionales
-(2011-2025) a partir del catálogo `data/macroeconomia/catalogo_series.csv` y
-de datos.gob.ar (`macroeconomia.datos_gob_client`). Ver
-`docs/plan_macroeconomia.md` para el detalle de cada variable y las
-decisiones metodológicas.
-
-## Reglas de normalización
-
-- Salida: una fila por mes, ordenada por fecha, una columna por concepto del
-  catálogo (en el mismo orden en que aparecen sus filas), más `observaciones`.
-- **Nunca se rellena ni se repite un valor.** Una celda solo tiene dato si la
-  fuente publicó exactamente para ese mes (o, en series diarias, para algún
-  día hábil de ese mes); si no, queda vacía (`""`) y `observaciones` lo
-  declara. Es una decisión de diseño, no un hueco a "arreglar": un
-  forward-fill automático le da apariencia de dato mensual real a una serie
-  trimestral o anual, y quien consuma el CSV puede terminar promediando o
-  graficando un valor repetido sin darse cuenta de que no es un dato nuevo
-  de ese mes. Si alguien quiere repetir/interpolar sobre las celdas vacías,
-  lo decide explícitamente él mismo -- este script no lo hace por
-  adelantado.
-- Series con frecuencia menor a mensual (trimestral, anual): solo el mes de
-  origen del dato queda con valor (ej. enero/abril/julio/octubre para una
-  serie trimestral) -- los demás meses del período quedan vacíos.
-- Series diarias: se agregan a mensual tomando el último valor hábil
-  (lunes a viernes) del mes -- es agregación de un dato real, no relleno.
-  Si ese día hábil no tiene dato publicado (feriado no bursátil), se usa el
-  hábil anterior más cercano dentro del mismo mes y se deja constancia en
-  `observaciones`. Si ningún día hábil del mes tiene dato, la celda queda
-  vacía -- no cae al valor de un mes anterior.
-- Meses anteriores al primer dato publicado de una serie quedan vacíos por
-  la misma regla general (no hay dato exacto para ese mes) -- nunca se
-  inventa un valor.
+"""Tabla mensual unificada de series macroeconómicas nacionales (2011-2025)
+desde `catalogo_series.csv` y datos.gob.ar. Nunca rellena ni repite un
+valor -- celda vacía si la fuente no publicó ese mes exacto. Detalle en
+CLAUDE.md y `docs/plan_macroeconomia.md`.
 
 Uso:
     PYTHONPATH=src python -m macroeconomia.series
@@ -91,11 +63,8 @@ def _meses_en_rango(anio_inicio: int, anio_fin: int) -> list[date]:
 
 
 def _valor_exacto_para_mes(puntos: list[tuple[date, float]], mes: date) -> float | None:
-    """Valor de la fuente con fecha de origen exactamente `mes`. Sirve para
-    series mensuales, trimestrales y anuales por igual: la fecha de origen es
-    siempre el primer día del período que publica la fuente, así que solo el
-    mes de origen real de un dato trimestral/anual queda con valor -- no se
-    repite hacia los meses siguientes del mismo período."""
+    """Valor con fecha de origen exactamente `mes`; sirve para mensuales/
+    trimestrales/anuales por igual, sin repetir hacia meses siguientes."""
     for fecha, valor in puntos:
         if fecha == mes:
             return valor
@@ -105,10 +74,8 @@ def _valor_exacto_para_mes(puntos: list[tuple[date, float]], mes: date) -> float
 
 
 def _valor_para_mes_diario(puntos_por_fecha: dict[date, float], mes: date) -> tuple[float | None, date | None, bool]:
-    """Último valor hábil (lunes a viernes) del mes. Devuelve
-    `(valor, fecha_usada, fue_ajustado)` -- `fue_ajustado` es True si el
-    día hábil de cierre del mes no tenía dato y se usó uno anterior dentro
-    del mismo mes."""
+    """Último valor hábil del mes; `fue_ajustado=True` si se usó un día
+    hábil anterior por falta de dato en el cierre."""
     fin_de_mes = _ultimo_dia_del_mes(mes)
     cursor = fin_de_mes
     ultimo_habil_del_mes = None
@@ -128,8 +95,8 @@ def _resolver_celda(
     puntos_diarios: dict[date, float],
     mes: date,
 ) -> tuple[float | None, str | None]:
-    """`(valor, nota_extra)` para un concepto en un mes dado. `None` en
-    `valor` significa celda vacía -- nunca se repite un valor anterior."""
+    """(valor, nota_extra) para un concepto en un mes; `valor=None` es
+    celda vacía."""
     if concepto.periodicidad_fuente == "diaria":
         valor, fecha_usada, fue_ajustado = _valor_para_mes_diario(puntos_diarios, mes)
         if valor is None:

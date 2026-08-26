@@ -1,10 +1,6 @@
-"""Objetos de dominio para resultados electorales.
-
-Se parsean a partir del JSON crudo devuelto por `electoral.client.ResultadosClient`.
-Cada nivel guarda en `extra` los campos del JSON que no están modelados
-explícitamente, para poder detectar campos nuevos o no documentados sin que
-el parseo falle.
-"""
+"""Objetos de dominio para resultados electorales, parseados del JSON de
+`electoral.client.ResultadosClient`. Cada nivel guarda en `extra` los
+campos no modelados, para no fallar ante campos nuevos."""
 from __future__ import annotations
 
 from collections.abc import Iterable
@@ -17,8 +13,7 @@ def _extra(raw: dict, conocidos: set[str]) -> dict:
 
 @dataclass
 class Lista:
-    """Desglose por lista interna dentro de una agrupación.
-    """
+    """Desglose por lista interna dentro de una agrupación."""
 
     nombre: str
     votos: int
@@ -59,17 +54,8 @@ class ValorAgrupacion:
 
 
 def totalizar_agrupaciones(valores: Iterable[ValorAgrupacion]) -> list[ValorAgrupacion]:
-    """Suma varios `ValorAgrupacion` (ej. uno por mesa o por circuito) en un
-    único total por `id_agrupacion` -- para combinar resultados parciales
-    (mesas, circuitos) en el resultado total de una agrupación.
-
-    `votos_porcentaje` se recalcula sobre el nuevo total (el de cada
-    `ValorAgrupacion` de entrada es relativo a su propia consulta parcial, no
-    sirve para promediar). `listas` no se combina -- no tiene un criterio de
-    fusión obvio (mismo número de lista puede corresponder a categorías
-    distintas entre consultas) y no hace falta para un total por agrupación.
-    Devuelve la lista ordenada de mayor a menor por votos.
-    """
+    """Suma varios `ValorAgrupacion` en un total por `id_agrupacion`;
+    recalcula `votos_porcentaje`, no combina `listas`. Ordenada por votos."""
     por_id: dict[str, dict] = {}
     for v in valores:
         acumulado = por_id.setdefault(v.id_agrupacion, {"nombre_agrupacion": v.nombre_agrupacion, "votos": 0})

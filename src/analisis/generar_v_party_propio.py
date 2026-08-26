@@ -1,34 +1,8 @@
 #!/usr/bin/env python3
 """
-generar_v_party_propio.py
-
-Genera v_party_propio.csv a partir de encuesta_partidos_propia.csv (encuesta de
-posicionamiento ideológico de fuerzas políticas -- versión anonimizada de la
-exportación cruda de Google Forms: cada fila trae un ID secuencial en vez de
-Marca temporal/Email/Nombre/Descripción, para poder referenciar la fila real
-del formulario -- fuera de este repo -- sin exponer datos personales).
-
-Pipeline:
-  1. Parsear la encuesta: por cada experto x partido, promediar A1-A4 (económico,
-     con polaridad INVERTIDA: 4 - promedio, para que alto = derecha/mercado,
-     igual que vparty_economico), B1-B4 (progresismo) y C1-C2 (populismo).
-  2. VALIDACIÓN: para los partidos que tienen equivalente real en V-Party
-     (ver MAPEO_VPARTY más abajo), comparar cada experto contra el valor real
-     en unidades z (estandarizando cada experto sobre sus propias 12
-     respuestas, y vparty sobre la distribución completa del archivo de
-     referencia). Se listan las distancias para revisión manual; el script NO
-     excluye expertos automáticamente, salvo que se pasen explícitamente por
-     --excluir.
-  3. AGREGACIÓN: mediana de todos los expertos (no excluidos) por partido y
-     dimensión.
-  4. CALIBRACIÓN: regresión lineal simple (mediana_experto -> valor real
-     vparty) ajustada sobre los partidos con match real, aplicada a los
-     partidos sin match para llevarlos a la escala real de V-Party. Se avisa
-     si alguna estimación cae fuera del rango observado en la referencia
-     (extrapolación).
-  5. SALIDA: v_party_propio.csv con partido,vparty_economico,vparty_progresismo,
-     vparty_populismo. Para partidos con match real se usa el valor real de
-     V-Party (no el estimado); para el resto, la estimación calibrada.
+Genera `v_party_propio.csv` desde `encuesta_partidos_propia.csv`: parsea,
+valida contra V-Party real, agrega por mediana y calibra por regresión.
+Pipeline completo en `data/agrupaciones/v-party/README.md`.
 
 Uso:
   python3 generar_v_party_propio.py \

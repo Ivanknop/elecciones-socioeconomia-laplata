@@ -1,26 +1,6 @@
-"""Gráfico de cuadrantes ideológicos usando V-Party (V-Dem Institute).
-
-Ubica cada fuerza política (partido-elección, Diputados 2011-2019) en un
-plano de dos ejes -- estatismo (eje X) y progresismo social (eje Y) -- con
-el índice de populismo representado como tamaño del punto. Fuente:
-``data/agrupaciones/v-party/v_party_argentina_2011_2019_espaniol.csv``
-(sólo se usa ``v2pashname`` para las etiquetas, no la columna en español;
-se lee este archivo y no ``v_party_argentina_2011_2019.csv`` porque este
-último no está versionado -- ver el README de esa carpeta).
-
-Para cada partido-elección se calcula la tupla ``(economico, progresismo,
-populismo)``:
-
-- ``economico``: ``v2pariglef`` tal cual la publica V-Party -- negativo
-  indica izquierda/estatismo económico y positivo derecha/mercado.
-- ``progresismo``: promedio de ``v2pawomlab``, ``v2palgbt``, ``v2paimmig``
-  y ``v2parelig`` -- no es una columna nativa de V-Party, es una
-  construcción propia para este proyecto. Positivo = progresista,
-  negativo = conservador.
-- ``populismo``: ``v2xpa_popul`` tal cual, ya acotado 0-1 por construcción,
-  usado acá para el tamaño del punto en vez de un eje propio.
-
-"""
+"""Cuadrantes ideológicos nacionales V-Party (económico × progresismo,
+tamaño = populismo), Diputados 2011-2019. Fórmulas y fuente detalladas en
+`docs/vparty_cuadrantes.md`."""
 import argparse
 from pathlib import Path
 
@@ -71,23 +51,8 @@ COLOR_FUSIONADO = "#4d4d4d"
 def _fusionar_por_cercania(
     df: pd.DataFrame, umbral: float = UMBRAL_FUSION, col_etiqueta: str = "v2pashname", col_anio: str = "year",
 ) -> pd.DataFrame:
-    """Fusiona en un solo punto las elecciones de un mismo partido que
-    estén cerca entre sí en el plano (economico, progresismo).
-
-    Agrupa por ``col_etiqueta`` y arma componentes conexas dentro de cada
-    partido: dos filas quedan en el mismo grupo si su distancia normalizada
-    es menor a ``umbral`` en ambos ejes, con unión transitiva (si A está
-    cerca de B y B cerca de C, las tres quedan juntas aunque A y C no lo
-    estén directamente) — así una fuerza que se mueve gradualmente de
-    elección en elección no queda partida en dos por un corte arbitrario.
-    Cada grupo resultante promedia posición y populismo, y junta los años
-    fusionados (p. ej. "FPV-PJ" 2011+2013+2015 → un punto con etiqueta
-    "FPV-PJ 2011-2013-2015"). ``col_etiqueta``/``col_anio`` parametrizan el
-    nombre de columna de partido/año en ``df`` -- por defecto los de V-Party
-    nacional (``v2pashname``/``year``), para poder reusar esta función con
-    otras fuentes (ver ``analisis.vparty_cuadrantes_local``); la salida
-    siempre usa la clave fija ``etiqueta_base``, sin importar ``col_etiqueta``.
-    """
+    """Fusiona en un punto las elecciones cercanas de un mismo partido
+    (unión transitiva); promedia posición y populismo."""
     x_rango = df[EJE_X].max() - df[EJE_X].min() or 1
     y_rango = df[EJE_Y].max() - df[EJE_Y].min() or 1
 
@@ -137,12 +102,7 @@ def _etiqueta_punto(fila: pd.Series) -> str:
 
 
 def _asignar_offsets(df: pd.DataFrame, umbral: float = 0.05) -> list[tuple[int, int, str]]:
-    """Reparte offsets de etiqueta entre puntos cercanos para evitar solapado.
-
-    Agrupa puntos a distancia menor a ``umbral`` (fracción del rango de cada
-    eje) y les va asignando offsets distintos de ``_OFFSETS_CANDIDATOS`` en
-    orden, en vez de repetir siempre el mismo desplazamiento fijo.
-    """
+    """Reparte offsets de etiqueta entre puntos cercanos, para evitar solapado."""
     x_rango = df[EJE_X].max() - df[EJE_X].min() or 1
     y_rango = df[EJE_Y].max() - df[EJE_Y].min() or 1
     grupos: list[list[float]] = []  # [x_norm, y_norm, cantidad_asignada]
@@ -162,14 +122,8 @@ def _asignar_offsets(df: pd.DataFrame, umbral: float = 0.05) -> list[tuple[int, 
 
 
 def cargar_posiciones(ruta: Path = RUTA_DATOS) -> pd.DataFrame:
-    """Carga el CSV, calcula la tupla (estatismo, progresismo, populismo)
-    por partido-elección y descarta filas sin cobertura de expertos.
-
-    De las 35 filas partido-elección del dataset, 9 no tienen ninguna
-    variable de posicionamiento (ver README de ``data/agrupaciones/v-party/``:
-    umbral de cobertura de expertos no alcanzado, o alianza sin codificación
-    propia) y quedan afuera del cálculo y del gráfico.
-    """
+    """Carga el CSV y calcula (económico, progresismo, populismo) por
+    partido-elección, descartando filas sin cobertura de expertos."""
     df = pd.read_csv(ruta)
     df["year"] = df["year"].astype(int)
     df = df.dropna(subset=[COL_ECONOMICO, COL_POPULISMO] + COLS_PROGRESISMO).reset_index(drop=True)
@@ -182,9 +136,8 @@ def cargar_posiciones(ruta: Path = RUTA_DATOS) -> pd.DataFrame:
 
 
 def obtener_tuplas(df: pd.DataFrame) -> dict[tuple[str, int], tuple[float, float, float]]:
-    """Devuelve {(sigla, año): (economico, progresismo, populismo)} para
-    graficar libremente cualquier par de ejes, o los tres, sin recalcular.
-    """
+    """{(sigla, año): (económico, progresismo, populismo)}, para graficar
+    cualquier par de ejes sin recalcular."""
     return {
         (fila["v2pashname"], int(fila["year"])): (
             round(fila[EJE_X], 3),
@@ -198,12 +151,8 @@ def obtener_tuplas(df: pd.DataFrame) -> dict[tuple[str, int], tuple[float, float
 def _radio_por_populismo(
     valores: pd.Series, v_min: float | None = None, v_max: float | None = None,
 ) -> pd.Series:
-    """Escala el índice de populismo (0-1) a un radio de punto entre
-    RADIO_MIN y RADIO_MAX. ``v_min``/``v_max`` son opcionales para poder
-    escalar puntos fusionados (que promedian populismo) contra el rango
-    real de los 26 datos crudos en vez del rango, más angosto, de los
-    promedios ya fusionados.
-    """
+    """Escala populismo (0-1) a un radio de punto; `v_min`/`v_max`
+    opcionales para escalar puntos ya fusionados."""
     if v_min is None:
         v_min = valores.min()
     if v_max is None:

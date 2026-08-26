@@ -1,12 +1,5 @@
-"""Mapa de las localidades geolocalizadas del Partido de La Plata, a partir
-de `data/geolocalizacion/localidades_la_plata.csv` (ver
-`geolocalizacion.catalogo`) y el polígono del partido
-(`geolocalizacion.georef_client.GeorefClient.get_departamento_geometria`).
-
-Un solo PNG con las 36 localidades del catálogo sobre el contorno del
-partido, cada una con su nombre -- referencia visual de dónde cae cada
-localidad, no un mapa de precisión (ver el aviso sobre el polígono
-simplificado y los deltas de coordenadas en
+"""Un PNG con las 36 localidades del catálogo sobre el contorno del
+partido -- referencia visual, no un mapa de precisión (ver
 `data/geolocalizacion/LOCALIDADES.md`).
 
 Uso:

@@ -1,11 +1,6 @@
-"""Pestaña interactiva "Distribución ideológica (V-Party)" -- mismo patrón de
-interacción temporal que `mapa_interactivo.py` (selector Nivel + Año,
-autoplay)
-
-Solo Nivel + Año (nacional/provincial/municipal, sin el toggle Cargo/Nivel
-del mapa electoral) -- los cuadros V-Party de este repo solo existen por
-nivel unificado (`analisis.serie_temporal.NIVELES`), nunca por cargo suelto.
-
+"""Pestaña interactiva "Distribución ideológica (V-Party)", mismo patrón
+que `mapa_interactivo.py` (selector Nivel + Año, autoplay). Detalle en
+skill `laplata-visualizacion`.
 
 Uso:
     PYTHONPATH=src python -m visualizacion.distribucion_ideologica_interactiva
@@ -20,7 +15,14 @@ from pathlib import Path
 from analisis.graficos import _COLOR_FILIACION
 from analisis.serie_temporal import NIVELES, _puntos_del_nivel
 from analisis.totales_por_lista import NIVEL_A_NIVEL_CSV, _COLOR_SIN_CLASIFICAR
-from analisis.vparty_cuadrantes_local import _color_por_partido, cargar_filiaciones, cargar_posiciones_propias, tabla_distrito
+from analisis.vparty_cuadrantes_local import (
+    _color_por_partido,
+    _limites_globales,
+    cargar_filiaciones,
+    cargar_posiciones_propias,
+    tabla_distrito,
+    tabla_localidades,
+)
 from constantes import (
     CARGO_LABEL,
     CIRCUITOS_GEOJSON_PATH,
@@ -33,14 +35,34 @@ from electoral.localidades import cargar_circuito_localidad_geo
 from visualizacion.mapa_interactivo import _cargar_geojson_circuitos, _cargar_localidades
 
 
-def _tabla_distrito_por_nivel(data_dir: Path | str, clasificacion_path: Path | str) -> dict:
-    """`{"<año>_<nivel>": {...}}`, una entrada por (año, nivel unificado) con
-    cobertura V-Party -- mismos puntos que produciría
-    `vparty_cuadrantes_local.generar_distrito` para ese (año, nivel), acá
-    como dict serializable en vez de un PNG."""
-    posiciones = cargar_posiciones_propias(clasificacion_path)
-    filiaciones = cargar_filiaciones(clasificacion_path)
+def _serializar_puntos(
+    df_slice, filiacion_de: dict[str, str], colores: dict[str, str],
+) -> list[dict]:
+    """Una fila de `df_slice` -> un punto serializable para el payload;
+    `filiacion_de`/`colores` ya resueltos por quien llama."""
+    puntos = []
+    for _, fila in df_slice.iterrows():
+        agrupacion = fila["agrupacion"]
+        puntos.append({
+            "agrupacion": agrupacion,
+            "votos": int(fila["votos"]),
+            "votos_pct": round(float(fila["votos_porcentaje"]), 2),
+            "economico": round(float(fila["economico"]), 3),
+            "progresismo": round(float(fila["progresismo"]), 3),
+            "populismo": round(float(fila["populismo"]), 3),
+            "filiacion": filiacion_de.get(agrupacion),
+            "color": colores.get(agrupacion, _COLOR_SIN_CLASIFICAR),
+        })
+    return puntos
 
+
+def _tabla_distrito_por_nivel(
+    data_dir: Path | str,
+    posiciones: dict[tuple[str, str, str], tuple[float, float, float]],
+    filiaciones: dict[tuple[str, str, str], str],
+) -> dict:
+    """{"<año>_<nivel>": {...}}, mismos puntos que `generar_distrito`, acá
+    como dict serializable en vez de un PNG."""
     distrito = {}
     for nivel in NIVELES:
         df_todo = tabla_distrito(nivel, posiciones, data_dir)
@@ -57,20 +79,7 @@ def _tabla_distrito_por_nivel(data_dir: Path | str, clasificacion_path: Path | s
                 for agrupacion in df_anio["agrupacion"]
             }
             colores = _color_por_partido(list(df_anio["agrupacion"]), filiacion_de)
-
-            puntos = []
-            for _, fila in df_anio.iterrows():
-                agrupacion = fila["agrupacion"]
-                puntos.append({
-                    "agrupacion": agrupacion,
-                    "votos": int(fila["votos"]),
-                    "votos_pct": round(float(fila["votos_porcentaje"]), 2),
-                    "economico": round(float(fila["economico"]), 3),
-                    "progresismo": round(float(fila["progresismo"]), 3),
-                    "populismo": round(float(fila["populismo"]), 3),
-                    "filiacion": filiacion_de.get(agrupacion),
-                    "color": colores.get(agrupacion, _COLOR_SIN_CLASIFICAR),
-                })
+            puntos = _serializar_puntos(df_anio, filiacion_de, colores)
 
             distrito[f"{int(anio)}_{nivel}"] = {
                 "anio": int(anio), "nivel": nivel, "cargo": cargo, "cargo_label": CARGO_LABEL[cargo],
@@ -80,6 +89,44 @@ def _tabla_distrito_por_nivel(data_dir: Path | str, clasificacion_path: Path | s
     return distrito
 
 
+def _localidad_puntos_por_nivel(
+    data_dir: Path | str,
+    crosswalk_path: Path | str,
+    posiciones: dict[tuple[str, str, str], tuple[float, float, float]],
+    filiaciones: dict[tuple[str, str, str], str],
+) -> dict:
+    """{"<localidad>": {"<año>_<nivel>": {...}}}, mismos puntos que
+    `generar_localidad_por_anio`; color sobre universo distrital, igual en
+    cualquier localidad."""
+    localidad_puntos: dict[str, dict] = {}
+    for nivel in NIVELES:
+        df_todo = tabla_distrito(nivel, posiciones, data_dir)
+        df_loc = tabla_localidades(nivel, posiciones, data_dir, crosswalk_path)
+        if df_todo.empty or df_loc.empty:
+            continue
+        cargo_por_anio = dict(_puntos_del_nivel(data_dir, nivel))
+
+        for anio in sorted(df_todo["year"].unique()):
+            cargo = cargo_por_anio[anio]
+            nivel_csv = NIVEL_A_NIVEL_CSV.get(cargo, cargo)
+            agrupaciones_distrito = list(df_todo.loc[df_todo["year"] == anio, "agrupacion"])
+            filiacion_de = {
+                agrupacion: filiaciones.get((str(anio), nivel_csv, agrupacion))
+                for agrupacion in agrupaciones_distrito
+            }
+            colores = _color_por_partido(agrupaciones_distrito, filiacion_de)
+
+            df_anio_loc = df_loc[df_loc["year"] == anio]
+            for localidad, grupo in df_anio_loc.groupby("localidad"):
+                puntos = _serializar_puntos(grupo, filiacion_de, colores)
+                localidad_puntos.setdefault(localidad, {})[f"{int(anio)}_{nivel}"] = {
+                    "anio": int(anio), "nivel": nivel, "cargo": cargo, "cargo_label": CARGO_LABEL[cargo],
+                    "puntos": puntos,
+                }
+
+    return localidad_puntos
+
+
 def construir_payload(
     data_dir: Path | str = DATA_DISTRITO_DIR,
     geojson_path: Path | str = CIRCUITOS_GEOJSON_PATH,
@@ -87,14 +134,18 @@ def construir_payload(
     crosswalk_path: Path | str = CIRCUITOS_POR_LOCALIDAD_PATH,
     clasificacion_path: Path | str = CLASIFICACION_IDEOLOGICA_PATH,
 ) -> dict:
-    distrito = _tabla_distrito_por_nivel(data_dir, clasificacion_path)
+    posiciones = cargar_posiciones_propias(clasificacion_path)
+    filiaciones = cargar_filiaciones(clasificacion_path)
+
+    distrito = _tabla_distrito_por_nivel(data_dir, posiciones, filiaciones)
+    localidad_puntos = _localidad_puntos_por_nivel(data_dir, crosswalk_path, posiciones, filiaciones)
+    xlim, ylim = _limites_globales(posiciones)
 
     geojson = _cargar_geojson_circuitos(geojson_path)
     circuito_localidad = cargar_circuito_localidad_geo(crosswalk_path)
     for feature in geojson["features"]:
         circuito_localidad.setdefault(feature["properties"]["circuito_id"], None)
 
-    filiaciones = cargar_filiaciones(clasificacion_path)
     fam_names = sorted({f for f in filiaciones.values()})
 
     nivel_labels = {
@@ -110,6 +161,8 @@ def construir_payload(
         "fam_colors": {k: v for k, v in _COLOR_FILIACION.items() if k in fam_names},
         "nivel_labels": nivel_labels,
         "distrito": distrito,
+        "localidad_puntos": localidad_puntos,
+        "eje_limites": {"x": round(xlim[1], 3), "y": round(ylim[1], 3)},
     }
 
 

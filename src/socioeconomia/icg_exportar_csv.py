@@ -1,11 +1,5 @@
-"""Escribe los 7 CSV livianos del pipeline ICG a `data/socioeconomia/` --
-uno headline (La Plata vs. país, mensual, ver `icg_construir_series.construir_serie_headline`)
-y seis de cortes demográficos (sexo/edad/edu, país a resolución mensual +
-La Plata a resolución anual, ver `icg_construir_series.construir_series_demograficas`
-y `data/socioeconomia/ICG.md` para por qué la resolución difiere entre
-las dos). Ninguno de los 7 incluye microdato -- son promedios ponderados
-agregados, livianos y git-tracked (a diferencia del `.dta` crudo, ver
-`data/socioeconomia/icg/README.md`).
+"""Escribe los 7 CSV livianos del pipeline ICG a `data/socioeconomia/`:
+headline + seis cortes demográficos. Detalle en `data/socioeconomia/ICG.md`.
 
 Uso:
     PYTHONPATH=src python -m socioeconomia.icg_exportar_csv

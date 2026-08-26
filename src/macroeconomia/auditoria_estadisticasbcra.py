@@ -1,17 +1,6 @@
-"""Auditoría externa contra `estadisticasbcra.com`, una corrida manual (ver
-`docs/plan_macroeconomia.md` §1 y §5, punto 5): para cada concepto marcado
-`auditable_estadisticasbcra` en `catalogo_series.csv`, compara nuestro dato
-crudo de datos.gob.ar (mismo id cacheado que usa `macroeconomia.series`)
-contra el de estadisticasbcra.com, en el **mes más reciente que ambas
-fuentes tengan en común** -- no en el mes más reciente de nuestra serie,
-porque estadisticasbcra.com puede estar más atrasada (ver hallazgo en
-`SISTEMATIZACION_VARIABLES_MACRO.md`).
-
-No es parte del pipeline regular de `macroeconomia.series` -- esa fuente
-requiere token (registro en `/api/registracion`) y tiene límite de 100
-consultas/día, así que esto se corre a mano cuando hace falta reauditar,
-no en cada regeneración del CSV. El token nunca se guarda en el repo: se
-pasa por `--token` o por la variable de entorno `ESTADISTICASBCRA_TOKEN`.
+"""Auditoría manual contra `estadisticasbcra.com` (no forma parte del
+pipeline regular, necesita token propio). Detalle en
+`docs/plan_macroeconomia.md` y `SISTEMATIZACION_VARIABLES_MACRO.md`.
 
 Uso:
     ESTADISTICASBCRA_TOKEN=... PYTHONPATH=src python -m macroeconomia.auditoria_estadisticasbcra

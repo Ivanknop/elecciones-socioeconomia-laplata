@@ -120,10 +120,8 @@ class TestCircuitosConDiscrepancia:
 
 
 class TestAgruparResultadosPorLocalidad:
-    """`mapa` acá es siempre un `dict[str, str]` circuito_id -> localidad ya
-    resuelto -- da igual si salió de `mapa_localidad_por_circuito` (crosswalk
-    de barrio) o de `cargar_circuito_localidad_geo` (crosswalk geolocalizado):
-    la función de agregación no distingue la fuente."""
+    """`mapa` es siempre `dict[str, str]` circuito_id -> localidad ya
+    resuelto; la agregación no distingue la fuente."""
 
     @pytest.fixture
     def mapa(self, crosswalk):

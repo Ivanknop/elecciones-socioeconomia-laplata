@@ -1,11 +1,5 @@
-"""Cuadro comparativo Municipio / Provincia / Nación por agrupación (+
-blanco+nulo), un Markdown por año, a partir de
-`totales_por_lista.resultado_total_con_blanco_nulo`.
-
-Compara el % de cada agrupación en los tres cargos disputados el mismo año
-(ej. 2019: Intendente=Municipio, Gobernador=Provincia, Presidente=Nación).
-Dentro de un mismo año la agrupación corre bajo el mismo nombre en los tres
-cargos
+"""Cuadro comparativo Municipio/Provincia/Nación por agrupación (+
+blanco+nulo), un Markdown por año, vía `totales_por_lista.resultado_total_con_blanco_nulo`.
 
 Uso:
     PYTHONPATH=src python -m analisis.comparativo_nivel --anio 2019

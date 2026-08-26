@@ -1,10 +1,6 @@
-"""Cliente HTTP para la API de Resultados Electorales del Ministerio del Interior.
-
-Devuelve siempre los datos crudos tal como los entrega la API (JSON o CSV),
-sin transformarlos. El parseo a objetos de dominio es responsabilidad de
-`electoral.models`.
-
-"""
+"""Cliente HTTP de la API de Resultados Electorales del Ministerio del
+Interior. Devuelve datos crudos (JSON o CSV) sin transformar -- el parseo
+es responsabilidad de `electoral.models`."""
 from __future__ import annotations
 
 import json
@@ -20,7 +16,7 @@ _MARCA_NO_DISPONIBLE = b"mensaje\nResultados no disponibles."
 
 
 class ResultadosNoDisponibles(Exception):
-    """La API respondió que no hay resultados para esta consulta """
+    """La API respondió que no hay resultados para esta consulta."""
 
 # Único valor documentado por la API para tipoRecuento (endpoint JSON).
 TIPO_RECUENTO_PROVISORIO = 1
@@ -57,11 +53,8 @@ class ResultadosClient:
         mesa_id: int | None = None,
         force_refresh: bool = False,
     ) -> dict:
-        """Trae el JSON crudo de resultados totalizados, usando caché en disco.
-
-        `categoria_nombre` (ej. "presidente") solo se usa para organizar el
-        caché en `<cache_dir>/<anio_eleccion>/<categoria_nombre>/`; no se envía a la API.
-        """
+        """Trae el JSON crudo de resultados, con caché en disco;
+        `categoria_nombre` solo organiza el caché, no va a la API."""
         params = {
             "anioEleccion": anio_eleccion,
             "tipoRecuento": TIPO_RECUENTO_PROVISORIO,

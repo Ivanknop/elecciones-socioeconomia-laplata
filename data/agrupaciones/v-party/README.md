@@ -2,18 +2,23 @@
 
 ## Fuentes de `vparty_economico`/`progresismo`/`populismo` en `clasificacion_ideologica_agrupaciones.csv`
 
-Estas tres columnas están pobladas en 115 de las 313 filas de
+Estas tres columnas están pobladas en 151 de las 313 filas de
 `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` (el archivo
 hand-curated que ya trae `campo_ideologico`/`filiacion_politica` por
 agrupación/año/nivel, ver `CLAUDE.md` sección `data/agrupaciones/`: nunca
-se regenera desde cero, se edita a mano). **Este README es el único lugar
-del repo donde se documenta de qué fuente viene cada fila** — no se repite
-en `CLAUDE.md` ni en `docs/vparty_cuadrantes.md`, aunque ambos lo
-mencionan de pasada. La carga es puntual (no hay script que la repita ni
-la mantenga sincronizada — si se agregan filas nuevas a
-`clasificacion_ideologica_agrupaciones.csv` o se corrige `oficialismos.csv`,
-hay que reaplicar el criterio de abajo a mano) y cada fila tiene un único
-origen — nunca se mezcla un valor real de V-Party con uno estimado.
+se regenera desde cero, se edita a mano). **Este README debería ser el
+único lugar del repo donde se documenta de qué fuente viene cada fila**
+— pero, a la fecha, el desglose de abajo (cruce directo 62 + proxy de
+ola 6 + fila hermana 13 + estimación propia 40 = 121 filas) **no cubre
+las 151 reales**: quedan ~30 filas con estas columnas pobladas sin
+fuente documentada acá (ver `docs/AUDITORIA_ESTADO.md` §8.2, hallazgo
+sin investigar todavía — no asumir que esas ~30 filas siguen alguno de
+los criterios de abajo sin verificarlo). La carga es puntual (no hay
+script que la repita ni la mantenga sincronizada — si se agregan filas
+nuevas a `clasificacion_ideologica_agrupaciones.csv` o se corrige
+`oficialismos.csv`, hay que reaplicar el criterio de abajo a mano) y
+cada fila documentada tiene un único origen — nunca se mezcla un valor
+real de V-Party con uno estimado.
 
 **1 — Cruce directo con V-Party** (`v_party_argentina_2011_2019_espaniol.csv`),
 por nombre exacto de agrupación normalizado (mayúsculas, sin acentos, sin

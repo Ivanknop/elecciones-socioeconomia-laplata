@@ -1,22 +1,6 @@
-"""Cliente de descarga+caché de series de tiempo de datos.gob.ar (API pública
-de la Subsecretaría de Programación Macroeconómica, sin autenticación).
-
-## Endpoint
-
-`GET https://apis.datos.gob.ar/series/api/series/?ids=<id>` devuelve una
-serie completa como lista de `[fecha, valor]` ascendente, más metadata
-(unidad, periodicidad, dataset de origen). El límite máximo de filas por
-pedido es 5000 (`limit`); series diarias largas (desde 2010, ~5700 filas)
-necesitan más de un pedido -- se pagina con el parámetro `start` (offset
-sobre el resultado, no fecha) hasta juntar el total que indica `count`.
-
-## Caché
-
-Un JSON crudo por id de serie en `<cache_dir>/<id>.json` -- ya paginado y
-unificado, tal cual lo devolvería un único pedido sin límite. Nunca se
-transforma acá -- el parseo a filas mensuales es responsabilidad de
-`macroeconomia.series`.
-"""
+"""Cliente de descarga+caché de series de tiempo de datos.gob.ar, paginado
+(límite 5000 filas/pedido); no transforma nada -- el parseo es
+responsabilidad de `macroeconomia.series`."""
 from __future__ import annotations
 
 import json

@@ -1,28 +1,6 @@
-"""Cliente de descarga+caché de la API pública Georef-AR
-(`https://apis.datos.gob.ar/georef/api/`, sin autenticación) para las
-localidades y el polígono del Partido de La Plata.
-
-## Endpoints usados
-
-- `GET /api/asentamientos?municipio=<id>` -- localidades censales (INDEC)
-  dentro de un municipio. Devuelve nombre + centroide (punto), nunca
-  polígono -- ver más abajo.
-- `GET /api/v2.0/departamentos.geojson` -- descarga masiva (no consultable
-  por filtros) con el polígono completo de todos los departamentos del
-  país; es la única vía de la API para conseguir geometría de polígono
-  (la consulta en vivo `/api/departamentos?id=...` solo trae el
-  centroide). Pesa ~1.2 MB para el país entero -- este cliente lo
-  descarga una vez, extrae el feature del departamento pedido y cachea
-  solo eso, no el archivo completo.
-
-## Caché
-
-Un JSON por respuesta en `<cache_dir>/asentamientos_<municipio_id>.json`
-y `<cache_dir>/departamento_<id>.geojson` -- ya recortado al id pedido.
-Nunca se transforma acá -- el join contra la fuente del Ministerio de
-Obras Públicas y el armado del catálogo validado son responsabilidad de
-`geolocalizacion.catalogo`.
-"""
+"""Cliente de descarga+caché de la API pública Georef-AR para las
+localidades y el polígono del Partido de La Plata. No transforma nada --
+eso es responsabilidad de `geolocalizacion.catalogo`."""
 from __future__ import annotations
 
 import json
@@ -43,10 +21,8 @@ class GeorefClient:
         self.timeout = timeout
 
     def get_asentamientos(self, municipio_id: str, force_refresh: bool = False) -> list[dict]:
-        """Lista de `{id, nombre, lat, lon}` para todos los asentamientos
-        (localidades censales) del municipio pedido, paginando si hace
-        falta (la API limita a 5000 resultados por pedido, muy por encima
-        de lo que tiene un solo municipio -- se pide en un solo llamado)."""
+        """Lista de {id, nombre, lat, lon} de los asentamientos del
+        municipio pedido, paginando si hace falta."""
         cache_path = self.cache_dir / f"asentamientos_{municipio_id}.json"
         if cache_path.exists() and not force_refresh:
             return json.loads(cache_path.read_text(encoding="utf-8"))
@@ -69,10 +45,8 @@ class GeorefClient:
         return asentamientos
 
     def get_departamento_geometria(self, departamento_id: str, force_refresh: bool = False) -> dict:
-        """Feature GeoJSON (`{type: "Feature", geometry: ..., properties: ...}`)
-        del departamento pedido, recortado de la descarga masiva de
-        `departamentos.geojson`. Lanza `ValueError` si el id no aparece en
-        esa descarga."""
+        """Feature GeoJSON del departamento pedido, recortado de la
+        descarga masiva; `ValueError` si el id no aparece."""
         cache_path = self.cache_dir / f"departamento_{departamento_id}.geojson"
         if cache_path.exists() and not force_refresh:
             return json.loads(cache_path.read_text(encoding="utf-8"))
