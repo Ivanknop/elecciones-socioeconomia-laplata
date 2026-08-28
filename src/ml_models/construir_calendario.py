@@ -105,108 +105,108 @@ def construir_calendario() -> list[FilaCalendario]:
 
 
 @dataclass(frozen=True)
-class HistoriaOficialismo:
-    """Un punto de la historia de quién ocupaba el Ejecutivo de un nivel,
-    investigado a mano para 2001-2009 (`oficialismos.csv` no llega tan
-    atrás). `agrupacion` es quien ocupaba el cargo *al momento* de esa
-    elección (antes de su resultado); `continuidad` describe el desenlace
-    de esa elección para esa titularidad."""
+class ResultadoEjecutiva:
+    """Desenlace conocido de una elección ejecutiva (intendente/gobernador)
+    para años sin `oficialismos.csv`: quién ganó y cómo se relaciona con el
+    titular saliente."""
 
-    anio: int
-    agrupacion: str
-    continuidad: str  # continua / continua_renombrada / ruptura / sin_oficialismo
+    ganadora: str
+    continuidad: str  # continua / continua_renombrada / ruptura
     nota: str
 
 
-# Fuente: 0221.com.ar, "Desde el 83 hasta la fecha: así fueron los resultados
-# de las elecciones a intendente en La Plata" (cita a la Junta Electoral de
-# la Provincia de Buenos Aires como fuente primaria). Ver
+# Titular al *entrar* a la ventana del panel (antes de la elección de 2001),
+# investigado a mano -- 0221.com.ar, "Desde el 83 hasta la fecha: así fueron
+# los resultados de las elecciones a intendente en La Plata" (cita a la
+# Junta Electoral de la Provincia de Buenos Aires). Ver
 # docs/adquisicion_datos_especializacion.md §1.a.
-_HISTORIA_MUNICIPAL_PRE_2011 = [
-    HistoriaOficialismo(
-        2001,
+_TITULAR_INICIAL_2001 = {
+    "municipal": (
         "PARTIDO JUSTICIALISTA",
-        "continua",
-        "Julio Alak (PJ), intendente desde 1991, reelecto 1995/1999. Sin "
-        "elección ejecutiva en 2001 (año legislativo, solo concejales); "
-        "resultado de esa elección de concejales no verificado (ver 1.a).",
+        "Julio Alak (PJ), intendente desde 1991, reelecto 1995 y 1999. "
+        "Titular al momento de la elección de 2001 (año legislativo, solo "
+        "concejales) -- resultado de esa elección de concejales no "
+        "verificado, ver docs/adquisicion_datos_especializacion.md §1.a.",
     ),
-    HistoriaOficialismo(
-        2003,
+    "provincial": (
         "PARTIDO JUSTICIALISTA",
-        "continua",
-        "Alak (PJ) reelecto, venció a Pablo Bruera por ~30.000 votos.",
+        "Carlos Ruckauf (PJ), gobernador desde dic-1999. Titular al momento "
+        "de la elección de 2001 (año legislativo). Ruckauf renuncia en "
+        "dic-2001 para ser canciller; asume Felipe Solá, su vicegobernador "
+        "(mismo signo político) -- sucesión constitucional, no ruptura.",
     ),
-    HistoriaOficialismo(
-        2005,
-        "PARTIDO JUSTICIALISTA",
-        "continua",
-        "Sin elección ejecutiva en 2005; Alak continúa. Resultado de la "
-        "elección de concejales de ese año no verificado (ver 1.a).",
+    # `nacional` no genera filas antes de 2011, pero sí necesita un titular
+    # de arranque para la fila de 2011 (quién ocupaba la presidencia *antes*
+    # de esa elección): Cristina Fernández de Kirchner, presidenta desde
+    # 2007 (reusa la etiqueta 2011 porque `clasificacion_ideologica_agrupaciones.csv`
+    # no cubre 2007; el título es de historia política real, no del voto de
+    # La Plata, y no requiere clasificación propia -- ver nota por fila).
+    "nacional": (
+        "ALIANZA FRENTE PARA LA VICTORIA",
+        "Cristina Fernández de Kirchner, presidenta desde 2007 (reelecta en "
+        "2011). Titular al momento de la elección de 2011 -- año anterior a "
+        "la ventana del panel para este nivel.",
     ),
-    HistoriaOficialismo(
-        2007,
-        "PARTIDO PROGRESO SOCIAL",
-        "ruptura",
-        "Pablo Bruera (Partido Progreso Social) venció a Alak/PJ -- "
-        "alternancia real, no continuidad.",
-    ),
-    HistoriaOficialismo(
-        2009,
-        "PARTIDO PROGRESO SOCIAL",
-        "continua",
-        "Sin elección ejecutiva en 2009; Bruera continúa. Etiqueta electoral "
-        "exacta de 2009 no verificada -- para 2011, el mismo espacio "
-        "(Bruera) ya figura en oficialismos.csv como ALIANZA FRENTE PARA LA "
-        "VICTORIA, con era_oficialismo=true, consistente con esta cadena.",
-    ),
-]
+}
 
-# Fuente: pba_gober_gral2003.csv / pba_gober_gral2007.csv, mirror de GitHub
+# `agrupacion_ganadora` de `oficialismos.csv` es quien ganó el voto *en La
+# Plata* para esa categoría -- casi siempre coincide con quién asume el
+# cargo real (provincia/nación), pero no siempre: en 2019 La Plata votó a
+# JUNTOS POR EL CAMBIO para gobernador (45,0% vs 44,77%) mientras que
+# Kicillof/FRENTE DE TODOS ganó la gobernación a nivel provincial. Para el
+# *titular real* (quién efectivamente gobierna, insumo de continuidad y de
+# años siguientes) se corrige acá; para `gana_oficialismo`/`share_oficialismo`
+# en `resultado_distrito.csv` el voto de La Plata (correcto, no se toca) ya
+# captura ese matiz vía `era_oficialismo=true` (La Plata sí votó por el
+# oficialismo saliente). Verificado por conteo real de circuitos de La Plata
+# 2011/2015/2019/2023 (gobernador y presidente) -- único caso de divergencia
+# encontrado.
+_TITULAR_REAL_DIVERGE_DE_VOTO_LA_PLATA = {
+    ("provincial", 2019): (
+        "FRENTE DE TODOS",
+        "ruptura",  # el Ejecutivo sí cambió de manos a nivel real (Vidal -> Kicillof),
+        # aunque La Plata haya votado por el saliente -- ver era_oficialismo/
+        # gana_oficialismo en resultado_distrito.csv para ese matiz.
+        "Divergencia La Plata/provincia: La Plata votó por JUNTOS POR EL CAMBIO "
+        "(oficialismos.csv, era_oficialismo=true), pero Kicillof/FRENTE DE TODOS "
+        "ganó la gobernación a nivel provincial real -- continuidad_oficialismo "
+        "se corrige a 'ruptura' (el Ejecutivo real sí cambió), el titular real "
+        "desde dic-2019 es FRENTE DE TODOS.",
+    ),
+}
+
+# Desenlaces de elecciones ejecutivas 2003/2007 (oficialismos.csv cubre
+# 2011+). Fuente municipal: 0221.com.ar (arriba). Fuente provincial:
+# pba_gober_gral2003.csv / pba_gober_gral2007.csv, mirror de GitHub
 # `PoliticaArgentina/data_warehouse` (scrapeado del Atlas Electoral de Andy
-# Tow) -- totales provinciales de la elección de gobernador, suficientes
-# para identidad de ganador aunque no para desagregar a La Plata. Ver
+# Tow) -- totales provinciales, suficientes para identidad del ganador
+# aunque no para desagregar a La Plata. Ver
 # docs/adquisicion_datos_especializacion.md §1.a.
-_HISTORIA_PROVINCIAL_PRE_2011 = [
-    HistoriaOficialismo(
-        2001,
-        "PARTIDO JUSTICIALISTA",
-        "continua",
-        "Carlos Ruckauf (PJ), gobernador desde dic-1999. Sin elección "
-        "ejecutiva en 2001. Ruckauf renuncia en dic-2001 para ser canciller; "
-        "asume Felipe Solá (su vicegobernador, mismo signo político) -- "
-        "sucesión constitucional, no ruptura.",
-    ),
-    HistoriaOficialismo(
-        2003,
-        "PARTIDO JUSTICIALISTA",
-        "continua",
-        "Solá (lista 'Justicialista') electo gobernador -- "
-        "Solá-Giannettasio, 2.563.136 votos.",
-    ),
-    HistoriaOficialismo(
-        2005,
-        "PARTIDO JUSTICIALISTA",
-        "continua",
-        "Sin elección ejecutiva en 2005; Solá continúa.",
-    ),
-    HistoriaOficialismo(
-        2007,
-        "ALIANZA FRENTE PARA LA VICTORIA",
-        "continua_renombrada",
-        "Daniel Scioli (Frente Para La Victoria) sucede a Solá -- mismo "
-        "espacio peronista, nueva etiqueta de frente (Scioli-Balestrini, "
-        "3.376.795 votos).",
-    ),
-    HistoriaOficialismo(
-        2009,
-        "ALIANZA FRENTE PARA LA VICTORIA",
-        "continua",
-        "Sin elección ejecutiva en 2009; Scioli continúa.",
-    ),
-]
-
-_HISTORIA_PRE_2011 = {"municipal": _HISTORIA_MUNICIPAL_PRE_2011, "provincial": _HISTORIA_PROVINCIAL_PRE_2011}
+_EJECUTIVA_PRE_2011: dict[str, dict[int, ResultadoEjecutiva]] = {
+    "municipal": {
+        2003: ResultadoEjecutiva(
+            "PARTIDO JUSTICIALISTA", "continua", "Alak (PJ) reelecto, venció a Pablo Bruera por ~30.000 votos."
+        ),
+        2007: ResultadoEjecutiva(
+            "PARTIDO PROGRESO SOCIAL",
+            "ruptura",
+            "Pablo Bruera (Partido Progreso Social) venció a Alak/PJ -- alternancia real, no continuidad.",
+        ),
+    },
+    "provincial": {
+        2003: ResultadoEjecutiva(
+            "PARTIDO JUSTICIALISTA",
+            "continua",
+            "Solá (lista 'Justicialista') electo gobernador -- Solá-Giannettasio, 2.563.136 votos.",
+        ),
+        2007: ResultadoEjecutiva(
+            "ALIANZA FRENTE PARA LA VICTORIA",
+            "continua_renombrada",
+            "Daniel Scioli (Frente Para La Victoria) sucede a Solá -- mismo espacio "
+            "peronista, nueva etiqueta de frente (Scioli-Balestrini, 3.376.795 votos).",
+        ),
+    },
+}
 
 
 def _cargar_clasificacion(path: Path | str) -> dict[tuple[str, str, str], dict]:
@@ -246,71 +246,104 @@ class FilaOficialismo:
     nota: str
 
 
+def _clasificacion_del_titular(
+    clasificacion: dict[tuple[str, str, str], dict], anio_clasificacion: int, titular: str, nivel: str
+) -> dict | None:
+    """Busca ideología/V-Party del titular por (año en que ganó la
+    ejecutiva, agrupación, cargo ejecutivo del nivel) -- ese es el año y la
+    boleta bajo la que efectivamente se supo su clasificación, no el año de
+    la fila que se está construyendo."""
+    cargo = _cargo_ejecutivo(nivel)
+    nivel_csv = _nivel_csv_del_cargo(nivel, cargo)
+    return clasificacion.get((str(anio_clasificacion), titular, nivel_csv))
+
+
 def construir_oficialismo_por_nivel(
     calendario: list[FilaCalendario],
     oficialismos_2011_2025: dict[tuple[int, str], dict],
     clasificacion: dict[tuple[str, str, str], dict],
 ) -> list[FilaOficialismo]:
-    """Une la historia investigada 2001-2009 con `oficialismos.csv` 2011-2025;
-    resuelve campo_ideologico/filiacion_politica/V-Party por join contra
-    `clasificacion_ideologica_agrupaciones.csv`, sin duplicar esos atributos
-    a mano. Nivel `nacional` no tiene años pre-2011 (no genera filas ahí)."""
+    """Titular del Ejecutivo *al momento de cada elección* (antes de su
+    resultado), llevado como estado que solo cambia en años con elección
+    ejecutiva -- en años legislativos el titular no cambia, gane o pierda
+    su lista la banca en juego (eso se resuelve aparte, en
+    `resultado_distrito.gana_oficialismo`, contra los votos reales). 2011+
+    reusa `oficialismos.csv`; 2001-2009 usa la historia investigada a mano
+    (`_TITULAR_INICIAL_2001`/`_EJECUTIVA_PRE_2011`). Ideología/V-Party se
+    resuelven por join contra `clasificacion_ideologica_agrupaciones.csv`,
+    sin duplicar esos atributos a mano. Nivel `nacional` no tiene años
+    pre-2011 (no genera filas ahí)."""
     filas = []
-    for fc in calendario:
-        if fc.nivel == "nacional" and fc.anio < 2011:
-            continue
-
-        if fc.anio >= 2011:
-            fila_of = oficialismos_2011_2025.get((fc.anio, fc.nivel))
-            if fila_of is None:
+    for nivel in NIVELES:
+        filas_nivel = sorted((fc for fc in calendario if fc.nivel == nivel), key=lambda fc: fc.anio)
+        if nivel == "nacional":
+            filas_nivel = [fc for fc in filas_nivel if fc.anio >= 2011]
+            if not filas_nivel:
                 continue
-            agrupacion = fila_of["agrupacion_ganadora"]
-            era_oficialismo = fila_of["era_oficialismo"].strip().lower() == "true"
-            continuidad = "continua" if era_oficialismo else "ruptura"
-            nota = "Fuente: data/agrupaciones/oficialismos.csv (ya curado)."
-            campo_ideologico = fila_of.get("campo_ideologico", "")
-            filiacion_politica = fila_of.get("filiacion_politica", "")
-            vparty_economico = fila_of.get("vparty_economico", "")
-            vparty_progresismo = fila_of.get("vparty_progresismo", "")
-            vparty_populismo = fila_of.get("vparty_populismo", "")
-        else:
-            historia = {h.anio: h for h in _HISTORIA_PRE_2011.get(fc.nivel, [])}
-            punto = historia.get(fc.anio)
-            if punto is None:
-                continue
-            agrupacion = punto.agrupacion
-            continuidad = punto.continuidad
-            nota = punto.nota
+        titular, nota_inicial = _TITULAR_INICIAL_2001[nivel]
+        titular_anio_clasificacion = None  # el titular inicial es pre-ventana, sin ejecutiva propia en el panel
 
-            cargo = _cargo_ejecutivo(fc.nivel) if fc.tipo_eleccion == "ejecutiva" else fc.nivel
-            nivel_csv = _nivel_csv_del_cargo(fc.nivel, cargo)
-            clave = (str(fc.anio), agrupacion, nivel_csv)
-            fila_clas = clasificacion.get(clave)
-            if fila_clas is None:
+        for fc in filas_nivel:
+            agrupacion_oficialismo = titular
+            anio_clasificacion_de_esta_fila = titular_anio_clasificacion  # snapshot: año en que *ese* titular ganó, no el de esta fila
+            nota_extra = ""
+
+            if fc.tipo_eleccion == "ejecutiva":
+                if fc.anio >= 2011:
+                    fila_of = oficialismos_2011_2025.get((fc.anio, nivel))
+                    if fila_of is None:
+                        continue
+                    ganadora = fila_of["agrupacion_ganadora"]
+                    era_oficialismo = fila_of["era_oficialismo"].strip().lower() == "true"
+                    continuidad = "continua" if era_oficialismo else "ruptura"
+                    nota_extra = "Fuente: data/agrupaciones/oficialismos.csv (voto de La Plata, ya curado)."
+                    divergencia = _TITULAR_REAL_DIVERGE_DE_VOTO_LA_PLATA.get((nivel, fc.anio))
+                    if divergencia is not None:
+                        ganadora, continuidad, nota_divergencia = divergencia
+                        nota_extra = f"{nota_extra} {nota_divergencia}"
+                else:
+                    resultado = _EJECUTIVA_PRE_2011[nivel][fc.anio]
+                    ganadora, continuidad, nota_extra = resultado.ganadora, resultado.continuidad, resultado.nota
+                titular = ganadora
+                titular_anio_clasificacion = fc.anio
+            else:
+                continuidad = "continua"
+                nota_extra = "Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia."
+
+            if fc.anio == 2001 and nivel != "nacional":
+                nota_extra = f"{nota_inicial} {nota_extra}".strip()
+
+            if anio_clasificacion_de_esta_fila is None:
                 campo_ideologico = filiacion_politica = ""
                 vparty_economico = vparty_progresismo = vparty_populismo = ""
-                nota = f"{nota} Sin fila en clasificacion_ideologica_agrupaciones.csv (no cubre pre-2011) -- ideología sin determinar."
+                nota_extra = f"{nota_extra} Titular anterior a la ventana del panel -- sin año de elección propio para clasificar."
             else:
-                campo_ideologico = fila_clas.get("campo_ideologico", "")
-                filiacion_politica = fila_clas.get("filiacion_politica", "")
-                vparty_economico = fila_clas.get("vparty_economico", "")
-                vparty_progresismo = fila_clas.get("vparty_progresismo", "")
-                vparty_populismo = fila_clas.get("vparty_populismo", "")
+                fila_clas = _clasificacion_del_titular(clasificacion, anio_clasificacion_de_esta_fila, agrupacion_oficialismo, nivel)
+                if fila_clas is None:
+                    campo_ideologico = filiacion_politica = ""
+                    vparty_economico = vparty_progresismo = vparty_populismo = ""
+                    nota_extra = f"{nota_extra} Sin fila en clasificacion_ideologica_agrupaciones.csv para {agrupacion_oficialismo!r} -- ideología sin determinar."
+                else:
+                    campo_ideologico = fila_clas.get("campo_ideologico", "")
+                    filiacion_politica = fila_clas.get("filiacion_politica", "")
+                    vparty_economico = fila_clas.get("vparty_economico", "")
+                    vparty_progresismo = fila_clas.get("vparty_progresismo", "")
+                    vparty_populismo = fila_clas.get("vparty_populismo", "")
 
-        filas.append(
-            FilaOficialismo(
-                anio=fc.anio,
-                nivel=fc.nivel,
-                agrupacion_oficialismo=agrupacion,
-                campo_ideologico=campo_ideologico,
-                filiacion_politica=filiacion_politica,
-                vparty_economico=vparty_economico,
-                vparty_progresismo=vparty_progresismo,
-                vparty_populismo=vparty_populismo,
-                continuidad_oficialismo=continuidad,
-                nota=nota,
+            filas.append(
+                FilaOficialismo(
+                    anio=fc.anio,
+                    nivel=nivel,
+                    agrupacion_oficialismo=agrupacion_oficialismo,
+                    campo_ideologico=campo_ideologico,
+                    filiacion_politica=filiacion_politica,
+                    vparty_economico=vparty_economico,
+                    vparty_progresismo=vparty_progresismo,
+                    vparty_populismo=vparty_populismo,
+                    continuidad_oficialismo=continuidad,
+                    nota=nota_extra,
+                )
             )
-        )
     return sorted(filas, key=lambda f: (f.nivel, f.anio))
 
 
