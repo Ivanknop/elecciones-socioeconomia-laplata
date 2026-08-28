@@ -1,0 +1,35 @@
+anio,nivel,fecha_eleccion,tipo_eleccion,desdoblada,cargos_en_juego
+2001,provincial,2001-10-14,legislativa,False,diputados provinciales
+2001,municipal,2001-10-14,legislativa,False,concejales
+2003,provincial,2003-04-27,ejecutiva,False,"gobernador, diputados provinciales"
+2003,municipal,2003-04-27,ejecutiva,False,"intendente, concejales"
+2005,provincial,2005-10-23,legislativa,False,diputados provinciales
+2005,municipal,2005-10-23,legislativa,False,concejales
+2007,provincial,2007-10-28,ejecutiva,False,"gobernador, diputados provinciales"
+2007,municipal,2007-10-28,ejecutiva,False,"intendente, concejales"
+2009,provincial,2009-06-28,legislativa,False,diputados provinciales
+2009,municipal,2009-06-28,legislativa,False,concejales
+2011,nacional,2011-10-23,ejecutiva,False,"presidente, diputados nacionales"
+2011,provincial,2011-10-23,ejecutiva,False,"gobernador, diputados provinciales"
+2011,municipal,2011-10-23,ejecutiva,False,"intendente, concejales"
+2013,nacional,2013-10-27,legislativa,False,diputados nacionales
+2013,provincial,2013-10-27,legislativa,False,diputados provinciales
+2013,municipal,2013-10-27,legislativa,False,concejales
+2015,nacional,2015-10-25,ejecutiva,False,"presidente, diputados nacionales"
+2015,provincial,2015-10-25,ejecutiva,False,"gobernador, diputados provinciales"
+2015,municipal,2015-10-25,ejecutiva,False,"intendente, concejales"
+2017,nacional,2017-10-22,legislativa,False,diputados nacionales
+2017,provincial,2017-10-22,legislativa,False,diputados provinciales
+2017,municipal,2017-10-22,legislativa,False,concejales
+2019,nacional,2019-10-27,ejecutiva,False,"presidente, diputados nacionales"
+2019,provincial,2019-10-27,ejecutiva,False,"gobernador, diputados provinciales"
+2019,municipal,2019-10-27,ejecutiva,False,"intendente, concejales"
+2021,nacional,2021-11-14,legislativa,False,diputados nacionales
+2021,provincial,2021-11-14,legislativa,False,diputados provinciales
+2021,municipal,2021-11-14,legislativa,False,concejales
+2023,nacional,2023-10-22,ejecutiva,False,"presidente, diputados nacionales"
+2023,provincial,2023-10-22,ejecutiva,False,"gobernador, diputados provinciales"
+2023,municipal,2023-10-22,ejecutiva,False,"intendente, concejales"
+2025,nacional,2025-10-26,legislativa,False,diputados nacionales
+2025,provincial,2025-09-07,legislativa,True,diputados provinciales
+2025,municipal,2025-09-07,legislativa,True,concejales

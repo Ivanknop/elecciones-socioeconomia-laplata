@@ -53,6 +53,18 @@ ICG_HEADLINE_PATH = "data/socioeconomia/icg_mensual_la_plata_pais_2011_presente.
 # RESULTADO_ELECTORAL_PATH = "data/panel/resultado_electoral.csv"
 # CLASIFICACION_FAMILIA_POLITICA_PATH = "data/agrupaciones/clasificacion_familia_politica.csv"
 
+# --- Panel temporal de ventanas electorales (rama `especializacion`, ver
+# docs/especificacion_panel_temporal.md) ---
+CLEAN_DATA_DIR = "data/clean_data"
+CALENDARIO_ELECTORAL_PATH = "data/clean_data/calendario_electoral.csv"
+OFICIALISMO_POR_NIVEL_PATH = "data/clean_data/oficialismo_por_nivel.csv"
+VENTANAS_PATH = "data/clean_data/ventanas.csv"
+RESULTADO_DISTRITO_PATH = "data/clean_data/resultado_distrito.csv"
+VOTO_PARTIDO_DISTRITO_PATH = "data/clean_data/voto_partido_distrito.csv"
+REGISTRO_VARIABLES_PATH = "data/clean_data/registro_variables.csv"
+SERIES_ECONOMICAS_MENSUALES_PATH = "data/clean_data/series_economicas_mensuales.csv"
+PANEL_VENTANAS_PATH = "data/clean_data/panel_ventanas.csv"
+
 
 # --- Constantes de dominio compartidas ---
 
