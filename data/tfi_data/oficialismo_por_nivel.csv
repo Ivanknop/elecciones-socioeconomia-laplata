@@ -1,35 +1,35 @@
-anio,nivel,agrupacion_oficialismo,campo_ideologico,filiacion_politica,vparty_economico,vparty_progresismo,vparty_populismo,continuidad_oficialismo,nota
-2001,municipal,PARTIDO JUSTICIALISTA,,,,,,continua,"Julio Alak (PJ), intendente desde 1991, reelecto 1995 y 1999. Titular al momento de la elección de 2001 (año legislativo, solo concejales) -- resultado de esa elección de concejales no verificado, ver docs/adquisicion_datos_especializacion.md §1.a. Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia. Titular anterior a la ventana del panel -- sin año de elección propio para clasificar."
-2003,municipal,PARTIDO JUSTICIALISTA,,,,,,continua,"Alak (PJ) reelecto, venció a Pablo Bruera por ~30.000 votos. Titular anterior a la ventana del panel -- sin año de elección propio para clasificar."
-2005,municipal,PARTIDO JUSTICIALISTA,,,,,,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia. Sin fila en clasificacion_ideologica_agrupaciones.csv para 'PARTIDO JUSTICIALISTA' -- ideología sin determinar.
-2007,municipal,PARTIDO JUSTICIALISTA,,,,,,ruptura,"Pablo Bruera (Partido Progreso Social) venció a Alak/PJ -- alternancia real, no continuidad. Sin fila en clasificacion_ideologica_agrupaciones.csv para 'PARTIDO JUSTICIALISTA' -- ideología sin determinar."
-2009,municipal,PARTIDO PROGRESO SOCIAL,,,,,,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia. Sin fila en clasificacion_ideologica_agrupaciones.csv para 'PARTIDO PROGRESO SOCIAL' -- ideología sin determinar.
-2011,municipal,PARTIDO PROGRESO SOCIAL,,,,,,continua,"Fuente: data/agrupaciones/oficialismos.csv (voto de La Plata, ya curado). Sin fila en clasificacion_ideologica_agrupaciones.csv para 'PARTIDO PROGRESO SOCIAL' -- ideología sin determinar."
-2013,municipal,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia.
-2015,municipal,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,ruptura,"Fuente: data/agrupaciones/oficialismos.csv (voto de La Plata, ya curado)."
-2017,municipal,CAMBIEMOS BUENOS AIRES,5,liberales,1.427,0.001,0.148,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia.
-2019,municipal,CAMBIEMOS BUENOS AIRES,5,liberales,1.427,0.001,0.148,continua,"Fuente: data/agrupaciones/oficialismos.csv (voto de La Plata, ya curado)."
-2021,municipal,JUNTOS POR EL CAMBIO,5,liberales,1.401,-0.142,0.186,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia.
-2023,municipal,JUNTOS POR EL CAMBIO,5,liberales,1.401,-0.142,0.186,ruptura,"Fuente: data/agrupaciones/oficialismos.csv (voto de La Plata, ya curado)."
-2025,municipal,UNION POR LA PATRIA,3,peronistas,-0.465,1.069,0.642,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia.
-2011,nacional,ALIANZA FRENTE PARA LA VICTORIA,,,,,,continua,"Fuente: data/agrupaciones/oficialismos.csv (voto de La Plata, ya curado). Titular anterior a la ventana del panel -- sin año de elección propio para clasificar."
-2013,nacional,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia.
-2015,nacional,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,ruptura,"Fuente: data/agrupaciones/oficialismos.csv (voto de La Plata, ya curado)."
-2017,nacional,ALIANZA CAMBIEMOS,5,liberales,1.427,0.001,0.148,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia.
-2019,nacional,ALIANZA CAMBIEMOS,5,liberales,1.427,0.001,0.148,ruptura,"Fuente: data/agrupaciones/oficialismos.csv (voto de La Plata, ya curado)."
-2021,nacional,FRENTE DE TODOS,3,peronistas,-0.465,1.069,0.642,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia.
-2023,nacional,FRENTE DE TODOS,3,peronistas,-0.465,1.069,0.642,continua,"Fuente: data/agrupaciones/oficialismos.csv (voto de La Plata, ya curado)."
-2025,nacional,UNION POR LA PATRIA,3,peronistas,-0.465,1.069,0.642,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia.
-2001,provincial,PARTIDO JUSTICIALISTA,,,,,,continua,"Carlos Ruckauf (PJ), gobernador desde dic-1999. Titular al momento de la elección de 2001 (año legislativo). Ruckauf renuncia en dic-2001 para ser canciller; asume Felipe Solá, su vicegobernador (mismo signo político) -- sucesión constitucional, no ruptura. Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia. Titular anterior a la ventana del panel -- sin año de elección propio para clasificar."
-2003,provincial,PARTIDO JUSTICIALISTA,,,,,,continua,"Solá (lista 'Justicialista') electo gobernador -- Solá-Giannettasio, 2.563.136 votos. Titular anterior a la ventana del panel -- sin año de elección propio para clasificar."
-2005,provincial,PARTIDO JUSTICIALISTA,,,,,,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia. Sin fila en clasificacion_ideologica_agrupaciones.csv para 'PARTIDO JUSTICIALISTA' -- ideología sin determinar.
-2007,provincial,PARTIDO JUSTICIALISTA,,,,,,continua_renombrada,"Daniel Scioli (Frente Para La Victoria) sucede a Solá -- mismo espacio peronista, nueva etiqueta de frente (Scioli-Balestrini, 3.376.795 votos). Sin fila en clasificacion_ideologica_agrupaciones.csv para 'PARTIDO JUSTICIALISTA' -- ideología sin determinar."
-2009,provincial,ALIANZA FRENTE PARA LA VICTORIA,,,,,,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia. Sin fila en clasificacion_ideologica_agrupaciones.csv para 'ALIANZA FRENTE PARA LA VICTORIA' -- ideología sin determinar.
-2011,provincial,ALIANZA FRENTE PARA LA VICTORIA,,,,,,continua,"Fuente: data/agrupaciones/oficialismos.csv (voto de La Plata, ya curado). Sin fila en clasificacion_ideologica_agrupaciones.csv para 'ALIANZA FRENTE PARA LA VICTORIA' -- ideología sin determinar."
-2013,provincial,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia.
-2015,provincial,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,ruptura,"Fuente: data/agrupaciones/oficialismos.csv (voto de La Plata, ya curado)."
-2017,provincial,CAMBIEMOS BUENOS AIRES,5,liberales,1.427,0.001,0.148,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia.
-2019,provincial,CAMBIEMOS BUENOS AIRES,5,liberales,1.427,0.001,0.148,ruptura,"Fuente: data/agrupaciones/oficialismos.csv (voto de La Plata, ya curado). Divergencia La Plata/provincia: La Plata votó por JUNTOS POR EL CAMBIO (oficialismos.csv, era_oficialismo=true), pero Kicillof/FRENTE DE TODOS ganó la gobernación a nivel provincial real -- continuidad_oficialismo se corrige a 'ruptura' (el Ejecutivo real sí cambió), el titular real desde dic-2019 es FRENTE DE TODOS."
-2021,provincial,FRENTE DE TODOS,3,peronistas,-0.465,1.069,0.642,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia.
-2023,provincial,FRENTE DE TODOS,3,peronistas,-0.465,1.069,0.642,continua,"Fuente: data/agrupaciones/oficialismos.csv (voto de La Plata, ya curado)."
-2025,provincial,UNION POR LA PATRIA,3,peronistas,-0.465,1.069,0.642,continua,Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia.
+anio,nivel,agrupacion_oficialismo,campo_ideologico,filiacion_politica,vparty_economico,vparty_progresismo,vparty_populismo,continuidad_oficialismo
+2001,municipal,PARTIDO JUSTICIALISTA,,,,,,continua
+2003,municipal,PARTIDO JUSTICIALISTA,,,,,,continua
+2005,municipal,PARTIDO JUSTICIALISTA,3,peronistas,-0.416,0.268,0.658,continua
+2007,municipal,PARTIDO JUSTICIALISTA,3,peronistas,-0.416,0.268,0.658,ruptura
+2009,municipal,PARTIDO PROGRESO SOCIAL,,,,,,continua
+2011,municipal,PARTIDO PROGRESO SOCIAL,,,,,,continua
+2013,municipal,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,continua
+2015,municipal,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,ruptura
+2017,municipal,CAMBIEMOS BUENOS AIRES,5,liberales,1.427,0.001,0.148,continua
+2019,municipal,CAMBIEMOS BUENOS AIRES,5,liberales,1.427,0.001,0.148,continua
+2021,municipal,JUNTOS POR EL CAMBIO,5,liberales,1.401,-0.142,0.186,continua
+2023,municipal,JUNTOS POR EL CAMBIO,5,liberales,1.401,-0.142,0.186,ruptura
+2025,municipal,UNION POR LA PATRIA,3,peronistas,-0.465,1.069,0.642,continua
+2011,nacional,ALIANZA FRENTE PARA LA VICTORIA,,,,,,continua
+2013,nacional,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,continua
+2015,nacional,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,ruptura
+2017,nacional,ALIANZA CAMBIEMOS,5,liberales,1.427,0.001,0.148,continua
+2019,nacional,ALIANZA CAMBIEMOS,5,liberales,1.427,0.001,0.148,ruptura
+2021,nacional,FRENTE DE TODOS,3,peronistas,-0.465,1.069,0.642,continua
+2023,nacional,FRENTE DE TODOS,3,peronistas,-0.465,1.069,0.642,continua
+2025,nacional,UNION POR LA PATRIA,3,peronistas,-0.465,1.069,0.642,continua
+2001,provincial,PARTIDO JUSTICIALISTA,,,,,,continua
+2003,provincial,PARTIDO JUSTICIALISTA,,,,,,continua
+2005,provincial,PARTIDO JUSTICIALISTA,3,peronistas,-0.416,0.268,0.658,continua
+2007,provincial,PARTIDO JUSTICIALISTA,3,peronistas,-0.416,0.268,0.658,continua_renombrada
+2009,provincial,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.659,1.782,0.803,continua
+2011,provincial,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.659,1.782,0.803,continua
+2013,provincial,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,continua
+2015,provincial,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,ruptura
+2017,provincial,CAMBIEMOS BUENOS AIRES,5,liberales,1.427,0.001,0.148,continua
+2019,provincial,CAMBIEMOS BUENOS AIRES,5,liberales,1.427,0.001,0.148,ruptura
+2021,provincial,FRENTE DE TODOS,3,peronistas,-0.465,1.069,0.642,continua
+2023,provincial,FRENTE DE TODOS,3,peronistas,-0.465,1.069,0.642,continua
+2025,provincial,UNION POR LA PATRIA,3,peronistas,-0.465,1.069,0.642,continua
