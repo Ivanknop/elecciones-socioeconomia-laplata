@@ -11,25 +11,32 @@ graficos/*
 !graficos/distrito/
 graficos/distrito/*
 !graficos/distrito/serie_temporal/
-!graficos/distrito/totales_por_lista/
+graficos/distrito/serie_temporal/*.png
+!graficos/distrito/comparativos_nivel/
 !graficos/socioeconomia/
 graficos/socioeconomia/*
-!graficos/socioeconomia/eph/
-!graficos/socioeconomia/icg/
-!graficos/geolocalizacion/
+!graficos/socioeconomia/iaelap_general.json
+!graficos/socioeconomia/iaelap_sectorial_4t2025.json
+!graficos/socioeconomia/iaelap_sectorial_2025.json
 !graficos/agrupaciones/
 graficos/agrupaciones/por_localidad/
+graficos/agrupaciones/*.png
+graficos/agrupaciones/*/*.png
 
 data/socioeconomia/icg/*.dta
 data/socioeconomia/icg/*.pdf
+data/socioeconomia/icg-icc/*.dta
+data/socioeconomia/icg-icc/*.pdf
+data/socioeconomia/icg-icc/*.xls
 data/socioeconomia/eph_cache/
 data/por_localidad/*
 data/totales/*
 data/macroeconomia/_cache/
 data/macroeconomia/series_macro_*.csv
 data/geolocalizacion/_cache/
-data/agrupaciones/v-party/v_party_argentina_2011_2019.csv
+data/agrupaciones/v-party/v_party_argentina_2001_2019.csv
 data/agrupaciones/v-party/reporte_validacion_vparty.md
+data/agrupaciones/v-party/cache/
 
 
 # Documentos de trabajo interno
