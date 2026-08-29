@@ -1,0 +1,9 @@
+# Total de votos, elección general -- La Plata, nacional 2023 (cargo: presidente)
+id_agrupacion,agrupacion,votos,votos_porcentaje,campo_ideologico,filiacion_politica,vparty_economico,vparty_progresismo,vparty_populismo
+134,UNION POR LA PATRIA,171174,38.8470,3,peronistas,-0.465,1.069,0.642
+132,JUNTOS POR EL CAMBIO,129295,29.3428,5,liberales,1.401,-0.1415,0.186
+135,LA LIBERTAD AVANZA,97324,22.0872,6,liberales,2.641,-1.260,0.237
+136,FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD,16797,3.8120,1,marxistas,-1.991,2.325,0.723
+133,HACEMOS POR NUESTRO PAIS,14317,3.2492,3,peronismo provincial,,,
+BLANCO,BLANCO,8685,1.9710,,,,,
+NULO,NULO,3044,0.6908,,,,,

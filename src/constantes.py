@@ -20,7 +20,7 @@ COLORIMETRIA_CAMPO_IDEOLOGICO_PATH = "data/agrupaciones/colorimetria_campo_ideol
 COLORIMETRIA_FAMILIA_POLITICA_PATH = "data/agrupaciones/colorimetria_familia_politica.csv"
 OFICIALISMOS_PATH = "data/agrupaciones/oficialismos.csv"
 CIRCUITO_ID_CORRESPONDENCIAS_PATH = "data/agrupaciones/circuito_id_correspondencias.csv"
-VPARTY_PATH = "data/agrupaciones/v-party/v_party_argentina_2011_2019_espaniol.csv"
+VPARTY_PATH = "data/agrupaciones/v-party/v_party_argentina_2001_2019_espaniol.csv"
 
 # --- Geolocalización ---
 LOCALIDADES_LA_PLATA_PATH = "data/geolocalizacion/localidades_la_plata.csv"
@@ -53,17 +53,17 @@ ICG_HEADLINE_PATH = "data/socioeconomia/icg_mensual_la_plata_pais_2011_presente.
 # RESULTADO_ELECTORAL_PATH = "data/panel/resultado_electoral.csv"
 # CLASIFICACION_FAMILIA_POLITICA_PATH = "data/agrupaciones/clasificacion_familia_politica.csv"
 
-# --- Panel temporal de ventanas electorales (rama `especializacion`, ver
-# docs/especificacion_panel_temporal.md) ---
-CLEAN_DATA_DIR = "data/clean_data"
-CALENDARIO_ELECTORAL_PATH = "data/clean_data/calendario_electoral.csv"
-OFICIALISMO_POR_NIVEL_PATH = "data/clean_data/oficialismo_por_nivel.csv"
-VENTANAS_PATH = "data/clean_data/ventanas.csv"
-RESULTADO_DISTRITO_PATH = "data/clean_data/resultado_distrito.csv"
-VOTO_PARTIDO_DISTRITO_PATH = "data/clean_data/voto_partido_distrito.csv"
-REGISTRO_VARIABLES_PATH = "data/clean_data/registro_variables.csv"
-SERIES_ECONOMICAS_MENSUALES_PATH = "data/clean_data/series_economicas_mensuales.csv"
-PANEL_VENTANAS_PATH = "data/clean_data/panel_ventanas.csv"
+# --- Panel temporal de ventanas electorales
+TFI_DATA_DIR = "data/tfi_data"
+CALENDARIO_ELECTORAL_PATH = "data/tfi_data/calendario_electoral.csv"
+OFICIALISMO_POR_NIVEL_PATH = "data/tfi_data/oficialismo_por_nivel.csv"
+VENTANAS_PATH = "data/tfi_data/ventanas.csv"
+RESULTADO_DISTRITO_PATH = "data/tfi_data/resultado_distrito.csv"
+VOTO_PARTIDO_DISTRITO_PATH = "data/tfi_data/voto_partido_distrito.csv"
+REGISTRO_VARIABLES_PATH = "data/tfi_data/registro_variables.csv"
+SERIES_ECONOMICAS_MENSUALES_PATH = "data/tfi_data/series_economicas_mensuales.csv"
+PANEL_VENTANAS_PATH = "data/tfi_data/panel_ventanas.csv"
+ELECCIONES_DIR = "data/tfi_data/elecciones"
 
 
 # --- Constantes de dominio compartidas ---

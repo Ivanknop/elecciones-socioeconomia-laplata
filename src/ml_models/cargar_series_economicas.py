@@ -1,7 +1,7 @@
 """Panel mensual de series económicas 2001-2025 -- Fase 3 del panel temporal
 de ventanas electorales (ver `docs/especificacion_panel_temporal.md` §4).
 
-Opera genéricamente sobre `data/clean_data/registro_variables.csv`: agregar
+Opera genéricamente sobre `data/tfi_data/registro_variables.csv`: agregar
 una variable nueva es agregar una fila al registro + declarar su loader en
 `_LOADERS` acá (el "mecanismo de descarga... específico de esa fuente" que
 la especificación permite mantener por variable, sección 4.1) -- la

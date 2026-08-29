@@ -1,0 +1,10 @@
+# Total de votos, elección general -- La Plata, nacional 2013 (cargo: nacional)
+id_agrupacion,agrupacion,votos,votos_porcentaje,campo_ideologico,filiacion_politica,vparty_economico,vparty_progresismo,vparty_populismo
+0510,FRENTE RENOVADOR,140382,34.4240,4,peronistas,0.376,-0.016,0.363
+0501,FRENTE PARA LA VICTORIA,103224,25.3122,3,peronistas,-1.663,2.033,0.872
+0514,FRENTE PROGRESISTA CIVICO Y SOCIAL,70580,17.3074,3,progresistas,-0.692,1.546,0.461
+0507,UNIDOS POR LA LIBERTAD Y EL TRABAJO,31132,7.6341,4,liberales,,,
+0505,FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,30672,7.5213,1,marxistas,-1.991,2.325,0.723
+0513,UNION CON FE,4698,1.1520,4,nacionalistas,,,
+BLANCO,BLANCO,22248,5.4556,,,,,
+NULO,NULO,4867,1.1935,,,,,

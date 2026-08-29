@@ -1,0 +1,9 @@
+# Total de votos, elección general -- La Plata, nacional 2017 (cargo: nacional)
+id_agrupacion,agrupacion,votos,votos_porcentaje,campo_ideologico,filiacion_politica,vparty_economico,vparty_progresismo,vparty_populismo
+0518,CAMBIEMOS BUENOS AIRES,201129,48.1348,5,liberales,1.418,-0.055,0.145
+0574,UNIDAD CIUDADANA,113650,27.1991,3,peronistas,-1.662,1.533,0.67
+0511,1PAIS,36062,8.6305,3,peronistas,0.369,0.123,0.43
+0503,FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,27649,6.6170,1,marxistas,-1.991,2.325,0.723
+0546,FRENTE JUSTICIALISTA,22986,5.5011,3,peronistas,-0.101,0.947,0.479
+BLANCO,BLANCO,13229,3.1660,,,,,
+NULO,NULO,3140,0.7515,,,,,

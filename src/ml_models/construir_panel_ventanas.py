@@ -1,7 +1,7 @@
 """Orquestador final -- Fase 4 del panel temporal de ventanas electorales:
 une `ventanas.csv` + `resultado_distrito.csv`/`voto_partido_distrito.csv`/
 `oficialismo_por_nivel.csv` + los features de `features_ventana.py` en
-`data/clean_data/panel_ventanas.csv`, 31 filas (12 municipal + 12
+`data/tfi_data/panel_ventanas.csv`, 31 filas (12 municipal + 12
 provincial + 7 nacional).
 
 Uso:

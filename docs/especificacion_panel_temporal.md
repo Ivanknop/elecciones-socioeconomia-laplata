@@ -67,11 +67,12 @@ Creada desde el estado actual de `main`. Todo el trabajo de esta especificación
 Toda ruta indicada es adicional; ninguna reemplaza estructuras existentes.
 
 ```
-data/clean_data/
+data/tfi_data/
   calendario_electoral.csv          # NUEVO — inventario de elecciones 2001-2025 por nivel
   oficialismo_por_nivel.csv         # NUEVO — quién ocupa el ejecutivo de cada nivel, por período
   resultado_distrito.csv            # NUEVO — resultado agregado de La Plata por elección y nivel
   voto_partido_distrito.csv         # NUEVO — voto por agrupación, distrito, elección y nivel
+  elecciones/                       # NUEVO — un CSV por (año, nivel): agrupaciones + BLANCO/NULO, elección general
   registro_variables.csv            # NUEVO — catálogo declarativo de variables (extensible)
   series_economicas_mensuales.csv   # NUEVO — panel largo de variables macro, grano mensual
   ventanas.csv                      # NUEVO — definición de cada ventana (transición)
@@ -80,6 +81,7 @@ data/clean_data/
 src/ml_models/
   construir_calendario.py           # NUEVO
   construir_resultado_distrito.py   # NUEVO
+  construir_elecciones.py           # NUEVO — genera data/tfi_data/elecciones/
   cargar_series_economicas.py       # NUEVO
   construir_ventanas.py             # NUEVO
   features_ventana.py               # NUEVO — cálculo de features intra e interventana
@@ -187,7 +189,7 @@ Sin tocar la lógica de cálculo de features.
 
 ### 4.2 Registro de variables
 
-Se crea **`data/clean_data/registro_variables.csv`** como catálogo declarativo. Columnas:
+Se crea **`data/tfi_data/registro_variables.csv`** como catálogo declarativo. Columnas:
 
 | Columna | Descripción |
 |---|---|
