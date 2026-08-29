@@ -1,0 +1,42 @@
+[
+  {
+    "agrupacion": "JUNTOS",
+    "economico": 1.401,
+    "progresismo": -0.141,
+    "populismo": 0.186,
+    "votos": 183600,
+    "votos_porcentaje": 46.205185248566785,
+    "filiacion_politica": "liberales",
+    "color": "#c78fff"
+  },
+  {
+    "agrupacion": "FRENTE DE TODOS",
+    "economico": -0.465,
+    "progresismo": 1.069,
+    "populismo": 0.642,
+    "votos": 137241,
+    "votos_porcentaje": 34.53837597330367,
+    "filiacion_politica": "peronistas",
+    "color": "#b2ffff"
+  },
+  {
+    "agrupacion": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+    "economico": -1.991,
+    "progresismo": 2.325,
+    "populismo": 0.723,
+    "votos": 31109,
+    "votos_porcentaje": 7.828960282667016,
+    "filiacion_politica": "marxistas",
+    "color": "#ff0000"
+  },
+  {
+    "agrupacion": "AVANZA LIBERTAD",
+    "economico": 2.641,
+    "progresismo": -1.26,
+    "populismo": 0.237,
+    "votos": 27780,
+    "votos_porcentaje": 6.991176722250464,
+    "filiacion_politica": "liberales",
+    "color": "#3f0080"
+  }
+]

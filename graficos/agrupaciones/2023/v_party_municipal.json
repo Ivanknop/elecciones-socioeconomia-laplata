@@ -1,0 +1,42 @@
+[
+  {
+    "agrupacion": "UNION POR LA PATRIA",
+    "economico": -0.465,
+    "progresismo": 1.069,
+    "populismo": 0.642,
+    "votos": 162268,
+    "votos_porcentaje": 38.33757421543681,
+    "filiacion_politica": "peronistas",
+    "color": "#b2ffff"
+  },
+  {
+    "agrupacion": "JUNTOS POR EL CAMBIO",
+    "economico": 1.401,
+    "progresismo": -0.1415,
+    "populismo": 0.186,
+    "votos": 161412,
+    "votos_porcentaje": 38.13533493518184,
+    "filiacion_politica": "liberales",
+    "color": "#3f0080"
+  },
+  {
+    "agrupacion": "LA LIBERTAD AVANZA",
+    "economico": 2.641,
+    "progresismo": -1.26,
+    "populismo": 0.237,
+    "votos": 78189,
+    "votos_porcentaje": 18.472998929738388,
+    "filiacion_politica": "liberales",
+    "color": "#c78fff"
+  },
+  {
+    "agrupacion": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+    "economico": -1.991,
+    "progresismo": 2.325,
+    "populismo": 0.723,
+    "votos": 21392,
+    "votos_porcentaje": 5.054091919642962,
+    "filiacion_politica": "marxistas",
+    "color": "#ff0000"
+  }
+]

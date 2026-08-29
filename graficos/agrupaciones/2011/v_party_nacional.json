@@ -1,0 +1,42 @@
+[
+  {
+    "agrupacion": "ALIANZA FRENTE PARA LA VICTORIA",
+    "economico": -1.686,
+    "progresismo": 2.097,
+    "populismo": 0.871,
+    "votos": 153609,
+    "votos_porcentaje": 43.294776182503846,
+    "filiacion_politica": "peronistas",
+    "color": "#b2ffff"
+  },
+  {
+    "agrupacion": "ALIANZA FRENTE AMPLIO PROGRESISTA",
+    "economico": -1.268,
+    "progresismo": 1.642,
+    "populismo": 0.492,
+    "votos": 78714,
+    "votos_porcentaje": 22.1855816549135,
+    "filiacion_politica": "progresistas",
+    "color": "#008000"
+  },
+  {
+    "agrupacion": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+    "economico": -1.991,
+    "progresismo": 2.325,
+    "populismo": 0.723,
+    "votos": 12654,
+    "votos_porcentaje": 3.566536451727462,
+    "filiacion_politica": "marxistas",
+    "color": "#ff0000"
+  },
+  {
+    "agrupacion": "COALICIÓN CÍVICA - AFIRMACIÓN PARA UNA REPÚBLICA IGUALITARIA ARI",
+    "economico": 0.452,
+    "progresismo": 0.299,
+    "populismo": 0.372,
+    "votos": 9092,
+    "votos_porcentaje": 2.5625849074684752,
+    "filiacion_politica": "otros",
+    "color": "#808080"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "agrupacion": "JUNTOS POR EL CAMBIO",
+    "economico": 1.401,
+    "progresismo": -0.142,
+    "populismo": 0.186,
+    "votos": 205365,
+    "votos_porcentaje": 48.72403828359661,
+    "filiacion_politica": "liberales",
+    "color": "#7f00ff"
+  },
+  {
+    "agrupacion": "FRENTE DE TODOS",
+    "economico": -0.465,
+    "progresismo": 1.069,
+    "populismo": 0.642,
+    "votos": 171830,
+    "votos_porcentaje": 40.76766488092131,
+    "filiacion_politica": "peronistas",
+    "color": "#b2ffff"
+  },
+  {
+    "agrupacion": "CONSENSO FEDERAL",
+    "economico": 0.073,
+    "progresismo": 0.34,
+    "populismo": 0.329,
+    "votos": 21431,
+    "votos_porcentaje": 5.084629145452044,
+    "filiacion_politica": "peronismo provincial",
+    "color": "#000080"
+  },
+  {
+    "agrupacion": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+    "economico": -1.991,
+    "progresismo": 2.325,
+    "populismo": 0.723,
+    "votos": 17573,
+    "votos_porcentaje": 4.169296251832801,
+    "filiacion_politica": "marxistas",
+    "color": "#ff0000"
+  }
+]

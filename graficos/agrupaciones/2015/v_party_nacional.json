@@ -1,0 +1,42 @@
+[
+  {
+    "agrupacion": "ALIANZA CAMBIEMOS",
+    "economico": 1.427,
+    "progresismo": 0.001,
+    "populismo": 0.148,
+    "votos": 163852,
+    "votos_porcentaje": 41.10708031650937,
+    "filiacion_politica": "liberales",
+    "color": "#7f00ff"
+  },
+  {
+    "agrupacion": "ALIANZA FRENTE PARA LA VICTORIA",
+    "economico": -1.659,
+    "progresismo": 1.961,
+    "populismo": 0.848,
+    "votos": 119144,
+    "votos_porcentaje": 29.890767138821573,
+    "filiacion_politica": "peronistas",
+    "color": "#b2ffff"
+  },
+  {
+    "agrupacion": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+    "economico": -1.991,
+    "progresismo": 2.325,
+    "populismo": 0.723,
+    "votos": 22939,
+    "votos_porcentaje": 5.754920998098335,
+    "filiacion_politica": "marxistas",
+    "color": "#ff0000"
+  },
+  {
+    "agrupacion": "ALIANZA PROGRESISTAS",
+    "economico": -1.268,
+    "progresismo": 1.642,
+    "populismo": 0.492,
+    "votos": 18494,
+    "votos_porcentaje": 4.639762367096674,
+    "filiacion_politica": "progresistas",
+    "color": "#008000"
+  }
+]

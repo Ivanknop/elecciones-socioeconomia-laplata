@@ -1,12 +1,13 @@
 """Cuadrantes ideológicos V-Party (económico × progresismo) con votos
 reales de La Plata, análogo a `vparty_cuadrantes.py` pero a partir de
-datos locales. Encoding de color/tamaño y agregación difieren por grano
-(distrito/localidad) -- detalle en `docs/vparty_cuadrantes.md` y CLAUDE.md.
+datos locales -- detalle en `docs/vparty_cuadrantes.md` y CLAUDE.md.
+Solo genera el grano distrito (un JSON+PNG por año, La Plata completa);
+`tabla_localidades()` sigue disponible como función de biblioteca para
+`visualizacion.distribucion_ideologica_interactiva`, sin CLI propia acá.
 
 Uso:
-    PYTHONPATH=src python -m analisis.vparty_cuadrantes_local --grano distrito
-    PYTHONPATH=src python -m analisis.vparty_cuadrantes_local --grano localidad --nivel municipal
-    PYTHONPATH=src python -m analisis.vparty_cuadrantes_local              # todo lo disponible
+    PYTHONPATH=src python -m analisis.vparty_cuadrantes_local
+    PYTHONPATH=src python -m analisis.vparty_cuadrantes_local --nivel municipal
 """
 from __future__ import annotations
 
@@ -22,7 +23,7 @@ import pandas as pd
 from analisis.graficos import _COLOR_FILIACION
 from analisis.serie_temporal import NIVELES, _puntos_del_nivel
 from analisis.totales_por_lista import NIVEL_A_NIVEL_CSV, _COLOR_SIN_CLASIFICAR
-from analisis.vparty_cuadrantes import EJE_X, EJE_Y, _asignar_offsets, _radio_por_populismo, graficar_cuadrantes
+from analisis.vparty_cuadrantes import EJE_X, EJE_Y, _asignar_offsets, _radio_por_populismo
 from constantes import (
     CARGO_LABEL,
     CIRCUITOS_POR_LOCALIDAD_PATH,
@@ -32,11 +33,11 @@ from constantes import (
 from electoral.localidades import agrupar_resultados_por_localidad, cargar_circuito_localidad_geo
 from electoral.totales import resultado_total_por_agrupacion
 
+# `graficos/agrupaciones/<año>/v_party_<nivel>.json` es el artefacto versionado
+# -- el contrato de datos para reconstruir la visualización más adelante. El
+# PNG que se genera junto a él es solo conveniencia local, no se trackea
+# (ver .gitignore).
 RUTA_DISTRITO_DIR = Path("graficos/agrupaciones")
-RUTA_LOCALIDAD_DIR = Path("graficos/por_localidad/vparty")
-RUTA_LOCALIDAD_POR_ANIO_DIR = Path("graficos/agrupaciones/por_localidad")
-
-_CMAP_ANIOS = plt.get_cmap("tab10")
 
 # Rango de luminosidad (HLS) dentro del cual se generan las sombras por
 # partido de un mismo color de familia -- ni tan claro que se pierda contra
@@ -166,10 +167,6 @@ def tabla_localidades(
 # 4. Graficado
 # ---------------------------------------------------------------------------
 
-def _color_por_anio(anios: list[int]) -> dict[int, str]:
-    return {anio: _CMAP_ANIOS(i % 10) for i, anio in enumerate(sorted(set(anios)))}
-
-
 def _sombras(color_hex: str, n: int) -> list[str]:
     """`n` variaciones de luminosidad de `color_hex`, para distinguir
     partidos dentro de una misma familia política."""
@@ -297,6 +294,24 @@ def graficar_cuadrantes_partido(
     return ruta_salida
 
 
+def _registros_json(df_anio: pd.DataFrame, filiacion_de: dict[str, str | None], colores: dict[str, str]) -> list[dict]:
+    """Filas de `df_anio` + filiación/color usados para el PNG -- contrato
+    de datos versionado para reconstruir la visualización sin recalcular."""
+    return [
+        {
+            "agrupacion": fila["agrupacion"],
+            "economico": fila["economico"],
+            "progresismo": fila["progresismo"],
+            "populismo": fila["populismo"],
+            "votos": fila["votos"],
+            "votos_porcentaje": fila["votos_porcentaje"],
+            "filiacion_politica": filiacion_de.get(fila["agrupacion"]),
+            "color": colores.get(fila["agrupacion"], _COLOR_SIN_CLASIFICAR),
+        }
+        for _, fila in df_anio.iterrows()
+    ]
+
+
 def generar_distrito(
     nivel: str,
     posiciones: dict[tuple[str, str, str], tuple[float, float, float]],
@@ -304,8 +319,9 @@ def generar_distrito(
     data_dir: Path | str = DATA_DISTRITO_DIR,
     salida_dir: Path | str = RUTA_DISTRITO_DIR,
 ) -> list[Path]:
-    """Un PNG por (año, nivel), distrito completo --
-    `<salida_dir>/<año>/v_party_<nivel>.png`."""
+    """Un JSON + PNG por (año, nivel), distrito completo --
+    `<salida_dir>/<año>/v_party_<nivel>.{json,png}`. El JSON es el artefacto
+    versionado; el PNG es conveniencia local (gitignored)."""
     df_todo = tabla_distrito(nivel, posiciones, data_dir)
     if df_todo.empty:
         return []
@@ -326,88 +342,23 @@ def generar_distrito(
 
         salida_anio_dir = salida_dir / str(anio)
         salida_anio_dir.mkdir(parents=True, exist_ok=True)
-        destino = salida_anio_dir / f"v_party_{nivel}.png"
+
+        destino_json = salida_anio_dir / f"v_party_{nivel}.json"
+        destino_json.write_text(
+            json.dumps(_registros_json(df_anio, filiacion_de, colores), ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        destinos.append(destino_json)
+
+        destino_png = salida_anio_dir / f"v_party_{nivel}.png"
         graficar_cuadrantes_partido(
-            df_anio, destino, colores, xlim=xlim, ylim=ylim,
+            df_anio, destino_png, colores, xlim=xlim, ylim=ylim,
             titulo=(
                 f"La Plata — {nivel} {anio} ({CARGO_LABEL[cargo]}): "
                 "económico × progresismo social (tamaño = % de votos)\n"
                 "color por familia política (clasificación propia calibrada contra V-Party)"
             ),
         )
-        destinos.append(destino)
-    return destinos
-
-
-def generar_localidad(
-    nivel: str,
-    localidad: str,
-    tabla_larga: pd.DataFrame,
-    salida_dir: Path | str = RUTA_LOCALIDAD_DIR,
-) -> Path | None:
-    df = tabla_larga.loc[tabla_larga["localidad"] == localidad].drop(columns="localidad")
-    if df.empty:
-        return None
-
-    anios = sorted(df["year"].unique())
-    salida_dir = Path(salida_dir)
-    salida_dir.mkdir(parents=True, exist_ok=True)
-    destino = salida_dir / f"{nivel}_{localidad}.png"
-    graficar_cuadrantes(
-        df, ruta_salida=destino, col_etiqueta="agrupacion", col_anio="year",
-        color_por_anio=_color_por_anio(anios),
-        titulo=(
-            f"{localidad} — {nivel}: económico × progresismo social (tamaño = populismo)\n"
-            f"Elecciones generales {anios[0]}-{anios[-1]}, ejecutivo + legislativo combinados "
-            "(clasificación propia calibrada contra V-Party)"
-        ),
-        xlabel="Izquierda / Estatismo ← posición económica → Derecha / Mercado",
-        ylabel="Conservador ← progresismo social → Progresista",
-    )
-    return destino
-
-
-def generar_localidad_por_anio(
-    nivel: str,
-    posiciones: dict[tuple[str, str, str], tuple[float, float, float]],
-    filiaciones: dict[tuple[str, str, str], str],
-    data_dir: Path | str = DATA_DISTRITO_DIR,
-    crosswalk_path: Path | str = CIRCUITOS_POR_LOCALIDAD_PATH,
-    salida_dir: Path | str = RUTA_LOCALIDAD_POR_ANIO_DIR,
-    tabla_larga: pd.DataFrame | None = None,
-) -> list[Path]:
-    """Un PNG por (localidad, año, nivel), mismo encoding y límites de eje
-    que `generar_distrito` -- va a `graficos/agrupaciones/por_localidad/` (no versionado)."""
-    if tabla_larga is None:
-        tabla_larga = tabla_localidades(nivel, posiciones, data_dir, crosswalk_path)
-    if tabla_larga.empty:
-        return []
-
-    xlim, ylim = _limites_globales(posiciones)
-    cargo_por_anio = dict(_puntos_del_nivel(data_dir, nivel))
-    salida_dir = Path(salida_dir)
-    destinos = []
-    for (localidad, anio), grupo in tabla_larga.groupby(["localidad", "year"]):
-        cargo = cargo_por_anio[anio]
-        nivel_csv = NIVEL_A_NIVEL_CSV.get(cargo, cargo)
-        filiacion_de = {
-            agrupacion: filiaciones.get((str(anio), nivel_csv, agrupacion))
-            for agrupacion in grupo["agrupacion"]
-        }
-        colores = _color_por_partido(list(grupo["agrupacion"]), filiacion_de)
-
-        salida_anio_dir = salida_dir / str(anio)
-        salida_anio_dir.mkdir(parents=True, exist_ok=True)
-        destino = salida_anio_dir / f"v_party_{nivel}_{localidad}.png"
-        graficar_cuadrantes_partido(
-            grupo, destino, colores, xlim=xlim, ylim=ylim,
-            titulo=(
-                f"{localidad} — {nivel} {anio} ({CARGO_LABEL[cargo]}): "
-                "económico × progresismo social (tamaño = % de votos)\n"
-                "color por familia política (clasificación propia calibrada contra V-Party)"
-            ),
-        )
-        destinos.append(destino)
     return destinos
 
 
@@ -417,43 +368,22 @@ def generar_localidad_por_anio(
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--grano", choices=["distrito", "localidad", "todos"], default="todos")
     parser.add_argument("--nivel", choices=list(NIVELES), help="si se omite, corre los 3 niveles")
     parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
     parser.add_argument("--referencia", default=CLASIFICACION_IDEOLOGICA_PATH)
-    parser.add_argument("--crosswalk", default=CIRCUITOS_POR_LOCALIDAD_PATH)
     args = parser.parse_args()
 
     posiciones = cargar_posiciones_propias(args.referencia)
     filiaciones = cargar_filiaciones(args.referencia)
     niveles = [args.nivel] if args.nivel else list(NIVELES)
 
-    if args.grano in ("distrito", "todos"):
-        for nivel in niveles:
-            destinos = generar_distrito(nivel, posiciones, filiaciones, args.data_dir)
-            if destinos:
-                for destino in destinos:
-                    print(f"distrito {nivel} -> {destino}")
-            else:
-                print(f"distrito {nivel}: sin agrupaciones con cobertura V-Party")
-
-    if args.grano in ("localidad", "todos"):
-        for nivel in niveles:
-            tabla_larga = tabla_localidades(nivel, posiciones, args.data_dir, args.crosswalk)
-            if tabla_larga.empty:
-                print(f"localidad {nivel}: sin agrupaciones con cobertura V-Party")
-                continue
-            for localidad in sorted(tabla_larga["localidad"].unique()):
-                destino = generar_localidad(nivel, localidad, tabla_larga)
-                if destino:
-                    print(f"localidad {nivel} {localidad} -> {destino}")
-
-            destinos_por_anio = generar_localidad_por_anio(
-                nivel, posiciones, filiaciones, args.data_dir, args.crosswalk,
-                tabla_larga=tabla_larga,
-            )
-            for destino in destinos_por_anio:
-                print(f"localidad por año {nivel} -> {destino}")
+    for nivel in niveles:
+        destinos = generar_distrito(nivel, posiciones, filiaciones, args.data_dir)
+        if destinos:
+            for destino in destinos:
+                print(f"distrito {nivel} -> {destino}")
+        else:
+            print(f"distrito {nivel}: sin agrupaciones con cobertura V-Party")
 
 
 if __name__ == "__main__":

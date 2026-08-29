@@ -1,0 +1,42 @@
+[
+  {
+    "agrupacion": "CAMBIEMOS BUENOS AIRES",
+    "economico": 1.427,
+    "progresismo": 0.001,
+    "populismo": 0.148,
+    "votos": 184129,
+    "votos_porcentaje": 46.512021501790976,
+    "filiacion_politica": "liberales",
+    "color": "#7f00ff"
+  },
+  {
+    "agrupacion": "ALIANZA FRENTE PARA LA VICTORIA",
+    "economico": -1.659,
+    "progresismo": 1.961,
+    "populismo": 0.848,
+    "votos": 114340,
+    "votos_porcentaje": 28.882927396090675,
+    "filiacion_politica": "peronistas",
+    "color": "#b2ffff"
+  },
+  {
+    "agrupacion": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+    "economico": -1.991,
+    "progresismo": 2.325,
+    "populismo": 0.723,
+    "votos": 21991,
+    "votos_porcentaje": 5.55505034430147,
+    "filiacion_politica": "marxistas",
+    "color": "#ff0000"
+  },
+  {
+    "agrupacion": "ALIANZA PROGRESISTAS",
+    "economico": -1.268,
+    "progresismo": 1.642,
+    "populismo": 0.492,
+    "votos": 13800,
+    "votos_porcentaje": 3.4859576531926826,
+    "filiacion_politica": "progresistas",
+    "color": "#008000"
+  }
+]

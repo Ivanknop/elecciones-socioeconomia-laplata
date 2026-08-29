@@ -56,9 +56,7 @@ PYTHONPATH=src python -m analisis.serie_temporal    # one chart per nivel (nacio
 PYTHONPATH=src python -m analisis.serie_temporal_filiacion  # same, by filiacion_politica instead of campo_ideologico
 PYTHONPATH=src python -m analisis.cuadros_anualizados --anio 2023  # one chart per año, all cargos side by side
 PYTHONPATH=src python -m analisis.cuadros_por_localidad --anio 2023 --nivel intendente  # votes-by-locality table for one (año, nivel)
-PYTHONPATH=src python -m analisis.serie_temporal_por_localidad --nivel municipal  # per-locality time series, reads the tables above
 PYTHONPATH=src python -m electoral.totales --anio 2023 --nivel intendente  # total votes per agrupación, generales by default; add --etapa paso/balotaje for those
-PYTHONPATH=src python -m analisis.totales_por_lista --anio 2023 --nivel intendente  # bar chart of that total, one per (año, nivel)
 PYTHONPATH=src python -m analisis.comparativo_nivel --anio 2019  # Municipio/Provincia/Nación comparison table, one per año
 PYTHONPATH=src python -m visualizacion.mapa_interactivo  # single interactive Leaflet HTML, all circuitos × all 22 (año, nivel) generales combos, writes docs/mapa_electoral_la_plata.html
 PYTHONPATH=src python -m visualizacion.distribucion_ideologica_interactiva  # interactive V-Party cuadrantes HTML, one payload per (año, nivel unificado), writes docs/distribucion_ideologica_la_plata.html
@@ -69,8 +67,8 @@ ESTADISTICASBCRA_TOKEN=... PYTHONPATH=src python -m macroeconomia.auditoria_esta
 PYTHONPATH=src python -m geolocalizacion.catalogo  # validated localidad×lat/lon catalog for La Plata, Georef-AR cross-checked against the Ministerio de Obras Públicas export (needs network to refresh; runs from cache otherwise)
 PYTHONPATH=src python -m geolocalizacion.mapa      # one PNG with all 36 localidades over the partido boundary, reads the catalog above
 PYTHONPATH=src python3 src/analisis/generar_v_party_propio.py --encuesta data/agrupaciones/v-party/encuesta_partidos_propia.csv --referencia data/agrupaciones/clasificacion_ideologica_agrupaciones.csv --salida data/agrupaciones/v-party/v_party_propio.csv  # estimates vparty_economico/progresismo/populismo from an own expert survey for partidos without real V-Party coverage
-PYTHONPATH=src python -m analisis.vparty_cuadrantes         # national V-Party cuadrantes scatter (Diputados 2011-2019), one PNG
-PYTHONPATH=src python -m analisis.vparty_cuadrantes_local   # same cuadrantes style but with La Plata's own votes, one PNG per (distrito|localidad) x nivel
+PYTHONPATH=src python -m analisis.vparty_cuadrantes         # national V-Party cuadrantes scatter (Diputados 2001-2019), one JSON (tracked) + PNG (local)
+PYTHONPATH=src python -m analisis.vparty_cuadrantes_local   # same cuadrantes style but with La Plata's own votes, one JSON (tracked) + PNG (local) per (año, nivel)
 PYTHONPATH=src python -m socioeconomia.icg_exportar_csv  # ICG (UTDT) headline + 6 demographic-cut CSVs to data/socioeconomia/; needs data/socioeconomia/icg/Base_histórica_2001-presente-ICG.dta placed manually first, see data/socioeconomia/icg/README.md
 PYTHONPATH=src python -m socioeconomia.icg_graficos  # La Plata vs. país ICG time series PNG from the headline CSV above
 ```
@@ -78,11 +76,10 @@ PYTHONPATH=src python -m socioeconomia.icg_graficos  # La Plata vs. país ICG ti
 There is no build/lint step configured. Tests cover `src/electoral/models.py`
 (pure parsing, no network), `src/electoral/totales.py` (pure logic and file
 I/O, no network — see `tests/electoral/test_totales.py`), and the locality-aggregation
-layer added on top of it — `src/electoral/localidades.py`,
-`src/analisis/cuadros_por_localidad.py`, and the non-plotting helpers of
-`src/analisis/serie_temporal_por_localidad.py`
+layer added on top of it — `src/electoral/localidades.py` and
+`src/analisis/cuadros_por_localidad.py`
 (pure logic and file I/O, no network; see `tests/electoral/test_localidades.py`,
-`tests/analisis/test_cuadros_por_localidad.py`, `tests/analisis/test_serie_temporal_por_localidad.py`).
+`tests/analisis/test_cuadros_por_localidad.py`).
 The **pure-logic helpers** of `graficos.py`, `cuadros_anualizados.py`,
 `serie_temporal.py`, `serie_temporal_filiacion.py`, `totales_por_lista.py`
 and `comparativo_nivel.py` are covered too (`tests/analisis/test_graficos.py`,
@@ -92,9 +89,9 @@ and `comparativo_nivel.py` are covered too (`tests/analisis/test_graficos.py`,
 `_cargar_escala_ideologica`, `_anios_disponibles`, `_serie_por_anio`,
 `resultado_total_con_blanco_nulo`, `tabla_comparativa`). `src/electoral/client.py`,
 `generar_graficos.py`, and the **matplotlib-rendering half** of every module
-above (plus of the locality scripts) still have no automated tests; changes
-there are validated by re-running the notebooks end to end (see README
-"Cómo reproducir") or by running the scripts against `data/` directly.
+above still have no automated tests; changes there are validated by
+re-running the notebooks end to end (see README "Cómo reproducir") or by
+running the scripts against `data/` directly.
 `src/visualizacion/mapa_interactivo.py`'s aggregation logic (the exact same
 `electores - positivos - otros_total` ausentismo formula as
 `analisis.graficos._votos_no_ideologicos`, top-N-plus-residual per circuito,
@@ -118,11 +115,16 @@ DBF-era file lookup, and the labor-indicator aggregation core — no
 network) is covered by `tests/socioeconomia/test_eph_client.py`; `src/socioeconomia/geo.py`
 (circuito_id canonicalization and the area-weighted circuito↔radio spatial
 join, tested against synthetic polygons, not real data) by
-`tests/socioeconomia/test_geo.py`; the pure gap-detection helpers of
-`src/socioeconomia/graficos_eph_iaelap.py` by
-`tests/socioeconomia/test_graficos_eph_iaelap.py` — same split as everywhere else in the
-repo, pure logic tested, the matplotlib-rendering and IAELaP-loading parts
-of `graficos_eph_iaelap.py` itself validated by running notebooks 05/06.
+`tests/socioeconomia/test_geo.py`; the pure gap-detection helpers plus
+`datos_iaelap_general`/`datos_iaelap_sectorial` (the JSON-contract
+counterparts of `graficar_iaelap_general`/`graficar_iaelap_sectorial`,
+written by notebook 06 to `graficos/socioeconomia/iaelap_general.json`/
+`iaelap_sectorial_*.json`, git-tracked — the PNGs the same notebook cells
+save alongside them are not) of `src/socioeconomia/graficos_eph_iaelap.py`
+are covered by `tests/socioeconomia/test_graficos_eph_iaelap.py` — same
+split as everywhere else in the repo, pure logic tested, the
+matplotlib-rendering and IAELaP-loading parts of `graficos_eph_iaelap.py`
+itself validated by running notebooks 05/06.
 `src/socioeconomia/icg_cargar.py` (loading + non-silent validation, tested
 via `pandas.read_stata` monkeypatched to a synthetic DataFrame — never the
 real 22 MB `.dta`) and `icg_construir_series.py` (weighted-average
@@ -204,36 +206,31 @@ order, 01→04) are the pipeline**.
   `vparty_economico`/`progresismo`/`populismo` columns against La Plata's
   own election results instead of the national V-Party dataset, for
   **distrito** (whole La Plata, via
-  `electoral.totales.resultado_total_por_agrupacion`) and **localidad**
-  (one PNG per nivel × localidad, via
-  `electoral.localidades.agrupar_resultados_por_localidad` fed
-  agrupación-keyed vote dicts instead of the usual campo_ideologico
-  buckets). Only agrupaciones with a populated `vparty_economico` for that
-  (año, cargo) are plotted — same silent-skip criterion as
-  `vparty_cuadrantes.cargar_posiciones`, nothing is approximated here.
+  `electoral.totales.resultado_total_por_agrupacion`). It only generates
+  this one grain: one point per party with **color = familia política**
+  (`filiacion_politica`, via `graficar_cuadrantes_partido`) and **size =
+  % of that party's votes** in that election; populismo is deliberately
+  left out of the encoding for now (still available as a `tabla_distrito`
+  column for whoever wants to add it back). Only agrupaciones with a
+  populated `vparty_economico` for that (año, cargo) are plotted — same
+  silent-skip criterion as `vparty_cuadrantes.cargar_posiciones`, nothing
+  is approximated here. `tabla_localidades()` (localidad-grain
+  aggregation via `electoral.localidades.agrupar_resultados_por_localidad`)
+  stays in the module as a library function — no CLI/PNG output of its
+  own here — because `src/visualizacion/distribucion_ideologica_interactiva.py`
+  reuses it for the interactive site's per-localidad panel.
 
-  **Encoding differs by grain, on purpose**: localidad still reuses
-  `analisis.vparty_cuadrantes.graficar_cuadrantes` as-is (generalized to
-  take configurable column names/title/colors) — color = año, size =
-  populismo, points fused across nearby elections, since each localidad
-  PNG spans every available year for that nivel. Distrito is one PNG per
-  single election instead (see below), where color-by-year would collapse
-  to one color and populismo carries no comparative signal — so it plots
-  one point per party with **color = familia política** (`filiacion_politica`,
-  via a new `graficar_cuadrantes_partido`) and **size = % of that party's
-  votes** in that election; populismo is deliberately left out of the
-  encoding for now (still available as a `tabla_distrito` column for
-  whoever wants to add it back). Party color is never invented from
-  scratch: `_color_por_partido` looks up each party's `filiacion_politica`
-  and takes the base hex from `colorimetria_familia_politica.csv`
-  (`analisis.graficos._COLOR_FILIACION`, the repo's single source for that
-  color — see "Colores de cada espacio político" below), then
-  `_sombras` generates one HLS-lightness variant per party sharing that
-  family (alphabetical order, so re-runs are deterministic) so parties in
-  the same family stay visually related but distinguishable. A party with
-  no `filiacion_politica`, or one absent from the colorimetría CSV, falls
-  back to `totales_por_lista._COLOR_SIN_CLASIFICAR` (the same neutral gray
-  that script already uses for the same situation) instead of a new color.
+  Party color is never invented from scratch: `_color_por_partido` looks
+  up each party's `filiacion_politica` and takes the base hex from
+  `colorimetria_familia_politica.csv` (`analisis.graficos._COLOR_FILIACION`,
+  the repo's single source for that color — see "Colores de cada espacio
+  político" below), then `_sombras` generates one HLS-lightness variant
+  per party sharing that family (alphabetical order, so re-runs are
+  deterministic) so parties in the same family stay visually related but
+  distinguishable. A party with no `filiacion_politica`, or one absent
+  from the colorimetría CSV, falls back to
+  `totales_por_lista._COLOR_SIN_CLASIFICAR` (the same neutral gray that
+  script already uses for the same situation) instead of a new color.
 
   **Nivel unificado, not per-cargo**: `presidente`/`nacional`,
   `gobernador`/`provincial` and `intendente`/`municipal` are executive vs.
@@ -250,29 +247,24 @@ order, 01→04) are the pipeline**.
   `clasificacion_ideologica_agrupaciones.csv` is resolved per-point (after
   `_puntos_del_nivel` resolves which cargo applies to which año) via
   `NIVEL_A_NIVEL_CSV`, imported from `totales_por_lista.py` rather than
-  redefined. Distrito output is one PNG per (año, nivel) — not one scatter
-  per nivel with every election combined and colored by year, that variant
-  stays available by calling `tabla_distrito` + `graficar_cuadrantes`
-  directly — at `graficos/agrupaciones/<año>/v_party_<nivel>.png`
-  (git-tracked, same folder as the national chart, ~22 PNGs across
-  2011-2025); localidad output (~80 PNGs, one per populated
-  nivel×localidad combo, elections still combined by color within each
-  PNG) goes to `graficos/por_localidad/vparty/` (not tracked, same
-  criterion as the rest of `graficos/por_localidad/`). Run:
+  redefined. Output is one JSON + PNG per (año, nivel) at
+  `graficos/agrupaciones/<año>/v_party_<nivel>.{json,png}` — the JSON is
+  the git-tracked contract for reconstructing the chart later, the PNG is
+  local convenience (gitignored). The one-scatter-per-nivel-colored-by-year
+  variant stays available by calling `tabla_distrito` +
+  `analisis.vparty_cuadrantes.graficar_cuadrantes` directly. Run:
 
   ```bash
-  PYTHONPATH=src python -m analisis.vparty_cuadrantes_local --grano distrito
-  PYTHONPATH=src python -m analisis.vparty_cuadrantes_local --grano localidad --nivel municipal
-  PYTHONPATH=src python -m analisis.vparty_cuadrantes_local              # todo lo disponible (tarda ~2-3 min)
+  PYTHONPATH=src python -m analisis.vparty_cuadrantes_local
+  PYTHONPATH=src python -m analisis.vparty_cuadrantes_local --nivel municipal
   ```
 
   The join/aggregation/color logic (`cargar_posiciones_propias`,
   `cargar_filiaciones`, `tabla_distrito`, `_votos_por_circuito_agrupacion`,
   `tabla_localidades`, `_sombras`, `_color_por_partido`) is pure and
   covered by `tests/analisis/test_vparty_cuadrantes_local.py`, no network;
-  the plotting wrappers (`generar_distrito`/`generar_localidad`,
-  `graficar_cuadrantes_partido`) and `main()` are untested, same criterion
-  as the rest of `src/analisis/*`.
+  the plotting wrapper (`generar_distrito`/`graficar_cuadrantes_partido`)
+  and `main()` are untested, same criterion as the rest of `src/analisis/*`.
 
   `colorimetria_campo_ideologico.csv` (`campo_ideologico` value → hex, one
   row per one of the 6 labels in `campo_ideologico.csv`) and
@@ -309,8 +301,10 @@ order, 01→04) are the pipeline**.
   electoral layer next to `models.py`) sums `circuito_<nivel>.json` into
   one row per agrupación via `models.totalizar_agrupaciones`, for
   `etapa` generales/paso/balotaje — derived, not git-tracked.
-  `src/analisis/totales_por_lista.py`/`comparativo_nivel.py` chart/tabulate
-  that same total; `visualizacion.mapa_interactivo` maps it. Full
+  `src/analisis/totales_por_lista.py` exposes that same total as a data
+  function (`resultado_total_con_blanco_nulo`, no charts of its own);
+  `comparativo_nivel.py` tabulates it into a Municipio/Provincia/Nación
+  Markdown; `visualizacion.mapa_interactivo` maps it. Full
   mechanics (ausentismo formula, top-7-plus-otros, git-tracked exceptions,
   color source) in `docs/FUNCIONALIDADES.md` §"Resultado total por
   agrupación"/"Gráficos" — don't duplicate them here. Two things worth
@@ -323,12 +317,22 @@ order, 01→04) are the pipeline**.
 - **`src/analisis/`** reads only the derived `circuito_<nivel>.json` files
   and plots by `campo_ideologico`, always adding `blanco_nulo`/`ausentismo`
   in neutral gray. `graficos.py` has the reusable functions;
-  `generar_graficos.py`/`serie_temporal.py`/`cuadros_anualizados.py`/
-  `serie_temporal_filiacion.py` bulk-write PNGs to `graficos/distrito/`.
-  Full per-script behavior in `docs/FUNCIONALIDADES.md` §"Gráficos".
-  Git-tracked exceptions: `graficos/distrito/serie_temporal/`,
-  `totales_por_lista/`, `graficos/socioeconomia/eph/` — the rest of
-  `graficos/` is `.gitignore`d and regenerated on demand.
+  `generar_graficos.py`/`cuadros_anualizados.py` bulk-write PNGs to
+  `graficos/distrito/` (gitignored, on-demand); `serie_temporal.py`/
+  `serie_temporal_filiacion.py` write both a JSON (the versioned contract
+  to reconstruct the chart) and a PNG (local convenience, gitignored) to
+  `graficos/distrito/serie_temporal/`. `totales_por_lista.py` no longer
+  generates a chart (see above); `comparativo_nivel.py` writes its
+  Municipio/Provincia/Nación Markdown to
+  `graficos/distrito/comparativos_nivel/`, git-tracked. Full per-script
+  behavior in `docs/FUNCIONALIDADES.md` §"Gráficos". Git-tracked
+  exceptions: `graficos/agrupaciones/<año>/<nivel>/*.json` (+ the national
+  scatter JSON one level up), `graficos/distrito/serie_temporal/*.json`,
+  `graficos/distrito/comparativos_nivel/`, and (outside `src/analisis/`,
+  same convention) `graficos/socioeconomia/iaelap_general.json`/
+  `iaelap_sectorial_*.json` from `src/socioeconomia/graficos_eph_iaelap.py`
+  — the rest of `graficos/` (including every `.png`) is `.gitignore`d and
+  regenerated on demand.
 
 - **`src/visualizacion/`** holds the two scripts that generate a full
   interactive HTML page for `docs/` — each pairs a `construir_payload()`

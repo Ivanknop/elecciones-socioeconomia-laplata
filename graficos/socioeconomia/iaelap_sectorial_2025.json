@@ -1,0 +1,62 @@
+[
+  {
+    "rama": "Comercio Minorista",
+    "var_interanual_pct": -6.4
+  },
+  {
+    "rama": "Construcción",
+    "var_interanual_pct": -6.0
+  },
+  {
+    "rama": "Administración Pública",
+    "var_interanual_pct": -2.0
+  },
+  {
+    "rama": "Hoteles y Restaurantes",
+    "var_interanual_pct": -2.0
+  },
+  {
+    "rama": "Comercio Mayorista",
+    "var_interanual_pct": -1.5
+  },
+  {
+    "rama": "Servicios Públicos",
+    "var_interanual_pct": -0.3
+  },
+  {
+    "rama": "Salud",
+    "var_interanual_pct": -0.2
+  },
+  {
+    "rama": "Servicios Comunitarios",
+    "var_interanual_pct": 0.2
+  },
+  {
+    "rama": "Industria",
+    "var_interanual_pct": 0.4
+  },
+  {
+    "rama": "Enseñanza",
+    "var_interanual_pct": 0.8
+  },
+  {
+    "rama": "Transporte y comunicaciones",
+    "var_interanual_pct": 1.7
+  },
+  {
+    "rama": "Servicios Inmobiliarios y Empresas",
+    "var_interanual_pct": 8.2
+  },
+  {
+    "rama": "Primario",
+    "var_interanual_pct": 9.5
+  },
+  {
+    "rama": "Bancos",
+    "var_interanual_pct": 23.4
+  },
+  {
+    "rama": "Comercio Automotor",
+    "var_interanual_pct": 47.4
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "agrupacion": "FRENTE RENOVADOR",
+    "economico": 0.376,
+    "progresismo": -0.016,
+    "populismo": 0.363,
+    "votos": 140382,
+    "votos_porcentaje": 36.875866851595006,
+    "filiacion_politica": "peronistas",
+    "color": "#8fffff"
+  },
+  {
+    "agrupacion": "FRENTE PARA LA VICTORIA",
+    "economico": -1.663,
+    "progresismo": 2.033,
+    "populismo": 0.872,
+    "votos": 103224,
+    "votos_porcentaje": 27.11511789181692,
+    "filiacion_politica": "peronistas",
+    "color": "#23ffff"
+  },
+  {
+    "agrupacion": "FRENTE PROGRESISTA CIVICO Y SOCIAL",
+    "economico": -0.692,
+    "progresismo": 1.546,
+    "populismo": 0.461,
+    "votos": 70580,
+    "votos_porcentaje": 18.540116841087713,
+    "filiacion_politica": "progresistas",
+    "color": "#008000"
+  },
+  {
+    "agrupacion": "FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+    "economico": -1.991,
+    "progresismo": 2.325,
+    "populismo": 0.723,
+    "votos": 30672,
+    "votos_porcentaje": 8.056991552137182,
+    "filiacion_politica": "marxistas",
+    "color": "#ff0000"
+  }
+]

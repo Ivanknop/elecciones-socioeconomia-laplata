@@ -1,0 +1,52 @@
+[
+  {
+    "agrupacion": "ALIANZA FRENTE PARA LA VICTORIA",
+    "economico": -1.686,
+    "progresismo": 2.097,
+    "populismo": 0.871,
+    "votos": 150988,
+    "votos_porcentaje": 45.639012063561154,
+    "filiacion_politica": "peronistas",
+    "color": "#b2ffff"
+  },
+  {
+    "agrupacion": "ALIANZA FRENTE AMPLIO PROGRESISTA",
+    "economico": -1.268,
+    "progresismo": 1.642,
+    "populismo": 0.492,
+    "votos": 58629,
+    "votos_porcentaje": 17.721737080261523,
+    "filiacion_politica": "progresistas",
+    "color": "#008000"
+  },
+  {
+    "agrupacion": "NUEVO ENCUENTRO",
+    "economico": -1.991,
+    "progresismo": 1.557,
+    "populismo": 0.821,
+    "votos": 16923,
+    "votos_porcentaje": 5.1153005613137825,
+    "filiacion_politica": "progresistas",
+    "color": "#10ff10"
+  },
+  {
+    "agrupacion": "ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+    "economico": -1.991,
+    "progresismo": 2.325,
+    "populismo": 0.723,
+    "votos": 13642,
+    "votos_porcentaje": 4.123555531374025,
+    "filiacion_politica": "marxistas",
+    "color": "#ff0000"
+  },
+  {
+    "agrupacion": "COALICIÓN CÍVICA - AFIRMACIÓN PARA UNA REPÚBLICA IGUALITARIA ARI",
+    "economico": 0.452,
+    "progresismo": 0.299,
+    "populismo": 0.372,
+    "votos": 9606,
+    "votos_porcentaje": 2.903597304968398,
+    "filiacion_politica": "otros",
+    "color": "#808080"
+  }
+]

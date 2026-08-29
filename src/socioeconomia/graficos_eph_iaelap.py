@@ -372,6 +372,22 @@ def graficar_desocupacion_por_edad(data_dir: Path | str, marcar_cortes: bool = T
     return fig
 
 
+def datos_iaelap_general(data_dir: Path | str) -> list[dict]:
+    """Filas de `graficar_iaelap_general` -- contrato de datos versionado
+    (`graficos/socioeconomia/iaelap_general.json`) para reconstruir el
+    gráfico sin recalcular; el PNG es conveniencia local, no trackeado."""
+    filas = _leer_csv(Path(data_dir) / "iaelap_la_plata.csv")
+    return [
+        {
+            "anio": int(f["anio"]),
+            "trimestre": int(f["trimestre"]),
+            "etiqueta": _etiqueta_trimestre(f["anio"], f["trimestre"]),
+            "var_interanual_pct": float(f["var_interanual_pct"]) if f["var_interanual_pct"] else None,
+        }
+        for f in filas
+    ]
+
+
 def graficar_iaelap_general(data_dir: Path | str, ax=None):
     """Variación % interanual IAELaP. Barras; no incluye el nivel del
     índice ni cortes metodológicos de la EPH."""
@@ -396,6 +412,25 @@ def graficar_iaelap_general(data_dir: Path | str, ax=None):
     _quitar_spines(ax)
     ax.figure.tight_layout()
     return ax.figure
+
+
+def datos_iaelap_sectorial(
+    data_dir: Path | str, periodo_tipo: str, anio: int, trimestre: int | None = None
+) -> list[dict]:
+    """Filas de `graficar_iaelap_sectorial` (mismo filtro/orden) -- contrato
+    de datos versionado para reconstruir el gráfico sin recalcular; el PNG
+    es conveniencia local, no trackeado."""
+    filas = _leer_csv(Path(data_dir) / "iaelap_la_plata_ramas.csv")
+    filas = [
+        f
+        for f in filas
+        if f["periodo_tipo"] == periodo_tipo
+        and f["anio"] == str(anio)
+        and (trimestre is None or f["trimestre"] == str(trimestre))
+        and f["rama"] != "IAELaP"
+    ]
+    filas.sort(key=lambda f: float(f["var_interanual_pct"]))
+    return [{"rama": f["rama"], "var_interanual_pct": float(f["var_interanual_pct"])} for f in filas]
 
 
 def graficar_iaelap_sectorial(

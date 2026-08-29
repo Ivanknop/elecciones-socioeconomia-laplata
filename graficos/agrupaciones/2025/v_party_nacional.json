@@ -1,0 +1,82 @@
+[
+  {
+    "agrupacion": "ALIANZA LA LIBERTAD AVANZA",
+    "economico": 2.641,
+    "progresismo": -1.26,
+    "populismo": 0.237,
+    "votos": 173880,
+    "votos_porcentaje": 44.146433730840805,
+    "filiacion_politica": "liberales",
+    "color": "#3f0080"
+  },
+  {
+    "agrupacion": "ALIANZA FUERZA PATRIA",
+    "economico": -0.465,
+    "progresismo": 1.069,
+    "populismo": 0.642,
+    "votos": 153163,
+    "votos_porcentaje": 38.88658977177807,
+    "filiacion_politica": "peronistas",
+    "color": "#b2ffff"
+  },
+  {
+    "agrupacion": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+    "economico": -1.991,
+    "progresismo": 2.325,
+    "populismo": 0.723,
+    "votos": 21472,
+    "votos_porcentaje": 5.451531085050689,
+    "filiacion_politica": "marxistas",
+    "color": "#800000"
+  },
+  {
+    "agrupacion": "COALICIÓN CÍVICA - A.R.I.",
+    "economico": 0.452,
+    "progresismo": 0.288,
+    "populismo": 0.403,
+    "votos": 4054,
+    "votos_porcentaje": 1.0292710049737097,
+    "filiacion_politica": "otros",
+    "color": "#808080"
+  },
+  {
+    "agrupacion": "MOVIMIENTO POLÍTICO SOCIAL Y CULTURAL PROYECTO SUR",
+    "economico": -1.412,
+    "progresismo": 1.557,
+    "populismo": 0.723,
+    "votos": 2243,
+    "votos_porcentaje": 0.5694757928357254,
+    "filiacion_politica": "progresistas",
+    "color": "#008000"
+  },
+  {
+    "agrupacion": "MOVIMIENTO AVANZADA SOCIALISTA",
+    "economico": -1.991,
+    "progresismo": 2.325,
+    "populismo": 0.723,
+    "votos": 1824,
+    "votos_porcentaje": 0.46309578516824035,
+    "filiacion_politica": "marxistas",
+    "color": "#ff8f8f"
+  },
+  {
+    "agrupacion": "UNIÓN LIBERAL",
+    "economico": 2.641,
+    "progresismo": -1.26,
+    "populismo": 0.237,
+    "votos": 1634,
+    "votos_porcentaje": 0.41485664087988194,
+    "filiacion_politica": "liberales",
+    "color": "#c78fff"
+  },
+  {
+    "agrupacion": "LIBER.AR",
+    "economico": 2.641,
+    "progresismo": -1.26,
+    "populismo": 0.237,
+    "votos": 584,
+    "votos_porcentaje": 0.14827189612842784,
+    "filiacion_politica": "liberales",
+    "color": "#8308ff"
+  }
+]

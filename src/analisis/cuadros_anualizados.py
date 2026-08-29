@@ -25,6 +25,11 @@ from analisis.graficos import (
 from constantes import CARGO_LABEL, DATA_DISTRITO_DIR
 
 NIVELES_POR_ANIO = {
+    2001: ["nacional", "provincial", "municipal"],
+    2003: ["presidente", "gobernador", "intendente"],
+    2005: ["nacional", "provincial", "municipal"],
+    2007: ["presidente", "gobernador", "intendente"],
+    2009: ["nacional", "provincial", "municipal"],
     2011: ["presidente", "gobernador", "intendente"],
     2013: ["nacional", "provincial", "municipal"],
     2015: ["presidente", "gobernador", "intendente"],

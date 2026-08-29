@@ -1,7 +1,6 @@
 """Tests de `src/analisis/totales_por_lista.py`: combinador puro que agrega
-BLANCO + NULO al resultado total por agrupación -- la parte de renderizado
-matplotlib (`graficar_totales_por_lista`) sigue sin tests automatizados, se
-valida corriendo el script contra `data/` real (ver CLAUDE.md).
+BLANCO + NULO al resultado total por agrupación -- capa de datos compartida
+por otros módulos, sin gráficos propios (ver CLAUDE.md).
 """
 import json
 

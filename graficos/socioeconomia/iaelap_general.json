@@ -1,0 +1,194 @@
+[
+  {
+    "anio": 2018,
+    "trimestre": 1,
+    "etiqueta": "2018T1",
+    "var_interanual_pct": 2.8
+  },
+  {
+    "anio": 2018,
+    "trimestre": 2,
+    "etiqueta": "2018T2",
+    "var_interanual_pct": -3.2
+  },
+  {
+    "anio": 2018,
+    "trimestre": 3,
+    "etiqueta": "2018T3",
+    "var_interanual_pct": -6.7
+  },
+  {
+    "anio": 2018,
+    "trimestre": 4,
+    "etiqueta": "2018T4",
+    "var_interanual_pct": -8.5
+  },
+  {
+    "anio": 2019,
+    "trimestre": 1,
+    "etiqueta": "2019T1",
+    "var_interanual_pct": -10.4
+  },
+  {
+    "anio": 2019,
+    "trimestre": 2,
+    "etiqueta": "2019T2",
+    "var_interanual_pct": -7.0
+  },
+  {
+    "anio": 2019,
+    "trimestre": 3,
+    "etiqueta": "2019T3",
+    "var_interanual_pct": -4.6
+  },
+  {
+    "anio": 2019,
+    "trimestre": 4,
+    "etiqueta": "2019T4",
+    "var_interanual_pct": 0.6
+  },
+  {
+    "anio": 2020,
+    "trimestre": 1,
+    "etiqueta": "2020T1",
+    "var_interanual_pct": -8.0
+  },
+  {
+    "anio": 2020,
+    "trimestre": 2,
+    "etiqueta": "2020T2",
+    "var_interanual_pct": -22.1
+  },
+  {
+    "anio": 2020,
+    "trimestre": 3,
+    "etiqueta": "2020T3",
+    "var_interanual_pct": -15.3
+  },
+  {
+    "anio": 2020,
+    "trimestre": 4,
+    "etiqueta": "2020T4",
+    "var_interanual_pct": -3.5
+  },
+  {
+    "anio": 2021,
+    "trimestre": 1,
+    "etiqueta": "2021T1",
+    "var_interanual_pct": 3.0
+  },
+  {
+    "anio": 2021,
+    "trimestre": 2,
+    "etiqueta": "2021T2",
+    "var_interanual_pct": 27.9
+  },
+  {
+    "anio": 2021,
+    "trimestre": 3,
+    "etiqueta": "2021T3",
+    "var_interanual_pct": 14.3
+  },
+  {
+    "anio": 2021,
+    "trimestre": 4,
+    "etiqueta": "2021T4",
+    "var_interanual_pct": 6.9
+  },
+  {
+    "anio": 2022,
+    "trimestre": 1,
+    "etiqueta": "2022T1",
+    "var_interanual_pct": 5.3
+  },
+  {
+    "anio": 2022,
+    "trimestre": 2,
+    "etiqueta": "2022T2",
+    "var_interanual_pct": 3.9
+  },
+  {
+    "anio": 2022,
+    "trimestre": 3,
+    "etiqueta": "2022T3",
+    "var_interanual_pct": 1.2
+  },
+  {
+    "anio": 2022,
+    "trimestre": 4,
+    "etiqueta": "2022T4",
+    "var_interanual_pct": 2.3
+  },
+  {
+    "anio": 2023,
+    "trimestre": 1,
+    "etiqueta": "2023T1",
+    "var_interanual_pct": 2.0
+  },
+  {
+    "anio": 2023,
+    "trimestre": 2,
+    "etiqueta": "2023T2",
+    "var_interanual_pct": 1.5
+  },
+  {
+    "anio": 2023,
+    "trimestre": 3,
+    "etiqueta": "2023T3",
+    "var_interanual_pct": 0.2
+  },
+  {
+    "anio": 2023,
+    "trimestre": 4,
+    "etiqueta": "2023T4",
+    "var_interanual_pct": -5.8
+  },
+  {
+    "anio": 2024,
+    "trimestre": 1,
+    "etiqueta": "2024T1",
+    "var_interanual_pct": -7.3
+  },
+  {
+    "anio": 2024,
+    "trimestre": 2,
+    "etiqueta": "2024T2",
+    "var_interanual_pct": -5.8
+  },
+  {
+    "anio": 2024,
+    "trimestre": 3,
+    "etiqueta": "2024T3",
+    "var_interanual_pct": -2.4
+  },
+  {
+    "anio": 2024,
+    "trimestre": 4,
+    "etiqueta": "2024T4",
+    "var_interanual_pct": null
+  },
+  {
+    "anio": 2025,
+    "trimestre": 1,
+    "etiqueta": "2025T1",
+    "var_interanual_pct": 4.2
+  },
+  {
+    "anio": 2025,
+    "trimestre": 2,
+    "etiqueta": "2025T2",
+    "var_interanual_pct": 3.8
+  },
+  {
+    "anio": 2025,
+    "trimestre": 3,
+    "etiqueta": "2025T3",
+    "var_interanual_pct": 2.2
+  },
+  {
+    "anio": 2025,
+    "trimestre": 4,
+    "etiqueta": "2025T4",
+    "var_interanual_pct": -0.9
+  }
+]

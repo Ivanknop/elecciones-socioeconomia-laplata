@@ -1,7 +1,8 @@
 """Cuadrantes ideológicos nacionales V-Party (económico × progresismo,
-tamaño = populismo), Diputados 2011-2019. Fórmulas y fuente detalladas en
+tamaño = populismo), Diputados 2001-2019. Fórmulas y fuente detalladas en
 `docs/vparty_cuadrantes.md`."""
 import argparse
+import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -10,6 +11,10 @@ import pandas as pd
 from constantes import VPARTY_PATH
 
 RUTA_DATOS = Path(VPARTY_PATH)
+# El JSON (`obtener_tuplas`) es el artefacto versionado -- contrato de datos
+# para reconstruir la visualización más adelante. El PNG es conveniencia
+# local, no se trackea (ver .gitignore).
+RUTA_SALIDA_JSON = Path("graficos/agrupaciones/vparty_cuadrantes_economico_progresismo_populismo.json")
 RUTA_SALIDA = Path("graficos/agrupaciones/vparty_cuadrantes_economico_progresismo_populismo.png")
 
 # Columnas fuente de V-Party usadas para construir la tupla.
@@ -25,8 +30,14 @@ TAMANO = "populismo"
 # Radio del punto (en puntos^2 de área, para scatter) según populismo.
 RADIO_MIN, RADIO_MAX = 60, 500
 
-# Orden fijo, una entrada por elección presente en el dataset (2011-2019).
+# Orden fijo, una entrada por elección presente en el dataset (2001-2019),
+# paleta "deep" de seaborn (10 colores).
 COLOR_POR_ANIO = {
+    2001: "#937860",
+    2003: "#DA8BC3",
+    2005: "#8C8C8C",
+    2007: "#CCB974",
+    2009: "#64B5CD",
     2011: "#4C72B0",
     2013: "#DD8452",
     2015: "#55A868",
@@ -170,7 +181,7 @@ def graficar_cuadrantes(
     color_por_anio: dict[int, str] | None = None,
     titulo: str = (
         "Fuerzas políticas argentinas: económico × progresismo social (tamaño = populismo)\n"
-        "Elecciones a Diputados 2011-2019 (V-Party, V-Dem Institute)"
+        "Elecciones a Diputados 2001-2019 (V-Party, V-Dem Institute)"
     ),
     xlabel: str = "Izquierda / Estatismo ← Regulación económica (v2pariglef) → Derecha / Mercado",
     ylabel: str = "Conservador ← Índice de progresismo social → Progresista",
@@ -262,12 +273,30 @@ def graficar_cuadrantes(
     return ruta_salida
 
 
+def _tuplas_a_registros(tuplas: dict[tuple[str, int], tuple[float, float, float]]) -> list[dict]:
+    """`obtener_tuplas()` a lista de registros serializable en JSON (las
+    claves tupla (sigla, año) no son válidas como clave JSON)."""
+    return [
+        {"sigla": sigla, "anio": anio, EJE_X: econ, EJE_Y: prog, TAMANO: pop}
+        for (sigla, anio), (econ, prog, pop) in tuplas.items()
+    ]
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.parse_args()
+    total = len(pd.read_csv(RUTA_DATOS))
     df = cargar_posiciones()
+
+    RUTA_SALIDA_JSON.parent.mkdir(parents=True, exist_ok=True)
+    RUTA_SALIDA_JSON.write_text(
+        json.dumps(_tuplas_a_registros(obtener_tuplas(df)), ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
     ruta = graficar_cuadrantes(df)
-    print(f"Gráfico guardado en {ruta} ({len(df)} de 35 fuerzas graficadas)")
+    print(f"Gráfico guardado en {ruta} ({len(df)} de {total} fuerzas graficadas)")
+    print(f"JSON guardado en {RUTA_SALIDA_JSON}")
 
 
 if __name__ == "__main__":

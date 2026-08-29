@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -117,18 +118,46 @@ def graficar_serie_temporal_filiacion(data_dir: Path | str, agrupaciones_dir: Pa
     return ax.figure
 
 
+def _serie_filiacion_a_json(puntos: list[tuple[int, str]], serie: dict, totales: list) -> dict:
+    """Contrato de datos versionado para reconstruir
+    `graficar_serie_temporal_filiacion` sin recalcular -- mismo filtro de
+    filiaciones sin votos que aplica el gráfico, mismos % del padrón."""
+    categorias = {}
+    for filiacion in _COLOR_FILIACION:
+        valores = serie[filiacion]
+        if not any(valores):
+            continue
+        categorias[filiacion] = [v / t * 100 if t else 0 for v, t in zip(valores, totales)]
+    for categoria in CATEGORIAS_NO_IDEOLOGICAS:
+        valores = serie[categoria]
+        categorias[categoria] = [v / t * 100 if t else 0 for v, t in zip(valores, totales)]
+    return {
+        "anios": [a for a, _ in puntos],
+        "cargos": [c for _, c in puntos],
+        "totales": totales,
+        "categorias": categorias,
+    }
+
+
 def generar_serie_temporal_filiacion(
     data_dir: Path | str, agrupaciones_dir: Path | str, graficos_dir: Path | str, nivel: str
 ) -> Path:
     salida = Path(graficos_dir) / "serie_temporal"
     salida.mkdir(parents=True, exist_ok=True)
 
+    puntos, serie, totales = _serie_por_anio_filiacion(data_dir, agrupaciones_dir, nivel)
+    destino_json = salida / f"{nivel}_filiacion_porcentaje.json"
+    destino_json.write_text(
+        json.dumps(_serie_filiacion_a_json(puntos, serie, totales), ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
     fig = graficar_serie_temporal_filiacion(data_dir, agrupaciones_dir, nivel)
     destino = salida / f"{nivel}_filiacion_porcentaje.png"
     fig.savefig(destino, dpi=100)
     plt.close(fig)
 
-    return destino
+    return destino_json
 
 
 def main():

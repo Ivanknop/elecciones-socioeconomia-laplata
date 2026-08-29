@@ -103,7 +103,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--anio", type=int, help="si se omite, corre todos los años disponibles")
     parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
-    parser.add_argument("--salida-dir", default="graficos/distrito/totales_por_lista/comparativos_nivel")
+    parser.add_argument("--salida-dir", default="graficos/distrito/comparativos_nivel")
     args = parser.parse_args()
 
     anios = [args.anio] if args.anio else sorted(NIVELES_POR_ANIO)

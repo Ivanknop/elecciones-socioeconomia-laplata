@@ -1,0 +1,62 @@
+[
+  {
+    "agrupacion": "FRENTE RENOVADOR",
+    "economico": 0.376,
+    "progresismo": -0.016,
+    "populismo": 0.363,
+    "votos": 123696,
+    "votos_porcentaje": 31.4410480349345,
+    "filiacion_politica": "peronistas",
+    "color": "#8fffff"
+  },
+  {
+    "agrupacion": "FRENTE PARA LA VICTORIA",
+    "economico": -1.663,
+    "progresismo": 2.033,
+    "populismo": 0.872,
+    "votos": 68432,
+    "votos_porcentaje": 17.394045071195816,
+    "filiacion_politica": "peronistas",
+    "color": "#59ffff"
+  },
+  {
+    "agrupacion": "FRENTE PROGRESISTA CIVICO Y SOCIAL",
+    "economico": -0.692,
+    "progresismo": 1.546,
+    "populismo": 0.461,
+    "votos": 64167,
+    "votos_porcentaje": 16.30996741412529,
+    "filiacion_politica": "progresistas",
+    "color": "#008000"
+  },
+  {
+    "agrupacion": "FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+    "economico": -1.991,
+    "progresismo": 2.325,
+    "populismo": 0.723,
+    "votos": 27416,
+    "votos_porcentaje": 6.968598604043495,
+    "filiacion_politica": "marxistas",
+    "color": "#ff0000"
+  },
+  {
+    "agrupacion": "FRENTE CIUDAD NUEVA",
+    "economico": -1.991,
+    "progresismo": 1.557,
+    "populismo": 0.821,
+    "votos": 20258,
+    "votos_porcentaje": 5.149178236092542,
+    "filiacion_politica": "peronistas",
+    "color": "#23ffff"
+  },
+  {
+    "agrupacion": "ESPACIO UNION PRO",
+    "economico": 1.401,
+    "progresismo": -0.142,
+    "populismo": 0.186,
+    "votos": 11193,
+    "votos_porcentaje": 2.8450366273365493,
+    "filiacion_politica": "liberales",
+    "color": "#7f00ff"
+  }
+]

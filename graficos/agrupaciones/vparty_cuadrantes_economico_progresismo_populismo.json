@@ -1,0 +1,324 @@
+[
+  {
+    "sigla": "FREPASO",
+    "anio": 2001,
+    "economico": -0.98,
+    "progresismo": 1.195,
+    "populismo": 0.534
+  },
+  {
+    "sigla": "PJ",
+    "anio": 2001,
+    "economico": 0.544,
+    "progresismo": 0.05,
+    "populismo": 0.503
+  },
+  {
+    "sigla": "UCR",
+    "anio": 2001,
+    "economico": 0.262,
+    "progresismo": 0.755,
+    "populismo": 0.288
+  },
+  {
+    "sigla": "ARI",
+    "anio": 2001,
+    "economico": -0.836,
+    "progresismo": 1.036,
+    "populismo": 0.537
+  },
+  {
+    "sigla": "PJ",
+    "anio": 2003,
+    "economico": -0.416,
+    "progresismo": 0.268,
+    "populismo": 0.658
+  },
+  {
+    "sigla": "UCR",
+    "anio": 2003,
+    "economico": 0.039,
+    "progresismo": 0.895,
+    "populismo": 0.338
+  },
+  {
+    "sigla": "ARI",
+    "anio": 2003,
+    "economico": -0.606,
+    "progresismo": 1.103,
+    "populismo": 0.538
+  },
+  {
+    "sigla": "FPV-PJ",
+    "anio": 2005,
+    "economico": -1.541,
+    "progresismo": 1.669,
+    "populismo": 0.791
+  },
+  {
+    "sigla": "UCR",
+    "anio": 2005,
+    "economico": 0.032,
+    "progresismo": 0.829,
+    "populismo": 0.356
+  },
+  {
+    "sigla": "PRO",
+    "anio": 2005,
+    "economico": 1.661,
+    "progresismo": -0.463,
+    "populismo": 0.176
+  },
+  {
+    "sigla": "ARI",
+    "anio": 2005,
+    "economico": -0.605,
+    "progresismo": 1.224,
+    "populismo": 0.529
+  },
+  {
+    "sigla": "CC",
+    "anio": 2007,
+    "economico": -0.253,
+    "progresismo": 0.483,
+    "populismo": 0.468
+  },
+  {
+    "sigla": "FORJA",
+    "anio": 2007,
+    "economico": -0.829,
+    "progresismo": 0.864,
+    "populismo": 0.456
+  },
+  {
+    "sigla": "FPV-PJ",
+    "anio": 2007,
+    "economico": -1.659,
+    "progresismo": 1.781,
+    "populismo": 0.803
+  },
+  {
+    "sigla": "UCR",
+    "anio": 2007,
+    "economico": 0.039,
+    "progresismo": 0.874,
+    "populismo": 0.354
+  },
+  {
+    "sigla": "PS",
+    "anio": 2007,
+    "economico": -1.683,
+    "progresismo": 2.154,
+    "populismo": 0.481
+  },
+  {
+    "sigla": "CC",
+    "anio": 2009,
+    "economico": -0.032,
+    "progresismo": 0.469,
+    "populismo": 0.452
+  },
+  {
+    "sigla": "FPV-PJ",
+    "anio": 2009,
+    "economico": -1.664,
+    "progresismo": 1.831,
+    "populismo": 0.871
+  },
+  {
+    "sigla": "UCR",
+    "anio": 2009,
+    "economico": 0.175,
+    "progresismo": 0.876,
+    "populismo": 0.351
+  },
+  {
+    "sigla": "PRO",
+    "anio": 2009,
+    "economico": 1.519,
+    "progresismo": -0.224,
+    "populismo": 0.139
+  },
+  {
+    "sigla": "PF-PJ",
+    "anio": 2011,
+    "economico": 0.447,
+    "progresismo": -0.547,
+    "populismo": 0.375
+  },
+  {
+    "sigla": "FPV-PJ",
+    "anio": 2011,
+    "economico": -1.686,
+    "progresismo": 2.097,
+    "populismo": 0.871
+  },
+  {
+    "sigla": "UCR",
+    "anio": 2011,
+    "economico": 0.185,
+    "progresismo": 0.925,
+    "populismo": 0.351
+  },
+  {
+    "sigla": "PRO",
+    "anio": 2011,
+    "economico": 1.535,
+    "progresismo": -0.238,
+    "populismo": 0.139
+  },
+  {
+    "sigla": "Frente Ampli...",
+    "anio": 2011,
+    "economico": -1.268,
+    "progresismo": 1.642,
+    "populismo": 0.492
+  },
+  {
+    "sigla": "FPV-PJ",
+    "anio": 2013,
+    "economico": -1.663,
+    "progresismo": 2.033,
+    "populismo": 0.872
+  },
+  {
+    "sigla": "FPCyS",
+    "anio": 2013,
+    "economico": -0.692,
+    "progresismo": 1.546,
+    "populismo": 0.461
+  },
+  {
+    "sigla": "RF",
+    "anio": 2013,
+    "economico": 0.376,
+    "progresismo": -0.015,
+    "populismo": 0.363
+  },
+  {
+    "sigla": "PRO",
+    "anio": 2013,
+    "economico": 1.535,
+    "progresismo": -0.237,
+    "populismo": 0.138
+  },
+  {
+    "sigla": "CC",
+    "anio": 2015,
+    "economico": 0.452,
+    "progresismo": 0.299,
+    "populismo": 0.372
+  },
+  {
+    "sigla": "FPV-PJ",
+    "anio": 2015,
+    "economico": -1.659,
+    "progresismo": 1.961,
+    "populismo": 0.848
+  },
+  {
+    "sigla": "UCR",
+    "anio": 2015,
+    "economico": 0.483,
+    "progresismo": 0.915,
+    "populismo": 0.266
+  },
+  {
+    "sigla": "RF",
+    "anio": 2015,
+    "economico": 0.376,
+    "progresismo": 0.079,
+    "populismo": 0.407
+  },
+  {
+    "sigla": "PRO",
+    "anio": 2015,
+    "economico": 1.427,
+    "progresismo": 0.001,
+    "populismo": 0.148
+  },
+  {
+    "sigla": "CU",
+    "anio": 2017,
+    "economico": -1.662,
+    "progresismo": 1.533,
+    "populismo": 0.67
+  },
+  {
+    "sigla": "CC",
+    "anio": 2017,
+    "economico": 0.452,
+    "progresismo": 0.257,
+    "populismo": 0.346
+  },
+  {
+    "sigla": "FP-PJ",
+    "anio": 2017,
+    "economico": -0.101,
+    "progresismo": 0.947,
+    "populismo": 0.479
+  },
+  {
+    "sigla": "UCR",
+    "anio": 2017,
+    "economico": 0.581,
+    "progresismo": 0.877,
+    "populismo": 0.245
+  },
+  {
+    "sigla": "RF",
+    "anio": 2017,
+    "economico": 0.369,
+    "progresismo": 0.123,
+    "populismo": 0.43
+  },
+  {
+    "sigla": "PRO",
+    "anio": 2017,
+    "economico": 1.418,
+    "progresismo": -0.055,
+    "populismo": 0.145
+  },
+  {
+    "sigla": "CC",
+    "anio": 2019,
+    "economico": 0.452,
+    "progresismo": 0.288,
+    "populismo": 0.403
+  },
+  {
+    "sigla": "CF",
+    "anio": 2019,
+    "economico": 0.073,
+    "progresismo": 0.34,
+    "populismo": 0.329
+  },
+  {
+    "sigla": "FP-PJ",
+    "anio": 2019,
+    "economico": -0.465,
+    "progresismo": 1.069,
+    "populismo": 0.642
+  },
+  {
+    "sigla": "UCR",
+    "anio": 2019,
+    "economico": 0.587,
+    "progresismo": 0.926,
+    "populismo": 0.233
+  },
+  {
+    "sigla": "RF",
+    "anio": 2019,
+    "economico": 0.194,
+    "progresismo": 0.256,
+    "populismo": 0.516
+  },
+  {
+    "sigla": "PRO",
+    "anio": 2019,
+    "economico": 1.401,
+    "progresismo": -0.142,
+    "populismo": 0.186
+  }
+]

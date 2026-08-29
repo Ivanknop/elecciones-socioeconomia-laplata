@@ -8,6 +8,7 @@ Uso:
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -98,9 +99,36 @@ def graficar_serie_temporal(data_dir: Path | str, nivel: str, en_porcentaje: boo
     return ax.figure
 
 
+def _serie_a_json(puntos: list[tuple[int, str]], serie: dict, totales: list, en_porcentaje: bool) -> dict:
+    """Contrato de datos versionado para reconstruir `graficar_serie_temporal`
+    sin recalcular -- mismos valores que grafica el PNG (conveniencia local,
+    no trackeado, ver .gitignore)."""
+    categorias = {}
+    for categoria, valores in serie.items():
+        if en_porcentaje:
+            valores = [v / t * 100 if t else 0 for v, t in zip(valores, totales)]
+        categorias[categoria] = valores
+    return {
+        "anios": [a for a, _ in puntos],
+        "cargos": [c for _, c in puntos],
+        "totales": totales,
+        "categorias": categorias,
+    }
+
+
 def generar_serie_temporal(data_dir: Path | str, graficos_dir: Path | str, nivel: str) -> Path:
     salida = Path(graficos_dir) / "serie_temporal"
     salida.mkdir(parents=True, exist_ok=True)
+
+    puntos, serie, totales = _serie_por_anio(data_dir, nivel)
+    (salida / f"{nivel}_votos.json").write_text(
+        json.dumps(_serie_a_json(puntos, serie, totales, en_porcentaje=False), ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    (salida / f"{nivel}_porcentaje.json").write_text(
+        json.dumps(_serie_a_json(puntos, serie, totales, en_porcentaje=True), ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
     fig = graficar_serie_temporal(data_dir, nivel, en_porcentaje=False)
     fig.savefig(salida / f"{nivel}_votos.png", dpi=100)

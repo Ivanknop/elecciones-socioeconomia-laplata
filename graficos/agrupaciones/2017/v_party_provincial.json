@@ -1,0 +1,62 @@
+[
+  {
+    "agrupacion": "CAMBIEMOS BUENOS AIRES",
+    "economico": 1.418,
+    "progresismo": -0.055,
+    "populismo": 0.145,
+    "votos": 203085,
+    "votos_porcentaje": 48.35967395885671,
+    "filiacion_politica": "liberales",
+    "color": "#7f00ff"
+  },
+  {
+    "agrupacion": "UNIDAD CIUDADANA",
+    "economico": -1.662,
+    "progresismo": 1.533,
+    "populismo": 0.67,
+    "votos": 116809,
+    "votos_porcentaje": 27.81517667705687,
+    "filiacion_politica": "peronistas",
+    "color": "#8fffff"
+  },
+  {
+    "agrupacion": "1PAIS",
+    "economico": 0.369,
+    "progresismo": 0.123,
+    "populismo": 0.43,
+    "votos": 37562,
+    "votos_porcentaje": 8.944462039257335,
+    "filiacion_politica": "peronistas",
+    "color": "#23ffff"
+  },
+  {
+    "agrupacion": "FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES",
+    "economico": -1.991,
+    "progresismo": 2.325,
+    "populismo": 0.723,
+    "votos": 26516,
+    "votos_porcentaje": 6.314130116419453,
+    "filiacion_politica": "marxistas",
+    "color": "#ff0000"
+  },
+  {
+    "agrupacion": "FRENTE JUSTICIALISTA",
+    "economico": -0.101,
+    "progresismo": 0.947,
+    "populismo": 0.479,
+    "votos": 24095,
+    "votos_porcentaje": 5.737628796014735,
+    "filiacion_politica": "peronistas",
+    "color": "#59ffff"
+  },
+  {
+    "agrupacion": "PATRIA GRANDE",
+    "economico": -1.991,
+    "progresismo": 1.557,
+    "populismo": 0.821,
+    "votos": 8290,
+    "votos_porcentaje": 1.974058631208224,
+    "filiacion_politica": "progresistas",
+    "color": "#008000"
+  }
+]
