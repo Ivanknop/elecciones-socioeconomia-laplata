@@ -1,4 +1,4 @@
-# V-Party (V-Dem Institute) — partidos argentinos 2011-2019
+# V-Party (V-Dem Institute) — partidos argentinos 2001-2019
 
 ## Fuentes de `vparty_economico`/`progresismo`/`populismo` en `clasificacion_ideologica_agrupaciones.csv`
 
@@ -20,7 +20,7 @@ nuevas a `clasificacion_ideologica_agrupaciones.csv` o se corrige
 cada fila documentada tiene un único origen — nunca se mezcla un valor
 real de V-Party con uno estimado.
 
-**1 — Cruce directo con V-Party** (`v_party_argentina_2011_2019_espaniol.csv`),
+**1 — Cruce directo con V-Party** (`v_party_argentina_2001_2019_espaniol.csv`),
 por nombre exacto de agrupación normalizado (mayúsculas, sin acentos, sin
 puntuación) en el mismo año — 8 partidos, 62 filas:
 
@@ -135,6 +135,17 @@ completo tiene 11.898 filas, que coincide exactamente con lo que declara
 el codebook oficial ("3467 parties... 11898 party-election year units"),
 confirmando que es el dataset V-Party v2 genuino y sin recortar.
 
+`src/analisis/generar_v_party_argentina.py` descarga (con caché en
+`data/agrupaciones/v-party/cache/vparty.RData`, gitignoreado), filtra
+Argentina 2001-2019 y escribe los dos CSV de abajo, incluyendo la
+traducción `v2paenname_espaniol` (join estricto contra un diccionario
+`TRADUCCIONES` en el propio script — falla si aparece un partido nuevo
+sin traducir, mismo criterio que `campo_ideologico`). Comando:
+
+```bash
+PYTHONPATH=src python -m analisis.generar_v_party_argentina [--anio-min 2001] [--anio-max 2019] [--forzar-descarga]
+```
+
 Codebook de referencia (no versionado en este repo, solo citado):
 `https://www.v-dem.net/documents/6/vparty_codebook_v2.pdf` — "Codebook
 Varieties of Party Identity and Organization (V-Party) V2", Lindberg et
@@ -146,10 +157,10 @@ al. 2022, V-Dem Institute, Universidad de Gotemburgo.
   Party Survey, no son producto de V-Dem) están **vacías o casi vacías**
   para Argentina: `ep_people_vs_elite`, `ep_galtan`, `ep_antielite_salience`,
   `ep_corrupt_salience`, `ep_members_vs_leadership`, `ep_galtan_salience`
-  (CHES) tienen 0/35 valores — CHES no cubre Latinoamérica.
+  (CHES) tienen 0/56 valores — CHES no cubre Latinoamérica.
   `ep_type_populism`, `ep_type_populist_values`, `ep_v8_popul_rhetoric`,
   `ep_v9_popul_saliency`, `ep_v6_lib_cons`, `ep_v7_lib_cons_saliency`
-  (Global Party Survey, Norris 2020) tienen apenas 2/35.
+  (Global Party Survey, Norris 2020) tienen apenas 2/56.
 - Cada variable tipo C (codificada por expertos país) trae, cuando
   aplica, la familia completa de sufijos del modelo de medición V-Dem:
   `_codelow`/`_codehigh` (intervalo HPD 68%), `_sd`, `_osp` (+ sus
@@ -161,9 +172,9 @@ al. 2022, V-Dem Institute, Universidad de Gotemburgo.
   invoca religión siempre, 4 = nunca.
 
 
-## `vparty_argentina_2011_2019_variables_solicitadas.csv` (nunca existió en este repo, ver nota al inicio)
+## `vparty_argentina_2001_2019_variables_solicitadas.csv` (nunca existió en este repo, ver nota al inicio)
 
-Derivado del CSV completo de arriba: mismas 35 filas, recortado a
+Derivado del CSV completo de arriba: mismas 56 filas, recortado a
 identificadores de partido/elección + solo el **valor puntual** (escala
 del modelo, sin sufijo — la versión que V-Dem recomienda para uso
 estadístico) de las variables de posicionamiento pedidas:
@@ -172,12 +183,12 @@ estadístico) de las variables de posicionamiento pedidas:
 
 Los intervalos de incertidumbre (`_codelow`/`_codehigh`) y las demás
 versiones de escala (`_osp`, `_ord`, etc.) de estas mismas variables
-siguen disponibles en el CSV completo (`vparty_argentina_2011_2019.csv`).
+siguen disponibles en el CSV completo (`v_party_argentina_2001_2019.csv`).
 
-## `v_party_argentina_2011_2019.csv` (gitignoreado, ver nota al inicio)
+## `v_party_argentina_2001_2019.csv` (gitignoreado, ver nota al inicio)
 
 Segundo derivado, calibrado contra un cuestionario propio de expertos.
-Mismas 35 filas, 63 columnas:
+56 filas (una por partido-elección, Argentina 2001-2019), 63 columnas:
 
 - **Identificación**: `v2paenname`, `v2paorname`, `v2pashname`, `year`,
   `historical_date`, `v2pavote` (% de votos, dato de contexto — no es
@@ -190,9 +201,9 @@ Mismas 35 filas, 63 columnas:
   — es un índice derivado (0–1), no tiene versión `_osp`.
 
 
-## `v_party_argentina_2011_2019_espaniol.csv`
+## `v_party_argentina_2001_2019_espaniol.csv`
 
-Mismo archivo que `v_party_argentina_2011_2019.csv` (35 filas, misma
+Mismo archivo que `v_party_argentina_2001_2019.csv` (56 filas, misma
 procedencia, mismas 63 columnas de identificación/posicionamiento) más
 una columna agregada: `v2paenname_espaniol`, la traducción al español de
 `v2paenname` (nombre del partido en inglés) — 64 columnas en total. Es
@@ -200,6 +211,10 @@ una columna agregada: `v2paenname_espaniol`, la traducción al español de
 este repo (`data/agrupaciones/clasificacion_ideologica_agrupaciones.csv`,
 `data/agrupaciones/oficialismos.csv`), porque ahí las agrupaciones están
 en español y el cruce se hace por coincidencia (exacta o cuasi-exacta,
-salvando puntuación) de nombre normalizado — `v_party_argentina_2011_2019.csv`
+salvando puntuación) de nombre normalizado — `v_party_argentina_2001_2019.csv`
 (sin traducir) no sirve para ese propósito y se mantiene sólo por
-procedencia/comparación con el original en inglés.
+procedencia/comparación con el original en inglés. Las filas 2001-2009 no
+tienen cruce directo en `clasificacion_ideologica_agrupaciones.csv`
+porque la capa electoral de este repo (La Plata) sólo arranca en 2011 —
+ver "Fuentes de `vparty_economico`/..." más arriba, que sigue basado
+sólo en las filas 2011-2019.

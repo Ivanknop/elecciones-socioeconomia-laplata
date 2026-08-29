@@ -2,7 +2,7 @@
 
 Documenta `src/analisis/vparty_cuadrantes.py`, que genera
 `graficos/agrupaciones/vparty_cuadrantes_economico_progresismo_populismo.png`
-a partir de `data/agrupaciones/v-party/v_party_argentina_2011_2019.csv`
+a partir de `data/agrupaciones/v-party/v_party_argentina_2001_2019_espaniol.csv`
 (ver el README de esa carpeta para la procedencia del dataset V-Party). No
 es parte del pipeline de notebooks 01→04 
 
@@ -34,25 +34,28 @@ de cada escala.
 `{(sigla, año): (economico, progresismo, populismo)}` por si se necesita
 graficar otro par de ejes sin recalcular.
 
-## Cobertura: 26 de 35 filas partido-elección
+## Cobertura: 46 de 56 filas partido-elección
 
-De las 35 filas partido-elección del CSV fuente, 9 quedan fuera del gráfico por no tener ninguna de las
-variables de posicionamiento:
+De las 56 filas partido-elección del CSV fuente (2001-2019), 10 quedan
+fuera del gráfico por no tener ninguna de las variables de posicionamiento:
 
 - **3 partidos 2011** (`Generation for a National Encounter`, `Popular
   Union`, `Socialist Party`) no llegaron al umbral de cobertura de
   expertos de V-Party (tampoco tienen `v2pavote`).
-- **6 alianzas** (`Let's change`/Cambiemos en 2015/2017/2019 y
-  `alliance: Frente de Todos` en 2019, más las otras dos alianzas sin
-  columna propia) no tienen valor directo: V-Party codifica la identidad
-  de los partidos que integran cada alianza por separado (`Republican
-  Proposal`/PRO y `Radical Civic Union`/UCR dentro de Cambiemos; `Front
-  for Victory`/FPV-PJ y `Frente Justicialista`/PJ dentro de Frente de
-  Todos), no la alianza como entidad.
+- **7 alianzas** (`Aliance for Work, Justice, and Education` en 2001,
+  `Let's change`/Cambiemos en 2015/2017/2019, `alliance: United for a New
+  Alternative` en 2015 y `alliance: Frente de Todos` en 2019, más la
+  restante sin columna propia) no tienen valor directo: V-Party codifica
+  la identidad de los partidos que integran cada alianza por separado
+  (`Radical Civic Union`/UCR y `Justicialist [Peronist] Party`/PJ dentro
+  de la Alianza 2001; `Republican Proposal`/PRO y `Radical Civic
+  Union`/UCR dentro de Cambiemos; `Front for Victory`/FPV-PJ y `Frente
+  Justicialista`/PJ dentro de Frente de Todos), no la alianza como
+  entidad.
 
 ## Fusión de puntos cercanos del mismo partido
 
-Un mismo partido aparece hasta 5 veces (una por elección 2011–2019), y en
+Un mismo partido aparece hasta 9 veces (una por elección 2001–2019), y en
 varios casos su posición prácticamente no se mueve de una elección a la
 otra — graficar cada año por separado sólo agrega puntos superpuestos sin
 información nueva. `_fusionar_por_cercania()` colapsa esos casos en un
@@ -68,13 +71,16 @@ solo punto:
   en dos grupos por un corte arbitrario.
 - El punto resultante **promedia** posición (`economico`, `progresismo`)
   y populismo de las elecciones fusionadas, y la etiqueta lista los años
-  fusionados, p. ej. **"FPV-PJ 2011-2013-2015"** o **"PRO
-  2011-2013-2015-2017-2019"** (el caso extremo: los cinco años de PRO son
-  mutuamente cercanos entre sí).
+  fusionados, p. ej. **"FPV-PJ 2005-2007-2009-2011-2013-2015"** o **"PRO
+  2009-2011-2013-2015-2017-2019"** (el caso extremo: seis elecciones de
+  PRO son mutuamente cercanas entre sí).
 - Un partido puede tener a la vez un punto fusionado y uno o más puntos
-  sueltos si alguna elección se aleja del resto — p. ej. **RF
-  2013-2015-2017** fusionado, con **RF '19** aparte porque ese año se
-  desplazó lo suficiente en el eje de progresismo.
+  sueltos, o incluso dos grupos fusionados separados, si alguna elección
+  (o tramo de elecciones) se aleja del resto — p. ej. **UCR
+  2001-2003-2005-2007-2009-2011** fusionado por un lado y **UCR
+  2015-2017-2019** fusionado por otro (dos épocas distintas del partido);
+  o **RF 2013-2015-2017** fusionado, con **RF '19** aparte porque ese año
+  se desplazó lo suficiente en el eje de progresismo.
 - Los puntos fusionados se pintan en **gris neutro** (`COLOR_FUSIONADO =
   "#4d4d4d"`, leyenda "2+ elecciones (posición promedio)"), a diferencia
   de los puntos de una sola elección, que mantienen el color por año

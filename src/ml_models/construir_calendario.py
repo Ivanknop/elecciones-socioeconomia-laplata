@@ -1,12 +1,7 @@
-"""Calendario electoral 2001-2025, oficialismo por nivel y ventanas de
-transición -- Fase 1 del panel temporal de ventanas electorales (ver
-`docs/especificacion_panel_temporal.md` §3 y `docs/decisiones_metodologicas.md`).
-
-Fechas de elección y datos de oficialismo 2001-2009 son investigación
-propia con fuente citada por fila -- ver
-`docs/adquisicion_datos_especializacion.md` §1.a para el detalle de qué se
-intentó y qué queda sin verificar. 2011-2025 reusa `data/agrupaciones/oficialismos.csv`,
-ya curado.
+"""Calendario electoral 2001-2025, oficialismo por nivel (con fallback
+directo a V-Party pre-2011, ver `ALIAS_VPARTY`) y ventanas de transición --
+Fase 1 del panel temporal. Detalle en `docs/especificacion_panel_temporal.md`
+§3, `docs/decisiones_metodologicas.md` y `docs/adquisicion_datos_especializacion.md` §1.a.
 
 Uso:
     PYTHONPATH=src python -m ml_models.construir_calendario
@@ -26,6 +21,7 @@ from constantes import (
     OFICIALISMOS_PATH,
     OFICIALISMO_POR_NIVEL_PATH,
     VENTANAS_PATH,
+    VPARTY_PATH,
 )
 
 NIVELES = ("municipal", "provincial", "nacional")
@@ -215,16 +211,76 @@ def _cargar_clasificacion(path: Path | str) -> dict[tuple[str, str, str], dict]:
         return {(fila["anio"], fila["agrupacion"], fila["nivel"]): fila for fila in csv.DictReader(f)}
 
 
+# Alias agrupación (este repo, mayúsculas) -> v2paenname (V-Party) para el
+# fallback directo de `_vparty_directo` cuando clasificacion_ideologica_agrupaciones.csv
+# no tiene fila -- siempre el caso pre-2011, ya que ese CSV solo cubre
+# agrupaciones con elección propia de La Plata en `data/distrito/`. Mismo
+# criterio de alias que `data/agrupaciones/v-party/README.md` fuente 3
+# (ALIANZA FRENTE PARA LA VICTORIA == Front for Victory, misma fuerza).
+ALIAS_VPARTY = {
+    "PARTIDO JUSTICIALISTA": "Justicialist [Peronist] Party",
+    "ALIANZA FRENTE PARA LA VICTORIA": "Front for Victory",
+}
+
+# campo_ideologico/filiacion_politica para el fallback directo de
+# ALIAS_VPARTY -- no es una clasificación nueva, es la misma que ya tiene
+# sin excepciones cada otra fila de esta misma familia de partido
+# (Justicialismo/Frente para la Victoria/Frente de Todos) en
+# clasificacion_ideologica_agrupaciones.csv: campo_ideologico=3,
+# filiacion_politica=peronistas.
+CLASIFICACION_VPARTY_DIRECTO = {
+    "PARTIDO JUSTICIALISTA": ("3", "peronistas"),
+    "ALIANZA FRENTE PARA LA VICTORIA": ("3", "peronistas"),
+}
+
+# Misma fórmula que `analisis.vparty_cuadrantes.cargar_posiciones`:
+# económico = v2pariglef tal cual, progresismo = promedio de las 4
+# variables sociales, populismo = v2xpa_popul tal cual.
+_VPARTY_COL_ECONOMICO = "v2pariglef"
+_VPARTY_COLS_PROGRESISMO = ["v2pawomlab", "v2palgbt", "v2paimmig", "v2parelig"]
+_VPARTY_COL_POPULISMO = "v2xpa_popul"
+
+
+def _cargar_vparty_directo(path: Path | str) -> dict[tuple[int, str], tuple[str, str, str]]:
+    """(año, v2paenname) -> (económico, progresismo, populismo) ya
+    calculados, solo para partido-elección con cobertura completa de
+    posicionamiento -- ver `ALIAS_VPARTY`."""
+    resultado = {}
+    with Path(path).open(encoding="utf-8", newline="") as f:
+        for fila in csv.DictReader(f):
+            valores_prog = [fila[c] for c in _VPARTY_COLS_PROGRESISMO]
+            if not fila[_VPARTY_COL_ECONOMICO] or not fila[_VPARTY_COL_POPULISMO] or any(not v for v in valores_prog):
+                continue
+            economico = float(fila[_VPARTY_COL_ECONOMICO])
+            progresismo = sum(float(v) for v in valores_prog) / len(valores_prog)
+            populismo = float(fila[_VPARTY_COL_POPULISMO])
+            anio = int(float(fila["year"]))
+            resultado[(anio, fila["v2paenname"])] = (f"{economico:.3f}", f"{progresismo:.3f}", f"{populismo:.3f}")
+    return resultado
+
+
+def _vparty_directo(
+    vparty: dict[tuple[int, str], tuple[str, str, str]], anio: int, titular: str
+) -> tuple[str, str, str] | None:
+    """V-Party directo para `titular` en `anio` vía `ALIAS_VPARTY`; None si
+    no hay alias o cobertura."""
+    nombre_vparty = ALIAS_VPARTY.get(titular)
+    if nombre_vparty is None:
+        return None
+    return vparty.get((anio, nombre_vparty))
+
+
 def _cargar_oficialismos(path: Path | str) -> dict[tuple[int, str], dict]:
     """(anio, nivel) -> fila de oficialismos.csv (2011-2025, ya curado)."""
     with Path(path).open(encoding="utf-8", newline="") as f:
         return {(int(fila["anio"]), fila["nivel"]): fila for fila in csv.DictReader(f)}
 
 
+# Reusa el mapeo de `totales_por_lista` -- único caso irregular:
+# gobernador->gobernacion.
 def _nivel_csv_del_cargo(nivel: str, cargo: str) -> str:
-    """Traduce (nivel unificado, cargo específico) al valor de `nivel` usado
-    en `clasificacion_ideologica_agrupaciones.csv` -- reusa el mismo mapeo
-    que `totales_por_lista` para el único caso irregular (gobernador->gobernacion)."""
+    """Traduce (nivel, cargo) al valor de `nivel` en
+    `clasificacion_ideologica_agrupaciones.csv`."""
     return NIVEL_A_NIVEL_CSV.get(cargo, cargo)
 
 
@@ -246,33 +302,37 @@ class FilaOficialismo:
     nota: str
 
 
+# Busca por (año en que el titular ganó la ejecutiva, agrupación, cargo
+# ejecutivo del nivel) -- esa es la boleta bajo la que se supo su
+# clasificación, no el año de la fila que se está construyendo.
 def _clasificacion_del_titular(
     clasificacion: dict[tuple[str, str, str], dict], anio_clasificacion: int, titular: str, nivel: str
 ) -> dict | None:
-    """Busca ideología/V-Party del titular por (año en que ganó la
-    ejecutiva, agrupación, cargo ejecutivo del nivel) -- ese es el año y la
-    boleta bajo la que efectivamente se supo su clasificación, no el año de
-    la fila que se está construyendo."""
+    """Busca ideología/V-Party del titular por año de esa victoria (no el
+    año de esta fila)."""
     cargo = _cargo_ejecutivo(nivel)
     nivel_csv = _nivel_csv_del_cargo(nivel, cargo)
     return clasificacion.get((str(anio_clasificacion), titular, nivel_csv))
 
 
+# El titular es un estado que solo cambia en años con elección ejecutiva --
+# en años legislativos no cambia, gane o pierda su lista la banca en juego
+# (eso se resuelve aparte, en `resultado_distrito.gana_oficialismo`, contra
+# los votos reales). 2011+ reusa `oficialismos.csv`; 2001-2009 usa la
+# historia investigada a mano (`_TITULAR_INICIAL_2001`/`_EJECUTIVA_PRE_2011`).
+# Ideología/V-Party: join contra `clasificacion_ideologica_agrupaciones.csv`
+# y, si falta, fallback directo contra `vparty_directo` (`_vparty_directo`/
+# `ALIAS_VPARTY`) -- nunca duplicado a mano. Nivel `nacional` no tiene años
+# pre-2011 (no genera filas ahí).
 def construir_oficialismo_por_nivel(
     calendario: list[FilaCalendario],
     oficialismos_2011_2025: dict[tuple[int, str], dict],
     clasificacion: dict[tuple[str, str, str], dict],
+    vparty_directo: dict[tuple[int, str], tuple[str, str, str]] | None = None,
 ) -> list[FilaOficialismo]:
-    """Titular del Ejecutivo *al momento de cada elección* (antes de su
-    resultado), llevado como estado que solo cambia en años con elección
-    ejecutiva -- en años legislativos el titular no cambia, gane o pierda
-    su lista la banca en juego (eso se resuelve aparte, en
-    `resultado_distrito.gana_oficialismo`, contra los votos reales). 2011+
-    reusa `oficialismos.csv`; 2001-2009 usa la historia investigada a mano
-    (`_TITULAR_INICIAL_2001`/`_EJECUTIVA_PRE_2011`). Ideología/V-Party se
-    resuelven por join contra `clasificacion_ideologica_agrupaciones.csv`,
-    sin duplicar esos atributos a mano. Nivel `nacional` no tiene años
-    pre-2011 (no genera filas ahí)."""
+    """Titular del Ejecutivo al momento de cada elección (no el resultado);
+    ideología/V-Party por join, con fallback a V-Party."""
+    vparty_directo = vparty_directo or {}
     filas = []
     for nivel in NIVELES:
         filas_nivel = sorted((fc for fc in calendario if fc.nivel == nivel), key=lambda fc: fc.anio)
@@ -319,16 +379,26 @@ def construir_oficialismo_por_nivel(
                 nota_extra = f"{nota_extra} Titular anterior a la ventana del panel -- sin año de elección propio para clasificar."
             else:
                 fila_clas = _clasificacion_del_titular(clasificacion, anio_clasificacion_de_esta_fila, agrupacion_oficialismo, nivel)
-                if fila_clas is None:
-                    campo_ideologico = filiacion_politica = ""
-                    vparty_economico = vparty_progresismo = vparty_populismo = ""
-                    nota_extra = f"{nota_extra} Sin fila en clasificacion_ideologica_agrupaciones.csv para {agrupacion_oficialismo!r} -- ideología sin determinar."
-                else:
+                if fila_clas is not None:
                     campo_ideologico = fila_clas.get("campo_ideologico", "")
                     filiacion_politica = fila_clas.get("filiacion_politica", "")
                     vparty_economico = fila_clas.get("vparty_economico", "")
                     vparty_progresismo = fila_clas.get("vparty_progresismo", "")
                     vparty_populismo = fila_clas.get("vparty_populismo", "")
+                else:
+                    fila_vp = _vparty_directo(vparty_directo, anio_clasificacion_de_esta_fila, agrupacion_oficialismo)
+                    if fila_vp is not None:
+                        vparty_economico, vparty_progresismo, vparty_populismo = fila_vp
+                        campo_ideologico, filiacion_politica = CLASIFICACION_VPARTY_DIRECTO.get(agrupacion_oficialismo, ("", ""))
+                        nota_extra = (
+                            f"{nota_extra} Sin fila en clasificacion_ideologica_agrupaciones.csv para "
+                            f"{agrupacion_oficialismo!r}; vparty_*/campo_ideologico/filiacion_politica tomados "
+                            f"directo de V-Party ({anio_clasificacion_de_esta_fila})."
+                        )
+                    else:
+                        campo_ideologico = filiacion_politica = ""
+                        vparty_economico = vparty_progresismo = vparty_populismo = ""
+                        nota_extra = f"{nota_extra} Sin fila en clasificacion_ideologica_agrupaciones.csv para {agrupacion_oficialismo!r} -- ideología sin determinar."
 
             filas.append(
                 FilaOficialismo(
@@ -411,6 +481,7 @@ def generar_csvs(
     ventanas_path: Path | str = VENTANAS_PATH,
     oficialismos_existente_path: Path | str = OFICIALISMOS_PATH,
     clasificacion_path: Path | str = CLASIFICACION_IDEOLOGICA_PATH,
+    vparty_path: Path | str = VPARTY_PATH,
 ) -> tuple[Path, Path, Path]:
     calendario = construir_calendario()
     destino_calendario = _escribir_csv(
@@ -419,7 +490,10 @@ def generar_csvs(
 
     oficialismos_2011_2025 = _cargar_oficialismos(oficialismos_existente_path)
     clasificacion = _cargar_clasificacion(clasificacion_path)
-    oficialismo = construir_oficialismo_por_nivel(calendario, oficialismos_2011_2025, clasificacion)
+    vparty_directo = _cargar_vparty_directo(vparty_path)
+    oficialismo = construir_oficialismo_por_nivel(calendario, oficialismos_2011_2025, clasificacion, vparty_directo)
+    # "nota" queda fuera del CSV a propósito (a diferencia de resultado_distrito.csv):
+    # sigue en FilaOficialismo/tests, solo no se persiste acá.
     destino_oficialismo = _escribir_csv(
         oficialismo_path,
         oficialismo,
@@ -433,7 +507,6 @@ def generar_csvs(
             "vparty_progresismo",
             "vparty_populismo",
             "continuidad_oficialismo",
-            "nota",
         ],
     )
 
