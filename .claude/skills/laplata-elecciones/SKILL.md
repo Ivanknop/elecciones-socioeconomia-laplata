@@ -63,7 +63,7 @@ data/geolocalizacion/fuentes_extra/resolucion_1990-2007.md                     #
 data/socioeconomia/circuito_radio_correspondencia.csv           # correspondencia espacial circuito<->radio censal (peso_area)
 data/socioeconomia/radios_censales_{2010,2022}_la_plata.geojson
 src/electoral/          # cliente API, modelos, parsing, agrupamiento por localidad (localidades.py), totales por agrupación (totales.py)
-src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a partir de circuito_<nivel>.json; totales_por_lista.py grafica data/totales/ + blanco_nulo; comparativo_nivel.py compara Municipio/Provincia/Nación en Markdown; vparty_cuadrantes_local.py grafica cuadrantes económico×progresismo por partido, distrito/localidad
+src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a partir de circuito_<nivel>.json; totales_por_lista.py ya no grafica, solo capa de datos compartida; comparativo_nivel.py compara Municipio/Provincia/Nación en Markdown; vparty_cuadrantes_local.py -- generación de cuadrantes por partido (distrito) DEPRECADA, ver CLAUDE.md; sus funciones de datos (tabla_distrito/tabla_localidades/etc.) siguen activas para visualizacion/
 src/visualizacion/      # generadores de HTML interactivo para docs/, sobre datos de este dominio -- ver skill laplata-visualizacion
 src/socioeconomia/      # EPH, geo, IAELaP
 notebooks/               # 01-06, la pipeline real corre acá (ver CLAUDE.md)
@@ -129,13 +129,19 @@ Presidente 2015/2023).
   evidencia cuantitativa en `docs/AUDITORIA_ESTADO.md`. No reabrir esto sin
   releer esa sección primero.
 - **Los CSV/PNG derivados de esta capa (bajo `data/por_localidad/` y
-  casi todo `graficos/`) no se versionan**, salvo
-  `graficos/distrito/serie_temporal/`, `graficos/distrito/totales_por_lista/`,
-  `graficos/socioeconomia/eph/` (gráficos EPH -- no los de IAELaP ni el
-  de contraste EPH/IAELaP, que siguen sin trackear) y `graficos/agrupaciones/`
-  (cuadrantes V-Party, nacional + La Plata por año/nivel -- pero
-  `graficos/por_localidad/vparty/`, el mismo gráfico por localidad, no se
-  trackea) -- ver `.gitignore` y `CLAUDE.md` antes de asumir cuál es cuál.
+  casi todo `graficos/`) no se versionan** salvo el JSON (nunca el PNG):
+  `graficos/distrito/serie_temporal/*.json`,
+  `graficos/distrito/comparativos_nivel/` (Markdown, no JSON) y
+  `graficos/agrupaciones/<año>/<nivel>/*.json` (cuadrantes V-Party, La
+  Plata por año/nivel; el scatter nacional en la raíz de `agrupaciones/`
+  también) -- ver `.gitignore` y `CLAUDE.md` antes de asumir cuál es cuál.
+  El grano localidad (`graficos/por_localidad/`, `graficos/agrupaciones/por_localidad/`)
+  se eliminó del todo, código incluido -- ya no existe ningún PNG por
+  localidad. **`graficos/agrupaciones/<año>/<nivel>/*.json` está
+  congelado, no se regenera**: su generador
+  (`vparty_cuadrantes_local.generar_distrito`) quedó deprecado en favor de
+  `data/tfi_data/elecciones/<año>_<nivel>.csv`, que trae lo mismo más las
+  agrupaciones sin cobertura V-Party y BLANCO/NULO -- ver CLAUDE.md.
 
 ## Gaps conocidos, para no re-descubrirlos
 

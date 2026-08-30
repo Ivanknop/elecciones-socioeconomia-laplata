@@ -4,6 +4,22 @@ por combinación en `data/tfi_data/elecciones/`. Reusa `electoral.totales`/
 `construir_calendario`, no reimplementa -- detalle de columnas y criterios
 de join en el docstring de cada función.
 
+Es la fuente de referencia para resultado+clasificación por (año,nivel) --
+`graficos/agrupaciones/<año>/<nivel>/*.json` (generado por el ahora
+deprecado `analisis.vparty_cuadrantes_local.generar_distrito`) es un
+subconjunto de esto, no al revés (ver CLAUDE.md).
+
+**Falta 2001-2009**: sin `circuito_<cargo>.json` para esos años, `_combos_disponibles`
+directamente no los ofrece -- no es un bug ni un TODO trivial. Se intentó
+conseguir el detalle de voto por lista/circuito de La Plata para esos años
+(API oficial vacía, mirror de GitHub sin desagregación partido/municipio,
+Atlas Electoral con HTTP 401) sin éxito -- ver
+`docs/adquisicion_datos_especializacion.md` §1.a para el detalle de qué se
+intentó. Si en algún momento se consigue ese dato a mano, alcanza con
+volcarlo a `data/distrito/<año>/<cargo>/generales/circuito_<cargo>.json`
+en el formato ya existente y correr este script de nuevo -- no hace falta
+tocar código acá.
+
 Uso:
     PYTHONPATH=src python -m ml_models.construir_elecciones
     PYTHONPATH=src python -m ml_models.construir_elecciones --anio 2023 --nivel municipal

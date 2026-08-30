@@ -505,17 +505,22 @@ filtro): la estimación propia calibrada se trata como igual de válida.
 
 Los ejes de ambos paneles (distrito y localidad) usan una **escala fija y
 simétrica respecto de 0** — mismos límites (`_limites_globales`, calculados
-sobre toda la cobertura V-Party) que ya usan los PNG estáticos de
-`graficos/agrupaciones/<año>/` — enviados una sola vez en el payload
-(`eje_limites`) y nunca recalculados por render: el (0,0) siempre cae en
-el centro visual del gráfico, y el rango no cambia al pasar de año, nivel
-o localidad, así el autoplay y el cambio de selección no reescalan el
-chart.
+sobre toda la cobertura V-Party) que ya usaban los PNG estáticos
+(deprecados) de `graficos/agrupaciones/<año>/` — enviados una sola vez en
+el payload (`eje_limites`) y nunca recalculados por render: el (0,0)
+siempre cae en el centro visual del gráfico, y el rango no cambia al pasar
+de año, nivel o localidad, así el autoplay y el cambio de selección no
+reescalan el chart.
 
-No modifica `vparty_cuadrantes_local.py` ni la ruta que genera los PNG en
-`graficos/agrupaciones/` — es aditivo, reusa
+No modifica `vparty_cuadrantes_local.py` — es aditivo, reusa
 `tabla_distrito`/`tabla_localidades`/`cargar_posiciones_propias`/
-`cargar_filiaciones`/`_color_por_partido`/`_limites_globales` tal cual.
+`cargar_filiaciones`/`_color_por_partido`/`_limites_globales` tal cual
+(todas siguen activas). La ruta que generaba los PNG+JSON en
+`graficos/agrupaciones/<año>/<nivel>/` (`generar_distrito`,
+`graficar_cuadrantes_partido`, el CLI) quedó deprecada por separado —
+`data/tfi_data/elecciones/<año>_<nivel>.csv` la reemplaza como fuente de
+resultado+clasificación por (año,nivel) — ver CLAUDE.md; no afecta a este
+módulo porque nunca dependió de esa ruta.
 
 ```bash
 PYTHONPATH=src python -m visualizacion.distribucion_ideologica_interactiva

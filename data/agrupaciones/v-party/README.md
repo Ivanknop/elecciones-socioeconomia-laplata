@@ -67,6 +67,28 @@ partidos, 13 filas:
 | MOVIMIENTO AL SOCIALISMO | 2015 y 2021, los 3 niveles cada uno | presidente 2019/2023 (única fila poblada de este partido; extrapola 4-8 años/niveles a la vez, más agresivo que los otros 4 casos de esta fuente) |
 
 
+**4 — Mapeo por identidad real de partido, alianza local distinta.** A
+diferencia de las fuentes 2/3 (mismo partido, otra grafía o hueco de año),
+acá una alianza *local* de La Plata está dominada por un partido nacional
+que sí tiene V-Party real, bajo un nombre de lista que no coincide ni por
+similitud de string — el mapeo es por identidad política, a mano, no por
+join automático — 3 casos, 7 filas:
+
+| `agrupacion` en este repo | Año(es)/nivel(es) | Valor tomado de |
+|---|---|---|
+| ALIANZA UNIDOS POR UNA NUEVA ALTERNATIVA (UNA) | 2015, gobernacion/intendente/presidente | FRENTE RENOVADOR 2013 (Massa; real V-Party, fuente 1) |
+| FRENTE SOCIAL DE LA PROVINCIA DE BUENOS AIRES | 2013 municipal | FRENTE PARA LA VICTORIA 2013 (escisión del FPV; real V-Party, fuente 1) |
+| FRENTE SOCIAL DE LA PCIA. BS.AS. | 2011 intendente | FRENTE PARA LA VICTORIA/ALIANZA FRENTE PARA LA VICTORIA 2011 (ídem, ola 2011) |
+| ALIANZA UNIÓN PARA EL DESARROLLO SOCIAL | 2011, gobernacion/intendente/presidente | Unión Cívica Radical, ola 2011 (de Narváez + UCR; ola real más cercana a 2011, tomada directo de `v_party_argentina_2001_2019_espaniol.csv` -- no es la fila `#Union Civica Radical` calibrada de `v_party_propio.csv`, que es solo de referencia/calibración, ver más abajo) |
+
+Para la fila de UCR, los tres ejes se recalcularon a mano desde el dataset
+real (no está en `v_party_argentina_2001_2019_espaniol.csv` con estos
+nombres de columna) con la misma fórmula que usa el resto del repo:
+`vparty_economico = v2pariglef`, `vparty_populismo = v2xpa_popul`,
+`vparty_progresismo = promedio(v2palgbt, v2pawomlab, v2paimmig, v2parelig)`
+-- verificada contra las filas ya cargadas de FRENTE RENOVADOR 2013 y
+FRENTE PARA LA VICTORIA 2013 antes de aplicarla (coincide a 3 decimales).
+
 ## `v_party_propio.csv` — estimación propia para partidos sin cobertura V-Party
 
 Para los partidos sin cobertura V-Party (ni match directo ni proxy de ola
@@ -121,6 +143,10 @@ correr una nueva estimación:
 - MST = FIT
 - NMAS = FIT
 - liber.ar = LLA
+- Unión del Centro Democrático (UCeDé, incluidas las grafías "UNION DEL
+  CENTRO DEMOCRATICO"/"UNION DE CENTRO DEMOCRATICO" según el año) = LLA
+  -- mismo espacio centro derecha liberal (`campo_ideologico=4`,
+  `filiacion_politica=liberales`)
 
 ## Procedencia
 

@@ -1,11 +1,23 @@
 """Cuadrantes ideológicos V-Party (económico × progresismo) con votos
 reales de La Plata, análogo a `vparty_cuadrantes.py` pero a partir de
 datos locales -- detalle en `docs/vparty_cuadrantes.md` y CLAUDE.md.
-Solo genera el grano distrito (un JSON+PNG por año, La Plata completa);
-`tabla_localidades()` sigue disponible como función de biblioteca para
-`visualizacion.distribucion_ideologica_interactiva`, sin CLI propia acá.
 
-Uso:
+DEPRECADO: `generar_distrito()`, `graficar_cuadrantes_partido()`, el
+helper `_registros_json()` y el CLI (`main()`) -- el JSON que escriben en
+`graficos/agrupaciones/<año>/v_party_<nivel>.json` quedó redundante frente
+a `data/tfi_data/elecciones/<año>_<nivel>.csv` (`ml_models.construir_elecciones`):
+el CSV trae las mismas agrupaciones + coordenadas V-Party más las que no
+tienen cobertura V-Party (que acá se descartaban en silencio) y BLANCO/NULO.
+Único campo que el JSON tenía y el CSV no es `color`, derivable en el
+momento desde `filiacion_politica` + `colorimetria_familia_politica.csv`
+vía `_color_por_partido`. No se borra el código -- sigue funcionando si se
+lo invoca a mano -- pero no forma parte del pipeline vigente y no se lo
+debe extender. El resto del módulo (`tabla_distrito`, `cargar_posiciones_propias`,
+`cargar_filiaciones`, `tabla_localidades`, `_color_por_partido`, `_sombras`,
+`_limites_globales`) sigue activo: lo importa en vivo
+`src/visualizacion/distribucion_ideologica_interactiva.py`.
+
+Uso (deprecado, ver arriba):
     PYTHONPATH=src python -m analisis.vparty_cuadrantes_local
     PYTHONPATH=src python -m analisis.vparty_cuadrantes_local --nivel municipal
 """
@@ -33,15 +45,8 @@ from constantes import (
 from electoral.localidades import agrupar_resultados_por_localidad, cargar_circuito_localidad_geo
 from electoral.totales import resultado_total_por_agrupacion
 
-# `graficos/agrupaciones/<año>/v_party_<nivel>.json` es el artefacto versionado
-# -- el contrato de datos para reconstruir la visualización más adelante. El
-# PNG que se genera junto a él es solo conveniencia local, no se trackea
-# (ver .gitignore).
 RUTA_DISTRITO_DIR = Path("graficos/agrupaciones")
 
-# Rango de luminosidad (HLS) dentro del cual se generan las sombras por
-# partido de un mismo color de familia -- ni tan claro que se pierda contra
-# el fondo blanco, ni tan oscuro que se acerque al negro.
 _LUMINOSIDAD_MIN, _LUMINOSIDAD_MAX = 0.25, 0.78
 
 
@@ -231,8 +236,10 @@ def graficar_cuadrantes_partido(
     xlabel: str = "Izquierda / Estatismo ← posición económica → Derecha / Mercado",
     ylabel: str = "Conservador ← progresismo social → Progresista",
 ) -> Path:
-    """Scatter económico × progresismo por partido: color = familia
-    política, tamaño = % de votos. `xlim`/`ylim` fijos, ver `_limites_globales`."""
+    """DEPRECADO -- solo la usa `generar_distrito()`, también deprecado (ver
+    docstring del módulo). Scatter económico × progresismo por partido:
+    color = familia política, tamaño = % de votos. `xlim`/`ylim` fijos, ver
+    `_limites_globales`."""
     df = df.reset_index(drop=True)
     fig, ax = plt.subplots(figsize=(13, 10))
 
@@ -295,8 +302,10 @@ def graficar_cuadrantes_partido(
 
 
 def _registros_json(df_anio: pd.DataFrame, filiacion_de: dict[str, str | None], colores: dict[str, str]) -> list[dict]:
-    """Filas de `df_anio` + filiación/color usados para el PNG -- contrato
-    de datos versionado para reconstruir la visualización sin recalcular."""
+    """DEPRECADO -- solo la usa `generar_distrito()`, también deprecado (ver
+    docstring del módulo): `data/tfi_data/elecciones/<año>_<nivel>.csv` ya
+    trae estas mismas filas (más `color`, derivable de `filiacion_politica`).
+    Filas de `df_anio` + filiación/color usados para el PNG."""
     return [
         {
             "agrupacion": fila["agrupacion"],
@@ -319,9 +328,11 @@ def generar_distrito(
     data_dir: Path | str = DATA_DISTRITO_DIR,
     salida_dir: Path | str = RUTA_DISTRITO_DIR,
 ) -> list[Path]:
-    """Un JSON + PNG por (año, nivel), distrito completo --
-    `<salida_dir>/<año>/v_party_<nivel>.{json,png}`. El JSON es el artefacto
-    versionado; el PNG es conveniencia local (gitignored)."""
+    """DEPRECADO -- ver docstring del módulo: el JSON que escribe quedó
+    redundante frente a `data/tfi_data/elecciones/<año>_<nivel>.csv`
+    (`ml_models.construir_elecciones`), que trae las mismas coordenadas
+    V-Party más las agrupaciones sin cobertura V-Party (acá descartadas) y
+    BLANCO/NULO. No usar para código nuevo."""
     df_todo = tabla_distrito(nivel, posiciones, data_dir)
     if df_todo.empty:
         return []
@@ -367,6 +378,9 @@ def generar_distrito(
 # ---------------------------------------------------------------------------
 
 def main():
+    """DEPRECADO -- ver docstring del módulo. Este CLI solo llama a
+    `generar_distrito()`, cuyo JSON quedó redundante frente a
+    `data/tfi_data/elecciones/<año>_<nivel>.csv`."""
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--nivel", choices=list(NIVELES), help="si se omite, corre los 3 niveles")
     parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
