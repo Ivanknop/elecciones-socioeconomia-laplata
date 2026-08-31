@@ -366,6 +366,27 @@ quedan en `graficos/socioeconomia/` sin trackear.
   PYTHONPATH=src python -m analisis.comparativo_nivel               # todos los años disponibles
   ```
 
+- **`vparty_distribucion_tfi.py`**: **un PNG por (año, nivel)** con los
+  cuadrantes ideológicos V-Party (económico × progresismo, tamaño = % de
+  votos, color = familia política) leídos directo de
+  `data/tfi_data/elecciones/<año>_<nivel>.csv` — a diferencia del resto de
+  esta sección (que arranca de `circuito_<nivel>.json`), cubre **2001-2025**
+  porque esos CSV no dependen de tener geometría de circuito. Reemplaza en
+  los hechos al generador deprecado
+  `analisis.vparty_cuadrantes_local.generar_distrito` (ver CLAUDE.md), pero
+  sin extender ese módulo: solo reusa `_color_por_partido`/`_sombras` de
+  ahí (aún activas) y define su propio `graficar_cuadrantes_eleccion`.
+  Límites de eje fijos y simétricos respecto de 0
+  (`limites_globales`, sobre toda la cobertura cargada), calculados una
+  sola vez para que los 34 PNG sean comparables entre sí. Escribe en
+  `graficos/tfi/v-party/<año>_<nivel>.png` — `.gitignore`d como el resto de
+  `graficos/`, no es una de las excepciones versionadas.
+
+  ```bash
+  PYTHONPATH=src python -m analisis.vparty_distribucion_tfi
+  PYTHONPATH=src python -m analisis.vparty_distribucion_tfi --anio 2023 --nivel municipal
+  ```
+
 ## PASO y balotaje
 
 Además de Generales (`tipo_eleccion=2`, en `data/distrito/<año>/<cargo>/generales/`),
@@ -470,57 +491,51 @@ de HTML interactivo viven en `src/visualizacion/`, separado de
 `src/analisis/` (que solo bulk-escribe PNG/Markdown estáticos), ver
 CLAUDE.md. Acá el selector es solo **Nivel + Año**
 (nacional/provincial/municipal, sin el toggle Cargo/Nivel del mapa) — los
-cuadros V-Party de este repo solo existen por nivel unificado
-(`analisis.serie_temporal.NIVELES`), nunca por cargo suelto. El mapa de
-circuitos queda **sin colorear por ideología**, solo referencia geográfica:
-clickear un circuito resuelve su localidad (mismo crosswalk geolocalizado
-que `mapa_interactivo.py`, `electoral.localidades.cargar_circuito_localidad_geo`)
-y muestra el cuadrante ideológico real de esa localidad para el (año,
-nivel) seleccionado, vía `vparty_cuadrantes_local.tabla_localidades` — el
-mismo dato que ya alimenta los PNG de
-`generar_localidad`/`generar_localidad_por_anio`. Si esa combinación
-puntual (localidad, año, nivel) no tiene cobertura V-Party, se muestra
-"Sin cobertura V-Party para *{localidad}* en *{Nivel}* *{año}*." en vez de
-aproximar o reusar el cuadro distrital.
+cuadros V-Party de este repo solo existen por nivel unificado.
 
-El panel principal (columna derecha cuando no hay localidad seleccionada)
-es un bubble chart SVG con el mismo dato que ya grafica
-`vparty_cuadrantes_local.tabla_distrito` como PNG estático — acá como
-payload JSON reactivo en vez de un archivo por (año, nivel): eje X
-económico, eje Y progresismo, tamaño = % de votos del partido en esa
-elección, color = familia política (`filiacion_politica`, sombreada por
-partido dentro de la familia, mismas `_color_por_partido`/`_sombras` que ya
-usa el PNG). El panel de localidad usa el mismo bubble chart, pero el
-color de cada agrupación se calcula sobre el universo de agrupaciones a
-nivel **distrito** de ese (año, nivel), no con el subconjunto presente en
-cada localidad — así una agrupación tiene siempre el mismo color en
-cualquier localidad y en el cuadro distrital de ese año (lo único que se
-reusa del distrito es el color, no la posición ni el tamaño, que siguen
-siendo los votos reales de esa localidad puntual). **Todos los puntos se
-muestran de la misma forma, sin distinguir V-Party real de estimación
-propia** — de qué fuente viene cada valor está documentado en un único
-lugar, `data/agrupaciones/v-party/README.md`, y no se refleja en ningún
-elemento visual ni interactivo de esta pestaña (ni color, ni trazo, ni
-filtro): la estimación propia calibrada se trata como igual de válida.
+**Fuente de datos: `data/tfi_data/elecciones/<año>_<nivel>.csv` directo**,
+vía `analisis.vparty_distribucion_tfi.cargar_eleccion`/`combos_disponibles`
+(no `circuito_<cargo>.json` ni `clasificacion_ideologica_agrupaciones.csv`
+por join propio) — por eso cubre **2001-2025**, no solo 2011-2025: esos
+CSV ya traen `campo_ideologico`/`filiacion_politica`/`vparty_*` resueltos
+para cada agrupación de cada elección, incluidos los años sin
+`circuito_<cargo>.json` (2001-2009). **No tiene mapa ni desglose por
+localidad** — se sacó deliberadamente (pedido explícito, ver historial de
+la conversación que lo generó) porque esos años no tienen geometría de
+circuito para mapear; hasta que se defina un criterio para tratar
+2001-2009 en ese nivel, la pestaña es un único bubble chart a nivel
+distrito.
 
-Los ejes de ambos paneles (distrito y localidad) usan una **escala fija y
-simétrica respecto de 0** — mismos límites (`_limites_globales`, calculados
-sobre toda la cobertura V-Party) que ya usaban los PNG estáticos
-(deprecados) de `graficos/agrupaciones/<año>/` — enviados una sola vez en
-el payload (`eje_limites`) y nunca recalculados por render: el (0,0)
-siempre cae en el centro visual del gráfico, y el rango no cambia al pasar
-de año, nivel o localidad, así el autoplay y el cambio de selección no
-reescalan el chart.
+El panel único es un bubble chart SVG: eje X económico, eje Y progresismo,
+tamaño = % de votos del partido en esa elección (sobre el total de la
+elección: agrupaciones + BLANCO + NULO, aunque BLANCO/NULO no se grafican
+por no tener V-Party), color = familia política (`filiacion_politica`,
+sombreada por partido dentro de la familia, mismas
+`_color_por_partido`/`_sombras` de `vparty_cuadrantes_local`, aún activas
+para esto). **Todos los puntos se muestran de la misma forma, sin
+distinguir V-Party real de estimación propia** — de qué fuente viene cada
+valor está documentado en un único lugar,
+`data/agrupaciones/v-party/README.md`, y no se refleja en ningún elemento
+visual ni interactivo de esta pestaña (ni color, ni trazo, ni filtro): la
+estimación propia calibrada (incluida la variante ad hoc de
+`estimar_partido_cobertura_parcial`, ver ese README) se trata como igual
+de válida.
 
-No modifica `vparty_cuadrantes_local.py` — es aditivo, reusa
-`tabla_distrito`/`tabla_localidades`/`cargar_posiciones_propias`/
-`cargar_filiaciones`/`_color_por_partido`/`_limites_globales` tal cual
-(todas siguen activas). La ruta que generaba los PNG+JSON en
-`graficos/agrupaciones/<año>/<nivel>/` (`generar_distrito`,
-`graficar_cuadrantes_partido`, el CLI) quedó deprecada por separado —
-`data/tfi_data/elecciones/<año>_<nivel>.csv` la reemplaza como fuente de
-resultado+clasificación por (año,nivel) — ver CLAUDE.md; no afecta a este
-módulo porque nunca dependió de esa ruta.
+El eje usa una **escala fija y simétrica respecto de 0** —
+`analisis.vparty_distribucion_tfi.limites_globales`, calculados sobre toda
+la cobertura V-Party cargada de los 39 archivos de `data/tfi_data/elecciones/` —
+enviada una sola vez en el payload (`eje_limites`) y nunca recalculada por
+render: el (0,0) siempre cae en el centro visual del gráfico, y el rango
+no cambia al pasar de año o nivel, así el autoplay no reescala el chart.
+
+No modifica `vparty_cuadrantes_local.py` — solo reusa
+`_color_por_partido`/`_sombras`, que siguen activas; el resto de ese
+módulo (`tabla_distrito`, `tabla_localidades`, `cargar_posiciones_propias`,
+`cargar_filiaciones`, `_limites_globales`) quedó sin llamador desde que
+esta pestaña dejó de usarlo, ver CLAUDE.md. El equivalente en PNG estático
+por (año, nivel) es `analisis.vparty_distribucion_tfi` (sección "Gráficos"
+más abajo) — mismo dato, mismo criterio de color, salida a
+`graficos/tfi/v-party/` en vez de un payload JSON.
 
 ```bash
 PYTHONPATH=src python -m visualizacion.distribucion_ideologica_interactiva

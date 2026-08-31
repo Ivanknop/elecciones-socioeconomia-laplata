@@ -35,6 +35,24 @@ puntuación) en el mismo año — 8 partidos, 62 filas:
 | 2017 | UNIDAD CIUDADANA | Citizen's Unity (CU) |
 | 2019 | CONSENSO FEDERAL | Consensus Federal (CF) |
 
+**1b — Cruce directo, ola pre-2001.** V-Party tiene olas argentinas desde
+1991 (no solo 2001-2019, que es simplemente el recorte que usa el resto de
+este repo) -- para estos dos partidos se consultó la ola más vieja
+disponible en el `.RData` completo (`cargar_argentina(..., anio_min=1990)`,
+no forma parte del pipeline regular de `generar_v_party_argentina.py`, que
+sigue filtrando 2001-2019 por defecto):
+
+| `agrupacion` en este repo | Partido V-Party | Ola usada |
+|---|---|---|
+| UNION DEL CENTRO DEMOCRATICO / UNION DE CENTRO DEMOCRATICO (2001/2007/2023, según grafía del año) | Union of the Democratic Centre (UCeDé) | 1991 (única ola de UCeDé en el dataset) |
+| ACCION POR LA REPUBLICA (2001) | Action for the Republic | 1999 (ola más cercana a 2001; único año con esta agrupación en el dataset) |
+
+Se verificó además que **MODIN/Movimiento por la Dignidad y la
+Independencia (Aldo Rico) no tiene cobertura en V-Party**, en ningún año
+ni bajo ningún nombre alternativo (búsqueda contra el `.RData` completo,
+no solo el recorte Argentina 2001-2019) -- Argentina 1993 solo trae PJ y
+UCR.
+
 **2 — Proxy de la ola V-Party más cercana, cuando no hay superposición de
 año.** Caso: **COALICIÓN CÍVICA ARI / COALICIÓN CÍVICA - AFIRMACIÓN PARA
 UNA REPÚBLICA IGUALITARIA ARI / COALICIÓN CÍVICA - A.R.I.** — mismo
@@ -80,6 +98,7 @@ join automático — 3 casos, 7 filas:
 | FRENTE SOCIAL DE LA PROVINCIA DE BUENOS AIRES | 2013 municipal | FRENTE PARA LA VICTORIA 2013 (escisión del FPV; real V-Party, fuente 1) |
 | FRENTE SOCIAL DE LA PCIA. BS.AS. | 2011 intendente | FRENTE PARA LA VICTORIA/ALIANZA FRENTE PARA LA VICTORIA 2011 (ídem, ola 2011) |
 | ALIANZA UNIÓN PARA EL DESARROLLO SOCIAL | 2011, gobernacion/intendente/presidente | Unión Cívica Radical, ola 2011 (de Narváez + UCR; ola real más cercana a 2011, tomada directo de `v_party_argentina_2001_2019_espaniol.csv` -- no es la fila `#Union Civica Radical` calibrada de `v_party_propio.csv`, que es solo de referencia/calibración, ver más abajo) |
+| UNIDOS POR LA LIBERTAD Y EL TRABAJO | 2013, municipal/nacional/provincial | mismo valor que ALIANZA UNIÓN PARA EL DESARROLLO SOCIAL (fila de arriba) -- también espacio de F. de Narváez, mismo criterio |
 
 Para la fila de UCR, los tres ejes se recalcularon a mano desde el dataset
 real (no está en `v_party_argentina_2001_2019_espaniol.csv` con estos
@@ -143,10 +162,87 @@ correr una nueva estimación:
 - MST = FIT
 - NMAS = FIT
 - liber.ar = LLA
-- Unión del Centro Democrático (UCeDé, incluidas las grafías "UNION DEL
-  CENTRO DEMOCRATICO"/"UNION DE CENTRO DEMOCRATICO" según el año) = LLA
-  -- mismo espacio centro derecha liberal (`campo_ideologico=4`,
-  `filiacion_politica=liberales`)
+
+Tanda adicional de mapeos manuales (misma lógica, agrupación por
+agrupación, criterio de similitud confirmado a mano por Ivan antes de
+cargar):
+
+| Agrupación(es) | = valor de | Motivo |
+|---|---|---|
+| COMPROMISO FEDERAL / ALIANZA COMPROMISO FEDERAL (2011/2013/2015) | Peronismo Federal / Peronismo Disidente, ola 2011 real (no `v_party_propio.csv`) | identidad directa de partido (espacio de Rodríguez Saá), no aproximación |
+| FRENTE POPULAR DEMOCRATICO Y SOCIAL (PODEMOS) (2013) | Proyecto Sur | mismo espacio progresista |
+| + VALORES (2021) / HACEMOS POR NUESTRO PAIS (2023) / ALIANZA PROVINCIAS UNIDAS (2025) | Encuentro Republicano Federal | mismo perfil peronismo-provincial/federal moderado |
+| FRENTE NOS (2019) / UNITE POR LA LIBERTAD Y LA DIGNIDAD (2019) / ALIANZA UNION Y LIBERTAD (2025) | La Libertad Avanza | escisión/espacio afín de LLA |
+| PROPUESTA FEDERAL PARA EL CAMBIO (2025) | PRO | mismo espacio PRO/JxC |
+| SOCIEDAD JUSTA (2007) | Unión Cívica Radical, ola 2007 real | "es la UCR + MID" (Ivan), ola exacta disponible en V-Party, no aproximación |
+| ENCUENTRO AMPLIO (2005) | Patria Grande | "es el PC + PI" (Ivan), mismo espacio progresista/de izquierda |
+
+**Gotcha de dónde se cargó cada uno**: los de 2011/2013/2015/2021/2023 y
+`PROVINCIAS UNIDAS`/`PROPUESTA FEDERAL PARA EL CAMBIO` (2025 nacional) se
+cargaron en `clasificacion_ideologica_agrupaciones.csv` (tienen fila ahí,
+`ml_models.construir_elecciones` los propaga a
+`data/tfi_data/elecciones/`). Los de **2001-2009** (`SOCIEDAD JUSTA`,
+`ENCUENTRO AMPLIO`) y **2025 municipal/provincial**
+(`ALIANZA UNION Y LIBERTAD`) **no tienen fila en el maestro** — esos años
+no tienen `circuito_<cargo>.json` (2001-2009) o ese nivel no corre por el
+pipeline automático (2025 municipal/provincial, ver
+`ml_models/construir_elecciones.py`) — así que se editaron **directo en
+los CSV de `data/tfi_data/elecciones/`**, la misma excepción que ya
+aplica a AFEBA/PAUFE/FREPOBO/MOPOBO más abajo. Documentado también en
+`data/agrupaciones/agrupaciones_vparty_consolidado.csv` (tabla de
+consulta deduplicada por nombre de agrupación, mantenida a mano, sin
+script propio ni consumidor en `src/` — columna `fuente` marca estos
+casos como `aprox-ivan`).
+
+## `v_party_propio_ad_hoc.csv` — partidos evaluados por un subconjunto de expertos
+
+Caso distinto de `v_party_propio.csv`: partidos que **no forman parte de
+la encuesta fija de 12 agrupaciones** (`PARTIDOS` en
+`generar_v_party_propio.py`) porque solo unos pocos expertos del panel
+llegaron a evaluarlos — no tiene sentido correr la calibración completa
+del script para un partido con 3-5 respuestas en vez de 9-11.
+`data/agrupaciones/v-party/v_party_propio_ad_hoc.csv` guarda esas
+respuestas sueltas: columnas `id_experto`, `partido`, y los 11 valores
+crudos A1-D1 (mismo formato que un bloque de `encuesta_partidos_propia.csv`,
+sin el campo de confianza D2). Cada partido nuevo agrega sus filas ahí a
+medida que se cargan, no hay un tamaño de panel fijo.
+
+`estimar_partido_cobertura_parcial(respuestas, calib)` (en
+`generar_v_party_propio.py`, sección "AD HOC" del archivo, marcada como
+tal en el propio código) toma ese subconjunto de respuestas, calcula
+econ/prog/pop por experto con la misma fórmula que `cargar_encuesta`,
+agrega por mediana, y aplica la calibración (`calib`, el mismo diccionario
+`(a, b)` por eje que devuelve `calibrar()` sobre el panel completo de
+10/11 expertos) — no corre su propia regresión, reusa la ya ajustada.
+No está integrada a `main()`/`estimar()`/`escribir_salida()`: se llama a
+mano, un partido a la vez, con el `calib` que ya se tiene de una corrida
+normal del script.
+
+**AFEBA** es el primer caso: evaluado por los expertos 1, 2, 6, 9, 10, 11
+del panel (10 y 11 son el mismo orden que en `encuesta_partidos_propia.csv`).
+El experto 2 es el único outlier formal del panel completo (distancia z
+contra V-Party real por encima del umbral en todas las corridas de
+validación) y el experto 11 quedó **excluido a pedido explícito** (no se
+usa para recalibrar nada). Valor final con los 4 expertos restantes
+(1, 6, 9, 10 -- nota: la fila "1" del CSV ad hoc quedó luego re-etiquetada
+como "6", mismos valores):
+
+```
+vparty_economico = 1.579
+vparty_progresismo = -1.862
+vparty_populismo = 0.425
+```
+
+Este valor se extendió por identidad de partido (no por similitud
+ideológica como la sección de arriba) a **PAUFE, FREPOBO y MOPOBO** —
+mismo linaje vecinalista/federalista bonaerense que AFEBA — en
+`data/tfi_data/elecciones/2001_{municipal,provincial}.csv`,
+`2003_{municipal,provincial}.csv` y `2007_{municipal,provincial}.csv`
+(ninguno de los cuatro tiene fila en `clasificacion_ideologica_agrupaciones.csv`,
+mismo motivo que `SOCIEDAD JUSTA`/`ENCUENTRO AMPLIO` arriba). Marcado como
+`v-party propio ad-hoc` (AFEBA, valor genuino de esta encuesta parcial) o
+`aprox-ivan` (PAUFE/FREPOBO/MOPOBO, identidad con AFEBA) en
+`agrupaciones_vparty_consolidado.csv`.
 
 ## Procedencia
 

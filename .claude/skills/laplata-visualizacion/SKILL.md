@@ -104,21 +104,29 @@ Documentado en detalle en `docs/FUNCIONALIDADES.md`, sección
 "Distribución ideológica interactiva" -- no se repite acá. Puntos clave
 para no perder si se edita:
 
+**Sin mapa ni panel de localidad, por ahora -- pedido explícito de Ivan,
+no reintroducir sin volver a preguntar.** La versión anterior tenía un mapa
+Leaflet + un panel por localidad (mismo patrón que `mapa_interactivo.py`);
+se sacó al migrar la fuente de datos a `data/tfi_data/elecciones/` (ver
+abajo), que no tiene geometría de circuito para 2001-2009 -- hasta que se
+defina un criterio para ese desglose, la pestaña es un único bubble chart
+a nivel distrito.
+
+- **Fuente de datos: `data/tfi_data/elecciones/<año>_<nivel>.csv`**, vía
+  `analisis.vparty_distribucion_tfi.cargar_eleccion`/`combos_disponibles` --
+  no `circuito_<cargo>.json` ni el join propio de
+  `vparty_cuadrantes_local` contra `clasificacion_ideologica_agrupaciones.csv`.
+  Por eso cubre **2001-2025**, no solo 2011-2025.
 - Selector **Nivel + Año únicamente**, sin el toggle Cargo/Nivel del
   mapa -- los cuadros V-Party solo existen por nivel unificado.
-- El panel de localidad usa el mismo `renderChart()` SVG que el panel
-  distrital (generalizado para recibir el id del SVG/tooltip/título
-  destino), pero el color de cada agrupación se calcula sobre el
-  universo de agrupaciones a nivel **distrito**, no el subconjunto de
-  cada localidad -- para que un partido tenga siempre el mismo color en
-  cualquier localidad.
-- Ambos paneles comparten una escala de ejes fija y simétrica respecto
-  de 0 (`vparty_cuadrantes_local._limites_globales`, mismo criterio que
+- Escala de ejes fija y simétrica respecto de 0
+  (`analisis.vparty_distribucion_tfi.limites_globales`, mismo criterio que
   los PNG estáticos), enviada una sola vez en el payload -- nunca
   recalculada por render.
-- Reusa `tabla_distrito`/`tabla_localidades`/`cargar_posiciones_propias`/
-  `cargar_filiaciones`/`_color_por_partido`/`_limites_globales` de
-  `analisis.vparty_cuadrantes_local` tal cual, sin modificarlos.
+- De `vparty_cuadrantes_local` solo reusa `_color_por_partido`/`_sombras`
+  -- `tabla_distrito`/`tabla_localidades`/`cargar_posiciones_propias`/
+  `cargar_filiaciones`/`_limites_globales` quedaron sin llamador acá (ver
+  CLAUDE.md).
 
 **Regla de diseño explícita, pedida por Ivan -- no reintroducir sin
 volver a preguntar**: esta pestaña **no distingue visualmente V-Party
@@ -127,6 +135,19 @@ intento anterior con checkbox/trazo distinto/leyenda de procedencia). Esa
 distinción sigue existiendo, pero **solo en prosa, en un único lugar**:
 `data/agrupaciones/v-party/README.md`.
 
+## `vparty_distribucion_tfi.py` (`src/analisis/`, no `src/visualizacion/`)
+
+Vive en `src/analisis/`, no acá -- es el generador de **PNG estático** (uno
+por año/nivel a `graficos/tfi/v-party/`), no HTML interactivo, así que
+sigue el criterio de esa carpeta (bulk output, `.gitignore`d), no el
+patrón payload+template de este skill. Se documenta acá igual porque
+`distribucion_ideologica_interactiva.py` reusa sus mismas
+`cargar_eleccion`/`combos_disponibles`/`limites_globales` como fuente de
+datos -- mismo número, dos salidas (HTML interactivo vs. PNG). Detalle
+completo en `docs/FUNCIONALIDADES.md` sección "Gráficos" y en `CLAUDE.md`
+(nota sobre el reemplazo de `vparty_cuadrantes_local.generar_distrito`,
+deprecado).
+
 ## Testing
 
 Mismo criterio que el resto de `src/analisis/*` (ver `laplata-general`):
@@ -134,8 +155,9 @@ lógica pura testeada, renderizado sin test automatizado. Concretamente:
 
 - Lo que reusan de otros módulos (`analisis.graficos`,
   `analisis.serie_temporal_filiacion`, `analisis.vparty_cuadrantes_local`,
-  `electoral.localidades`, `electoral.totales`) ya está cubierto en los
-  tests de esos módulos -- no se duplica acá.
+  `analisis.vparty_distribucion_tfi`, `electoral.localidades`,
+  `electoral.totales`) ya está cubierto en los tests de esos módulos -- no
+  se duplica acá (`vparty_distribucion_tfi`: `tests/analisis/test_vparty_distribucion_tfi.py`).
 - `_construir_circuito`/`_construir_eleccion`/`_construir_agrup_index`/
   `_resolver_no_ideologicos`/`_votos_en_blanco`/`_votos_por_campo`/
   `_votos_por_familia` (todo de `mapa_interactivo.py`) están cubiertos en
@@ -144,6 +166,7 @@ lógica pura testeada, renderizado sin test automatizado. Concretamente:
   `generar_distribucion_interactiva`, y ambos templates no tienen test
   automatizado -- se validan corriendo el script contra `data/` real y
   una pasada headless (Playwright/Chromium): la página carga sin errores
-  de consola, los selectores (Nivel/Año o Cargo/Nivel, según el script)
-  pueblan y renderizan, el click en un circuito resuelve la localidad
-  esperada, y el autoplay avanza.
+  de consola, y el selector puebla y renderiza (Cargo/Nivel + click de
+  circuito para `mapa_interactivo`; Nivel/Año para
+  `distribucion_ideologica_interactiva`, que ya no tiene circuitos que
+  clickear), y el autoplay avanza en ambos.

@@ -110,10 +110,11 @@ geolocalización, a `apis.datos.gob.ar` (esta última incluye
 A partir de `circuito_<nivel>.json`, todos los scripts de `src/analisis/`
 (gráficos, series temporales, totales, cuadros comparativos) se corren
 independientemente unos de otros — comandos exactos de cada uno en
-`docs/FUNCIONALIDADES.md`. Los dos scripts de `src/visualizacion/`
-(`mapa_interactivo`, `distribucion_ideologica_interactiva`) son la
-excepción: necesitan tanto `circuito_<nivel>.json` (paso 5) como el
-catálogo de geolocalización (paso 8) ya generados.
+`docs/FUNCIONALIDADES.md`. De los dos scripts de `src/visualizacion/`,
+`mapa_interactivo` es la excepción: necesita tanto `circuito_<nivel>.json`
+(paso 5) como el catálogo de geolocalización (paso 8) ya generados.
+`distribucion_ideologica_interactiva` no depende de ninguno de los dos —
+lee directo de `data/tfi_data/elecciones/`, ver `docs/FUNCIONALIDADES.md`.
 
 ## Tests
 

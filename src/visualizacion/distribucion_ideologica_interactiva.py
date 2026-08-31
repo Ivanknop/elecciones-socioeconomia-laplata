@@ -1,6 +1,7 @@
-"""Pestaña interactiva "Distribución ideológica (V-Party)", mismo patrón
-que `mapa_interactivo.py` (selector Nivel + Año, autoplay). Detalle en
-skill `laplata-visualizacion`.
+"""Pestaña interactiva "Distribución ideológica (V-Party)": cuadrantes
+económico × progresismo por (nivel, año), desde `data/tfi_data/elecciones/`
+(cobertura 2001-2025, sin desglose por localidad -- ver skill
+`laplata-visualizacion`).
 
 Uso:
     PYTHONPATH=src python -m visualizacion.distribucion_ideologica_interactiva
@@ -9,168 +10,84 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
+import pandas as pd
+
 from analisis.graficos import _COLOR_FILIACION
-from analisis.serie_temporal import NIVELES, _puntos_del_nivel
-from analisis.totales_por_lista import NIVEL_A_NIVEL_CSV, _COLOR_SIN_CLASIFICAR
-from analisis.vparty_cuadrantes_local import (
-    _color_por_partido,
-    _limites_globales,
-    cargar_filiaciones,
-    cargar_posiciones_propias,
-    tabla_distrito,
-    tabla_localidades,
-)
-from constantes import (
-    CARGO_LABEL,
-    CIRCUITOS_GEOJSON_PATH,
-    CIRCUITOS_POR_LOCALIDAD_PATH,
-    CLASIFICACION_IDEOLOGICA_PATH,
-    DATA_DISTRITO_DIR,
-    LOCALIDADES_LA_PLATA_PATH,
-)
-from electoral.localidades import cargar_circuito_localidad_geo
-from visualizacion.mapa_interactivo import _cargar_geojson_circuitos, _cargar_localidades
+from analisis.vparty_cuadrantes_local import _color_por_partido
+from analisis.vparty_distribucion_tfi import cargar_eleccion, combos_disponibles, limites_globales
+from constantes import CARGO_LABEL, ELECCIONES_DIR
+
+_PATRON_CARGO = re.compile(r"\(cargo: (\w+)\)")
 
 
-def _serializar_puntos(
-    df_slice, filiacion_de: dict[str, str], colores: dict[str, str],
-) -> list[dict]:
-    """Una fila de `df_slice` -> un punto serializable para el payload;
-    `filiacion_de`/`colores` ya resueltos por quien llama."""
-    puntos = []
-    for _, fila in df_slice.iterrows():
-        agrupacion = fila["agrupacion"]
-        puntos.append({
-            "agrupacion": agrupacion,
+def _cargo_de_archivo(path: Path) -> str:
+    """Cargo declarado en el comentario de la primera línea del CSV."""
+    with open(path, encoding="utf-8") as f:
+        m = _PATRON_CARGO.search(f.readline())
+    return m.group(1) if m else ""
+
+
+def _serializar_puntos(df: pd.DataFrame) -> list[dict]:
+    """Filas ya cargadas por `cargar_eleccion` -> puntos serializables,
+    con color por familia política."""
+    filiacion_de = {
+        fila["agrupacion"]: fila["filiacion_politica"] if pd.notna(fila["filiacion_politica"]) else None
+        for _, fila in df.iterrows()
+    }
+    colores = _color_por_partido(list(df["agrupacion"]), filiacion_de)
+    return [
+        {
+            "agrupacion": fila["agrupacion"],
             "votos": int(fila["votos"]),
             "votos_pct": round(float(fila["votos_porcentaje"]), 2),
             "economico": round(float(fila["economico"]), 3),
             "progresismo": round(float(fila["progresismo"]), 3),
             "populismo": round(float(fila["populismo"]), 3),
-            "filiacion": filiacion_de.get(agrupacion),
-            "color": colores.get(agrupacion, _COLOR_SIN_CLASIFICAR),
-        })
-    return puntos
+            "filiacion": filiacion_de.get(fila["agrupacion"]),
+            "color": colores.get(fila["agrupacion"], "#9e9e9e"),
+        }
+        for _, fila in df.iterrows()
+    ]
 
 
-def _tabla_distrito_por_nivel(
-    data_dir: Path | str,
-    posiciones: dict[tuple[str, str, str], tuple[float, float, float]],
-    filiaciones: dict[tuple[str, str, str], str],
-) -> dict:
-    """{"<año>_<nivel>": {...}}, mismos puntos que `generar_distrito`, acá
-    como dict serializable en vez de un PNG."""
+def construir_payload(elecciones_dir: Path | str = ELECCIONES_DIR) -> dict:
+    combos = combos_disponibles(elecciones_dir)
+    cargados = [(anio, nivel, path, cargar_eleccion(path)) for anio, nivel, path in combos]
+    xlim, ylim = limites_globales([df for _, _, _, df in cargados])
+
     distrito = {}
-    for nivel in NIVELES:
-        df_todo = tabla_distrito(nivel, posiciones, data_dir)
-        if df_todo.empty:
+    fam_names: set[str] = set()
+    for anio, nivel, path, df in cargados:
+        if df.empty:
             continue
-        cargo_por_anio = dict(_puntos_del_nivel(data_dir, nivel))
+        cargo = _cargo_de_archivo(path)
+        fam_names.update(f for f in df["filiacion_politica"] if pd.notna(f))
+        distrito[f"{anio}_{nivel}"] = {
+            "anio": anio, "nivel": nivel, "cargo": cargo,
+            "cargo_label": CARGO_LABEL.get(cargo, cargo),
+            "puntos": _serializar_puntos(df),
+        }
 
-        for anio in sorted(df_todo["year"].unique()):
-            df_anio = df_todo[df_todo["year"] == anio]
-            cargo = cargo_por_anio[anio]
-            nivel_csv = NIVEL_A_NIVEL_CSV.get(cargo, cargo)
-            filiacion_de = {
-                agrupacion: filiaciones.get((str(anio), nivel_csv, agrupacion))
-                for agrupacion in df_anio["agrupacion"]
-            }
-            colores = _color_por_partido(list(df_anio["agrupacion"]), filiacion_de)
-            puntos = _serializar_puntos(df_anio, filiacion_de, colores)
-
-            distrito[f"{int(anio)}_{nivel}"] = {
-                "anio": int(anio), "nivel": nivel, "cargo": cargo, "cargo_label": CARGO_LABEL[cargo],
-                "puntos": puntos,
-            }
-
-    return distrito
-
-
-def _localidad_puntos_por_nivel(
-    data_dir: Path | str,
-    crosswalk_path: Path | str,
-    posiciones: dict[tuple[str, str, str], tuple[float, float, float]],
-    filiaciones: dict[tuple[str, str, str], str],
-) -> dict:
-    """{"<localidad>": {"<año>_<nivel>": {...}}}, mismos puntos que
-    `generar_localidad_por_anio`; color sobre universo distrital, igual en
-    cualquier localidad."""
-    localidad_puntos: dict[str, dict] = {}
-    for nivel in NIVELES:
-        df_todo = tabla_distrito(nivel, posiciones, data_dir)
-        df_loc = tabla_localidades(nivel, posiciones, data_dir, crosswalk_path)
-        if df_todo.empty or df_loc.empty:
-            continue
-        cargo_por_anio = dict(_puntos_del_nivel(data_dir, nivel))
-
-        for anio in sorted(df_todo["year"].unique()):
-            cargo = cargo_por_anio[anio]
-            nivel_csv = NIVEL_A_NIVEL_CSV.get(cargo, cargo)
-            agrupaciones_distrito = list(df_todo.loc[df_todo["year"] == anio, "agrupacion"])
-            filiacion_de = {
-                agrupacion: filiaciones.get((str(anio), nivel_csv, agrupacion))
-                for agrupacion in agrupaciones_distrito
-            }
-            colores = _color_por_partido(agrupaciones_distrito, filiacion_de)
-
-            df_anio_loc = df_loc[df_loc["year"] == anio]
-            for localidad, grupo in df_anio_loc.groupby("localidad"):
-                puntos = _serializar_puntos(grupo, filiacion_de, colores)
-                localidad_puntos.setdefault(localidad, {})[f"{int(anio)}_{nivel}"] = {
-                    "anio": int(anio), "nivel": nivel, "cargo": cargo, "cargo_label": CARGO_LABEL[cargo],
-                    "puntos": puntos,
-                }
-
-    return localidad_puntos
-
-
-def construir_payload(
-    data_dir: Path | str = DATA_DISTRITO_DIR,
-    geojson_path: Path | str = CIRCUITOS_GEOJSON_PATH,
-    localidades_path: Path | str = LOCALIDADES_LA_PLATA_PATH,
-    crosswalk_path: Path | str = CIRCUITOS_POR_LOCALIDAD_PATH,
-    clasificacion_path: Path | str = CLASIFICACION_IDEOLOGICA_PATH,
-) -> dict:
-    posiciones = cargar_posiciones_propias(clasificacion_path)
-    filiaciones = cargar_filiaciones(clasificacion_path)
-
-    distrito = _tabla_distrito_por_nivel(data_dir, posiciones, filiaciones)
-    localidad_puntos = _localidad_puntos_por_nivel(data_dir, crosswalk_path, posiciones, filiaciones)
-    xlim, ylim = _limites_globales(posiciones)
-
-    geojson = _cargar_geojson_circuitos(geojson_path)
-    circuito_localidad = cargar_circuito_localidad_geo(crosswalk_path)
-    for feature in geojson["features"]:
-        circuito_localidad.setdefault(feature["properties"]["circuito_id"], None)
-
-    fam_names = sorted({f for f in filiaciones.values()})
-
-    nivel_labels = {
-        nivel: f"{nivel.capitalize()} ({CARGO_LABEL[ejecutivo]} / {CARGO_LABEL[legislativo]})"
-        for nivel, (ejecutivo, legislativo) in NIVELES.items()
-    }
+    nivel_labels = {nivel: nivel.capitalize() for _, nivel, _, _ in cargados}
 
     return {
         "generado": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "geojson": geojson,
-        "circuito_localidad": circuito_localidad,
-        "localidades": _cargar_localidades(localidades_path),
         "fam_colors": {k: v for k, v in _COLOR_FILIACION.items() if k in fam_names},
         "nivel_labels": nivel_labels,
         "distrito": distrito,
-        "localidad_puntos": localidad_puntos,
         "eje_limites": {"x": round(xlim[1], 3), "y": round(ylim[1], 3)},
     }
 
 
 def generar_distribucion_interactiva(
     destino: Path | str = "docs/distribucion_ideologica_la_plata.html",
-    data_dir: Path | str = DATA_DISTRITO_DIR,
+    elecciones_dir: Path | str = ELECCIONES_DIR,
 ) -> Path:
-    payload = construir_payload(data_dir=data_dir)
+    payload = construir_payload(elecciones_dir=elecciones_dir)
 
     plantilla_path = Path(__file__).parent / "distribucion_ideologica_template.html"
     plantilla = plantilla_path.read_text(encoding="utf-8")
@@ -188,10 +105,10 @@ def generar_distribucion_interactiva(
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--destino", default="docs/distribucion_ideologica_la_plata.html")
-    parser.add_argument("--data-dir", default=DATA_DISTRITO_DIR)
+    parser.add_argument("--elecciones-dir", default=ELECCIONES_DIR)
     args = parser.parse_args()
 
-    destino = generar_distribucion_interactiva(destino=args.destino, data_dir=args.data_dir)
+    destino = generar_distribucion_interactiva(destino=args.destino, elecciones_dir=args.elecciones_dir)
     print(f"{destino} generado")
 
 

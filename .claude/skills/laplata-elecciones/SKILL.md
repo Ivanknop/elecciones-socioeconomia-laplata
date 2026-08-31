@@ -63,7 +63,7 @@ data/geolocalizacion/fuentes_extra/resolucion_1990-2007.md                     #
 data/socioeconomia/circuito_radio_correspondencia.csv           # correspondencia espacial circuito<->radio censal (peso_area)
 data/socioeconomia/radios_censales_{2010,2022}_la_plata.geojson
 src/electoral/          # cliente API, modelos, parsing, agrupamiento por localidad (localidades.py), totales por agrupación (totales.py)
-src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a partir de circuito_<nivel>.json; totales_por_lista.py ya no grafica, solo capa de datos compartida; comparativo_nivel.py compara Municipio/Provincia/Nación en Markdown; vparty_cuadrantes_local.py -- generación de cuadrantes por partido (distrito) DEPRECADA, ver CLAUDE.md; sus funciones de datos (tabla_distrito/tabla_localidades/etc.) siguen activas para visualizacion/
+src/analisis/           # gráficos y cuadros por circuito/nivel/localidad, a partir de circuito_<nivel>.json; totales_por_lista.py ya no grafica, solo capa de datos compartida; comparativo_nivel.py compara Municipio/Provincia/Nación en Markdown; vparty_cuadrantes_local.py -- generación de cuadrantes por partido (distrito) DEPRECADA, ver CLAUDE.md; solo _color_por_partido/_sombras siguen con llamador activo (tabla_distrito/tabla_localidades/etc. quedaron huérfanas); vparty_distribucion_tfi.py -- reemplazo vigente, cuadrantes V-Party 2001-2025 desde data/tfi_data/elecciones/, un PNG por (año,nivel)
 src/visualizacion/      # generadores de HTML interactivo para docs/, sobre datos de este dominio -- ver skill laplata-visualizacion
 src/socioeconomia/      # EPH, geo, IAELaP
 notebooks/               # 01-06, la pipeline real corre acá (ver CLAUDE.md)

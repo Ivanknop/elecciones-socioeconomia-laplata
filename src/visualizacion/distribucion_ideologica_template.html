@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Distribución ideológica (V-Party) — Partido de La Plata</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <style>
   :root{
     --bg: #12181f;
@@ -16,14 +14,13 @@
     --line: #3a4350;
     --accent: #c9a227;
     --accent-2: #7db8d8;
-    --map-bg: #0c1116;
     --serif: "Iowan Old Style", "Palatino Linotype", Georgia, "Source Serif Pro", serif;
     --mono: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, monospace;
     --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
   }
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);}
-  #app{display:flex;flex-direction:column;height:100vh;min-height:560px;}
+  html,body{margin:0;padding:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);}
+  #app{display:flex;flex-direction:column;min-height:100vh;}
 
   header{
     padding:14px 20px 12px 20px;
@@ -74,72 +71,34 @@
   .modebar button:hover{color:var(--ink);}
   .modebar button.active{background:var(--accent); color:#1a1608;}
 
-  label.chk{display:flex; align-items:center; gap:6px; cursor:pointer; font-size:12px; color:var(--ink-dim);}
-  label.chk input{accent-color:var(--accent);}
+  #main{flex:1; display:flex; justify-content:center; padding:26px 20px 40px 20px;}
+  #content{width:100%; max-width:760px;}
+  #content h2{font-family:var(--serif); font-size:18px; margin:0 0 2px 0; color:var(--ink);}
+  #content .sub{font-family:var(--mono); font-size:11px; color:var(--ink-dim); margin-bottom:18px;}
 
-  #main{flex:1; display:flex; min-height:0;}
-  #mapwrap{flex:1; position:relative; min-width:0;}
-  #map{width:100%; height:100%; background:var(--map-bg);}
-
-  #side{
-    width:420px; flex:0 0 420px; background:var(--bg-panel); border-left:1px solid var(--line);
-    display:flex; flex-direction:column; overflow:hidden;
+  .panel{
+    margin-bottom:20px; padding:18px 20px; background:var(--bg-panel);
+    border:1px solid var(--line); border-radius:8px;
   }
-  #side-scroll{overflow-y:auto; padding:16px 18px 24px 18px; flex:1;}
-  #side h2{font-family:var(--serif); font-size:15px; margin:0 0 2px 0; color:var(--ink);}
-  #side .sub{font-family:var(--mono); font-size:10.5px; color:var(--ink-dim); margin-bottom:14px;}
-
-  .panel{margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--line);}
-  .panel:last-child{border-bottom:none;}
   .panel h3{font-size:10.5px; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); margin:0 0 10px 0; font-weight:700;}
-  .close-btn{
-    font-family:var(--mono); font-size:10px; text-transform:none; letter-spacing:0; font-weight:600;
-    background:none; border:1px solid var(--line); border-radius:3px; color:var(--ink-dim);
-    padding:3px 7px; cursor:pointer; transition:color .12s, border-color .12s;
-  }
-  .close-btn:hover{ color:var(--ink); border-color:var(--accent-2); }
 
   .row{display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:12px;}
   .swatch{width:11px; height:11px; border-radius:50%; flex:0 0 11px; border:1px solid rgba(255,255,255,.2);}
   .row .name{flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
-  .row .val{font-family:var(--mono); color:var(--ink-dim); flex:0 0 auto; font-size:11px;}
 
-  #placeholder{color:var(--ink-dim); font-size:12.5px; line-height:1.6; font-style:italic; padding:12px 0;}
-
-  #chartwrap, #chartwrap-localidad{position:relative;}
-  #chart, #chart-localidad{width:100%; height:auto; display:block;}
-  #chart circle, #chart-localidad circle{cursor:pointer; transition:opacity .12s;}
-  #chart circle:hover, #chart-localidad circle:hover{opacity:.85;}
+  #chartwrap{position:relative;}
+  #chart{width:100%; height:auto; display:block;}
+  #chart circle{cursor:pointer; transition:opacity .12s;}
+  #chart circle:hover{opacity:.85;}
   .chart-tip{
     position:absolute; pointer-events:none; z-index:20; max-width:230px;
-    background:var(--bg-panel); border:1px solid var(--line); border-radius:5px;
+    background:var(--bg-panel-2); border:1px solid var(--line); border-radius:5px;
     padding:8px 10px; font-family:var(--sans); font-size:11.5px; line-height:1.5;
     box-shadow:0 4px 14px rgba(0,0,0,.4); display:none;
   }
   .chart-tip b{color:var(--accent); font-family:var(--serif); font-size:12.5px;}
   .chart-tip .mono{font-family:var(--mono); color:var(--ink-dim); font-size:10.5px;}
 
-  .leaflet-popup-content-wrapper{background:var(--bg-panel); color:var(--ink); border-radius:5px; border:1px solid var(--line);}
-  .leaflet-popup-tip{background:var(--bg-panel); border:1px solid var(--line);}
-  .leaflet-popup-content{font-family:var(--sans); font-size:12px; margin:12px 14px; min-width:180px;}
-  .popup-title{font-family:var(--serif); font-size:14px; margin-bottom:2px; color:var(--accent);}
-  .popup-sub{font-family:var(--mono); font-size:10.5px; color:var(--ink-dim);}
-  .leaflet-container{font-family:var(--sans);}
-  .leaflet-control-zoom a{background:var(--bg-panel) !important; color:var(--ink) !important; border-color:var(--line) !important;}
-  .leaflet-control-attribution{background:rgba(18,24,31,.8) !important; color:var(--ink-dim) !important;}
-  .leaflet-control-attribution a{color:var(--accent-2) !important;}
-
-  .loc-label{
-    font-family:var(--mono); font-size:9.5px; color:#dcd6c4; text-shadow:0 0 3px #000, 0 0 5px #000;
-    white-space:nowrap; pointer-events:none; letter-spacing:.02em;
-  }
-  .loc-dot{width:4px;height:4px;border-radius:50%;background:#dcd6c4;border:1px solid #000;}
-
-  @media (max-width: 900px){
-    #main{flex-direction:column;}
-    #side{width:100%; flex:0 0 auto; max-height:52vh; border-left:none; border-top:1px solid var(--line);}
-    #mapwrap{flex:1 1 auto; min-height:260px;}
-  }
   @media (max-width: 560px){
     .modebar{ flex-wrap:wrap; }
     .modebar button{ flex:1 1 auto; }
@@ -157,7 +116,7 @@
       <a class="back-link" href="index.html">&larr; Inicio</a>
       <h1>Distribución ideológica (V-Party) — Partido de La Plata</h1>
     </div>
-    <div class="meta" id="header-meta">económico × progresismo social, por partido<br>fuente: V-Party (V-Dem Institute) + estimación propia calibrada</div>
+    <div class="meta" id="header-meta">económico × progresismo social, por partido · 2001-2025<br>fuente: V-Party (V-Dem Institute) + estimación propia calibrada</div>
   </header>
 
   <div id="controls">
@@ -170,43 +129,24 @@
       <select id="sel-anio"></select>
       <button id="btn-play" class="play-btn" type="button" aria-pressed="false" title="Reproducir la secuencia de años, desde el primero">▶</button>
     </div>
-    <div class="ctrl-group">
-      <label class="chk"><input type="checkbox" id="toggle-loc" checked> localidades</label>
-    </div>
   </div>
 
   <div id="main">
-    <div id="mapwrap"><div id="map"></div></div>
-    <div id="side">
-      <div id="side-scroll">
-        <h2 id="side-title">—</h2>
-        <div class="sub" id="side-sub">Seleccioná un circuito para ver su localidad</div>
+    <div id="content">
+      <h2 id="side-title">—</h2>
+      <div class="sub" id="side-sub"></div>
 
-        <div class="panel" id="panel-chart">
-          <h3 id="chart-title">Cuadrantes ideológicos — distrito</h3>
-          <div id="chartwrap">
-            <svg id="chart" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg"></svg>
-            <div class="chart-tip" id="chart-tip"></div>
-          </div>
+      <div class="panel" id="panel-chart">
+        <h3 id="chart-title">Cuadrantes ideológicos — distrito</h3>
+        <div id="chartwrap">
+          <svg id="chart" viewBox="0 0 620 460" xmlns="http://www.w3.org/2000/svg"></svg>
+          <div class="chart-tip" id="chart-tip"></div>
         </div>
+      </div>
 
-        <div class="panel" id="panel-localidad" style="display:none;">
-          <h3 style="display:flex; align-items:center; justify-content:space-between;">
-            <span>Localidad seleccionada</span>
-            <button id="btn-deseleccionar" type="button" class="close-btn" title="Ver el distrito completo">✕ distrito</button>
-          </h3>
-          <h3 id="chart-title-localidad" style="display:none;">Cuadrantes ideológicos — localidad</h3>
-          <div id="chartwrap-localidad" style="display:none;">
-            <svg id="chart-localidad" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg"></svg>
-            <div class="chart-tip" id="chart-tip-localidad"></div>
-          </div>
-          <div id="placeholder"></div>
-        </div>
-
-        <div class="panel">
-          <h3>Referencias</h3>
-          <div id="legend-list"></div>
-        </div>
+      <div class="panel">
+        <h3>Referencias</h3>
+        <div id="legend-list"></div>
       </div>
     </div>
   </div>
@@ -215,7 +155,6 @@
 <script>
 const DATA = /*__RAW_DATA__*/;
 const FAM_COLORS = DATA.fam_colors;
-const NIVEL_LABELS = DATA.nivel_labels;
 const EJE_LIMITES = DATA.eje_limites;
 
 function fmtFam(f){ return f ? f.charAt(0).toUpperCase()+f.slice(1) : "sin clasificar"; }
@@ -240,7 +179,7 @@ nivelesDisponibles.forEach((nivel, i) => {
   const btn = document.createElement('button');
   btn.dataset.nivel = nivel;
   btn.textContent = nivel.charAt(0).toUpperCase() + nivel.slice(1);
-  btn.title = NIVEL_LABELS[nivel] || nivel;
+  btn.title = DATA.nivel_labels[nivel] || nivel;
   if(i === 0) btn.classList.add('active');
   nivelBar.appendChild(btn);
 });
@@ -311,95 +250,21 @@ selAnio.addEventListener('change', ()=>{
   render();
 });
 
-// ---- mapa (referencia geográfica, sin choropleth) ----
-const map = L.map('map', {zoomControl:true, minZoom:10, maxZoom:16, attributionControl:true})
-  .setView([-34.945, -57.98], 12);
-L.control.attribution({prefix:false}).addTo(map);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; OpenStreetMap &copy; CARTO',
-  subdomains: 'abcd', maxZoom: 19
-}).addTo(map);
-
-let locLayerGroup = L.layerGroup();
-let selectedCircuito = null;
-let selectedLocalidad = null;
-
-DATA.localidades.forEach(loc=>{
-  L.circleMarker([loc.lat, loc.lon], {radius:2.5, color:"#0c1116", weight:1, fillColor:"#dcd6c4", fillOpacity:0.95}).addTo(locLayerGroup);
-  L.marker([loc.lat, loc.lon], {
-    icon: L.divIcon({className:'', html:`<div class="loc-label">${loc.nombre}</div>`, iconAnchor:[-6,6]}),
-    interactive:false
-  }).addTo(locLayerGroup);
-});
-document.getElementById('toggle-loc').addEventListener('change', (e)=>{
-  if(e.target.checked) locLayerGroup.addTo(map); else map.removeLayer(locLayerGroup);
-});
-locLayerGroup.addTo(map);
-
-const NEUTRO_FILL = "#26303c";
-const NEUTRO_LINE = "#0c1116";
-const SELECTED_LINE = "#f2ead2";
-const SIN_LOCALIDAD_FILL = "#3a2626";
-
-const geoLayer = L.geoJSON(DATA.geojson, {
-  style: feature => {
-    const cid = feature.properties.circuito_id;
-    const sinLocalidad = DATA.circuito_localidad[cid] === null || DATA.circuito_localidad[cid] === undefined;
-    const isSelected = selectedCircuito === cid;
-    return {
-      color: isSelected ? SELECTED_LINE : NEUTRO_LINE,
-      weight: isSelected ? 2.4 : 0.8,
-      fillColor: sinLocalidad ? SIN_LOCALIDAD_FILL : NEUTRO_FILL,
-      fillOpacity: 0.75,
-    };
-  },
-  onEachFeature: (feature, layer) => {
-    const cid = feature.properties.circuito_id;
-    const locName = DATA.circuito_localidad[cid];
-    layer.bindPopup(
-      `<div class="popup-title">${locName || "localidad sin identificar"}</div><div class="popup-sub">Circuito ${cid}</div>`
-    );
-    layer.on('mouseover', ()=> layer.setStyle({weight:2, color:SELECTED_LINE}));
-    layer.on('mouseout', ()=> { if(selectedCircuito !== cid) layer.setStyle({weight:0.8, color:NEUTRO_LINE}); });
-    layer.on('click', (e)=>{
-      L.DomEvent.stopPropagation(e);
-      selectedCircuito = cid;
-      selectedLocalidad = locName || null;
-      geoLayer.eachLayer(l=>{
-        const c2 = l.feature.properties.circuito_id;
-        l.setStyle({weight: c2===cid ? 2.4:0.8, color: c2===cid ? SELECTED_LINE:NEUTRO_LINE});
-      });
-      render();
-    });
-  }
-}).addTo(map);
-
-function deseleccionarLocalidad(){
-  selectedCircuito = null;
-  selectedLocalidad = null;
-  geoLayer.eachLayer(l => l.setStyle({weight:0.8, color:NEUTRO_LINE}));
-  render();
-}
-document.getElementById('btn-deseleccionar').addEventListener('click', deseleccionarLocalidad);
-map.on('click', deseleccionarLocalidad);
-
-locLayerGroup.eachLayer(l => { if (l.bringToFront) l.bringToFront(); });
-
 // ---- bubble chart SVG: X=económico, Y=progresismo, tamaño=% de votos ----
-const SVG_SIZE = 380;
-const MARGIN = 34;
-const RADIO_MIN = 5, RADIO_MAX = 26;
+const SVG_W = 620, SVG_H = 460;
+const MARGIN = 44;
+const RADIO_MIN = 6, RADIO_MAX = 32;
 
 function escalaLineal(v, dMin, dMax, rMin, rMax){
   if(dMax === dMin) return (rMin + rMax) / 2;
   return rMin + (v - dMin) / (dMax - dMin) * (rMax - rMin);
 }
 
-function renderChart(puntos, {svgId, titleId, tipId, wrapId, contexto}){
-  const svg = document.getElementById(svgId);
-  const titulo = document.getElementById(titleId);
-  const tip = document.getElementById(tipId);
-  const chartwrap = document.getElementById(wrapId);
+function renderChart(puntos, contexto){
+  const svg = document.getElementById('chart');
+  const titulo = document.getElementById('chart-title');
+  const tip = document.getElementById('chart-tip');
+  const chartwrap = document.getElementById('chartwrap');
   svg.innerHTML = "";
 
   if(!puntos.length){
@@ -409,16 +274,16 @@ function renderChart(puntos, {svgId, titleId, tipId, wrapId, contexto}){
   titulo.textContent = `Cuadrantes ideológicos — ${contexto} (tamaño = % de votos)`;
 
   // dominio fijo y simétrico respecto de 0 -- mismo criterio que los PNG
-  // estáticos (`_limites_globales`): el (0,0) siempre queda en el centro
-  // visual, y el rango nunca cambia entre año/nivel/localidad, así el
-  // autoplay y el cambio de localidad no reescalan el gráfico.
+  // estáticos (`limites_globales`): el (0,0) siempre queda en el centro
+  // visual, y el rango nunca cambia entre año/nivel, así el autoplay no
+  // reescala el gráfico.
   const xMax = EJE_LIMITES.x, xMin = -xMax;
   const yMax = EJE_LIMITES.y, yMin = -yMax;
   const pctMin = Math.min(...puntos.map(p=>p.votos_pct));
   const pctMax = Math.max(...puntos.map(p=>p.votos_pct));
 
-  const px = v => escalaLineal(v, xMin, xMax, MARGIN, SVG_SIZE - MARGIN);
-  const py = v => escalaLineal(v, yMax, yMin, MARGIN, SVG_SIZE - MARGIN); // y invertido (SVG crece hacia abajo)
+  const px = v => escalaLineal(v, xMin, xMax, MARGIN, SVG_W - MARGIN);
+  const py = v => escalaLineal(v, yMax, yMin, MARGIN, SVG_H - MARGIN); // y invertido (SVG crece hacia abajo)
 
   const ns = "http://www.w3.org/2000/svg";
   function el(tag, attrs){
@@ -427,26 +292,25 @@ function renderChart(puntos, {svgId, titleId, tipId, wrapId, contexto}){
     return e;
   }
 
-  // ejes en 0 (si el 0 cae dentro del rango visible)
   if(xMin < 0 && xMax > 0){
-    svg.appendChild(el('line', {x1:px(0), x2:px(0), y1:MARGIN, y2:SVG_SIZE-MARGIN, stroke:"#555f6c", "stroke-dasharray":"3,3"}));
+    svg.appendChild(el('line', {x1:px(0), x2:px(0), y1:MARGIN, y2:SVG_H-MARGIN, stroke:"#555f6c", "stroke-dasharray":"3,3"}));
   }
   if(yMin < 0 && yMax > 0){
-    svg.appendChild(el('line', {x1:MARGIN, x2:SVG_SIZE-MARGIN, y1:py(0), y2:py(0), stroke:"#555f6c", "stroke-dasharray":"3,3"}));
+    svg.appendChild(el('line', {x1:MARGIN, x2:SVG_W-MARGIN, y1:py(0), y2:py(0), stroke:"#555f6c", "stroke-dasharray":"3,3"}));
   }
-  svg.appendChild(el('rect', {x:MARGIN, y:MARGIN, width:SVG_SIZE-2*MARGIN, height:SVG_SIZE-2*MARGIN, fill:"none", stroke:"#3a4350"}));
+  svg.appendChild(el('rect', {x:MARGIN, y:MARGIN, width:SVG_W-2*MARGIN, height:SVG_H-2*MARGIN, fill:"none", stroke:"#3a4350"}));
 
-  const estiloEje = {"font-family":"var(--mono)", "font-size":"8px", fill:"#a9a48f"};
-  const tx1 = el('text', {x:MARGIN+4, y:MARGIN+10, ...estiloEje}); tx1.textContent = "Izq. · Progresista";
-  const tx2 = el('text', {x:SVG_SIZE-MARGIN-4, y:MARGIN+10, "text-anchor":"end", ...estiloEje}); tx2.textContent = "Der. · Progresista";
-  const tx3 = el('text', {x:MARGIN+4, y:SVG_SIZE-MARGIN-4, ...estiloEje}); tx3.textContent = "Izq. · Conservador";
-  const tx4 = el('text', {x:SVG_SIZE-MARGIN-4, y:SVG_SIZE-MARGIN-4, "text-anchor":"end", ...estiloEje}); tx4.textContent = "Der. · Conservador";
+  const estiloEje = {"font-family":"var(--mono)", "font-size":"10px", fill:"#a9a48f"};
+  const tx1 = el('text', {x:MARGIN+6, y:MARGIN+14, ...estiloEje}); tx1.textContent = "Izq. · Progresista";
+  const tx2 = el('text', {x:SVG_W-MARGIN-6, y:MARGIN+14, "text-anchor":"end", ...estiloEje}); tx2.textContent = "Der. · Progresista";
+  const tx3 = el('text', {x:MARGIN+6, y:SVG_H-MARGIN-6, ...estiloEje}); tx3.textContent = "Izq. · Conservador";
+  const tx4 = el('text', {x:SVG_W-MARGIN-6, y:SVG_H-MARGIN-6, "text-anchor":"end", ...estiloEje}); tx4.textContent = "Der. · Conservador";
   [tx1,tx2,tx3,tx4].forEach(t=>svg.appendChild(t));
 
-  const yLabel = el('text', {x:8, y:SVG_SIZE/2, "text-anchor":"middle", transform:`rotate(-90 8 ${SVG_SIZE/2})`, ...estiloEje});
+  const yLabel = el('text', {x:12, y:SVG_H/2, "text-anchor":"middle", transform:`rotate(-90 12 ${SVG_H/2})`, ...estiloEje});
   yLabel.textContent = "progresismo →";
   svg.appendChild(yLabel);
-  const xLabel = el('text', {x:SVG_SIZE/2, y:SVG_SIZE-6, "text-anchor":"middle", ...estiloEje});
+  const xLabel = el('text', {x:SVG_W/2, y:SVG_H-8, "text-anchor":"middle", ...estiloEje});
   xLabel.textContent = "económico (mercado) →";
   svg.appendChild(xLabel);
 
@@ -493,56 +357,18 @@ function render(){
   const key = `${selAnio.value}_${nivelActual}`;
   const elec = DATA.distrito[key];
 
-  if(selectedCircuito !== null){
-    document.getElementById('panel-chart').style.display = "none";
-    document.getElementById('panel-localidad').style.display = "block";
-    document.getElementById('side-title').textContent = selectedLocalidad || "localidad sin identificar";
-    document.getElementById('side-sub').textContent = `Circuito ${selectedCircuito}`;
-
-    const locEntry = selectedLocalidad ? DATA.localidad_puntos[selectedLocalidad]?.[key] : undefined;
-    const locPuntos = locEntry ? locEntry.puntos : [];
-    const chartTituloLoc = document.getElementById('chart-title-localidad');
-    const chartwrapLoc = document.getElementById('chartwrap-localidad');
-    const placeholder = document.getElementById('placeholder');
-
-    if(locPuntos.length){
-      chartTituloLoc.style.display = "block";
-      chartwrapLoc.style.display = "block";
-      placeholder.style.display = "none";
-      renderChart(locPuntos, {
-        svgId: 'chart-localidad', titleId: 'chart-title-localidad',
-        tipId: 'chart-tip-localidad', wrapId: 'chartwrap-localidad',
-        contexto: selectedLocalidad,
-      });
-      buildLegend(locPuntos);
-    } else {
-      chartTituloLoc.style.display = "none";
-      chartwrapLoc.style.display = "none";
-      placeholder.style.display = "block";
-      const nivelCap = nivelActual.charAt(0).toUpperCase() + nivelActual.slice(1);
-      placeholder.innerHTML = selectedLocalidad
-        ? `Sin cobertura V-Party para <b>${selectedLocalidad}</b> en ${nivelCap} ${selAnio.value}.`
-        : `Distribución ideológica de esta localidad — no se pudo identificar la localidad de este circuito.`;
-      buildLegend([]);
-    }
-    return;
-  }
-
-  document.getElementById('panel-chart').style.display = "block";
-  document.getElementById('panel-localidad').style.display = "none";
-
   if(!elec){
     document.getElementById('side-title').textContent = "—";
     document.getElementById('side-sub').textContent = "Sin datos para este año/nivel";
-    renderChart([], {svgId:'chart', titleId:'chart-title', tipId:'chart-tip', wrapId:'chartwrap', contexto:'distrito'});
+    renderChart([], 'distrito');
     buildLegend([]);
     return;
   }
 
   document.getElementById('side-title').textContent = `${elec.nivel.charAt(0).toUpperCase()+elec.nivel.slice(1)} ${elec.anio}`;
-  document.getElementById('side-sub').textContent = "";
+  document.getElementById('side-sub').textContent = elec.cargo_label || "";
 
-  renderChart(elec.puntos, {svgId:'chart', titleId:'chart-title', tipId:'chart-tip', wrapId:'chartwrap', contexto:'distrito'});
+  renderChart(elec.puntos, 'distrito');
   buildLegend(elec.puntos);
 }
 

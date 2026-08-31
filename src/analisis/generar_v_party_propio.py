@@ -273,6 +273,30 @@ def estimar(medianas, calib):
 
 
 # ---------------------------------------------------------------------------
+# AD HOC: partido fuera de PARTIDOS, evaluado por un subconjunto de expertos
+# (no todo el panel respondió). No pasa por cargar_encuesta/mediana_por_partido
+# ni se integra a estimar()/escribir_salida -- se llama a mano, un partido a
+# la vez, reusando el `calib` ya ajustado sobre el panel completo.
+# ---------------------------------------------------------------------------
+
+def estimar_partido_cobertura_parcial(respuestas, calib):
+    """Estima econ/prog/pop para un partido fuera de PARTIDOS desde un subconjunto de expertos.
+
+    `respuestas` es {id_experto: [11 valores crudos A1..D1]}, mismo orden y
+    escala que un bloque de `cargar_encuesta` (sin el campo de confianza D2).
+    Agrega por mediana entre los expertos dados y aplica `calib`.
+    """
+    valores = {dim: [] for dim in DIMENSIONES}
+    for vals_raw in respuestas.values():
+        vals = [float(x) for x in vals_raw[:11]]
+        valores["econ"].append(4 - st.mean(vals[0:4]))
+        valores["prog"].append(st.mean(vals[4:8]))
+        valores["pop"].append(st.mean(vals[8:10]))
+    medianas = {dim: st.median(valores[dim]) for dim in DIMENSIONES}
+    return {dim: calib[dim][0] + calib[dim][1] * medianas[dim] for dim in DIMENSIONES}
+
+
+# ---------------------------------------------------------------------------
 # 5. SALIDA
 # ---------------------------------------------------------------------------
 
