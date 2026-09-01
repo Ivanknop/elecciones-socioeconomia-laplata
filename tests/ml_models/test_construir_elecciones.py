@@ -72,14 +72,21 @@ class TestBlancoNulo:
 
 
 class TestConstruirEleccion:
-    def test_incluye_agrupaciones_y_blanco_nulo(self, data_dir):
+    def test_incluye_agrupaciones_blanco_nulo_y_votantes_habilitados(self, data_dir):
         filas = construir_eleccion(data_dir, 2023, "intendente")
         nombres = {f.agrupacion for f in filas}
-        assert nombres == {"PARTIDO A", "PARTIDO B", "BLANCO", "NULO"}
+        assert nombres == {"PARTIDO A", "PARTIDO B", "BLANCO", "NULO", "VOTANTES_HABILITADOS"}
 
     def test_votos_porcentaje_suma_100_sobre_agrupaciones_mas_blanco_nulo(self, data_dir):
         filas = construir_eleccion(data_dir, 2023, "intendente")
-        assert round(sum(f.votos_porcentaje for f in filas), 6) == 100.0
+        sin_votantes = [f for f in filas if f.agrupacion != "VOTANTES_HABILITADOS"]
+        assert round(sum(f.votos_porcentaje for f in sin_votantes), 6) == 100.0
+
+    def test_votantes_habilitados_es_el_padron_con_100_por_ciento(self, data_dir):
+        filas = construir_eleccion(data_dir, 2023, "intendente")
+        por_nombre = {f.agrupacion: f for f in filas}
+        assert por_nombre["VOTANTES_HABILITADOS"].votos == 2000  # 1000 electores x 2 circuitos
+        assert por_nombre["VOTANTES_HABILITADOS"].votos_porcentaje == 100.0
 
     def test_votos_agregados_correctamente(self, data_dir):
         filas = construir_eleccion(data_dir, 2023, "intendente")
@@ -92,7 +99,8 @@ class TestConstruirEleccion:
     def test_sin_votos_no_rompe_por_division_cero(self, tmp_path):
         _escribir_circuito(tmp_path, 2023, "intendente", {"100": _circuito({}, {})})
         filas = construir_eleccion(tmp_path, 2023, "intendente")
-        assert all(f.votos_porcentaje == 0.0 for f in filas)
+        sin_votantes = [f for f in filas if f.agrupacion != "VOTANTES_HABILITADOS"]
+        assert all(f.votos_porcentaje == 0.0 for f in sin_votantes)
 
     def test_completa_clasificacion_de_agrupaciones_conocidas(self, data_dir):
         clasificacion = {
@@ -111,15 +119,17 @@ class TestConstruirEleccion:
         assert por_nombre["PARTIDO A"].vparty_economico == "-0.465"
         assert por_nombre["PARTIDO B"].campo_ideologico == ""  # sin fila -- no inventado
 
-    def test_blanco_y_nulo_nunca_tienen_clasificacion(self, data_dir):
+    def test_blanco_nulo_y_votantes_habilitados_nunca_tienen_clasificacion(self, data_dir):
         clasificacion = {
             ("2023", "BLANCO", "intendente"): {"campo_ideologico": "9", "filiacion_politica": "x"},
             ("2023", "NULO", "intendente"): {"campo_ideologico": "9", "filiacion_politica": "x"},
+            ("2023", "VOTANTES_HABILITADOS", "intendente"): {"campo_ideologico": "9", "filiacion_politica": "x"},
         }
         filas = construir_eleccion(data_dir, 2023, "intendente", clasificacion)
         por_nombre = {f.agrupacion: f for f in filas}
         assert por_nombre["BLANCO"].campo_ideologico == ""
         assert por_nombre["NULO"].campo_ideologico == ""
+        assert por_nombre["VOTANTES_HABILITADOS"].campo_ideologico == ""
 
 
 class TestClasificacionDeAgrupacion:

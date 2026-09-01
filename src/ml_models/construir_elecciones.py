@@ -1,8 +1,18 @@
 """Total de votos de la elección general de cada (año, nivel): agrupaciones
-(con `campo_ideologico`/`filiacion_politica`/V-Party) + BLANCO/NULO, un CSV
-por combinación en `data/tfi_data/elecciones/`. Reusa `electoral.totales`/
-`construir_calendario`, no reimplementa -- detalle de columnas y criterios
-de join en el docstring de cada función.
+(con `campo_ideologico`/`filiacion_politica`/V-Party) + BLANCO/NULO +
+VOTANTES_HABILITADOS (padrón, ver `_electores`), un CSV por combinación en
+`data/tfi_data/elecciones/`. Reusa `electoral.totales`/`construir_calendario`,
+no reimplementa -- detalle de columnas y criterios de join en el docstring
+de cada función.
+
+**VOTANTES_HABILITADOS no es una agrupación**: `votos` es el padrón total
+(suma de `electores` de todos los circuitos), `votos_porcentaje` siempre
+100 (no entra en el `total` que reparte el resto de los porcentajes, así
+que estos siguen sumando 100 entre sí sin esta fila). Solo la usan los
+scripts que calculan participación
+(`ml_models.construir_resultado_distrito`) -- cualquier otro consumidor de
+estos CSV (ej. `analisis.vparty_distribucion_tfi.cargar_eleccion`) ya la
+descarta al filtrar filas sin V-Party, igual que BLANCO/NULO.
 
 Es la fuente de referencia para resultado+clasificación por (año,nivel) --
 `graficos/agrupaciones/<año>/<nivel>/*.json` (generado por el ahora
@@ -74,6 +84,17 @@ def _blanco_nulo(data_dir: Path | str, anio: int, cargo: str) -> tuple[int, int]
     return blanco, nulo
 
 
+def _electores(data_dir: Path | str, anio: int, cargo: str) -> int:
+    """Suma `electores` (padrón) de todos los circuitos de
+    `circuito_<cargo>.json` -- para la fila VOTANTES_HABILITADOS, que
+    `ml_models.construir_resultado_distrito` usa para `participacion` en
+    vez de repetir esta suma; ningún otro script debe tratarla como una
+    agrupación (sin clasificación/V-Party, `votos_porcentaje` fijo en 100)."""
+    path = Path(data_dir) / str(anio) / cargo / "generales" / f"circuito_{cargo}.json"
+    contenido = json.loads(path.read_text(encoding="utf-8"))
+    return sum(c["electores"] for c in contenido["circuitos"].values())
+
+
 def _clasificacion_de_agrupacion(
     clasificacion: dict[tuple[str, str, str], dict], anio: int, agrupacion: str, cargo: str
 ) -> tuple[str, str, str, str, str]:
@@ -110,6 +131,8 @@ def construir_eleccion(
     ]
     filas.append(FilaEleccion("BLANCO", "BLANCO", blanco, _pct(blanco), "", "", "", "", ""))
     filas.append(FilaEleccion("NULO", "NULO", nulo, _pct(nulo), "", "", "", "", ""))
+    electores = _electores(data_dir, anio, cargo)
+    filas.append(FilaEleccion("VOTANTES_HABILITADOS", "VOTANTES_HABILITADOS", electores, 100.0, "", "", "", "", ""))
     return filas
 
 

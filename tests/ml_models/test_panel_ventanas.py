@@ -54,8 +54,8 @@ def escenario_basico():
     registro = [_var("x")]
     series_mensuales = {"x": _serie_constante(2011, 2013, 10.0)}
     resultado_por_anio_nivel = {
-        (2011, "municipal"): FilaResultadoDistrito(2011, "municipal", 100, 2, 90.0, True, 60.0, True, ""),
-        (2013, "municipal"): FilaResultadoDistrito(2013, "municipal", 100, 2, 90.0, False, 40.0, True, ""),
+        (2011, "municipal"): FilaResultadoDistrito(2011, "municipal", 100, 2, 90.0, True, 60.0, True),
+        (2013, "municipal"): FilaResultadoDistrito(2013, "municipal", 100, 2, 90.0, False, 40.0, True),
     }
     voto_partido_por_anio_nivel = {
         (2011, "municipal"): [FilaVotoPartido(2011, "municipal", "1", "OFICIALISMO", 60, 60.0)],

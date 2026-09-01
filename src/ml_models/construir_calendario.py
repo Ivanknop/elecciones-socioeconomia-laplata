@@ -233,6 +233,33 @@ CLASIFICACION_VPARTY_DIRECTO = {
     "ALIANZA FRENTE PARA LA VICTORIA": ("3", "peronistas"),
 }
 
+# Aproximación manual para titulares sin alias V-Party real (`ALIAS_VPARTY`
+# no tiene nombre V-Party para ellos): mismo valor que ya usa
+# `data/tfi_data/elecciones/2007_municipal.csv`/`agrupaciones_vparty_consolidado.csv`
+# para esa agrupación (fuente="aprox-ivan" ahí) -- Partido Progreso Social
+# (Bruera, ruptura del PJ en 2007) toma la ola 2003 de Partido Justicialista
+# (mismo espacio peronista, sin cobertura V-Party propia).
+CLASIFICACION_APROX_MANUAL = {
+    "PARTIDO PROGRESO SOCIAL": ("3", "peronistas", "-0.416", "0.268", "0.658"),
+}
+
+# Clasificación real V-Party para los titulares iniciales de
+# `_TITULAR_INICIAL_2001` en municipal/provincial (Alak/Ruckauf, ambos PJ) --
+# su propio triunfo real es 1999, anterior a la ventana del panel y al
+# recorte 2001-2019 de `v_party_argentina_2001_2019_espaniol.csv`, así que
+# no pasa por `ALIAS_VPARTY`/`_vparty_directo`. Ola 1999 sacada a mano del
+# `.RData` completo (`generar_v_party_argentina.cargar_argentina(...,
+# anio_min=1990)`, mismo mecanismo que la fuente 1b de
+# `data/agrupaciones/v-party/README.md`, no forma parte del pipeline
+# regular): v2pariglef=0.838, progresismo=promedio(0.206,-0.051,0.092,0.34)
+# =0.147, v2xpa_popul=0.336. `nacional` no tiene entrada acá -- su titular
+# inicial (Frente Para la Victoria 2011) se completó a mano directo en
+# `data/tfi_data/oficialismo_por_nivel.csv`, no en este script.
+CLASIFICACION_TITULAR_INICIAL = {
+    "municipal": ("3", "peronistas", "0.838", "0.147", "0.336"),
+    "provincial": ("3", "peronistas", "0.838", "0.147", "0.336"),
+}
+
 # Misma fórmula que `analisis.vparty_cuadrantes.cargar_posiciones`:
 # económico = v2pariglef tal cual, progresismo = promedio de las 4
 # variables sociales, populismo = v2xpa_popul tal cual.
@@ -374,9 +401,19 @@ def construir_oficialismo_por_nivel(
                 nota_extra = f"{nota_inicial} {nota_extra}".strip()
 
             if anio_clasificacion_de_esta_fila is None:
-                campo_ideologico = filiacion_politica = ""
-                vparty_economico = vparty_progresismo = vparty_populismo = ""
-                nota_extra = f"{nota_extra} Titular anterior a la ventana del panel -- sin año de elección propio para clasificar."
+                if nivel in CLASIFICACION_TITULAR_INICIAL:
+                    campo_ideologico, filiacion_politica, vparty_economico, vparty_progresismo, vparty_populismo = (
+                        CLASIFICACION_TITULAR_INICIAL[nivel]
+                    )
+                    nota_extra = (
+                        f"{nota_extra} Titular anterior a la ventana del panel -- vparty_*/campo_ideologico/"
+                        "filiacion_politica de la ola V-Party más cercana a su triunfo real (1999), no del "
+                        "año de esta fila (ver CLASIFICACION_TITULAR_INICIAL)."
+                    )
+                else:
+                    campo_ideologico = filiacion_politica = ""
+                    vparty_economico = vparty_progresismo = vparty_populismo = ""
+                    nota_extra = f"{nota_extra} Titular anterior a la ventana del panel -- sin año de elección propio para clasificar."
             else:
                 fila_clas = _clasificacion_del_titular(clasificacion, anio_clasificacion_de_esta_fila, agrupacion_oficialismo, nivel)
                 if fila_clas is not None:
@@ -394,6 +431,16 @@ def construir_oficialismo_por_nivel(
                             f"{nota_extra} Sin fila en clasificacion_ideologica_agrupaciones.csv para "
                             f"{agrupacion_oficialismo!r}; vparty_*/campo_ideologico/filiacion_politica tomados "
                             f"directo de V-Party ({anio_clasificacion_de_esta_fila})."
+                        )
+                    elif agrupacion_oficialismo in CLASIFICACION_APROX_MANUAL:
+                        campo_ideologico, filiacion_politica, vparty_economico, vparty_progresismo, vparty_populismo = (
+                            CLASIFICACION_APROX_MANUAL[agrupacion_oficialismo]
+                        )
+                        nota_extra = (
+                            f"{nota_extra} Sin fila en clasificacion_ideologica_agrupaciones.csv ni alias V-Party "
+                            f"real para {agrupacion_oficialismo!r}; vparty_*/campo_ideologico/filiacion_politica "
+                            "aproximados a mano, mismo valor que ya usan los CSV de data/tfi_data/elecciones/ "
+                            "para esta agrupación (ver data/agrupaciones/v-party/README.md)."
                         )
                     else:
                         campo_ideologico = filiacion_politica = ""
@@ -492,8 +539,8 @@ def generar_csvs(
     clasificacion = _cargar_clasificacion(clasificacion_path)
     vparty_directo = _cargar_vparty_directo(vparty_path)
     oficialismo = construir_oficialismo_por_nivel(calendario, oficialismos_2011_2025, clasificacion, vparty_directo)
-    # "nota" queda fuera del CSV a propósito (a diferencia de resultado_distrito.csv):
-    # sigue en FilaOficialismo/tests, solo no se persiste acá.
+    # "nota" queda fuera del CSV a propósito: sigue en FilaOficialismo/tests,
+    # solo no se persiste acá.
     destino_oficialismo = _escribir_csv(
         oficialismo_path,
         oficialismo,

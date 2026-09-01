@@ -1,10 +1,10 @@
 anio,nivel,agrupacion_oficialismo,campo_ideologico,filiacion_politica,vparty_economico,vparty_progresismo,vparty_populismo,continuidad_oficialismo
-2001,municipal,PARTIDO JUSTICIALISTA,,,,,,continua
-2003,municipal,PARTIDO JUSTICIALISTA,,,,,,continua
+2001,municipal,PARTIDO JUSTICIALISTA,3,peronistas,0.838,0.147,0.336,continua
+2003,municipal,PARTIDO JUSTICIALISTA,3,peronistas,0.838,0.147,0.336,continua
 2005,municipal,PARTIDO JUSTICIALISTA,3,peronistas,-0.416,0.268,0.658,continua
 2007,municipal,PARTIDO JUSTICIALISTA,3,peronistas,-0.416,0.268,0.658,ruptura
-2009,municipal,PARTIDO PROGRESO SOCIAL,,,,,,continua
-2011,municipal,PARTIDO PROGRESO SOCIAL,,,,,,continua
+2009,municipal,PARTIDO PROGRESO SOCIAL,3,peronistas,-0.416,0.268,0.658,continua
+2011,municipal,PARTIDO PROGRESO SOCIAL,3,peronistas,-0.416,0.268,0.658,continua
 2013,municipal,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,continua
 2015,municipal,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,ruptura
 2017,municipal,CAMBIEMOS BUENOS AIRES,5,liberales,1.427,0.001,0.148,continua
@@ -12,7 +12,7 @@ anio,nivel,agrupacion_oficialismo,campo_ideologico,filiacion_politica,vparty_eco
 2021,municipal,JUNTOS POR EL CAMBIO,5,liberales,1.401,-0.142,0.186,continua
 2023,municipal,JUNTOS POR EL CAMBIO,5,liberales,1.401,-0.142,0.186,ruptura
 2025,municipal,UNION POR LA PATRIA,3,peronistas,-0.465,1.069,0.642,continua
-2011,nacional,ALIANZA FRENTE PARA LA VICTORIA,,,,,,continua
+2011,nacional,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,continua
 2013,nacional,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,continua
 2015,nacional,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.686,2.097,0.871,ruptura
 2017,nacional,ALIANZA CAMBIEMOS,5,liberales,1.427,0.001,0.148,continua
@@ -20,8 +20,8 @@ anio,nivel,agrupacion_oficialismo,campo_ideologico,filiacion_politica,vparty_eco
 2021,nacional,FRENTE DE TODOS,3,peronistas,-0.465,1.069,0.642,continua
 2023,nacional,FRENTE DE TODOS,3,peronistas,-0.465,1.069,0.642,continua
 2025,nacional,UNION POR LA PATRIA,3,peronistas,-0.465,1.069,0.642,continua
-2001,provincial,PARTIDO JUSTICIALISTA,,,,,,continua
-2003,provincial,PARTIDO JUSTICIALISTA,,,,,,continua
+2001,provincial,PARTIDO JUSTICIALISTA,3,peronistas,0.838,0.147,0.336,continua
+2003,provincial,PARTIDO JUSTICIALISTA,3,peronistas,0.838,0.147,0.336,continua
 2005,provincial,PARTIDO JUSTICIALISTA,3,peronistas,-0.416,0.268,0.658,continua
 2007,provincial,PARTIDO JUSTICIALISTA,3,peronistas,-0.416,0.268,0.658,continua_renombrada
 2009,provincial,ALIANZA FRENTE PARA LA VICTORIA,3,peronistas,-1.659,1.782,0.803,continua

@@ -220,7 +220,22 @@ class TestConstruirOficialismoPorNivel:
         filas = construir_oficialismo_por_nivel(calendario, {}, {})
         assert filas == []
 
-    def test_join_con_clasificacion_no_duplica_si_falta(self):
+    def test_titular_inicial_municipal_usa_ola_1999_real(self):
+        """El titular inicial de municipal/provincial (Alak/Ruckauf, PJ) sí
+        tiene ola V-Party real anterior a la ventana (1999) -- se completa
+        con CLASIFICACION_TITULAR_INICIAL, no queda en blanco."""
+        calendario = [_FilaCalendarioFake(2001, "municipal")]
+        filas = construir_oficialismo_por_nivel(calendario, {}, {})
+        assert filas[0].campo_ideologico == "3"
+        assert filas[0].filiacion_politica == "peronistas"
+        assert filas[0].vparty_economico == "0.838"
+
+    def test_titular_inicial_sin_ola_conocida_queda_sin_clasificar(self, monkeypatch):
+        """Sin entrada en CLASIFICACION_TITULAR_INICIAL para ese nivel, el
+        titular inicial (pre-ventana) queda sin clasificar -- no se inventa."""
+        import ml_models.construir_calendario as mod
+
+        monkeypatch.setattr(mod, "CLASIFICACION_TITULAR_INICIAL", {})
         calendario = [_FilaCalendarioFake(2001, "municipal")]
         filas = construir_oficialismo_por_nivel(calendario, {}, {})
         assert filas[0].campo_ideologico == ""
@@ -261,9 +276,28 @@ class TestConstruirOficialismoPorNivel:
         assert por_anio[2005].campo_ideologico == ""
         assert por_anio[2005].filiacion_politica == ""
 
-    def test_fallback_vparty_directo_sin_alias_queda_vacio(self):
+    def test_fallback_vparty_directo_sin_alias_usa_aprox_manual(self):
         """PARTIDO PROGRESO SOCIAL (Bruera) no tiene alias en ALIAS_VPARTY
-        -- no está en V-Party, no se inventa un match."""
+        -- cae a CLASIFICACION_APROX_MANUAL, mismo valor que ya usan los CSV
+        de data/tfi_data/elecciones/ para esta agrupación."""
+        calendario = [
+            _FilaCalendarioFake(2007, "municipal", "ejecutiva"),
+            _FilaCalendarioFake(2009, "municipal", "legislativa"),
+        ]
+        vparty_directo = {(2007, "Justicialist [Peronist] Party"): ("-0.4", "0.2", "0.6")}
+        filas = construir_oficialismo_por_nivel(calendario, {}, {}, vparty_directo)
+        por_anio = {f.anio: f for f in filas}
+        assert por_anio[2009].agrupacion_oficialismo == "PARTIDO PROGRESO SOCIAL"
+        assert por_anio[2009].campo_ideologico == "3"
+        assert por_anio[2009].filiacion_politica == "peronistas"
+        assert por_anio[2009].vparty_economico == "-0.416"
+
+    def test_fallback_sin_clasificacion_ni_aprox_manual_queda_vacio(self, monkeypatch):
+        """PARTIDO PROGRESO SOCIAL sin fila en CLASIFICACION_APROX_MANUAL
+        (además de sin alias V-Party) -- no se inventa un match."""
+        import ml_models.construir_calendario as mod
+
+        monkeypatch.setattr(mod, "CLASIFICACION_APROX_MANUAL", {})
         calendario = [
             _FilaCalendarioFake(2007, "municipal", "ejecutiva"),
             _FilaCalendarioFake(2009, "municipal", "legislativa"),
@@ -273,6 +307,7 @@ class TestConstruirOficialismoPorNivel:
         por_anio = {f.anio: f for f in filas}
         assert por_anio[2009].agrupacion_oficialismo == "PARTIDO PROGRESO SOCIAL"
         assert por_anio[2009].vparty_economico == ""
+        assert por_anio[2009].campo_ideologico == ""
 
     def test_clasificacion_tiene_prioridad_sobre_vparty_directo(self):
         calendario = [

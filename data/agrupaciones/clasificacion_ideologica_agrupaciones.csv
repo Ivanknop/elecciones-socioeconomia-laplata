@@ -108,7 +108,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2017,FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,municipal,1,marxistas,-1.991,2.325,0.723
 2017,FRENTE JUSTICIALISTA,municipal,3,peronistas,-0.101,0.947,0.479
 2017,FRENTE UNION FEDERAL,municipal,4,peronismo provincial,,,
-2017,IZQUIERDA AL FRENTE POR EL SOCIALISMO,municipal,1,marxistas,,,
+2017,IZQUIERDA AL FRENTE POR EL SOCIALISMO,municipal,1,marxistas,-1.991,2.325,0.723
 2017,PARTIDO RENOVADOR FEDERAL,municipal,4,peronistas,0.376,-0.016,0.363
 2017,PARTIDO SOCIALISTA,municipal,2,progresistas,-1.268,1.642,0.492
 2017,TODOS POR BUENOS AIRES,municipal,3,conservadores,,,
@@ -126,7 +126,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2017,FRENTE PATRIOTA BANDERA VECINAL,nacional,6,nacionalistas,,,
 2017,FRENTE SOCIALISTA Y POPULAR,nacional,2,progresistas,-1.268,1.642,0.492
 2017,HUMANISTA,nacional,2,progresistas,,,
-2017,IZQUIERDA AL FRENTE POR EL SOCIALISMO,nacional,1,marxistas,,,
+2017,IZQUIERDA AL FRENTE POR EL SOCIALISMO,nacional,1,marxistas,-1.991,2.325,0.723
 2017,MOVIMIENTO AMPLIO DE TRABAJADORES Y JUBILADOS,nacional,2,progresistas,,,
 2017,MOVIMIENTO ORGANIZACION DEMOCRATICA,nacional,3,otros,,,
 2017,PATRIA GRANDE,nacional,2,progresistas,-1.991,1.557,0.821
@@ -140,7 +140,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2017,FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES,provincial,1,marxistas,-1.991,2.325,0.723
 2017,FRENTE JUSTICIALISTA,provincial,3,peronistas,-0.101,0.947,0.479
 2017,FRENTE UNION FEDERAL,provincial,4,peronismo provincial,,,
-2017,IZQUIERDA AL FRENTE POR EL SOCIALISMO,provincial,1,marxistas,,,
+2017,IZQUIERDA AL FRENTE POR EL SOCIALISMO,provincial,1,marxistas,-1.991,2.325,0.723
 2017,PARTIDO RENOVADOR FEDERAL,provincial,4,peronistas,0.376,-0.016,0.363
 2017,PARTIDO SOCIALISTA,provincial,2,progresistas,-1.268,1.642,0.492
 2017,PATRIA GRANDE,provincial,2,progresistas,-1.991,1.557,0.821

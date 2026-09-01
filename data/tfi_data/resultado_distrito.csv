@@ -1,35 +1,35 @@
-anio,nivel,votos_validos,votos_blanco,participacion,gana_oficialismo,share_oficialismo,resultado_disponible,nota
-2001,provincial,,,,,,False,Sin circuito_provincial.json cacheado en data/distrito/2001/provincial/generales -- ver docs/adquisicion_datos_especializacion.md.
-2001,municipal,,,,,,False,Sin circuito_municipal.json cacheado en data/distrito/2001/municipal/generales -- ver docs/adquisicion_datos_especializacion.md.
-2003,provincial,,,,,,False,Sin circuito_gobernador.json cacheado en data/distrito/2003/gobernador/generales -- ver docs/adquisicion_datos_especializacion.md.
-2003,municipal,,,,,,False,Sin circuito_intendente.json cacheado en data/distrito/2003/intendente/generales -- ver docs/adquisicion_datos_especializacion.md.
-2005,provincial,,,,,,False,Sin circuito_provincial.json cacheado en data/distrito/2005/provincial/generales -- ver docs/adquisicion_datos_especializacion.md.
-2005,municipal,,,,,,False,Sin circuito_municipal.json cacheado en data/distrito/2005/municipal/generales -- ver docs/adquisicion_datos_especializacion.md.
-2007,provincial,,,,,,False,Sin circuito_gobernador.json cacheado en data/distrito/2007/gobernador/generales -- ver docs/adquisicion_datos_especializacion.md.
-2007,municipal,,,,,,False,Sin circuito_intendente.json cacheado en data/distrito/2007/intendente/generales -- ver docs/adquisicion_datos_especializacion.md.
-2009,provincial,,,,,,False,Sin circuito_provincial.json cacheado en data/distrito/2009/provincial/generales -- ver docs/adquisicion_datos_especializacion.md.
-2009,municipal,,,,,,False,Sin circuito_municipal.json cacheado en data/distrito/2009/municipal/generales -- ver docs/adquisicion_datos_especializacion.md.
-2011,nacional,354798,14844,81.13775082603107,True,43.294776182503846,True,
-2011,provincial,330831,47502,78.95966539067307,True,45.639012063561154,True,
-2011,municipal,352284,31805,77.91028435298291,True,45.44032655471154,True,
-2013,nacional,380688,27115,81.50776735294764,False,,True,No se pudo identificar la lista exacta del oficialismo (ALIANZA FRENTE PARA LA VICTORIA) entre los competidores de esta elección -- posible cambio de etiqueta ese mismo año.
-2013,provincial,384591,34673,79.88995135172172,False,,True,No se pudo identificar la lista exacta del oficialismo (ALIANZA FRENTE PARA LA VICTORIA) entre los competidores de esta elección -- posible cambio de etiqueta ese mismo año.
-2013,municipal,393422,25733,79.87434431408973,False,,True,No se pudo identificar la lista exacta del oficialismo (ALIANZA FRENTE PARA LA VICTORIA) entre los competidores de esta elección -- posible cambio de etiqueta ese mismo año.
-2015,nacional,398598,11049,77.17759186061606,False,29.890767138821573,True,
-2015,provincial,395874,26462,79.56499899348873,False,28.882927396090675,True,
-2015,municipal,392483,30220,79.63743017915901,False,28.42568977509854,True,
-2017,nacional,401476,16369,73.29163228486316,True,50.09739062858054,True,
-2017,provincial,419947,13761,76.06536971510887,True,48.35967395885671,True,
-2017,municipal,419518,13625,76.35596161536795,True,48.10592155759706,True,
-2019,nacional,418164,8191,82.22401832019936,False,,True,No se pudo identificar la lista exacta del oficialismo (ALIANZA CAMBIEMOS) entre los competidores de esta elección -- posible cambio de etiqueta ese mismo año.
-2019,provincial,426157,15395,79.60877424925128,True,45.0026633376901,True,
-2019,municipal,421486,19643,79.53394670336095,True,48.72403828359661,True,
-2021,nacional,390422,9654,74.01852994763276,False,32.75942441768138,True,
-2021,provincial,397358,18863,70.42288263021845,False,34.53837597330367,True,
-2021,municipal,397277,18854,70.40784605247596,True,46.07465320167037,True,
-2023,nacional,428907,11729,77.7616665756374,True,39.90935097818408,True,
-2023,provincial,428598,32333,73.82258275880805,True,42.28461168740871,True,
-2023,municipal,423261,37422,73.78550630139964,False,38.13533493518184,True,
-2025,nacional,393871,13064,70.6286029427067,True,44.146433730840805,True,
-2025,provincial,,,,,,False,Sin circuito_provincial.json cacheado en data/distrito/2025/provincial/generales -- ver docs/adquisicion_datos_especializacion.md.
-2025,municipal,,,,,,False,Sin circuito_municipal.json cacheado en data/distrito/2025/municipal/generales -- ver docs/adquisicion_datos_especializacion.md.
+anio,nivel,votos_validos,votos_blanco,participacion,gana_oficialismo,share_oficialismo,resultado_disponible
+2001,provincial,229230,85592,76.6889636995211,,,False
+2001,municipal,230541,84281,76.6889636995211,,,False
+2003,provincial,250900,57213,72.05619257204731,,,False
+2003,municipal,277168,30945,72.05619257204731,,,False
+2005,provincial,295971,35217,76.40178830954919,,,False
+2005,municipal,295146,36042,76.40178830954919,,,False
+2007,provincial,318387,37758,77.55281134248926,,,False
+2007,municipal,321163,34982,77.55281134248926,,,False
+2009,provincial,327372,25215,74.96061552460547,,,False
+2009,municipal,324824,27763,74.96061552460547,,,False
+2011,nacional,354798,14844,81.13775082603107,True,43.294776182503846,True
+2011,provincial,330831,47502,78.95966539067307,True,45.639012063561154,True
+2011,municipal,352284,31805,77.91028435298291,True,45.44032655471154,True
+2013,nacional,380688,27115,81.50776735294764,False,,True
+2013,provincial,384591,34673,79.88995135172172,False,,True
+2013,municipal,393422,25733,79.87434431408973,False,,True
+2015,nacional,398598,11049,77.17759186061606,False,29.890767138821573,True
+2015,provincial,395874,26462,79.56499899348873,False,28.882927396090675,True
+2015,municipal,392483,30220,79.63743017915901,False,28.42568977509854,True
+2017,nacional,401476,16369,73.29163228486316,True,50.09739062858054,True
+2017,provincial,419947,13761,76.06536971510887,True,48.35967395885671,True
+2017,municipal,419518,13625,76.35596161536795,True,48.10592155759706,True
+2019,nacional,418164,8191,82.22401832019936,False,,True
+2019,provincial,426157,15395,79.60877424925128,True,45.0026633376901,True
+2019,municipal,421486,19643,79.53394670336095,True,48.72403828359661,True
+2021,nacional,390422,9654,74.01852994763276,False,32.75942441768138,True
+2021,provincial,397358,18863,70.42288263021845,False,34.53837597330367,True
+2021,municipal,397277,18854,70.40784605247596,True,46.07465320167037,True
+2023,nacional,428907,11729,77.7616665756374,True,39.90935097818408,True
+2023,provincial,428598,32333,73.82258275880805,True,42.28461168740871,True
+2023,municipal,423261,37422,73.78550630139964,False,38.13533493518184,True
+2025,nacional,393871,13064,70.6286029427067,True,44.146433730840805,True
+2025,provincial,393945,15186,63.94280436172225,,,False
+2025,municipal,395040,14091,63.94280436172225,,,False

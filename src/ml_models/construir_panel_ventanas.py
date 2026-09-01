@@ -77,7 +77,6 @@ def _cargar_resultado_distrito(path: Path | str) -> dict[tuple[int, str], FilaRe
             gana_oficialismo=(r["gana_oficialismo"] == "True") if r["gana_oficialismo"] else None,
             share_oficialismo=float(r["share_oficialismo"]) if r["share_oficialismo"] else None,
             resultado_disponible=r["resultado_disponible"] == "True",
-            nota=r["nota"],
         )
     return resultado
 

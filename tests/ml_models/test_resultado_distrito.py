@@ -75,12 +75,60 @@ class TestConstruirVotoPartidoDistrito:
 
 
 class TestConstruirResultadoDistrito:
-    def test_anio_sin_circuito_queda_marcado_no_disponible(self, data_dir):
+    def test_anio_sin_circuito_ni_tfi_queda_marcado_no_disponible(self, data_dir, tmp_path):
         calendario = [_fc(2001, "municipal")]
-        filas = construir_resultado_distrito(calendario, [], {}, {}, data_dir)
+        elecciones_dir_vacio = tmp_path / "sin_datos"
+        elecciones_dir_vacio.mkdir()
+        filas = construir_resultado_distrito(calendario, [], {}, {}, data_dir, elecciones_dir_vacio)
         assert filas[0].resultado_disponible is False
         assert filas[0].votos_validos is None
-        assert filas[0].nota != ""
+        assert filas[0].votos_blanco is None
+        assert filas[0].participacion is None
+
+    def test_anio_sin_circuito_pero_con_tfi_completa_votos_validos_y_blanco(self, data_dir, tmp_path):
+        """2001-2009 no tiene circuito_<cargo>.json, pero sí un
+        data/tfi_data/elecciones/<año>_<nivel>.csv cargado a mano -- de ahí
+        se completan votos_validos/votos_blanco; participacion sigue None
+        (sin padrón/electores)."""
+        elecciones_dir = tmp_path / "elecciones"
+        elecciones_dir.mkdir()
+        (elecciones_dir / "2001_municipal.csv").write_text(
+            "# comentario\n"
+            "id_agrupacion,agrupacion,votos,votos_porcentaje\n"
+            "0001,PARTIDO A,60,60.0\n"
+            "0002,PARTIDO B,30,30.0\n"
+            "BLANCO,BLANCO,8,8.0\n"
+            "NULO,NULO,2,2.0\n",
+            encoding="utf-8",
+        )
+        calendario = [_fc(2001, "municipal")]
+        filas = construir_resultado_distrito(calendario, [], {}, {}, data_dir, elecciones_dir)
+        assert filas[0].resultado_disponible is False
+        assert filas[0].votos_validos == 90
+        assert filas[0].votos_blanco == 10
+        assert filas[0].participacion is None
+
+    def test_anio_sin_circuito_con_votantes_habilitados_calcula_participacion(self, data_dir, tmp_path):
+        """Si el CSV de data/tfi_data/elecciones/ ya tiene el padrón cargado
+        en la fila VOTANTES_HABILITADOS, participacion se calcula
+        (votos_validos + votos_blanco) / padrón."""
+        elecciones_dir = tmp_path / "elecciones"
+        elecciones_dir.mkdir()
+        (elecciones_dir / "2001_municipal.csv").write_text(
+            "# comentario\n"
+            "id_agrupacion,agrupacion,votos,votos_porcentaje\n"
+            "0001,PARTIDO A,60,60.0\n"
+            "0002,PARTIDO B,30,30.0\n"
+            "BLANCO,BLANCO,8,8.0\n"
+            "NULO,NULO,2,2.0\n"
+            "VOTANTES_HABILITADOS,VOTANTES_HABILITADOS,125,100\n",
+            encoding="utf-8",
+        )
+        calendario = [_fc(2001, "municipal")]
+        filas = construir_resultado_distrito(calendario, [], {}, {}, data_dir, elecciones_dir)
+        assert filas[0].votos_validos == 90
+        assert filas[0].votos_blanco == 10
+        assert filas[0].participacion == pytest.approx(80.0)  # (90+10)/125*100
 
     def test_gana_oficialismo_viene_de_era_oficialismo_no_de_matchear_nombres(self, data_dir):
         calendario = [_fc(2011, "municipal")]
@@ -100,7 +148,7 @@ class TestConstruirResultadoDistrito:
         filas = construir_resultado_distrito(calendario, voto_partido, oficialismo_por_nivel, oficialismos_curados, data_dir)
         assert filas[0].share_oficialismo == pytest.approx(60.0)  # 60/(60+40)
 
-    def test_share_oficialismo_none_con_nota_si_pierde_y_no_matchea(self, data_dir):
+    def test_share_oficialismo_none_si_pierde_y_no_matchea(self, data_dir):
         calendario = [_fc(2015, "municipal")]
         voto_partido = construir_voto_partido_distrito(calendario, data_dir)
         oficialismo_por_nivel = {(2015, "municipal"): {"agrupacion_oficialismo": "ALIANZA FRENTE PARA LA VICTORIA_ETIQUETA_VIEJA"}}
@@ -108,7 +156,6 @@ class TestConstruirResultadoDistrito:
         filas = construir_resultado_distrito(calendario, voto_partido, oficialismo_por_nivel, oficialismos_curados, data_dir)
         assert filas[0].gana_oficialismo is False
         assert filas[0].share_oficialismo is None
-        assert "etiqueta" in filas[0].nota.lower()
 
     def test_share_oficialismo_matchea_por_nombre_si_pierde_pero_compite_con_el_mismo_nombre(self, data_dir):
         calendario = [_fc(2015, "municipal")]
@@ -134,8 +181,8 @@ class TestCalcularDeltaV:
         from ml_models.construir_resultado_distrito import FilaResultadoDistrito
 
         resultado = {
-            (2015, "municipal"): FilaResultadoDistrito(2015, "municipal", 100, 2, 90.0, False, 30.0, True, ""),
-            (2011, "municipal"): FilaResultadoDistrito(2011, "municipal", 100, 2, 90.0, True, 60.0, True, ""),
+            (2015, "municipal"): FilaResultadoDistrito(2015, "municipal", 100, 2, 90.0, False, 30.0, True),
+            (2011, "municipal"): FilaResultadoDistrito(2011, "municipal", 100, 2, 90.0, True, 60.0, True),
         }
         assert calcular_delta_v(resultado, "municipal", 2015, 2011) == pytest.approx(-30.0)
 
