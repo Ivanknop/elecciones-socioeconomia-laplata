@@ -23,8 +23,6 @@ graficos/agrupaciones/por_localidad/
 graficos/agrupaciones/*.png
 graficos/agrupaciones/*/*.png
 
-data/socioeconomia/icg/*.dta
-data/socioeconomia/icg/*.pdf
 data/socioeconomia/icg-icc/*.dta
 data/socioeconomia/icg-icc/*.pdf
 data/socioeconomia/icg-icc/*.xls
@@ -34,6 +32,7 @@ data/totales/*
 data/macroeconomia/_cache/
 data/macroeconomia/series_macro_*.csv
 data/geolocalizacion/_cache/
+data/geolocalizacion/fuentes_extra/*.xlsx
 data/agrupaciones/v-party/v_party_argentina_2001_2019.csv
 data/agrupaciones/v-party/reporte_validacion_vparty.md
 data/agrupaciones/v-party/cache/

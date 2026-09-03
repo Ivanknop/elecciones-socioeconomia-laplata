@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>__TITULO__</title>
+<style>
+  :root{
+    --bg: #12181f;
+    --bg-panel: #1a2129;
+    --bg-panel-2: #212a34;
+    --ink: #e9e3d3;
+    --ink-dim: #a9a48f;
+    --line: #3a4350;
+    --accent: #c9a227;
+    --accent-2: #7db8d8;
+    --serif: "Iowan Old Style", "Palatino Linotype", Georgia, "Source Serif Pro", serif;
+    --mono: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, monospace;
+    --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);}
+  #app{display:flex;flex-direction:column;min-height:100vh;}
+
+  header{
+    padding:14px 20px 12px 20px;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg, var(--bg-panel), var(--bg));
+    display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px 24px;
+  }
+  header h1{
+    font-family:var(--serif); font-weight:600; font-size:19px; letter-spacing:.2px; margin:0;
+    color:var(--ink);
+  }
+  header .meta{font-family:var(--mono); font-size:11px; color:var(--ink-dim); text-align:right; line-height:1.5;}
+  .back-link{
+    display:inline-block; font-family:var(--mono); font-size:11px; color:var(--accent-2);
+    text-decoration:none; margin-bottom:8px;
+  }
+  .back-link:hover{ text-decoration:underline; }
+
+  #controls{
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+    padding:10px 20px; background:var(--bg-panel-2); border-bottom:1px solid var(--line);
+  }
+  .ctrl-group{display:flex; align-items:center; gap:8px;}
+  .ctrl-label{font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-dim); font-weight:600;}
+  select{
+    background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:3px;
+    padding:6px 10px; font-family:var(--mono); font-size:12.5px; cursor:pointer;
+  }
+  select:focus{outline:1px solid var(--accent-2);}
+
+  .modebar{display:flex; border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+  .modebar button{
+    background:var(--bg); color:var(--ink-dim); border:none; border-right:1px solid var(--line);
+    padding:6px 13px; font-family:var(--sans); font-size:12px; font-weight:600; cursor:pointer;
+    transition:background .12s, color .12s;
+  }
+  .modebar button:last-child{border-right:none;}
+  .modebar button:hover{color:var(--ink);}
+  .modebar button.active{background:var(--accent); color:#1a1608;}
+
+  #main{flex:1; display:flex; justify-content:center; padding:26px 20px 40px 20px;}
+  #content{width:100%; max-width:820px;}
+  #content h2{font-family:var(--serif); font-size:18px; margin:0 0 2px 0; color:var(--ink);}
+  #content .sub{font-family:var(--mono); font-size:11px; color:var(--ink-dim); margin-bottom:18px;}
+
+  .panel{
+    padding:18px 20px; background:var(--bg-panel);
+    border:1px solid var(--line); border-radius:8px;
+  }
+  .panel h3{font-size:10.5px; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); margin:0 0 10px 0; font-weight:700;}
+
+  .row{display:flex; align-items:baseline; gap:8px; font-size:12px; margin-bottom:5px;}
+  .row .name{color:var(--ink-dim); flex:0 0 auto; font-family:var(--mono); font-size:10.5px;}
+  .row .val{color:var(--ink); font-size:11.5px;}
+  #panel-unidades{margin-top:16px;}
+  #panel-unidades .row.actual .name{color:var(--accent);}
+
+  #chartwrap{position:relative;}
+  #chart circle{cursor:pointer; transition:r .12s;}
+  #chart circle:hover{r:6;}
+  #chart{width:100%; height:auto; display:block;}
+  .chart-tip{
+    position:absolute; pointer-events:none; z-index:20; max-width:230px;
+    background:var(--bg-panel-2); border:1px solid var(--line); border-radius:5px;
+    padding:8px 10px; font-family:var(--sans); font-size:11.5px; line-height:1.5;
+    box-shadow:0 4px 14px rgba(0,0,0,.4); display:none;
+  }
+  .chart-tip b{color:var(--accent); font-family:var(--serif); font-size:12.5px;}
+  .chart-tip .mono{font-family:var(--mono); color:var(--ink-dim); font-size:10.5px;}
+
+  @media (max-width: 560px){
+    .modebar{ flex-wrap:wrap; }
+    .modebar button{ flex:1 1 auto; }
+  }
+
+  ::-webkit-scrollbar{width:9px;}
+  ::-webkit-scrollbar-track{background:var(--bg-panel);}
+  ::-webkit-scrollbar-thumb{background:var(--line); border-radius:5px;}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div>
+      <a class="back-link" href="index.html">&larr; Inicio</a>
+      <h1>__TITULO__</h1>
+    </div>
+    <div class="meta" id="header-meta">__META__</div>
+  </header>
+
+  <div id="controls">
+    <div class="ctrl-group">
+      <span class="ctrl-label">Nivel</span>
+      <div class="modebar" id="nivel-bar"></div>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Ventana</span>
+      <select id="sel-anio"></select>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Variable</span>
+      <select id="sel-variable"></select>
+    </div>
+  </div>
+
+  <div id="main">
+    <div id="content">
+      <h2 id="side-title">—</h2>
+      <div class="sub" id="side-sub"></div>
+
+      <div class="panel" id="panel-chart">
+        <h3 id="chart-title">Trayectoria</h3>
+        <div id="chartwrap">
+          <svg id="chart" viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg"></svg>
+          <div class="chart-tip" id="chart-tip"></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-unidades">
+        <h3>Referencia — unidad de cada variable</h3>
+        <div id="unidades-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = /*__RAW_DATA__*/;
+
+// ---- controles: Nivel + Elección (año) + Variable -- una ventana a la vez ----
+const NIVEL_ORDER = ["municipal","provincial","nacional"];
+const nivelBar = document.getElementById('nivel-bar');
+const selAnio = document.getElementById('sel-anio');
+const selVariable = document.getElementById('sel-variable');
+
+const nivelesDisponibles = NIVEL_ORDER.filter(n => DATA.niveles.includes(n));
+
+nivelesDisponibles.forEach((nivel, i) => {
+  const btn = document.createElement('button');
+  btn.dataset.nivel = nivel;
+  btn.textContent = nivel.charAt(0).toUpperCase() + nivel.slice(1);
+  if(i === 0) btn.classList.add('active');
+  nivelBar.appendChild(btn);
+});
+let nivelActual = nivelesDisponibles[0];
+
+function ventanasDeNivel(nivel){
+  const nivelData = DATA.trayectorias[nivel] || {};
+  return Object.entries(nivelData).sort((a,b)=> a[1].anio_t - b[1].anio_t);
+}
+
+function poblarAnios(){
+  const ventanas = ventanasDeNivel(nivelActual);
+  selAnio.innerHTML = "";
+  ventanas.forEach(([idTransicion, v])=>{
+    const opt = document.createElement('option');
+    opt.value = idTransicion;
+    opt.textContent = v.label;
+    selAnio.appendChild(opt);
+  });
+  selAnio.value = ventanas[ventanas.length - 1][0]; // ventana más reciente por defecto
+}
+
+nivelBar.querySelectorAll('button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    if(btn.dataset.nivel === nivelActual) return;
+    nivelBar.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    nivelActual = btn.dataset.nivel;
+    poblarAnios();
+    render();
+  });
+});
+
+poblarAnios();
+selAnio.addEventListener('change', render);
+
+DATA.variables.forEach(v=>{
+  const opt = document.createElement('option');
+  opt.value = v;
+  opt.textContent = v;
+  selVariable.appendChild(opt);
+});
+selVariable.value = DATA.variables[0];
+selVariable.addEventListener('change', render);
+
+// ---- referencia de unidades -- lista estática, resalta la variable actual ----
+const unidadesList = document.getElementById('unidades-list');
+DATA.variables.forEach(v=>{
+  const fila = document.createElement('div');
+  fila.className = 'row';
+  fila.dataset.variable = v;
+  fila.innerHTML = `<div class="name">${v}</div><div class="val">${DATA.unidades[v] || "—"}</div>`;
+  unidadesList.appendChild(fila);
+});
+function marcarUnidadActual(){
+  unidadesList.querySelectorAll('.row').forEach(fila=>{
+    fila.classList.toggle('actual', fila.dataset.variable === selVariable.value);
+  });
+}
+
+// ---- gráfico de líneas SVG: X=trimestre relativo (1..N), Y=variable ----
+const SVG_W = 640, SVG_H = 420;
+const MARGIN_L = 50, MARGIN_R = 20, MARGIN_T = 20, MARGIN_B = 40;
+
+function escalaLineal(v, dMin, dMax, rMin, rMax){
+  if(dMax === dMin) return (rMin + rMax) / 2;
+  return rMin + (v - dMin) / (dMax - dMin) * (rMax - rMin);
+}
+
+// corta la serie en tramos contiguos de valores reales -- un hueco (null)
+// termina un tramo, nunca se interpola cruzándolo.
+function segmentosDeVentana(serie){
+  const segmentos = [];
+  let actual = [];
+  serie.forEach((v, i) => {
+    if(v === null || v === undefined){
+      if(actual.length) segmentos.push(actual);
+      actual = [];
+    } else {
+      actual.push({x: i + 1, y: v});
+    }
+  });
+  if(actual.length) segmentos.push(actual);
+  return segmentos;
+}
+
+// Una sola ventana (elección) por gráfico -- nunca las 31 superpuestas.
+function renderChart(ventana, variable){
+  const svg = document.getElementById('chart');
+  const titulo = document.getElementById('chart-title');
+  const tip = document.getElementById('chart-tip');
+  const chartwrap = document.getElementById('chartwrap');
+  svg.innerHTML = "";
+
+  const unidad = DATA.unidades[variable] || "";
+  const serie = ventana.series[variable] || [];
+  const valores = serie.filter(x => x !== null);
+
+  if(!valores.length){
+    titulo.textContent = `${variable} — sin datos en esta ventana`;
+    return;
+  }
+  titulo.textContent = `${variable} (${unidad}) — ${ventana.label}`;
+
+  let yMin = Math.min(...valores), yMax = Math.max(...valores);
+  if(yMin === yMax){ yMin -= 1; yMax += 1; }
+  const pad = (yMax - yMin) * 0.1;
+  yMin -= pad; yMax += pad;
+
+  const xMax = serie.length; // largo real de esta ventana (6 a 10), no el global
+  const color = "var(--accent)";
+  const px = i => escalaLineal(i, 1, xMax, MARGIN_L, SVG_W - MARGIN_R);
+  const py = v => escalaLineal(v, yMin, yMax, SVG_H - MARGIN_B, MARGIN_T);
+
+  const ns = "http://www.w3.org/2000/svg";
+  function el(tag, attrs){
+    const e = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));
+    return e;
+  }
+
+  svg.appendChild(el('rect', {
+    x: MARGIN_L, y: MARGIN_T, width: SVG_W - MARGIN_L - MARGIN_R, height: SVG_H - MARGIN_T - MARGIN_B,
+    fill: "none", stroke: "#3a4350",
+  }));
+
+  const estiloEje = {"font-family":"var(--mono)", "font-size":"10px", fill:"#a9a48f"};
+  for(let i = 1; i <= xMax; i++){
+    const t = el('text', {x: px(i), y: SVG_H - MARGIN_B + 16, "text-anchor":"middle", ...estiloEje});
+    t.textContent = i;
+    svg.appendChild(t);
+  }
+  const xLabel = el('text', {x: (MARGIN_L + SVG_W - MARGIN_R) / 2, y: SVG_H - 6, "text-anchor":"middle", ...estiloEje});
+  xLabel.textContent = `trimestre desde ${ventana.anio_inicio_ventana} →`;
+  svg.appendChild(xLabel);
+
+  [yMin, (yMin + yMax) / 2, yMax].forEach(v=>{
+    svg.appendChild(el('line', {x1: MARGIN_L, x2: SVG_W - MARGIN_R, y1: py(v), y2: py(v), stroke:"#232b34", "stroke-dasharray":"2,3"}));
+    const t = el('text', {x: MARGIN_L - 8, y: py(v) + 3, "text-anchor":"end", ...estiloEje});
+    t.textContent = v.toFixed(1);
+    svg.appendChild(t);
+  });
+
+  segmentosDeVentana(serie).forEach(seg=>{
+    if(seg.length >= 2){
+      const puntos = seg.map(p => `${px(p.x)},${py(p.y)}`).join(' ');
+      svg.appendChild(el('polyline', {
+        points: puntos, fill:"none", stroke: color, "stroke-width": 2, "stroke-opacity": 0.9, "pointer-events":"none",
+      }));
+    }
+    // un círculo hoverable por punto real -- con una sola ventana en
+    // pantalla alcanza precisión de trimestre, no solo de ventana.
+    seg.forEach(p=>{
+      const circle = el('circle', {cx: px(p.x), cy: py(p.y), r: 4, fill: color, stroke:"#12181f", "stroke-width": 1});
+      circle.addEventListener('mousemove', (ev)=>{
+        const rect = chartwrap.getBoundingClientRect();
+        tip.style.display = "block";
+        tip.style.left = Math.min(ev.clientX - rect.left + 12, rect.width - 200) + "px";
+        tip.style.top = (ev.clientY - rect.top + 12) + "px";
+        tip.innerHTML = `
+          <b>Trimestre ${p.x}</b><br>
+          <span class="mono">${variable}: ${p.y.toFixed(2)}</span>
+        `;
+      });
+      circle.addEventListener('mouseleave', ()=>{ tip.style.display = "none"; });
+      svg.appendChild(circle);
+    });
+  });
+}
+
+function render(){
+  const nivelData = DATA.trayectorias[nivelActual] || {};
+  const ventana = nivelData[selAnio.value];
+  const variable = selVariable.value;
+
+  if(!ventana){
+    document.getElementById('side-title').textContent = "—";
+    document.getElementById('side-sub').textContent = "Sin datos para esta selección";
+    return;
+  }
+
+  document.getElementById('side-title').textContent = `${nivelActual.charAt(0).toUpperCase() + nivelActual.slice(1)} · ${ventana.label}`;
+  document.getElementById('side-sub').textContent = `${ventana.agrupacion_inicio} → ${ventana.agrupacion_t}`;
+
+  marcarUnidadActual();
+  renderChart(ventana, variable);
+}
+
+render();
+</script>
+</body>
+</html>

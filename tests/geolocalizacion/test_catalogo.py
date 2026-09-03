@@ -1,7 +1,5 @@
-"""Tests de `src/geolocalizacion/catalogo.py`: normalización de nombres,
-deduplicación de asentamientos y armado del catálogo -- todo puro, sin red
-(los asentamientos y el listado del Ministerio se arman a mano en cada
-test)."""
+"""Tests de `src/geolocalizacion/catalogo.py`, puros y sin red -- los
+asentamientos y el listado del Ministerio se arman a mano en cada test."""
 from geolocalizacion.catalogo import (
     LocalidadMinisterio,
     _deduplicar_asentamientos,

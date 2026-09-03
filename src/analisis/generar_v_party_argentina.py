@@ -80,7 +80,6 @@ TRADUCCIONES = {
 
 
 def descargar_rdata(cache_path: Path = CACHE_RDATA, url: str = URL_VPARTY, forzar: bool = False) -> Path:
-    """Descarga `vparty.RData` a `cache_path` si no existe (o si `forzar`)."""
     if cache_path.exists() and not forzar:
         return cache_path
     cache_path.parent.mkdir(parents=True, exist_ok=True)
@@ -91,13 +90,11 @@ def descargar_rdata(cache_path: Path = CACHE_RDATA, url: str = URL_VPARTY, forza
 
 
 def _filtrar_argentina(df: pd.DataFrame, anio_min: int = ANIO_MIN, anio_max: int = ANIO_MAX) -> pd.DataFrame:
-    """Filtra Argentina y el rango de años pedido, columnas de `COLUMNAS`."""
     filtro = (df["country_name"] == "Argentina") & (df["year"] >= anio_min) & (df["year"] <= anio_max)
     return df.loc[filtro, COLUMNAS].sort_values(["year", "v2paenname"]).reset_index(drop=True)
 
 
 def cargar_argentina(rdata_path: Path, anio_min: int = ANIO_MIN, anio_max: int = ANIO_MAX) -> pd.DataFrame:
-    """Lee `vparty.RData` y aplica `_filtrar_argentina`."""
     import pyreadr
 
     tablas = pyreadr.read_r(str(rdata_path))

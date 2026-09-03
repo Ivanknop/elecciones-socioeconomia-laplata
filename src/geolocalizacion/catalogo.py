@@ -106,9 +106,6 @@ def _deduplicar_asentamientos(asentamientos: list[dict]) -> list[dict]:
 def construir_catalogo(
     asentamientos: list[dict], ministerio: list[LocalidadMinisterio]
 ) -> list[LocalidadValidada]:
-    """Pura -- no hace red. `asentamientos` ya viene de
-    `GeorefClient.get_asentamientos` (sin deduplicar); `ministerio` de
-    `cargar_ministerio`."""
     ministerio_por_nombre_georef = {}
     for m in ministerio:
         clave = _normalizar(m.nombre)

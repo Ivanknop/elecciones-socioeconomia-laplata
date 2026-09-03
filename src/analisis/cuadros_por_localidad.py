@@ -28,7 +28,6 @@ COLUMNA_TOTAL = "votos"
 
 
 def _clasificar_no_positivo(nombre_categoria: str) -> str:
-    """Blanco y nulo: votos de quien fue a votar y no eligió agrupación."""
     clave = nombre_categoria.upper()
     if "BLANCO" in clave or "NULO" in clave:
         return "blanco_nulo"

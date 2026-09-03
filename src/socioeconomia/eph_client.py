@@ -61,7 +61,7 @@ _EXTENSION_HISTORICA = {
 
 
 class TrimestreNoPublicado(Exception):
-    """INDEC no publicó microdatos para este (año, trimestre)."""
+    pass
 
 
 class UrlDesconocida(Exception):
@@ -99,7 +99,6 @@ class EphClient:
     def descargar_trimestre(
         self, anio: int, trimestre: int, url: str | None = None, force_refresh: bool = False
     ) -> Path:
-        """Descarga (o lee de caché) el zip crudo de un trimestre y devuelve su path."""
         if (anio, trimestre) in TRIMESTRES_NO_PUBLICADOS:
             raise TrimestreNoPublicado(
                 f"INDEC no publicó la EPH para {anio} T{trimestre} "
@@ -126,7 +125,6 @@ class EphClient:
         return cache_path
 
     def leer_base(self, zip_path: Path, tipo: str) -> pd.DataFrame:
-        """Lee la base `individual` u `hogar` de un zip ya descargado."""
         if tipo not in ("individual", "hogar"):
             raise ValueError("tipo debe ser 'individual' u 'hogar'")
         patrones = ("ind", "personas") if tipo == "individual" else ("hog",)
@@ -203,7 +201,6 @@ _COLUMNAS_NUMERICAS_HOGAR = ("IPCF", "IX_TOT", "II1", "IV7", "II7", "V5", "V15",
 
 
 def _numerico(df: pd.DataFrame, columnas: tuple[str, ...]) -> pd.DataFrame:
-    """Fuerza a numérico las columnas dadas que estén presentes."""
     df = df.copy()
     for columna in columnas:
         if columna in df.columns:
@@ -318,7 +315,6 @@ def agregados_gran_la_plata(individual: pd.DataFrame, hogar: pd.DataFrame) -> di
     pct_asalariado = _tasa(_peso(ocupados["CAT_OCUP"] == 3, ocupados["PONDERA"]), poblacion_ocupada)
     pct_trabajador_familiar = _tasa(_peso(ocupados["CAT_OCUP"] == 4, ocupados["PONDERA"]), poblacion_ocupada)
 
-    # calidad del empleo asalariado.
     pct_con_obra_social = _tasa(_peso(asalariados["PP07G4"] == 1, asalariados["PONDERA"]), poblacion_asalariada)
     pct_con_aguinaldo = _tasa(_peso(asalariados["PP07G2"] == 1, asalariados["PONDERA"]), poblacion_asalariada)
     pct_con_vacaciones_pagas = _tasa(_peso(asalariados["PP07G1"] == 1, asalariados["PONDERA"]), poblacion_asalariada)
@@ -341,7 +337,6 @@ def agregados_gran_la_plata(individual: pd.DataFrame, hogar: pd.DataFrame) -> di
         _peso(pob_edad_escolar["CH10"] == 1, pob_edad_escolar["PONDERA"]), pob_edad_escolar["PONDERA"].sum()
     )
 
-    # vivienda (a nivel hogar): hacinamiento, agua de red, tenencia.
     hog_con_ambientes = hog[hog["II1"] > 0]
     peso_hac = hog_con_ambientes[columna_pondih]
     peso_hac_total = peso_hac.sum()

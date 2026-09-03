@@ -181,5 +181,4 @@ class ResultadoElectoral:
 
     @property
     def es_mesa(self) -> bool:
-        """True si esta consulta apunta a una mesa puntual (viene con `mesaId`)."""
         return self.consulta.get("mesa_id") is not None

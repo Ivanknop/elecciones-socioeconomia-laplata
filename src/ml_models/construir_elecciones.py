@@ -1,34 +1,24 @@
 """Total de votos de la elección general de cada (año, nivel): agrupaciones
 (con `campo_ideologico`/`filiacion_politica`/V-Party) + BLANCO/NULO +
 VOTANTES_HABILITADOS (padrón, ver `_electores`), un CSV por combinación en
-`data/tfi_data/elecciones/`. Reusa `electoral.totales`/`construir_calendario`,
-no reimplementa -- detalle de columnas y criterios de join en el docstring
-de cada función.
+`data/tfi_data/elecciones/`.
 
-**VOTANTES_HABILITADOS no es una agrupación**: `votos` es el padrón total
-(suma de `electores` de todos los circuitos), `votos_porcentaje` siempre
-100 (no entra en el `total` que reparte el resto de los porcentajes, así
-que estos siguen sumando 100 entre sí sin esta fila). Solo la usan los
-scripts que calculan participación
-(`ml_models.construir_resultado_distrito`) -- cualquier otro consumidor de
-estos CSV (ej. `analisis.vparty_distribucion_tfi.cargar_eleccion`) ya la
-descarta al filtrar filas sin V-Party, igual que BLANCO/NULO.
+**VOTANTES_HABILITADOS no es una agrupación**: `votos_porcentaje` siempre
+100, no entra en el `total` que reparte el resto de los porcentajes --
+cualquier consumidor de estos CSV que no la filtre explícitamente
+contaría el padrón como si fuera un partido más.
 
 Es la fuente de referencia para resultado+clasificación por (año,nivel) --
 `graficos/agrupaciones/<año>/<nivel>/*.json` (generado por el ahora
 deprecado `analisis.vparty_cuadrantes_local.generar_distrito`) es un
 subconjunto de esto, no al revés (ver CLAUDE.md).
 
-**Falta 2001-2009**: sin `circuito_<cargo>.json` para esos años, `_combos_disponibles`
-directamente no los ofrece -- no es un bug ni un TODO trivial. Se intentó
-conseguir el detalle de voto por lista/circuito de La Plata para esos años
-(API oficial vacía, mirror de GitHub sin desagregación partido/municipio,
-Atlas Electoral con HTTP 401) sin éxito -- ver
-`docs/adquisicion_datos_especializacion.md` §1.a para el detalle de qué se
-intentó. Si en algún momento se consigue ese dato a mano, alcanza con
-volcarlo a `data/distrito/<año>/<cargo>/generales/circuito_<cargo>.json`
-en el formato ya existente y correr este script de nuevo -- no hace falta
-tocar código acá.
+**Falta 2001-2009**: sin `circuito_<cargo>.json` para esos años,
+`_combos_disponibles` no los ofrece -- se intentó conseguir ese detalle
+sin éxito, ver `docs/adquisicion_datos_especializacion.md` §1.a. Si
+aparece, alcanza con volcarlo a
+`data/distrito/<año>/<cargo>/generales/circuito_<cargo>.json` y correr
+este script de nuevo.
 
 Uso:
     PYTHONPATH=src python -m ml_models.construir_elecciones

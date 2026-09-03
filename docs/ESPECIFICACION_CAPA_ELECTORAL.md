@@ -87,7 +87,7 @@ El cruce contra `circuito_<nivel>.json` es un join exacto por año/nivel/nombre;
 
 `src/electoral/totales.py` suma los `positivos` de todos los circuitos de un (año, nivel) con una función de propósito general (`totalizar_agrupaciones`), y escribe `data/totales/<nivel>/<año>/resultado_total.csv`. Es el nivel de agregación final del pipeline central: distrito completo, por (año, nivel).
 
-**Extensión opcional — agrupamiento por localidad/barrio.** El repositorio incluye además un mecanismo (`src/electoral/localidades.py`) para reagrupar los mismos resultados en unidades intermedias entre circuito y distrito (localidad/barrio), pero esto depende de una fuente externa de correspondencia `circuito_id → localidad` que **no existe de forma estandarizada para cualquier distrito** — para La Plata se construyó a partir de una resolución ministerial puntual (1990/2007) complementada con relevamiento periodístico, con niveles de confianza declarados y sin mezclar por defecto. Al tratarse de una fuente ad hoc, esta capa se documenta como una posibilidad de extensión del pipeline, condicionada a que el distrito de interés cuente con una fuente equivalente, y no como parte del flujo central descripto en las secciones 3.1–3.4.
+**Extensión opcional — agrupamiento por localidad/barrio — 🔒 bloqueada por cambio de alcance.** El repositorio incluye además un mecanismo (`src/electoral/localidades.py`) para reagrupar los mismos resultados en unidades intermedias entre circuito y distrito (localidad/barrio), pero esto depende de una fuente externa de correspondencia `circuito_id → localidad` que **no existe de forma estandarizada para cualquier distrito** — para La Plata se construyó a partir de una resolución ministerial puntual (1990/2007) complementada con relevamiento periodístico, con niveles de confianza declarados y sin mezclar por defecto. Al tratarse de una fuente ad hoc, esta capa se documenta como una posibilidad de extensión del pipeline, condicionada a que el distrito de interés cuente con una fuente equivalente, y no como parte del flujo central descripto en las secciones 3.1–3.4. **El proyecto pasó a trabajar a nivel municipal, no circuito/localidad**, así que esta extensión queda fuera de alcance activo — el código y los datos ya construidos se conservan, pero no hay trabajo previsto acá hasta que ese alcance cambie (ver `docs/AUDITORIA_ESTADO.md`).
 
 ---
 
@@ -100,7 +100,7 @@ El cruce contra `circuito_<nivel>.json` es un join exacto por año/nivel/nombre;
 | `circuito_<nivel>.json` | `data/distrito/<año>/<nivel>/generales/` | circuito | positivos por agrupación + campo ideológico, otros, cobertura, metadatos de procedencia |
 | `resultado_total.csv` | `data/totales/<nivel>/<año>/` | (año, nivel) | votos y % por agrupación, todo el distrito |
 
-*(La agrupación por localidad, al depender de una fuente de correspondencia específica de cada distrito, se trata aparte como extensión opcional — ver sección 3.5.)*
+*(La agrupación por localidad, al depender de una fuente de correspondencia específica de cada distrito, se trata aparte como extensión opcional — ver sección 3.5. 🔒 Bloqueada por cambio de alcance: el proyecto pasó a nivel municipal.)*
 
 ---
 
@@ -115,10 +115,10 @@ Todo gráfico que desglosa por campo ideológico o filiación política suma sie
 | `serie_temporal.py` | Un gráfico por nivel de gobierno (nacional/provincial/municipal), línea por campo ideológico, 2011–2025, combinando cargo ejecutivo + legislativo en una serie continua | serie temporal, todo el distrito | `python -m analisis.serie_temporal` |
 | `serie_temporal_filiacion.py` | Igual formato que el anterior pero por `filiacion_politica` en vez de `campo_ideologico`; solo versión en porcentaje | serie temporal, todo el distrito | `python -m analisis.serie_temporal_filiacion` |
 | `cuadros_anualizados.py` | Un gráfico por año, con todos los cargos disputados ese año lado a lado (sin sumarlos entre sí) | foto de un año, por cargo | `python -m analisis.cuadros_anualizados --anio 2023` |
-| `totales_por_lista.py` | Barras horizontales, resultado total por agrupación (lista) + blanco/nulo, un gráfico por (año, nivel) | (año, nivel), todo el distrito | `python -m analisis.totales_por_lista --anio 2023 --nivel intendente` |
+| `totales_por_lista.py` | Ya no genera gráfico ni tiene CLI propia; sobrevive como función de datos (`resultado_total_con_blanco_nulo`) reutilizada por otros módulos | (año, nivel), todo el distrito | uso programático (sin CLI) |
 | `comparativo_nivel.py` | Cuadro Markdown por año: % de cada agrupación en Municipio/Provincia/Nación + diferencias en puntos porcentuales | (año), tres cargos comparados | `python -m analisis.comparativo_nivel --anio 2019` |
 
-Además de esta tabla, existen dos módulos (`cuadros_por_localidad.py`, `serie_temporal_por_localidad.py`) que replican los cuadros y series temporales anteriores pero a nivel de localidad/barrio en vez de distrito completo. Se dejan fuera de la tabla central porque, a diferencia del resto, no dependen únicamente de `circuito_<nivel>.json`: requieren la fuente de correspondencia circuito→localidad descripta como extensión opcional en la sección 3.5.
+Además de esta tabla, existe `cuadros_por_localidad.py`, que replica los cuadros anteriores pero a nivel de localidad/barrio en vez de distrito completo (`serie_temporal_por_localidad.py`, su equivalente en serie temporal, se eliminó — ver `docs/AUDITORIA_ESTADO.md`). Se deja fuera de la tabla central porque, a diferencia del resto, no depende únicamente de `circuito_<nivel>.json`: requiere la fuente de correspondencia circuito→localidad descripta como extensión opcional en la sección 3.5. **🔒 Bloqueado por cambio de alcance**: el proyecto pasó a nivel municipal, no circuito/localidad — no hay trabajo previsto acá hasta que ese alcance cambie.
 
 **Convenciones de salida**: `graficos/distrito/serie_temporal/` y `graficos/distrito/totales_por_lista/` están versionados en git; el resto de `graficos/distrito/<año>/<nivel>/` (circuito por circuito) se regenera on demand y está en `.gitignore`, por volumen (miles de archivos) y porque se reconstruye en segundos desde `data/`.
 
@@ -206,10 +206,6 @@ PYTHONPATH=src python -m analisis.serie_temporal_filiacion
 # Cuadro por año con todos los cargos de ese año lado a lado
 PYTHONPATH=src python -m analisis.cuadros_anualizados --anio 2023
 PYTHONPATH=src python -m analisis.cuadros_anualizados               # todos los años disponibles
-
-# Barras horizontales por agrupación (lista), un gráfico por (año, nivel)
-PYTHONPATH=src python -m analisis.totales_por_lista --anio 2023 --nivel intendente
-PYTHONPATH=src python -m analisis.totales_por_lista                 # todo lo disponible
 
 # Cuadro Markdown comparativo Municipio/Provincia/Nación, por año
 PYTHONPATH=src python -m analisis.comparativo_nivel --anio 2019

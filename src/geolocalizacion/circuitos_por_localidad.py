@@ -36,8 +36,6 @@ class ReporteAsignacion:
 
 
 def cargar_localidades(path: Path | str = LOCALIDADES_LA_PLATA_PATH) -> gpd.GeoDataFrame:
-    """Lee el catálogo validado y arma un `GeoDataFrame` de puntos (`nombre`
-    + `geometry`) en EPSG:4326."""
     df = pd.read_csv(path)
     return gpd.GeoDataFrame(
         df[["nombre"]],
@@ -49,8 +47,6 @@ def cargar_localidades(path: Path | str = LOCALIDADES_LA_PLATA_PATH) -> gpd.GeoD
 def asignar_localidad_mas_cercana(
     circuitos: gpd.GeoDataFrame, localidades: gpd.GeoDataFrame
 ) -> pd.DataFrame:
-    """Pura; una fila por circuito con `circuito_id`/`localidad`/
-    `distancia_metros` (centroide más cercano), reproyectada a metros."""
     crs_metrico = circuitos.estimate_utm_crs()
     circuitos_m = circuitos.to_crs(crs_metrico)
     localidades_m = localidades.to_crs(crs_metrico)
@@ -75,8 +71,6 @@ def asignar_localidad_mas_cercana(
 
 
 def generar_reporte(asignacion: pd.DataFrame, nombres_localidades: set[str]) -> ReporteAsignacion:
-    """Pura. `nombres_localidades` es el universo completo (`set(localidades["nombre"])`),
-    para poder reportar cuáles quedaron sin ningún circuito asignado."""
     peor = asignacion.loc[asignacion["distancia_metros"].idxmax()]
     utilizadas = set(asignacion["localidad"])
     return ReporteAsignacion(

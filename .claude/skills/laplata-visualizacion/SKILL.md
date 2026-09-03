@@ -1,6 +1,6 @@
 ---
 name: laplata-visualizacion
-description: Estructura y convenciones de src/visualizacion/, el módulo que genera los HTML interactivos del sitio de GitHub Pages del repositorio elecciones-socioeconomia-laplata (mapa electoral Leaflet, cuadrantes ideológicos V-Party) -- patrón payload+template, qué va en docs/ vs. graficos/, y la regla de no distinguir V-Party real de estimación propia en la UI. Usar al tocar mapa_interactivo.py, distribucion_ideologica_interactiva.py, sus *_template.html, o al agregar una pestaña interactiva nueva al sitio. Para convenciones generales del repo ver primero el skill laplata-general; para el dato que estos scripts consumen (circuito_id, clasificación ideológica, crosswalk circuito↔localidad) ver laplata-elecciones.
+description: Estructura y convenciones de src/visualizacion/, el módulo que genera los HTML interactivos del sitio de GitHub Pages del repositorio elecciones-socioeconomia-laplata (mapa electoral Leaflet, cuadrantes ideológicos V-Party, trayectorias económicas trimestrales/bielección) -- patrón payload+template, qué va en docs/ vs. graficos/, y la regla de no distinguir V-Party real de estimación propia en la UI. Usar al tocar mapa_interactivo.py, distribucion_ideologica_interactiva.py, trayectorias_economicas.py, trayectorias_economicas_bieleccion.py, sus *_template.html, o al agregar una pestaña interactiva nueva al sitio. Para convenciones generales del repo ver primero el skill laplata-general; para el dato que consumen mapa_interactivo.py/distribucion_ideologica_interactiva.py (circuito_id, clasificación ideológica, crosswalk circuito↔localidad) ver laplata-elecciones; para el panel temporal que consumen los dos scripts de trayectorias económicas, ver CLAUDE.md ("src/ml_models/") y docs/especificacion_panel_temporal.md.
 ---
 
 # Visualización interactiva (`src/visualizacion/`)
@@ -38,7 +38,9 @@ git-tracked, ambos parte del deploy). Antes de v-siguiente (ver
 
 ## Patrón compartido: payload + template
 
-Los dos scripts del módulo siguen la misma forma:
+Los cuatro scripts del módulo (`mapa_interactivo.py`,
+`distribucion_ideologica_interactiva.py`, `trayectorias_economicas.py`,
+`trayectorias_economicas_bieleccion.py`) siguen la misma forma:
 
 ```
 construir_payload(...) -> dict          # toda la lógica de datos, pura, testeable
@@ -67,15 +69,21 @@ de escape en el replace.
 
 ## Qué vive en `docs/` y por qué
 
-Ambos HTML generados (`docs/mapa_electoral_la_plata.html`,
-`docs/distribucion_ideologica_la_plata.html`) están en `docs/`, no en
-`graficos/`, y **sí están git-tracked** -- `docs/` (junto con la raíz
-del repo) es uno de los dos únicos directorios que GitHub Pages puede
-servir sin un workflow de Actions aparte, y `docs/index.html` ya vivía
-ahí. Cada uno se enlaza desde `docs/index.html` con una `viz-card` en la
-sección 01 ("Visualización"). Si se agrega una pestaña nueva: mismo
-patrón (script + template acá, salida a `docs/<nombre>.html`, card
-nueva en `index.html`, subsección nueva en `docs/FUNCIONALIDADES.md`).
+Los cuatro HTML generados (`docs/mapa_electoral_la_plata.html`,
+`docs/distribucion_ideologica_la_plata.html`,
+`docs/trayectorias_economicas_la_plata.html`,
+`docs/trayectorias_economicas_bieleccion_la_plata.html`) están en
+`docs/`, no en `graficos/`, y **sí están git-tracked** -- `docs/` (junto
+con la raíz del repo) es uno de los dos únicos directorios que GitHub
+Pages puede servir sin un workflow de Actions aparte, y `docs/index.html`
+ya vivía ahí. Cada uno se enlaza desde `docs/index.html` con una
+`viz-card` en la sección 01 ("Visualización"). Los dos últimos comparten
+un mismo template (`trayectorias_economicas_template.html`) parametrizado
+vía los placeholders `__TITULO__`/`__META__` además de
+`/*__RAW_DATA__*/` -- no hay un tercer template por cada pestaña nueva de
+ese mismo patrón. Al agregar una pestaña nueva: mismo patrón (script +
+template acá, salida a `docs/<nombre>.html`, card nueva en `index.html`,
+subsección nueva en `docs/FUNCIONALIDADES.md`).
 
 ## `mapa_interactivo.py`
 
@@ -134,6 +142,37 @@ real de estimación propia calibrada** (se sacó deliberadamente un
 intento anterior con checkbox/trazo distinto/leyenda de procedencia). Esa
 distinción sigue existiendo, pero **solo en prosa, en un único lugar**:
 `data/agrupaciones/v-party/README.md`.
+
+## `trayectorias_economicas.py` / `trayectorias_economicas_bieleccion.py`
+
+Documentados en detalle en `docs/FUNCIONALIDADES.md`, secciones
+"Trayectorias económicas trimestrales"/"Trayectorias económicas
+bielección trimestrales" -- no se repite acá. A diferencia de los otros
+dos scripts de este módulo, no leen de `src/electoral/`/
+`data/agrupaciones/` sino de `data/tfi_data/panel/t-1/`
+(`panel_trimestral_<nivel>.csv`) y `data/tfi_data/panel/t-2/`
+(`panel_bieleccion_trimestral_<nivel>.csv`) respectivamente -- salida de
+`ml_models.construir_panel_trimestral`/`construir_panel_bieleccion_trimestral`
+(ver CLAUDE.md, sección "src/ml_models/", y
+`docs/especificacion_panel_temporal.md` para el resto de ese pipeline).
+Puntos clave:
+
+- El segundo es la variante del primero sobre el bloque largo (`_vl`:
+  elección t-2 a t) en vez del corto (`_vc`: t-1 a t) -- mismo formato de
+  fila, misma UI, **mismo template HTML sin cambios**: el payload de
+  ambos usa las mismas claves genéricas (`anio_inicio_ventana`/
+  `agrupacion_inicio`, no `anio_t_menos_1`/`agrupacion_t_menos_1`)
+  justamente para que un tercer/cuarto grano de ventana pueda sumarse
+  sin tocar el HTML.
+- `desocupacion` se multiplica por 100 al armar el payload (el CSV de
+  origen sigue en fracción 0-1) -- mostrar `0.074` en el eje se leía como
+  "prácticamente cero".
+- `_variables_de`/`_serie_variable`/`_label_ventana`/
+  `_salario_real_usd_mensual` (lógica de extracción del payload) están
+  testeadas en `tests/visualizacion/test_trayectorias_economicas.py`/
+  `test_trayectorias_economicas_bieleccion.py`; `construir_payload` y el
+  template no tienen test automatizado, mismo criterio que el resto de
+  este módulo.
 
 ## `vparty_distribucion_tfi.py` (`src/analisis/`, no `src/visualizacion/`)
 

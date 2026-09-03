@@ -51,7 +51,6 @@ def _extraer_endpoint(auditable: str) -> str | None:
 
 
 def cargar_conceptos_auditables(path: Path | str) -> list[tuple[ConceptoCatalogo, str]]:
-    """`(concepto_catalogo, endpoint_estadisticasbcra)` para cada fila auditable."""
     import csv as _csv
 
     with Path(path).open(encoding="utf-8", newline="") as f:
@@ -82,7 +81,6 @@ def consultar_estadisticasbcra(endpoint: str, token: str, timeout: float = 30.0)
 
 
 def _por_anio_mes(puntos: list[tuple[date, float]]) -> dict[str, tuple[date, float]]:
-    """Último punto de cada año-mes (`"2024-08"` -> `(fecha, valor)`)."""
     resultado: dict[str, tuple[date, float]] = {}
     for fecha, valor in puntos:
         resultado[fecha.strftime("%Y-%m")] = (fecha, valor)
@@ -100,14 +98,11 @@ _CONCEPTOS_INDICE_A_VARIACION_MENSUAL = {"ipc_nacional"}
 def comparar(
     concepto: ConceptoCatalogo, endpoint: str, puntos_propios: list[tuple[date, float]], puntos_bcra: list[tuple[date, float]]
 ) -> ResultadoAuditoria | None:
-    """Compara en el año-mes más reciente que ambas series tengan en común."""
     propios_por_mes = _por_anio_mes(puntos_propios)
     bcra_por_mes = _por_anio_mes(puntos_bcra)
     meses_comunes = sorted(set(propios_por_mes) & set(bcra_por_mes), reverse=True)
 
     if concepto.concepto in _CONCEPTOS_INDICE_A_VARIACION_MENSUAL:
-        # Solo sirven los meses donde también tengamos el mes anterior, para
-        # poder calcular la variación.
         meses_ordenados = sorted(propios_por_mes)
         indice_mes_anterior = {
             meses_ordenados[i]: meses_ordenados[i - 1] for i in range(1, len(meses_ordenados))

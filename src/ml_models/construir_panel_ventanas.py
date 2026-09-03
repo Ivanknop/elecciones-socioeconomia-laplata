@@ -130,9 +130,7 @@ def construir_panel(
     oficialismo_por_nivel: dict[tuple[int, str], dict],
     posiciones: dict[tuple[int, str, str], float],
 ) -> list[dict]:
-    """Pura -- todo ya cargado en memoria. Una fila por ventana, columnas
-    de identificación + dependientes + un bloque de features por variable
-    del registro (intra e interventana)."""
+    """Pura -- todo ya cargado en memoria."""
     por_nivel: dict[str, list[dict]] = {}
     for v in ventanas:
         por_nivel.setdefault(v["nivel"], []).append(v)

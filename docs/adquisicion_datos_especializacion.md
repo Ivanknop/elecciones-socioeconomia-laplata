@@ -99,7 +99,21 @@ compatible con el pipeline existente.
 **Impacto:** hasta que se consiga, las transiciones municipal/provincial
 2001→2003, 2003→2005, 2005→2007, 2007→2009 y 2009→2011 quedan con
 `resultado_disponible=false` en `resultado_distrito.csv`/`panel_ventanas.csv`
-— la identidad de oficialismo sí está poblada, `delta_v` no.
+(sin el detalle por circuito, `participacion` exacta y `votos_blanco` con la
+fórmula de ausentismo real siguen sin poder derivarse).
+
+**Actualización:** el detalle de voto por lista a nivel Partido de La Plata
+sí se consiguió después (sesión "Agrega elecciones 2001-2009 y 2025
+municipal/provincial...", `data/tfi_data/elecciones/<año>_<nivel>.csv`, uno
+por (año,nivel) 2001-2009) -- `resultado_disponible` sigue en `false` (no
+hay circuito), pero `ml_models.construir_resultado_distrito` ya cae a ese
+CSV para completar `votos_validos`/`votos_blanco` y, vía
+`construir_voto_partido_distrito`, también `gana_oficialismo`/
+`share_oficialismo`/`delta_v` (emparejando por nombre contra
+`oficialismo_por_nivel.csv`, con `ALIAS_LISTA_OFICIALISMO` citado para los
+años de relabeling de frentes: 2005 municipal/provincial, 2007 provincial,
+2009 municipal/provincial). Solo `participacion` exacta sigue bloqueada
+(depende del padrón real por circuito, no solo del total por lista).
 
 ## 1.c — 2025 municipal/provincial: requiere escalar (fuente distinta, no un re-run)
 

@@ -8,18 +8,22 @@ no reimplementa ninguna de las dos.
 
 Años sin `circuito_<cargo>.json` cacheado (2001-2009 completo, y 2025 para
 municipal/provincial -- ver `docs/adquisicion_datos_especializacion.md`
-§1.a/§1.c) quedan con `resultado_disponible=false` (`gana_oficialismo`/
-`share_oficialismo` siguen sin poder derivarse sin el detalle por
-circuito), nunca imputados -- salvo `votos_validos`/
-`votos_blanco`/`participacion`, que si hay un
-`data/tfi_data/elecciones/<año>_<nivel>.csv` cargado a mano para ese año
-se completan desde ahí (`_votos_validos_blanco_participacion_desde_tfi`):
-`votos_validos`/`votos_blanco` siempre que el CSV exista, `participacion`
-solo si además su fila `VOTANTES_HABILITADOS` (ver
-`ml_models.construir_elecciones`) tiene el padrón cargado -- para
-2001-2009/2025 municipal-provincial esa fila arranca vacía (nadie encontró
-el padrón real todavía, ver `docs/adquisicion_datos_especializacion.md`),
-así que `participacion` sigue en blanco hasta que se cargue a mano.
+§1.a/§1.c) quedan con `resultado_disponible=false` (`participacion` exacta,
+vía la fórmula de ausentismo por circuito, no se puede derivar sin ese
+detalle), pero desde que `data/tfi_data/elecciones/<año>_<nivel>.csv` cubre
+2001-2009 sí se completan `votos_validos`/`votos_blanco`
+(`_votos_validos_blanco_participacion_desde_tfi`) y, vía
+`construir_voto_partido_distrito`'s fallback a ese mismo CSV
+(`_voto_partido_desde_tfi`), también `gana_oficialismo`/`share_oficialismo`
+(`_resolver_oficialismo`, mismo emparejamiento por nombre contra
+`oficialismo_por_nivel.csv` que usan los años con circuito) -- nunca
+imputados, `None` si el emparejamiento por nombre falla (relabeling, ver
+`_resolver_oficialismo`). `participacion` solo se completa si además la fila
+`VOTANTES_HABILITADOS` de ese CSV (ver `ml_models.construir_elecciones`)
+tiene el padrón cargado -- para 2001-2009/2025 municipal-provincial esa fila
+arranca vacía (nadie encontró el padrón real todavía, ver
+`docs/adquisicion_datos_especializacion.md`), así que `participacion` sigue
+en blanco hasta que se cargue a mano.
 
 Usa siempre la etapa `generales` (primera vuelta), nunca `balotaje` --
 misma convención que `analisis.graficos._cargar_circuito`. Para presidente
@@ -72,27 +76,65 @@ class FilaVotoPartido:
     share: float
 
 
+def _voto_partido_desde_tfi(path: Path | str) -> list[tuple[str, str, int]]:
+    """(id_agrupacion, agrupacion, votos) por agrupación real desde un
+    `<año>_<nivel>.csv` de `data/tfi_data/elecciones/` -- excluye
+    BLANCO/NULO/VOTANTES_HABILITADOS, mismo recorte que
+    `resultado_total_por_agrupacion` hace sobre `circuito["positivos"]`
+    (nunca `circuito["otros"]`). Lista vacía si el archivo no existe."""
+    path = Path(path)
+    if not path.exists():
+        return []
+    with path.open(encoding="utf-8", newline="") as f:
+        f.readline()  # comentario "# Total de votos, ...", no es el header
+        filas = list(csv.DictReader(f))
+    return [
+        (r["id_agrupacion"], r["agrupacion"], int(r["votos"]))
+        for r in filas
+        if r["agrupacion"] not in ("BLANCO", "NULO", "VOTANTES_HABILITADOS")
+    ]
+
+
 def construir_voto_partido_distrito(
-    calendario: list[FilaCalendario], data_dir: Path | str = DATA_DISTRITO_DIR
+    calendario: list[FilaCalendario],
+    data_dir: Path | str = DATA_DISTRITO_DIR,
+    elecciones_dir: Path | str = ELECCIONES_DIR,
 ) -> list[FilaVotoPartido]:
-    """Grano año×nivel×agrupación; solo genera filas para (año, nivel) con
-    `circuito_<cargo>.json` cacheado -- los años faltantes no aportan filas
-    acá, se documentan como `resultado_disponible=false` en
-    `resultado_distrito.csv`."""
+    """Grano año×nivel×agrupación. Preferí `circuito_<cargo>.json` cacheado;
+    si no existe, cae a `data/tfi_data/elecciones/<año>_<nivel>.csv`
+    (`_voto_partido_desde_tfi`), recalculando `share` sobre el total de
+    agrupaciones de ese CSV para que sea comparable con el `share` de
+    `resultado_total_por_agrupacion` (ambos excluyen BLANCO/NULO del
+    denominador). Sin filas si ninguna de las dos fuentes existe para ese
+    (año, nivel)."""
     filas = []
     for fc in calendario:
         cargo = _cargo_de_eleccion(fc.nivel, fc.tipo_eleccion)
-        if not _circuito_disponible(data_dir, fc.anio, cargo):
+        if _circuito_disponible(data_dir, fc.anio, cargo):
+            for v in resultado_total_por_agrupacion(data_dir, fc.anio, cargo, etapa="generales"):
+                filas.append(
+                    FilaVotoPartido(
+                        anio=fc.anio,
+                        nivel=fc.nivel,
+                        id_agrupacion=v.id_agrupacion,
+                        agrupacion=v.nombre_agrupacion,
+                        votos=v.votos,
+                        share=v.votos_porcentaje,
+                    )
+                )
             continue
-        for v in resultado_total_por_agrupacion(data_dir, fc.anio, cargo, etapa="generales"):
+
+        crudos = _voto_partido_desde_tfi(Path(elecciones_dir) / f"{fc.anio}_{fc.nivel}.csv")
+        total = sum(votos for _, _, votos in crudos)
+        for id_agrupacion, agrupacion, votos in crudos:
             filas.append(
                 FilaVotoPartido(
                     anio=fc.anio,
                     nivel=fc.nivel,
-                    id_agrupacion=v.id_agrupacion,
-                    agrupacion=v.nombre_agrupacion,
-                    votos=v.votos,
-                    share=v.votos_porcentaje,
+                    id_agrupacion=id_agrupacion,
+                    agrupacion=agrupacion,
+                    votos=votos,
+                    share=(votos / total * 100) if total else 0.0,
                 )
             )
     return filas
@@ -120,6 +162,85 @@ def _match_oficialismo(
         if v.agrupacion.strip().upper() == objetivo:
             return v
     return None
+
+
+# Alias manual: en estos (año, nivel) la lista real de
+# `data/tfi_data/elecciones/<año>_<nivel>.csv` no aparece con el mismo
+# nombre que `agrupacion_oficialismo` de `oficialismo_por_nivel.csv` --
+# relabeling de frentes pre-2011 (ese campo describe la identidad partidaria
+# del titular, no el nombre de lista exacto de cada año). Cada entrada
+# citada, nunca adivinada -- ver `docs/adquisicion_datos_especializacion.md`
+# §1.a para el criterio general de fuentes de esta ventana.
+ALIAS_LISTA_OFICIALISMO: dict[tuple[int, str], str] = {
+    # 2005: interna PJ Kirchner vs. Duhalde -- "el sector duhaldista compitió
+    # bajo la etiqueta oficial del PJ, mientras el kirchnerista lo hizo como
+    # Frente para la Victoria" (es.wikipedia.org/wiki/Elecciones_legislativas_de_Argentina_de_2005);
+    # el gobernador Solá (PJ, titular real) estaba alineado con Kirchner ese
+    # año -- la lista oficialista (la del Ejecutivo que gobierna) es FRENTE
+    # PARA LA VICTORIA, no la etiqueta histórica "PARTIDO JUSTICIALISTA" de
+    # oficialismo_por_nivel.csv. Ambas boletas de La Plata (municipal y
+    # provincial) traen las dos listas, mismo patrón -- se asume la misma
+    # alineación en concejales que en gobernador/legisladores provinciales,
+    # sin cita municipal específica.
+    (2005, "municipal"): "FRENTE PARA LA VICTORIA",
+    (2005, "provincial"): "FRENTE PARA LA VICTORIA",
+    # 2007 provincial: Scioli (Frente Para La Victoria) sucede a Solá,
+    # continuidad_oficialismo="continua_renombrada" -- ya citado en
+    # `construir_calendario._EJECUTIVA_PRE_2011["provincial"][2007]`. La fila
+    # "PARTIDO JUSTICIALISTA" del CSV de 2007 provincial tiene 0 votos (lista
+    # que no compitió esa categoría ese año, no la boleta real del oficialismo).
+    (2007, "provincial"): "FRENTE PARA LA VICTORIA",
+    # 2009: lista de gobierno de Scioli a nivel provincial -- nota de prensa
+    # sobre el desafío de UCR/ARI/GEN a las candidaturas de Scioli/Massa por
+    # el "Frente Justicialista para la Victoria" en la Pcia. de Buenos Aires,
+    # elección legislativa 2009 (es.wikipedia.org/wiki/Elecciones_legislativas_de_Argentina_de_2009).
+    # Bruera (intendente electo 2007, "luego PJ/FpV" -- ver
+    # docs/adquisicion_datos_especializacion.md §1.a) se asume alineado a la
+    # misma lista a nivel municipal -- inferencia más débil que el resto de
+    # este dict, sin cita directa de la lista de concejales de La Plata.
+    (2009, "municipal"): "FRENTE JUSTICIALISTA PARA LA VICTORIA. (*)",
+    (2009, "provincial"): "FRENTE JUSTICIALISTA PARA LA VICTORIA",
+}
+
+
+def _resolver_oficialismo(
+    del_anio: list[FilaVotoPartido],
+    of: dict | None,
+    fila_of_curada: dict | None,
+    alias_lista: str | None = None,
+) -> tuple[bool | None, float | None]:
+    """`gana_oficialismo`/`share_oficialismo` para un (año, nivel): prioriza
+    `oficialismos.csv` curado (2011-2025, `era_oficialismo` tal cual); sin
+    curado, empareja por nombre contra `oficialismo_por_nivel.csv`
+    (`_match_oficialismo`), o contra `alias_lista` si viene provisto (ver
+    `ALIAS_LISTA_OFICIALISMO`, relabeling pre-2011). `None`/`None` si no hay
+    ninguna fila de oficialismo, o si el emparejamiento por nombre falla --
+    nunca se asume que perdió solo porque no matcheó (posible relabeling sin
+    alias todavía)."""
+    ganador = max(del_anio, key=lambda v: v.votos) if del_anio else None
+
+    if fila_of_curada is not None:
+        gana_oficialismo = fila_of_curada["era_oficialismo"].strip().lower() == "true"
+        if of is None:
+            return gana_oficialismo, None
+        nombre_lista = alias_lista or of["agrupacion_oficialismo"]
+        if gana_oficialismo:
+            share_oficialismo = ganador.share if ganador is not None else None
+        else:
+            fila_oficialismo = _match_oficialismo(del_anio, nombre_lista)
+            share_oficialismo = fila_oficialismo.share if fila_oficialismo is not None else None
+        return gana_oficialismo, share_oficialismo
+
+    if of is None:
+        return None, None
+
+    nombre_lista = alias_lista or of["agrupacion_oficialismo"]
+    fila_oficialismo = _match_oficialismo(del_anio, nombre_lista)
+    if fila_oficialismo is None:
+        return None, None
+    gana_oficialismo = ganador is not None and ganador.id_agrupacion == fila_oficialismo.id_agrupacion
+    share_oficialismo = ganador.share if gana_oficialismo and ganador is not None else fila_oficialismo.share
+    return gana_oficialismo, share_oficialismo
 
 
 def _votos_validos_blanco_participacion_desde_tfi(path: Path | str) -> tuple[int, int, float | None] | None:
@@ -155,15 +276,19 @@ def construir_resultado_distrito(
     data_dir: Path | str = DATA_DISTRITO_DIR,
     elecciones_dir: Path | str = ELECCIONES_DIR,
 ) -> list[FilaResultadoDistrito]:
-    """`gana_oficialismo` para 2011+ reusa `era_oficialismo` de
-    `oficialismos.csv` tal cual -- ya es exactamente "¿el voto de La Plata
-    en esta categoría favoreció al Ejecutivo real que gobierna?", tanto en
-    años ejecutivos como legislativos; no se re-deriva emparejando nombres
-    de lista, que puede fallar cuando el oficialismo se presenta con una
-    etiqueta nueva ese mismo año (ver `continua_renombrada`). `share_oficialismo`
-    sí busca la lista exacta: si el oficialismo ganó, es la del ganador
-    (inequívoca); si perdió, se intenta por nombre y se deja `None`
-    si no se puede identificar (posible relabeling)."""
+    """`gana_oficialismo`/`share_oficialismo` se resuelven en
+    `_resolver_oficialismo`, igual para años con y sin `circuito_<cargo>.json`
+    cacheado (lo único que cambia entre ramas es de dónde sale `votos_validos`/
+    `votos_blanco`/`participacion`). Para 2011+ reusa `era_oficialismo` de
+    `oficialismos.csv` tal cual -- ya es exactamente "¿el voto de La Plata en
+    esta categoría favoreció al Ejecutivo real que gobierna?", tanto en años
+    ejecutivos como legislativos; no se re-deriva emparejando nombres de
+    lista, que puede fallar cuando el oficialismo se presenta con una
+    etiqueta nueva ese mismo año (ver `continua_renombrada`). Sin curado
+    (todo 2001-2009), se empareja por nombre contra `agrupacion_oficialismo`
+    de `oficialismo_por_nivel.csv` -- `None`/`None` si no matchea, nunca se
+    asume que perdió (posible relabeling, mismo caso que arriba pero sin
+    `oficialismos.csv` para resolverlo)."""
     voto_partido_por_anio_nivel: dict[tuple[int, str], list[FilaVotoPartido]] = {}
     for v in voto_partido:
         voto_partido_por_anio_nivel.setdefault((v.anio, v.nivel), []).append(v)
@@ -173,13 +298,19 @@ def construir_resultado_distrito(
         cargo = _cargo_de_eleccion(fc.nivel, fc.tipo_eleccion)
         disponible = _circuito_disponible(data_dir, fc.anio, cargo)
 
+        of = oficialismo_por_nivel.get((fc.anio, fc.nivel))
+        fila_of_curada = oficialismos_2011_2025.get((fc.anio, fc.nivel))
+        alias_lista = ALIAS_LISTA_OFICIALISMO.get((fc.anio, fc.nivel))
+
         if not disponible:
+            del_anio = voto_partido_por_anio_nivel.get((fc.anio, fc.nivel), [])
             votos_tfi = _votos_validos_blanco_participacion_desde_tfi(Path(elecciones_dir) / f"{fc.anio}_{fc.nivel}.csv")
             if votos_tfi is not None:
                 votos_validos, votos_blanco, participacion = votos_tfi
             else:
                 votos_validos = votos_blanco = None
                 participacion = None
+            gana_oficialismo, share_oficialismo = _resolver_oficialismo(del_anio, of, fila_of_curada, alias_lista)
             filas.append(
                 FilaResultadoDistrito(
                     anio=fc.anio,
@@ -187,8 +318,8 @@ def construir_resultado_distrito(
                     votos_validos=votos_validos,
                     votos_blanco=votos_blanco,
                     participacion=participacion,
-                    gana_oficialismo=None,
-                    share_oficialismo=None,
+                    gana_oficialismo=gana_oficialismo,
+                    share_oficialismo=share_oficialismo,
                     resultado_disponible=False,
                 )
             )
@@ -204,27 +335,7 @@ def construir_resultado_distrito(
         votantes = electores - ausentismo
         participacion = (votantes / electores * 100) if electores else None
 
-        of = oficialismo_por_nivel.get((fc.anio, fc.nivel))
-        fila_of_curada = oficialismos_2011_2025.get((fc.anio, fc.nivel))
-        ganador = max(del_anio, key=lambda v: v.votos) if del_anio else None
-
-        if fila_of_curada is not None:
-            gana_oficialismo = fila_of_curada["era_oficialismo"].strip().lower() == "true"
-        elif of is not None:
-            fila_oficialismo = _match_oficialismo(del_anio, of["agrupacion_oficialismo"])
-            gana_oficialismo = (
-                ganador is not None and fila_oficialismo is not None and ganador.id_agrupacion == fila_oficialismo.id_agrupacion
-            )
-        else:
-            gana_oficialismo = None
-
-        if of is None:
-            share_oficialismo = None
-        elif gana_oficialismo:
-            share_oficialismo = ganador.share if ganador is not None else None
-        else:
-            fila_oficialismo = _match_oficialismo(del_anio, of["agrupacion_oficialismo"])
-            share_oficialismo = fila_oficialismo.share if fila_oficialismo is not None else None
+        gana_oficialismo, share_oficialismo = _resolver_oficialismo(del_anio, of, fila_of_curada, alias_lista)
 
         filas.append(
             FilaResultadoDistrito(
@@ -341,7 +452,7 @@ def generar_csvs(
             for r in csv.DictReader(f)
         ]
 
-    voto_partido = construir_voto_partido_distrito(calendario, data_dir)
+    voto_partido = construir_voto_partido_distrito(calendario, data_dir, elecciones_dir)
     destino_voto_partido = _escribir_csv(
         voto_partido_destino, voto_partido, ["anio", "nivel", "id_agrupacion", "agrupacion", "votos", "share"]
     )

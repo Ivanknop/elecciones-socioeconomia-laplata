@@ -70,7 +70,7 @@ PYTHONPATH=src python3 src/analisis/generar_v_party_propio.py --encuesta data/ag
 PYTHONPATH=src python -m analisis.vparty_cuadrantes         # national V-Party cuadrantes scatter (Diputados 2001-2019), one JSON (tracked) + PNG (local)
 PYTHONPATH=src python -m analisis.vparty_cuadrantes_local   # DEPRECADO (see Architecture below) -- superseded by ml_models.construir_elecciones's data/tfi_data/elecciones/<año>_<nivel>.csv
 PYTHONPATH=src python -m analisis.vparty_distribucion_tfi   # V-Party cuadrantes PNG per (año,nivel) from data/tfi_data/elecciones/, 2001-2025, writes graficos/tfi/v-party/<año>_<nivel>.png
-PYTHONPATH=src python -m socioeconomia.icg_exportar_csv  # ICG (UTDT) headline + 6 demographic-cut CSVs to data/socioeconomia/; needs data/socioeconomia/icg/Base_histórica_2001-presente-ICG.dta placed manually first, see data/socioeconomia/icg/README.md
+PYTHONPATH=src python -m socioeconomia.icg_exportar_csv  # ICG (UTDT) headline + 6 demographic-cut CSVs to data/socioeconomia/; needs data/socioeconomia/icg-icc/Base_histórica_2001-presente-ICG.dta placed manually first, see data/socioeconomia/icg-icc/README.md
 PYTHONPATH=src python -m socioeconomia.icg_graficos  # La Plata vs. país ICG time series PNG from the headline CSV above
 ```
 
@@ -133,7 +133,7 @@ real 22 MB `.dta`) and `icg_construir_series.py` (weighted-average
 aggregation, both grains) are covered by `tests/socioeconomia/test_icg_cargar.py`/
 `test_icg_construir_series.py`, no network, no real microdato. `icg_exportar_csv.py`/
 `icg_graficos.py` (orchestration/matplotlib) have no automated test, same
-criterion as `macroeconomia.graficos`. See `data/socioeconomia/icg/README.md`
+criterion as `macroeconomia.graficos`. See `data/socioeconomia/icg-icc/README.md`
 for the raw `.dta`/codebook (external, non-redistributable, neither
 git-tracked — both must be placed manually) and `data/socioeconomia/ICG.md`
 for methodology
@@ -400,7 +400,7 @@ order, 01→04) are the pipeline**.
   (`vparty_cuadrantes_local.generar_distrito`) is deprecated in favor of
   `data/tfi_data/elecciones/<año>_<nivel>.csv`, see above.
 
-- **`src/visualizacion/`** holds the two scripts that generate a full
+- **`src/visualizacion/`** holds the four scripts that generate a full
   interactive HTML page for `docs/` — each pairs a `construir_payload()`
   function with a sibling `_template.html` file (`/*__RAW_DATA__*/`
   placeholder). `mapa_interactivo.py` and
@@ -411,6 +411,41 @@ order, 01→04) are the pipeline**.
   why V-Party real vs. own-estimate is never visually distinguished) is in
   `docs/FUNCIONALIDADES.md` §"Distribución ideológica interactiva" and
   skill `laplata-visualizacion` — don't duplicate it here.
+  `trayectorias_economicas.py`/`trayectorias_economicas_bieleccion.py`
+  (sourced from `src/ml_models/`'s `data/tfi_data/panel/t-1/`/`t-2/`,
+  see below) share one template via generic payload keys
+  (`anio_inicio_ventana`/`agrupacion_inicio`, not
+  `anio_t_menos_1`/`agrupacion_t_menos_1`) — full behavior in
+  `docs/FUNCIONALIDADES.md` §"Trayectorias económicas trimestrales"/
+  "Trayectorias económicas bielección trimestrales" and skill
+  `laplata-visualizacion`.
+
+- **`src/ml_models/`** builds a panel temporal of electoral transitions
+  (one row per año×nivel election, joined to national macro series and
+  local election results) for future modeling — a fifth analytical
+  domain, related to domain 1 by (año, nivel) join, to domain 2
+  (`src/macroeconomia/`) by date. Full spec in
+  `docs/especificacion_panel_temporal.md`, design decisions in
+  `docs/decisiones_metodologicas.md`. Five phases, each a script writing
+  to `data/tfi_data/`: `construir_calendario.py` (Fase 1 —
+  `calendario_electoral.csv`/`oficialismo_por_nivel.csv`/`ventanas.csv`,
+  the latter carrying both the short window `_vc` [t-1, t] and, where it
+  exists, the long block `_vl` [t-2, t]); `construir_resultado_distrito.py`
+  (Fase 2 — `resultado_distrito.csv`/`voto_partido_distrito.csv`,
+  falling back to `data/tfi_data/elecciones/<año>_<nivel>.csv` for years
+  without `circuito_<cargo>.json`, 2001-2009); `construir_elecciones.py`
+  (writes those same `elecciones/<año>_<nivel>.csv` files, see above);
+  `features_ventana.py` + `construir_panel_ventanas.py` (Fase 4 —
+  `panel_ventanas.csv`, one row per transition with intra/inter-window
+  features for every variable in `registro_variables.csv`); and
+  `construir_panel_trimestral.py`/`construir_panel_bieleccion_trimestral.py`
+  (Fase 5 — long-format quarterly panels, `data/tfi_data/panel/t-1/`
+  over `_vc` and `data/tfi_data/panel/t-2/` over `_vl`, 31 and 28
+  windows respectively — the latter skips each level's first transition,
+  which has no `_vl`). `cargar_panel.py` is the modeling-facing loader:
+  `nivel` has no default on purpose (D7/D10) — pooling the three levels
+  requires `cargar_panel_apilado(justificacion)`, a separate function
+  that demands an explicit reason, never the default path.
 
 - **`src/macroeconomia/`** is a separate analytical domain: **national-grain
   only** (no circuito, no localidad), related to the rest of the repo by
@@ -453,9 +488,17 @@ order, 01→04) are the pipeline**.
 - **Commit messages: ~20 words, one line, no body.** Summarize the change
   itself (what/why), not a narration of the session that produced it —
   same terseness `git log` already shows for this repo's history.
-- **Docstrings: max 20 words per function/method, max 40 words for a
-  module/script intro.** State what it does, not why at length — if more
-  context is genuinely needed, point to `CLAUDE.md`/`docs/FUNCIONALIDADES.md`/
-  the domain's own README/`.md` instead of inlining it. Same synthesis
-  principle as the rest of this repo's documentation: one place per fact,
-  not repeated across files.
+- **Code must be self-descriptive; comments/docstrings are the
+  exception, not the default.** Add one only to record a specific
+  decision that isn't recoverable by reading the code itself — a data
+  gotcha (source metadata says one unit, the values are actually
+  another), a magic number's origin, a cross-file invariant, a known
+  anomaly, a pointer to a `D`-numbered decision in
+  `docs/decisiones_metodologicas.md`. Don't write a docstring/comment
+  that just restates the function signature, paraphrases the lines
+  right below it, or explains "why" in a way any reader would infer
+  from the surrounding code — delete those instead of trimming them.
+  When a decision genuinely needs more context than one line, point to
+  `CLAUDE.md`/`docs/FUNCIONALIDADES.md`/the domain's own README/`.md`
+  instead of inlining it — one place per fact, not repeated across
+  files.

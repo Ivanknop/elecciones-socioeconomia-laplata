@@ -16,7 +16,7 @@ _MARCA_NO_DISPONIBLE = b"mensaje\nResultados no disponibles."
 
 
 class ResultadosNoDisponibles(Exception):
-    """La API respondió que no hay resultados para esta consulta."""
+    pass
 
 # Único valor documentado por la API para tipoRecuento (endpoint JSON).
 TIPO_RECUENTO_PROVISORIO = 1
@@ -53,8 +53,7 @@ class ResultadosClient:
         mesa_id: int | None = None,
         force_refresh: bool = False,
     ) -> dict:
-        """Trae el JSON crudo de resultados, con caché en disco;
-        `categoria_nombre` solo organiza el caché, no va a la API."""
+        """`categoria_nombre` solo organiza el caché, no va a la API."""
         params = {
             "anioEleccion": anio_eleccion,
             "tipoRecuento": TIPO_RECUENTO_PROVISORIO,
@@ -93,9 +92,6 @@ class ResultadosClient:
         seccion_id: int | None = None,
         force_refresh: bool = False,
     ) -> bytes:
-        """Trae el CSV oficial. Trae todas las mesas del alcance pedido en un
-        solo pedido.
-        """
         params = {
             "año": anio_eleccion,
             "recuento": RECUENTO_PROVISORIO,
@@ -146,9 +142,6 @@ class ResultadosClient:
         circuito_id: str | None = None,
         force_refresh: bool = False,
     ):
-        """Itera `mesa_ids` y devuelve `(mesa_id, raw)` solo para las mesas que
-        existen (`mesasTotalizadas > 0`).
-        """
         for mesa_id in mesa_ids:
             raw = self.get_resultados(
                 anio_eleccion=anio_eleccion,

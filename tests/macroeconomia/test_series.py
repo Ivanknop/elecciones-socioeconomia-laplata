@@ -25,7 +25,6 @@ class TestValorExactoParaMes:
 
     def test_trimestral_no_tiene_valor_en_los_meses_siguientes_del_trimestre(self):
         puntos = [(date(2023, 1, 1), 100.0), (date(2023, 4, 1), 110.0)]
-        # febrero y marzo (dentro del trimestre de enero) NO toman el valor de enero
         assert _valor_exacto_para_mes(puntos, date(2023, 2, 1)) is None
         assert _valor_exacto_para_mes(puntos, date(2023, 3, 1)) is None
 
@@ -58,7 +57,7 @@ class TestValorParaMesDiario:
         assert (valor, fecha, ajustado) == (220.0, date(2023, 4, 28), False)
 
     def test_ningun_habil_del_mes_con_dato_devuelve_none(self):
-        puntos = {date(2023, 2, 1): 1.0}  # ninguna fecha de enero
+        puntos = {date(2023, 2, 1): 1.0}
         valor, fecha, ajustado = _valor_para_mes_diario(puntos, date(2023, 1, 1))
         assert (valor, fecha, ajustado) == (None, None, False)
 
@@ -98,7 +97,6 @@ class TestConstruirTablaMensual:
         assert "trimestral_x: sin dato" in marzo["observaciones"]
 
     def test_diaria_sin_ningun_dia_habil_con_dato_en_el_mes_queda_vacia_no_repite(self):
-        # diaria_x solo tiene dato en enero; febrero no tiene ningún día hábil con dato
         filas, _ = construir_tabla_mensual(self._catalogo(), self._puntos(), anio_inicio=2023, anio_fin=2023)
         febrero = filas[1]
         assert febrero["diaria_x"] == ""

@@ -1,15 +1,7 @@
-"""Features intra e interventana -- Fase 4 del panel temporal de ventanas
-electorales (ver `docs/especificacion_panel_temporal.md` §5). Itera
-genéricamente sobre `registro_variables.csv`: agregar una variable nueva
-(fila en el registro + columna en `series_economicas_mensuales.csv`) hace
-que sus features aparezcan solas, sin tocar este archivo -- no hay ningún
-`if id_variable == ...` acá (D9).
-
-Ventana corta (`_vc`): [fecha_inicio_vc, fecha_fin_vc], ambos extremos
-incluidos (interpretación literal de la especificación §3.4). Bloque largo
-(`_vl`): [fecha_inicio_vl, fecha_fin_vc] -- solo si `fecha_inicio_vl` existe
-(la primera transición de cada nivel no tiene bloque largo, D3).
-"""
+"""Features intra e interventana. `_vc` = ventana corta [fecha_inicio_vc,
+fecha_fin_vc]; `_vl` = bloque largo [fecha_inicio_vl, fecha_fin_vc], solo
+si `fecha_inicio_vl` existe (D3: la primera transición de cada nivel no
+tiene bloque largo)."""
 from __future__ import annotations
 
 from datetime import date

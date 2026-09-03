@@ -83,7 +83,8 @@ src/ml_models/
   construir_resultado_distrito.py   # NUEVO
   construir_elecciones.py           # NUEVO — genera data/tfi_data/elecciones/
   cargar_series_economicas.py       # NUEVO
-  construir_ventanas.py             # NUEVO
+  # construir_ventanas() terminó como función dentro de construir_calendario.py,
+  # no como módulo separado -- ver CLAUDE.md ("src/ml_models/") para el árbol real.
   features_ventana.py               # NUEVO — cálculo de features intra e interventana
   construir_panel_ventanas.py       # NUEVO — orquestador
 
@@ -105,7 +106,7 @@ No reimplementar lo que ya existe y está testeado:
 - `src/analisis/serie_temporal.py` → `NIVELES`, `CARGO_LABEL`
 - `src/electoral/localidades.py` → funciones de carga (para el análisis secundario espacial, no para el panel principal)
 - `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` → fuente única de `campo_ideologico`, `filiacion_politica` y scores V-Party
-- `data/agrupaciones/oficalismos.csv` → base para extender el oficialismo hacia atrás hasta 2001
+- `data/agrupaciones/oficialismos.csv` → base para extender el oficialismo hacia atrás hasta 2001
 
 ---
 
@@ -432,7 +433,7 @@ A incorporar en `docs/decisiones_metodologicas.md`:
 ### 9.1 Fase 1 — Estructura temporal
 
 1. Construir `calendario_electoral.csv`: para cada elección 2001-2025 y cada nivel, la fecha exacta, el tipo de elección (ejecutiva/legislativa), y si hubo desdoblamiento.
-2. Construir `oficialismo_por_nivel.csv`: extender `data/agrupaciones/oficalismos.csv` hacia atrás hasta 2001, cubriendo los tres niveles. Incluir `continuidad_oficialismo`.
+2. Construir `oficialismo_por_nivel.csv`: extender `data/agrupaciones/oficialismos.csv` hacia atrás hasta 2001, cubriendo los tres niveles. Incluir `continuidad_oficialismo`.
 3. Construir `ventanas.csv`: para cada transición, `id_transicion`, `nivel`, `anio_t`, `anio_t_menos_1`, `fecha_inicio_vc`, `fecha_fin_vc`, `fecha_inicio_vl`, `tipo_eleccion_t`, `tipo_eleccion_t_menos_1`.
 
 ### 9.2 Fase 2 — Resultados electorales de distrito

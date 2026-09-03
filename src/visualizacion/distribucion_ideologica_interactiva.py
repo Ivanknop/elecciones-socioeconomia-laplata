@@ -25,15 +25,12 @@ _PATRON_CARGO = re.compile(r"\(cargo: (\w+)\)")
 
 
 def _cargo_de_archivo(path: Path) -> str:
-    """Cargo declarado en el comentario de la primera línea del CSV."""
     with open(path, encoding="utf-8") as f:
         m = _PATRON_CARGO.search(f.readline())
     return m.group(1) if m else ""
 
 
 def _serializar_puntos(df: pd.DataFrame) -> list[dict]:
-    """Filas ya cargadas por `cargar_eleccion` -> puntos serializables,
-    con color por familia política."""
     filiacion_de = {
         fila["agrupacion"]: fila["filiacion_politica"] if pd.notna(fila["filiacion_politica"]) else None
         for _, fila in df.iterrows()

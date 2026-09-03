@@ -170,7 +170,6 @@ def _graficar_series_eph(
 
 
 def graficar_tasas_actividad_empleo(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """Tasa de actividad y tasa de empleo, EPH Gran La Plata, 2011-2025."""
     return _graficar_series_eph(
         data_dir,
         {"tasa_actividad": "Actividad", "tasa_empleo": "Empleo"},
@@ -183,8 +182,7 @@ def graficar_tasas_actividad_empleo(data_dir: Path | str, ax=None, marcar_cortes
 
 
 def graficar_calidad_empleo(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """% de asalariados con obra social/aguinaldo/vacaciones pagas -- calidad
-    del empleo, no solo formal/informal."""
+    """Calidad del empleo asalariado, no solo formal/informal."""
     return _graficar_series_eph(
         data_dir,
         {
@@ -201,7 +199,6 @@ def graficar_calidad_empleo(data_dir: Path | str, ax=None, marcar_cortes: bool =
 
 
 def graficar_cobertura_salud(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """% de la población sin cobertura de salud, EPH Gran La Plata, 2011-2025."""
     return _graficar_series_eph(
         data_dir,
         {"pct_sin_cobertura_salud": "Sin cobertura de salud"},
@@ -214,9 +211,6 @@ def graficar_cobertura_salud(data_dir: Path | str, ax=None, marcar_cortes: bool 
 
 
 def graficar_educacion(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """% con secundario completo o más (25+) y tasa de asistencia escolar
-    (5-24), EPH Gran La Plata, 2011-2025.
-    """
     return _graficar_series_eph(
         data_dir,
         {
@@ -232,9 +226,6 @@ def graficar_educacion(data_dir: Path | str, ax=None, marcar_cortes: bool = True
 
 
 def graficar_hacinamiento(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """Personas por cuarto (hacinamiento medio de los hogares), EPH Gran La
-    Plata, 2011-2025.
-    """
     return _graficar_series_eph(
         data_dir,
         {"hacinamiento_medio": "Personas por cuarto"},
@@ -248,9 +239,7 @@ def graficar_hacinamiento(data_dir: Path | str, ax=None, marcar_cortes: bool = T
 
 
 def graficar_estrategias_subsistencia(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """% de hogares que recurrió a cada estrategia en los últimos 3 meses,
-    EPH Gran La Plata, 2011-2025.
-    """
+    """Ventana de referencia: últimos 3 meses (no se ve en los nombres de columna)."""
     return _graficar_series_eph(
         data_dir,
         {
@@ -268,8 +257,7 @@ def graficar_estrategias_subsistencia(data_dir: Path | str, ax=None, marcar_cort
 
 
 def graficar_desocupacion(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """Tasa de desocupación EPH, serie general -- ver `graficar_brecha_genero`
-    para el desglose por sexo."""
+    """Ver `graficar_brecha_genero` para el desglose por sexo."""
     return _graficar_series_eph(
         data_dir,
         {"tasa_desocupacion": "Desocupación"},
@@ -282,8 +270,7 @@ def graficar_desocupacion(data_dir: Path | str, ax=None, marcar_cortes: bool = T
 
 
 def graficar_informalidad(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """Tasa de informalidad EPH, serie general -- ver `graficar_brecha_genero`
-    para el desglose por sexo."""
+    """Ver `graficar_brecha_genero` para el desglose por sexo."""
     return _graficar_series_eph(
         data_dir,
         {"tasa_informalidad": "Informalidad"},
@@ -296,8 +283,7 @@ def graficar_informalidad(data_dir: Path | str, ax=None, marcar_cortes: bool = T
 
 
 def graficar_actividad(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """Tasa de actividad EPH, serie general -- ver `graficar_brecha_genero`
-    para el desglose por sexo."""
+    """Ver `graficar_brecha_genero` para el desglose por sexo."""
     return _graficar_series_eph(
         data_dir,
         {"tasa_actividad": "Actividad"},
@@ -310,8 +296,7 @@ def graficar_actividad(data_dir: Path | str, ax=None, marcar_cortes: bool = True
 
 
 def graficar_brecha_genero(data_dir: Path | str, indicador: str, titulo: str, ax=None, marcar_cortes: bool = True):
-    """Un indicador laboral por sexo desde `eph_gran_la_plata_por_sexo.csv`;
-    columnas de ingreso no son %, no usar `escala_pct`."""
+    """`indicador` siempre se multiplica por 100 -- no sirve para columnas de ingreso."""
     filas = _leer_csv(Path(data_dir) / "eph_gran_la_plata_por_sexo.csv")
     trimestres = sorted({(f["anio"], f["trimestre"]) for f in filas}, key=lambda t: (int(t[0]), int(t[1])))
     etiquetas = [_etiqueta_trimestre(a, t) for a, t in trimestres]
@@ -342,7 +327,6 @@ def graficar_brecha_genero(data_dir: Path | str, indicador: str, titulo: str, ax
 
 
 def graficar_desocupacion_por_edad(data_dir: Path | str, marcar_cortes: bool = True):
-    """Tasa de desocupación por tramo etario."""
     filas = _leer_csv(Path(data_dir) / "eph_gran_la_plata_por_edad.csv")
     tramos = ["10-24", "25-39", "40-59", "60+"]
     trimestres = sorted({(f["anio"], f["trimestre"]) for f in filas}, key=lambda t: (int(t[0]), int(t[1])))

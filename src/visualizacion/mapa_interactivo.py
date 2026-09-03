@@ -36,17 +36,12 @@ from socioeconomia.geo import canonicalizar_circuito_id
 
 TOP_N = 7
 
-# Ni campo ideológico ni familia política ni blanco_nulo/ausentismo se
-# hardcodean acá -- `_COLOR_IDEOLOGIA`/`_COLOR_FILIACION`/`_COLOR_NO_IDEOLOGICA`
-# (import de arriba) son la misma fuente que usa el resto de `src/analisis/`,
-# cargada en `graficos.py` desde `data/agrupaciones/colorimetria_campo_ideologico.csv`
-# y `colorimetria_familia_politica.csv`. Acá solo se reindexa
-# `_COLOR_IDEOLOGIA` (por nombre de campo) al código '1'-'6' que trae
-# `campo_ideologico` en `circuito_<nivel>.json`.
+# Colores no se inventan acá: misma fuente que `analisis/graficos.py`
+# (`colorimetria_campo_ideologico.csv`/`colorimetria_familia_politica.csv`).
 _CAMPO_COLOR = {codigo: _COLOR_IDEOLOGIA[nombre] for codigo, nombre in IDEOLOGIAS.items()}
 _COLOR_BLANCO_NULO = _COLOR_NO_IDEOLOGICA["blanco_nulo"]
 _COLOR_AUSENTISMO = _COLOR_NO_IDEOLOGICA["ausentismo"]
-_SIN_DATO = "#2a323c"  # "sin datos para esta elección" en el mapa -- no es una categoría de graficos.py, es propio de este visor
+_SIN_DATO = "#2a323c"  # propio de este visor, no una categoría de graficos.py
 
 
 _CLAVES_BLANCO = {"EN BLANCO", "BLANCOS"}
@@ -63,14 +58,11 @@ def _resolver_no_ideologicos(circuito: dict) -> tuple[int, int, int]:
 
 
 def _votos_en_blanco(circuito: dict) -> int:
-    """Solo "EN BLANCO"/"BLANCOS", aislado de `blanco_nulo`, para
-    `resumen_distrito`."""
+    """Solo blanco, sin nulo -- insumo del "resumen" de `_construir_eleccion`."""
     return sum(v for k, v in circuito["otros"].items() if k.upper() in _CLAVES_BLANCO)
 
 
 def _votos_por_campo(circuito: dict) -> dict[str, int]:
-    """{campo_ideologico: votos} sobre todas las agrupaciones; `""` agrupa
-    las sin clasificar, nunca se descartan."""
     votos: dict[str, int] = {}
     for info in circuito["positivos"].values():
         clave = info["campo_ideologico"] or ""
@@ -88,8 +80,6 @@ def _votos_por_familia(circuito: dict, filiaciones: dict[str, str]) -> dict[str,
 
 
 def _construir_circuito(circuito: dict, filiaciones: dict[str, str], agrup_index: dict[str, int]) -> dict:
-    """Pura; total de cada % es `positivos + blanco_nulo + ausentismo`,
-    nunca solo `positivos`."""
     positivos_total, blanco_nulo, ausentismo = _resolver_no_ideologicos(circuito)
     total = positivos_total + blanco_nulo + ausentismo
 
@@ -129,8 +119,6 @@ def _construir_circuito(circuito: dict, filiaciones: dict[str, str], agrup_index
 
 
 def _construir_eleccion(contenido: dict, filiaciones: dict[str, str], agrup_index: dict[str, int]) -> dict:
-    """Pura; agrega también el acumulado distrital con la misma fórmula,
-    no solo la suma de los top7."""
     circuitos_out = {}
     positivos_d = blanco_nulo_d = ausentismo_d = electores_d = blanco_d = 0
     votos_por_agrup: dict[str, int] = {}
@@ -169,12 +157,9 @@ def _construir_eleccion(contenido: dict, filiaciones: dict[str, str], agrup_inde
     ]
     otros_d_votos = sum(v for _, v in ranked_d[TOP_N:])
 
-    # Resumen para la franja fija bajo los controles (no el desglose de
-    # arriba): denominadores distintos a propósito, sobre pedido explícito
-    # -- ausentismo relativo al padrón completo (`electores_d`, no `total_d`,
-    # que ya excluye los votos procedimentales) y blanco relativo a los
-    # votos efectivamente emitidos (`electores_d - ausentismo_d`, es decir
-    # positivos + todo "otros" -- válidos, blancos, nulos o procedimentales).
+    # Denominadores distintos a propósito (pedido explícito): ausentismo
+    # sobre el padrón completo (`electores_d`, no `total_d`), blanco sobre
+    # votos efectivamente emitidos (`electores_d - ausentismo_d`).
     votos_emitidos_d = electores_d - ausentismo_d
     resumen = {
         "ausentismo_pct": round(ausentismo_d / electores_d * 100, 2) if electores_d else 0.0,
@@ -201,8 +186,6 @@ def _construir_eleccion(contenido: dict, filiaciones: dict[str, str], agrup_inde
 
 
 def _construir_agrup_index(combos: list[tuple[int, str, str]], data_dir: Path | str) -> dict[str, int]:
-    """Todas las agrupaciones de los combos pedidos, en orden alfabético
-    (determinístico)."""
     nombres = set()
     for anio, nivel, etapa in combos:
         contenido = _cargar_circuito(data_dir, anio, nivel) if etapa == "generales" else None
@@ -263,10 +246,9 @@ def construir_payload(
         contenido = _cargar_circuito(data_dir, anio, nivel)
         elecciones[f"{anio}_{nivel}"] = _construir_eleccion(contenido, filiaciones, agrup_index)
 
-    # `circuito_localidad_geo.csv` ya trae el nombre legible tal cual figura
-    # en `localidades_la_plata.csv` (el mismo que usan los marcadores de
-    # `localidades` más abajo) -- a diferencia del crosswalk histórico que
-    # usaba esta vista antes, no hace falta reformatear UPPER_SNAKE_CASE.
+    # A diferencia del crosswalk histórico que usaba esta vista antes,
+    # `circuito_localidad_geo.csv` ya trae el nombre legible tal cual
+    # figura en `localidades_la_plata.csv` -- no hace falta reformatear.
     circuito_localidad = cargar_circuito_localidad_geo(crosswalk_path)
     todos_los_circuitos = {f["properties"]["circuito"] for f in json.loads(Path(geojson_path).read_text(encoding="utf-8"))["features"]}
     for cid_crudo in todos_los_circuitos:

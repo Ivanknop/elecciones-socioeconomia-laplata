@@ -1,21 +1,4 @@
-"""Panel mensual de series económicas 2001-2025 -- Fase 3 del panel temporal
-de ventanas electorales (ver `docs/especificacion_panel_temporal.md` §4).
-
-Opera genéricamente sobre `data/tfi_data/registro_variables.csv`: agregar
-una variable nueva es agregar una fila al registro + declarar su loader en
-`_LOADERS` acá (el "mecanismo de descarga... específico de esa fuente" que
-la especificación permite mantener por variable, sección 4.1) -- la
-homogeneización a mensual, la deflactación y el flag `periodo_intervenido`
-son genéricos, gobernados por las columnas del registro, no por el
-`id_variable`.
-
-Reusa infraestructura ya testeada, no la reimplementa:
-- `socioeconomia.icg_construir_series` para `icg` (mismo microdato ya en el repo).
-- `macroeconomia.datos_gob_client.DatosGobClient` (mismo cliente con caché en
-  disco que usa `macroeconomia.series`) para todo lo demás -- incluye series
-  ya cacheadas por ese pipeline (tc_oficial, reservas, emae, desocupacion,
-  ripte) y series nuevas encontradas en la Fase 0.5 (ipc empalmado, icc,
-  resultado_fiscal), todas vía el mismo endpoint de datos.gob.ar.
+"""Panel mensual de series económicas 2001-2025.
 
 Uso:
     PYTHONPATH=src python -m ml_models.cargar_series_economicas
@@ -47,9 +30,6 @@ _PERIODO_INTERVENIDO_HASTA = date(2015, 12, 1)
 
 _LOOKBACK_MESES = {"trimestral": 3, "semestral": 6, "anual": 12}
 
-# id_datos_gob por variable, en orden -- para series encadenadas por vintage
-# metodológico, la última pisa a la anterior en las fechas donde se solapan
-# (ver notas de 'ipc'/'resultado_fiscal' en registro_variables.csv).
 _DATOS_GOB_IDS: dict[str, list[str]] = {
     "desocupacion": ["42.3_EPH_PUNTUATAL_0_M_30"],
     "salario_real": ["158.1_REPTE_0_0_5"],  # RIPTE nominal; se deflacta genéricamente más abajo
@@ -116,10 +96,7 @@ def _cargar_datos_gob(ids: list[str], client: DatosGobClient, start_date: str = 
     fecha, la última de la lista pisa a las anteriores (vintage más nuevo
     tiene prioridad). `force_refresh=True`: varias de estas series ya
     estaban cacheadas por `macroeconomia.series` con su propio default de
-    `start_date="2010-01-01"` -- reusar esa caché tal cual truncaría en
-    silencio la cobertura 2001-2009 que pide `registro_variables.csv`. Se
-    refresca una vez con el `start_date` correcto, lo que además amplía
-    (no rompe) la caché compartida para quien la use después."""
+    `start_date="2010-01-01"`"""
     por_fecha: dict[date, float] = {}
     for serie_id in ids:
         crudo = client.get_serie(serie_id, start_date=start_date, force_refresh=True)
@@ -136,7 +113,7 @@ def _cargar_puntos_de_variable(id_variable: str, client: DatosGobClient) -> list
         return _LOADERS[id_variable](client)
     if id_variable in _DATOS_GOB_IDS:
         return _cargar_datos_gob(_DATOS_GOB_IDS[id_variable], client, start_date=f"{ANIO_INICIO}-01-01")
-    return []  # variable exploratoria sin loader declarado (ver registro_variables.csv)
+    return []
 
 
 def _meses_en_rango(anio_inicio: int, anio_fin: int) -> list[date]:
@@ -146,18 +123,9 @@ def _meses_en_rango(anio_inicio: int, anio_fin: int) -> list[date]:
 def _homogeneizar_mensual(
     puntos: list[tuple[date, float]], periodicidad_nativa: str, meses: list[date]
 ) -> dict[date, float | None]:
-    """Genérica según `periodicidad_nativa`, no según la variable:
-    - mensual: valor exacto de ese mes, o vacío si la fuente no lo publicó.
-    - diaria: último punto publicado dentro del propio mes (ninguna
-      repetición hacia otros meses).
-    - trimestral/semestral/anual: el punto publicado más reciente hasta ese
-      mes inclusive, pero nunca más viejo que su propia periodicidad
-      nativa (evita repetir un dato trimestral indefinidamente si la
-      fuente dejó de publicar) -- si en ese lapso hay un valor con fecha
-      exacta más fina que la nativa (ej. mensual real dentro de una
-      variable declarada trimestral, ver 'resultado_fiscal'), ese valor
-      exacto se usa preferentemente por ser el más reciente disponible.
-    """
+    """`diaria` no repite un valor hacia otro mes; `trimestral`/`semestral`/
+    `anual` usa el punto más reciente pero nunca más viejo que su propio
+    período (`_LOOKBACK_MESES`), no "lo último disponible sin límite"."""
     resultado: dict[date, float | None] = {}
     if periodicidad_nativa == "diaria":
         por_mes: dict[tuple[int, int], list[tuple[date, float]]] = {}

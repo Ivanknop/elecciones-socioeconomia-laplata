@@ -1,7 +1,7 @@
 """Carga del microdato ICG (Índice de Confianza en el Gobierno, UTDT) --
-`data/socioeconomia/icg/Base_histórica_2001-presente-ICG.dta`, insumo
+`data/socioeconomia/icg-icc/Base_histórica_2001-presente-ICG.dta`, insumo
 externo no regenerable colocado manualmente por quien corre el pipeline
-(ver `data/socioeconomia/icg/README.md`).
+(ver `data/socioeconomia/icg-icc/README.md`).
 """
 from __future__ import annotations
 

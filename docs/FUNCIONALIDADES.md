@@ -17,10 +17,12 @@ sin límite.
 7. [PASO y balotaje](#paso-y-balotaje)
 8. [Libro de códigos ideológico — estado actual](#libro-de-códigos-ideológico--estado-actual)
 9. [Distribución ideológica interactiva (`src/visualizacion/distribucion_ideologica_interactiva.py`)](#distribución-ideológica-interactiva-srcvisualizaciondistribucion_ideologica_interactivapy)
-10. [Capa socioeconómica (EPH + Censo) — estado actual](#capa-socioeconómica-eph--censo--estado-actual)
-11. [Agrupación de resultados por localidad — estado actual](#agrupación-de-resultados-por-localidad--estado-actual)
-12. [Capa macroeconómica nacional — estado actual](#capa-macroeconómica-nacional--estado-actual)
-13. [Extender a otro distrito, sección o cargo](#extender-a-otro-distrito-sección-o-cargo)
+10. [Trayectorias económicas trimestrales (`src/visualizacion/trayectorias_economicas.py`)](#trayectorias-económicas-trimestrales-srcvisualizaciontrayectorias_economicaspy)
+11. [Trayectorias económicas bielección trimestrales (`src/visualizacion/trayectorias_economicas_bieleccion.py`)](#trayectorias-económicas-bielección-trimestrales-srcvisualizaciontrayectorias_economicas_bieleccionpy)
+12. [Capa socioeconómica (EPH + Censo) — estado actual](#capa-socioeconómica-eph--censo--estado-actual)
+13. [Agrupación de resultados por localidad — estado actual](#agrupación-de-resultados-por-localidad--estado-actual)
+14. [Capa macroeconómica nacional — estado actual](#capa-macroeconómica-nacional--estado-actual)
+15. [Extender a otro distrito, sección o cargo](#extender-a-otro-distrito-sección-o-cargo)
 
 ---
 
@@ -57,7 +59,7 @@ en silencio.
 
 ## Alcance de los datos ya descargados
 
-`data/<2011|2015|2019|2023>/<presidente|gobernador|intendente>/generales/`,
+`data/distrito/<2011|2015|2019|2023>/<presidente|gobernador|intendente>/generales/`,
 cada una con 2 archivos: el agregado de la sección (`.json`) y el CSV oficial
 (`.csv`) — más `paso/` y, para Presidente, `balotaje/` (ver "PASO y balotaje"
 más abajo). Todo scopeado a **La Plata**:
@@ -77,7 +79,7 @@ Y el mapeo de categoría, **estable en los cuatro años para esta sección**:
 
 ### Legislativas (2013-2025)
 
-`data/<2013|2017|2021|2025>/<nacional|provincial|municipal>/generales/`. Mismo
+`data/distrito/<2013|2017|2021|2025>/<nacional|provincial|municipal>/generales/`. Mismo
 distrito/sección que arriba. `idCargo` estable en los cuatro años para La
 Plata:
 
@@ -250,16 +252,19 @@ ahora el total de cada gráfico incluye ausentismo, el % que muestra cada
 categoría pasa a ser aproximadamente "% del padrón" en vez de "% de los
 positivos".
 
-**Solo `graficos/distrito/serie_temporal/` y `graficos/distrito/totales_por_lista/`
+**Solo `graficos/distrito/serie_temporal/` y `graficos/distrito/comparativos_nivel/`
 están versionados en git.** El resto de `graficos/distrito/<año>/<nivel>/`
 (circuito por circuito, más el cuadro anual de todos los cargos de ese año)
 está en `.gitignore` — se genera on demand con los scripts de abajo y no
 hace falta subirlo (son miles de archivos, se regeneran en segundos desde
-`data/`). Para la capa socioeconómica, `graficos/socioeconomia/eph/` (los
-gráficos de la EPH, generados por `notebooks/06_graficos_eph_iaelap.ipynb` /
-`src/socioeconomia/graficos_eph_iaelap.py`) sigue el mismo criterio y
-también está versionado — los de IAELaP y el de contraste EPH/IAELaP no,
-quedan en `graficos/socioeconomia/` sin trackear.
+`data/`). Para la capa socioeconómica, `notebooks/06_graficos_eph_iaelap.ipynb`/
+`src/socioeconomia/graficos_eph_iaelap.py` generan tanto los PNG de la EPH
+(`graficos/socioeconomia/eph/`) como los de IAELaP y el de contraste
+EPH/IAELaP (`graficos/socioeconomia/`) — ninguno de esos PNG está
+versionado. Lo que sí está versionado son los JSON de IAELaP que el mismo
+notebook escribe junto a sus PNG (`iaelap_general.json`/
+`iaelap_sectorial_*.json`, el contrato de datos para reconstruir esos
+gráficos, excepción explícita en `.gitignore`).
 
 - **`graficos.py`**: `graficar_barras(data_dir, anio, nivel, circuito_id=None)`
   y `graficar_torta(...)` — devuelven una figura de matplotlib.
@@ -320,29 +325,19 @@ quedan en `graficos/socioeconomia/` sin trackear.
   PYTHONPATH=src python -m analisis.cuadros_anualizados --anio 2023
   ```
 
-- **`totales_por_lista.py`**: **un gráfico por (año, nivel)**, barras
-  horizontales con el resultado total por agrupación (lista) más
-  `blanco_nulo` — a diferencia del resto de esta sección, no agrupa por
-  campo ideológico en el eje: cada agrupación (y blanco+nulo) es su propia
-  barra, todas ordenadas juntas de mayor a menor voto, coloreadas por
-  `campo_ideologico` (mismo join en vivo contra
-  `clasificacion_ideologica_agrupaciones.csv` que usa
-  `serie_temporal_filiacion.py` para `filiacion_politica`; blanco+nulo usa
-  el mismo gris que el resto de los gráficos). Parte de
+- **`totales_por_lista.py`**: ya no genera gráfico propio ni tiene CLI —
+  el bar chart por (año, nivel) que antes escribía en
+  `graficos/distrito/totales_por_lista/` se retiró por no aportar al nuevo
+  enfoque temporal. Sobrevive como capa de datos compartida:
+  `resultado_total_con_blanco_nulo(data_dir, anio, nivel)` parte de
   `electoral.totales.resultado_total_por_agrupacion` — la función que
-  también arma `data/totales/` — pero le agrega blanco+nulo y **recalcula
-  `votos_porcentaje` sobre el nuevo total** con
+  también arma `data/totales/` — y le agrega una entrada `BLANCO + NULO`,
+  **recalculando `votos_porcentaje` sobre el nuevo total** con
   `electoral.models.totalizar_agrupaciones` (no relee `data/totales/`, que
-  es agnóstico de blanco/nulo a propósito). Escribe en
-  `graficos/distrito/totales_por_lista/<año>_<nivel>_barras.png` — a
-  diferencia del resto de `graficos/distrito/<año>/`, **esta carpeta sí está
-  versionada** (excepción explícita en `.gitignore`, mismo criterio que
-  `serie_temporal/`).
-
-  ```bash
-  PYTHONPATH=src python -m analisis.totales_por_lista --anio 2023 --nivel intendente
-  PYTHONPATH=src python -m analisis.totales_por_lista                    # todo lo disponible
-  ```
+  es agnóstico de blanco/nulo a propósito). La consumen
+  `vparty_cuadrantes_local.py`, `comparativo_nivel.py`,
+  `distribucion_ideologica_interactiva.py` y
+  `ml_models/construir_calendario.py`/`construir_elecciones.py`.
 
 - **`comparativo_nivel.py`**: **un cuadro Markdown por año**, compara el % de cada agrupación (+ `blanco_nulo`) en los tres
   cargos disputados ese año (Municipio/Provincia/Nación, ej. 2019:
@@ -355,11 +350,12 @@ quedan en `graficos/socioeconomia/` sin trackear.
   filas de partidos se ordenan por % en Nación, de mayor a menor;
   `BLANCO + NULO` queda siempre última. Reutiliza
   `totales_por_lista.resultado_total_con_blanco_nulo` (mismos porcentajes
-  que el gráfico de barras, no un cálculo aparte). Años con un solo cargo
+  que ese cálculo, no uno aparte). Años con un solo cargo
   disputado (2025: solo nacional) no tienen comparación posible y se
   omiten. Escribe en
-  `graficos/distrito/totales_por_lista/comparativos_nivel/<año>.md` —
-  versionado, mismo criterio que el resto de `totales_por_lista/`.
+  `graficos/distrito/comparativos_nivel/<año>.md` —
+  versionado (excepción explícita en `.gitignore`, mismo criterio que
+  `serie_temporal/`).
 
   ```bash
   PYTHONPATH=src python -m analisis.comparativo_nivel --anio 2019
@@ -504,7 +500,9 @@ localidad** — se sacó deliberadamente (pedido explícito, ver historial de
 la conversación que lo generó) porque esos años no tienen geometría de
 circuito para mapear; hasta que se defina un criterio para tratar
 2001-2009 en ese nivel, la pestaña es un único bubble chart a nivel
-distrito.
+distrito. **🔒 Bloqueado además por cambio de alcance**: el proyecto pasó
+a trabajar a nivel municipal, no circuito/localidad — no reintroducir
+sin volver a preguntar (ver `docs/AUDITORIA_ESTADO.md`).
 
 El panel único es un bubble chart SVG: eje X económico, eje Y progresismo,
 tamaño = % de votos del partido en esa elección (sobre el total de la
@@ -540,6 +538,141 @@ más abajo) — mismo dato, mismo criterio de color, salida a
 ```bash
 PYTHONPATH=src python -m visualizacion.distribucion_ideologica_interactiva
 ```
+
+## Trayectorias económicas trimestrales (`src/visualizacion/trayectorias_economicas.py`)
+
+Pestaña del sitio (`docs/trayectorias_economicas_la_plata.html`,
+enlazada desde `docs/index.html`, mismo patrón payload+template que las
+otras, ver skill `laplata-visualizacion`).
+
+**Fuente de datos: `data/tfi_data/panel/t-1/panel_trimestral_<nivel>.csv`**
+(Fase 5 del panel temporal de ventanas electorales, ver
+`docs/decisiones_metodologicas.md` D13), no `panel_ventanas.csv` ni
+`series_economicas_mensuales.csv` directo — ese CSV ya trae, por
+ventana electoral, una fila frontera con el resultado de la elección
+`t-1`, una fila por trimestre real dentro de la ventana y una fila
+frontera con el resultado de la elección `t`. La subcarpeta `t-1/` (junto
+con `t-2/`, ver más abajo) distingue el bloque corto del bloque largo
+dentro de `data/tfi_data/panel/` -- `PANEL_TRIMESTRAL_DIR`/
+`PANEL_BIELECCION_TRIMESTRAL_DIR` en `constantes.py`.
+
+Selector **Nivel + Elección + Variable**: Nivel fijo (municipal/
+provincial/nacional); Elección se puebla con las ventanas de ese nivel
+(el `label` `"2001→2003"` de cada `id_transicion`, más reciente por
+defecto); Variable se puebla **dinámicamente desde las columnas
+económicas reales del CSV** (`_variables_de`, D9) — nunca una lista
+hardcodeada, así que si se completa la adquisición de alguna de las 4
+variables hoy `exploratoria` (`pobreza`/`gini`/`brecha_cambiaria`/
+`empleo_registrado_pba`, ver `cargar_series_economicas.py`), aparece
+sola sin tocar este módulo.
+
+**Un gráfico por ventana, nunca las 31 superpuestas**: elegidos nivel +
+elección + variable, se muestra la trayectoria trimestral de esa única
+ventana, alineada por **posición relativa dentro de la ventana**
+(trimestre 1..N desde la elección anterior), no por fecha calendario —
+las ventanas tienen largo real distinto (6 a 10 trimestres, D13/corrección
+a D4). Un solo color fijo (`var(--accent)`) para la línea, sin distinguir
+continuidad/ruptura del oficialismo -- se probó ese color-coding y se sacó
+(pedido explícito, no reintroducir sin volver a preguntar): para una
+ventana de ~2 años esa clasificación binaria agrega ruido, no valor,
+tiene sentido para agregados de ventanas más largas, no acá. `side-sub`
+solo muestra `agrupacion_inicio → agrupacion_t` (quién gobernaba al
+principio y al final de la ventana), sin la etiqueta ruptura/continuidad.
+Claves genéricas a propósito (`anio_inicio_ventana`/`agrupacion_inicio`,
+no `anio_t_menos_1`/`agrupacion_t_menos_1`): el mismo template se reusa
+sin cambios para la pestaña bielección de más abajo, donde ese límite
+inicial es la elección `t-2`, no `t-1`.
+Huecos reales dentro de la serie (ej. el hueco de `ipc` 2014-01/2016-11,
+ver `cargar_series_economicas.py`) cortan la línea en tramos, nunca se
+interpolan; cada punto real es hoverable individualmente (valor exacto de
+ese trimestre).
+
+Eje X escalado al largo real de la ventana seleccionada (1..N, recalculado
+por render — sin sentido fijarlo a un máximo global si solo se muestra una
+ventana a la vez); eje Y recalculado por render sobre los valores de esa
+ventana/variable (los rangos difieren demasiado entre variables como para
+compartir una escala fija).
+
+**Referencia de unidades** (`_UNIDADES`, panel fijo "Referencia — unidad
+de cada variable" bajo el gráfico, resalta la variable seleccionada):
+compacta en una etiqueta lo que `registro_variables.csv` ya documenta en
+prosa (`nota_metodologica`) -- no una fuente nueva del dato. Aclara en
+particular que `ipc` en este panel es la **variación % acumulada del
+trimestre** (`es_flujo=true`, ver
+`construir_panel_trimestral._variacion_flujo_trimestre`), no un nivel de
+índice como `emae`/`icc`/`icg`. `desocupacion` llega de
+`series_economicas_mensuales.csv` en fracción 0-1 (ver
+`cargar_series_economicas.py` y la nota de `tasa_desocupacion` en
+`catalogo_series.csv`), pero `_serie_variable` la multiplica por 100 solo
+para este payload -- mostrar `0.074` en el eje se leía como
+"prácticamente cero"; el CSV de origen no se toca, la unidad mostrada
+(`_UNIDADES["desocupacion"] = "%"`) ya refleja el valor multiplicado.
+
+**`salario_real` se reexpresa en dólar oficial** (`salario_real_usd`,
+`_salario_real_usd_mensual`): la columna `salario_real` de
+`panel_trimestral_<nivel>.csv` ya viene deflactada por IPC (índice, no
+pesos) -- dividirla directo por `tc_oficial` no tiene unidad económica
+coherente (probado empíricamente: da un orden de magnitud equivocado,
+~15-20 en vez de ~1000-1500 USD/mes). Se revierte la deflación
+(`nominal = salario_real * ipc / 100`, usando el **índice mensual crudo**
+de `series_economicas_mensuales.csv`, no la variación % trimestral de
+`panel_trimestral`) para recuperar el RIPTE nominal en pesos de ese mes,
+y recién ahí se divide por `tc_oficial` mensual — el resultado mensual se
+agrega a trimestre con la misma partición de meses y el mismo promedio
+simple que usó Fase 5 (`_meses_en_ventana`/`_promedio_trimestre`,
+reusados, no reimplementados). Reemplaza a `salario_real` en
+`payload["variables"]`, no coexisten las dos.
+
+```bash
+PYTHONPATH=src python -m visualizacion.trayectorias_economicas
+```
+
+`_variables_de`/`_serie_variable`/`_label_ventana`/`_salario_real_usd_mensual`
+(lógica nueva de extracción del payload, no reusada de otro módulo ya
+testeado) están cubiertas por
+`tests/visualizacion/test_trayectorias_economicas.py`;
+`construir_payload`/`generar_trayectorias_economicas` y el template no
+tienen test automatizado, mismo criterio que el resto de
+`src/visualizacion/*` (validado corriendo el script contra `data/` real
+más una pasada headless).
+
+## Trayectorias económicas bielección trimestrales (`src/visualizacion/trayectorias_economicas_bieleccion.py`)
+
+Pestaña paralela a la anterior, sobre el **bloque largo** (`_vl` de
+`features_ventana.py`: elección `t-2` a elección `t`, 4 años/dos
+elecciones, saltea la elección `t-1` intermedia) en vez del bloque corto
+(`_vc`, `t-1` a `t`). Mismo patrón payload+template, misma UI -- reusa
+`trayectorias_economicas_template.html` sin cambios porque el payload
+usa el mismo esquema genérico de claves (`anio_inicio_ventana`/
+`agrupacion_inicio`, ver arriba); acá esas dos claves representan la
+elección `t-2`, no `t-1`.
+
+**Fuente de datos: `data/tfi_data/panel/t-2/panel_bieleccion_trimestral_<nivel>.csv`**
+(`ml_models.construir_panel_bieleccion_trimestral`, artefacto nuevo y
+paralelo a `construir_panel_trimestral.py` -- no lo reemplaza ni lo
+modifica, mismas fuentes: `ventanas.csv`/`series_economicas_mensuales.csv`/
+`resultado_distrito.csv`/`oficialismo_por_nivel.csv`). Estructura de fila
+idéntica a la del bloque corto (frontera + trimestre), salvo que la
+columna `anio_t_menos_1` se reemplaza por `anio_t_menos_2` y la frontera
+inicial es `tipo_fila="eleccion_t_menos_2"` en vez de
+`"eleccion_t_menos_1"`. **Ventanas sin `fecha_inicio_vl` (la primera
+transición de cada nivel, sin bloque largo posible -- D3) se saltean**,
+no generan fila: de las 31 ventanas `_vc` totales (12 municipal + 12
+provincial + 7 nacional) quedan **28 ventanas bielección** (11 + 11 + 6).
+`id_transicion` propio, `<nivel>_<anio_t_menos_2>_<anio_t>` (ej.
+`municipal_2001_2005`), distinto del `id_transicion` del bloque corto
+para la misma agrupación de años.
+
+```bash
+PYTHONPATH=src python -m ml_models.construir_panel_bieleccion_trimestral
+PYTHONPATH=src python -m visualizacion.trayectorias_economicas_bieleccion
+```
+
+`construir_panel_bieleccion_trimestral`/`generar_csvs` están cubiertas
+por `tests/ml_models/test_panel_bieleccion_trimestral.py`;
+`construir_payload` de `trayectorias_economicas_bieleccion.py` por
+`tests/visualizacion/test_trayectorias_economicas_bieleccion.py` -- mismo
+criterio de cobertura que los módulos análogos del bloque corto.
 
 ## Capa socioeconómica (EPH + Censo) — estado actual
 
@@ -620,6 +753,11 @@ de unión listo (`unir_censo_a_circuitos`, prorratea cada variable por
 
 ## Agrupación de resultados por localidad — estado actual
 
+**🔒 Bloqueado por cambio de alcance**: el proyecto pasó a trabajar a
+nivel municipal, no circuito/localidad — esta sección documenta lo ya
+construido (código y datos se conservan), pero no hay trabajo previsto
+acá hasta que ese alcance cambie (ver `docs/AUDITORIA_ESTADO.md`).
+
 Además de la correspondencia circuito↔radio censal de la sección anterior
 (para cruzar con el Censo), existe una **segunda correspondencia
 territorial, independiente y con otro propósito**: agrupar los resultados
@@ -683,18 +821,12 @@ Lorenzo, Melchor Romero, etc.) con nombres legibles, no censales.
   PYTHONPATH=src python -m analisis.cuadros_por_localidad                    # todo lo disponible
   ```
 
-- **`src/analisis/serie_temporal_por_localidad.py`**: a partir de esos
-  cuadros (no relee `circuito_<nivel>.json` ni el crosswalk), un gráfico
-  de serie temporal por campo ideológico + `blanco_nulo` + `ausentismo`
-  por localidad y nivel de gobierno (2011-2025), reusando la fusión
-  ejecutivo+legislativo de `serie_temporal.py`. Escribe en
-  `graficos/por_localidad/`. `SIN_DETERMINAR` se grafica siempre como una
-  serie más, nunca se oculta.
-
-  ```bash
-  PYTHONPATH=src python -m analisis.serie_temporal_por_localidad                # todas las localidades, los 3 niveles
-  PYTHONPATH=src python -m analisis.serie_temporal_por_localidad --nivel municipal
-  ```
+- **`src/analisis/serie_temporal_por_localidad.py`** (eliminado en
+  `fb35b41`, "elimina salidas obsoletas"): generaba, a partir de esos
+  cuadros, un gráfico de serie temporal por campo ideológico +
+  `blanco_nulo` + `ausentismo` por localidad y nivel de gobierno
+  (2011-2025). Ya no existe en el código ni sus ~132 PNG — no hay hoy una
+  serie temporal por localidad activa (ver `docs/AUDITORIA_ESTADO.md`).
 
 ## Capa macroeconómica nacional — estado actual
 

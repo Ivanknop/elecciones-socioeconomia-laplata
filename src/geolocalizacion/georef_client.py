@@ -22,7 +22,7 @@ class GeorefClient:
 
     def get_asentamientos(self, municipio_id: str, force_refresh: bool = False) -> list[dict]:
         """Lista de {id, nombre, lat, lon} de los asentamientos del
-        municipio pedido, paginando si hace falta."""
+        municipio pedido."""
         cache_path = self.cache_dir / f"asentamientos_{municipio_id}.json"
         if cache_path.exists() and not force_refresh:
             return json.loads(cache_path.read_text(encoding="utf-8"))
@@ -45,8 +45,6 @@ class GeorefClient:
         return asentamientos
 
     def get_departamento_geometria(self, departamento_id: str, force_refresh: bool = False) -> dict:
-        """Feature GeoJSON del departamento pedido, recortado de la
-        descarga masiva; `ValueError` si el id no aparece."""
         cache_path = self.cache_dir / f"departamento_{departamento_id}.geojson"
         if cache_path.exists() and not force_refresh:
             return json.loads(cache_path.read_text(encoding="utf-8"))

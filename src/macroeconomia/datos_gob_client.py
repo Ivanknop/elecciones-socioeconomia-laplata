@@ -21,8 +21,6 @@ class DatosGobClient:
         self.timeout = timeout
 
     def get_serie(self, serie_id: str, start_date: str = "2010-01-01", force_refresh: bool = False) -> dict:
-        """Trae una serie completa desde `start_date`, paginando si hace
-        falta, usando caché en disco."""
         cache_path = self.cache_dir / f"{serie_id}.json"
         if cache_path.exists() and not force_refresh:
             return json.loads(cache_path.read_text(encoding="utf-8"))

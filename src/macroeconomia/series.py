@@ -42,8 +42,6 @@ def cargar_catalogo(path: Path | str) -> list[ConceptoCatalogo]:
 
 
 def _parsear_puntos(data_cruda: list) -> list[tuple[date, float]]:
-    """`[[fecha_str, valor|None], ...]` (como llega de la API) -> lista de
-    `(date, float)` ascendente, descartando los `null`."""
     puntos = [
         (date.fromisoformat(str(fecha_str)[:10]), valor)
         for fecha_str, valor in data_cruda
@@ -100,7 +98,7 @@ def _resolver_celda(
     if concepto.periodicidad_fuente == "diaria":
         valor, fecha_usada, fue_ajustado = _valor_para_mes_diario(puntos_diarios, mes)
         if valor is None:
-            return None, None  # ningún día hábil del mes tuvo dato -> vacía
+            return None, None
         nota = (
             f"último hábil con dato {fecha_usada.isoformat()}, no el cierre exacto del mes"
             if fue_ajustado

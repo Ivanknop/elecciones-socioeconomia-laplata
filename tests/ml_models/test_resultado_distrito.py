@@ -8,6 +8,7 @@ import pytest
 from ml_models.construir_calendario import FilaCalendario
 from ml_models.construir_resultado_distrito import (
     FilaVotoPartido,
+    _resolver_oficialismo,
     calcular_delta_posicion_ideologica,
     calcular_delta_v,
     calcular_distancia_oficialismo_alternativa,
@@ -63,10 +64,30 @@ class TestConstruirVotoPartidoDistrito:
         assert len(filas) == 2
         assert {f.agrupacion for f in filas} == {"ALIANZA FRENTE PARA LA VICTORIA", "PARTIDO B"}
 
-    def test_sin_filas_si_no_hay_circuito_cacheado(self, data_dir):
+    def test_sin_filas_si_no_hay_circuito_ni_tfi_cacheado(self, data_dir, tmp_path):
         calendario = [_fc(2001, "municipal")]
-        filas = construir_voto_partido_distrito(calendario, data_dir)
+        elecciones_dir_vacio = tmp_path / "sin_datos"
+        elecciones_dir_vacio.mkdir()
+        filas = construir_voto_partido_distrito(calendario, data_dir, elecciones_dir_vacio)
         assert filas == []
+
+    def test_cae_a_tfi_si_no_hay_circuito_cacheado(self, data_dir, tmp_path):
+        elecciones_dir = tmp_path / "elecciones"
+        elecciones_dir.mkdir()
+        (elecciones_dir / "2001_municipal.csv").write_text(
+            "# comentario\n"
+            "id_agrupacion,agrupacion,votos,votos_porcentaje\n"
+            "0001,PARTIDO A,60,60.0\n"
+            "0002,PARTIDO B,30,30.0\n"
+            "BLANCO,BLANCO,8,8.0\n"
+            "NULO,NULO,2,2.0\n"
+            "VOTANTES_HABILITADOS,VOTANTES_HABILITADOS,125,100\n",
+            encoding="utf-8",
+        )
+        calendario = [_fc(2001, "municipal")]
+        filas = construir_voto_partido_distrito(calendario, data_dir, elecciones_dir)
+        assert {(f.agrupacion, f.votos) for f in filas} == {("PARTIDO A", 60), ("PARTIDO B", 30)}
+        assert sum(f.share for f in filas) == pytest.approx(100.0)  # sobre agrupaciones, sin BLANCO/NULO
 
     def test_share_suma_100(self, data_dir):
         calendario = [_fc(2011, "municipal")]
@@ -130,6 +151,74 @@ class TestConstruirResultadoDistrito:
         assert filas[0].votos_blanco == 10
         assert filas[0].participacion == pytest.approx(80.0)  # (90+10)/125*100
 
+    def test_anio_sin_circuito_pero_con_tfi_deriva_gana_oficialismo_matcheando_nombre(self, data_dir, tmp_path):
+        """Sin circuito_<cargo>.json (2001-2009) pero con el CSV de
+        data/tfi_data/elecciones/, gana_oficialismo/share_oficialismo se
+        derivan igual que en años con circuito -- emparejando por nombre
+        contra oficialismo_por_nivel.csv, no contra oficialismos.csv
+        (curado, solo 2011-2025)."""
+        elecciones_dir = tmp_path / "elecciones"
+        elecciones_dir.mkdir()
+        (elecciones_dir / "2001_municipal.csv").write_text(
+            "# comentario\n"
+            "id_agrupacion,agrupacion,votos,votos_porcentaje\n"
+            "0001,PARTIDO JUSTICIALISTA,60,60.0\n"
+            "0002,PARTIDO B,40,40.0\n",
+            encoding="utf-8",
+        )
+        calendario = [_fc(2001, "municipal")]
+        voto_partido = construir_voto_partido_distrito(calendario, data_dir, elecciones_dir)
+        oficialismo_por_nivel = {(2001, "municipal"): {"agrupacion_oficialismo": "PARTIDO JUSTICIALISTA"}}
+        filas = construir_resultado_distrito(calendario, voto_partido, oficialismo_por_nivel, {}, data_dir, elecciones_dir)
+        assert filas[0].resultado_disponible is False  # sigue sin circuito_<cargo>.json
+        assert filas[0].gana_oficialismo is True
+        assert filas[0].share_oficialismo == pytest.approx(60.0)
+
+    def test_anio_sin_circuito_ni_curado_gana_oficialismo_none_si_no_matchea(self, data_dir, tmp_path):
+        """Mismo caso de relabeling que share_oficialismo_none_si_pierde_y_no_matchea,
+        pero sin oficialismos.csv curado (2001-2009): gana_oficialismo debe
+        quedar en None, no asumirse False, si el nombre no matchea ningún
+        competidor."""
+        elecciones_dir = tmp_path / "elecciones"
+        elecciones_dir.mkdir()
+        (elecciones_dir / "2001_municipal.csv").write_text(
+            "# comentario\n"
+            "id_agrupacion,agrupacion,votos,votos_porcentaje\n"
+            "0001,FRENTE NUEVA ETIQUETA,60,60.0\n"
+            "0002,PARTIDO B,40,40.0\n",
+            encoding="utf-8",
+        )
+        calendario = [_fc(2001, "municipal")]
+        voto_partido = construir_voto_partido_distrito(calendario, data_dir, elecciones_dir)
+        oficialismo_por_nivel = {(2001, "municipal"): {"agrupacion_oficialismo": "PARTIDO JUSTICIALISTA"}}
+        filas = construir_resultado_distrito(calendario, voto_partido, oficialismo_por_nivel, {}, data_dir, elecciones_dir)
+        assert filas[0].gana_oficialismo is None
+        assert filas[0].share_oficialismo is None
+
+    def test_alias_lista_oficialismo_2007_provincial_resuelve_via_relabeling_citado(self, data_dir, tmp_path):
+        """Caso real de ALIAS_LISTA_OFICIALISMO: la fila 'PARTIDO
+        JUSTICIALISTA' de 2007 provincial tiene 0 votos (no compitió esa
+        categoría bajo ese nombre); la lista real del oficialismo (Scioli,
+        continua_renombrada) es FRENTE PARA LA VICTORIA -- sin el alias,
+        matchear 'PARTIDO JUSTICIALISTA' literal daría gana_oficialismo=False
+        y share=0%, que es lo que este test evita."""
+        elecciones_dir = tmp_path / "elecciones"
+        elecciones_dir.mkdir()
+        (elecciones_dir / "2007_provincial.csv").write_text(
+            "# comentario\n"
+            "id_agrupacion,agrupacion,votos,votos_porcentaje\n"
+            "0002,PARTIDO JUSTICIALISTA,0,0.0\n"
+            "0134,FRENTE PARA LA VICTORIA,131171,80.0\n"
+            "0003,UNION CIVICA RADICAL,14159,20.0\n",
+            encoding="utf-8",
+        )
+        calendario = [_fc(2007, "provincial")]
+        voto_partido = construir_voto_partido_distrito(calendario, data_dir, elecciones_dir)
+        oficialismo_por_nivel = {(2007, "provincial"): {"agrupacion_oficialismo": "PARTIDO JUSTICIALISTA"}}
+        filas = construir_resultado_distrito(calendario, voto_partido, oficialismo_por_nivel, {}, data_dir, elecciones_dir)
+        assert filas[0].gana_oficialismo is True
+        assert filas[0].share_oficialismo == pytest.approx(131171 / (0 + 131171 + 14159) * 100)
+
     def test_gana_oficialismo_viene_de_era_oficialismo_no_de_matchear_nombres(self, data_dir):
         calendario = [_fc(2011, "municipal")]
         voto_partido = construir_voto_partido_distrito(calendario, data_dir)
@@ -174,6 +263,25 @@ class TestConstruirResultadoDistrito:
         assert filas[0].votos_blanco == 3  # EN BLANCO (2) + NULO (1), ambos cuentan como blanco_nulo
         # participación = (positivos+otros)/electores = (100+3)/100
         assert filas[0].participacion == pytest.approx(103.0)
+
+
+class TestResolverOficialismo:
+    def test_alias_lista_se_usa_en_vez_de_agrupacion_oficialismo(self):
+        del_anio = [
+            FilaVotoPartido(2005, "provincial", "1", "FRENTE PARA LA VICTORIA", 80, 80.0),
+            FilaVotoPartido(2005, "provincial", "2", "OTRO", 20, 20.0),
+        ]
+        of = {"agrupacion_oficialismo": "PARTIDO JUSTICIALISTA"}  # no aparece en del_anio
+        gana, share = _resolver_oficialismo(del_anio, of, None, alias_lista="FRENTE PARA LA VICTORIA")
+        assert gana is True
+        assert share == pytest.approx(80.0)
+
+    def test_sin_alias_no_matchea_y_queda_none(self):
+        del_anio = [FilaVotoPartido(2005, "provincial", "1", "FRENTE PARA LA VICTORIA", 80, 80.0)]
+        of = {"agrupacion_oficialismo": "PARTIDO JUSTICIALISTA"}
+        gana, share = _resolver_oficialismo(del_anio, of, None)
+        assert gana is None
+        assert share is None
 
 
 class TestCalcularDeltaV:

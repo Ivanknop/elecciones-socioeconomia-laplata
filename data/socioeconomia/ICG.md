@@ -2,8 +2,8 @@
 
 Pipeline en `src/socioeconomia/icg_cargar.py` / `icg_construir_series.py` /
 `icg_exportar_csv.py` / `icg_graficos.py`, sobre el microdato de
-`data/socioeconomia/icg/` (insumo externo no versionado, ver
-`data/socioeconomia/icg/README.md` para qué es y cómo conseguirlo). Este
+`data/socioeconomia/icg-icc/` (insumo externo no versionado, ver
+`data/socioeconomia/icg-icc/README.md` para qué es y cómo conseguirlo). Este
 archivo documenta las decisiones que no
 son obvias leyendo el código — mismo criterio que
 `EXTRACCION_REDATAM.md`/`SISTEMATIZACION_VARIABLES.md` en esta misma
@@ -12,7 +12,7 @@ carpeta.
 ## Cobertura real vs. codebook
 
 El codebook queda desactualizado frente al `.dta` real (detalle y fecha
-en `data/socioeconomia/icg/README.md`, no repetido acá).
+en `data/socioeconomia/icg-icc/README.md`, no repetido acá).
 `icg_construir_series.construir_serie_headline`/`construir_series_demograficas`
 no hardcodean un año de corte: `anio_hasta=None` (default) resuelve al año
 máximo realmente presente en los datos cargados, así que la serie se

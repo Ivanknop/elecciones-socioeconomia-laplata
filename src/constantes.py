@@ -1,6 +1,5 @@
 """Constantes centralizadas de `src/`: rutas de datos y constantes de
-dominio compartidas entre módulos, antes duplicadas como string literal
-en varios scripts."""
+dominio compartidas entre módulos."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -44,14 +43,8 @@ MACRO_CACHE_DATOS_GOB_DIR = "data/macroeconomia/_cache/datos_gob"
 # --- Socioeconomía ---
 EPH_CACHE_DIR = "data/socioeconomia/eph_cache"
 CIRCUITOS_GEOJSON_PATH = "data/socioeconomia/circuitos_electorales_la_plata.geojson"
-ICG_RAW_PATH = "data/socioeconomia/icg/Base_histórica_2001-presente-ICG.dta"
+ICG_RAW_PATH = "data/socioeconomia/icg-icc/Base_histórica_2001-presente-ICG.dta"
 ICG_HEADLINE_PATH = "data/socioeconomia/icg_mensual_la_plata_pais_2011_presente.csv"
-
-# --- Panel (a completar a medida que se generen estos archivos) ---
-# PANEL_DIR = "data/panel"
-# VOTO_PARTIDO_PATH = "data/panel/voto_partido.csv"
-# RESULTADO_ELECTORAL_PATH = "data/panel/resultado_electoral.csv"
-# CLASIFICACION_FAMILIA_POLITICA_PATH = "data/agrupaciones/clasificacion_familia_politica.csv"
 
 # --- Panel temporal de ventanas electorales
 TFI_DATA_DIR = "data/tfi_data"
@@ -64,6 +57,9 @@ REGISTRO_VARIABLES_PATH = "data/tfi_data/registro_variables.csv"
 SERIES_ECONOMICAS_MENSUALES_PATH = "data/tfi_data/series_economicas_mensuales.csv"
 PANEL_VENTANAS_PATH = "data/tfi_data/panel_ventanas.csv"
 ELECCIONES_DIR = "data/tfi_data/elecciones"
+PANEL_DIR = "data/tfi_data/panel"
+PANEL_TRIMESTRAL_DIR = "data/tfi_data/panel/t-1"
+PANEL_BIELECCION_TRIMESTRAL_DIR = "data/tfi_data/panel/t-2"
 
 
 # --- Constantes de dominio compartidas ---

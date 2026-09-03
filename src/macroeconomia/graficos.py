@@ -31,13 +31,12 @@ COLOR = "#256abf"
 
 # La fuente (datos.gob.ar) describe estas tres como "Porcentaje" pero el
 # dato ya llega -- y se guarda en el CSV -- sin multiplicar por 100
-# (0.074 = 7,4%): ver la nota de `tasa_desocupacion` en catalogo_series.csv.
-# Mostrar "Porcentaje" en el eje sería engañoso con esos valores, así que
-# se pisa la unidad de la fuente por la que realmente tienen los datos.
+# (0.074 = 7,4%)
+_ESCALA_PORCENTAJE = {"tasa_desocupacion", "tasa_empleo", "tasa_actividad"}
 _UNIDAD_OVERRIDE = {
-    "tasa_desocupacion": "fracción (0 a 1), no porcentaje -- ver nota",
-    "tasa_empleo": "fracción (0 a 1), no porcentaje -- ver nota",
-    "tasa_actividad": "fracción (0 a 1), no porcentaje -- ver nota",
+    "tasa_desocupacion": "%",
+    "tasa_empleo": "%",
+    "tasa_actividad": "%",
 }
 
 
@@ -48,7 +47,12 @@ def _leer_filas(path: Path | str) -> list[dict]:
 
 def _valor(fila: dict, concepto: str) -> float | None:
     crudo = fila.get(concepto, "")
-    return float(crudo) if crudo not in ("", None) else None
+    if crudo in ("", None):
+        return None
+    valor = float(crudo)
+    if concepto in _ESCALA_PORCENTAJE:
+        valor *= 100
+    return valor
 
 
 def unidad_de(client: DatosGobClient, concepto: ConceptoCatalogo) -> str:

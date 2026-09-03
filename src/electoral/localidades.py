@@ -55,7 +55,7 @@ def mapa_localidad_por_circuito(
     """circuito_id -> localidad, precedencia oficial > revisión web >
     periodístico; excluye circuitos `oficial_no_agrupable`."""
     mapa: dict[str, str] = {}
-    for nivel in (NIVEL_PERIODISTICO, NIVEL_REVISION_WEB, NIVEL_OFICIAL):  # cada uno pisa al anterior
+    for nivel in (NIVEL_PERIODISTICO, NIVEL_REVISION_WEB, NIVEL_OFICIAL):
         if nivel not in niveles_cobertura:
             continue
         for fila in crosswalk:

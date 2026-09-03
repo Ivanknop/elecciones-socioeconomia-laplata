@@ -1,7 +1,5 @@
-"""Calendario electoral 2001-2025, oficialismo por nivel (con fallback
-directo a V-Party pre-2011, ver `ALIAS_VPARTY`) y ventanas de transición --
-Fase 1 del panel temporal. Detalle en `docs/especificacion_panel_temporal.md`
-§3, `docs/decisiones_metodologicas.md` y `docs/adquisicion_datos_especializacion.md` §1.a.
+"""Calendario electoral 2001-2025, oficialismo por nivel. Fuentes y
+sourcing de los datos pre-2011 en `docs/adquisicion_datos_especializacion.md` §1.a.
 
 Uso:
     PYTHONPATH=src python -m ml_models.construir_calendario
@@ -26,10 +24,6 @@ from constantes import (
 
 NIVELES = ("municipal", "provincial", "nacional")
 
-# Fecha de elección por año: (fecha_nacional o None, fecha_provincial_municipal).
-# Verificadas por búsqueda (Dirección Nacional Electoral / Junta Electoral PBA /
-# prensa), ver docs/adquisicion_datos_especializacion.md. `nacional` solo tiene
-# desagregado de La Plata desde 2011 (ver especificacion_panel_temporal.md §3.2).
 _FECHAS: dict[int, tuple[str | None, str]] = {
     2001: (None, "2001-10-14"),
     2003: (None, "2003-04-27"),
@@ -110,12 +104,6 @@ class ResultadoEjecutiva:
     continuidad: str  # continua / continua_renombrada / ruptura
     nota: str
 
-
-# Titular al *entrar* a la ventana del panel (antes de la elección de 2001),
-# investigado a mano -- 0221.com.ar, "Desde el 83 hasta la fecha: así fueron
-# los resultados de las elecciones a intendente en La Plata" (cita a la
-# Junta Electoral de la Provincia de Buenos Aires). Ver
-# docs/adquisicion_datos_especializacion.md §1.a.
 _TITULAR_INICIAL_2001 = {
     "municipal": (
         "PARTIDO JUSTICIALISTA",
@@ -131,12 +119,6 @@ _TITULAR_INICIAL_2001 = {
         "dic-2001 para ser canciller; asume Felipe Solá, su vicegobernador "
         "(mismo signo político) -- sucesión constitucional, no ruptura.",
     ),
-    # `nacional` no genera filas antes de 2011, pero sí necesita un titular
-    # de arranque para la fila de 2011 (quién ocupaba la presidencia *antes*
-    # de esa elección): Cristina Fernández de Kirchner, presidenta desde
-    # 2007 (reusa la etiqueta 2011 porque `clasificacion_ideologica_agrupaciones.csv`
-    # no cubre 2007; el título es de historia política real, no del voto de
-    # La Plata, y no requiere clasificación propia -- ver nota por fila).
     "nacional": (
         "ALIANZA FRENTE PARA LA VICTORIA",
         "Cristina Fernández de Kirchner, presidenta desde 2007 (reelecta en "
@@ -145,39 +127,27 @@ _TITULAR_INICIAL_2001 = {
     ),
 }
 
-# `agrupacion_ganadora` de `oficialismos.csv` es quien ganó el voto *en La
-# Plata* para esa categoría -- casi siempre coincide con quién asume el
-# cargo real (provincia/nación), pero no siempre: en 2019 La Plata votó a
-# JUNTOS POR EL CAMBIO para gobernador (45,0% vs 44,77%) mientras que
-# Kicillof/FRENTE DE TODOS ganó la gobernación a nivel provincial. Para el
-# *titular real* (quién efectivamente gobierna, insumo de continuidad y de
-# años siguientes) se corrige acá; para `gana_oficialismo`/`share_oficialismo`
-# en `resultado_distrito.csv` el voto de La Plata (correcto, no se toca) ya
-# captura ese matiz vía `era_oficialismo=true` (La Plata sí votó por el
-# oficialismo saliente). Verificado por conteo real de circuitos de La Plata
-# 2011/2015/2019/2023 (gobernador y presidente) -- único caso de divergencia
-# encontrado.
 _TITULAR_REAL_DIVERGE_DE_VOTO_LA_PLATA = {
     ("provincial", 2019): (
         "FRENTE DE TODOS",
-        "ruptura",  # el Ejecutivo sí cambió de manos a nivel real (Vidal -> Kicillof),
-        # aunque La Plata haya votado por el saliente -- ver era_oficialismo/
-        # gana_oficialismo en resultado_distrito.csv para ese matiz.
+        "ruptura",
         "Divergencia La Plata/provincia: La Plata votó por JUNTOS POR EL CAMBIO "
         "(oficialismos.csv, era_oficialismo=true), pero Kicillof/FRENTE DE TODOS "
         "ganó la gobernación a nivel provincial real -- continuidad_oficialismo "
         "se corrige a 'ruptura' (el Ejecutivo real sí cambió), el titular real "
         "desde dic-2019 es FRENTE DE TODOS.",
     ),
+    ("nacional", 2023): (
+        "ALIANZA LA LIBERTAD AVANZA",
+        "ruptura",
+        "Divergencia La Plata/nación: La Plata votó por UNION POR LA PATRIA en "
+        "primera vuelta (oficialismos.csv, era_oficialismo=true), pero "
+        "Milei/ALIANZA LA LIBERTAD AVANZA ganó la presidencia a nivel nacional "
+        "real (balotaje) -- continuidad_oficialismo se corrige a 'ruptura' (el "
+        "Ejecutivo real sí cambió), el titular real desde dic-2023 es ALIANZA "
+        "LA LIBERTAD AVANZA.",
+    ),
 }
-
-# Desenlaces de elecciones ejecutivas 2003/2007 (oficialismos.csv cubre
-# 2011+). Fuente municipal: 0221.com.ar (arriba). Fuente provincial:
-# pba_gober_gral2003.csv / pba_gober_gral2007.csv, mirror de GitHub
-# `PoliticaArgentina/data_warehouse` (scrapeado del Atlas Electoral de Andy
-# Tow) -- totales provinciales, suficientes para identidad del ganador
-# aunque no para desagregar a La Plata. Ver
-# docs/adquisicion_datos_especializacion.md §1.a.
 _EJECUTIVA_PRE_2011: dict[str, dict[int, ResultadoEjecutiva]] = {
     "municipal": {
         2003: ResultadoEjecutiva(
@@ -211,58 +181,32 @@ def _cargar_clasificacion(path: Path | str) -> dict[tuple[str, str, str], dict]:
         return {(fila["anio"], fila["agrupacion"], fila["nivel"]): fila for fila in csv.DictReader(f)}
 
 
-# Alias agrupación (este repo, mayúsculas) -> v2paenname (V-Party) para el
-# fallback directo de `_vparty_directo` cuando clasificacion_ideologica_agrupaciones.csv
-# no tiene fila -- siempre el caso pre-2011, ya que ese CSV solo cubre
-# agrupaciones con elección propia de La Plata en `data/distrito/`. Mismo
-# criterio de alias que `data/agrupaciones/v-party/README.md` fuente 3
-# (ALIANZA FRENTE PARA LA VICTORIA == Front for Victory, misma fuerza).
 ALIAS_VPARTY = {
     "PARTIDO JUSTICIALISTA": "Justicialist [Peronist] Party",
     "ALIANZA FRENTE PARA LA VICTORIA": "Front for Victory",
 }
 
-# campo_ideologico/filiacion_politica para el fallback directo de
-# ALIAS_VPARTY -- no es una clasificación nueva, es la misma que ya tiene
-# sin excepciones cada otra fila de esta misma familia de partido
-# (Justicialismo/Frente para la Victoria/Frente de Todos) en
-# clasificacion_ideologica_agrupaciones.csv: campo_ideologico=3,
-# filiacion_politica=peronistas.
+# Mismo campo_ideologico/filiacion_politica que ya tiene sin excepciones
+# cada otra fila de esta familia (Justicialismo/FPV/Frente de Todos) en
+# clasificacion_ideologica_agrupaciones.csv -- no es una clasificación nueva.
 CLASIFICACION_VPARTY_DIRECTO = {
     "PARTIDO JUSTICIALISTA": ("3", "peronistas"),
     "ALIANZA FRENTE PARA LA VICTORIA": ("3", "peronistas"),
 }
 
-# Aproximación manual para titulares sin alias V-Party real (`ALIAS_VPARTY`
-# no tiene nombre V-Party para ellos): mismo valor que ya usa
-# `data/tfi_data/elecciones/2007_municipal.csv`/`agrupaciones_vparty_consolidado.csv`
-# para esa agrupación (fuente="aprox-ivan" ahí) -- Partido Progreso Social
-# (Bruera, ruptura del PJ en 2007) toma la ola 2003 de Partido Justicialista
-# (mismo espacio peronista, sin cobertura V-Party propia).
 CLASIFICACION_APROX_MANUAL = {
     "PARTIDO PROGRESO SOCIAL": ("3", "peronistas", "-0.416", "0.268", "0.658"),
 }
 
-# Clasificación real V-Party para los titulares iniciales de
-# `_TITULAR_INICIAL_2001` en municipal/provincial (Alak/Ruckauf, ambos PJ) --
-# su propio triunfo real es 1999, anterior a la ventana del panel y al
-# recorte 2001-2019 de `v_party_argentina_2001_2019_espaniol.csv`, así que
-# no pasa por `ALIAS_VPARTY`/`_vparty_directo`. Ola 1999 sacada a mano del
-# `.RData` completo (`generar_v_party_argentina.cargar_argentina(...,
-# anio_min=1990)`, mismo mecanismo que la fuente 1b de
-# `data/agrupaciones/v-party/README.md`, no forma parte del pipeline
-# regular): v2pariglef=0.838, progresismo=promedio(0.206,-0.051,0.092,0.34)
-# =0.147, v2xpa_popul=0.336. `nacional` no tiene entrada acá -- su titular
-# inicial (Frente Para la Victoria 2011) se completó a mano directo en
-# `data/tfi_data/oficialismo_por_nivel.csv`, no en este script.
 CLASIFICACION_TITULAR_INICIAL = {
     "municipal": ("3", "peronistas", "0.838", "0.147", "0.336"),
     "provincial": ("3", "peronistas", "0.838", "0.147", "0.336"),
+    "nacional": ("3", "peronistas", "-1.686", "2.097", "0.871"),
 }
 
 # Misma fórmula que `analisis.vparty_cuadrantes.cargar_posiciones`:
 # económico = v2pariglef tal cual, progresismo = promedio de las 4
-# variables sociales, populismo = v2xpa_popul tal cual.
+# variables sociales, populismo = v2xpa_popul
 _VPARTY_COL_ECONOMICO = "v2pariglef"
 _VPARTY_COLS_PROGRESISMO = ["v2pawomlab", "v2palgbt", "v2paimmig", "v2parelig"]
 _VPARTY_COL_POPULISMO = "v2xpa_popul"
@@ -303,8 +247,6 @@ def _cargar_oficialismos(path: Path | str) -> dict[tuple[int, str], dict]:
         return {(int(fila["anio"]), fila["nivel"]): fila for fila in csv.DictReader(f)}
 
 
-# Reusa el mapeo de `totales_por_lista` -- único caso irregular:
-# gobernador->gobernacion.
 def _nivel_csv_del_cargo(nivel: str, cargo: str) -> str:
     """Traduce (nivel, cargo) al valor de `nivel` en
     `clasificacion_ideologica_agrupaciones.csv`."""
@@ -329,9 +271,6 @@ class FilaOficialismo:
     nota: str
 
 
-# Busca por (año en que el titular ganó la ejecutiva, agrupación, cargo
-# ejecutivo del nivel) -- esa es la boleta bajo la que se supo su
-# clasificación, no el año de la fila que se está construyendo.
 def _clasificacion_del_titular(
     clasificacion: dict[tuple[str, str, str], dict], anio_clasificacion: int, titular: str, nivel: str
 ) -> dict | None:
@@ -342,15 +281,7 @@ def _clasificacion_del_titular(
     return clasificacion.get((str(anio_clasificacion), titular, nivel_csv))
 
 
-# El titular es un estado que solo cambia en años con elección ejecutiva --
-# en años legislativos no cambia, gane o pierda su lista la banca en juego
-# (eso se resuelve aparte, en `resultado_distrito.gana_oficialismo`, contra
-# los votos reales). 2011+ reusa `oficialismos.csv`; 2001-2009 usa la
-# historia investigada a mano (`_TITULAR_INICIAL_2001`/`_EJECUTIVA_PRE_2011`).
-# Ideología/V-Party: join contra `clasificacion_ideologica_agrupaciones.csv`
-# y, si falta, fallback directo contra `vparty_directo` (`_vparty_directo`/
-# `ALIAS_VPARTY`) -- nunca duplicado a mano. Nivel `nacional` no tiene años
-# pre-2011 (no genera filas ahí).
+# El titular es un estado que solo cambia en años con elección ejecutiva.
 def construir_oficialismo_por_nivel(
     calendario: list[FilaCalendario],
     oficialismos_2011_2025: dict[tuple[int, str], dict],
@@ -372,7 +303,7 @@ def construir_oficialismo_por_nivel(
 
         for fc in filas_nivel:
             agrupacion_oficialismo = titular
-            anio_clasificacion_de_esta_fila = titular_anio_clasificacion  # snapshot: año en que *ese* titular ganó, no el de esta fila
+            anio_clasificacion_de_esta_fila = titular_anio_clasificacion
             nota_extra = ""
 
             if fc.tipo_eleccion == "ejecutiva":
@@ -407,8 +338,8 @@ def construir_oficialismo_por_nivel(
                     )
                     nota_extra = (
                         f"{nota_extra} Titular anterior a la ventana del panel -- vparty_*/campo_ideologico/"
-                        "filiacion_politica de la ola V-Party más cercana a su triunfo real (1999), no del "
-                        "año de esta fila (ver CLASIFICACION_TITULAR_INICIAL)."
+                        "filiacion_politica de su triunfo real conocido, no del año de esta fila (ver "
+                        "CLASIFICACION_TITULAR_INICIAL)."
                     )
                 else:
                     campo_ideologico = filiacion_politica = ""
@@ -539,8 +470,7 @@ def generar_csvs(
     clasificacion = _cargar_clasificacion(clasificacion_path)
     vparty_directo = _cargar_vparty_directo(vparty_path)
     oficialismo = construir_oficialismo_por_nivel(calendario, oficialismos_2011_2025, clasificacion, vparty_directo)
-    # "nota" queda fuera del CSV a propósito: sigue en FilaOficialismo/tests,
-    # solo no se persiste acá.
+
     destino_oficialismo = _escribir_csv(
         oficialismo_path,
         oficialismo,

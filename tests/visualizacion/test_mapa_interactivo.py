@@ -73,7 +73,7 @@ class TestVotosPorCampoYFamilia:
         resultado = _votos_por_campo(c)
         assert resultado["3"] == 10
         assert resultado[""] == 5
-        assert sum(resultado.values()) == 15  # nada se descarta
+        assert sum(resultado.values()) == 15
 
     def test_por_familia_usa_el_mapa_de_filiaciones(self):
         c = _circuito(

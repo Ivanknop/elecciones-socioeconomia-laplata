@@ -36,8 +36,6 @@ def _geoserie_partido(feature: dict) -> gpd.GeoSeries:
 
 
 def graficar_mapa(catalogo: list[dict], feature_partido: dict, ax=None):
-    """Pura (sin red): `catalogo` ya viene leído del CSV,
-    `feature_partido` ya viene de `GeorefClient.get_departamento_geometria`."""
     if ax is None:
         _, ax = plt.subplots(figsize=(11, 9))
 

@@ -177,8 +177,6 @@ class TestGenerarCuadroLocalidad:
         assert fila["otros"] == 0  # IMPUGNADO/RECURRIDO/COMANDO están en cero en la fixture
 
     def test_no_pierde_votos_de_otros_con_nombres_de_categoria_distintos(self, tmp_path, crosswalk_path):
-        """Nombres de categoría no vistos antes no deben perder votos;
-        blanco/nulo se separa igual de lo procedimental."""
         contenido = {
             "circuitos": {
                 "100": _circuito({}, {"BLANCOS": 3, "NULOS": 2, "IMPUGNADOS": 0, "RECURRIDOS": 0, "COMANDO": 0}),

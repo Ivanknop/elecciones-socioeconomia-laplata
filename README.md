@@ -29,10 +29,11 @@ auditoría) vive en `docs/` — ver la sección "Documentación" más abajo.
 ```
 src/electoral/         cliente HTTP + modelo de dominio + agrupación por localidad
 src/analisis/           gráficos y series estáticas (PNG/Markdown) desde circuito_<nivel>.json
-src/visualizacion/      generadores de HTML interactivo para docs/ (mapa, cuadrantes V-Party)
+src/visualizacion/      generadores de HTML interactivo para docs/ (mapa, cuadrantes V-Party, trayectorias económicas)
 src/socioeconomia/      EPH, correspondencia circuito↔radio censal, ICG (UTDT)
 src/macroeconomia/      series macroeconómicas nacionales (sin apertura espacial)
 src/geolocalizacion/    catálogo validado de localidades geolocalizadas
+src/ml_models/          panel temporal de ventanas electorales (calendario, resultado por distrito, panel trimestral) para modelado
 notebooks/               pipeline: 01-04 capa electoral, 05-06 capa socioeconómica
 data/                    insumos crudos + datos derivados, un subdirectorio por dominio
 graficos/                salidas estáticas (PNG/Markdown); casi todo derivado, no versionado
@@ -100,9 +101,9 @@ geolocalización, a `apis.datos.gob.ar` (esta última incluye
    depende de los notebooks anteriores; ver
    `data/geolocalizacion/LOCALIDADES.md`.
 9. (Opcional, capa ICG) colocar manualmente
-   `Base_histórica_2001-presente-ICG.dta` en `data/socioeconomia/icg/`
+   `Base_histórica_2001-presente-ICG.dta` en `data/socioeconomia/icg-icc/`
    (no se distribuye en el repo, hay que conseguirlo con la Escuela de
-   Gobierno UTDT — ver `data/socioeconomia/icg/README.md`) y correr
+   Gobierno UTDT — ver `data/socioeconomia/icg-icc/README.md`) y correr
    `PYTHONPATH=src python -m socioeconomia.icg_exportar_csv` seguido de
    `PYTHONPATH=src python -m socioeconomia.icg_graficos` — tampoco
    depende de los notebooks anteriores; ver `data/socioeconomia/ICG.md`.
@@ -143,6 +144,11 @@ detallado en `CLAUDE.md`.
 - Para el **diseño de investigación completo** (hipótesis, alcance válido
   de las inferencias, la falacia ecológica a evitar), ver
   [`docs/nota_metodologica.md`](docs/nota_metodologica.md).
+- Para el **panel temporal de ventanas electorales** (`src/ml_models/`,
+  qué es cada fase, ventana corta vs. bloque largo), ver
+  [`docs/especificacion_panel_temporal.md`](docs/especificacion_panel_temporal.md)
+  y [`docs/decisiones_metodologicas.md`](docs/decisiones_metodologicas.md)
+  para las decisiones de diseño puntuales (`D1`, `D2`, ...).
 - Para **qué puntos de la auditoría metodológica están resueltos o
   siguen abiertos**, ver
   [`docs/AUDITORIA_ESTADO.md`](docs/AUDITORIA_ESTADO.md).
@@ -167,7 +173,7 @@ localidades geolocalizadas), `data/socioeconomia/EXTRACCION_REDATAM.md` y
 socioeconómica), `data/socioeconomia/ICG.md` (decisiones metodológicas
 del pipeline ICG — cobertura real vs. codebook, por qué "país" incluye a
 La Plata, asimetría de resolución mensual/anual, límites de la fuente),
-`data/socioeconomia/icg/README.md` (qué es el microdato ICG, cómo
+`data/socioeconomia/icg-icc/README.md` (qué es el microdato ICG, cómo
 conseguirlo — no se distribuye en el repo),
 `data/agrupaciones/v-party/README.md` (procedencia del
 dataset V-Party y de qué fuente viene cada `vparty_economico`/

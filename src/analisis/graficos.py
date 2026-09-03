@@ -17,11 +17,9 @@ from constantes import (
     REPO_ROOT,
 )
 
-# Antes hardcodeada acá mismo (duplicando `data/agrupaciones/campo_ideologico.csv`,
-# que no tenía ningún lector en todo el repo) -- ahora ese CSV es la única
-# fuente de la escala, resuelto por ruta absoluta a partir de la raíz del
-# repo (`constantes.REPO_ROOT`) para no depender del cwd desde el que se
-# importe el módulo.
+# `data/agrupaciones/campo_ideologico.csv` es la única fuente de la escala;
+# resuelto por ruta absoluta a partir de la raíz del repo (`constantes.REPO_ROOT`)
+# para no depender del cwd desde el que se importe el módulo.
 _CAMPO_IDEOLOGICO_CSV = REPO_ROOT / CAMPO_IDEOLOGICO_PATH
 _COLORIMETRIA_CAMPO_CSV = REPO_ROOT / COLORIMETRIA_CAMPO_IDEOLOGICO_PATH
 _COLORIMETRIA_FAMILIA_CSV = REPO_ROOT / COLORIMETRIA_FAMILIA_POLITICA_PATH

@@ -12,7 +12,7 @@ la Universidad Torcuato Di Tella (UTDT) — encuesta telefónica mensual,
 UTDT lo entrega bajo pedido (no hay endpoint público, a diferencia de
 EPH/BCRA/datos.gob.ar, que sí tienen cliente propio en `src/`) — para
 conseguirlo, contactar a la Escuela de Gobierno UTDT. `.gitignore` excluye
-explícitamente `data/socioeconomia/icg/*.dta` y `*.pdf`.
+explícitamente `data/socioeconomia/icg-icc/*.dta` y `*.pdf`.
 
 ## Cómo colocarlo
 
@@ -21,7 +21,7 @@ Para que `PYTHONPATH=src python -m socioeconomia.icg_exportar_csv`
 llamarse exactamente:
 
 ```
-data/socioeconomia/icg/Base_histórica_2001-presente-ICG.dta
+data/socioeconomia/icg-icc/Base_histórica_2001-presente-ICG.dta
 ```
 
 (nombre original con guiones bajos en vez de espacios — si el archivo

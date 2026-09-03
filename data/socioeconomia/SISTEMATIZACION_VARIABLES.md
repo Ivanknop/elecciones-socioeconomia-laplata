@@ -206,7 +206,8 @@ fuerza relativa que a la población general.
   confianza ni errores de muestreo en esta pasada.
 - **Reservas de INDEC sobre 2007-2015.** INDEC advierte oficialmente que
   las series de ese período deben "considerarse con reservas" (documentado
-  en `eph_client.py`) — afecta a 2011-2015 completo dentro de nuestro rango.
+  en `docs/inventario_fuentes_datos.md`, no en `eph_client.py`) — afecta a
+  2011-2015 completo dentro de nuestro rango.
 - **Censo: la parte temática (§2b) sigue sin existir.** País de nacimiento
   (bloqueante directo para H8 de la Nota metodológica), nivel educativo,
   condición de actividad y vivienda detallada por radio no se extrajeron
@@ -215,8 +216,9 @@ fuerza relativa que a la población general.
   documenta `EXTRACCION_REDATAM.md`.
 - **Radios prorrateados.** Aun cuando exista el Censo temático, el 44-47%
   de los radios de La Plata quedan repartidos entre más de un circuito en
-  `circuito_radio_correspondencia.csv` (ya documentado en el README) — toda
-  cifra censal futura por circuito hereda esa incertidumbre.
+  `circuito_radio_correspondencia.csv` (ya documentado en
+  `docs/FUNCIONALIDADES.md`) — toda cifra censal futura por circuito hereda
+  esa incertidumbre.
 - **IAELaP no entra en este documento** — es una fuente de actividad
   económica (Partido de La Plata), no de condiciones de vida de los
   hogares; su propia sistematización (con el hallazgo de que revisa su

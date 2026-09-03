@@ -8,12 +8,7 @@ hand-curated que ya trae `campo_ideologico`/`filiacion_politica` por
 agrupación/año/nivel, ver `CLAUDE.md` sección `data/agrupaciones/`: nunca
 se regenera desde cero, se edita a mano). **Este README debería ser el
 único lugar del repo donde se documenta de qué fuente viene cada fila**
-— pero, a la fecha, el desglose de abajo (cruce directo 62 + proxy de
-ola 6 + fila hermana 13 + estimación propia 40 = 121 filas) **no cubre
-las 151 reales**: quedan ~30 filas con estas columnas pobladas sin
-fuente documentada acá (ver `docs/AUDITORIA_ESTADO.md` §8.2, hallazgo
-sin investigar todavía — no asumir que esas ~30 filas siguen alguno de
-los criterios de abajo sin verificarlo). La carga es puntual (no hay
+ La carga es puntual (no hay
 script que la repita ni la mantenga sincronizada — si se agregan filas
 nuevas a `clasificacion_ideologica_agrupaciones.csv` o se corrige
 `oficialismos.csv`, hay que reaplicar el criterio de abajo a mano) y
@@ -47,11 +42,6 @@ sigue filtrando 2001-2019 por defecto):
 | UNION DEL CENTRO DEMOCRATICO / UNION DE CENTRO DEMOCRATICO (2001/2007/2023, según grafía del año) | Union of the Democratic Centre (UCeDé) | 1991 (única ola de UCeDé en el dataset) |
 | ACCION POR LA REPUBLICA (2001) | Action for the Republic | 1999 (ola más cercana a 2001; único año con esta agrupación en el dataset) |
 
-Se verificó además que **MODIN/Movimiento por la Dignidad y la
-Independencia (Aldo Rico) no tiene cobertura en V-Party**, en ningún año
-ni bajo ningún nombre alternativo (búsqueda contra el `.RData` completo,
-no solo el recorte Argentina 2001-2019) -- Argentina 1993 solo trae PJ y
-UCR.
 
 **2 — Proxy de la ola V-Party más cercana, cuando no hay superposición de
 año.** Caso: **COALICIÓN CÍVICA ARI / COALICIÓN CÍVICA - AFIRMACIÓN PARA
@@ -116,11 +106,7 @@ estima `vparty_economico`/`vparty_progresismo`/`vparty_populismo` a
 partir de una encuesta propia a expertos (`encuesta_partidos_propia.csv`),
 calibrada por regresión lineal contra los partidos que sí tienen valor
 real de V-Party — pipeline completo en el docstring del script, no se
-repite acá. A diferencia de las fuentes 1/2/3, **este valor no es
-V-Party** — es una aproximación propia calibrada para caer en su misma
-escala (mismos ejes, mismo rango), con su propio reporte de validación
-(`reporte_validacion_vparty.md`, no versionado). Ver `CLAUDE.md` (sección
-`data/agrupaciones/`) para el comando de regeneración.
+repite acá. 
 
 `encuesta_partidos_propia.csv` es la versión **anonimizada** del export
 crudo de Google Forms: cada fila trae una columna `ID` secuencial que
@@ -130,7 +116,7 @@ repo. Por eso, a diferencia del export original, `encuesta_partidos_propia.csv`
 **sí está versionado**.
 
 Solo los partidos sin match real se volcaron a
-`clasificacion_ideologica_agrupaciones.csv` — 40 filas en total, uno de
+`clasificacion_ideologica_agrupaciones.csv` — 42 filas en total, uno de
 los seis partidos encuestados (Frente de Izquierda) cubre solas 22 filas
 por abarcar el frente FIT/FIT-U a lo largo de todos sus renombres
 2011-2025:
@@ -138,16 +124,11 @@ por abarcar el frente FIT/FIT-U a lo largo de todos sus renombres
 | Partido (encuesta) | Agrupación(es) en `clasificacion_ideologica_agrupaciones.csv` | Filas |
 |---|---|---|
 | Frente de Izquierda | ALIANZA FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES (2011/2015) / FRENTE DE IZQUIERDA Y DE LOS TRABAJADORES (2013/2017) / FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD (2019-2025) — mismo frente, tres grafías por renombre | 22 |
-| La Libertad Avanza | LA LIBERTAD AVANZA (2023) / ALIANZA LA LIBERTAD AVANZA (2025) | 4 |
+| La Libertad Avanza | LA LIBERTAD AVANZA (2023, gobernacion/intendente/presidente) / ALIANZA LA LIBERTAD AVANZA (2025, municipal/nacional/provincial) | 6 |
 | Proyecto Sur | ALIANZA PROYECTO SUR / PROYECTO SUR (2011) / MOVIMIENTO POLÍTICO SOCIAL Y CULTURAL PROYECTO SUR (2025, nombre legal completo del mismo partido) | 4 |
 | Principios y Valores | PRINCIPIOS Y VALORES (2023) | 3 |
 | Patria Grande | PATRIA GRANDE (2015/2017) | 4 |
 | Encuentro Republicano Federal | REPUBLICANO FEDERAL (2021) — nombre no idéntico, único candidato en el archivo | 3 |
-
-Dos de estos matches (Proyecto Sur 2025 y Encuentro Republicano Federal)
-tienen menos respaldo que el resto — nombre no idéntico o salto de más de
-una década sin filas intermedias — y se confirmaron a mano antes de
-cargarlos, no por coincidencia exacta de string.
 
 ### Mapeos por similitud (extensión manual más allá de los 6 partidos encuestados)
 
@@ -162,37 +143,6 @@ correr una nueva estimación:
 - MST = FIT
 - NMAS = FIT
 - liber.ar = LLA
-
-Tanda adicional de mapeos manuales (misma lógica, agrupación por
-agrupación, criterio de similitud confirmado a mano por Ivan antes de
-cargar):
-
-| Agrupación(es) | = valor de | Motivo |
-|---|---|---|
-| COMPROMISO FEDERAL / ALIANZA COMPROMISO FEDERAL (2011/2013/2015) | Peronismo Federal / Peronismo Disidente, ola 2011 real (no `v_party_propio.csv`) | identidad directa de partido (espacio de Rodríguez Saá), no aproximación |
-| FRENTE POPULAR DEMOCRATICO Y SOCIAL (PODEMOS) (2013) | Proyecto Sur | mismo espacio progresista |
-| + VALORES (2021) / HACEMOS POR NUESTRO PAIS (2023) / ALIANZA PROVINCIAS UNIDAS (2025) | Encuentro Republicano Federal | mismo perfil peronismo-provincial/federal moderado |
-| FRENTE NOS (2019) / UNITE POR LA LIBERTAD Y LA DIGNIDAD (2019) / ALIANZA UNION Y LIBERTAD (2025) | La Libertad Avanza | escisión/espacio afín de LLA |
-| PROPUESTA FEDERAL PARA EL CAMBIO (2025) | PRO | mismo espacio PRO/JxC |
-| SOCIEDAD JUSTA (2007) | Unión Cívica Radical, ola 2007 real | "es la UCR + MID" (Ivan), ola exacta disponible en V-Party, no aproximación |
-| ENCUENTRO AMPLIO (2005) | Patria Grande | "es el PC + PI" (Ivan), mismo espacio progresista/de izquierda |
-
-**Gotcha de dónde se cargó cada uno**: los de 2011/2013/2015/2021/2023 y
-`PROVINCIAS UNIDAS`/`PROPUESTA FEDERAL PARA EL CAMBIO` (2025 nacional) se
-cargaron en `clasificacion_ideologica_agrupaciones.csv` (tienen fila ahí,
-`ml_models.construir_elecciones` los propaga a
-`data/tfi_data/elecciones/`). Los de **2001-2009** (`SOCIEDAD JUSTA`,
-`ENCUENTRO AMPLIO`) y **2025 municipal/provincial**
-(`ALIANZA UNION Y LIBERTAD`) **no tienen fila en el maestro** — esos años
-no tienen `circuito_<cargo>.json` (2001-2009) o ese nivel no corre por el
-pipeline automático (2025 municipal/provincial, ver
-`ml_models/construir_elecciones.py`) — así que se editaron **directo en
-los CSV de `data/tfi_data/elecciones/`**, la misma excepción que ya
-aplica a AFEBA/PAUFE/FREPOBO/MOPOBO más abajo. Documentado también en
-`data/agrupaciones/agrupaciones_vparty_consolidado.csv` (tabla de
-consulta deduplicada por nombre de agrupación, mantenida a mano, sin
-script propio ni consumidor en `src/` — columna `fuente` marca estos
-casos como `aprox-ivan`).
 
 ## `v_party_propio_ad_hoc.csv` — partidos evaluados por un subconjunto de expertos
 
@@ -217,32 +167,6 @@ agrega por mediana, y aplica la calibración (`calib`, el mismo diccionario
 No está integrada a `main()`/`estimar()`/`escribir_salida()`: se llama a
 mano, un partido a la vez, con el `calib` que ya se tiene de una corrida
 normal del script.
-
-**AFEBA** es el primer caso: evaluado por los expertos 1, 2, 6, 9, 10, 11
-del panel (10 y 11 son el mismo orden que en `encuesta_partidos_propia.csv`).
-El experto 2 es el único outlier formal del panel completo (distancia z
-contra V-Party real por encima del umbral en todas las corridas de
-validación) y el experto 11 quedó **excluido a pedido explícito** (no se
-usa para recalibrar nada). Valor final con los 4 expertos restantes
-(1, 6, 9, 10 -- nota: la fila "1" del CSV ad hoc quedó luego re-etiquetada
-como "6", mismos valores):
-
-```
-vparty_economico = 1.579
-vparty_progresismo = -1.862
-vparty_populismo = 0.425
-```
-
-Este valor se extendió por identidad de partido (no por similitud
-ideológica como la sección de arriba) a **PAUFE, FREPOBO y MOPOBO** —
-mismo linaje vecinalista/federalista bonaerense que AFEBA — en
-`data/tfi_data/elecciones/2001_{municipal,provincial}.csv`,
-`2003_{municipal,provincial}.csv` y `2007_{municipal,provincial}.csv`
-(ninguno de los cuatro tiene fila en `clasificacion_ideologica_agrupaciones.csv`,
-mismo motivo que `SOCIEDAD JUSTA`/`ENCUENTRO AMPLIO` arriba). Marcado como
-`v-party propio ad-hoc` (AFEBA, valor genuino de esta encuesta parcial) o
-`aprox-ivan` (PAUFE/FREPOBO/MOPOBO, identidad con AFEBA) en
-`agrupaciones_vparty_consolidado.csv`.
 
 ## Procedencia
 
@@ -330,13 +254,4 @@ procedencia, mismas 63 columnas de identificación/posicionamiento) más
 una columna agregada: `v2paenname_espaniol`, la traducción al español de
 `v2paenname` (nombre del partido en inglés) — 64 columnas en total. Es
 **el archivo que corresponde usar** para cualquier cruce contra los CSV de
-este repo (`data/agrupaciones/clasificacion_ideologica_agrupaciones.csv`,
-`data/agrupaciones/oficialismos.csv`), porque ahí las agrupaciones están
-en español y el cruce se hace por coincidencia (exacta o cuasi-exacta,
-salvando puntuación) de nombre normalizado — `v_party_argentina_2001_2019.csv`
-(sin traducir) no sirve para ese propósito y se mantiene sólo por
-procedencia/comparación con el original en inglés. Las filas 2001-2009 no
-tienen cruce directo en `clasificacion_ideologica_agrupaciones.csv`
-porque la capa electoral de este repo (La Plata) sólo arranca en 2011 —
-ver "Fuentes de `vparty_economico`/..." más arriba, que sigue basado
-sólo en las filas 2011-2019.
+este repo (`data/agrupaciones/clasificacion_ideologica_agrupaciones.csv`

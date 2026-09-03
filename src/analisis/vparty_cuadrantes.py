@@ -17,12 +17,10 @@ RUTA_DATOS = Path(VPARTY_PATH)
 RUTA_SALIDA_JSON = Path("graficos/agrupaciones/vparty_cuadrantes_economico_progresismo_populismo.json")
 RUTA_SALIDA = Path("graficos/agrupaciones/vparty_cuadrantes_economico_progresismo_populismo.png")
 
-# Columnas fuente de V-Party usadas para construir la tupla.
 COL_ECONOMICO = "v2pariglef"
 COL_POPULISMO = "v2xpa_popul"
 COLS_PROGRESISMO = ["v2pawomlab", "v2palgbt", "v2paimmig", "v2parelig"]
 
-# Nombres de la tupla (economico, progresismo, populismo) ya calculada.
 EJE_X = "economico"
 EJE_Y = "progresismo"
 TAMANO = "populismo"
