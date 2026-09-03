@@ -25,6 +25,13 @@ arranca vacía (nadie encontró el padrón real todavía, ver
 `docs/adquisicion_datos_especializacion.md`), así que `participacion` sigue
 en blanco hasta que se cargue a mano.
 
+`oficialismos.csv` (D15, `docs/decisiones_metodologicas.md`) cubre
+`municipal`/`provincial` 2001-2025 -- ya no hace falta el fallback de
+`_resolver_oficialismo` por nombre contra `oficialismo_por_nivel.csv` para
+esos años (el que sigue existiendo, y sigue testeado, es el que atiende un
+`(año, nivel)` sin fila en `oficialismos.csv`, hoy solo `nacional`
+2001-2009, que ni siquiera aparece en `calendario_electoral.csv`).
+
 Usa siempre la etapa `generales` (primera vuelta), nunca `balotaje` --
 misma convención que `analisis.graficos._cargar_circuito`. Para presidente
 2015 y 2023 (los dos años con balotaje) esto significa que
@@ -168,9 +175,13 @@ def _match_oficialismo(
 # `data/tfi_data/elecciones/<año>_<nivel>.csv` no aparece con el mismo
 # nombre que `agrupacion_oficialismo` de `oficialismo_por_nivel.csv` --
 # relabeling de frentes pre-2011 (ese campo describe la identidad partidaria
-# del titular, no el nombre de lista exacto de cada año). Cada entrada
-# citada, nunca adivinada -- ver `docs/adquisicion_datos_especializacion.md`
-# §1.a para el criterio general de fuentes de esta ventana.
+# del titular, no el nombre de lista exacto de cada año). Sigue en uso tras
+# D15 (`oficialismos.csv` ya cubre estos años): `_resolver_oficialismo`
+# también lo usa para resolver `share_oficialismo` cuando `era_oficialismo`
+# curado da `false`, mismo mecanismo que ya aplicaba en 2011-2025. Cada
+# entrada citada, nunca adivinada -- ver
+# `docs/adquisicion_datos_especializacion.md` §1.a para el criterio general
+# de fuentes de esta ventana.
 ALIAS_LISTA_OFICIALISMO: dict[tuple[int, str], str] = {
     # 2005: interna PJ Kirchner vs. Duhalde -- "el sector duhaldista compitió
     # bajo la etiqueta oficial del PJ, mientras el kirchnerista lo hizo como
@@ -210,8 +221,9 @@ def _resolver_oficialismo(
     alias_lista: str | None = None,
 ) -> tuple[bool | None, float | None]:
     """`gana_oficialismo`/`share_oficialismo` para un (año, nivel): prioriza
-    `oficialismos.csv` curado (2011-2025, `era_oficialismo` tal cual); sin
-    curado, empareja por nombre contra `oficialismo_por_nivel.csv`
+    `oficialismos.csv` curado (`era_oficialismo` tal cual, D15 -- ya cubre
+    `municipal`/`provincial` 2001-2025); sin curado (hoy solo `nacional`
+    2001-2009), empareja por nombre contra `oficialismo_por_nivel.csv`
     (`_match_oficialismo`), o contra `alias_lista` si viene provisto (ver
     `ALIAS_LISTA_OFICIALISMO`, relabeling pre-2011). `None`/`None` si no hay
     ninguna fila de oficialismo, o si el emparejamiento por nombre falla --
@@ -272,23 +284,25 @@ def construir_resultado_distrito(
     calendario: list[FilaCalendario],
     voto_partido: list[FilaVotoPartido],
     oficialismo_por_nivel: dict[tuple[int, str], dict],
-    oficialismos_2011_2025: dict[tuple[int, str], dict],
+    oficialismos_curados: dict[tuple[int, str], dict],
     data_dir: Path | str = DATA_DISTRITO_DIR,
     elecciones_dir: Path | str = ELECCIONES_DIR,
 ) -> list[FilaResultadoDistrito]:
     """`gana_oficialismo`/`share_oficialismo` se resuelven en
     `_resolver_oficialismo`, igual para años con y sin `circuito_<cargo>.json`
     cacheado (lo único que cambia entre ramas es de dónde sale `votos_validos`/
-    `votos_blanco`/`participacion`). Para 2011+ reusa `era_oficialismo` de
+    `votos_blanco`/`participacion`). Reusa `era_oficialismo` de
     `oficialismos.csv` tal cual -- ya es exactamente "¿el voto de La Plata en
     esta categoría favoreció al Ejecutivo real que gobierna?", tanto en años
     ejecutivos como legislativos; no se re-deriva emparejando nombres de
     lista, que puede fallar cuando el oficialismo se presenta con una
-    etiqueta nueva ese mismo año (ver `continua_renombrada`). Sin curado
-    (todo 2001-2009), se empareja por nombre contra `agrupacion_oficialismo`
-    de `oficialismo_por_nivel.csv` -- `None`/`None` si no matchea, nunca se
-    asume que perdió (posible relabeling, mismo caso que arriba pero sin
-    `oficialismos.csv` para resolverlo)."""
+    etiqueta nueva ese mismo año (ver `continua_renombrada`). Esto cubre
+    `municipal`/`provincial` 2001-2025 desde D15 -- solo queda sin curado
+    `nacional` 2001-2009 (ni siquiera está en `calendario_electoral.csv`,
+    ver `construir_calendario.py`), donde se empareja por nombre contra
+    `agrupacion_oficialismo` de `oficialismo_por_nivel.csv` -- `None`/`None`
+    si no matchea, nunca se asume que perdió (posible relabeling, mismo caso
+    que arriba pero sin `oficialismos.csv` para resolverlo)."""
     voto_partido_por_anio_nivel: dict[tuple[int, str], list[FilaVotoPartido]] = {}
     for v in voto_partido:
         voto_partido_por_anio_nivel.setdefault((v.anio, v.nivel), []).append(v)
@@ -299,7 +313,7 @@ def construir_resultado_distrito(
         disponible = _circuito_disponible(data_dir, fc.anio, cargo)
 
         of = oficialismo_por_nivel.get((fc.anio, fc.nivel))
-        fila_of_curada = oficialismos_2011_2025.get((fc.anio, fc.nivel))
+        fila_of_curada = oficialismos_curados.get((fc.anio, fc.nivel))
         alias_lista = ALIAS_LISTA_OFICIALISMO.get((fc.anio, fc.nivel))
 
         if not disponible:

@@ -422,6 +422,18 @@ ejecutivos) y 03 (cargos legislativos), con una 4ª columna,
    filas que agregó el otro notebook (ejecutivo/legislativo no comparten
    valores de `nivel`, así que no hay colisión de claves entre ambos).
 
+**Cobertura 2001-2025, no solo 2011-2025**: los notebooks 02/03 solo
+pueden aportar agrupaciones de años con `circuito_<cargo>.json`
+(2011-2025). Las 2001-2009 se agregaron aparte, vía
+`src/analisis/completar_clasificacion_historica.py`, que lee
+`campo_ideologico`/`filiacion_politica`/`vparty_*` ya resueltos en
+`data/tfi_data/elecciones/<año>_<nivel>.csv` (completados a mano ahí,
+nunca en este CSV, durante el backfill de esos años — ver
+`docs/adquisicion_datos_especializacion.md` §1.a) y los agrega con el
+mismo criterio append-only de los notebooks (nunca pisa una fila
+existente). Comando en `CLAUDE.md`; correrlo de nuevo después de
+incorporado no duplica nada (idempotente).
+
 **Nombre de agrupación, normalizado a mayúsculas**: `agrupacion` en el CSV
 está en mayúsculas — es la convención que ya traía la API en la mayoría de
 los años; solo Generales 2011 (ejecutivos) venía en minúscula/capitalizado.
@@ -462,13 +474,18 @@ mientras su `campo_ideologico` puede (o no) variar por elección sin que eso
 se lea como inconsistencia del dataset.
 
 Se fusionó desde `data/agrupaciones/tabla_referencia_filiacion_politica.csv`
-(121 agrupaciones, cobertura 1:1 con las 121 agrupaciones únicas de
-`clasificacion_ideologica_agrupaciones.csv`), que sigue existiendo como
-fuente de referencia — trae además `confianza_clasificacion` (alta/media/baja)
-y `nota_clasificacion` (fuente o justificación de la clasificación),
-deliberadamente **no** fusionadas al CSV principal para mantenerlo liviano;
-consultar ese archivo directamente para auditar el porqué de un valor de
-`filiacion_politica` puntual.
+(121 agrupaciones), que sigue existiendo como fuente de referencia — trae
+además `confianza_clasificacion` (alta/media/baja) y `nota_clasificacion`
+(fuente o justificación de la clasificación), deliberadamente **no**
+fusionadas al CSV principal para mantenerlo liviano; consultar ese
+archivo directamente para auditar el porqué de un valor de
+`filiacion_politica` puntual. **Ya no es cobertura 1:1** — desde que
+`clasificacion_ideologica_agrupaciones.csv` incorporó 2001-2009 (ver
+arriba), tiene 237 agrupaciones únicas, de las cuales 193 tienen
+`filiacion_politica` poblada; las 121 de `tabla_referencia_filiacion_politica.csv`
+no se volvieron a ampliar para cubrir las agrupaciones nuevas — brecha
+pendiente, no investigada fila por fila (mismo tipo de deuda que la de
+V-Party, ver `docs/AUDITORIA_ESTADO.md`).
 
 El mismo CSV trae además tres columnas opcionales —
 `vparty_economico`/`vparty_progresismo`/`vparty_populismo`, posición

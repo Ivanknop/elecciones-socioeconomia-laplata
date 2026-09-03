@@ -53,7 +53,7 @@ data/totales/<nivel>/<año>/<etapa>/resultado_total.csv        # ídem para paso
 data/agrupaciones/clasificacion_ideologica_agrupaciones.csv    # clasificación ideológica manual -- append-only; también trae vparty_economico/progresismo/populismo opcionales (de qué fuente viene cada fila: SOLO en data/agrupaciones/v-party/README.md)
 data/agrupaciones/tabla_referencia_filiacion_politica.csv       # fuente de filiacion_politica + confianza/nota de cada valor
 data/agrupaciones/circuito_id_correspondencias.csv             # normalización circuito_id entre años
-data/agrupaciones/oficialismos.csv                              # oficialismo por (año, nivel), 2011-2025 -- hand-curated, mismo criterio append-only
+data/agrupaciones/oficialismos.csv                              # oficialismo por (año, nivel), 2001-2025 (nacional solo desde 2011) -- hand-curated, mismo criterio append-only
 data/agrupaciones/v-party/                                      # dataset V-Party + encuesta propia anonimizada + su estimación calibrada (ver README de esa carpeta)
 data/geolocalizacion/circuitos_por_localidad.csv                # crosswalk circuito -> localidad geolocalizada, DEFAULT de analisis.cuadros_por_localidad (ver laplata-geolocalizacion)
 data/geolocalizacion/fuentes_extra/circuito_localidad.csv                      # crosswalk histórico circuito -> barrio, dos niveles -- ya no es el default, sigue disponible

@@ -67,11 +67,13 @@ ESTADISTICASBCRA_TOKEN=... PYTHONPATH=src python -m macroeconomia.auditoria_esta
 PYTHONPATH=src python -m geolocalizacion.catalogo  # validated localidad×lat/lon catalog for La Plata, Georef-AR cross-checked against the Ministerio de Obras Públicas export (needs network to refresh; runs from cache otherwise)
 PYTHONPATH=src python -m geolocalizacion.mapa      # one PNG with all 36 localidades over the partido boundary, reads the catalog above
 PYTHONPATH=src python3 src/analisis/generar_v_party_propio.py --encuesta data/agrupaciones/v-party/encuesta_partidos_propia.csv --referencia data/agrupaciones/clasificacion_ideologica_agrupaciones.csv --salida data/agrupaciones/v-party/v_party_propio.csv  # estimates vparty_economico/progresismo/populismo from an own expert survey for partidos without real V-Party coverage; estimar_partido_cobertura_parcial() (same module) is a separate ad hoc helper for partidos evaluated by only a subset of experts, see data/agrupaciones/v-party/README.md
+PYTHONPATH=src python -m analisis.completar_clasificacion_historica  # append-only: adds 2001-2009 rows to clasificacion_ideologica_agrupaciones.csv from data/tfi_data/elecciones/, idempotent (no-op if already incorporated)
 PYTHONPATH=src python -m analisis.vparty_cuadrantes         # national V-Party cuadrantes scatter (Diputados 2001-2019), one JSON (tracked) + PNG (local)
 PYTHONPATH=src python -m analisis.vparty_cuadrantes_local   # DEPRECADO (see Architecture below) -- superseded by ml_models.construir_elecciones's data/tfi_data/elecciones/<año>_<nivel>.csv
 PYTHONPATH=src python -m analisis.vparty_distribucion_tfi   # V-Party cuadrantes PNG per (año,nivel) from data/tfi_data/elecciones/, 2001-2025, writes graficos/tfi/v-party/<año>_<nivel>.png
 PYTHONPATH=src python -m socioeconomia.icg_exportar_csv  # ICG (UTDT) headline + 6 demographic-cut CSVs to data/socioeconomia/; needs data/socioeconomia/icg-icc/Base_histórica_2001-presente-ICG.dta placed manually first, see data/socioeconomia/icg-icc/README.md
 PYTHONPATH=src python -m socioeconomia.icg_graficos  # La Plata vs. país ICG time series PNG from the headline CSV above
+PYTHONPATH=src python -m auditoria_interna.cobertura_clasificacion  # on-demand audit: votes missing campo_ideologico/filiacion_politica/V-Party by (año, nivel) + top-N parties to classify next, writes data/auditoria_interna/cobertura_clasificacion.md
 ```
 
 There is no build/lint step configured. Tests cover `src/electoral/models.py`
@@ -204,6 +206,23 @@ order, 01→04) are the pipeline**.
   every function except `main()` is pure and covered by
   `tests/analisis/test_generar_v_party_propio.py`.
 
+  `clasificacion_ideologica_agrupaciones.csv` covers **2001-2025**, not
+  only 2011-2025: notebooks 02/03 append newly-seen agrupaciones from
+  `circuito_<cargo>.json` (2011-2025 only, no such file for 2001-2009),
+  while `src/analisis/completar_clasificacion_historica.py` appends the
+  2001-2009 rows from `data/tfi_data/elecciones/<año>_<nivel>.csv`
+  instead — that range's `campo_ideologico`/`filiacion_politica`/
+  `vparty_*` was hand-completed directly in those CSV during the
+  session that backfilled 2001-2009 (ver
+  `docs/adquisicion_datos_especializacion.md` §1.a), never through the
+  master CSV, so it needed its own one-off join instead of an extra
+  notebook cell. Same append-only invariant as notebooks 02/03: never
+  overwrites a `(año, nivel, agrupación)` row that's already there, so
+  it's safe to re-run after 2001-2009 is already incorporated (no-op).
+  Run command in "Commands" above; every function except `main()` is
+  pure and covered by
+  `tests/analisis/test_completar_clasificacion_historica.py`.
+
   `src/analisis/vparty_cuadrantes_local.py` plots those same
   `vparty_economico`/`progresismo`/`populismo` columns against La Plata's
   own election results instead of the national V-Party dataset, for
@@ -332,7 +351,7 @@ order, 01→04) are the pipeline**.
   `colorimetria_campo_ideologico.csv` (`campo_ideologico` value → hex, one
   row per one of the 6 labels in `campo_ideologico.csv`) and
   `colorimetria_familia_politica.csv` (`filiacion_politica` value → hex,
-  one row per one of the 8 `filiacion_politica` values used in
+  one row per one of the 10 `filiacion_politica` values used in
   `clasificacion_ideologica_agrupaciones.csv`) are the **only** source of
   color for those two dimensions anywhere in the repo — hand-picked,
   git-tracked. `src/analisis/graficos.py` loads both once
@@ -466,6 +485,28 @@ order, 01→04) are the pipeline**.
   — don't duplicate them here. `catalogo.py` writes
   `data/geolocalizacion/localidades_la_plata.csv` (git-tracked); `mapa.py`
   plots it to `graficos/geolocalizacion/mapa_localidades.png` (not tracked).
+
+- **`src/auditoria_interna/`** is not an analytical domain — it audits
+  one: `cobertura_clasificacion.py` cross-checks real votes from
+  `data/tfi_data/elecciones/<año>_<nivel>.csv` (2001-2025) against
+  `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` and
+  reports, per (año, nivel), how many votes belong to agrupaciones
+  missing `campo_ideologico`/`filiacion_politica`/V-Party, plus a
+  top-N of which agrupaciones would unlock the most votes if
+  classified, and includes the % of votes each gap represents (same
+  absolute vote count matters differently in a small vs. a large
+  election). On-demand only (not part of any pipeline). Two outputs
+  with opposite persistence: `cobertura_clasificacion.md` is a snapshot,
+  overwritten on each run; `cobertura_clasificacion_log.csv` is
+  append-only, one row per run (timestamp + global totals + delta vs.
+  the previous run, no per-año/nivel/agrupación breakdown by design —
+  that detail is only in the snapshot). Deliberately reads the live
+  classification CSV instead of the classification columns embedded in
+  `elecciones/*.csv`, since those can go stale (the master CSV is
+  hand-edited and edits don't automatically propagate back). Every
+  function except `main()`/`generar_reporte_markdown` (text formatting)
+  is pure and covered by `tests/auditoria_interna/test_cobertura_clasificacion.py`,
+  no network — same split as the rest of the repo.
 
 ## Working conventions specific to this repo
 

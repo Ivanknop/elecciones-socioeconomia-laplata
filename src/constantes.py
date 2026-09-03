@@ -61,6 +61,11 @@ PANEL_DIR = "data/tfi_data/panel"
 PANEL_TRIMESTRAL_DIR = "data/tfi_data/panel/t-1"
 PANEL_BIELECCION_TRIMESTRAL_DIR = "data/tfi_data/panel/t-2"
 
+# --- Auditoría interna ---
+AUDITORIA_INTERNA_DIR = "data/auditoria_interna"
+COBERTURA_CLASIFICACION_PATH = "data/auditoria_interna/cobertura_clasificacion.md"
+COBERTURA_CLASIFICACION_LOG_PATH = "data/auditoria_interna/cobertura_clasificacion_log.csv"
+
 
 # --- Constantes de dominio compartidas ---
 

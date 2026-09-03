@@ -2,13 +2,19 @@
 
 ## Fuentes de `vparty_economico`/`progresismo`/`populismo` en `clasificacion_ideologica_agrupaciones.csv`
 
-Estas tres columnas están pobladas en 151 de las 313 filas de
+Estas tres columnas están pobladas en 356 de las 557 filas de
 `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` (el archivo
 hand-curated que ya trae `campo_ideologico`/`filiacion_politica` por
-agrupación/año/nivel, ver `CLAUDE.md` sección `data/agrupaciones/`: nunca
-se regenera desde cero, se edita a mano). **Este README debería ser el
-único lugar del repo donde se documenta de qué fuente viene cada fila**
- La carga es puntual (no hay
+agrupación/año/nivel para todo 2001-2025, ver `CLAUDE.md` sección
+`data/agrupaciones/`: nunca se regenera desde cero, se edita a mano).
+**Este README debería ser el único lugar del repo donde se documenta de
+qué fuente viene cada fila** — hoy el desglose de abajo cubre 121 de esas
+356 filas (todas del rango 2011-2019, la única cobertura real de
+V-Party); las ~235 restantes (2001-2009 recién incorporado, más el resto
+de 2011-2025 ya señalado antes) están pobladas pero sin procedencia
+documentada acá todavía (ver `docs/AUDITORIA_ESTADO.md`, sección 8.2,
+para el detalle de esta brecha, que creció con la incorporación de
+2001-2009). La carga es puntual (no hay
 script que la repita ni la mantenga sincronizada — si se agregan filas
 nuevas a `clasificacion_ideologica_agrupaciones.csv` o se corrige
 `oficialismos.csv`, hay que reaplicar el criterio de abajo a mano) y

@@ -152,11 +152,12 @@ class TestConstruirResultadoDistrito:
         assert filas[0].participacion == pytest.approx(80.0)  # (90+10)/125*100
 
     def test_anio_sin_circuito_pero_con_tfi_deriva_gana_oficialismo_matcheando_nombre(self, data_dir, tmp_path):
-        """Sin circuito_<cargo>.json (2001-2009) pero con el CSV de
+        """Sin circuito_<cargo>.json pero con el CSV de
         data/tfi_data/elecciones/, gana_oficialismo/share_oficialismo se
         derivan igual que en años con circuito -- emparejando por nombre
-        contra oficialismo_por_nivel.csv, no contra oficialismos.csv
-        (curado, solo 2011-2025)."""
+        contra oficialismo_por_nivel.csv cuando no hay fila curada en
+        oficialismos.csv para ese (año, nivel) (D15: hoy solo pasa con
+        `nacional` 2001-2009, simulado acá con el dict `{}`)."""
         elecciones_dir = tmp_path / "elecciones"
         elecciones_dir.mkdir()
         (elecciones_dir / "2001_municipal.csv").write_text(
@@ -176,9 +177,9 @@ class TestConstruirResultadoDistrito:
 
     def test_anio_sin_circuito_ni_curado_gana_oficialismo_none_si_no_matchea(self, data_dir, tmp_path):
         """Mismo caso de relabeling que share_oficialismo_none_si_pierde_y_no_matchea,
-        pero sin oficialismos.csv curado (2001-2009): gana_oficialismo debe
-        quedar en None, no asumirse False, si el nombre no matchea ningún
-        competidor."""
+        pero sin fila curada en oficialismos.csv para ese (año, nivel):
+        gana_oficialismo debe quedar en None, no asumirse False, si el
+        nombre no matchea ningún competidor."""
         elecciones_dir = tmp_path / "elecciones"
         elecciones_dir.mkdir()
         (elecciones_dir / "2001_municipal.csv").write_text(
