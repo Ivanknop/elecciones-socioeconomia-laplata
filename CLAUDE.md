@@ -496,11 +496,13 @@ order, 01→04) are the pipeline**.
   classified, and includes the % of votes each gap represents (same
   absolute vote count matters differently in a small vs. a large
   election). On-demand only (not part of any pipeline). Two outputs
-  with opposite persistence: `cobertura_clasificacion.md` is a snapshot,
-  overwritten on each run; `cobertura_clasificacion_log.csv` is
-  append-only, one row per run (timestamp + global totals + delta vs.
-  the previous run, no per-año/nivel/agrupación breakdown by design —
-  that detail is only in the snapshot). Deliberately reads the live
+  with opposite persistence, neither git-tracked (`data/auditoria_interna/`
+  is `.gitignore`d — personal working state, not a repo deliverable):
+  `cobertura_clasificacion.md` is a snapshot, overwritten on each run;
+  `cobertura_clasificacion_log.csv` is append-only, one row per run
+  (timestamp + global totals + delta vs. the previous run, no
+  per-año/nivel/agrupación breakdown by design — that detail is only in
+  the snapshot). Deliberately reads the live
   classification CSV instead of the classification columns embedded in
   `elecciones/*.csv`, since those can go stale (the master CSV is
   hand-edited and edits don't automatically propagate back). Every

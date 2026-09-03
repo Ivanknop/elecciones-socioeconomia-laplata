@@ -1,7 +1,7 @@
 anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vparty_progresismo,vparty_populismo
 2001,ACCION POR LA REPUBLICA,municipal,5,liberales,2.243,-0.238,0.136
 2001,ALIANZA FRENTE PLATENSE,municipal,3,radicalismo,0.262,0.755,0.288
-2001,FRENTE COMPROMISO SOCIAL,municipal,,,,,
+2001,FRENTE COMPROMISO SOCIAL,municipal,4,peronistas,0.544,0.050,0.503
 2001,FRENTE GRANDE,municipal,2,peronistas,-0.980,1.195,0.534
 2001,FRENTE POLO SOCIAL,municipal,2,progresistas,-1.412,1.557,0.723
 2001,FRENTE RENOVADOR POPULAR EN BS.AS.-FREPEBA-,municipal,,,,,
@@ -13,7 +13,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2001,PARTIDO DEL OBRERO,municipal,1,marxistas,-1.991,2.325,0.723
 2001,PARTIDO HUMANISTA,municipal,2,progresistas,-1.412,1.557,0.723
 2001,PARTIDO JUSTICIALISTA,municipal,3,peronistas,0.544,0.050,0.503
-2001,PARTIDO LABORISTA DE LA PCIA.DE BS.AS.,municipal,2,peronistas,,,
+2001,PARTIDO LABORISTA DE LA PCIA.DE BS.AS.,municipal,2,progresistas,-1.412,1.557,0.723
 2001,PARTIDO POP.DE LA RECONSTRUCCION (P.P.R.),municipal,,,,,
 2001,PARTIDO PROGRESO SOCIAL,municipal,3,peronistas,-0.416,0.268,0.658
 2001,PARTIDO SOCIALISTA,municipal,2,progresistas,-1.683,2.154,0.481
@@ -21,7 +21,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2001,UNION DEL CENTRO DEMOCRATICO,municipal,4,liberales,2.365,-1.020,0.045
 2001,ACCION POR LA REPUBLICA,provincial,5,liberales,2.243,-0.238,0.136
 2001,ALIANZA FRENTE PLATENSE,provincial,3,radicalismo,0.262,0.755,0.288
-2001,FRENTE COMPROMISO SOCIAL,provincial,,,,,
+2001,FRENTE COMPROMISO SOCIAL,provincial,4,peronistas,0.544,0.050,0.503
 2001,FRENTE GRANDE,provincial,2,peronistas,-0.980,1.195,0.534
 2001,FRENTE POLO SOCIAL,provincial,2,progresistas,-1.412,1.557,0.723
 2001,FRENTE RENOVADOR POPULAR,provincial,,,,,
@@ -33,7 +33,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2001,PARTIDO DEL OBRERO,provincial,1,marxistas,-1.991,2.325,0.723
 2001,PARTIDO HUMANISTA,provincial,2,progresistas,-1.412,1.557,0.723
 2001,PARTIDO JUSTICIALISTA,provincial,3,peronistas,0.544,0.050,0.503
-2001,PARTIDO LABORISTA,provincial,2,peronistas,,,
+2001,PARTIDO LABORISTA,provincial,2,progresistas,-1.412,1.557,0.723
 2001,PARTIDO POPULAR DE LA RECONSTRUCCION,provincial,,,,,
 2001,PARTIDO PROGRESO SOCIAL,provincial,3,peronistas,-0.416,0.268,0.658
 2001,PARTIDO SOCIALISTA DEMOCRATICO (ARI),provincial,4,otros,0.452,0.299,0.372
@@ -66,7 +66,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2003,PARTIDO ENCUENTRO POPULAR,gobernacion,,,,,
 2003,PARTIDO JUSTICIALISTA,gobernacion,3,peronistas,-0.416,0.268,0.658
 2003,POLITICA ABIERTA PARA LA INTEGRIDAD SOCIAL,gobernacion,4,peronistas,,,
-2003,RENACER PLATENSE,gobernacion,,vecinalismo,,,
+2003,RENACER PLATENSE,gobernacion,3,peronistas,-0.416,0.268,0.658
 2003,UNION CIVICA RADICAL,gobernacion,3,radicalismo,0.039,0.895,0.338
 2003,VOLUNT. P. LA INTEG. Y EL DES. AUT. - VIDA,gobernacion,,,,,
 2003,"AFEBA-PLATENSE (SECCION CAPITAL, DISTRITO LA PLATA)",intendente,5,nacionalistas,1.579,-1.862,0.425
@@ -88,7 +88,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2003,PARTIDO HUMANISTA ECOLOGISTA,intendente,,,,,
 2003,PARTIDO JUSTICIALISTA,intendente,3,peronistas,-0.416,0.268,0.658
 2003,PARTIDO POPULAR DE LA RECONSTRUCCION,intendente,,,,,
-2003,RENACER PLATENSE,intendente,,vecinalismo,,,
+2003,RENACER PLATENSE,intendente,3,peronistas,-0.416,0.268,0.658
 2003,UNION CIVICA RADICAL,intendente,3,radicalismo,0.039,0.895,0.338
 2005,AFIRMACION PARA UNA REPUBLICA IGUALITARIA,municipal,4,otros,0.452,0.299,0.372
 2005,CONFEDERACION VECINAL,municipal,,vecinalismo,,,
@@ -184,7 +184,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2007,VAMOS,intendente,,,,,
 2009,ACUERDO CIVICO Y SOCIAL,municipal,3,progresistas,-0.692,1.546,0.461
 2009,AGRUPACION MUNICIPAL CONFLUENCIA CIVICA,municipal,,,,,
-2009,CONSENSO FEDERAL,municipal,4,peronismo provincial,,,
+2009,CONSENSO FEDERAL,municipal,5,radicalismo,0.175,0.876,0.351
 2009,FRENTE DE IZQUIERDA Y LOS TRABAJADORES,municipal,1,marxistas,-1.991,2.325,0.723
 2009,FRENTE ES POSIBLE,municipal,,,,,
 2009,FRENTE JUSTICIALISTA PARA LA VICTORIA. (*),municipal,3,peronistas,-1.664,1.831,0.871
@@ -197,7 +197,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2009,UNION PRO,municipal,5,liberales,1.401,-0.142,0.186
 2009,VOLUNTAD PARA LA INTEGRACION Y EL,municipal,,,,,
 2009,ACUERDO CIVICO Y SOCIAL,provincial,3,progresistas,-0.692,1.546,0.461
-2009,CONSENSO FEDERAL,provincial,4,peronismo provincial,,,
+2009,CONSENSO FEDERAL,provincial,5,radicalismo,0.175,0.876,0.351
 2009,FRENTE DE IZQUIERDA Y LOS TRABAJADORES,provincial,1,marxistas,-1.991,2.325,0.723
 2009,FRENTE ES POSIBLE,provincial,,,,,
 2009,FRENTE JUSTICIALISTA PARA LA VICTORIA,provincial,3,peronistas,-1.664,1.831,0.871
@@ -418,7 +418,7 @@ anio,agrupacion,nivel,campo_ideologico,filiacion_politica,vparty_economico,vpart
 2021,FRENTE VAMOS CON VOS,nacional,4,peronismo provincial,0.325,-0.492,0.334
 2021,JUNTOS,nacional,5,liberales,1.401,-0.141,0.186
 2021,JUSTICIA Y DIGNIDAD PATRIOTICA,nacional,6,nacionalistas,,,
-2021,LABORISTA,nacional,3,peronistas,,,
+2021,LABORISTA,nacional,2,progresistas,-1.412,1.557,0.723
 2021,MORAL Y PROGRESO,nacional,5,liberales,,,
 2021,MOVIMIENTO AL SOCIALISMO,nacional,1,marxistas,-1.991,2.325,0.723
 2021,POLITICA OBRERA,nacional,1,marxistas,-1.991,2.325,0.723
