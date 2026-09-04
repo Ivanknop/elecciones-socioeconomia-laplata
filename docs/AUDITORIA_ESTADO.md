@@ -1,11 +1,11 @@
-# Estado de la auditoría (`NOTA_METODOLOGICA.md`, Sección 8) — a HEAD (post-v7.4.0) + sesión actual
+# Estado de la auditoría (`NOTA_METODOLOGICA.md`, Sección 8) — a v8.0.0 (post-v7.4.0) + sesión actual
 
 Este documento existe porque la nota metodológica es un documento de trabajo
 fechado sobre `v1.0.0`. Se actualiza cada vez que se cierra un punto.
 
 Convención: 🟢 resuelto · 🟡 parcial · 🔴 abierto · 🔒 bloqueado (fuera de alcance actual)
 
-**Alcance de esta pasada (v7.4.0 → HEAD, 15 commits, + sesión actual
+**Alcance de esta pasada (v7.4.0 → v8.0.0, 15 commits, + sesión actual
 todavía sin commitear):** lo que la pasada anterior describía como
 "trabajo de la sesión actual, todavía sin commitear" (escala fija V-Party,
 cuadrante real por localidad, limpieza de docstrings) en realidad ya se
@@ -80,7 +80,7 @@ como decisión de codificación aparte.
 
 🟡 Parcial, actualizado (commits `a9b84d5`/`8c5fa23`, v6.0.0; `cfb6309`,
 v7.1.0; `8faecda`/`6e431fe`/`cfb2c39`, v7.2.0-v7.4.0; y los 15 commits
-hasta HEAD, ver nota de cabecera). Dos de las tres piezas restantes de la
+hasta v8.0.0, ver nota de cabecera). Dos de las tres piezas restantes de la
 Sección 5.3 tienen ahora un primer avance:
 
 - **Dimensiones programáticas separadas**: `vparty_economico`,
@@ -175,7 +175,7 @@ Estas piezas **no estaban pedidas por `nota_metodologica.md`** (que es anterior 
 |---|---|---|
 | Macroeconomía | Series nacionales 2011-2025 (IPC, tipo de cambio, deuda, PBI, mercado laboral), grano exclusivamente nacional, sin `circuito_id` ni localidad — nunca cruzada espacialmente con lo electoral, sólo por fecha | `docs/plan_macroeconomia.md`, `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` |
 | Geolocalización | Catálogo validado de las 36 localidades (Georef-AR × Ministerio de Obras Públicas), lat/lon por localidad — todavía no cruzado con `circuito_id` ni Censo (explícitamente fuera de alcance por ahora) | `data/geolocalizacion/LOCALIDADES.md` |
-| Mapa interactivo + GitHub Pages | `docs/mapa_electoral_la_plata.html` (v4-v5), `docs/distribucion_ideologica_la_plata.html` (v7.2.0, cuadrantes V-Party interactivos, selector Nivel+Año, autoplay, hoy sin desglose por localidad — ver 8.2) y, desde los 15 commits hasta HEAD, dos pestañas más: `docs/trayectorias_economicas_la_plata.html`/`_bieleccion_la_plata.html` (movimiento trimestral de una ventana electoral, corta o de 4 años, sobre el panel de `src/ml_models/`). Cuatro scripts en `src/visualizacion/` en total. 68 circuitos × 22 combos (año, nivel) generales el primero | `CLAUDE.md`, `docs/FUNCIONALIDADES.md`, skill `laplata-visualizacion` |
+| Mapa interactivo + GitHub Pages | `docs/mapa_electoral_la_plata.html` (v4-v5), `docs/distribucion_ideologica_la_plata.html` (v7.2.0, cuadrantes V-Party interactivos, selector Nivel+Año, autoplay, hoy sin desglose por localidad — ver 8.2) y, desde los 15 commits hasta v8.0.0, dos pestañas más: `docs/trayectorias_economicas_la_plata.html`/`_bieleccion_la_plata.html` (movimiento trimestral de una ventana electoral, corta o de 4 años, sobre el panel de `src/ml_models/`). Cuatro scripts en `src/visualizacion/` en total. 68 circuitos × 22 combos (año, nivel) generales el primero | `CLAUDE.md`, `docs/FUNCIONALIDADES.md`, skill `laplata-visualizacion` |
 | V-Party / oficialismo | `vparty_economico`/`progresismo`/`populismo` (**356/557 filas**, no 208/347 — 2001-2009 incorporado esta sesión, ver hallazgo de desglose incompleto, ahora más grande, en 8.2) y `oficialismos.csv`. `cfb2c39` había agregado escala fija/simétrica entre PNG y cuadro interactivo (sigue vigente) y un cuadrante real por localidad (revertido 3 commits después, ver 8.2) | `data/agrupaciones/v-party/README.md` (desactualizado, ver 8.2), `docs/vparty_cuadrantes.md` |
 | ICG (v7.3.0) | Índice de Confianza en el Gobierno (UTDT, microdato externo no redistribuible) — serie mensual La Plata vs. país 2011-presente (ponderada, "país" incluye a La Plata a propósito) más cortes demográficos (sexo/edad/edu, mensual a nivel país y anual a nivel La Plata por tamaño de muestra). Dominio nuevo bajo `src/socioeconomia/`, sin cruce todavía con lo electoral. **Hallazgo de esta pasada**: el directorio del insumo crudo se renombró de `data/socioeconomia/icg/` a `icg-icc/` en `6f09f74`, pero el rename nunca tocó `ICG_RAW_PATH` (`src/constantes.py`) ni ~7 referencias en README/CLAUDE.md/docs que seguían citando la ruta vieja — correr `icg_exportar_csv` tiraba `FileNotFoundError`. Corregido en esta pasada (código y documentación) | `data/socioeconomia/ICG.md`, `data/socioeconomia/icg-icc/README.md` |
 | Panel temporal de ventanas electorales (`src/ml_models/`) | Dominio nuevo entero, no existía a v7.4.0: una fila por transición electoral (año×nivel), cruzando resultado electoral local con las series del dominio macro, para modelado futuro. Cinco fases — calendario/oficialismo/ventanas (`construir_calendario.py`), resultado por distrito con fallback a `data/tfi_data/elecciones/` para 2001-2009 (`construir_resultado_distrito.py`), registro de variables económicas (`cargar_series_economicas.py`), features intra/interventana + `panel_ventanas.csv` (`features_ventana.py`/`construir_panel_ventanas.py`), y panel trimestral en formato largo sobre la ventana corta `_vc` (`data/tfi_data/panel/t-1/`) y sobre el bloque largo `_vl` t-2→t (`data/tfi_data/panel/t-2/`, 28 ventanas, no 31 — la primera transición de cada nivel no tiene bloque largo). `cargar_panel()` exige `nivel` sin default a propósito (D7/D10, no pooling accidental de los tres niveles) | `docs/especificacion_panel_temporal.md`, `docs/decisiones_metodologicas.md`, `CLAUDE.md` ("`src/ml_models/`") |
@@ -216,7 +216,7 @@ que son insumo para ese cruce pero no lo reemplazan. La Sección 8.2
 dimensiones programáticas + oficialismo parciales); la Sección 6
 (protocolo de inferencia) sigue sin atacarse.
 
-**Esta pasada (v7.4.0 → HEAD, 15 commits, + sesión actual)** tampoco es
+**Esta pasada (v7.4.0 → v8.0.0, 15 commits, + sesión actual)** tampoco es
 una revalidación completa de 8.1 — se limitó a los ítems 12/14 (tests,
 peso del repo, ambos con evidencia nueva verificable) y a 8.2 (V-Party),
 más una auditoría de documentación de punta a punta que no estaba
