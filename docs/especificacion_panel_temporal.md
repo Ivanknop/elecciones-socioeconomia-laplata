@@ -265,7 +265,7 @@ Los tres pasos deben leer sus parámetros del registro de variables, no de const
 
 Las series oficiales del INDEC de ese período están sujetas a reservas por intervención del organismo. Afecta a `ipc`, `desocupacion` y `pobreza`, e indirectamente a `salario_real`.
 
-**Decisión (D6, ver sección 8):** se usan las series oficiales, se marca el período con una columna `periodo_intervenido` (booleana, por mes), y se realiza análisis de sensibilidad comparando resultados con y sin ese subperíodo, y con fuentes alternativas (IPC Congreso, CEDLAS) donde estén disponibles.
+**Decisión (D6, ver sección 8):** se usan las series oficiales; la reserva sobre este tramo queda documentada en `nota_metodologica` de `registro_variables.csv`, no en una columna del panel (ver corrección a D6 en `decisiones_metodologicas.md`). Un eventual análisis de sensibilidad comparando resultados con y sin ese subperíodo, y con fuentes alternativas (IPC Congreso, CEDLAS) donde estén disponibles, queda pendiente.
 
 **No se excluyen observaciones a priori.** El período incluye ~4 elecciones por nivel; excluirlo destruiría un tercio del panel.
 
@@ -378,6 +378,43 @@ Se requiere una columna `continuidad_oficialismo` con valores:
 - `delta_posicion_ideologica` — cambio en la posición ideológica ponderada del electorado del distrito, calculada como promedio de scores V-Party ponderado por share de voto de cada agrupación. **Nunca atribuir la ideología del ganador al distrito entero** (disciplina anti-falacia ecológica, ya establecida en el proyecto).
 - `distancia_oficialismo_alternativa` — distancia ideológica entre el oficialismo y la principal fuerza opositora disponible, para probar H3.
 
+### 6.4 Diccionario de columnas de `data/tfi_data/elecciones.csv` (D17)
+
+Grano `(nivel, año)`, generado por `ml_models.construir_elecciones_resumen`
+a partir de `data/tfi_data/elecciones/<año>_<nivel>.csv` (detalle por
+partido, no confundir los dos archivos) — fuente de verdad de la
+estructura de la oferta electoral que consume el panel trimestral (D13,
+D14). `resultado_distrito.csv`/`voto_partido_distrito.csv` quedan
+congelados, no reemplazados en el disco, ver D17 en
+`docs/decisiones_metodologicas.md` para el detalle completo de fuentes y
+huecos.
+
+| Columna | Descripción | Fuente |
+|---|---|---|
+| `nivel`, `anio` | identificación de la elección | `calendario_electoral.csv` |
+| `votantes_habilitados` | padrón | fila `VOTANTES_HABILITADOS` de `elecciones/<año>_<nivel>.csv` |
+| `votos_positivos` | suma de votos a agrupaciones (excluye blanco/nulo) | filas de agrupación de `elecciones/<año>_<nivel>.csv` |
+| `votos_blancos` | fila `BLANCO` | `elecciones/<año>_<nivel>.csv` |
+| `votos_nulos` | fila `NULO` — **vacío en `2025 provincial`/`2025 municipal`**, esa fuente no trae ese desglose | `elecciones/<año>_<nivel>.csv` |
+| `ausentismo` | años con `circuito_<cargo>.json`: `electores - positivos - otros_total` (`analisis.graficos._votos_no_ideologicos`); sin circuito: `votantes_habilitados - votos_positivos - votos_blancos - votos_nulos` (vacío si falta `votos_nulos`) — las dos fórmulas no son exactamente equivalentes, ver D17 | `circuito_<cargo>.json` o `elecciones/<año>_<nivel>.csv` |
+| `gana_oficialismo`, `share_oficialismo` | resultado del oficialismo de ese nivel | `ml_models.construir_resultado_distrito._entrada_oficialismo` (reusada tal cual) |
+| `agrupacion_oficialismo` | nombre del titular del Ejecutivo real | `oficialismo_por_nivel.csv` |
+| `n_fuerzas_viables` | cantidad de agrupaciones con `share ≥ 1.5%` sobre `votos_positivos` (Ley 26.571, 2011) | calculado |
+| `share_marginal_acumulado` | suma de `share` de las agrupaciones por debajo del piso | calculado |
+| `share_oposicion_principal` | `share` de la fuerza viable no oficialista con más votos | calculado |
+| `share_otras_fuerzas_viables` | suma de `share` de las fuerzas viables que no son ni el oficialismo ni la oposición principal — cierra la identidad `share_marginal_acumulado + share_oposicion_principal + share_otras_fuerzas_viables + share_oficialismo (si es viable) = 100` | calculado |
+| `dispersion_economico_mu`, `dispersion_economico_sigma2` | media/varianza de `vparty_economico` ponderada por voto, solo fuerzas viables con score cargado | calculado (`_dispersion_ponderada`) |
+| `dispersion_progresismo_mu`, `dispersion_progresismo_sigma2` | ídem, eje `vparty_progresismo` (populismo queda afuera, mismo criterio que `vparty_cuadrantes_local`) | calculado |
+| `resultado_disponible` | `True` si la fila salió de `circuito_<cargo>.json`, `False` si salió del fallback `elecciones/` | — |
+
+**Huecos de cobertura esperados:**
+- `nacional` 2001-2009 no genera fila (no está en `calendario_electoral.csv`).
+- `votos_nulos`/`ausentismo` vacíos en `2025 provincial`/`2025 municipal`.
+- `dispersion_*` vacías en cualquier (nivel,año) donde ninguna fuerza viable
+  tenga V-Party cargado — no ocurrió en ninguna de las 34 filas reales del
+  período (2001-2025) a esta fecha, pero puede ocurrir si se filtra por un
+  subconjunto o si la clasificación de alguna agrupación se revierte.
+
 ---
 
 ## 7. Tres series paralelas y atribución de responsabilidad
@@ -445,7 +482,7 @@ A incorporar en `docs/decisiones_metodologicas.md`:
 ### 9.3 Fase 3 — Series económicas
 
 7. Construir `registro_variables.csv` con el esquema de la sección 4.2, poblado con las variables iniciales de 4.3. Este archivo es el punto de extensión del sistema: agregar una variable futura debe ser agregar una fila acá más la serie correspondiente.
-8. Construir `series_economicas_mensuales.csv`: grano mensual, 2001-2025, con las variables declaradas en el registro. Columna `periodo_intervenido`.
+8. Construir `series_economicas_mensuales.csv`: grano mensual, 2001-2025, con las variables declaradas en el registro.
 9. Documentar la procedencia de cada serie y las decisiones de empalme e interpolación en el campo `nota_metodologica` del registro o en un `README` adjunto.
 10. La carga debe ser **genérica respecto del registro**: agregar una variable no debe requerir modificar `cargar_series_economicas.py` más allá del mecanismo de descarga o lectura específico de esa fuente.
 

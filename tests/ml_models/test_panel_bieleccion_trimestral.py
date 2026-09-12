@@ -6,11 +6,11 @@ from datetime import date
 import pytest
 
 from ml_models.cargar_series_economicas import FilaRegistroVariable
+from ml_models.construir_elecciones_resumen import FilaEleccion
 from ml_models.construir_panel_bieleccion_trimestral import (
     construir_panel_bieleccion_trimestral,
     generar_csvs,
 )
-from ml_models.construir_resultado_distrito import FilaResultadoDistrito
 
 
 def _var(id_variable, es_flujo=False, polaridad="positiva"):
@@ -48,6 +48,30 @@ def _serie(valores: dict[str, float | None]) -> dict[date, float | None]:
     return {date.fromisoformat(f"{k}-01"): v for k, v in valores.items()}
 
 
+def _eleccion(anio, nivel, gana_oficialismo, share_oficialismo, agrupacion_oficialismo) -> FilaEleccion:
+    return FilaEleccion(
+        nivel=nivel,
+        anio=anio,
+        votantes_habilitados=100,
+        votos_positivos=90,
+        votos_blancos=8,
+        votos_nulos=2,
+        ausentismo=10,
+        gana_oficialismo=gana_oficialismo,
+        share_oficialismo=share_oficialismo,
+        agrupacion_oficialismo=agrupacion_oficialismo,
+        n_fuerzas_viables=2,
+        share_marginal_acumulado=0.0,
+        share_oposicion_principal=100.0 - share_oficialismo,
+        share_otras_fuerzas_viables=0.0,
+        dispersion_economico_mu=None,
+        dispersion_economico_sigma2=None,
+        dispersion_progresismo_mu=None,
+        dispersion_progresismo_sigma2=None,
+        resultado_disponible=True,
+    )
+
+
 @pytest.fixture
 def escenario_basico():
     """Dos transiciones consecutivas del mismo nivel: la primera (t-2=None,
@@ -64,16 +88,11 @@ def escenario_basico():
         "x": _serie({f"{a}-{m:02d}": float(m) for a in anios for m in range(1, 13)}),
         "ipc": _serie({f"{a}-{m:02d}": 100.0 + m for a in anios for m in range(1, 13)}),
     }
-    periodo_intervenido_por_mes = {date(a, m, 1): False for a in anios for m in range(1, 13)}
-    resultado_por_anio_nivel = {
-        (2007, "municipal"): FilaResultadoDistrito(2007, "municipal", 100, 2, 90.0, True, 60.0, True),
-        (2011, "municipal"): FilaResultadoDistrito(2011, "municipal", 100, 2, 90.0, False, 40.0, True),
+    elecciones_por_anio_nivel = {
+        (2007, "municipal"): _eleccion(2007, "municipal", True, 60.0, "OFICIALISMO"),
+        (2011, "municipal"): _eleccion(2011, "municipal", False, 40.0, "OTRO"),
     }
-    oficialismo_por_nivel = {
-        (2007, "municipal"): {"agrupacion_oficialismo": "OFICIALISMO"},
-        (2011, "municipal"): {"agrupacion_oficialismo": "OTRO"},
-    }
-    return ventanas, registro, series_mensuales, periodo_intervenido_por_mes, resultado_por_anio_nivel, oficialismo_por_nivel
+    return ventanas, registro, series_mensuales, elecciones_por_anio_nivel
 
 
 class TestConstruirPanelBieleccionTrimestral:
@@ -98,6 +117,7 @@ class TestConstruirPanelBieleccionTrimestral:
         assert "anio_t_menos_1" not in frontera_t_menos_2
         for frontera in (frontera_t_menos_2, frontera_t):
             assert frontera["gana_oficialismo"] is not None
+            assert frontera["n_fuerzas_viables"] is not None
             assert frontera["x"] is None
             assert frontera["n_meses"] is None
 

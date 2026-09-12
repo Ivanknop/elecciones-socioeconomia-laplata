@@ -22,8 +22,8 @@ metadata):
 **Hueco real, no una falla de búsqueda:** 2014-01 a fines de 2016 no tiene
 serie nacional mensual oficial publicada en ninguna fuente encontrada —
 período de transición metodológica post-intervención INDEC, coincide con
-el final de la ventana ya marcada `periodo_intervenido` (D6). Se declara
-como tramo faltante explícito, no se imputa.
+el final del período con reservas por intervención INDEC (D6, 2007-2015).
+Se declara como tramo faltante explícito, no se imputa.
 
 ## 1.d — ICC (Índice de Confianza del Consumidor, UTDT): ÉXITO
 

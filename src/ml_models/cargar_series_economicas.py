@@ -25,9 +25,6 @@ from socioeconomia.icg_construir_series import construir_serie_headline
 ANIO_INICIO = 2001
 ANIO_FIN = 2025
 
-_PERIODO_INTERVENIDO_DESDE = date(2007, 1, 1)
-_PERIODO_INTERVENIDO_HASTA = date(2015, 12, 1)
-
 _LOOKBACK_MESES = {"trimestral": 3, "semestral": 6, "anual": 12}
 
 _DATOS_GOB_IDS: dict[str, list[str]] = {
@@ -192,7 +189,6 @@ def construir_tabla_mensual(
     filas = []
     for mes in meses:
         fila = {"fecha": mes.isoformat()}
-        fila["periodo_intervenido"] = _PERIODO_INTERVENIDO_DESDE <= mes <= _PERIODO_INTERVENIDO_HASTA
         for var in registro:
             valor = series_mensuales.get(var.id_variable, {}).get(mes)
             fila[var.id_variable] = valor if valor is not None else ""
@@ -215,7 +211,7 @@ def generar_csv(
 
     destino_path = Path(destino)
     destino_path.parent.mkdir(parents=True, exist_ok=True)
-    columnas = ["fecha", "periodo_intervenido"] + [var.id_variable for var in registro]
+    columnas = ["fecha"] + [var.id_variable for var in registro]
     with destino_path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=columnas)
         writer.writeheader()

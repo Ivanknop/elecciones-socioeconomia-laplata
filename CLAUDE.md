@@ -466,6 +466,23 @@ order, 01→04) are the pipeline**.
   requires `cargar_panel_apilado(justificacion)`, a separate function
   that demands an explicit reason, never the default path.
 
+  `construir_elecciones_resumen.py` writes `data/tfi_data/elecciones.csv`
+  (D17, see `docs/decisiones_metodologicas.md` and
+  `docs/especificacion_panel_temporal.md` §6.4) — grain `(nivel, año)`,
+  not to be confused with the `elecciones/<año>_<nivel>.csv` per-party
+  directory above. It's the source of the electoral-offer structure
+  (`n_fuerzas_viables`, `share_marginal_acumulado`,
+  `share_oposicion_principal`, `share_otras_fuerzas_viables`, V-Party
+  dispersion) that Fase 5's `_fila_frontera` (both trimestral scripts)
+  joins against for `tipo_fila=eleccion_t`/`eleccion_t_menos_1`/
+  `eleccion_t_menos_2` rows — **`resultado_distrito.csv`/
+  `voto_partido_distrito.csv` are now orphaned from that join**: still on
+  disk, `construir_resultado_distrito.py` still runs standalone, but
+  nothing in the Fase 5 pipeline reads or regenerates them anymore, same
+  "kept, not deleted" pattern as `vparty_cuadrantes_local` above.
+  `panel_ventanas.csv` (Fase 4) still joins against `resultado_distrito.csv`
+  as before — that join wasn't part of this change.
+
 - **`src/macroeconomia/`** is a separate analytical domain: **national-grain
   only** (no circuito, no localidad), related to the rest of the repo by
   date, never by spatial join. Source evaluation and per-variable design

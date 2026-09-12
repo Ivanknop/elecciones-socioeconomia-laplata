@@ -13,7 +13,7 @@ from visualizacion.trayectorias_economicas_bieleccion import construir_payload
 
 _COLUMNAS_FIXTURE = [
     "id_transicion", "nivel", "anio_t", "anio_t_menos_2", "orden", "tipo_fila",
-    "n_meses", "periodo_intervenido", "gana_oficialismo", "share_oficialismo",
+    "n_meses", "gana_oficialismo", "share_oficialismo",
     "agrupacion_oficialismo", "x",
 ]
 
@@ -34,7 +34,6 @@ class TestConstruirPayloadSintetico:
             "anio_t": "2013",
             "anio_t_menos_2": "2009",
             "n_meses": "",
-            "periodo_intervenido": "",
             "share_oficialismo": "",
             "x": "",
         }
@@ -58,7 +57,6 @@ class TestConstruirPayloadSintetico:
             "anio_t": "2013",
             "anio_t_menos_2": "2009",
             "n_meses": "",
-            "periodo_intervenido": "",
             "share_oficialismo": "",
             "x": "",
         }

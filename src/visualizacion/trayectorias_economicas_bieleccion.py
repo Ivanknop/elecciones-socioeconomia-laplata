@@ -17,6 +17,7 @@ from pathlib import Path
 
 from constantes import PANEL_BIELECCION_TRIMESTRAL_DIR, SERIES_ECONOMICAS_MENSUALES_PATH
 from ml_models.construir_calendario import NIVELES
+from ml_models.construir_elecciones_resumen import COLUMNAS_ELECCION_PANEL
 from ml_models.construir_panel_trimestral import _promedio_trimestre
 from ml_models.construir_panel_ventanas import _leer_dicts
 from ml_models.features_ventana import _meses_en_ventana
@@ -29,6 +30,8 @@ from visualizacion.trayectorias_economicas import (
     _variables_de,
 )
 
+# Ver la nota equivalente en `trayectorias_economicas.py` -- mismo criterio,
+# `anio_t_menos_2` en vez de `anio_t_menos_1`.
 _COLUMNAS_FIJAS = {
     "id_transicion",
     "nivel",
@@ -39,10 +42,7 @@ _COLUMNAS_FIJAS = {
     "fecha_inicio",
     "fecha_fin",
     "n_meses",
-    "periodo_intervenido",
-    "gana_oficialismo",
-    "share_oficialismo",
-    "agrupacion_oficialismo",
+    *COLUMNAS_ELECCION_PANEL,
 }
 
 

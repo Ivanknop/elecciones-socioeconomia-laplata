@@ -127,15 +127,6 @@ class TestConstruirTablaMensual:
         filas = construir_tabla_mensual(registro, {}, anio_inicio=2023, anio_fin=2023)
         assert all(f["x"] == "" for f in filas)
 
-    def test_periodo_intervenido_marca_2007_2015(self):
-        registro = [_var("x")]
-        filas = construir_tabla_mensual(registro, {"x": []}, anio_inicio=2006, anio_fin=2016)
-        por_fecha = {f["fecha"]: f["periodo_intervenido"] for f in filas}
-        assert por_fecha["2006-12-01"] is False
-        assert por_fecha["2007-01-01"] is True
-        assert por_fecha["2015-12-01"] is True
-        assert por_fecha["2016-01-01"] is False
-
     def test_variable_nominal_se_deflacta_por_ipc_automaticamente(self):
         registro = [_var("ipc"), _var("salario_real", nominal=True)]
         puntos = {

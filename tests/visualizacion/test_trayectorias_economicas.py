@@ -9,6 +9,7 @@ from datetime import date
 import pytest
 
 from ml_models.construir_calendario import construir_calendario, construir_ventanas
+from ml_models.construir_elecciones_resumen import COLUMNAS_ELECCION_PANEL
 from ml_models.construir_panel_trimestral import calcular_n_trimestres
 from constantes import PANEL_TRIMESTRAL_DIR, SERIES_ECONOMICAS_MENSUALES_PATH
 from visualizacion.trayectorias_economicas import (
@@ -71,7 +72,7 @@ class TestSalarioRealUsdMensual:
 
 _COLUMNAS_FIXTURE = [
     "id_transicion", "nivel", "anio_t", "anio_t_menos_1", "orden", "tipo_fila",
-    "n_meses", "periodo_intervenido", "gana_oficialismo", "share_oficialismo",
+    "n_meses", "gana_oficialismo", "share_oficialismo",
     "agrupacion_oficialismo", "x",
 ]
 
@@ -92,7 +93,6 @@ class TestConstruirPayloadSintetico:
             "anio_t": "2013",
             "anio_t_menos_1": "2011",
             "n_meses": "",
-            "periodo_intervenido": "",
             "share_oficialismo": "",
             "x": "",
         }
@@ -116,7 +116,6 @@ class TestConstruirPayloadSintetico:
             "anio_t": "2013",
             "anio_t_menos_1": "2011",
             "n_meses": "",
-            "periodo_intervenido": "",
             "share_oficialismo": "",
             "x": "",
         }
@@ -148,7 +147,6 @@ class TestSalarioRealUsdEnPayload:
             "anio_t": "2013",
             "anio_t_menos_1": "2011",
             "n_meses": "",
-            "periodo_intervenido": "",
             "gana_oficialismo": "True",
             "share_oficialismo": "",
             "agrupacion_oficialismo": "A",
@@ -202,8 +200,8 @@ class TestIntegracionDatosReales:
             columnas = next(csv.reader(f))
         columnas_fijas = {
             "id_transicion", "nivel", "anio_t", "anio_t_menos_1", "orden", "tipo_fila",
-            "fecha_inicio", "fecha_fin", "n_meses", "periodo_intervenido",
-            "gana_oficialismo", "share_oficialismo", "agrupacion_oficialismo",
+            "fecha_inicio", "fecha_fin", "n_meses",
+            *COLUMNAS_ELECCION_PANEL,
         }
         esperadas = {c for c in columnas if c not in columnas_fijas}
         esperadas = sorted((esperadas - {"salario_real"}) | {"salario_real_usd"})

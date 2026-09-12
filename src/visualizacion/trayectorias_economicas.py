@@ -17,10 +17,16 @@ from pathlib import Path
 
 from constantes import PANEL_TRIMESTRAL_DIR, SERIES_ECONOMICAS_MENSUALES_PATH
 from ml_models.construir_calendario import NIVELES
+from ml_models.construir_elecciones_resumen import COLUMNAS_ELECCION_PANEL
 from ml_models.construir_panel_trimestral import _promedio_trimestre
 from ml_models.construir_panel_ventanas import _leer_dicts
 from ml_models.features_ventana import _meses_en_ventana
 
+# Columnas de `elecciones.csv` (D17) más las propias del formato largo del
+# panel -- ninguna es una variable económica a graficar, aunque compartan
+# el mismo CSV. `COLUMNAS_ELECCION_PANEL` se reusa en vez de listar
+# `gana_oficialismo`/`share_oficialismo`/etc. a mano para no volver a
+# desincronizarse si `elecciones.csv` gana columnas nuevas.
 _COLUMNAS_FIJAS = {
     "id_transicion",
     "nivel",
@@ -31,10 +37,7 @@ _COLUMNAS_FIJAS = {
     "fecha_inicio",
     "fecha_fin",
     "n_meses",
-    "periodo_intervenido",
-    "gana_oficialismo",
-    "share_oficialismo",
-    "agrupacion_oficialismo",
+    *COLUMNAS_ELECCION_PANEL,
 }
 
 # Etiquetas para el template, no una fuente nueva del dato -- resumen de

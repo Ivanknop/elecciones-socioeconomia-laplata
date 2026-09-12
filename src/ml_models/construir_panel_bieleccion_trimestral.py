@@ -13,18 +13,17 @@ from datetime import date
 from pathlib import Path
 
 from constantes import (
-    OFICIALISMO_POR_NIVEL_PATH,
+    ELECCIONES_RESUMEN_PATH,
     PANEL_BIELECCION_TRIMESTRAL_DIR,
     REGISTRO_VARIABLES_PATH,
-    RESULTADO_DISTRITO_PATH,
     SERIES_ECONOMICAS_MENSUALES_PATH,
     VENTANAS_PATH,
 )
 from ml_models.cargar_series_economicas import FilaRegistroVariable, cargar_registro
 from ml_models.construir_calendario import NIVELES
+from ml_models.construir_elecciones_resumen import COLUMNAS_ELECCION_PANEL, FilaEleccion, cargar_elecciones
 from ml_models.construir_panel_trimestral import (
     _ancla_inicial,
-    _cargar_periodo_intervenido,
     _escribir_csv,
     _particionar_meses,
     _promedio_trimestre,
@@ -32,13 +31,7 @@ from ml_models.construir_panel_trimestral import (
     _variacion_flujo_trimestre,
     calcular_n_trimestres,
 )
-from ml_models.construir_panel_ventanas import (
-    _cargar_oficialismo_por_nivel,
-    _cargar_resultado_distrito,
-    _cargar_series_mensuales,
-    _cargar_ventanas,
-)
-from ml_models.construir_resultado_distrito import FilaResultadoDistrito
+from ml_models.construir_panel_ventanas import _cargar_series_mensuales, _cargar_ventanas
 from ml_models.features_ventana import _meses_en_ventana
 
 
@@ -51,14 +44,12 @@ def _fila_frontera(
     anio_t_menos_2: int,
     anio: int,
     fecha: str,
-    resultado_por_anio_nivel: dict[tuple[int, str], FilaResultadoDistrito],
-    oficialismo_por_nivel: dict[tuple[int, str], dict],
+    elecciones_por_anio_nivel: dict[tuple[int, str], FilaEleccion],
     variables: list[FilaRegistroVariable],
 ) -> dict:
     """Análoga a `construir_panel_trimestral._fila_frontera`, con
     `anio_t_menos_2` en vez de `anio_t_menos_1`."""
-    resultado = resultado_por_anio_nivel.get((anio, nivel))
-    of = oficialismo_por_nivel.get((anio, nivel))
+    eleccion = elecciones_por_anio_nivel.get((anio, nivel))
     fila = {
         "id_transicion": id_transicion,
         "nivel": nivel,
@@ -69,11 +60,9 @@ def _fila_frontera(
         "fecha_inicio": fecha,
         "fecha_fin": fecha,
         "n_meses": None,
-        "periodo_intervenido": None,
-        "gana_oficialismo": resultado.gana_oficialismo if resultado else None,
-        "share_oficialismo": resultado.share_oficialismo if resultado else None,
-        "agrupacion_oficialismo": of["agrupacion_oficialismo"] if of else None,
     }
+    for col in COLUMNAS_ELECCION_PANEL:
+        fila[col] = getattr(eleccion, col) if eleccion is not None else None
     for var in variables:
         fila[var.id_variable] = None
     return fila
@@ -83,9 +72,7 @@ def construir_panel_bieleccion_trimestral(
     ventanas: list[dict],
     registro: list[FilaRegistroVariable],
     series_mensuales: dict[str, dict[date, float | None]],
-    periodo_intervenido_por_mes: dict[date, bool],
-    resultado_por_anio_nivel: dict[tuple[int, str], FilaResultadoDistrito],
-    oficialismo_por_nivel: dict[tuple[int, str], dict],
+    elecciones_por_anio_nivel: dict[tuple[int, str], FilaEleccion],
     nivel: str,
 ) -> list[dict]:
     """Pura -- mismas fuentes que `construir_panel_trimestral`, ventana
@@ -114,8 +101,7 @@ def construir_panel_bieleccion_trimestral(
                 anio_t_menos_2,
                 anio_t_menos_2,
                 fecha_inicio_vl,
-                resultado_por_anio_nivel,
-                oficialismo_por_nivel,
+                elecciones_por_anio_nivel,
                 variables,
             )
         )
@@ -138,11 +124,9 @@ def construir_panel_bieleccion_trimestral(
                 "fecha_inicio": grupo[0].isoformat(),
                 "fecha_fin": grupo[-1].isoformat(),
                 "n_meses": len(grupo),
-                "periodo_intervenido": any(periodo_intervenido_por_mes.get(m, False) for m in grupo),
-                "gana_oficialismo": None,
-                "share_oficialismo": None,
-                "agrupacion_oficialismo": None,
             }
+            for col in COLUMNAS_ELECCION_PANEL:
+                fila[col] = None
             for var in variables:
                 serie = series_mensuales[var.id_variable]
                 if var.es_flujo:
@@ -162,8 +146,7 @@ def construir_panel_bieleccion_trimestral(
                 anio_t_menos_2,
                 anio_t,
                 fecha_fin_vc,
-                resultado_por_anio_nivel,
-                oficialismo_por_nivel,
+                elecciones_por_anio_nivel,
                 variables,
             )
         )
@@ -174,16 +157,13 @@ def generar_csvs(
     ventanas_path: Path | str = VENTANAS_PATH,
     registro_path: Path | str = REGISTRO_VARIABLES_PATH,
     series_path: Path | str = SERIES_ECONOMICAS_MENSUALES_PATH,
-    resultado_path: Path | str = RESULTADO_DISTRITO_PATH,
-    oficialismo_path: Path | str = OFICIALISMO_POR_NIVEL_PATH,
+    elecciones_path: Path | str = ELECCIONES_RESUMEN_PATH,
     destino_dir: Path | str = PANEL_BIELECCION_TRIMESTRAL_DIR,
 ) -> list[Path]:
     ventanas = _cargar_ventanas(ventanas_path)
     registro = cargar_registro(registro_path)
     series_mensuales = _cargar_series_mensuales(series_path, registro)
-    periodo_intervenido_por_mes = _cargar_periodo_intervenido(series_path)
-    resultado_por_anio_nivel = _cargar_resultado_distrito(resultado_path)
-    oficialismo_por_nivel = _cargar_oficialismo_por_nivel(oficialismo_path)
+    elecciones_por_anio_nivel = cargar_elecciones(elecciones_path)
 
     variables = _variables_con_datos(registro, series_mensuales)
     columnas = [
@@ -196,17 +176,11 @@ def generar_csvs(
         "fecha_inicio",
         "fecha_fin",
         "n_meses",
-        "periodo_intervenido",
-        "gana_oficialismo",
-        "share_oficialismo",
-        "agrupacion_oficialismo",
-    ] + sorted(var.id_variable for var in variables)
+    ] + COLUMNAS_ELECCION_PANEL + sorted(var.id_variable for var in variables)
 
     destinos = []
     for nivel in NIVELES:
-        filas = construir_panel_bieleccion_trimestral(
-            ventanas, registro, series_mensuales, periodo_intervenido_por_mes, resultado_por_anio_nivel, oficialismo_por_nivel, nivel
-        )
+        filas = construir_panel_bieleccion_trimestral(ventanas, registro, series_mensuales, elecciones_por_anio_nivel, nivel)
         destinos.append(_escribir_csv(Path(destino_dir) / f"panel_bieleccion_trimestral_{nivel}.csv", filas, columnas))
     return destinos
 

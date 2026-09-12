@@ -9,8 +9,6 @@ import pytest
 from ml_models.cargar_series_economicas import FilaRegistroVariable, cargar_registro
 from ml_models.construir_panel_trimestral import (
     _ancla_inicial,
-    _cargar_periodo_intervenido,
-    _parsear_bool_csv,
     _particionar_meses,
     _promedio_trimestre,
     _variables_con_datos,
@@ -19,8 +17,8 @@ from ml_models.construir_panel_trimestral import (
     construir_panel_trimestral,
     generar_csvs,
 )
+from ml_models.construir_elecciones_resumen import FilaEleccion
 from ml_models.construir_panel_ventanas import _cargar_series_mensuales
-from ml_models.construir_resultado_distrito import FilaResultadoDistrito
 from constantes import REGISTRO_VARIABLES_PATH, SERIES_ECONOMICAS_MENSUALES_PATH, VENTANAS_PATH
 
 
@@ -56,6 +54,30 @@ def _ventana(id_transicion, nivel, anio_t, anio_t_menos_1, fecha_inicio_vc, fech
 
 def _serie(valores: dict[str, float | None]) -> dict[date, float | None]:
     return {date.fromisoformat(f"{k}-01"): v for k, v in valores.items()}
+
+
+def _eleccion(anio, nivel, gana_oficialismo, share_oficialismo, agrupacion_oficialismo) -> FilaEleccion:
+    return FilaEleccion(
+        nivel=nivel,
+        anio=anio,
+        votantes_habilitados=100,
+        votos_positivos=90,
+        votos_blancos=8,
+        votos_nulos=2,
+        ausentismo=10,
+        gana_oficialismo=gana_oficialismo,
+        share_oficialismo=share_oficialismo,
+        agrupacion_oficialismo=agrupacion_oficialismo,
+        n_fuerzas_viables=2,
+        share_marginal_acumulado=0.0,
+        share_oposicion_principal=100.0 - share_oficialismo,
+        share_otras_fuerzas_viables=0.0,
+        dispersion_economico_mu=None,
+        dispersion_economico_sigma2=None,
+        dispersion_progresismo_mu=None,
+        dispersion_progresismo_sigma2=None,
+        resultado_disponible=True,
+    )
 
 
 class TestCalcularNTrimestres:
@@ -102,15 +124,6 @@ class TestParticionarMeses:
         grupos = _particionar_meses(meses, 9)
         tamanos = sorted(len(g) for g in grupos)
         assert tamanos == [3, 3, 3, 3, 3, 3, 3, 3, 4]
-
-
-class TestParsearBoolCsv:
-    @pytest.mark.parametrize("valor,esperado", [("True", True), ("true", True), ("False", False), ("false", False)])
-    def test_valores_conocidos(self, valor, esperado):
-        assert _parsear_bool_csv(valor) is esperado
-
-    def test_vacio_es_none(self):
-        assert _parsear_bool_csv("") is None
 
 
 class TestPromedioTrimestre:
@@ -177,16 +190,11 @@ def escenario_basico():
         "x": _serie({f"2011-{m:02d}": float(m) for m in range(1, 8)}),
         "ipc": _serie({f"2011-{m:02d}": 100.0 + m for m in range(1, 8)}),
     }
-    periodo_intervenido_por_mes = {date(2011, m, 1): False for m in range(1, 8)}
-    resultado_por_anio_nivel = {
-        (2011, "municipal"): FilaResultadoDistrito(2011, "municipal", 100, 2, 90.0, True, 60.0, True),
-        (2013, "municipal"): FilaResultadoDistrito(2013, "municipal", 100, 2, 90.0, False, 40.0, True),
+    elecciones_por_anio_nivel = {
+        (2011, "municipal"): _eleccion(2011, "municipal", True, 60.0, "OFICIALISMO"),
+        (2013, "municipal"): _eleccion(2013, "municipal", False, 40.0, "OTRO"),
     }
-    oficialismo_por_nivel = {
-        (2011, "municipal"): {"agrupacion_oficialismo": "OFICIALISMO"},
-        (2013, "municipal"): {"agrupacion_oficialismo": "OTRO"},
-    }
-    return ventanas, registro, series_mensuales, periodo_intervenido_por_mes, resultado_por_anio_nivel, oficialismo_por_nivel
+    return ventanas, registro, series_mensuales, elecciones_por_anio_nivel
 
 
 class TestConstruirPanelTrimestral:
@@ -201,6 +209,21 @@ class TestConstruirPanelTrimestral:
             assert frontera["ipc"] is None
             assert frontera["n_meses"] is None
 
+    def test_filas_frontera_traen_las_columnas_nuevas_de_elecciones_csv(self, escenario_basico):
+        filas = construir_panel_trimestral(*escenario_basico, nivel="municipal")
+        frontera_t_menos_1, frontera_t = filas[0], filas[-1]
+        assert frontera_t_menos_1["n_fuerzas_viables"] == 2
+        assert frontera_t_menos_1["votos_positivos"] == 90
+        assert frontera_t["agrupacion_oficialismo"] == "OTRO"
+
+    def test_filas_frontera_sin_eleccion_correspondiente_quedan_en_none(self, escenario_basico):
+        ventanas, registro, series_mensuales, _ = escenario_basico
+        filas = construir_panel_trimestral(ventanas, registro, series_mensuales, {}, nivel="municipal")
+        frontera_t_menos_1, frontera_t = filas[0], filas[-1]
+        assert frontera_t_menos_1["gana_oficialismo"] is None
+        assert frontera_t_menos_1["n_fuerzas_viables"] is None
+        assert frontera_t["votos_positivos"] is None
+
     def test_filas_trimestre_tienen_columnas_electorales_nulas(self, escenario_basico):
         filas = construir_panel_trimestral(*escenario_basico, nivel="municipal")
         trimestres = [f for f in filas if f["tipo_fila"] == "trimestre"]
@@ -209,6 +232,8 @@ class TestConstruirPanelTrimestral:
             assert t["gana_oficialismo"] is None
             assert t["share_oficialismo"] is None
             assert t["agrupacion_oficialismo"] is None
+            assert t["n_fuerzas_viables"] is None
+            assert t["dispersion_economico_mu"] is None
             assert t["x"] is not None
 
     def test_orden_correlativo_0_a_n_mas_1(self, escenario_basico):
@@ -227,16 +252,12 @@ class TestIntegracionDatosReales:
     def test_ipc_none_en_el_hueco_real_y_no_none_afuera(self):
         registro = cargar_registro(REGISTRO_VARIABLES_PATH)
         series_mensuales = _cargar_series_mensuales(SERIES_ECONOMICAS_MENSUALES_PATH, registro)
-        periodo_intervenido = _cargar_periodo_intervenido(SERIES_ECONOMICAS_MENSUALES_PATH)
-        resultado_por_anio_nivel: dict = {}
-        oficialismo_por_nivel: dict = {}
+        elecciones_por_anio_nivel: dict = {}
 
         from ml_models.construir_panel_ventanas import _cargar_ventanas
 
         ventanas = _cargar_ventanas(VENTANAS_PATH)
-        filas = construir_panel_trimestral(
-            ventanas, registro, series_mensuales, periodo_intervenido, resultado_por_anio_nivel, oficialismo_por_nivel, "nacional"
-        )
+        filas = construir_panel_trimestral(ventanas, registro, series_mensuales, elecciones_por_anio_nivel, "nacional")
         trimestres = [f for f in filas if f["tipo_fila"] == "trimestre"]
 
         dentro_del_hueco = [t for t in trimestres if "2014-03" <= t["fecha_inicio"] <= "2016-08"]
