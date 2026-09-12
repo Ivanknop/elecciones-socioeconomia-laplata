@@ -1,7 +1,5 @@
 """Tests de `ml_models.construir_panel_trimestral`: partición de meses,
-agregación mensual->trimestral y estructura del panel largo -- sintéticos
-en memoria salvo donde se marca explícitamente "datos reales" (lectura de
-CSV ya committeados, sin red)."""
+agregación mensual->trimestral y estructura del panel largo """
 from datetime import date
 
 import pytest
@@ -76,6 +74,7 @@ def _eleccion(anio, nivel, gana_oficialismo, share_oficialismo, agrupacion_ofici
         dispersion_economico_sigma2=None,
         dispersion_progresismo_mu=None,
         dispersion_progresismo_sigma2=None,
+        dispersion_cobertura_share=0.0,
         resultado_disponible=True,
     )
 

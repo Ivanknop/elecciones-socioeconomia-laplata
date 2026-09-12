@@ -1,6 +1,5 @@
 """Tests de `ml_models.construir_elecciones_resumen`. Fixtures chicas en
-memoria/`tmp_path`, nunca datos reales de `data/` (mismo patrón que
-`tests/ml_models/test_resultado_distrito.py`)."""
+memoria/`tmp_path`."""
 import csv
 import json
 
@@ -12,6 +11,8 @@ from ml_models.construir_elecciones_resumen import (
     _dispersion_ponderada,
     _escribir_csv,
     _estructura_oferta,
+    calcular_cobertura_minima,
+    calcular_delta_dispersion,
     cargar_elecciones,
     construir_elecciones,
     construir_fila_eleccion,
@@ -96,6 +97,7 @@ class TestConstruirFilaEleccion:
         )
         assert fila.dispersion_economico_mu is None
         assert fila.dispersion_progresismo_sigma2 is None
+        assert fila.dispersion_cobertura_share == 0.0
 
     def test_dispersion_solo_sobre_fuerzas_viables(self):
         # "chica" tiene score pero es marginal (1%) -- no debe entrar en mu/sigma2
@@ -109,6 +111,19 @@ class TestConstruirFilaEleccion:
         )
         assert fila.dispersion_economico_mu is not None
         assert fila.dispersion_economico_mu < 100  # no arrastrada por "chica"
+        # cobertura = (900+90)/1000 -- excluye a "chica" (marginal, aunque tenga score)
+        assert fila.dispersion_cobertura_share == pytest.approx(99.0)
+
+    def test_dispersion_cobertura_share_100_si_todas_las_viables_tienen_score(self):
+        del_anio = [_v("A", 900, 90.0), _v("B", 100, 10.0)]
+        vparty = {"A": (1.0, -1.0), "B": (-1.0, 1.0)}
+        fila = construir_fila_eleccion(
+            nivel="municipal", anio=2023, del_anio=del_anio,
+            totales={"blanco": 0, "nulo": 0, "habilitados": 1000},
+            vparty=vparty, of=None, fila_of_curada=None, alias_lista=None,
+            resultado_disponible=False, ausentismo=None,
+        )
+        assert fila.dispersion_cobertura_share == pytest.approx(100.0)
 
     def test_votos_nulos_faltante_no_calcula_ausentismo(self):
         del_anio = [_v("A", 900, 90.0), _v("B", 100, 10.0)]
@@ -233,3 +248,39 @@ def test_cargar_elecciones_round_trip(tmp_path):
     _escribir_csv(destino, [fila])
     cargadas = cargar_elecciones(destino)
     assert cargadas[(2023, "municipal")] == fila
+
+
+class TestDeltaDispersionYCoberturaMinima:
+    def _fila(self, anio, mu_econ, votos_con_score) -> object:
+        """`votos_con_score` (sobre un total de 1000, "A") controla
+        `dispersion_cobertura_share` directamente -- el resto ("B") nunca
+        tiene score."""
+        del_anio = [_v("A", votos_con_score, votos_con_score / 10), _v("B", 1000 - votos_con_score, (1000 - votos_con_score) / 10)]
+        vparty = {"A": (mu_econ, 0.0)} if mu_econ is not None else {}
+        return construir_fila_eleccion(
+            nivel="municipal", anio=anio, del_anio=del_anio,
+            totales={"blanco": 0, "nulo": 0, "habilitados": 1000},
+            vparty=vparty, of=None, fila_of_curada=None, alias_lista=None,
+            resultado_disponible=False, ausentismo=None,
+        )
+
+    def test_delta_dispersion_resta_mu_del_eje_pedido(self):
+        elecciones = {(2019, "municipal"): self._fila(2019, 1.0, 900), (2021, "municipal"): self._fila(2021, 3.0, 900)}
+        delta = calcular_delta_dispersion(elecciones, "municipal", 2021, 2019, "economico")
+        assert delta == pytest.approx(2.0)
+
+    def test_delta_dispersion_none_si_falta_una_punta(self):
+        elecciones = {(2021, "municipal"): self._fila(2021, 3.0, 900)}
+        assert calcular_delta_dispersion(elecciones, "municipal", 2021, 2019, "economico") is None
+
+    def test_delta_dispersion_none_si_mu_falta_en_una_punta(self):
+        elecciones = {(2019, "municipal"): self._fila(2019, None, 0), (2021, "municipal"): self._fila(2021, 3.0, 900)}
+        assert calcular_delta_dispersion(elecciones, "municipal", 2021, 2019, "economico") is None
+
+    def test_cobertura_minima_toma_el_menor_de_las_dos_puntas(self):
+        elecciones = {(2019, "municipal"): self._fila(2019, 1.0, 400), (2021, "municipal"): self._fila(2021, 3.0, 900)}
+        assert calcular_cobertura_minima(elecciones, "municipal", 2021, 2019) == pytest.approx(40.0)
+
+    def test_cobertura_minima_none_si_falta_una_punta(self):
+        elecciones = {(2021, "municipal"): self._fila(2021, 3.0, 900)}
+        assert calcular_cobertura_minima(elecciones, "municipal", 2021, 2019) is None

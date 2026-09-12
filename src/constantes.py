@@ -58,6 +58,7 @@ SERIES_ECONOMICAS_MENSUALES_PATH = "data/tfi_data/series_economicas_mensuales.cs
 PANEL_VENTANAS_PATH = "data/tfi_data/panel_ventanas.csv"
 ELECCIONES_DIR = "data/tfi_data/elecciones"
 ELECCIONES_RESUMEN_PATH = "data/tfi_data/elecciones.csv"
+DISTANCIAS_IDEOLOGICAS_PATH = "data/tfi_data/distancias_ideologicas.csv"
 PANEL_DIR = "data/tfi_data/panel"
 PANEL_TRIMESTRAL_DIR = "data/tfi_data/panel/t-1"
 PANEL_BIELECCION_TRIMESTRAL_DIR = "data/tfi_data/panel/t-2"

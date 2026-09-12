@@ -405,15 +405,88 @@ huecos.
 | `share_otras_fuerzas_viables` | suma de `share` de las fuerzas viables que no son ni el oficialismo ni la oposición principal — cierra la identidad `share_marginal_acumulado + share_oposicion_principal + share_otras_fuerzas_viables + share_oficialismo (si es viable) = 100` | calculado |
 | `dispersion_economico_mu`, `dispersion_economico_sigma2` | media/varianza de `vparty_economico` ponderada por voto, solo fuerzas viables con score cargado | calculado (`_dispersion_ponderada`) |
 | `dispersion_progresismo_mu`, `dispersion_progresismo_sigma2` | ídem, eje `vparty_progresismo` (populismo queda afuera, mismo criterio que `vparty_cuadrantes_local`) | calculado |
+| `dispersion_cobertura_share` | `(suma de votos de fuerzas viables CON V-Party cargado) / votos_positivos`, en escala 0-100 (mismo criterio que el resto de las columnas `share_*`) — sin esto, un salto en `dispersion_economico_mu` entre dos elecciones no se puede distinguir de un cambio en qué fracción del voto tiene V-Party cargado (D18) | calculado |
 | `resultado_disponible` | `True` si la fila salió de `circuito_<cargo>.json`, `False` si salió del fallback `elecciones/` | — |
 
 **Huecos de cobertura esperados:**
 - `nacional` 2001-2009 no genera fila (no está en `calendario_electoral.csv`).
 - `votos_nulos`/`ausentismo` vacíos en `2025 provincial`/`2025 municipal`.
 - `dispersion_*` vacías en cualquier (nivel,año) donde ninguna fuerza viable
-  tenga V-Party cargado — no ocurrió en ninguna de las 34 filas reales del
-  período (2001-2025) a esta fecha, pero puede ocurrir si se filtra por un
-  subconjunto o si la clasificación de alguna agrupación se revierte.
+  tenga V-Party cargado (`dispersion_cobertura_share = 0` en ese caso, a
+  diferencia de `dispersion_economico_mu`/`sigma2`, que quedan vacías) — no
+  ocurrió en ninguna de las 34 filas reales del período (2001-2025) a esta
+  fecha, pero puede ocurrir si se filtra por un subconjunto o si la
+  clasificación de alguna agrupación se revierte.
+
+### 6.5 Diccionario de columnas de `data/tfi_data/distancias_ideologicas.csv` (D18)
+
+Grano `(nivel, año, agrupación)`, generado por
+`ml_models.construir_distancias_ideologicas` — una fila por fuerza
+**viable** (mismo piso `≥1.5%` que `elecciones.csv`) de cada una de las 34
+elecciones del calendario. Sucede a `distancia_oficialismo_alternativa`
+de `panel_ventanas.csv` (deprecada, ver D18) exponiendo todas las
+alternativas disponibles en vez de una sola preseleccionada por votos.
+
+| Columna | Descripción | Fuente |
+|---|---|---|
+| `nivel`, `anio`, `agrupacion`, `votos`, `share` | identificación y resultado de la fuerza | `ml_models.construir_resultado_distrito.construir_voto_partido_distrito` (reusado) |
+| `es_oficialismo` | `True` en la fila de la fuerza que gobierna ese nivel | `construir_resultado_distrito._entrada_oficialismo`, comparación por **identidad de objeto**, nunca por nombre (ver D18 — esto es lo que corrige el bug de `distancia_oficialismo_alternativa`) |
+| `vparty_economico`, `vparty_progresismo` | score V-Party de la fuerza, si está cargado | `elecciones/<año>_<nivel>.csv` |
+| `distancia_economico_al_oficialismo`, `distancia_progresismo_al_oficialismo` | `score_fuerza − score_oficialismo` **con signo** (componentes de la distancia euclídea, y el signo indica de qué lado del oficialismo cae la fuerza) | calculado |
+| `distancia_euclidea_al_oficialismo` | `√(distancia_economico² + distancia_progresismo²)` | calculado |
+
+**Reglas de los casos límite:**
+- Fila del propio oficialismo: las 3 distancias son `0.0` siempre, aunque
+  el oficialismo no tenga V-Party cargado (distancia de un punto a sí
+  mismo, no depende de conocer sus coordenadas).
+- Fuerza viable sin V-Party: `vparty_*` y las 3 distancias quedan vacías.
+- Oficialismo sin V-Party cargado: **ninguna** distancia de esa elección
+  se puede calcular (no hay referencia) — el resto de las columnas
+  (`votos`/`share`/`es_oficialismo`) sigue completo. No ocurrió en ninguna
+  de las 34 elecciones reales verificadas.
+- Oficialismo no viable (`share < 1.5%`): no genera fila `es_oficialismo=True`
+  (no ocurrió en los 34 casos reales).
+
+No se guarda una columna "fuerza ideológicamente más cercana" — se deriva
+con `min(distancia_euclidea_al_oficialismo)` sobre las fuerzas no
+oficialistas cuando haga falta (ver `notebooks/ml/03_desplazamiento_ideologico.ipynb`),
+para no fijar de antemano un criterio que puede no coincidir con "la que
+más votos sacó".
+
+### 6.6 Columnas nuevas en `panel_ventanas.csv` (D18)
+
+Agregadas por join contra `elecciones.csv` en las dos puntas de la
+transición (`anio_t`/`anio_t_menos_1`), mismo patrón de join que ya usa
+`construir_panel_trimestral.py` desde el refactor anterior.
+
+| Columna | Descripción |
+|---|---|
+| `delta_dispersion_economico_mu`, `delta_dispersion_progresismo_mu` | `dispersion_<eje>_mu(t) − dispersion_<eje>_mu(t−1)`, por eje |
+| `magnitud_desplazamiento_ideologico` | `√(delta_economico² + delta_progresismo²)` |
+| `cuadrante_desplazamiento` | dirección del vector de desplazamiento: `derecha`/`izquierda` según el signo de `delta_dispersion_economico_mu`, `progresista`/`conservador` según el signo de `delta_dispersion_progresismo_mu` (mismo criterio de signo que las etiquetas fijas de `vparty_cuadrantes`/`vparty_cuadrantes_local`, aplicado al vector de desplazamiento en vez de al punto absoluto) — `None` si falta cualquiera de los dos deltas o si alguno es exactamente `0` (cuadrante indefinido) |
+| `dispersion_cobertura_share_min` | `min(dispersion_cobertura_share(t), dispersion_cobertura_share(t−1))` — para ponderar/filtrar transiciones con baja cobertura V-Party sin fijar un umbral en código (ver `notebooks/ml/03_desplazamiento_ideologico.ipynb`) |
+
+**Disciplina H1/H4 vs. H2/H3:** estas 4 columnas (todas menos
+`dispersion_cobertura_share_min`, que es una covariable de calidad de
+dato, no una variable dependiente) son variables dependientes de H2,
+calculadas con datos de `t` — nunca deben usarse como predictoras de
+H1/H4. Ninguna termina en `_vc`/`_vl`, así que el mecanismo de selección
+de `notebooks/ml/01_lasso.ipynb`/`02_bayes.ipynb` ya las excluye por
+construcción (ver D18).
+
+`distancia_oficialismo_alternativa` (existente) queda **deprecada**: ver
+D18 en `docs/decisiones_metodologicas.md` para la auditoría completa.
+
+---
+
+## Trabajo futuro
+
+- **`exit_total`** (`ausentismo + votos_blancos + votos_nulos` sobre
+  `votantes_habilitados`, ya disponible en `elecciones.csv`): variable
+  dependiente planificada para un tercer notebook (participación
+  electoral / exit, distinto del desplazamiento ideológico de
+  `notebooks/ml/03_desplazamiento_ideologico.ipynb`). No requiere columnas
+  nuevas hoy.
 
 ---
 

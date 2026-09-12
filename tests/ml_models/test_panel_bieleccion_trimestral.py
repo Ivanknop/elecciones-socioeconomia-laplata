@@ -68,6 +68,7 @@ def _eleccion(anio, nivel, gana_oficialismo, share_oficialismo, agrupacion_ofici
         dispersion_economico_sigma2=None,
         dispersion_progresismo_mu=None,
         dispersion_progresismo_sigma2=None,
+        dispersion_cobertura_share=0.0,
         resultado_disponible=True,
     )
 

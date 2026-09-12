@@ -80,18 +80,14 @@ class FilaEleccion:
     dispersion_economico_sigma2: float | None
     dispersion_progresismo_mu: float | None
     dispersion_progresismo_sigma2: float | None
+    dispersion_cobertura_share: float
     resultado_disponible: bool
 
 
 def _totales_y_vparty_desde_tfi(
     path: Path | str,
 ) -> tuple[dict[str, int], dict[str, tuple[float, float]]]:
-    """De `elecciones/<año>_<nivel>.csv`: totales BLANCO/NULO/VOTANTES_HABILITADOS
-    (clave ausente si esa fila no está -- 2025 municipal/provincial no
-    tiene NULO) y `vparty_economico`/`vparty_progresismo` por nombre de
-    agrupación en mayúsculas (no por `id_agrupacion`, que no es estable
-    entre años -- mismo criterio que `_match_oficialismo`), solo para las
-    filas con V-Party cargado."""
+    """De `elecciones/<año>_<nivel>.csv`: totales BLANCO/NULO/VOTANTES_HABILITADOS"""
     path = Path(path)
     with path.open(encoding="utf-8", newline="") as f:
         f.readline()  # comentario "# Total de votos, ...", no es el header
@@ -113,11 +109,7 @@ def _totales_y_vparty_desde_tfi(
 
 
 def _dispersion_ponderada(pares: list[tuple[int, float]]) -> tuple[float, float]:
-    """Media y varianza de `valor` ponderadas por `peso` -- función aislada
-    a propósito (pedido explícito): hoy solo 388/557 filas de
-    `clasificacion_ideologica_agrupaciones.csv` tienen V-Party cargado, así
-    que este cálculo cambia de cobertura sin tocar el resto del módulo a
-    medida que se complete esa clasificación."""
+    """Media y varianza de `valor` ponderadas por `peso` """
     peso_total = sum(peso for peso, _ in pares)
     mu = sum(peso * valor for peso, valor in pares) / peso_total
     sigma2 = sum(peso * (valor - mu) ** 2 for peso, valor in pares) / peso_total
@@ -128,12 +120,7 @@ def _estructura_oferta(
     del_anio: list[FilaVotoPartido], entrada_oficialismo: FilaVotoPartido | None
 ) -> tuple[int, float, float | None, float]:
     """`n_fuerzas_viables`, `share_marginal_acumulado`,
-    `share_oposicion_principal`, `share_otras_fuerzas_viables` -- las 4
-    últimas cierran la identidad con `share_oficialismo` documentada en
-    `docs/decisiones_metodologicas.md` D17. Si el oficialismo no es viable
-    (`share_oficialismo < 1.5`), su fila ya cae dentro de
-    `share_marginal_acumulado` como cualquier otra fuerza sub-umbral -- no
-    se la excluye de esa suma ni se la cuenta en `n_fuerzas_viables`."""
+    `share_oposicion_principal`, `share_otras_fuerzas_viables`"""
     viables = [v for v in del_anio if v.share >= UMBRAL_VIABLE]
     marginales = [v for v in del_anio if v.share < UMBRAL_VIABLE]
     share_marginal_acumulado = sum(v.share for v in marginales)
@@ -158,9 +145,6 @@ def construir_fila_eleccion(
     resultado_disponible: bool,
     ausentismo: int | None,
 ) -> FilaEleccion:
-    """Pura -- todo ya cargado/resuelto por el llamador (`generar_csv`),
-    para que la lógica de estructura de oferta + dispersión sea testeable
-    sin tocar disco."""
     votos_positivos = sum(v.votos for v in del_anio)
 
     gana_oficialismo, entrada_oficialismo = _entrada_oficialismo(del_anio, of, fila_of_curada, alias_lista)
@@ -173,6 +157,7 @@ def construir_fila_eleccion(
 
     viables = [v for v in del_anio if v.share >= UMBRAL_VIABLE]
     con_score = [(v.votos, vparty[v.agrupacion.strip().upper()]) for v in viables if v.agrupacion.strip().upper() in vparty]
+    dispersion_cobertura_share = (sum(peso for peso, _ in con_score) / votos_positivos * 100) if votos_positivos else 0.0
     if con_score:
         dispersion_economico_mu, dispersion_economico_sigma2 = _dispersion_ponderada(
             [(peso, score[0]) for peso, score in con_score]
@@ -203,6 +188,7 @@ def construir_fila_eleccion(
         dispersion_economico_sigma2=dispersion_economico_sigma2,
         dispersion_progresismo_mu=dispersion_progresismo_mu,
         dispersion_progresismo_sigma2=dispersion_progresismo_sigma2,
+        dispersion_cobertura_share=dispersion_cobertura_share,
         resultado_disponible=resultado_disponible,
     )
 
@@ -287,13 +273,9 @@ _COLUMNAS = [
     "dispersion_economico_sigma2",
     "dispersion_progresismo_mu",
     "dispersion_progresismo_sigma2",
+    "dispersion_cobertura_share",
     "resultado_disponible",
 ]
-
-# Subconjunto que se agrega a las filas frontera (`eleccion_t`/`eleccion_t_menos_1`
-# y `eleccion_t`/`eleccion_t_menos_2`) de `construir_panel_trimestral.py`/
-# `construir_panel_bieleccion_trimestral.py` -- `nivel`/`anio` quedan afuera
-# porque esas filas ya los tienen bajo otro nombre (`anio_t`/`anio_t_menos_1`).
 COLUMNAS_ELECCION_PANEL = [col for col in _COLUMNAS if col not in ("nivel", "anio")]
 
 
@@ -348,10 +330,41 @@ def cargar_elecciones(path: Path | str = ELECCIONES_RESUMEN_PATH) -> dict[tuple[
                 dispersion_economico_sigma2=_parse_float(r["dispersion_economico_sigma2"]),
                 dispersion_progresismo_mu=_parse_float(r["dispersion_progresismo_mu"]),
                 dispersion_progresismo_sigma2=_parse_float(r["dispersion_progresismo_sigma2"]),
+                dispersion_cobertura_share=float(r["dispersion_cobertura_share"]),
                 resultado_disponible=_parse_bool(r["resultado_disponible"]),
             )
             filas[(fila.anio, fila.nivel)] = fila
         return filas
+
+
+def calcular_delta_dispersion(
+    elecciones_por_anio_nivel: dict[tuple[int, str], FilaEleccion], nivel: str, anio_t: int, anio_t_menos_1: int, eje: str
+) -> float | None:
+    """`dispersion_<eje>_mu(t) - dispersion_<eje>_mu(t-1)`; `None` si falta
+    cualquiera de las dos puntas o su `mu` -- mismo criterio de no imputar
+    que `construir_resultado_distrito.calcular_delta_v`. `eje` es
+    `"economico"` o `"progresismo"`."""
+    actual = elecciones_por_anio_nivel.get((anio_t, nivel))
+    anterior = elecciones_por_anio_nivel.get((anio_t_menos_1, nivel))
+    if actual is None or anterior is None:
+        return None
+    mu_actual = getattr(actual, f"dispersion_{eje}_mu")
+    mu_anterior = getattr(anterior, f"dispersion_{eje}_mu")
+    if mu_actual is None or mu_anterior is None:
+        return None
+    return mu_actual - mu_anterior
+
+
+def calcular_cobertura_minima(
+    elecciones_por_anio_nivel: dict[tuple[int, str], FilaEleccion], nivel: str, anio_t: int, anio_t_menos_1: int
+) -> float | None:
+    """`min(dispersion_cobertura_share(t), dispersion_cobertura_share(t-1))`
+    -- `None` si falta cualquiera de las dos puntas (nunca se asume 0)."""
+    actual = elecciones_por_anio_nivel.get((anio_t, nivel))
+    anterior = elecciones_por_anio_nivel.get((anio_t_menos_1, nivel))
+    if actual is None or anterior is None:
+        return None
+    return min(actual.dispersion_cobertura_share, anterior.dispersion_cobertura_share)
 
 
 def generar_csv(

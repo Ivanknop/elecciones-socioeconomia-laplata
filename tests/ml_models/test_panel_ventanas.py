@@ -6,7 +6,8 @@ from datetime import date
 import pytest
 
 from ml_models.cargar_series_economicas import FilaRegistroVariable
-from ml_models.construir_panel_ventanas import construir_panel
+from ml_models.construir_elecciones_resumen import FilaEleccion
+from ml_models.construir_panel_ventanas import clasificar_cuadrante_desplazamiento, construir_panel
 from ml_models.construir_resultado_distrito import FilaResultadoDistrito, FilaVotoPartido
 
 
@@ -48,6 +49,17 @@ def _serie_constante(anio_inicio, anio_fin, valor):
     return {date(a, m, 1): valor for a in range(anio_inicio, anio_fin + 1) for m in range(1, 13)}
 
 
+def _eleccion(anio, nivel, dispersion_economico_mu, dispersion_progresismo_mu, cobertura) -> FilaEleccion:
+    return FilaEleccion(
+        nivel=nivel, anio=anio, votantes_habilitados=100, votos_positivos=90, votos_blancos=8, votos_nulos=2,
+        ausentismo=10, gana_oficialismo=True, share_oficialismo=60.0, agrupacion_oficialismo="OFICIALISMO",
+        n_fuerzas_viables=2, share_marginal_acumulado=0.0, share_oposicion_principal=40.0,
+        share_otras_fuerzas_viables=0.0, dispersion_economico_mu=dispersion_economico_mu,
+        dispersion_economico_sigma2=0.0, dispersion_progresismo_mu=dispersion_progresismo_mu,
+        dispersion_progresismo_sigma2=0.0, dispersion_cobertura_share=cobertura, resultado_disponible=True,
+    )
+
+
 @pytest.fixture
 def escenario_basico():
     ventanas = [_ventana("municipal_2011_2013", "municipal", 2013, 2011)]
@@ -66,7 +78,14 @@ def escenario_basico():
         (2013, "municipal"): {"agrupacion_oficialismo": "OFICIALISMO", "continuidad_oficialismo": "ruptura"},
     }
     posiciones = {}
-    return ventanas, registro, series_mensuales, resultado_por_anio_nivel, voto_partido_por_anio_nivel, oficialismo_por_nivel, posiciones
+    elecciones_por_anio_nivel = {
+        (2011, "municipal"): _eleccion(2011, "municipal", 1.0, -1.0, 40.0),
+        (2013, "municipal"): _eleccion(2013, "municipal", 3.0, 2.0, 90.0),
+    }
+    return (
+        ventanas, registro, series_mensuales, resultado_por_anio_nivel, voto_partido_por_anio_nivel,
+        oficialismo_por_nivel, posiciones, elecciones_por_anio_nivel,
+    )
 
 
 class TestConstruirPanel:
@@ -115,12 +134,54 @@ class TestConstruirPanel:
             }
             for v in ventanas_reales
         ]
-        filas = construir_panel(ventanas_dict, [], {}, {}, {}, {}, {})
+        filas = construir_panel(ventanas_dict, [], {}, {}, {}, {}, {}, {})
         assert len(filas) == 31
         por_nivel = {}
         for f in filas:
             por_nivel[f["nivel"]] = por_nivel.get(f["nivel"], 0) + 1
         assert por_nivel == {"municipal": 12, "provincial": 12, "nacional": 7}
+
+
+class TestColumnasDeDesplazamientoIdeologico:
+    def test_deltas_magnitud_y_cuadrante(self, escenario_basico):
+        filas = construir_panel(*escenario_basico)
+        fila = filas[0]
+        assert fila["delta_dispersion_economico_mu"] == pytest.approx(2.0)  # 3.0 - 1.0
+        assert fila["delta_dispersion_progresismo_mu"] == pytest.approx(3.0)  # 2.0 - (-1.0)
+        assert fila["magnitud_desplazamiento_ideologico"] == pytest.approx((2.0**2 + 3.0**2) ** 0.5)
+        assert fila["cuadrante_desplazamiento"] == "derecha_progresista"
+        assert fila["dispersion_cobertura_share_min"] == pytest.approx(40.0)  # min(40, 90)
+
+    def test_sin_eleccion_correspondiente_todo_none(self, escenario_basico):
+        *resto, _ = escenario_basico
+        filas = construir_panel(*resto, {})
+        fila = filas[0]
+        assert fila["delta_dispersion_economico_mu"] is None
+        assert fila["magnitud_desplazamiento_ideologico"] is None
+        assert fila["cuadrante_desplazamiento"] is None
+        assert fila["dispersion_cobertura_share_min"] is None
+
+
+class TestClasificarCuadranteDesplazamiento:
+    @pytest.mark.parametrize(
+        "delta_econ,delta_prog,esperado",
+        [
+            (1.0, 1.0, "derecha_progresista"),
+            (1.0, -1.0, "derecha_conservador"),
+            (-1.0, 1.0, "izquierda_progresista"),
+            (-1.0, -1.0, "izquierda_conservador"),
+        ],
+    )
+    def test_los_cuatro_cuadrantes(self, delta_econ, delta_prog, esperado):
+        assert clasificar_cuadrante_desplazamiento(delta_econ, delta_prog) == esperado
+
+    def test_none_si_falta_un_delta(self):
+        assert clasificar_cuadrante_desplazamiento(None, 1.0) is None
+        assert clasificar_cuadrante_desplazamiento(1.0, None) is None
+
+    def test_none_si_algun_delta_es_exactamente_cero(self):
+        assert clasificar_cuadrante_desplazamiento(0.0, 1.0) is None
+        assert clasificar_cuadrante_desplazamiento(1.0, 0.0) is None
 
 
 class TestExtensibilidad:

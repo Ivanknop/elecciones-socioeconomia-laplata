@@ -481,7 +481,34 @@ order, 01→04) are the pipeline**.
   nothing in the Fase 5 pipeline reads or regenerates them anymore, same
   "kept, not deleted" pattern as `vparty_cuadrantes_local` above.
   `panel_ventanas.csv` (Fase 4) still joins against `resultado_distrito.csv`
-  as before — that join wasn't part of this change.
+  for `delta_v`/`gana_oficialismo`/`share_oficialismo` as before, plus
+  (D18) now also against `elecciones.csv` for
+  `delta_dispersion_economico_mu`/`delta_dispersion_progresismo_mu`/
+  `magnitud_desplazamiento_ideologico`/`cuadrante_desplazamiento`/
+  `dispersion_cobertura_share_min` — see
+  `docs/especificacion_panel_temporal.md` §6.6.
+
+  `construir_distancias_ideologicas.py` writes
+  `data/tfi_data/distancias_ideologicas.csv` (D18) — grain
+  `(nivel, año, agrupación)`, one row per viable force per election,
+  reference point is that level's own oficialismo (resolved by object
+  identity against `construir_resultado_distrito._entrada_oficialismo`,
+  never by name). Supersedes `panel_ventanas.csv`'s
+  `distancia_oficialismo_alternativa`, which is now **deprecated**
+  (commented as such in `construir_panel_ventanas.py`, kept on disk, not
+  fixed in place) — audited and confirmed 17/31 rows empty due to a name
+  mismatch bug between `oficialismo_por_nivel.csv` and the real ballot
+  label (e.g. "FRENTE DE TODOS" vs. the real "UNION POR LA PATRIA" for
+  2023 nacional/provincial), not missing V-Party coverage. See D18 in
+  `docs/decisiones_metodologicas.md` for the full audit.
+
+  `notebooks/ml/03_desplazamiento_ideologico.ipynb` (H2/H3, independent
+  of `01_lasso.ipynb`/`02_bayes.ipynb`, no cross-notebook imports — same
+  self-contained convention as those two) models
+  `magnitud_desplazamiento_ideologico` as the dependent variable, reusing
+  the same `_vc` economic battery as H1/H4 plus a legitimate H3 predictor
+  (minimum `distancia_euclidea_al_oficialismo` at `t-1` from
+  `distancias_ideologicas.csv`).
 
 - **`src/macroeconomia/`** is a separate analytical domain: **national-grain
   only** (no circuito, no localidad), related to the rest of the repo by

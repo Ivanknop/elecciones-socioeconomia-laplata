@@ -11,11 +11,13 @@ from __future__ import annotations
 
 import argparse
 import csv
+import math
 from pathlib import Path
 from datetime import date
 
 from constantes import (
     CALENDARIO_ELECTORAL_PATH,
+    ELECCIONES_RESUMEN_PATH,
     OFICIALISMO_POR_NIVEL_PATH,
     PANEL_VENTANAS_PATH,
     REGISTRO_VARIABLES_PATH,
@@ -26,6 +28,12 @@ from constantes import (
     CLASIFICACION_IDEOLOGICA_PATH,
 )
 from ml_models.construir_calendario import FilaCalendario, _nivel_csv_del_cargo
+from ml_models.construir_elecciones_resumen import (
+    FilaEleccion,
+    calcular_cobertura_minima,
+    calcular_delta_dispersion,
+    cargar_elecciones,
+)
 from ml_models.construir_resultado_distrito import (
     FilaResultadoDistrito,
     FilaVotoPartido,
@@ -36,6 +44,21 @@ from ml_models.construir_resultado_distrito import (
 )
 from ml_models.cargar_series_economicas import FilaRegistroVariable, cargar_registro
 from ml_models.features_ventana import calcular_features_interventana_variable, calcular_features_ventana_variable
+
+
+def clasificar_cuadrante_desplazamiento(delta_economico: float | None, delta_progresismo: float | None) -> str | None:
+    """Clasifica el vector `(delta_economico, delta_progresismo)` en uno
+    de 4 cuadrantes, mismo criterio de signo que las etiquetas fijas de
+    `analisis.vparty_cuadrantes`/`vparty_cuadrantes_local` (positivo en el
+    eje económico = derecha, positivo en progresismo = progresista) --
+    aplicado acá a la dirección del desplazamiento entre `t-1` y `t`)"""
+    if delta_economico is None or delta_progresismo is None:
+        return None
+    if delta_economico == 0 or delta_progresismo == 0:
+        return None
+    lado_economico = "derecha" if delta_economico > 0 else "izquierda"
+    lado_progresismo = "progresista" if delta_progresismo > 0 else "conservador"
+    return f"{lado_economico}_{lado_progresismo}"
 
 
 def _leer_dicts(path: Path | str) -> list[dict]:
@@ -129,6 +152,7 @@ def construir_panel(
     voto_partido_por_anio_nivel: dict[tuple[int, str], list[FilaVotoPartido]],
     oficialismo_por_nivel: dict[tuple[int, str], dict],
     posiciones: dict[tuple[int, str, str], float],
+    elecciones_por_anio_nivel: dict[tuple[int, str], FilaEleccion],
 ) -> list[dict]:
     """Pura -- todo ya cargado en memoria."""
     por_nivel: dict[str, list[dict]] = {}
@@ -174,12 +198,42 @@ def construir_panel(
             posiciones_t = {
                 agr: score for (anio, niv, agr), score in posiciones.items() if anio == v["anio_t"] and niv == nivel
             }
+            # DEPRECADA (D18, ver docs/decisiones_metodologicas.md): matchea
+            # `of_t["agrupacion_oficialismo"]` (`oficialismo_por_nivel.csv`)
+            # por nombre contra la boleta real, sin pasar por el curado de
+            # `oficialismos.csv`/`ALIAS_LISTA_OFICIALISMO` -- auditado: 17
+            # de 31 filas quedan vacías por ese desajuste de nombre (no por
+            # falta de cobertura V-Party), y solo captura un eje
+            # (`vparty_economico`) sin piso de viabilidad. Sucedida por
+            # `distancias_ideologicas.csv` (`ml_models.construir_distancias_ideologicas`,
+            # resuelve el oficialismo por identidad de objeto, no por
+            # nombre). Se mantiene sin tocar, no se corrige in-place.
             fila["distancia_oficialismo_alternativa"] = (
                 calcular_distancia_oficialismo_alternativa(
                     voto_partido_por_anio_nivel.get((v["anio_t"], nivel), []), posiciones_t, of_t["agrupacion_oficialismo"]
                 )
                 if of_t
                 else None
+            )
+
+            delta_dispersion_economico_mu = calcular_delta_dispersion(
+                elecciones_por_anio_nivel, nivel, v["anio_t"], v["anio_t_menos_1"], "economico"
+            )
+            delta_dispersion_progresismo_mu = calcular_delta_dispersion(
+                elecciones_por_anio_nivel, nivel, v["anio_t"], v["anio_t_menos_1"], "progresismo"
+            )
+            fila["delta_dispersion_economico_mu"] = delta_dispersion_economico_mu
+            fila["delta_dispersion_progresismo_mu"] = delta_dispersion_progresismo_mu
+            fila["magnitud_desplazamiento_ideologico"] = (
+                math.sqrt(delta_dispersion_economico_mu**2 + delta_dispersion_progresismo_mu**2)
+                if delta_dispersion_economico_mu is not None and delta_dispersion_progresismo_mu is not None
+                else None
+            )
+            fila["cuadrante_desplazamiento"] = clasificar_cuadrante_desplazamiento(
+                delta_dispersion_economico_mu, delta_dispersion_progresismo_mu
+            )
+            fila["dispersion_cobertura_share_min"] = calcular_cobertura_minima(
+                elecciones_por_anio_nivel, nivel, v["anio_t"], v["anio_t_menos_1"]
             )
 
             for var in registro:
@@ -207,6 +261,7 @@ def generar_csv(
     oficialismo_path: Path | str = OFICIALISMO_POR_NIVEL_PATH,
     calendario_path: Path | str = CALENDARIO_ELECTORAL_PATH,
     clasificacion_path: Path | str = CLASIFICACION_IDEOLOGICA_PATH,
+    elecciones_path: Path | str = ELECCIONES_RESUMEN_PATH,
     destino: Path | str = PANEL_VENTANAS_PATH,
 ) -> Path:
     ventanas = _cargar_ventanas(ventanas_path)
@@ -215,6 +270,7 @@ def generar_csv(
     resultado_por_anio_nivel = _cargar_resultado_distrito(resultado_path)
     voto_partido, voto_partido_por_anio_nivel = _cargar_voto_partido(voto_partido_path)
     oficialismo_por_nivel = _cargar_oficialismo_por_nivel(oficialismo_path)
+    elecciones_por_anio_nivel = cargar_elecciones(elecciones_path)
 
     calendario_tipo = {(int(r["anio"]), r["nivel"]): r["tipo_eleccion"] for r in _leer_dicts(calendario_path)}
     with Path(clasificacion_path).open(encoding="utf-8", newline="") as f:
@@ -222,7 +278,8 @@ def generar_csv(
     posiciones = _construir_posiciones(voto_partido_por_anio_nivel, calendario_tipo, clasificacion)
 
     filas = construir_panel(
-        ventanas, registro, series_mensuales, resultado_por_anio_nivel, voto_partido_por_anio_nivel, oficialismo_por_nivel, posiciones
+        ventanas, registro, series_mensuales, resultado_por_anio_nivel, voto_partido_por_anio_nivel,
+        oficialismo_por_nivel, posiciones, elecciones_por_anio_nivel,
     )
 
     columnas_id = [
@@ -231,6 +288,9 @@ def generar_csv(
         "resultado_disponible", "delta_v", "gana_oficialismo", "share_oficialismo",
         "agrupacion_oficialismo", "continuidad_oficialismo",
         "delta_posicion_ideologica", "distancia_oficialismo_alternativa",
+        "delta_dispersion_economico_mu", "delta_dispersion_progresismo_mu",
+        "magnitud_desplazamiento_ideologico", "cuadrante_desplazamiento",
+        "dispersion_cobertura_share_min",
     ]
     columnas_features: list[str] = []
     vistas = set()
