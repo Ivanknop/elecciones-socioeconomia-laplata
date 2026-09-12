@@ -3,7 +3,7 @@
 Documento de referencia de la capa `src/macroeconomia/`: qué se relevó, con
 qué cobertura real, qué salvedades aparecieron al implementarlo, y qué queda
 fuera de alcance a propósito. El diseño completo (fuentes evaluadas,
-decisiones, catálogo variable por variable) está en `docs/plan_macroeconomia.md`.
+decisiones, catálogo variable por variable) está en `docs/especificaciones/plan_macroeconomia.md`.
 
 ## 1. Qué se relevó
 
@@ -22,7 +22,7 @@ documentada en la sección 3.1.
 (`gasto_deuda_publica_nivel`/`_pib`) viven aparte, en
 `data/macroeconomia/catalogo_series_anuales.csv` /
 `series_macro_anuales_2011_2025.csv` — una fila por **año** en vez de por
-mes (ver "Split a catálogo anual" en `docs/plan_macroeconomia.md`; motivo
+mes (ver "Split a catálogo anual" en `docs/especificaciones/plan_macroeconomia.md`; motivo
 y cobertura en la sección 2.1 de este documento).
 
 **Rediseño (2026-08): sin forward-fill.** La primera versión de este
@@ -30,7 +30,7 @@ pipeline repetía el último valor publicado en los meses siguientes para
 series trimestrales/anuales. Se rediseñó para que **ninguna celda repita
 un valor anterior** — solo tiene dato el mes de origen exacto de cada
 publicación; el resto queda vacío (`""`), con la razón en `observaciones`.
-Ver `docs/plan_macroeconomia.md` ("Rediseño posterior") para el detalle de la
+Ver `docs/especificaciones/plan_macroeconomia.md` ("Rediseño posterior") para el detalle de la
 decisión. Esto bajó el total de celdas con dato real (ya no se cuentan las
 que antes eran "repetidas") pero elimina el riesgo de que alguien lea una
 celda repetida como si fuera un dato nuevo de ese mes.
@@ -71,7 +71,7 @@ demás series, "vacío" es siempre un mes anterior al primer dato publicado
 (nunca un hueco en medio de la cobertura real) — es lo esperado dado que
 varias series (IPC nacional, canasta básica, índice de salarios, tasa de
 política monetaria) recién existen a nivel nacional desde 2015/2016, no
-antes (ver `docs/plan_macroeconomia.md` §3 para el porqué de cada corte).
+antes (ver `docs/especificaciones/plan_macroeconomia.md` §3 para el porqué de cada corte).
 
 **`pbi` real termina en 2024-10 (Q4 2024)** por rezago de publicación de
 INDEC — todo 2025 queda vacío para esa columna.
@@ -169,7 +169,7 @@ cerrado (~2024 o antes), nunca los datos más recientes del CSV.
 `ripte`, los índices de salarios, `gasto_deuda_publica_*` y
 `comercio_exterior_*` no tienen equivalente en estadisticasbcra.com**
 (`auditable_estadisticasbcra=no` en el catálogo) — sin cambios respecto al
-diseño original, ver `docs/plan_macroeconomia.md` §1.
+diseño original, ver `docs/especificaciones/plan_macroeconomia.md` §1.
 
 ## 4. Salvedades encontradas al revisar `pbi` y `tasa_desocupacion` en detalle
 
@@ -209,7 +209,7 @@ el comercio exterior argentino completo. Se corrigió usando el dataset 183
 ("... por modalidad de pago"), que sí trae series de total agregado
 (`cobros_exportaciones_bienes` / `pagos_importaciones_bienes`) — valores
 ahora en el orden de $5.000-6.000 millones/mes, consistente con lo
-esperado. Corregido en `docs/plan_macroeconomia.md` §3.7 y en
+esperado. Corregido en `docs/especificaciones/plan_macroeconomia.md` §3.7 y en
 `catalogo_series.csv` antes de la corrida final; se documenta acá para que
 quede visible que el error existió y cómo se detectó (comparación de orden
 de magnitud contra un valor de referencia conocido, no solo lectura del
@@ -217,7 +217,7 @@ nombre de la serie).
 
 ## 6. Qué falta / fuera de alcance a propósito
 
-Heredado de `docs/plan_macroeconomia.md` §7, con la auditoría ya corrida (§3):
+Heredado de `docs/especificaciones/plan_macroeconomia.md` §7, con la auditoría ya corrida (§3):
 
 - **Riesgo país** — no está en ninguna de las tres fuentes evaluadas.
 - **Resultado fiscal real** (primario/financiero) — solo había mediana de
@@ -264,4 +264,4 @@ ESTADISTICASBCRA_TOKEN=<tu_token> PYTHONPATH=src python -m macroeconomia.auditor
 Requiere un token propio de `estadisticasbcra.com/api/registracion`
 (gratuito, 100 consultas/día) — nunca se guarda en el repo. No es parte de
 `macroeconomia.series` ni corre en cada regeneración del CSV, según lo
-decidido en `docs/plan_macroeconomia.md` §5 punto 5.
+decidido en `docs/especificaciones/plan_macroeconomia.md` §5 punto 5.

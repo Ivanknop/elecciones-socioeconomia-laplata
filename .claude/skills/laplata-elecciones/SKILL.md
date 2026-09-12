@@ -30,7 +30,7 @@ detalle — y avisá para que esto se corrija.
    `data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md`).
 2. `docs/AUDITORIA_ESTADO.md` -- qué puntos de la auditoría
    metodológica original están resueltos, parciales o abiertos.
-3. `docs/nota_metodologica.md` -- el diseño de investigación completo:
+3. `docs/especificaciones/nota_metodologica.md` -- el diseño de investigación completo:
    problema, objetivos, sistema de hipótesis con estatus diferenciado
    (exploratorio vs. confirmatorio), y el alcance válido de las
    inferencias con estos datos (cuidado con la falacia ecológica).
@@ -74,7 +74,7 @@ tests/
 
 `<nivel>` = presidente | gobernador | intendente | nacional | provincial
 | municipal, según el año (la nomenclatura cambió entre 2011-2017 y
-2019-2025; ver `docs/nota_metodologica.md` sección "Series unen cargos
+2019-2025; ver `docs/especificaciones/nota_metodologica.md` sección "Series unen cargos
 distintos"). `<etapa>` = generales | paso | balotaje (balotaje solo
 Presidente 2015/2023).
 
@@ -156,7 +156,7 @@ Presidente 2015/2023).
   **496A** (Villa Elvira vs. Villa Montoro) -- ver
   `AUDITORIA_DISCREPANCIAS.md`.
 - El cruce electoral↔socioeconómico completo (H1-H8 de
-  `docs/nota_metodologica.md`) todavía no existe. No asumir que sí al leer
+  `docs/especificaciones/nota_metodologica.md`) todavía no existe. No asumir que sí al leer
   el nombre del repositorio.
 - El circuito **508G** (2013, `municipal`/`nacional`/`provincial`) tiene
   más votos emitidos que `electores` registrados -> `ausentismo` negativo

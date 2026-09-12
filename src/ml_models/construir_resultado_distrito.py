@@ -1,6 +1,6 @@
 """Resultado electoral agregado del Partido de La Plata por (año, nivel) --
 Fase 2 del panel temporal de ventanas electorales (ver
-`docs/especificacion_panel_temporal.md` §4 y §6). Reusa
+`docs/especificaciones/especificacion_panel_temporal.md` §4 y §6). Reusa
 `electoral.totales.resultado_total_por_agrupacion` 
 
 Usa la etapa `generales` (primera vuelta).

@@ -101,7 +101,7 @@ def _fila_frontera(
 ) -> dict:
     """Columnas de `elecciones.csv` (D17) cruzadas por (año, nivel) --
     `None` en cada una si no hay fila para ese (año, nivel) (ver huecos de
-    cobertura documentados en `docs/especificacion_panel_temporal.md`).
+    cobertura documentados en `docs/especificaciones/especificacion_panel_temporal.md`).
     Columnas económicas en `None` -- la elección es un evento, no un
     promedio."""
     eleccion = elecciones_por_anio_nivel.get((anio, nivel))

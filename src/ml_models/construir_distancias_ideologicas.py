@@ -1,6 +1,6 @@
 """Distancias ideológicas por fuerza viable -- grano (nivel, año,
 agrupación), para H2/H3 (ver `docs/decisiones_metodologicas.md` D18 y
-`docs/especificacion_panel_temporal.md` "Diccionario de columnas de
+`docs/especificaciones/especificacion_panel_temporal.md` "Diccionario de columnas de
 distancias_ideologicas.csv").
 
 Uso:
@@ -66,7 +66,7 @@ def construir_distancias_eleccion(
 
     filas = []
     for v in viables:
-        es_oficialismo = v is entrada_oficialismo
+        es_oficialismo = v is entrada_oficialismo  # identidad, no nombre -- D18
         score = vparty.get(v.agrupacion.strip().upper())
 
         if es_oficialismo:

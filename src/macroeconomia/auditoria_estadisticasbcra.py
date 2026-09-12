@@ -1,6 +1,6 @@
 """Auditoría manual contra `estadisticasbcra.com` (no forma parte del
 pipeline regular, necesita token propio). Detalle en
-`docs/plan_macroeconomia.md` y `SISTEMATIZACION_VARIABLES_MACRO.md`.
+`docs/especificaciones/plan_macroeconomia.md` y `SISTEMATIZACION_VARIABLES_MACRO.md`.
 
 Uso:
     ESTADISTICASBCRA_TOKEN=... PYTHONPATH=src python -m macroeconomia.auditoria_estadisticasbcra

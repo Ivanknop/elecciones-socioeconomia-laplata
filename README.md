@@ -129,25 +129,17 @@ detallado en `CLAUDE.md`.
 
 ## Documentación
 
+`docs/` mezcla dos géneros: referencia viva (se actualiza sin parar junto
+con el código) y `docs/especificaciones/` (specs/planes escritos antes de
+construir algo — algunas ya ejecutadas, se conservan como registro).
+
+**Referencia viva:**
+
 - Para el **detalle operativo de cada script, comando y anomalía
   conocida**, ver [`docs/FUNCIONALIDADES.md`](docs/FUNCIONALIDADES.md).
-- Para una **especificación no técnica del proyecto** (qué pregunta
-  intenta responder, qué falta, para quién no sabe de código), ver
-  [`docs/ESPECIFICACION_NO_TECNICA.md`](docs/ESPECIFICACION_NO_TECNICA.md).
-- Para una **especificación técnica de la capa electoral** (uso, datos
-  obtenidos, visualizaciones), ver
-  [`docs/ESPECIFICACION_CAPA_ELECTORAL.md`](docs/ESPECIFICACION_CAPA_ELECTORAL.md).
-- Para **fuentes evaluadas y catálogo de la capa macroeconómica**, ver
-  [`docs/plan_macroeconomia.md`](docs/plan_macroeconomia.md) (y
-  `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` para la
-  cobertura real obtenida).
-- Para el **diseño de investigación completo** (hipótesis, alcance válido
-  de las inferencias, la falacia ecológica a evitar), ver
-  [`docs/nota_metodologica.md`](docs/nota_metodologica.md).
 - Para el **panel temporal de ventanas electorales** (`src/ml_models/`,
   qué es cada fase, ventana corta vs. bloque largo), ver
-  [`docs/especificacion_panel_temporal.md`](docs/especificacion_panel_temporal.md)
-  y [`docs/decisiones_metodologicas.md`](docs/decisiones_metodologicas.md)
+  [`docs/decisiones_metodologicas.md`](docs/decisiones_metodologicas.md)
   para las decisiones de diseño puntuales (`D1`, `D2`, ...).
 - Para **qué puntos de la auditoría metodológica están resueltos o
   siguen abiertos**, ver
@@ -158,9 +150,27 @@ detallado en `CLAUDE.md`.
   metodología de qué fila de `clasificacion_ideologica_agrupaciones.csv`
   viene de V-Party real vs. estimación propia vive en
   `data/agrupaciones/v-party/README.md` (ver más abajo), no ahí.
-- Para un **borrador de correcciones electorales fuera de git** (interno,
-  no versionado), ver `docs/PLAN_CORRECCIONES_ELECTORALES.md` si existe
-  en tu copia local.
+
+**Especificaciones (`docs/especificaciones/`):**
+
+- Para una **especificación no técnica del proyecto** (qué pregunta
+  intenta responder, qué falta, para quién no sabe de código), ver
+  [`docs/especificaciones/ESPECIFICACION_NO_TECNICA.md`](docs/especificaciones/ESPECIFICACION_NO_TECNICA.md).
+- Para **fuentes evaluadas y catálogo de la capa macroeconómica**, ver
+  [`docs/especificaciones/plan_macroeconomia.md`](docs/especificaciones/plan_macroeconomia.md) (y
+  `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` para la
+  cobertura real obtenida).
+- Para el **diseño de investigación completo** (hipótesis, alcance válido
+  de las inferencias, la falacia ecológica a evitar), ver
+  [`docs/especificaciones/nota_metodologica.md`](docs/especificaciones/nota_metodologica.md).
+- Para la **especificación del panel temporal de ventanas electorales**
+  (fases, ventana corta vs. bloque largo), ver
+  [`docs/especificaciones/especificacion_panel_temporal.md`](docs/especificaciones/especificacion_panel_temporal.md).
+- `docs/especificaciones/ESPECIFICACION_CAPA_ELECTORAL.md` — histórica,
+  reemplazada por `docs/FUNCIONALIDADES.md` (ver nota en el propio archivo).
+- `docs/especificaciones/PLAN_CORRECCIONES_ELECTORALES.md`/
+  `PLAN_DISTRIBUCION_IDEOLOGICA_INTERACTIVA.md` — planes internos ya
+  resueltos, conservados como registro histórico.
 
 Documentos que **no** están en `docs/` porque describen un dataset
 puntual y viven al lado de él (ver `CLAUDE.md` para el detalle de cada

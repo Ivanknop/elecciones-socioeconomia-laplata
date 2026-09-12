@@ -49,14 +49,18 @@ def _serie_constante(anio_inicio, anio_fin, valor):
     return {date(a, m, 1): valor for a in range(anio_inicio, anio_fin + 1) for m in range(1, 13)}
 
 
-def _eleccion(anio, nivel, dispersion_economico_mu, dispersion_progresismo_mu, cobertura) -> FilaEleccion:
+def _eleccion(
+    anio, nivel, dispersion_economico_mu, dispersion_progresismo_mu, cobertura,
+    dispersion_economico_sigma2=0.0, dispersion_progresismo_sigma2=0.0,
+) -> FilaEleccion:
     return FilaEleccion(
         nivel=nivel, anio=anio, votantes_habilitados=100, votos_positivos=90, votos_blancos=8, votos_nulos=2,
         ausentismo=10, gana_oficialismo=True, share_oficialismo=60.0, agrupacion_oficialismo="OFICIALISMO",
         n_fuerzas_viables=2, share_marginal_acumulado=0.0, share_oposicion_principal=40.0,
         share_otras_fuerzas_viables=0.0, dispersion_economico_mu=dispersion_economico_mu,
-        dispersion_economico_sigma2=0.0, dispersion_progresismo_mu=dispersion_progresismo_mu,
-        dispersion_progresismo_sigma2=0.0, dispersion_cobertura_share=cobertura, resultado_disponible=True,
+        dispersion_economico_sigma2=dispersion_economico_sigma2, dispersion_progresismo_mu=dispersion_progresismo_mu,
+        dispersion_progresismo_sigma2=dispersion_progresismo_sigma2, dispersion_cobertura_share=cobertura,
+        resultado_disponible=True,
     )
 
 
@@ -79,8 +83,8 @@ def escenario_basico():
     }
     posiciones = {}
     elecciones_por_anio_nivel = {
-        (2011, "municipal"): _eleccion(2011, "municipal", 1.0, -1.0, 40.0),
-        (2013, "municipal"): _eleccion(2013, "municipal", 3.0, 2.0, 90.0),
+        (2011, "municipal"): _eleccion(2011, "municipal", 1.0, -1.0, 40.0, dispersion_economico_sigma2=1.0, dispersion_progresismo_sigma2=0.5),
+        (2013, "municipal"): _eleccion(2013, "municipal", 3.0, 2.0, 90.0, dispersion_economico_sigma2=4.0, dispersion_progresismo_sigma2=2.0),
     }
     return (
         ventanas, registro, series_mensuales, resultado_por_anio_nivel, voto_partido_por_anio_nivel,
@@ -151,6 +155,8 @@ class TestColumnasDeDesplazamientoIdeologico:
         assert fila["magnitud_desplazamiento_ideologico"] == pytest.approx((2.0**2 + 3.0**2) ** 0.5)
         assert fila["cuadrante_desplazamiento"] == "derecha_progresista"
         assert fila["dispersion_cobertura_share_min"] == pytest.approx(40.0)  # min(40, 90)
+        assert fila["delta_sigma2_economico"] == pytest.approx(3.0)  # 4.0 - 1.0
+        assert fila["delta_sigma2_progresismo"] == pytest.approx(1.5)  # 2.0 - 0.5
 
     def test_sin_eleccion_correspondiente_todo_none(self, escenario_basico):
         *resto, _ = escenario_basico
@@ -160,6 +166,8 @@ class TestColumnasDeDesplazamientoIdeologico:
         assert fila["magnitud_desplazamiento_ideologico"] is None
         assert fila["cuadrante_desplazamiento"] is None
         assert fila["dispersion_cobertura_share_min"] is None
+        assert fila["delta_sigma2_economico"] is None
+        assert fila["delta_sigma2_progresismo"] is None
 
 
 class TestClasificarCuadranteDesplazamiento:

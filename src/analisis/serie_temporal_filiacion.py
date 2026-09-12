@@ -1,6 +1,6 @@
 """Serie temporal por filiación política (2011-2025), un gráfico por nivel
 de gobierno -- complementa `serie_temporal.py` (que grafica por
-`campo_ideologico`). Detalle en docs/nota_metodologica.md §5.2.
+`campo_ideologico`). Detalle en docs/especificaciones/nota_metodologica.md §5.2.
 
 Uso:
     python -m analisis.serie_temporal_filiacion                     # los 3 niveles

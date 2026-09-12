@@ -12,6 +12,22 @@ Este inventario detalla todas las variables extraíbles de las fuentes ya identi
 
 La estructura del panel requiere variables que puedan agregarse dentro de ventanas de ~24 o ~48 meses entre elecciones. Variables con periodicidad mensual o trimestral son ideales; variables anuales solo aportan 1-2 puntos por ventana y limitan el tipo de agregación posible (no permiten calcular tendencia o volatilidad intraventana).
 
+**Criterio de inclusión — cobertura mínima:** solo se mantienen acá las
+fuentes/variables con al menos el 80% de cobertura real dentro de
+2001-2025 (20 de 25 años). Lo que releva pero no cumple ese piso vive en
+`docs/especificaciones/datos_relevados_no_usables.md`, no se descarta —
+queda documentado por si en el futuro cambia el criterio o aparece un
+empalme que extienda la cobertura hacia atrás.
+
+**Nota (post-implementación):** este documento es la evaluación previa a
+la decisión de qué incorporar. `icg`, `desocupacion`, `ipc`, `tc_oficial`,
+`reservas`, `icc`, `emae`, `salario_real` y `resultado_fiscal` (Parte I y
+parte de la Parte II) ya están adoptadas — su cobertura real y estado
+vigente vive en `data/tfi_data/registro_variables.csv` y
+`docs/especificaciones/plan_macroeconomia.md`, no acá. El resto de la
+Parte II y toda la Parte III siguen siendo candidatas sin incorporar — ver
+también la lista corta en `especificacion_panel_temporal.md` §4.3.
+
 ---
 
 ## PARTE I: FUENTES YA IDENTIFICADAS
@@ -62,10 +78,6 @@ La estructura del panel requiere variables que puedan agregarse dentro de ventan
 | Tasa de desocupación | Trimestral | Ídem | Aglomerado Gran La Plata | % Desocupados / PEA |
 | Tasa de subocupación (demandante y no demandante) | Trimestral | Ídem | Aglomerado Gran La Plata | Ocupados que trabajan menos de 35 hs y quieren trabajar más |
 | Tasa de empleo no registrado (informalidad) | Trimestral | Ídem | Aglomerado Gran La Plata | Asalariados sin descuento jubilatorio |
-| Incidencia de pobreza (personas y hogares) | Semestral | 2do semestre 2016–presente (con empalme ODSA-UCA desde 2010) | Aglomerado Gran La Plata o agregado | Método LP (línea de pobreza = CBT) |
-| Incidencia de indigencia (personas y hogares) | Semestral | Ídem | Ídem | Método LP (línea de indigencia = CBA) |
-| Coeficiente de Gini del ingreso per cápita familiar | Trimestral | 3T 2021–presente (antes en informes anuales) | Total 31 aglomerados (no individual por aglomerado en la publicación trimestral) | Indicador de desigualdad |
-| Brecha de ingresos decil 10 / decil 1 | Trimestral | Ídem | Ídem | Proxy de polarización económica |
 | Ingreso medio y mediano de la ocupación principal | Trimestral | Publicado regularmente | Por aglomerado (disponible para Gran La Plata en microdatos) | Requiere procesamiento de microdatos para Gran La Plata específico |
 
 **Variables extraíbles — procesamiento de microdatos EPH (Gran La Plata, código 2):**
@@ -75,15 +87,16 @@ Los microdatos trimestrales de la EPH (bases individuales y de hogares) están d
 | Variable | Periodicidad | Cobertura temporal | Observaciones |
 |---|---|---|---|
 | Distribución del ingreso per cápita familiar (deciles, quintiles) | Trimestral | 2003–presente | Permite calcular Gini específico de Gran La Plata |
-| Tasa de pobreza e indigencia específica de Gran La Plata | Semestral | 2003–presente (con reservas 2007-2015) | Cruzando con CBA/CBT publicadas |
 | Ingreso laboral real (deflactado por IPC) | Trimestral | 2003–presente | Proxy de salario real del aglomerado |
 | Composición del empleo por calificación ocupacional | Trimestral | 2003–presente | Permite ver precarización vs. mejora de calidad del empleo |
 | Tasa de asalarización, cuentapropismo, patrones | Trimestral | 2003–presente | Estructura del mercado laboral local |
 | Acceso a cobertura de salud, educación | Trimestral | 2003–presente | Variables sociales complementarias |
 
+**Pobreza, indigencia y Gini/brecha trimestral — movidos.** La incidencia de pobreza/indigencia oficial (2do semestre 2016, empalme ODSA desde 2010) y el Gini/brecha de ingresos trimestral de la EPH (desde 3T 2021) no llegan al 80% de cobertura — ver `datos_relevados_no_usables.md`. Para Gini y pobreza con cobertura completa, usar el ítem 10 (CEDLAS) de este documento.
+
 **Herramientas de procesamiento:** El paquete `eph` de R (rOpenSci) permite descargar y procesar microdatos automáticamente, incluyendo cálculo de pobreza con canastas regionales. CEDLAS (UNLP) publica series procesadas a partir de EPH con desagregación por aglomerado y región en su portal ISA (Indicadores Socioeconómicos de Argentina).
 
-**Relevancia para el proyecto:** La desocupación es, junto con la inflación, la variable central de H1 en la literatura de voto económico. La serie de Gran La Plata permite capturar la coyuntura del mercado laboral local como proxy de La Plata. La pobreza y la desigualdad aportan dimensiones complementarias del "malestar económico" que pueden ser más relevantes que la inflación en ciertos períodos.
+**Relevancia para el proyecto:** La desocupación es, junto con la inflación, la variable central de H1 en la literatura de voto económico. La serie de Gran La Plata permite capturar la coyuntura del mercado laboral local como proxy de La Plata.
 
 ---
 
@@ -99,7 +112,8 @@ El BCRA publica un catálogo de más de 1.100 series estadísticas en formato TX
 |---|---|---|---|
 | Tipo de cambio de referencia ($/USD, Com. A 3500) | Diaria | Feb 2003–presente | Cotización oficial mayorista; promediable por mes |
 | Tipo de cambio minorista ($/USD, Com. B 9791) | Diaria | Disponible | Cotización para público general |
-| Brecha cambiaria (oficial vs. paralelo) | Diaria | Calculable desde ~2011 en adelante (dólar blue) | El BCRA no publica el paralelo; requiere fuente complementaria (Ámbito Financiero, dolarblue.net) |
+
+**Brecha cambiaria (oficial vs. paralelo) — movida.** Solo calculable desde ~2011 (60% de cobertura); depende además de una fuente no oficial para el paralelo. Ver `datos_relevados_no_usables.md`.
 
 **Variables monetarias y financieras:**
 
@@ -118,7 +132,7 @@ El BCRA publica un catálogo de más de 1.100 series estadísticas en formato TX
 |---|---|---|---|
 | Balance comercial (exportaciones e importaciones FOB/CIF) | Mensual | Serie larga disponible | Relevante como indicador macro de contexto, no como causa directa |
 
-**Relevancia para el proyecto:** El tipo de cambio y la brecha cambiaria son variables altamente salientes para el electorado argentino — probablemente más que la tasa de interés o la base monetaria. La devaluación del peso (medida como variación del tipo de cambio oficial o como ampliación de la brecha) puede funcionar como shock económico percibido con impacto electoral directo. Las reservas son un leading indicator de crisis cambiarias. La brecha cambiaria, en particular, es un indicador de distorsión/represión financiera que tiene correlato directo con la percepción de "las cosas no van bien" aunque requiere una fuente complementaria al BCRA para el dólar paralelo.
+**Relevancia para el proyecto:** El tipo de cambio es una variable altamente saliente para el electorado argentino. La devaluación del peso (medida como variación del tipo de cambio oficial) puede funcionar como shock económico percibido con impacto electoral directo. Las reservas son un leading indicator de crisis cambiarias.
 
 ---
 
@@ -143,7 +157,7 @@ El portal concentra más de 1.200 datasets de múltiples organismos. Los más re
 |---|---|---|---|---|
 | Series del EMAE disponibles vía API de datos.gob.ar | Mensual | 2004–presente | Nacional | Accesible también directo de INDEC |
 
-**Relevancia para el proyecto:** El resultado fiscal (superávit/déficit) y el gasto social son variables relevantes como indicadores de política económica del oficialismo — podrían funcionar como proxy de "esfuerzo redistributivo" del gobierno, mediando entre la economía objetiva y la percepción electoral. Sin embargo, su nivel geográfico es nacional, no local, lo cual es coherente con el diseño de panel temporal por distrito donde todas las variables económicas son igualmente nacionales.
+**Relevancia para el proyecto:** El resultado fiscal (superávit/déficit) y el gasto social son variables relevantes como indicadores de política económica del oficialismo. Su nivel geográfico es nacional, no local, lo cual es coherente con el diseño de panel temporal por distrito donde todas las variables económicas son igualmente nacionales.
 
 ---
 
@@ -193,7 +207,7 @@ El portal concentra más de 1.200 datasets de múltiples organismos. Los más re
 | Desagregación por región (CABA, GBA, Interior) | Mensual | Disponible | Regional | Serie histórica descargable gratuitamente |
 | Desagregación por nivel socioeconómico y edad | Mensual | Disponible | Nacional | Información más detallada tiene costo |
 
-**Relevancia para el proyecto:** Complementa al ICG con un ángulo distinto: el ICG mide confianza en el gobierno, el ICC mide percepción económica de los hogares. En la literatura de voto económico, la distinción entre voto sociotrópico (cómo percibo que está el país) y voto egotrópico (cómo percibo que estoy yo) es central — el ICC captura ambas dimensiones separadamente. La altísima correlación histórica entre el ICC y el desempeño electoral del oficialismo en Argentina ha sido documentada por la propia UTDT, lo que refuerza su relevancia teórica.
+**Relevancia para el proyecto:** Complementa al ICG con un ángulo distinto: el ICG mide confianza en el gobierno, el ICC mide percepción económica de los hogares. En la literatura de voto económico, la distinción entre voto sociotrópico (cómo percibo que está el país) y voto egotrópico (cómo percibo que estoy yo) es central — el ICC captura ambas dimensiones separadamente.
 
 **Acceso a datos:** Series históricas del ICC y desagregación por región y subíndices descargables gratuitamente desde la página del CIF-UTDT. Información más desagregada tiene costo.
 
@@ -213,68 +227,29 @@ El portal concentra más de 1.200 datasets de múltiples organismos. Los más re
 | Variación interanual del EMAE | Mensual | Ene 2004–presente | Nacional | Proxy de crecimiento/recesión mensual |
 | EMAE por sector de actividad (16 sectores) | Mensual | Ene 2004–presente | Nacional | Agricultura, industria, construcción, comercio, etc. |
 
-**Relevancia para el proyecto:** Es el proxy mensual más directo de "cómo va la economía" en términos de actividad real. A diferencia de la inflación (que mide precios) o el desempleo (que mide mercado laboral), el EMAE captura la producción de bienes y servicios. La variación interanual del EMAE permite distinguir períodos de recesión de períodos de crecimiento dentro de cada ventana electoral. La serie sectorial permite ver si el deterioro es generalizado o concentrado. Cubre desde 2004, por lo que pierde los primeros años del panel (2001-2003) — esas observaciones deberían cubrirse con el PIB trimestral de cuentas nacionales.
+**Relevancia para el proyecto:** Es el proxy mensual más directo de "cómo va la economía" en términos de actividad real. Cubre desde 2004 (88% del período), por lo que pierde los primeros años del panel (2001-2003).
 
 ---
 
-### 8. INDEC — Canasta Básica Alimentaria (CBA) y Canasta Básica Total (CBT)
+### 8. RIPTE — Ministerio de Trabajo
 
-**Fuente:** INDEC, Dirección de Índices de Precios de Consumo. https://www.indec.gob.ar/
-
-**Variables extraíbles:**
-
-| Variable | Periodicidad | Cobertura temporal | Nivel geográfico | Observaciones |
-|---|---|---|---|---|
-| Valor de la CBA (adulto equivalente) | Mensual | Abr 2016–presente (serie oficial limpia); empalmes anteriores disponibles vía FIEL y CEDLAS | GBA | Define la línea de indigencia |
-| Valor de la CBT (adulto equivalente) | Mensual | Ídem | GBA | Define la línea de pobreza |
-| Coeficiente de Engel (inversa) | Mensual | Ídem | GBA | Relación CBA/CBT |
-| Valores para hogar tipo (3, 4, 5 integrantes) | Mensual | Ídem | GBA | Permite expresar el umbral en términos más concretos |
-
-**Relevancia para el proyecto:** La CBT/CBA en relación al ingreso medio o al RIPTE da un indicador directo de cuántos hogares (o qué proporción del ingreso) se necesita para cubrir necesidades básicas. La brecha entre salario y canasta básica es un indicador potente de malestar material con correlato electoral directo. Más útil como componente de un indicador compuesto que como variable aislada.
-
----
-
-### 9. RIPTE y Coeficiente de Variación Salarial (CVS) — Ministerio de Trabajo / INDEC
-
-**Fuente:** Secretaría de Trabajo, Empleo y Seguridad Social (RIPTE); INDEC (CVS e Índice de Salarios).
+**Fuente:** Secretaría de Trabajo, Empleo y Seguridad Social.
 
 **Variables extraíbles:**
 
 | Variable | Periodicidad | Cobertura temporal | Nivel geográfico | Observaciones |
 |---|---|---|---|---|
 | RIPTE (Remuneración Imponible Promedio de Trabajadores Estables) | Mensual | Jul 1994–presente | Nacional | Solo empleo registrado con 13+ meses de antigüedad; no refleja empleo informal |
-| Índice de Salarios (INDEC) | Mensual | Oct 2016–presente | Nacional | Distingue sector privado registrado, público, y privado no registrado |
-| CVS — variación salarial por sector | Mensual | Oct 2016–presente | Nacional | Permite calcular salario real (deflactando por IPC) |
 
-**Relevancia para el proyecto:** El salario real (RIPTE o Índice de Salarios deflactado por IPC) es probablemente el indicador más directo de poder adquisitivo. Su evolución dentro de la ventana electoral captura si los trabajadores están "ganándole a la inflación" o no — una pregunta central en el voto económico egotrópico. La limitación del RIPTE (solo empleo registrado estable) puede compensarse parcialmente con el componente de empleo no registrado del Índice de Salarios (desde 2016). Para el período 2001-2016, el RIPTE es la única serie mensual de salarios disponible a nivel nacional.
+**El Índice de Salarios y el CVS (INDEC) — movidos.** Solo cubren desde oct 2016 (36%), ver `datos_relevados_no_usables.md`.
 
-**Derivación clave:** Salario real = RIPTE / IPC (o Índice de Salarios / IPC). Esta serie derivada permite calcular, dentro de cada ventana, si el salario real subió, bajó, cuánto y con qué tendencia.
+**Relevancia para el proyecto:** El salario real (RIPTE deflactado por IPC) es probablemente el indicador más directo de poder adquisitivo. Su evolución dentro de la ventana electoral captura si los trabajadores están "ganándole a la inflación" o no — una pregunta central en el voto económico egotrópico. Para todo el período 2001-2025, el RIPTE es la única serie mensual de salarios disponible a nivel nacional con cobertura completa.
 
----
-
-### 10. Relevamiento de Expectativas de Mercado (REM) — BCRA
-
-**Fuente:** BCRA. https://www.bcra.gob.ar/relevamiento-expectativas-mercado-rem/
-
-**Descripción:** Encuesta mensual a ~45 consultoras, bancos y centros de investigación que pronostica las principales variables macro. Relanzado en julio 2016; existía en formato anterior desde antes.
-
-**Variables extraíbles:**
-
-| Variable | Periodicidad | Cobertura temporal | Observaciones |
-|---|---|---|---|
-| Expectativas de inflación (mensual, interanual, próximos 12 y 24 meses) | Mensual | Jul 2016–presente | Mediana y Top 10 |
-| Expectativas de tipo de cambio nominal | Mensual | Jul 2016–presente | Promedio mensual $/USD |
-| Expectativas de tasa de interés (TAMAR) | Mensual | Jul 2016–presente | |
-| Expectativas de desocupación | Mensual | Jul 2016–presente | Trimestral prospectiva |
-| Expectativas de PIB | Mensual | Jul 2016–presente | Variación anual |
-| Expectativas de resultado fiscal primario | Mensual | Jul 2016–presente | |
-| Expectativas de exportaciones e importaciones | Mensual | Jul 2016–presente | |
-
-**Relevancia para el proyecto:** Las expectativas son un canal teóricamente distinto de los datos realizados: la literatura de voto económico prospectivo (MacKuen, Erikson & Stimson) argumenta que los votantes castigan o premian al gobierno no solo por lo que pasó sino por lo que creen que va a pasar. La diferencia entre expectativa y realización (el "error de expectativa" o la "sorpresa" económica) podría ser un predictor más fuerte que el dato realizado en sí. La limitación principal es que la serie solo arranca en 2016, cubriendo solo las últimas ~4-5 elecciones del panel.
+**Derivación clave:** Salario real = RIPTE / IPC. Esta serie derivada permite calcular, dentro de cada ventana, si el salario real subió, bajó, cuánto y con qué tendencia.
 
 ---
 
-### 11. OEDE — Observatorio de Empleo y Dinámica Empresarial (Ministerio de Trabajo)
+### 9. OEDE — Observatorio de Empleo y Dinámica Empresarial (Ministerio de Trabajo)
 
 **Fuente:** Dirección Nacional de Estadísticas y Estudios Laborales. https://www.argentina.gob.ar/trabajo/estadisticas/oede-estadisticas-provinciales
 
@@ -284,38 +259,17 @@ El portal concentra más de 1.200 datasets de múltiples organismos. Los más re
 
 | Variable | Periodicidad | Cobertura temporal | Nivel geográfico | Observaciones |
 |---|---|---|---|---|
-| Empleo asalariado registrado privado | Trimestral/Mensual | ~1996–presente | Provincial (PBA) y desde 2019 departamental (Partido de La Plata) | Basado en SIPA |
-| Remuneración promedio de trabajadores registrados | Trimestral/Mensual | Ídem | Provincial y desde 2019 departamental | Nominal; deflactar por IPC |
+| Empleo asalariado registrado privado | Trimestral/Mensual | ~1996–presente | Provincial (PBA) | Basado en SIPA. El corte departamental (Partido de La Plata, desde 2019, ~28% de cobertura) no cumple el piso del 80% — ver `datos_relevados_no_usables.md` |
+| Remuneración promedio de trabajadores registrados | Trimestral/Mensual | ~1996–presente | Provincial | Nominal; deflactar por IPC |
 | Cantidad de empresas empleadoras | Trimestral | ~1996–presente | Provincial | Indicador de dinámica empresarial |
 | Tasa de entrada y salida de empresas | Trimestral | ~1996–presente | Provincial | Apertura y cierre de empresas |
 | Empleo por sector de actividad (CIIU) | Trimestral | ~1996–presente | Provincial | Permite ver estructura productiva |
 
-**Relevancia para el proyecto:** La serie departamental (desde 2019) es la única fuente de empleo formal desagregada a nivel Partido de La Plata — más fina que Gran La Plata de la EPH. Sin embargo, su cobertura temporal (desde 2019) es insuficiente para el panel completo 2001-2025. La serie provincial (PBA) cubre el período completo y es un proxy razonable para un distrito de la conurbación bonaerense que es capital provincial. La dinámica empresarial (apertura/cierre de empresas) captura una dimensión del malestar económico distinta del desempleo: no solo se pierden empleos, sino que desaparecen empresas.
+**Relevancia para el proyecto:** La serie provincial (PBA) cubre el período completo y es un proxy razonable para un distrito de la conurbación bonaerense que es capital provincial. La dinámica empresarial (apertura/cierre de empresas) captura una dimensión del malestar económico distinta del desempleo.
 
 ---
 
-### 12. Observatorio de la Deuda Social Argentina (ODSA) — UCA
-
-**Fuente:** Universidad Católica Argentina. https://uca.edu.ar/es/observatorio-de-la-deuda-social-argentina
-
-**Descripción:** Desde 2004 realiza la Encuesta de la Deuda Social Argentina (EDSA) con ~5.700 hogares en áreas urbanas. Produce indicadores de pobreza multidimensional (no solo monetaria), bienestar subjetivo, empleo, salud, educación, vivienda. Dos series empalmables: Bicentenario (2010-2016) y Agenda para la Equidad (2017-2025).
-
-**Variables extraíbles:**
-
-| Variable | Periodicidad | Cobertura temporal | Nivel geográfico | Observaciones |
-|---|---|---|---|---|
-| Pobreza multidimensional (carencias en derechos) | Anual | 2010–presente | Nacional urbano, con desagregación regional | No solo ingreso: vivienda, salud, educación, empleo |
-| Inseguridad alimentaria | Anual | 2010–presente | Nacional urbano | Indicador extremo de malestar material |
-| Percepción de insuficiencia de ingresos | Anual | 2010–presente | Nacional urbano | % hogares que perciben que sus ingresos no alcanzan |
-| Capacidad de ahorro percibida | Anual | 2010–presente | Nacional urbano | Indicador de bienestar económico subjetivo |
-| Malestar psicológico (ansiedad, depresión) | Anual | 2010–presente | Nacional urbano | Dimensión de bienestar subjetivo |
-| Estrés económico, social y subjetivo | Anual | 2023–presente | Nacional urbano | Nuevo en la EDSA 2025 |
-
-**Relevancia para el proyecto:** Aporta dimensiones de malestar que los indicadores macro no capturan — en particular, la percepción subjetiva de insuficiencia de ingresos y la inseguridad alimentaria son indicadores de "sufrimiento vivido" más que de "dato macro". La limitación principal es que la periodicidad es anual (no mensual ni trimestral), lo que da solo 1-2 puntos por ventana electoral de 24 meses, y el nivel geográfico es nacional/regional sin desagregación a nivel La Plata. Útil como variable de contexto o de validación, no como input principal del modelo de ventanas.
-
----
-
-### 13. CEDLAS (Centro de Estudios Distributivos, Laborales y Sociales) — UNLP
+### 10. CEDLAS (Centro de Estudios Distributivos, Laborales y Sociales) — UNLP
 
 **Fuente:** Facultad de Ciencias Económicas, UNLP. https://www.cedlas.econo.unlp.edu.ar/wp/estadisticas/isa/
 
@@ -331,26 +285,11 @@ El portal concentra más de 1.200 datasets de múltiples organismos. Los más re
 | Tasa de pobreza empalmada (serie larga) | Semestral | 1992–presente | Empalme propio del CEDLAS |
 | Retornos a la educación | Anual | Disponible | Indicador estructural, no coyuntural |
 
-**Relevancia para el proyecto:** El valor principal del CEDLAS es que produce series empalmadas de indicadores que el INDEC no empalma oficialmente (especialmente para el período 2007-2015). Si se necesita una serie larga y coherente de pobreza o Gini que cubra todo el panel 2001-2025 sin discontinuidades, CEDLAS es la fuente más confiable. Además, al estar en la UNLP, hay acceso institucional directo.
+**Relevancia para el proyecto:** El valor principal del CEDLAS es que produce series empalmadas de indicadores que el INDEC no empalma oficialmente (especialmente para el período 2007-2015) y con cobertura completa del panel 2001-2025 — es la fuente a usar para Gini y pobreza, no la serie EPH oficial directa (ver nota en el ítem 2). Además, al estar en la UNLP, hay acceso institucional directo.
 
 ---
 
-### 14. Tipo de cambio paralelo ("dólar blue") — Fuentes no oficiales
-
-**Fuente:** Ámbito Financiero (ambito.com/contenidos/dolar.html), dolarblue.net, series históricas compiladas por investigadores y portales financieros.
-
-**Variables extraíbles:**
-
-| Variable | Periodicidad | Cobertura temporal | Observaciones |
-|---|---|---|---|
-| Cotización del dólar paralelo (blue) | Diaria | ~2011–presente (con cobertura más firme desde 2012) | No es dato oficial; no existe fuente única canónica |
-| Brecha cambiaria (% diferencia blue vs. oficial) | Diaria | Calculable desde 2011 | Indicador de distorsión cambiaria y desconfianza |
-
-**Relevancia para el proyecto:** La brecha cambiaria es un indicador muy saliente para el electorado argentino, probablemente más que la tasa de interés o las reservas. En períodos de cepo cambiario (2011-2015, 2019-2023), la brecha fue tema central del discurso público y la percepción de "crisis". Limitación: la serie es estimada (no hay cotización oficial de un mercado paralelo); la confiabilidad varía según la fuente. Para el período 2001-2011 (pre-cepo), la brecha era marginal y puede considerarse cero.
-
----
-
-### 15. Resultado fiscal primario — Secretaría de Hacienda
+### 11. Resultado fiscal primario — Secretaría de Hacienda
 
 **Fuente:** Ministerio de Economía, Secretaría de Hacienda. Series disponibles vía datos.gob.ar y Oficina Nacional de Presupuesto (https://www.economia.gob.ar/onp/estadisticas/).
 
@@ -363,24 +302,7 @@ El portal concentra más de 1.200 datasets de múltiples organismos. Los más re
 | Ingresos tributarios nacionales | Mensual | 1993–presente | Nacional | IVA, Ganancias, derechos de exportación, etc. |
 | Gasto primario del SPN | Mensual | 1993–presente | Nacional | Jubilaciones, salarios, transferencias, capital |
 
-**Relevancia para el proyecto:** El resultado fiscal es una variable de política económica del oficialismo que el votante puede (o no) percibir. En el contexto argentino reciente, el superávit/déficit fiscal se ha vuelto parte del discurso público, pero históricamente fue una variable técnica con poca penetración en la percepción del votante medio. Su inclusión es relevante como control o como moderador (¿importa el déficit solo cuando es políticamente saliente?), no necesariamente como predictor principal.
-
----
-
-### 16. INDEC — Índice de Salarios (IS)
-
-**Fuente:** INDEC. https://www.indec.gob.ar/
-
-**Variables extraíbles:**
-
-| Variable | Periodicidad | Cobertura temporal | Observaciones |
-|---|---|---|---|
-| Índice de Salarios nivel general | Mensual | Oct 2016–presente | Compuesto: privado registrado + público + privado no registrado |
-| IS sector privado registrado | Mensual | Oct 2016–presente | Incluye paritarias |
-| IS sector público | Mensual | Oct 2016–presente | Salarios estatales |
-| IS sector privado no registrado | Mensual | Oct 2016–presente | Única serie oficial de salarios informales |
-
-**Relevancia para el proyecto:** El componente de empleo privado no registrado (informal) del IS es particularmente relevante para capturar la realidad de los sectores más vulnerables, que suelen ser los más afectados por las crisis y los más reactivos electoralmente. Sin embargo, la serie solo existe desde octubre 2016.
+**Relevancia para el proyecto:** El resultado fiscal es una variable de política económica del oficialismo que el votante puede (o no) percibir. Su inclusión es relevante como control o como moderador, no necesariamente como predictor principal.
 
 ---
 
@@ -388,7 +310,7 @@ El portal concentra más de 1.200 datasets de múltiples organismos. Los más re
 
 ---
 
-### 17. Datos electorales — Dirección Nacional Electoral / Junta Electoral PBA
+### 12. Datos electorales — Dirección Nacional Electoral / Junta Electoral PBA
 
 **Fuente:** Atlas Electoral de Andy Tow (andy.towsa.com), datos abiertos del Ministerio del Interior (datos.gob.ar), DINE.
 
@@ -396,7 +318,7 @@ El portal concentra más de 1.200 datasets de múltiples organismos. Los más re
 
 ---
 
-### 18. Encuesta de Supermercados y Autoservicios Mayoristas — INDEC
+### 13. Encuesta de Supermercados y Autoservicios Mayoristas — INDEC
 
 **Fuente:** INDEC. Ventas de supermercados (en valores corrientes y constantes). Mensual, desde 2003. Nacional con desagregación por región.
 
@@ -404,7 +326,7 @@ El portal concentra más de 1.200 datasets de múltiples organismos. Los más re
 
 ---
 
-### 19. Indicador Sintético de Servicios Públicos (ISSP) — INDEC
+### 14. Indicador Sintético de Servicios Públicos (ISSP) — INDEC
 
 **Fuente:** INDEC. Mensual, desde 2004.
 
@@ -412,23 +334,7 @@ El portal concentra más de 1.200 datasets de múltiples organismos. Los más re
 
 ---
 
-### 20. Encuesta Nacional de Gastos de los Hogares (ENGHo) — INDEC
-
-**Fuente:** INDEC. Se realiza cada ~10 años (2004/05, 2012/13, 2017/18). La próxima está en planificación.
-
-**Relevancia limitada:** Periodicidad demasiado baja para el panel de ventanas. Útil solo como referencia de estructura de consumo para contextualizar qué mide el IPC, no como input del modelo.
-
----
-
-### 21. Censos Nacionales de Población (2001, 2010, 2022) — INDEC
-
-**Fuente:** INDEC. Datos desagregados a nivel de radio censal, fracción, departamento.
-
-**Relevancia limitada para el modelo temporal:** Solo 3 puntos (2001, 2010, 2022). Sin embargo, los datos censales a nivel de radio censal podrían servir para la dimensión espacial del proyecto (análisis secundario por localidad) si se retoma: NBI, condiciones de vivienda, nivel educativo, composición demográfica por localidad.
-
----
-
-### 22. Índice de Producción Industrial Manufacturero (IPI) — INDEC
+### 15. Índice de Producción Industrial Manufacturero (IPI) — INDEC
 
 **Fuente:** INDEC. Mensual, base 2004=100 (nueva base 2018 también disponible).
 
@@ -436,7 +342,7 @@ El portal concentra más de 1.200 datasets de múltiples organismos. Los más re
 
 ---
 
-### 23. Índice de Costo de la Construcción (ICC) — INDEC
+### 16. Índice de Costo de la Construcción (ICC) — INDEC
 
 **Fuente:** INDEC. Mensual, GBA. Desde 1993.
 
@@ -444,11 +350,11 @@ El portal concentra más de 1.200 datasets de múltiples organismos. Los más re
 
 ---
 
-### 24. Precio del dólar como commodity informacional
+### 17. Precio del dólar como commodity informacional
 
 **Fuente:** Múltiples (BCRA para oficial, portales financieros para paralelo, MEP, CCL).
 
-**Relevancia:** En Argentina, "el dólar" no es solo un tipo de cambio: es un termómetro político. La evolución del tipo de cambio (oficial, paralelo, MEP, CCL) y especialmente los saltos discretos (devaluaciones) son eventos con alto impacto perceptivo. Podría operacionalizarse como variable dummy (¿hubo devaluación discreta en la ventana?) o como variación acumulada.
+**Relevancia:** En Argentina, "el dólar" no es solo un tipo de cambio: es un termómetro político. La evolución del tipo de cambio (oficial, paralelo, MEP, CCL) y especialmente los saltos discretos (devaluaciones) son eventos con alto impacto perceptivo. Podría operacionalizarse como variable dummy (¿hubo devaluación discreta en la ventana?) o como variación acumulada — sobre la serie oficial (ítem 3), que sí cumple el piso de cobertura; el componente paralelo depende de la fuente movida a `datos_relevados_no_usables.md`.
 
 ---
 
@@ -460,24 +366,21 @@ El portal concentra más de 1.200 datasets de múltiples organismos. Los más re
 |---|---|---|---|---|---|---|
 | IPC (empalme) | ✓ | ✓ | ⚠ (intervenido) | ✓ | Mensual | GBA / Nacional |
 | Desocupación EPH | ✓ (puntual) | ✓ | ⚠ (con reservas) | ✓ | Trimestral | Aglomerado Gran La Plata |
-| Pobreza EPH | ✓ (puntual) | ✓ | ⚠ | ✓ | Semestral | Aglomerado Gran La Plata |
 | EMAE | ✗ | ✓ (desde 2004) | ⚠ | ✓ | Mensual | Nacional |
 | RIPTE | ✓ | ✓ | ✓ | ✓ | Mensual | Nacional |
 | Tipo de cambio oficial | ✓ | ✓ | ✓ | ✓ | Diaria | Nacional |
-| Brecha cambiaria | ✗ | ✗ | ✓ (desde ~2011) | ✓ | Diaria | Nacional |
 | ICG (UTDT) | ✓ (desde nov) | ✓ | ✓ | ✓ | Mensual | Nacional (con desag. regional) |
 | ICC (UTDT) | ✓ | ✓ | ✓ | ✓ | Mensual | Nacional (con desag. regional) |
 | Resultado fiscal primario | ✓ | ✓ | ✓ | ✓ | Mensual | Nacional |
 | Reservas BCRA | ✓ | ✓ | ✓ | ✓ | Diaria | Nacional |
-| REM (expectativas) | ✗ | ✗ | ✗ | ✓ (desde jul 2016) | Mensual | Nacional |
-| Índice de Salarios | ✗ | ✗ | ✗ | ✓ (desde oct 2016) | Mensual | Nacional |
 | OEDE empleo registrado (PBA) | ✓ | ✓ | ✓ | ✓ | Trimestral | Provincial |
-| OEDE empleo (La Plata depto.) | ✗ | ✗ | ✗ | ✓ (desde 2019) | Trimestral | Departamental |
-| CBA/CBT | ✓ (empalme) | ✓ (empalme) | ⚠ | ✓ (desde abr 2016 limpia) | Mensual | GBA |
 | Gini (CEDLAS empalme) | ✓ | ✓ | ✓ (empalmado) | ✓ | Semestral | Aglomerado |
-| ODSA-UCA | ✗ | ✓ (desde 2004) | ✓ (desde 2010 con empalme) | ✓ | Anual | Nacional urbano |
 
 **Leyenda:** ✓ = disponible sin reservas; ⚠ = disponible con reservas metodológicas (período de intervención INDEC); ✗ = no disponible.
+
+Filas quitadas de esta matriz por no cumplir el piso del 80% (ver
+`datos_relevados_no_usables.md`): Pobreza EPH, Brecha cambiaria, REM,
+Índice de Salarios, OEDE empleo (La Plata depto.), CBA/CBT, ODSA-UCA.
 
 ---
 
@@ -498,20 +401,16 @@ Las siguientes variables tienen cobertura completa o casi completa desde 2001, p
 7. **Resultado fiscal primario** (Hacienda, mensual)
 8. **Reservas internacionales** (BCRA, diaria → promediable mensual)
 
-### Variables complementarias (cobertura parcial o periodicidad menor)
+### Variables complementarias (cobertura parcial o periodicidad menor, pero ≥80%)
 
 9. **EMAE** (desde 2004, mensual) — actividad económica real
-10. **Pobreza** (semestral, Gran La Plata) — vía EPH o CEDLAS empalme
-11. **Gini** (semestral, empalme CEDLAS) — desigualdad
-12. **Brecha cambiaria** (desde ~2011, diaria) — saliente en períodos de cepo
-13. **Empleo registrado PBA** (OEDE, trimestral) — mercado laboral formal provincial
+10. **Pobreza y Gini** (semestral, empalme CEDLAS — no la serie EPH oficial directa, que no cumple el piso)
+11. **Empleo registrado PBA** (OEDE, trimestral) — mercado laboral formal provincial
 
-### Variables de solo valor exploratorio o para el período reciente
-
-14. **REM expectativas** (desde 2016)
-15. **Índice de Salarios con informal** (desde 2016)
-16. **OEDE departamental La Plata** (desde 2019)
-17. **ODSA-UCA indicadores multidimensionales** (anual, desde 2010)
+Las variables con cobertura <80% (REM, Índice de Salarios, OEDE
+departamental, ODSA-UCA, CBA/CBT, dólar blue/brecha cambiaria) se movieron
+a `datos_relevados_no_usables.md` y no forman parte de este núcleo ni de
+las complementarias.
 
 ---
 
@@ -530,4 +429,4 @@ La opción 4 es probablemente la más robusta para una tesis académica. Esta de
 
 ---
 
-*Documento generado el 27 de agosto de 2026. Todas las URLs verificadas a esa fecha.*
+*Documento generado el 27 de agosto de 2026. Todas las URLs verificadas a esa fecha. Reorganizado el 12 de septiembre de 2026 separando las fuentes con cobertura <80% de 2001-2025 a `datos_relevados_no_usables.md`.*

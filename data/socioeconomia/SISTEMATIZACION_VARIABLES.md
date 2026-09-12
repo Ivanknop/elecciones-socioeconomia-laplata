@@ -206,7 +206,7 @@ fuerza relativa que a la población general.
   confianza ni errores de muestreo en esta pasada.
 - **Reservas de INDEC sobre 2007-2015.** INDEC advierte oficialmente que
   las series de ese período deben "considerarse con reservas" (documentado
-  en `docs/inventario_fuentes_datos.md`, no en `eph_client.py`) — afecta a
+  en `docs/especificaciones/inventario_fuentes_datos.md`, no en `eph_client.py`) — afecta a
   2011-2015 completo dentro de nuestro rango.
 - **Censo: la parte temática (§2b) sigue sin existir.** País de nacimiento
   (bloqueante directo para H8 de la Nota metodológica), nivel educativo,

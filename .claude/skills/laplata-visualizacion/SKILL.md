@@ -1,6 +1,6 @@
 ---
 name: laplata-visualizacion
-description: Estructura y convenciones de src/visualizacion/, el módulo que genera los HTML interactivos del sitio de GitHub Pages del repositorio elecciones-socioeconomia-laplata (mapa electoral Leaflet, cuadrantes ideológicos V-Party, trayectorias económicas trimestrales/bielección) -- patrón payload+template, qué va en docs/ vs. graficos/, y la regla de no distinguir V-Party real de estimación propia en la UI. Usar al tocar mapa_interactivo.py, distribucion_ideologica_interactiva.py, trayectorias_economicas.py, trayectorias_economicas_bieleccion.py, sus *_template.html, o al agregar una pestaña interactiva nueva al sitio. Para convenciones generales del repo ver primero el skill laplata-general; para el dato que consumen mapa_interactivo.py/distribucion_ideologica_interactiva.py (circuito_id, clasificación ideológica, crosswalk circuito↔localidad) ver laplata-elecciones; para el panel temporal que consumen los dos scripts de trayectorias económicas, ver CLAUDE.md ("src/ml_models/") y docs/especificacion_panel_temporal.md.
+description: Estructura y convenciones de src/visualizacion/, el módulo que genera los HTML interactivos del sitio de GitHub Pages del repositorio elecciones-socioeconomia-laplata (mapa electoral Leaflet, cuadrantes ideológicos V-Party, trayectorias económicas trimestrales/bielección) -- patrón payload+template, qué va en docs/ vs. graficos/, y la regla de no distinguir V-Party real de estimación propia en la UI. Usar al tocar mapa_interactivo.py, distribucion_ideologica_interactiva.py, trayectorias_economicas.py, trayectorias_economicas_bieleccion.py, sus *_template.html, o al agregar una pestaña interactiva nueva al sitio. Para convenciones generales del repo ver primero el skill laplata-general; para el dato que consumen mapa_interactivo.py/distribucion_ideologica_interactiva.py (circuito_id, clasificación ideológica, crosswalk circuito↔localidad) ver laplata-elecciones; para el panel temporal que consumen los dos scripts de trayectorias económicas, ver CLAUDE.md ("src/ml_models/") y docs/especificaciones/especificacion_panel_temporal.md.
 ---
 
 # Visualización interactiva (`src/visualizacion/`)
@@ -38,9 +38,10 @@ git-tracked, ambos parte del deploy). Antes de v-siguiente (ver
 
 ## Patrón compartido: payload + template
 
-Los cuatro scripts del módulo (`mapa_interactivo.py`,
+Los cinco scripts del módulo (`mapa_interactivo.py`,
 `distribucion_ideologica_interactiva.py`, `trayectorias_economicas.py`,
-`trayectorias_economicas_bieleccion.py`) siguen la misma forma:
+`trayectorias_economicas_bieleccion.py`, `distancia_por_fuerza.py`) siguen
+la misma forma:
 
 ```
 construir_payload(...) -> dict          # toda la lógica de datos, pura, testeable
@@ -69,10 +70,11 @@ de escape en el replace.
 
 ## Qué vive en `docs/` y por qué
 
-Los cuatro HTML generados (`docs/mapa_electoral_la_plata.html`,
+Los cinco HTML generados (`docs/mapa_electoral_la_plata.html`,
 `docs/distribucion_ideologica_la_plata.html`,
 `docs/trayectorias_economicas_la_plata.html`,
-`docs/trayectorias_economicas_bieleccion_la_plata.html`) están en
+`docs/trayectorias_economicas_bieleccion_la_plata.html`,
+`docs/distancia_por_fuerza_la_plata.html`) están en
 `docs/`, no en `graficos/`, y **sí están git-tracked** -- `docs/` (junto
 con la raíz del repo) es uno de los dos únicos directorios que GitHub
 Pages puede servir sin un workflow de Actions aparte, y `docs/index.html`
@@ -154,7 +156,7 @@ dos scripts de este módulo, no leen de `src/electoral/`/
 (`panel_bieleccion_trimestral_<nivel>.csv`) respectivamente -- salida de
 `ml_models.construir_panel_trimestral`/`construir_panel_bieleccion_trimestral`
 (ver CLAUDE.md, sección "src/ml_models/", y
-`docs/especificacion_panel_temporal.md` para el resto de ese pipeline).
+`docs/especificaciones/especificacion_panel_temporal.md` para el resto de ese pipeline).
 Puntos clave:
 
 - El segundo es la variante del primero sobre el bloque largo (`_vl`:
@@ -173,6 +175,26 @@ Puntos clave:
   `test_trayectorias_economicas_bieleccion.py`; `construir_payload` y el
   template no tienen test automatizado, mismo criterio que el resto de
   este módulo.
+
+## `distancia_por_fuerza.py`
+
+Documentado en detalle en `docs/FUNCIONALIDADES.md`, sección "Distancia
+ideológica por fuerza" -- no se repite acá. Puntos clave:
+
+- **Fuente de datos: `data/tfi_data/distancias_ideologicas.csv`** (D18),
+  no `elecciones/`/`circuito_<cargo>.json` directo -- una fila por fuerza
+  viable con V-Party cargado; sin score, no entra al gráfico.
+- Selector **Nivel únicamente** -- a diferencia de los otros scripts, el
+  eje x ya es año, así que un solo gráfico por nivel muestra todas las
+  elecciones a la vez, sin selector de año ni autoplay.
+- Eje y con signo: `distancia_euclidea_al_oficialismo` positiva/negativa
+  según el signo de `distancia_economico_al_oficialismo`. Color azul/rojo/
+  gris (derecha/izquierda/oficialismo-o-empate) es una **paleta binaria
+  propia de esta pestaña**, deliberadamente fuera de
+  `colorimetria_campo_ideologico.csv`/`colorimetria_familia_politica.csv`
+  -- esos dos CSV son la única fuente para campo ideológico/filiación
+  política absolutos; acá el eje es la posición relativa al oficialismo
+  de cada nivel, una dimensión distinta.
 
 ## `vparty_distribucion_tfi.py` (`src/analisis/`, no `src/visualizacion/`)
 

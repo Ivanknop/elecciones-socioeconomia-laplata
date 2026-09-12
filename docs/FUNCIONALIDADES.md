@@ -691,6 +691,40 @@ por `tests/ml_models/test_panel_bieleccion_trimestral.py`;
 `tests/visualizacion/test_trayectorias_economicas_bieleccion.py` -- mismo
 criterio de cobertura que los módulos análogos del bloque corto.
 
+## Distancia ideológica por fuerza (`src/visualizacion/distancia_por_fuerza.py`)
+
+Pestaña interactiva nueva (D18): un scatter de burbujas por nivel de
+gobierno, eje x = año (2001-2025, dominio fijo entre los 3 niveles), eje
+y = `distancia_euclidea_al_oficialismo` **con signo** (positivo = a la
+derecha del oficialismo, negativo = a la izquierda, según el signo de
+`distancia_economico_al_oficialismo`; exactamente `0` -- incluida la
+fila del propio oficialismo, que siempre tiene distancia `0` -- se grafica
+en `y=0` sin lado asignado), tamaño de burbuja = `share`, color azul/rojo/
+gris (derecha/izquierda/oficialismo-o-empate) -- paleta binaria propia de
+esta pestaña, no sale de `colorimetria_campo_ideologico.csv`/
+`colorimetria_familia_politica.csv` porque el eje acá es relativo al
+oficialismo de cada nivel, no absoluto (campo ideológico/filiación).
+
+**Fuente de datos: `data/tfi_data/distancias_ideologicas.csv`** (D18,
+`ml_models.construir_distancias_ideologicas`) -- una fila por fuerza
+viable con V-Party cargado; las filas sin score (`distancia_euclidea_al_oficialismo`
+vacío) no entran al gráfico, no se imputan. Sin selector de año (a
+diferencia de "Distribución ideológica interactiva"): el eje x ya es año,
+así que el selector de Nivel alcanza para mostrar las ~13 elecciones de
+una vez.
+
+```bash
+PYTHONPATH=src python -m ml_models.construir_distancias_ideologicas
+PYTHONPATH=src python -m visualizacion.distancia_por_fuerza
+```
+
+`construir_payload`/`_serializar_puntos`/`_lado_y_color` y el template no
+tienen test automatizado -- mismo criterio que el resto de
+`src/visualizacion/` (se valida corriendo el script contra `data/` real;
+`construir_distancias_ideologicas` ya está cubierto en
+`tests/ml_models/test_construir_distancias_ideologicas.py`, no se
+reemplaza acá).
+
 ## Capa socioeconómica (EPH + Censo) — estado actual
 
 **Correspondencia circuito electoral ↔ radio censal**
@@ -852,7 +886,7 @@ Un dominio analítico separado del electoral y del socioeconómico:
 apertura regional), se relaciona con el resto del repositorio por fecha,
 nunca por unidad espacial ni por join territorial. El detalle completo de
 fuentes evaluadas, decisiones de diseño y catálogo variable por variable
-está en `docs/plan_macroeconomia.md`; la cobertura real
+está en `docs/especificaciones/plan_macroeconomia.md`; la cobertura real
 obtenida, las salvedades encontradas al implementar y el resultado de la
 auditoría externa están en
 `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md`.

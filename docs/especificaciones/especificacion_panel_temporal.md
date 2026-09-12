@@ -238,7 +238,7 @@ El siguiente es el **estado inicial del registro**, no una lista cerrada. Ver `i
 | `brecha_cambiaria` | Desde ~2011 | negativa | nominal_cambiario |
 | `empleo_registrado_pba` | Trimestral, OEDE | positiva | real |
 
-**Candidatas relevadas, aún no incorporadas** (ver `inventario_fuentes_datos.md`): REM del BCRA (expectativas, desde 2016), Índice de Salarios con componente informal (desde 2016), OEDE departamental La Plata (desde 2019), indicadores multidimensionales del ODSA-UCA (anual, desde 2010), ventas en supermercados (INDEC, mensual desde 2003), índice de costo de la construcción (INDEC, mensual desde 1993), IPI manufacturero.
+**Candidatas relevadas, aún no incorporadas** (ver `inventario_fuentes_datos.md`): ventas en supermercados (INDEC, mensual desde 2003), índice de costo de la construcción (INDEC, mensual desde 1993), IPI manufacturero. REM del BCRA, Índice de Salarios, OEDE departamental La Plata e indicadores del ODSA-UCA quedaron descartados por cobertura <80% de 2001-2025 — ver `datos_relevados_no_usables.md`.
 
 ### 4.4 Requisitos para incorporar una variable nueva
 
@@ -461,12 +461,13 @@ transición (`anio_t`/`anio_t_menos_1`), mismo patrón de join que ya usa
 
 | Columna | Descripción |
 |---|---|
-| `delta_dispersion_economico_mu`, `delta_dispersion_progresismo_mu` | `dispersion_<eje>_mu(t) − dispersion_<eje>_mu(t−1)`, por eje |
-| `magnitud_desplazamiento_ideologico` | `√(delta_economico² + delta_progresismo²)` |
+| `delta_dispersion_economico_mu`, `delta_dispersion_progresismo_mu` | `dispersion_<eje>_mu(t) − dispersion_<eje>_mu(t−1)`, por eje — dirección del desplazamiento del centro |
+| `delta_sigma2_economico`, `delta_sigma2_progresismo` | `dispersion_<eje>_sigma2(t) − dispersion_<eje>_sigma2(t−1)`, por eje — magnitud de la fragmentación/polarización; no cancela cuando fuerzas de polos opuestos ganan votos parecidos (caso real: LLA/FIT-U 2021), a diferencia de los deltas de `mu` |
+| `magnitud_desplazamiento_ideologico` | `√(delta_economico² + delta_progresismo²)`, sobre los deltas de `mu` |
 | `cuadrante_desplazamiento` | dirección del vector de desplazamiento: `derecha`/`izquierda` según el signo de `delta_dispersion_economico_mu`, `progresista`/`conservador` según el signo de `delta_dispersion_progresismo_mu` (mismo criterio de signo que las etiquetas fijas de `vparty_cuadrantes`/`vparty_cuadrantes_local`, aplicado al vector de desplazamiento en vez de al punto absoluto) — `None` si falta cualquiera de los dos deltas o si alguno es exactamente `0` (cuadrante indefinido) |
 | `dispersion_cobertura_share_min` | `min(dispersion_cobertura_share(t), dispersion_cobertura_share(t−1))` — para ponderar/filtrar transiciones con baja cobertura V-Party sin fijar un umbral en código (ver `notebooks/ml/03_desplazamiento_ideologico.ipynb`) |
 
-**Disciplina H1/H4 vs. H2/H3:** estas 4 columnas (todas menos
+**Disciplina H1/H4 vs. H2/H3:** estas 6 columnas (todas menos
 `dispersion_cobertura_share_min`, que es una covariable de calidad de
 dato, no una variable dependiente) son variables dependientes de H2,
 calculadas con datos de `t` — nunca deben usarse como predictoras de

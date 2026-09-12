@@ -28,7 +28,7 @@ su propio skill de detalle:
    electoral del dominio 1 con las series nacionales del dominio 2, para
    modelado futuro. Cinco fases (calendario, resultado por distrito,
    features intra/interventana, panel de ventanas, panel trimestral
-   largo) documentadas en `docs/especificacion_panel_temporal.md` y
+   largo) documentadas en `docs/especificaciones/especificacion_panel_temporal.md` y
    `docs/decisiones_metodologicas.md` — sin skill propio todavía, ver
    `CLAUDE.md` sección "`src/ml_models/`".
 
@@ -58,12 +58,12 @@ src/electoral/, src/analisis/, src/socioeconomia/   # dominio 1 -- ver laplata-e
 src/visualizacion/                                    # generadores de HTML interactivo para docs/ (capa de presentación sobre los dominios 1/3/4, separada de src/analisis/ porque no bulk-escribe PNG/Markdown) -- ver laplata-visualizacion
 src/macroeconomia/                                    # dominio 2 -- ver laplata-economia
 src/geolocalizacion/                                  # dominio 3 -- ver laplata-geolocalizacion
-src/ml_models/                                        # dominio 4, panel temporal de ventanas electorales -- ver CLAUDE.md ("src/ml_models/") y docs/especificacion_panel_temporal.md
+src/ml_models/                                        # dominio 4, panel temporal de ventanas electorales -- ver CLAUDE.md ("src/ml_models/") y docs/especificaciones/especificacion_panel_temporal.md
 notebooks/               # 01-06, pipeline del dominio 1 (ver CLAUDE.md)
 data/agrupaciones/, data/distrito/, data/socioeconomia/   # dominio 1
 data/macroeconomia/                                                            # dominio 2
 data/geolocalizacion/                                                          # dominio 3, EXCEPTO el subdirectorio de abajo
-data/tfi_data/                                                                 # dominio 4 (calendario/ventanas/panel), ver docs/especificacion_panel_temporal.md
+data/tfi_data/                                                                 # dominio 4 (calendario/ventanas/panel), ver docs/especificaciones/especificacion_panel_temporal.md
 data/geolocalizacion/fuentes_extra/                                            # excepción: contenido del dominio 1 (crosswalk histórico circuito->barrio + su documentación), vive anidado acá porque es "información adicional" -- no confundir con el resto de data/geolocalizacion/, que sí es dominio 3
 docs/                     # documentación narrativa del repo entero
 tests/
@@ -74,18 +74,25 @@ CLAUDE.md                 # comandos + arquitectura autoritativa -- manda si alg
 
 - Docstrings, comentarios y mensajes de error en **español**.
 - **El código tiene que ser autodescriptivo; comentarios y docstrings
-  son la excepción, no la norma.** Se agregan solo para dejar constancia
-  de una decisión puntual que no se entiende leyendo el código: una
-  trampa del dato (la fuente dice una unidad, el valor real es otra), el
-  origen de un número mágico, un invariante entre archivos, una anomalía
-  conocida, o una referencia a una decisión `D` de
-  `docs/decisiones_metodologicas.md`. Nunca un docstring/comentario que
-  repite la firma de la función, parafrasea las líneas de abajo, o
-  explica un "por qué" que cualquiera infiere del código de alrededor --
-  eso se borra, no se acorta. Si una decisión necesita más contexto que
-  una línea, apuntar a `CLAUDE.md`/`docs/FUNCIONALIDADES.md`/el README o
-  `.md` propio del dominio en vez de inlinearlo -- un hecho, un solo
-  lugar, nunca duplicado entre archivos.
+  son la excepción, no la norma. Esto es innegociable, no una preferencia
+  de estilo.** El default para toda función nueva es **cero
+  comentarios**. Se agrega uno solo para dejar constancia de una decisión
+  puntual que no se entiende leyendo el código: una trampa del dato (la
+  fuente dice una unidad, el valor real es otra), el origen de un número
+  mágico, un invariante entre archivos, una anomalía conocida, o una
+  referencia a una decisión `D` de `docs/decisiones_metodologicas.md`.
+  Antes de agregar cualquier comentario/docstring, contrastarlo contra esa
+  lista -- si no encaja en ninguno de esos casos, no se escribe, sin
+  importar cuán nueva, exportada o "importante" parezca la función. Nunca
+  un docstring/comentario que repite la firma de la función, parafrasea
+  las líneas de abajo, repite una fórmula o valor de retorno que ya es
+  visible una línea más abajo, o explica un "por qué" que cualquiera
+  infiere del código de alrededor -- eso se borra, no se acorta (una
+  oración cortada a mitad de camino es peor que no tener comentario). Si
+  una decisión necesita más contexto que una línea, apuntar a
+  `CLAUDE.md`/`docs/FUNCIONALIDADES.md`/el README o `.md` propio del
+  dominio en vez de inlinearlo -- un hecho, un solo lugar, nunca duplicado
+  entre archivos.
 - Reportes de resultados como `@dataclass` con propiedades calculadas
   (ver `ReporteCobertura` en `src/electoral/localidades.py`,
   `ReporteValidacion` en `src/geolocalizacion/catalogo.py`) en vez de
@@ -142,4 +149,4 @@ CLAUDE.md                 # comandos + arquitectura autoritativa -- manda si alg
 | Series macroeconómicas nacionales (IPC, tipo de cambio, deuda, PBI, datos.gob.ar, BCRA) | `laplata-economia` |
 | Localidades geolocalizadas, Georef-AR, Ministerio de Obras Públicas, mapa de localidades, lat/lon | `laplata-geolocalizacion` |
 | `src/visualizacion/` (mapa Leaflet, cuadrantes V-Party interactivos, cualquier HTML nuevo para `docs/`) | `laplata-visualizacion` |
-| `src/ml_models/`, panel temporal de ventanas electorales, `data/tfi_data/panel/` | sin skill propio -- ver `CLAUDE.md` ("src/ml_models/") y `docs/especificacion_panel_temporal.md` |
+| `src/ml_models/`, panel temporal de ventanas electorales, `data/tfi_data/panel/` | sin skill propio -- ver `CLAUDE.md` ("src/ml_models/") y `docs/especificaciones/especificacion_panel_temporal.md` |

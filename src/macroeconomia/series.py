@@ -1,7 +1,7 @@
 """Tabla mensual unificada de series macroeconómicas nacionales (2011-2025)
 desde `catalogo_series.csv` y datos.gob.ar. Nunca rellena ni repite un
 valor -- celda vacía si la fuente no publicó ese mes exacto. Detalle en
-CLAUDE.md y `docs/plan_macroeconomia.md`.
+CLAUDE.md y `docs/especificaciones/plan_macroeconomia.md`.
 
 Uso:
     PYTHONPATH=src python -m macroeconomia.series

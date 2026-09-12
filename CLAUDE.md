@@ -18,7 +18,9 @@ extensive, authoritative doc on data semantics, known anomalies, and the
 ideological classification methodology (split out of README to keep it
 from growing without bound — see README's own "Documentación" section
 for the full map of docs). `docs/` holds every root-level narrative
-doc (methodology, specs, per-domain functionality, audit status) — the
+doc (methodology, per-domain functionality, audit status);
+`docs/especificaciones/` holds specs/plans written before building
+something (some already executed, kept as historical record) — the
 domain-specific docs that live next to their data
 (`data/geolocalizacion/fuentes_extra/*.md`, `data/macroeconomia/*.md`,
 `data/socioeconomia/*.md`) stay where they are, on purpose, not in
@@ -419,7 +421,7 @@ order, 01→04) are the pipeline**.
   (`vparty_cuadrantes_local.generar_distrito`) is deprecated in favor of
   `data/tfi_data/elecciones/<año>_<nivel>.csv`, see above.
 
-- **`src/visualizacion/`** holds the four scripts that generate a full
+- **`src/visualizacion/`** holds the five scripts that generate a full
   interactive HTML page for `docs/` — each pairs a `construir_payload()`
   function with a sibling `_template.html` file (`/*__RAW_DATA__*/`
   placeholder). `mapa_interactivo.py` and
@@ -437,14 +439,18 @@ order, 01→04) are the pipeline**.
   `anio_t_menos_1`/`agrupacion_t_menos_1`) — full behavior in
   `docs/FUNCIONALIDADES.md` §"Trayectorias económicas trimestrales"/
   "Trayectorias económicas bielección trimestrales" and skill
-  `laplata-visualizacion`.
+  `laplata-visualizacion`. `distancia_por_fuerza.py` (D18, sourced from
+  `data/tfi_data/distancias_ideologicas.csv`) is a bubble scatter per
+  nivel, año on the x-axis, signed euclidean distance to that level's
+  oficialismo on the y-axis — full behavior in `docs/FUNCIONALIDADES.md`
+  §"Distancia ideológica por fuerza".
 
 - **`src/ml_models/`** builds a panel temporal of electoral transitions
   (one row per año×nivel election, joined to national macro series and
   local election results) for future modeling — a fifth analytical
   domain, related to domain 1 by (año, nivel) join, to domain 2
   (`src/macroeconomia/`) by date. Full spec in
-  `docs/especificacion_panel_temporal.md`, design decisions in
+  `docs/especificaciones/especificacion_panel_temporal.md`, design decisions in
   `docs/decisiones_metodologicas.md`. Five phases, each a script writing
   to `data/tfi_data/`: `construir_calendario.py` (Fase 1 —
   `calendario_electoral.csv`/`oficialismo_por_nivel.csv`/`ventanas.csv`,
@@ -468,7 +474,7 @@ order, 01→04) are the pipeline**.
 
   `construir_elecciones_resumen.py` writes `data/tfi_data/elecciones.csv`
   (D17, see `docs/decisiones_metodologicas.md` and
-  `docs/especificacion_panel_temporal.md` §6.4) — grain `(nivel, año)`,
+  `docs/especificaciones/especificacion_panel_temporal.md` §6.4) — grain `(nivel, año)`,
   not to be confused with the `elecciones/<año>_<nivel>.csv` per-party
   directory above. It's the source of the electoral-offer structure
   (`n_fuerzas_viables`, `share_marginal_acumulado`,
@@ -486,7 +492,7 @@ order, 01→04) are the pipeline**.
   `delta_dispersion_economico_mu`/`delta_dispersion_progresismo_mu`/
   `magnitud_desplazamiento_ideologico`/`cuadrante_desplazamiento`/
   `dispersion_cobertura_share_min` — see
-  `docs/especificacion_panel_temporal.md` §6.6.
+  `docs/especificaciones/especificacion_panel_temporal.md` §6.6.
 
   `construir_distancias_ideologicas.py` writes
   `data/tfi_data/distancias_ideologicas.csv` (D18) — grain
@@ -513,7 +519,7 @@ order, 01→04) are the pipeline**.
 - **`src/macroeconomia/`** is a separate analytical domain: **national-grain
   only** (no circuito, no localidad), related to the rest of the repo by
   date, never by spatial join. Source evaluation and per-variable design
-  in `docs/plan_macroeconomia.md`; actual coverage in
+  in `docs/especificaciones/plan_macroeconomia.md`; actual coverage in
   `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md`.
   `datos_gob_client.py` fetches+caches from datos.gob.ar; `series.py`/
   `series_anuales.py` build the monthly/annual CSVs. **No cell is ever
@@ -566,26 +572,32 @@ order, 01→04) are the pipeline**.
 - `mesas_esperadas` / `mesas_totalizadas_porcentaje` are always `0` in the
   already-downloaded data (the API only fills them for live elections) —
   don't treat this as a bug to fix or backfill.
-- A prior audit (`docs/PLAN_CORRECCIONES_ELECTORALES.md`) tracked known
-  data-quality issues and fixes; it's still on disk but untracked
-  (`.gitignore`d as an internal working document, not deleted) — check it
-  directly, or `git log` for the commit that stopped tracking it (it was
-  untracked before the `docs/` move, so `git log` won't show it under its
-  new path).
+- A prior audit (`docs/especificaciones/PLAN_CORRECCIONES_ELECTORALES.md`)
+  tracked known data-quality issues and fixes, nearly all resolved by now
+  — kept as historical record, not actively maintained. It was untracked
+  (gitignored as an internal working document) until the `docs/especificaciones/`
+  reorganization made it tracked; `git log` on it only shows history from
+  that point forward.
 - **Commit messages: ~20 words, one line, no body.** Summarize the change
   itself (what/why), not a narration of the session that produced it —
   same terseness `git log` already shows for this repo's history.
 - **Code must be self-descriptive; comments/docstrings are the
-  exception, not the default.** Add one only to record a specific
-  decision that isn't recoverable by reading the code itself — a data
-  gotcha (source metadata says one unit, the values are actually
-  another), a magic number's origin, a cross-file invariant, a known
-  anomaly, a pointer to a `D`-numbered decision in
-  `docs/decisiones_metodologicas.md`. Don't write a docstring/comment
+  exception, not the default. This is non-negotiable, not a style
+  preference.** The default for every new function is **zero comments**.
+  Add one only to record a specific decision that isn't recoverable by
+  reading the code itself — a data gotcha (source metadata says one
+  unit, the values are actually another), a magic number's origin, a
+  cross-file invariant, a known anomaly, a pointer to a `D`-numbered
+  decision in `docs/decisiones_metodologicas.md`. Before adding any
+  comment/docstring, check it against that list — if it doesn't match
+  one of those cases, don't write it, regardless of how new, exported,
+  or "important-looking" the function is. Don't write a docstring/comment
   that just restates the function signature, paraphrases the lines
-  right below it, or explains "why" in a way any reader would infer
-  from the surrounding code — delete those instead of trimming them.
-  When a decision genuinely needs more context than one line, point to
+  right below it, restates a formula/return value already visible one
+  line away, or explains "why" in a way any reader would infer from the
+  surrounding code — delete those instead of trimming them (a truncated,
+  dangling sentence is worse than no comment at all). When a decision
+  genuinely needs more context than one line, point to
   `CLAUDE.md`/`docs/FUNCIONALIDADES.md`/the domain's own README/`.md`
   instead of inlining it — one place per fact, not repeated across
   files.

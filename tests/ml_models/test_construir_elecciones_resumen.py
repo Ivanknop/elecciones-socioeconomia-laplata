@@ -284,3 +284,28 @@ class TestDeltaDispersionYCoberturaMinima:
     def test_cobertura_minima_none_si_falta_una_punta(self):
         elecciones = {(2021, "municipal"): self._fila(2021, 3.0, 900)}
         assert calcular_cobertura_minima(elecciones, "municipal", 2021, 2019) is None
+
+    def _fila_dos_partidos(self, anio, score_a, score_b) -> object:
+        """Dos fuerzas viables de igual peso con scores `score_a`/`score_b`
+        -- sigma2 = ((score_a - score_b) / 2) ** 2, controlable a diferencia
+        de `_fila` (un solo partido con score, sigma2 siempre 0)."""
+        del_anio = [_v("A", 500, 50.0), _v("B", 500, 50.0)]
+        vparty = {"A": (score_a, 0.0), "B": (score_b, 0.0)}
+        return construir_fila_eleccion(
+            nivel="municipal", anio=anio, del_anio=del_anio,
+            totales={"blanco": 0, "nulo": 0, "habilitados": 1000},
+            vparty=vparty, of=None, fila_of_curada=None, alias_lista=None,
+            resultado_disponible=False, ausentismo=None,
+        )
+
+    def test_delta_dispersion_resta_sigma2_del_eje_pedido(self):
+        elecciones = {
+            (2019, "municipal"): self._fila_dos_partidos(2019, 1.0, -1.0),  # sigma2 = 1.0
+            (2021, "municipal"): self._fila_dos_partidos(2021, 2.0, -2.0),  # sigma2 = 4.0
+        }
+        delta = calcular_delta_dispersion(elecciones, "municipal", 2021, 2019, "economico", estadistico="sigma2")
+        assert delta == pytest.approx(3.0)
+
+    def test_delta_sigma2_none_si_falta_una_punta(self):
+        elecciones = {(2021, "municipal"): self._fila_dos_partidos(2021, 2.0, -2.0)}
+        assert calcular_delta_dispersion(elecciones, "municipal", 2021, 2019, "economico", estadistico="sigma2") is None

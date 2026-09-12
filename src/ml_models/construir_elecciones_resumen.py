@@ -1,31 +1,16 @@
-"""Resumen electoral por (nivel, año) -- fuente de verdad única con la
-estructura de la oferta partidaria (fuerzas viables, marginal, oposición
-principal, dispersión ideológica ponderada por voto), reemplazando a
-`resultado_distrito.csv`/`voto_partido_distrito.csv` como insumo del panel
-trimestral (ver `docs/decisiones_metodologicas.md` D17 y
-`docs/especificacion_panel_temporal.md` "Diccionario de columnas de
-elecciones.csv"). Esos dos archivos quedan congelados, sin código que los
-regenere modificado -- no se eliminan ni se tocan.
+"""Resumen electoral por (nivel, año) -- estructura de la oferta partidaria
+y ausentismo, sucede a `resultado_distrito.csv`/`voto_partido_distrito.csv`
+como insumo del panel trimestral (D17, `docs/decisiones_metodologicas.md`).
 
-Escribe `data/tfi_data/elecciones.csv`, un CSV por (nivel, año) -- no
-confundir con el directorio `data/tfi_data/elecciones/`, un CSV por
-partido por (año, nivel), generado por `ml_models.construir_elecciones`.
-Este módulo lee ese directorio como fuente principal (ya trae
-BLANCO/NULO/VOTANTES_HABILITADOS y `vparty_economico`/`vparty_progresismo`
-por partido, sincronizados con `clasificacion_ideologica_agrupaciones.csv`)
-y reusa `ml_models.construir_resultado_distrito.construir_voto_partido_distrito`/
-`_entrada_oficialismo` para `votos_positivos`/`share` por partido y para
-identificar la fila exacta del oficialismo -- mismo denominador
-(`votos_positivos`) en las dos ramas con/sin `circuito_<cargo>.json`
-cacheado, verificado antes de escribir este módulo (D17).
+Escribe `data/tfi_data/elecciones.csv` -- no confundir con el directorio
+`data/tfi_data/elecciones/` (un CSV por partido, generado por
+`ml_models.construir_elecciones`), que es la fuente que este módulo lee.
 
-`ausentismo` es la única columna que no sale de `elecciones/<año>_<nivel>.csv`:
-en años con `circuito_<cargo>.json` reusa la fórmula oficial del repo
-(`electores - positivos - otros_total`, vía `analisis.graficos._votos_no_ideologicos`),
-que neteda categorías "recurridos/impugnados/comando" que
-`elecciones/<año>_<nivel>.csv` no conserva; en años sin circuito
-(2001-2009, 2025 municipal/provincial) se resta sobre `votantes_habilitados`
--- ver D17 para la limitación metodológica de esa segunda rama.
+`ausentismo`: en años con `circuito_<cargo>.json` usa la fórmula oficial
+del repo (`electores - positivos - otros_total`, que no cuenta como
+ausentes a "recurridos/impugnados/comando"); sin circuito (2001-2009, 2025
+municipal/provincial) se resta sobre `votantes_habilitados`, sin poder
+distinguir esas categorías -- ver D17 para la limitación.
 
 Uso:
     PYTHONPATH=src python -m ml_models.construir_elecciones_resumen
@@ -87,7 +72,6 @@ class FilaEleccion:
 def _totales_y_vparty_desde_tfi(
     path: Path | str,
 ) -> tuple[dict[str, int], dict[str, tuple[float, float]]]:
-    """De `elecciones/<año>_<nivel>.csv`: totales BLANCO/NULO/VOTANTES_HABILITADOS"""
     path = Path(path)
     with path.open(encoding="utf-8", newline="") as f:
         f.readline()  # comentario "# Total de votos, ...", no es el header
@@ -109,7 +93,6 @@ def _totales_y_vparty_desde_tfi(
 
 
 def _dispersion_ponderada(pares: list[tuple[int, float]]) -> tuple[float, float]:
-    """Media y varianza de `valor` ponderadas por `peso` """
     peso_total = sum(peso for peso, _ in pares)
     mu = sum(peso * valor for peso, valor in pares) / peso_total
     sigma2 = sum(peso * (valor - mu) ** 2 for peso, valor in pares) / peso_total
@@ -119,8 +102,8 @@ def _dispersion_ponderada(pares: list[tuple[int, float]]) -> tuple[float, float]
 def _estructura_oferta(
     del_anio: list[FilaVotoPartido], entrada_oficialismo: FilaVotoPartido | None
 ) -> tuple[int, float, float | None, float]:
-    """`n_fuerzas_viables`, `share_marginal_acumulado`,
-    `share_oposicion_principal`, `share_otras_fuerzas_viables`"""
+    # share_marginal_acumulado + share_oposicion_principal + share_otras_fuerzas_viables
+    # + share_oficialismo (si es viable) = 100 -- D17.
     viables = [v for v in del_anio if v.share >= UMBRAL_VIABLE]
     marginales = [v for v in del_anio if v.share < UMBRAL_VIABLE]
     share_marginal_acumulado = sum(v.share for v in marginales)
@@ -305,9 +288,6 @@ def _parse_float(valor: str) -> float | None:
 
 
 def cargar_elecciones(path: Path | str = ELECCIONES_RESUMEN_PATH) -> dict[tuple[int, str], FilaEleccion]:
-    """(anio, nivel) -> `FilaEleccion`, para `construir_panel_trimestral.py`/
-    `construir_panel_bieleccion_trimestral.py` -- mismo patrón que
-    `construir_panel_ventanas._cargar_resultado_distrito`."""
     with Path(path).open(encoding="utf-8", newline="") as f:
         filas = {}
         for r in csv.DictReader(f):
@@ -338,28 +318,30 @@ def cargar_elecciones(path: Path | str = ELECCIONES_RESUMEN_PATH) -> dict[tuple[
 
 
 def calcular_delta_dispersion(
-    elecciones_por_anio_nivel: dict[tuple[int, str], FilaEleccion], nivel: str, anio_t: int, anio_t_menos_1: int, eje: str
+    elecciones_por_anio_nivel: dict[tuple[int, str], FilaEleccion],
+    nivel: str,
+    anio_t: int,
+    anio_t_menos_1: int,
+    eje: str,
+    estadistico: str = "mu",
 ) -> float | None:
-    """`dispersion_<eje>_mu(t) - dispersion_<eje>_mu(t-1)`; `None` si falta
-    cualquiera de las dos puntas o su `mu` -- mismo criterio de no imputar
-    que `construir_resultado_distrito.calcular_delta_v`. `eje` es
-    `"economico"` o `"progresismo"`."""
+    """`eje`: `"economico"` o `"progresismo"`. `estadistico`: `"mu"` (centro,
+    D17) o `"sigma2"` (varianza -- no cancela cuando fuerzas de polos
+    opuestos ganan votos parecidos, D18)."""
     actual = elecciones_por_anio_nivel.get((anio_t, nivel))
     anterior = elecciones_por_anio_nivel.get((anio_t_menos_1, nivel))
     if actual is None or anterior is None:
         return None
-    mu_actual = getattr(actual, f"dispersion_{eje}_mu")
-    mu_anterior = getattr(anterior, f"dispersion_{eje}_mu")
-    if mu_actual is None or mu_anterior is None:
+    valor_actual = getattr(actual, f"dispersion_{eje}_{estadistico}")
+    valor_anterior = getattr(anterior, f"dispersion_{eje}_{estadistico}")
+    if valor_actual is None or valor_anterior is None:
         return None
-    return mu_actual - mu_anterior
+    return valor_actual - valor_anterior
 
 
 def calcular_cobertura_minima(
     elecciones_por_anio_nivel: dict[tuple[int, str], FilaEleccion], nivel: str, anio_t: int, anio_t_menos_1: int
 ) -> float | None:
-    """`min(dispersion_cobertura_share(t), dispersion_cobertura_share(t-1))`
-    -- `None` si falta cualquiera de las dos puntas (nunca se asume 0)."""
     actual = elecciones_por_anio_nivel.get((anio_t, nivel))
     anterior = elecciones_por_anio_nivel.get((anio_t_menos_1, nivel))
     if actual is None or anterior is None:

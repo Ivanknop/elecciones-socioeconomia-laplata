@@ -7,8 +7,10 @@ y/o deben incorporarse?**.
 
 El trabajo base recopila datos oficiales electorales y varias colecciones
 de datos de contexto (socioeconómicos, económicos, de confianza en el
-gobierno), dejando por escrito qué tan confiable es cada dato. Todavía no
-se ha procedido al cruce entre ellas.
+gobierno), dejando por escrito qué tan confiable es cada dato. Ya existe
+un cruce entre lo electoral y los datos económicos/de confianza
+nacionales por fecha (no por barrio ni por circuito, ver más abajo); el
+cruce con los datos socioeconómicos por circuito sigue sin resolverse.
 
 ## Qué hay hecho hasta ahora
 
@@ -42,17 +44,20 @@ partido de La Plata (nombre y ubicación de cada uno), que sirve de base
 para agrupar los resultados electorales por barrio (ver siguiente
 sección).
 
-Ninguna de estas colecciones **está unida a las demás todavía**. Es una
-decisión deliberada: cruzar datos electorales con datos de contexto
-requiere que ambos hablen del mismo pedazo de territorio o del mismo
-período, y hoy eso solo está resuelto parcialmente (ver "vacancias" más
-abajo). Avanzar de todos modos hubiera producido un cruce con apariencia
-prolija pero fundamentos débiles. Lo que sí está disponible para
-explorar visualmente, sin esperar a ese cruce, son dos mapas/gráficos
-interactivos publicados: uno muestra los resultados electorales
-circuito por circuito sobre un mapa de la ciudad, y el otro ubica a cada
-partido en un plano según su posición económica y su posición en temas
-sociales, año por año.
+Estas colecciones **no estaban unidas entre sí originalmente**: cruzar
+datos electorales con datos de contexto requiere que ambos hablen del
+mismo pedazo de territorio o del mismo período, y eso solo está resuelto
+parcialmente. Avanzar sin resolverlo hubiera producido un cruce con
+apariencia prolija pero fundamentos débiles. Desde entonces se agregó un
+quinto trabajo (`src/ml_models/`) que sí cruza, elección por elección,
+el resultado electoral de La Plata con las series económicas nacionales
+y el índice de confianza en el gobierno — por fecha, no por barrio ni
+circuito (ver "vacancias" más abajo para lo que ese cruce todavía no
+resuelve). Lo que también está disponible para explorar visualmente son
+dos mapas/gráficos interactivos publicados: uno muestra los resultados
+electorales circuito por circuito sobre un mapa de la ciudad, y el otro
+ubica a cada partido en un plano según su posición económica y su
+posición en temas sociales, año por año.
 
 ## El paso intermedio: agrupar la ciudad en barrios
 
@@ -118,14 +123,14 @@ ajeno: La Plata es, en parte, ese promedio.
 
 ## Las vacancias: lo que todavía no existe
 
-- **El cruce entre lo electoral y todo lo demás.** Falta resolver antes
-el problema de fondo: los datos electorales están armados por circuito
-(una unidad chica y numerosa) y los datos socioeconómicos están armados
-por radio censal (una unidad distinta, que no coincide exactamente con
-los circuitos); los datos económicos nacionales y el índice de confianza
-en el gobierno, además, no tienen ninguna apertura geográfica en sí
-mismos — solo se pueden relacionar con lo electoral por fecha, no por
-barrio ni por circuito. Ninguno de estos cruces existe todavía.
+- **El cruce entre lo electoral y lo socioeconómico por territorio.**
+Falta resolver el problema de fondo: los datos electorales están armados
+por circuito (una unidad chica y numerosa) y los datos socioeconómicos
+están armados por radio censal (una unidad distinta, que no coincide
+exactamente con los circuitos). El cruce por fecha entre lo electoral y
+los datos económicos nacionales/índice de confianza en el gobierno (que
+no tienen apertura geográfica en sí mismos) ya existe (`src/ml_models/`);
+lo que sigue faltando es el cruce por territorio con lo socioeconómico.
 
 - **La verificación de si Berisso y Ensenada pueden separarse de La
 Plata** en los datos de la encuesta oficial. Si se puede, el supuesto
@@ -151,11 +156,9 @@ el 100% de los circuitos; el mapeo curado a mano, que es el que da
 nombres de barrio en el sentido cotidiano, todavía tiene una porción de
 circuitos sin el mismo nivel de certeza que los demás.
 
-- **El cruce del índice de confianza en el gobierno con cualquier otro
-dato del proyecto.** Por ahora es una colección aparte, igual que las
-otras — se puede mirar la serie de La Plata contra el país, pero no
-está relacionada todavía ni con el voto ni con las condiciones
-socioeconómicas.
+- **El cruce del índice de confianza en el gobierno con las condiciones
+socioeconómicas.** Ya está relacionado con el voto (`src/ml_models/`,
+por fecha); con las condiciones socioeconómicas por circuito, no.
 
 ## Las hipótesis que están a la vista
 
