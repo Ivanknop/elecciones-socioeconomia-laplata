@@ -395,8 +395,10 @@ huecos.
 | `votantes_habilitados` | padrón | fila `VOTANTES_HABILITADOS` de `elecciones/<año>_<nivel>.csv` |
 | `votos_positivos` | suma de votos a agrupaciones (excluye blanco/nulo) | filas de agrupación de `elecciones/<año>_<nivel>.csv` |
 | `votos_blancos` | fila `BLANCO` | `elecciones/<año>_<nivel>.csv` |
-| `votos_nulos` | fila `NULO` — **vacío en `2025 provincial`/`2025 municipal`**, esa fuente no trae ese desglose | `elecciones/<año>_<nivel>.csv` |
-| `ausentismo` | años con `circuito_<cargo>.json`: `electores - positivos - otros_total` (`analisis.graficos._votos_no_ideologicos`); sin circuito: `votantes_habilitados - votos_positivos - votos_blancos - votos_nulos` (vacío si falta `votos_nulos`) — las dos fórmulas no son exactamente equivalentes, ver D17 | `circuito_<cargo>.json` o `elecciones/<año>_<nivel>.csv` |
+| `votos_nulos` | fila `NULO` — **vacío en `2025 provincial`/`2025 municipal`**, esa fuente no trae ese desglose (Ley 5.109, ver D19) | `elecciones/<año>_<nivel>.csv` |
+| `ausentismo` | años con `circuito_<cargo>.json`: `electores - positivos - otros_total` (`analisis.graficos._votos_no_ideologicos`); sin circuito: `votantes_habilitados - votos_positivos - votos_blancos - (votos_nulos or 0)` — las dos fórmulas no son exactamente equivalentes, ver D17. `votos_nulos` tratado como `0` sólo en esta resta (corrección a D17): antes de la corrección, `votos_nulos` vacío (2025 prov/municipal) dejaba `ausentismo` vacío también aunque el resto de los insumos estuviera completo — ya no | `circuito_<cargo>.json` o `elecciones/<año>_<nivel>.csv` |
+| `votos_blancos_y_nulos` | `votos_blancos + (votos_nulos or 0)` — unificación blanco+nulo (D19), vacío si `votos_blancos` es vacío | calculado |
+| `participacion_pct` | `(votos_positivos + votos_blancos_y_nulos) / votantes_habilitados * 100` (D19), vacío si falta `votantes_habilitados` o `votos_blancos_y_nulos` | calculado |
 | `gana_oficialismo`, `share_oficialismo` | resultado del oficialismo de ese nivel | `ml_models.construir_resultado_distrito._entrada_oficialismo` (reusada tal cual) |
 | `agrupacion_oficialismo` | nombre del titular del Ejecutivo real | `oficialismo_por_nivel.csv` |
 | `n_fuerzas_viables` | cantidad de agrupaciones con `share ≥ 1.5%` sobre `votos_positivos` (Ley 26.571, 2011) | calculado |
@@ -410,7 +412,9 @@ huecos.
 
 **Huecos de cobertura esperados:**
 - `nacional` 2001-2009 no genera fila (no está en `calendario_electoral.csv`).
-- `votos_nulos`/`ausentismo` vacíos en `2025 provincial`/`2025 municipal`.
+- `votos_nulos` vacío en `2025 provincial`/`2025 municipal` (Ley 5.109,
+  D19) — `ausentismo` ya **no** está vacío para esos dos años desde la
+  corrección a D17 (`votos_nulos` se trata como `0` sólo en esa resta).
 - `dispersion_*` vacías en cualquier (nivel,año) donde ninguna fuerza viable
   tenga V-Party cargado (`dispersion_cobertura_share = 0` en ese caso, a
   diferencia de `dispersion_economico_mu`/`sigma2`, que quedan vacías) — no
@@ -478,16 +482,31 @@ construcción (ver D18).
 `distancia_oficialismo_alternativa` (existente) queda **deprecada**: ver
 D18 en `docs/decisiones_metodologicas.md` para la auditoría completa.
 
----
+### 6.7 Participación y voto exit (D19)
 
-## Trabajo futuro
+Agregadas por el mismo mecanismo de join que §6.6 (`elecciones.csv` en
+las dos puntas de la transición), vía
+`ml_models.construir_elecciones_resumen.calcular_participacion_voto_exit`/
+`calcular_delta_participacion`/`calcular_delta_voto_exit_total`. Blanco y
+nulo se tratan como una sola categoría unificada (`votos_blancos_y_nulos`,
+§6.4) por el cambio de régimen legal de la Ley 5.109 en 2025
+provincial/municipal — ver D19 en `docs/decisiones_metodologicas.md` para
+el hallazgo completo y la corrección a D17 que lo acompaña.
 
-- **`exit_total`** (`ausentismo + votos_blancos + votos_nulos` sobre
-  `votantes_habilitados`, ya disponible en `elecciones.csv`): variable
-  dependiente planificada para un tercer notebook (participación
-  electoral / exit, distinto del desplazamiento ideológico de
-  `notebooks/ml/03_desplazamiento_ideologico.ipynb`). No requiere columnas
-  nuevas hoy.
+| Columna | Descripción |
+|---|---|
+| `participacion_pct_t`, `participacion_pct_t_menos_1` | pass-through de `participacion_pct` de `elecciones.csv` en cada punta de la transición |
+| `participacion_relevante_t` | `participacion_pct_t > 79.0` (`PARTICIPACION_BENCHMARK_NACIONAL_PCT`, benchmark externo: promedio nacional 1983-2023, Chequeado 26/10/2025) — sólo para `t`, no para `t_menos_1` |
+| `voto_exit_ausentismo_pct_t`, `_t_menos_1` | `ausentismo / votantes_habilitados * 100`, por punta |
+| `voto_exit_blanco_nulo_pct_t`, `_t_menos_1` | `votos_blancos_y_nulos / votantes_habilitados * 100`, por punta |
+| `voto_exit_total_pct_t`, `_t_menos_1` | suma de los dos anteriores (`= 100 − participacion_pct`), por punta |
+| `delta_participacion_pct` | `participacion_pct_t − participacion_pct_t_menos_1` |
+| `delta_voto_exit_total_pct` | `voto_exit_total_pct_t − voto_exit_total_pct_t_menos_1` |
+
+Gracias a la corrección a D17, las transiciones que tocan 2025
+provincial/municipal/nacional **no** quedan con `voto_exit_ausentismo_pct_t`/
+`voto_exit_total_pct_t` vacíos — `ausentismo` ya sale correcto de
+`elecciones.csv`, sin depender de un fallback ad hoc en el panel.
 
 ---
 

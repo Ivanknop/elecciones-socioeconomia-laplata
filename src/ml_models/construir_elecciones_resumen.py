@@ -54,6 +54,8 @@ class FilaEleccion:
     votos_blancos: int | None
     votos_nulos: int | None
     ausentismo: int | None
+    votos_blancos_y_nulos: int | None
+    participacion_pct: float | None
     gana_oficialismo: bool | None
     share_oficialismo: float | None
     agrupacion_oficialismo: str | None
@@ -130,6 +132,16 @@ def construir_fila_eleccion(
 ) -> FilaEleccion:
     votos_positivos = sum(v.votos for v in del_anio)
 
+    votos_blancos = totales.get("blanco")
+    votos_nulos = totales.get("nulo")
+    votantes_habilitados = totales.get("habilitados")
+    votos_blancos_y_nulos = votos_blancos + (votos_nulos or 0) if votos_blancos is not None else None
+    participacion_pct = (
+        (votos_positivos + votos_blancos_y_nulos) / votantes_habilitados * 100
+        if votantes_habilitados is not None and votos_blancos_y_nulos is not None
+        else None
+    )
+
     gana_oficialismo, entrada_oficialismo = _entrada_oficialismo(del_anio, of, fila_of_curada, alias_lista)
     share_oficialismo = entrada_oficialismo.share if entrada_oficialismo is not None else None
     agrupacion_oficialismo = of["agrupacion_oficialismo"] if of else None
@@ -155,11 +167,13 @@ def construir_fila_eleccion(
     return FilaEleccion(
         nivel=nivel,
         anio=anio,
-        votantes_habilitados=totales.get("habilitados"),
+        votantes_habilitados=votantes_habilitados,
         votos_positivos=votos_positivos,
-        votos_blancos=totales.get("blanco"),
-        votos_nulos=totales.get("nulo"),
+        votos_blancos=votos_blancos,
+        votos_nulos=votos_nulos,
         ausentismo=ausentismo,
+        votos_blancos_y_nulos=votos_blancos_y_nulos,
+        participacion_pct=participacion_pct,
         gana_oficialismo=gana_oficialismo,
         share_oficialismo=share_oficialismo,
         agrupacion_oficialismo=agrupacion_oficialismo,
@@ -214,9 +228,12 @@ def construir_elecciones(
         if disponible:
             contenido = _cargar_circuito(data_dir, fc.anio, cargo)
             ausentismo = _votos_no_ideologicos(contenido, circuito_id=None)["ausentismo"]
-        elif totales.get("nulo") is not None and totales.get("habilitados") is not None:
+        elif totales.get("habilitados") is not None:
             votos_positivos = sum(v.votos for v in del_anio)
-            ausentismo = totales["habilitados"] - votos_positivos - totales.get("blanco", 0) - totales["nulo"]
+            # nulo=None (2025 prov/municipal, Ley 5.109 -- D17/D19): tratado
+            # como 0 solo en esta resta, nunca en la columna votos_nulos misma.
+            nulo = totales.get("nulo") or 0
+            ausentismo = totales["habilitados"] - votos_positivos - totales.get("blanco", 0) - nulo
         else:
             ausentismo = None
 
@@ -245,6 +262,8 @@ _COLUMNAS = [
     "votos_blancos",
     "votos_nulos",
     "ausentismo",
+    "votos_blancos_y_nulos",
+    "participacion_pct",
     "gana_oficialismo",
     "share_oficialismo",
     "agrupacion_oficialismo",
@@ -299,6 +318,8 @@ def cargar_elecciones(path: Path | str = ELECCIONES_RESUMEN_PATH) -> dict[tuple[
                 votos_blancos=_parse_int(r["votos_blancos"]),
                 votos_nulos=_parse_int(r["votos_nulos"]),
                 ausentismo=_parse_int(r["ausentismo"]),
+                votos_blancos_y_nulos=_parse_int(r["votos_blancos_y_nulos"]),
+                participacion_pct=_parse_float(r["participacion_pct"]),
                 gana_oficialismo=_parse_bool(r["gana_oficialismo"]),
                 share_oficialismo=_parse_float(r["share_oficialismo"]),
                 agrupacion_oficialismo=r["agrupacion_oficialismo"] or None,
@@ -347,6 +368,82 @@ def calcular_cobertura_minima(
     if actual is None or anterior is None:
         return None
     return min(actual.dispersion_cobertura_share, anterior.dispersion_cobertura_share)
+
+
+# Participación electoral promedio nacional, presidenciales+legislativas,
+# 1983-2023, todo el país (D19) -- Chequeado, 26/10/2025, "la participación
+# electoral de este domingo fue la más baja desde 1983" (DNE/Ministerio del
+# Interior). Benchmark externo: la participación real de La Plata 2001-2025
+# (34 elecciones, 3 niveles) da 75.7%, no comparable 1 a 1 (otra población,
+# otro período) -- ver D19 en docs/decisiones_metodologicas.md.
+PARTICIPACION_BENCHMARK_NACIONAL_PCT = 79.0
+
+
+@dataclass(frozen=True)
+class ParticipacionVotoExit:
+    participacion_pct: float | None
+    voto_exit_ausentismo_pct: float | None
+    voto_exit_blanco_nulo_pct: float | None
+    voto_exit_total_pct: float | None
+    participacion_relevante: bool | None
+
+
+def calcular_participacion_voto_exit(
+    elecciones_por_anio_nivel: dict[tuple[int, str], FilaEleccion], nivel: str, anio: int
+) -> ParticipacionVotoExit | None:
+    fila = elecciones_por_anio_nivel.get((anio, nivel))
+    if fila is None:
+        return None
+
+    voto_exit_blanco_nulo_pct = (
+        fila.votos_blancos_y_nulos / fila.votantes_habilitados * 100
+        if fila.votos_blancos_y_nulos is not None and fila.votantes_habilitados is not None
+        else None
+    )
+    voto_exit_ausentismo_pct = (
+        fila.ausentismo / fila.votantes_habilitados * 100
+        if fila.ausentismo is not None and fila.votantes_habilitados is not None
+        else None
+    )
+    voto_exit_total_pct = (
+        voto_exit_ausentismo_pct + voto_exit_blanco_nulo_pct
+        if voto_exit_ausentismo_pct is not None and voto_exit_blanco_nulo_pct is not None
+        else None
+    )
+    participacion_relevante = (
+        fila.participacion_pct > PARTICIPACION_BENCHMARK_NACIONAL_PCT if fila.participacion_pct is not None else None
+    )
+    return ParticipacionVotoExit(
+        participacion_pct=fila.participacion_pct,
+        voto_exit_ausentismo_pct=voto_exit_ausentismo_pct,
+        voto_exit_blanco_nulo_pct=voto_exit_blanco_nulo_pct,
+        voto_exit_total_pct=voto_exit_total_pct,
+        participacion_relevante=participacion_relevante,
+    )
+
+
+def calcular_delta_participacion(
+    elecciones_por_anio_nivel: dict[tuple[int, str], FilaEleccion], nivel: str, anio_t: int, anio_t_menos_1: int
+) -> float | None:
+    actual = calcular_participacion_voto_exit(elecciones_por_anio_nivel, nivel, anio_t)
+    anterior = calcular_participacion_voto_exit(elecciones_por_anio_nivel, nivel, anio_t_menos_1)
+    if actual is None or anterior is None:
+        return None
+    if actual.participacion_pct is None or anterior.participacion_pct is None:
+        return None
+    return actual.participacion_pct - anterior.participacion_pct
+
+
+def calcular_delta_voto_exit_total(
+    elecciones_por_anio_nivel: dict[tuple[int, str], FilaEleccion], nivel: str, anio_t: int, anio_t_menos_1: int
+) -> float | None:
+    actual = calcular_participacion_voto_exit(elecciones_por_anio_nivel, nivel, anio_t)
+    anterior = calcular_participacion_voto_exit(elecciones_por_anio_nivel, nivel, anio_t_menos_1)
+    if actual is None or anterior is None:
+        return None
+    if actual.voto_exit_total_pct is None or anterior.voto_exit_total_pct is None:
+        return None
+    return actual.voto_exit_total_pct - anterior.voto_exit_total_pct
 
 
 def generar_csv(

@@ -55,12 +55,32 @@ def _eleccion(
 ) -> FilaEleccion:
     return FilaEleccion(
         nivel=nivel, anio=anio, votantes_habilitados=100, votos_positivos=90, votos_blancos=8, votos_nulos=2,
-        ausentismo=10, gana_oficialismo=True, share_oficialismo=60.0, agrupacion_oficialismo="OFICIALISMO",
+        ausentismo=10, votos_blancos_y_nulos=10, participacion_pct=98.0,
+        gana_oficialismo=True, share_oficialismo=60.0, agrupacion_oficialismo="OFICIALISMO",
         n_fuerzas_viables=2, share_marginal_acumulado=0.0, share_oposicion_principal=40.0,
         share_otras_fuerzas_viables=0.0, dispersion_economico_mu=dispersion_economico_mu,
         dispersion_economico_sigma2=dispersion_economico_sigma2, dispersion_progresismo_mu=dispersion_progresismo_mu,
         dispersion_progresismo_sigma2=dispersion_progresismo_sigma2, dispersion_cobertura_share=cobertura,
         resultado_disponible=True,
+    )
+
+
+def _eleccion_con_participacion(anio, nivel, habilitados, positivos, blanco, nulo, ausentismo) -> FilaEleccion:
+    blancos_y_nulos = blanco + (nulo or 0) if blanco is not None else None
+    participacion_pct = (
+        (positivos + blancos_y_nulos) / habilitados * 100
+        if habilitados is not None and blancos_y_nulos is not None
+        else None
+    )
+    return FilaEleccion(
+        nivel=nivel, anio=anio, votantes_habilitados=habilitados, votos_positivos=positivos,
+        votos_blancos=blanco, votos_nulos=nulo, ausentismo=ausentismo,
+        votos_blancos_y_nulos=blancos_y_nulos, participacion_pct=participacion_pct,
+        gana_oficialismo=None, share_oficialismo=None, agrupacion_oficialismo=None,
+        n_fuerzas_viables=0, share_marginal_acumulado=0.0, share_oposicion_principal=None,
+        share_otras_fuerzas_viables=0.0, dispersion_economico_mu=None, dispersion_economico_sigma2=None,
+        dispersion_progresismo_mu=None, dispersion_progresismo_sigma2=None, dispersion_cobertura_share=0.0,
+        resultado_disponible=False,
     )
 
 
@@ -168,6 +188,53 @@ class TestColumnasDeDesplazamientoIdeologico:
         assert fila["dispersion_cobertura_share_min"] is None
         assert fila["delta_sigma2_economico"] is None
         assert fila["delta_sigma2_progresismo"] is None
+
+
+class TestColumnasDeParticipacionVotoExit:
+    def test_columnas_t_y_t_menos_1_con_ambos_anios_iguales(self, escenario_basico):
+        # _eleccion() usa los mismos valores en 2011 y 2013 (habilitados=100,
+        # positivos=90, blanco=8, nulo=2, ausentismo=10) -- t y t_menos_1
+        # coinciden y los deltas dan 0.
+        filas = construir_panel(*escenario_basico)
+        fila = filas[0]
+        assert fila["participacion_pct_t"] == pytest.approx(98.0)
+        assert fila["participacion_pct_t_menos_1"] == pytest.approx(98.0)
+        assert fila["participacion_relevante_t"] is True  # 98.0 > 79.0
+        assert fila["voto_exit_blanco_nulo_pct_t"] == pytest.approx(10.0)  # 10/100*100
+        assert fila["voto_exit_ausentismo_pct_t"] == pytest.approx(10.0)  # 10/100*100
+        assert fila["voto_exit_total_pct_t"] == pytest.approx(20.0)
+        assert fila["delta_participacion_pct"] == pytest.approx(0.0)
+        assert fila["delta_voto_exit_total_pct"] == pytest.approx(0.0)
+
+    def test_sin_eleccion_correspondiente_todo_none(self, escenario_basico):
+        *resto, _ = escenario_basico
+        filas = construir_panel(*resto, {})
+        fila = filas[0]
+        assert fila["participacion_pct_t"] is None
+        assert fila["participacion_relevante_t"] is None
+        assert fila["voto_exit_blanco_nulo_pct_t"] is None
+        assert fila["voto_exit_ausentismo_pct_t"] is None
+        assert fila["voto_exit_total_pct_t"] is None
+        assert fila["delta_participacion_pct"] is None
+        assert fila["delta_voto_exit_total_pct"] is None
+
+    def test_transicion_real_hacia_2025_provincial_ya_no_da_none_en_voto_exit(self):
+        # Con la corrección a D17 (ausentismo ya no depende de votos_nulos
+        # presente), esta transición real deja de tener voto_exit_*_t en
+        # None -- a diferencia del diseño anterior (panel-only), que
+        # dependía de un fallback ad hoc para este caso.
+        ventanas = [_ventana("provincial_2023_2025", "provincial", 2025, 2023)]
+        elecciones_por_anio_nivel = {
+            (2023, "provincial"): _eleccion_con_participacion(2023, "provincial", 500000, 400000, 60000, 20000, 20000),
+            (2025, "provincial"): _eleccion_con_participacion(2025, "provincial", 639839, 393945, 15186, None, 230708),
+        }
+        filas = construir_panel(
+            ventanas, [], {}, {}, {}, {}, {}, elecciones_por_anio_nivel,
+        )
+        fila = filas[0]
+        assert fila["voto_exit_ausentismo_pct_t"] == pytest.approx(230708 / 639839 * 100)
+        assert fila["voto_exit_total_pct_t"] is not None
+        assert fila["delta_voto_exit_total_pct"] is not None
 
 
 class TestClasificarCuadranteDesplazamiento:

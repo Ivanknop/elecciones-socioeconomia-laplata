@@ -53,6 +53,34 @@ nivel; paleta azul/rojo/gris (derecha/izquierda/oficialismo-o-empate)
 propia de esa pestaña (no sale de los CSV de
 colorimetría, que son para campo ideológico/filiación política absolutos,
 no para una distancia relativa al oficialismo) | Adoptada |
+| D19 | **Participación y voto exit unificado (blanco+nulo)**: las elecciones bonaerenses 2025 (provincial y municipal, desdobladas del calendario nacional) corrieron bajo la Ley provincial 5.109, que define solo tres categorías de voto -- afirmativo, en blanco, de identidad impugnada -- y **elimina la categoría "nulo"** (lo antes clasificado nulo pasa a computarse como blanco, Art. 88; fuente: Infobae, 02/09/2025, "Voto nulo y en blanco: qué diferencia habrá en las elecciones de Buenos Aires 2025"). Por eso `votos_nulos` falta específicamente en `elecciones.csv` para 2025 provincial/municipal -- no es un hueco de adquisición, es un cambio de régimen legal real (ver también la corrección a D17 de esta misma fecha, que corrige un bug real que además dejaba `ausentismo` vacío para esos dos años sin necesidad). **Decisión**: blanco y nulo se tratan como **una sola categoría unificada** (`votos_blancos_y_nulos`, `elecciones.csv`, corrección a D17) en las cinco elecciones del período, no como dos variables separadas -- para no introducir ruido comparando una distinción que solo existe bajo un régimen legal y no bajo el otro. Sobre esa columna ya resuelta en origen, `ml_models.construir_elecciones_resumen.calcular_participacion_voto_exit` arma, por `(nivel, año)`: `participacion_pct` = `(votos_positivos + votos_blancos_y_nulos) / votantes_habilitados * 100` (pass-through de `elecciones.csv`); `voto_exit_ausentismo_pct` = `ausentismo / votantes_habilitados * 100`; `voto_exit_blanco_nulo_pct` = `votos_blancos_y_nulos / votantes_habilitados * 100`; `voto_exit_total_pct` = suma de los dos anteriores (= `100 - participacion_pct`); `participacion_relevante` = `participacion_pct > 79.0` (`PARTICIPACION_BENCHMARK_NACIONAL_PCT`). Ese 79% es un **benchmark externo**, no propio del distrito: promedio nacional 1983-2023 (presidenciales + legislativas, todo el país), según Dirección Nacional Electoral/Ministerio del Interior, citado en Chequeado (26/10/2025, "la participación electoral de este domingo fue la más baja desde 1983"). La participación real de La Plata 2001-2025 (34 elecciones, 3 niveles) da **75.7%**, por debajo del benchmark -- no comparable 1 a 1: otra población (nacional, todo el país, vs. un distrito único) y otro período (1983-2023 vs. 2001-2025). `panel_ventanas.csv` agrega, por transición, `participacion_pct_t`/`_t_menos_1`, `participacion_relevante_t`, `voto_exit_ausentismo_pct_t`/`_t_menos_1`, `voto_exit_blanco_nulo_pct_t`/`_t_menos_1`, `voto_exit_total_pct_t`/`_t_menos_1` y `delta_participacion_pct`/`delta_voto_exit_total_pct` (`t - t_menos_1`, mismo esqueleto `.get()` doble + `None` si falta cualquiera que `calcular_delta_dispersion`, D18). Gracias a la corrección a D17, `voto_exit_ausentismo_pct`/`voto_exit_total_pct` de las transiciones que tocan 2025 **ya no son `None`** -- salen de `ausentismo` correcto en `elecciones.csv`, no de un fallback ad hoc en el panel (verificado con las 3 transiciones reales `*_2023_2025`: `voto_exit_total_pct_t` da 38.26/38.43/31.64 para municipal/provincial/nacional respectivamente, ninguna vacía). | Adoptada |
+
+## Corrección a D17 (2026-09-13)
+
+D17 documentaba que `votos_nulos`/`ausentismo` quedan vacíos para
+`2025 provincial`/`2025 municipal` por un hueco real de fuente (la Junta
+Electoral bonaerense no trae fila NULO ese año, ver Ley 5.109 en D19).
+Se encontró que, para `ausentismo`, ese vacío tenía además **una causa
+adicional evitable**: la rama fallback de `construir_elecciones` (años
+sin `circuito_<cargo>.json`) exigía `votos_nulos` no-`None` para calcular
+`ausentismo`, aunque `votantes_habilitados`/`votos_blancos`/
+`votos_positivos` estuvieran completos --
+`elif totales.get("nulo") is not None and totales.get("habilitados") is not None`.
+Corregido tratando `nulo` como `0` **solo dentro de esa resta** (nunca en
+la columna `votos_nulos` misma, que sigue vacía): `nulo =
+totales.get("nulo") or 0`. Verificado con los dos casos reales del
+período: `(provincial, 2025)` -- `habilitados=639839`,
+`votos_positivos=393945`, `votos_blancos=15186` -- pasa de `ausentismo`
+vacío a `ausentismo=230708`; `(municipal, 2025)` -- `positivos=395040`,
+`blancos=14091`, mismo `habilitados` -- da el mismo `230708` (coincidencia
+real: `positivos+blancos` suma `409131` en los dos niveles, mismo
+padrón). `nacional 2025` no tenía este problema (`votos_nulos=8831`
+presente, la Ley 5.109 es provincial). Se agregan además dos columnas
+aditivas a `FilaEleccion`/`elecciones.csv`: `votos_blancos_y_nulos`
+(`votos_blancos + (votos_nulos or 0)`) y `participacion_pct`
+(`(votos_positivos + votos_blancos_y_nulos) / votantes_habilitados * 100`),
+insumo directo de D19 -- el hallazgo surgió precisamente al diseñar esa
+decisión, aunque D17 es anterior.
 
 ## Corrección a D6 (2026-09-06)
 

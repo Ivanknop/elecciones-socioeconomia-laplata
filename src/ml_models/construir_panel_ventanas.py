@@ -32,6 +32,9 @@ from ml_models.construir_elecciones_resumen import (
     FilaEleccion,
     calcular_cobertura_minima,
     calcular_delta_dispersion,
+    calcular_delta_participacion,
+    calcular_delta_voto_exit_total,
+    calcular_participacion_voto_exit,
     cargar_elecciones,
 )
 from ml_models.construir_resultado_distrito import (
@@ -230,6 +233,29 @@ def construir_panel(
                 elecciones_por_anio_nivel, nivel, v["anio_t"], v["anio_t_menos_1"]
             )
 
+            # Participación y voto exit unificado blanco+nulo (D19).
+            part_t = calcular_participacion_voto_exit(elecciones_por_anio_nivel, nivel, v["anio_t"])
+            part_t_menos_1 = calcular_participacion_voto_exit(elecciones_por_anio_nivel, nivel, v["anio_t_menos_1"])
+            fila["participacion_pct_t"] = part_t.participacion_pct if part_t else None
+            fila["participacion_pct_t_menos_1"] = part_t_menos_1.participacion_pct if part_t_menos_1 else None
+            fila["participacion_relevante_t"] = part_t.participacion_relevante if part_t else None
+            fila["voto_exit_ausentismo_pct_t"] = part_t.voto_exit_ausentismo_pct if part_t else None
+            fila["voto_exit_ausentismo_pct_t_menos_1"] = (
+                part_t_menos_1.voto_exit_ausentismo_pct if part_t_menos_1 else None
+            )
+            fila["voto_exit_blanco_nulo_pct_t"] = part_t.voto_exit_blanco_nulo_pct if part_t else None
+            fila["voto_exit_blanco_nulo_pct_t_menos_1"] = (
+                part_t_menos_1.voto_exit_blanco_nulo_pct if part_t_menos_1 else None
+            )
+            fila["voto_exit_total_pct_t"] = part_t.voto_exit_total_pct if part_t else None
+            fila["voto_exit_total_pct_t_menos_1"] = part_t_menos_1.voto_exit_total_pct if part_t_menos_1 else None
+            fila["delta_participacion_pct"] = calcular_delta_participacion(
+                elecciones_por_anio_nivel, nivel, v["anio_t"], v["anio_t_menos_1"]
+            )
+            fila["delta_voto_exit_total_pct"] = calcular_delta_voto_exit_total(
+                elecciones_por_anio_nivel, nivel, v["anio_t"], v["anio_t_menos_1"]
+            )
+
             for var in registro:
                 serie = series_mensuales.get(var.id_variable, {})
                 features_vc_vl = calcular_features_ventana_variable(
@@ -286,6 +312,11 @@ def generar_csv(
         "delta_sigma2_economico", "delta_sigma2_progresismo",
         "magnitud_desplazamiento_ideologico", "cuadrante_desplazamiento",
         "dispersion_cobertura_share_min",
+        "participacion_pct_t", "participacion_pct_t_menos_1", "participacion_relevante_t",
+        "voto_exit_ausentismo_pct_t", "voto_exit_ausentismo_pct_t_menos_1",
+        "voto_exit_blanco_nulo_pct_t", "voto_exit_blanco_nulo_pct_t_menos_1",
+        "voto_exit_total_pct_t", "voto_exit_total_pct_t_menos_1",
+        "delta_participacion_pct", "delta_voto_exit_total_pct",
     ]
     columnas_features: list[str] = []
     vistas = set()

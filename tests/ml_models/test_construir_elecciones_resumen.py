@@ -7,12 +7,16 @@ import pytest
 
 from ml_models.construir_calendario import FilaCalendario
 from ml_models.construir_elecciones_resumen import (
+    PARTICIPACION_BENCHMARK_NACIONAL_PCT,
     UMBRAL_VIABLE,
     _dispersion_ponderada,
     _escribir_csv,
     _estructura_oferta,
     calcular_cobertura_minima,
     calcular_delta_dispersion,
+    calcular_delta_participacion,
+    calcular_delta_voto_exit_total,
+    calcular_participacion_voto_exit,
     cargar_elecciones,
     construir_elecciones,
     construir_fila_eleccion,
@@ -175,7 +179,7 @@ class TestConstruirEleccionesIntegracion:
         assert fila.votos_nulos == 30
         assert fila.ausentismo == 1200 - 1000 - 50 - 30
 
-    def test_votos_nulos_faltante_2025_like_no_calcula_ausentismo(self, tmp_path):
+    def test_votos_nulos_faltante_2025_like_calcula_ausentismo_tratando_nulo_como_cero(self, tmp_path):
         elecciones_dir = tmp_path / "elecciones"
         _escribir_eleccion_tfi(
             elecciones_dir, 2025, "provincial",
@@ -191,7 +195,75 @@ class TestConstruirEleccionesIntegracion:
         )
         fila = filas[0]
         assert fila.votos_nulos is None
-        assert fila.ausentismo is None
+        assert fila.ausentismo == 1200 - 1000 - 50 - 0
+        assert fila.votos_blancos_y_nulos == 50
+        assert fila.participacion_pct == pytest.approx((1000 + 50) / 1200 * 100)
+
+    def test_ausentismo_2025_provincial_caso_real(self, tmp_path):
+        # Valores reales de data/tfi_data/elecciones.csv (provincial, 2025):
+        # habilitados=639839, positivos=393945, blanco=15186, nulo vacío.
+        elecciones_dir = tmp_path / "elecciones"
+        _escribir_eleccion_tfi(
+            elecciones_dir, 2025, "provincial", [("0001", "PARTIDO A", 393945, "", "")],
+            blanco=15186, nulo=None, habilitados=639839,
+        )
+        calendario = [FilaCalendario(anio=2025, nivel="provincial", fecha_eleccion="2025-09-07", tipo_eleccion="legislativa", desdoblada=True, cargos_en_juego="diputados provinciales")]
+
+        filas = construir_elecciones(
+            calendario, voto_partido=[_v("PARTIDO A", 393945, 100.0, anio=2025, nivel="provincial")],
+            oficialismo_por_nivel={}, oficialismos_curados={},
+            data_dir=tmp_path / "distrito", elecciones_dir=elecciones_dir,
+        )
+        fila = filas[0]
+        assert fila.votos_nulos is None
+        assert fila.ausentismo == 230708
+        assert fila.votos_blancos_y_nulos == 15186
+        assert fila.participacion_pct == pytest.approx((393945 + 15186) / 639839 * 100)
+
+    def test_ausentismo_2025_municipal_caso_real(self, tmp_path):
+        # Valores reales de data/tfi_data/elecciones.csv (municipal, 2025):
+        # habilitados=639839, positivos=395040, blanco=14091, nulo vacío --
+        # mismo ausentismo que provincial (230708) por coincidencia real
+        # (positivos+blanco da 409131 en los dos niveles, mismo padrón), no
+        # asumido: verificado con los valores propios de este nivel.
+        elecciones_dir = tmp_path / "elecciones"
+        _escribir_eleccion_tfi(
+            elecciones_dir, 2025, "municipal", [("0001", "PARTIDO A", 395040, "", "")],
+            blanco=14091, nulo=None, habilitados=639839,
+        )
+        calendario = [FilaCalendario(anio=2025, nivel="municipal", fecha_eleccion="2025-09-07", tipo_eleccion="legislativa", desdoblada=True, cargos_en_juego="concejales")]
+
+        filas = construir_elecciones(
+            calendario, voto_partido=[_v("PARTIDO A", 395040, 100.0, anio=2025, nivel="municipal")],
+            oficialismo_por_nivel={}, oficialismos_curados={},
+            data_dir=tmp_path / "distrito", elecciones_dir=elecciones_dir,
+        )
+        fila = filas[0]
+        assert fila.votos_nulos is None
+        assert fila.ausentismo == 230708
+        assert fila.votos_blancos_y_nulos == 14091
+        assert fila.participacion_pct == pytest.approx((395040 + 14091) / 639839 * 100)
+
+    def test_ausentismo_2001_provincial_control_sin_bug(self, tmp_path):
+        # Control de no regresión: nulo presente (no dispara el fallback
+        # nulo=None), habilitados=410518, positivos=229230, blancos=28494,
+        # nulos=57098, ausentismo=95696 -- valores reales de elecciones.csv.
+        elecciones_dir = tmp_path / "elecciones"
+        _escribir_eleccion_tfi(
+            elecciones_dir, 2001, "provincial", [("0001", "PARTIDO A", 229230, "", "")],
+            blanco=28494, nulo=57098, habilitados=410518,
+        )
+        calendario = [FilaCalendario(anio=2001, nivel="provincial", fecha_eleccion="2001-10-14", tipo_eleccion="legislativa", desdoblada=False, cargos_en_juego="diputados provinciales")]
+
+        filas = construir_elecciones(
+            calendario, voto_partido=[_v("PARTIDO A", 229230, 100.0, anio=2001, nivel="provincial")],
+            oficialismo_por_nivel={}, oficialismos_curados={},
+            data_dir=tmp_path / "distrito", elecciones_dir=elecciones_dir,
+        )
+        fila = filas[0]
+        assert fila.ausentismo == 95696
+        assert fila.votos_blancos_y_nulos == 85592
+        assert fila.participacion_pct == pytest.approx((229230 + 85592) / 410518 * 100)
 
     def test_calendario_sin_nacional_pre_2011_no_genera_esas_filas(self, tmp_path):
         # Mismo criterio que calendario_electoral.csv real: si nacional no
@@ -309,3 +381,86 @@ class TestDeltaDispersionYCoberturaMinima:
     def test_delta_sigma2_none_si_falta_una_punta(self):
         elecciones = {(2021, "municipal"): self._fila_dos_partidos(2021, 2.0, -2.0)}
         assert calcular_delta_dispersion(elecciones, "municipal", 2021, 2019, "economico", estadistico="sigma2") is None
+
+
+def _fila_participacion(anio, nivel, habilitados, positivos, blanco, nulo, ausentismo) -> object:
+    del_anio = [_v("A", positivos, 100.0, anio=anio, nivel=nivel)]
+    return construir_fila_eleccion(
+        nivel=nivel, anio=anio, del_anio=del_anio,
+        totales={"blanco": blanco, "nulo": nulo, "habilitados": habilitados},
+        vparty={}, of=None, fila_of_curada=None, alias_lista=None,
+        resultado_disponible=False, ausentismo=ausentismo,
+    )
+
+
+class TestCalcularParticipacionVotoExit:
+    def test_calcula_las_cuatro_magnitudes_con_participacion_no_relevante(self):
+        # habilitados=1000, positivos=700, blanco=50, nulo=30, ausentismo=220
+        # (suma 1000) -- participacion_pct = (700+80)/1000*100 = 78.0 < 79.0
+        elecciones = {(2023, "municipal"): _fila_participacion(2023, "municipal", 1000, 700, 50, 30, 220)}
+        resultado = calcular_participacion_voto_exit(elecciones, "municipal", 2023)
+        assert resultado.participacion_pct == pytest.approx(78.0)
+        assert resultado.voto_exit_blanco_nulo_pct == pytest.approx(8.0)
+        assert resultado.voto_exit_ausentismo_pct == pytest.approx(22.0)
+        assert resultado.voto_exit_total_pct == pytest.approx(30.0)
+        assert resultado.participacion_relevante is False
+
+    def test_participacion_relevante_true_por_encima_del_benchmark(self):
+        # participacion_pct = (800+15)/1000*100 = 81.5 > 79.0
+        elecciones = {(2023, "municipal"): _fila_participacion(2023, "municipal", 1000, 800, 10, 5, 185)}
+        resultado = calcular_participacion_voto_exit(elecciones, "municipal", 2023)
+        assert resultado.participacion_pct == pytest.approx(81.5)
+        assert resultado.participacion_relevante is True
+        assert PARTICIPACION_BENCHMARK_NACIONAL_PCT == 79.0
+
+    def test_none_si_no_hay_fila_para_ese_anio_nivel(self):
+        assert calcular_participacion_voto_exit({}, "municipal", 2023) is None
+
+    def test_ausentismo_faltante_deja_solo_esas_dos_metricas_en_none(self):
+        # mismo caso 2025 real: ausentismo falta pero habilitados/blanco/nulo
+        # sí están -- participacion_pct/voto_exit_blanco_nulo_pct/
+        # participacion_relevante quedan calculables igual, no todo-o-nada.
+        elecciones = {(2025, "provincial"): _fila_participacion(2025, "provincial", 1000, 700, 80, None, None)}
+        resultado = calcular_participacion_voto_exit(elecciones, "provincial", 2025)
+        assert resultado.participacion_pct == pytest.approx(78.0)
+        assert resultado.voto_exit_blanco_nulo_pct == pytest.approx(8.0)
+        assert resultado.participacion_relevante is False
+        assert resultado.voto_exit_ausentismo_pct is None
+        assert resultado.voto_exit_total_pct is None
+
+    def test_caso_real_2025_provincial_ausentismo_ya_no_es_none(self):
+        # Con la corrección a D17 aplicada, ausentismo=230708 ya está
+        # presente en la fila -- no depende de un fallback en el panel.
+        elecciones = {
+            (2025, "provincial"): _fila_participacion(2025, "provincial", 639839, 393945, 15186, None, 230708)
+        }
+        resultado = calcular_participacion_voto_exit(elecciones, "provincial", 2025)
+        assert resultado.voto_exit_ausentismo_pct == pytest.approx(230708 / 639839 * 100)
+        assert resultado.voto_exit_total_pct is not None
+
+
+class TestDeltaParticipacionYVotoExitTotal:
+    def test_delta_participacion_resta_t_menos_t_menos_1(self):
+        elecciones = {
+            (2019, "municipal"): _fila_participacion(2019, "municipal", 1000, 700, 50, 30, 220),  # 78.0
+            (2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185),  # 81.5
+        }
+        assert calcular_delta_participacion(elecciones, "municipal", 2021, 2019) == pytest.approx(3.5)
+
+    def test_delta_participacion_none_si_falta_una_punta(self):
+        elecciones = {(2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185)}
+        assert calcular_delta_participacion(elecciones, "municipal", 2021, 2019) is None
+
+    def test_delta_voto_exit_total_resta_t_menos_t_menos_1(self):
+        elecciones = {
+            (2019, "municipal"): _fila_participacion(2019, "municipal", 1000, 700, 50, 30, 220),  # exit_total 30.0
+            (2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185),  # exit_total 20.0
+        }
+        assert calcular_delta_voto_exit_total(elecciones, "municipal", 2021, 2019) == pytest.approx(-10.0)
+
+    def test_delta_voto_exit_total_none_si_ausentismo_falta_en_una_punta(self):
+        elecciones = {
+            (2019, "municipal"): _fila_participacion(2019, "municipal", 1000, 700, 80, None, None),
+            (2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185),
+        }
+        assert calcular_delta_voto_exit_total(elecciones, "municipal", 2021, 2019) is None

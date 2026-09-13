@@ -57,6 +57,8 @@ def _eleccion(anio, nivel, gana_oficialismo, share_oficialismo, agrupacion_ofici
         votos_blancos=8,
         votos_nulos=2,
         ausentismo=10,
+        votos_blancos_y_nulos=10,
+        participacion_pct=98.0,
         gana_oficialismo=gana_oficialismo,
         share_oficialismo=share_oficialismo,
         agrupacion_oficialismo=agrupacion_oficialismo,
