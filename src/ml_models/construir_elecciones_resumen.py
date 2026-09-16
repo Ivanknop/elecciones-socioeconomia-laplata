@@ -434,16 +434,28 @@ def calcular_delta_participacion(
     return actual.participacion_pct - anterior.participacion_pct
 
 
-def calcular_delta_voto_exit_total(
+def calcular_delta_voto_exit_ausentismo(
     elecciones_por_anio_nivel: dict[tuple[int, str], FilaEleccion], nivel: str, anio_t: int, anio_t_menos_1: int
 ) -> float | None:
     actual = calcular_participacion_voto_exit(elecciones_por_anio_nivel, nivel, anio_t)
     anterior = calcular_participacion_voto_exit(elecciones_por_anio_nivel, nivel, anio_t_menos_1)
     if actual is None or anterior is None:
         return None
-    if actual.voto_exit_total_pct is None or anterior.voto_exit_total_pct is None:
+    if actual.voto_exit_ausentismo_pct is None or anterior.voto_exit_ausentismo_pct is None:
         return None
-    return actual.voto_exit_total_pct - anterior.voto_exit_total_pct
+    return actual.voto_exit_ausentismo_pct - anterior.voto_exit_ausentismo_pct
+
+
+def calcular_delta_voto_exit_blanco_nulo(
+    elecciones_por_anio_nivel: dict[tuple[int, str], FilaEleccion], nivel: str, anio_t: int, anio_t_menos_1: int
+) -> float | None:
+    actual = calcular_participacion_voto_exit(elecciones_por_anio_nivel, nivel, anio_t)
+    anterior = calcular_participacion_voto_exit(elecciones_por_anio_nivel, nivel, anio_t_menos_1)
+    if actual is None or anterior is None:
+        return None
+    if actual.voto_exit_blanco_nulo_pct is None or anterior.voto_exit_blanco_nulo_pct is None:
+        return None
+    return actual.voto_exit_blanco_nulo_pct - anterior.voto_exit_blanco_nulo_pct
 
 
 def generar_csv(

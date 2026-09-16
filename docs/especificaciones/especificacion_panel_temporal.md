@@ -301,15 +301,24 @@ Comparación entre la ventana corta actual y la ventana corta inmediatamente ant
 |---|---|---|
 | Delta de nivel | `_delta_nivel` | `X_nivel_vc(t) − X_nivel_vc(t−1)` |
 | Delta de pendiente | `_delta_pendiente` | `X_pendiente_vc(t) − X_pendiente_vc(t−1)` |
-| Signo de mejora | `_mejoro` | Booleano: ¿la variable evolucionó favorablemente respecto de la ventana anterior? Requiere definir polaridad por variable (ver 5.4) |
+
+`_mejoro` (booleano, signo de `_delta_nivel` según la polaridad) se
+retiró de `panel_ventanas.csv`: era una función determinística de
+`_delta_nivel` + `polaridad`, ambas ya presentes, para cualquier
+variable — redundancia estructural, no específica de ninguna variable
+puntual (D25).
 
 ### 5.4 Polaridad de las variables
 
-Cada variable necesita una polaridad explícita para que `_mejoro` y los signos de pendiente sean interpretables de forma homogénea. La polaridad **se lee del campo `polaridad` del registro de variables** (sección 4.2), no de una constante en código:
+Cada variable necesita una polaridad explícita para que los signos de
+pendiente sean interpretables de forma homogénea (y para documentar la
+dirección esperada de la variable, útil al leer el signo de un
+coeficiente de un modelo). La polaridad **se lee del campo `polaridad` del
+registro de variables** (sección 4.2), no de una constante en código:
 
 - `positiva` — un valor mayor representa una mejora (ej. `icg`, `salario_real`, `reservas`)
 - `negativa` — un valor menor representa una mejora (ej. `ipc`, `desocupacion`, `tc_oficial`)
-- `ambigua` — no se fuerza dirección; la variable queda **excluida del feature `_mejoro`** (ej. `resultado_fiscal`)
+- `ambigua` — no se fuerza dirección (ej. `resultado_fiscal`)
 
 Una variable sin polaridad declarada en el registro debe hacer fallar la construcción con error explícito, no asumir un valor por defecto.
 
@@ -320,9 +329,16 @@ No todos los features aplican a todas las variables. El registro gobierna cuále
 | Condición en el registro | Consecuencia |
 |---|---|
 | `es_flujo = true` | Se calcula `_acum`; si es `false`, se omite |
-| `polaridad = ambigua` | Se omite `_mejoro` |
 | `periodicidad_nativa = anual` | Se calcula solo `_nivel`; se omiten `_pendiente`, `_volatilidad` y `_final` por insuficiencia de puntos en la ventana |
+| `paquete_atributos = reducido` | Se calcula solo `_nivel_vc`, `_delta_nivel` y `_cobertura_parcial` -- nunca `_vl` (ni `_nivel_vl`), `_pendiente`, `_volatilidad`, `_final`, `_delta_pendiente` ni `_acum`, sin importar el resto de las columnas del registro (D26) |
 | Cobertura parcial (tramo faltante dentro de la ventana) | El feature se calcula sobre los meses disponibles y se marca con una columna de flag `<id_variable>_cobertura_parcial` |
+
+`paquete_atributos` (`completo`/`reducido`, campo del registro de
+variables) existe para series de ritmo más lento/estructural que no
+necesitan el detalle de trayectoria completo dentro de una ventana de 24
+meses (D26) -- a diferencia de `periodicidad_nativa=anual`, que se omite
+por insuficiencia real de puntos, `reducido` es una decisión editorial
+sobre variables con datos mensuales/trimestrales de sobra.
 
 Esta lógica debe estar implementada de forma genérica, de modo que incorporar una variable con características distintas a las existentes no requiera modificar `features_ventana.py`.
 
@@ -498,7 +514,8 @@ D18 en `docs/decisiones_metodologicas.md` para la auditoría completa.
 Agregadas por el mismo mecanismo de join que §6.6 (`elecciones.csv` en
 las dos puntas de la transición), vía
 `ml_models.construir_elecciones_resumen.calcular_participacion_voto_exit`/
-`calcular_delta_participacion`/`calcular_delta_voto_exit_total`. Blanco y
+`calcular_delta_participacion`/`calcular_delta_voto_exit_ausentismo`/
+`calcular_delta_voto_exit_blanco_nulo`. Blanco y
 nulo se tratan como una sola categoría unificada (`votos_blancos_y_nulos`,
 §6.4) por el cambio de régimen legal de la Ley 5.109 en 2025
 provincial/municipal — ver D19 en `docs/decisiones_metodologicas.md` para
@@ -510,13 +527,21 @@ el hallazgo completo y la corrección a D17 que lo acompaña.
 | `participacion_relevante_t` | `participacion_pct_t > 79.0` (`PARTICIPACION_BENCHMARK_NACIONAL_PCT`, benchmark externo: promedio nacional 1983-2023, Chequeado 26/10/2025) — sólo para `t`, no para `t_menos_1` |
 | `voto_exit_ausentismo_pct_t`, `_t_menos_1` | `ausentismo / votantes_habilitados * 100`, por punta |
 | `voto_exit_blanco_nulo_pct_t`, `_t_menos_1` | `votos_blancos_y_nulos / votantes_habilitados * 100`, por punta |
-| `voto_exit_total_pct_t`, `_t_menos_1` | suma de los dos anteriores (`= 100 − participacion_pct`), por punta |
 | `delta_participacion_pct` | `participacion_pct_t − participacion_pct_t_menos_1` |
-| `delta_voto_exit_total_pct` | `voto_exit_total_pct_t − voto_exit_total_pct_t_menos_1` |
+| `delta_voto_exit_ausentismo_pct` | `voto_exit_ausentismo_pct_t − voto_exit_ausentismo_pct_t_menos_1` |
+| `delta_voto_exit_blanco_nulo_pct` | `voto_exit_blanco_nulo_pct_t − voto_exit_blanco_nulo_pct_t_menos_1` |
+
+`voto_exit_total_pct_t`/`_t_menos_1` y `delta_voto_exit_total_pct`
+(suma/delta de las dos filas anteriores) se retiraron del panel por D22:
+comprobadamente redundantes con `voto_exit_ausentismo_pct`/
+`voto_exit_blanco_nulo_pct` (0.0 de diferencia exacta en las 31 filas
+reales) — `voto_exit_total_pct` sigue existiendo como cantidad intermedia
+dentro de `calcular_participacion_voto_exit`, solo dejó de materializarse
+como columna del panel.
 
 Gracias a la corrección a D17, las transiciones que tocan 2025
 provincial/municipal/nacional **no** quedan con `voto_exit_ausentismo_pct_t`/
-`voto_exit_total_pct_t` vacíos — `ausentismo` ya sale correcto de
+`voto_exit_blanco_nulo_pct_t` vacíos — `ausentismo` ya sale correcto de
 `elecciones.csv`, sin depender de un fallback ad hoc en el panel.
 
 ---

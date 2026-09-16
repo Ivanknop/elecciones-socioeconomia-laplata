@@ -11,7 +11,7 @@ from ml_models.construir_panel_ventanas import clasificar_cuadrante_desplazamien
 from ml_models.construir_resultado_distrito import FilaResultadoDistrito, FilaVotoPartido
 
 
-def _var(id_variable, periodicidad_nativa="mensual", es_flujo=False, nominal=False, polaridad="positiva"):
+def _var(id_variable, periodicidad_nativa="mensual", es_flujo=False, nominal=False, polaridad="positiva", paquete_atributos="completo"):
     return FilaRegistroVariable(
         id_variable=id_variable,
         descripcion="",
@@ -26,6 +26,7 @@ def _var(id_variable, periodicidad_nativa="mensual", es_flujo=False, nominal=Fal
         nominal=nominal,
         bloque_tematico="real",
         estado="nucleo",
+        paquete_atributos=paquete_atributos,
         nota_metodologica="",
     )
 
@@ -202,9 +203,9 @@ class TestColumnasDeParticipacionVotoExit:
         assert fila["participacion_relevante_t"] is True  # 98.0 > 79.0
         assert fila["voto_exit_blanco_nulo_pct_t"] == pytest.approx(10.0)  # 10/100*100
         assert fila["voto_exit_ausentismo_pct_t"] == pytest.approx(10.0)  # 10/100*100
-        assert fila["voto_exit_total_pct_t"] == pytest.approx(20.0)
         assert fila["delta_participacion_pct"] == pytest.approx(0.0)
-        assert fila["delta_voto_exit_total_pct"] == pytest.approx(0.0)
+        assert fila["delta_voto_exit_ausentismo_pct"] == pytest.approx(0.0)
+        assert fila["delta_voto_exit_blanco_nulo_pct"] == pytest.approx(0.0)
 
     def test_sin_eleccion_correspondiente_todo_none(self, escenario_basico):
         *resto, _ = escenario_basico
@@ -214,9 +215,9 @@ class TestColumnasDeParticipacionVotoExit:
         assert fila["participacion_relevante_t"] is None
         assert fila["voto_exit_blanco_nulo_pct_t"] is None
         assert fila["voto_exit_ausentismo_pct_t"] is None
-        assert fila["voto_exit_total_pct_t"] is None
         assert fila["delta_participacion_pct"] is None
-        assert fila["delta_voto_exit_total_pct"] is None
+        assert fila["delta_voto_exit_ausentismo_pct"] is None
+        assert fila["delta_voto_exit_blanco_nulo_pct"] is None
 
     def test_transicion_real_hacia_2025_provincial_ya_no_da_none_en_voto_exit(self):
         # Con la corrección a D17 (ausentismo ya no depende de votos_nulos
@@ -233,8 +234,8 @@ class TestColumnasDeParticipacionVotoExit:
         )
         fila = filas[0]
         assert fila["voto_exit_ausentismo_pct_t"] == pytest.approx(230708 / 639839 * 100)
-        assert fila["voto_exit_total_pct_t"] is not None
-        assert fila["delta_voto_exit_total_pct"] is not None
+        assert fila["delta_voto_exit_ausentismo_pct"] is not None
+        assert fila["delta_voto_exit_blanco_nulo_pct"] is not None
 
 
 class TestClasificarCuadranteDesplazamiento:
@@ -273,6 +274,24 @@ class TestExtensibilidad:
 
         assert filas[0]["variable_ficticia_nueva_nivel_vc"] == pytest.approx(42.0)
         assert "variable_ficticia_nueva_acum_vc" in filas[0]  # es_flujo=true
-        assert "variable_ficticia_nueva_mejoro" in filas[0]  # polaridad != ambigua
+        assert "variable_ficticia_nueva_mejoro" not in filas[0]  # _mejoro se retiró (D25)
         # la variable preexistente sigue intacta, sin efectos cruzados
         assert filas[0]["x_nivel_vc"] == pytest.approx(10.0)
+
+    def test_variable_ficticia_con_paquete_reducido_produce_solo_3_atributos(self, escenario_basico):
+        """D26: paquete_atributos='reducido' en el registro alcanza para
+        que una variable nueva traiga solo nivel_vc/delta_nivel/
+        cobertura_parcial en el panel, sin tocar código."""
+        ventanas, registro, series_mensuales, *resto = escenario_basico
+        registro_extendido = registro + [_var("variable_reducida_nueva", paquete_atributos="reducido")]
+        series_extendida = dict(series_mensuales, variable_reducida_nueva=_serie_constante(2011, 2013, 7.0))
+
+        filas = construir_panel(ventanas, registro_extendido, series_extendida, *resto)
+
+        claves_variable = {k for k in filas[0] if k.startswith("variable_reducida_nueva")}
+        assert claves_variable == {
+            "variable_reducida_nueva_nivel_vc",
+            "variable_reducida_nueva_delta_nivel",
+            "variable_reducida_nueva_cobertura_parcial",
+        }
+        assert filas[0]["variable_reducida_nueva_nivel_vc"] == pytest.approx(7.0)

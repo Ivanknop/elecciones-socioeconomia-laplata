@@ -12,6 +12,7 @@ from datetime import date
 from pathlib import Path
 
 from constantes import (
+    EPH_GRAN_LA_PLATA_PATH,
     ICG_RAW_PATH,
     MACRO_CACHE_DATOS_GOB_DIR,
     REGISTRO_VARIABLES_PATH,
@@ -54,7 +55,8 @@ class FilaRegistroVariable:
     nominal: bool
     bloque_tematico: str
     estado: str
-    nota_metodologica: str
+    paquete_atributos: str = "completo"
+    nota_metodologica: str = ""
 
 
 def cargar_registro(path: Path | str = REGISTRO_VARIABLES_PATH) -> list[FilaRegistroVariable]:
@@ -74,6 +76,7 @@ def cargar_registro(path: Path | str = REGISTRO_VARIABLES_PATH) -> list[FilaRegi
                 nominal=r["nominal"].strip().lower() == "true",
                 bloque_tematico=r["bloque_tematico"],
                 estado=r["estado"],
+                paquete_atributos=r["paquete_atributos"],
                 nota_metodologica=r["nota_metodologica"],
             )
             for r in csv.DictReader(f)
@@ -86,6 +89,32 @@ def _cargar_icg(anio_desde: int = 2001) -> list[tuple[date, float]]:
     df = cargar_microdatos(ICG_RAW_PATH)
     serie = construir_serie_headline(df, anio_desde=anio_desde)
     return sorted((date(int(r["año"]), int(r["mes"]), 1), float(r["icg_pais"])) for _, r in serie.iterrows())
+
+
+_EPH_TRIMESTRE_A_MES = {1: 1, 2: 4, 3: 7, 4: 10}
+
+_VARIABLES_EPH = (
+    "tasa_informalidad",
+    "pct_sin_cobertura_salud",
+    "hacinamiento_medio",
+    "pct_hogares_ayuda_social_gobierno",
+    "pct_hogares_prestamo_bancario",
+    "pct_hogares_vendio_pertenencias",
+)
+
+
+def _cargar_eph(id_columna: str, path: Path | str = EPH_GRAN_LA_PLATA_PATH) -> list[tuple[date, float]]:
+    """Aglomerado Gran La Plata (INDEC-EPH), no Partido de La Plata -- ver
+    `nota_metodologica` en `registro_variables.csv`. Fecha = primer día del
+    trimestre calendario real, para que `_homogeneizar_mensual` (periodicidad
+    'trimestral') lo repita solo dentro de ese trimestre, igual que
+    `resultado_fiscal`."""
+    with Path(path).open(encoding="utf-8", newline="") as f:
+        return sorted(
+            (date(int(r["anio"]), _EPH_TRIMESTRE_A_MES[int(r["trimestre"])], 1), float(r[id_columna]))
+            for r in csv.DictReader(f)
+            if r[id_columna] not in ("", None)
+        )
 
 
 def _cargar_datos_gob(ids: list[str], client: DatosGobClient, start_date: str = "2000-01-01") -> list[tuple[date, float]]:
@@ -102,7 +131,10 @@ def _cargar_datos_gob(ids: list[str], client: DatosGobClient, start_date: str = 
     return sorted(por_fecha.items())
 
 
-_LOADERS = {"icg": lambda client: _cargar_icg(ANIO_INICIO)}
+_LOADERS = {
+    "icg": lambda client: _cargar_icg(ANIO_INICIO),
+    **{v: (lambda client, v=v: _cargar_eph(v)) for v in _VARIABLES_EPH},
+}
 
 
 def _cargar_puntos_de_variable(id_variable: str, client: DatosGobClient) -> list[tuple[date, float]]:

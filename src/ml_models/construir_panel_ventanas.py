@@ -33,7 +33,8 @@ from ml_models.construir_elecciones_resumen import (
     calcular_cobertura_minima,
     calcular_delta_dispersion,
     calcular_delta_participacion,
-    calcular_delta_voto_exit_total,
+    calcular_delta_voto_exit_ausentismo,
+    calcular_delta_voto_exit_blanco_nulo,
     calcular_participacion_voto_exit,
     cargar_elecciones,
 )
@@ -180,9 +181,6 @@ def construir_panel(
 
             resultado_t = resultado_por_anio_nivel.get((v["anio_t"], nivel))
             resultado_t1 = resultado_por_anio_nivel.get((v["anio_t_menos_1"], nivel))
-            fila["resultado_disponible"] = bool(
-                resultado_t and resultado_t1 and resultado_t.resultado_disponible and resultado_t1.resultado_disponible
-            )
             fila["delta_v"] = calcular_delta_v(resultado_por_anio_nivel, nivel, v["anio_t"], v["anio_t_menos_1"])
             fila["gana_oficialismo"] = resultado_t.gana_oficialismo if resultado_t else None
             fila["share_oficialismo"] = resultado_t.share_oficialismo if resultado_t else None
@@ -247,12 +245,13 @@ def construir_panel(
             fila["voto_exit_blanco_nulo_pct_t_menos_1"] = (
                 part_t_menos_1.voto_exit_blanco_nulo_pct if part_t_menos_1 else None
             )
-            fila["voto_exit_total_pct_t"] = part_t.voto_exit_total_pct if part_t else None
-            fila["voto_exit_total_pct_t_menos_1"] = part_t_menos_1.voto_exit_total_pct if part_t_menos_1 else None
             fila["delta_participacion_pct"] = calcular_delta_participacion(
                 elecciones_por_anio_nivel, nivel, v["anio_t"], v["anio_t_menos_1"]
             )
-            fila["delta_voto_exit_total_pct"] = calcular_delta_voto_exit_total(
+            fila["delta_voto_exit_ausentismo_pct"] = calcular_delta_voto_exit_ausentismo(
+                elecciones_por_anio_nivel, nivel, v["anio_t"], v["anio_t_menos_1"]
+            )
+            fila["delta_voto_exit_blanco_nulo_pct"] = calcular_delta_voto_exit_blanco_nulo(
                 elecciones_por_anio_nivel, nivel, v["anio_t"], v["anio_t_menos_1"]
             )
 
@@ -305,7 +304,7 @@ def generar_csv(
     columnas_id = [
         "id_transicion", "nivel", "anio_t", "anio_t_menos_1", "anio_t_menos_2",
         "fecha_inicio_vc", "fecha_fin_vc", "fecha_inicio_vl", "tipo_eleccion_t", "tipo_eleccion_t_menos_1",
-        "resultado_disponible", "delta_v", "gana_oficialismo", "share_oficialismo",
+        "delta_v", "gana_oficialismo", "share_oficialismo",
         "agrupacion_oficialismo", "continuidad_oficialismo",
         "delta_posicion_ideologica", "distancia_oficialismo_alternativa",
         "delta_dispersion_economico_mu", "delta_dispersion_progresismo_mu",
@@ -315,8 +314,7 @@ def generar_csv(
         "participacion_pct_t", "participacion_pct_t_menos_1", "participacion_relevante_t",
         "voto_exit_ausentismo_pct_t", "voto_exit_ausentismo_pct_t_menos_1",
         "voto_exit_blanco_nulo_pct_t", "voto_exit_blanco_nulo_pct_t_menos_1",
-        "voto_exit_total_pct_t", "voto_exit_total_pct_t_menos_1",
-        "delta_participacion_pct", "delta_voto_exit_total_pct",
+        "delta_participacion_pct", "delta_voto_exit_ausentismo_pct", "delta_voto_exit_blanco_nulo_pct",
     ]
     columnas_features: list[str] = []
     vistas = set()

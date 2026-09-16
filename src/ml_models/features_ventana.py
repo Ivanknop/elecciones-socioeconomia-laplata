@@ -9,6 +9,7 @@ from datetime import date
 from ml_models.cargar_series_economicas import FilaRegistroVariable
 
 _POLARIDADES_VALIDAS = {"positiva", "negativa", "ambigua"}
+_PAQUETES_VALIDOS = {"completo", "reducido"}
 
 
 def _parsear_fecha(fecha_iso: str) -> date:
@@ -88,19 +89,29 @@ def calcular_features_ventana_variable(
     """Features intraventana (`_nivel`/`_pendiente`/`_volatilidad`/`_final`/
     `_acum`) de una variable, para `_vc` y (si existe) `_vl`. Reglas de
     aplicabilidad del §5.4.1: `periodicidad_nativa=anual` -> solo `_nivel`;
-    `es_flujo=false` -> sin `_acum`. Cobertura parcial en cualquiera de las
-    dos ventanas -> `<id_variable>_cobertura_parcial=True`."""
+    `es_flujo=false` -> sin `_acum`; `paquete_atributos=reducido` -> solo
+    `_nivel_vc` (nunca `_vl`, `_pendiente`, `_volatilidad`, `_final` ni
+    `_acum`; D26 -- series más lentas/estructurales que no necesitan
+    detalle de trayectoria completo en una ventana de 24 meses). Cobertura
+    parcial en cualquiera de las ventanas efectivamente calculadas ->
+    `<id_variable>_cobertura_parcial=True`."""
     if var.polaridad not in _POLARIDADES_VALIDAS:
         raise ValueError(
             f"{var.id_variable!r}: polaridad {var.polaridad!r} inválida -- debe ser "
             f"'positiva'/'negativa'/'ambigua', nunca vacía (registro_variables.csv)."
         )
+    if var.paquete_atributos not in _PAQUETES_VALIDOS:
+        raise ValueError(
+            f"{var.id_variable!r}: paquete_atributos {var.paquete_atributos!r} inválido -- "
+            f"debe ser 'completo'/'reducido' (registro_variables.csv)."
+        )
 
     resultado: dict[str, float | bool | None] = {}
     cobertura_parcial = False
+    reducido = var.paquete_atributos == "reducido"
 
     ventanas = [("vc", fecha_inicio_vc, fecha_fin_vc)]
-    if fecha_inicio_vl is not None:
+    if not reducido and fecha_inicio_vl is not None:
         ventanas.append(("vl", fecha_inicio_vl, fecha_fin_vc))
 
     for sufijo, inicio, fin in ventanas:
@@ -112,10 +123,13 @@ def calcular_features_ventana_variable(
             cobertura_parcial = True
 
         resultado[f"{var.id_variable}_nivel_{sufijo}"] = _nivel(valores)
+        if reducido:
+            continue
         if var.periodicidad_nativa != "anual":
             resultado[f"{var.id_variable}_pendiente_{sufijo}"] = _pendiente(valores)
             resultado[f"{var.id_variable}_volatilidad_{sufijo}"] = _volatilidad(valores)
-            resultado[f"{var.id_variable}_final_{sufijo}"] = _final(serie, meses)
+            if sufijo == "vc":
+                resultado[f"{var.id_variable}_final_{sufijo}"] = _final(serie, meses)
             if var.es_flujo:
                 resultado[f"{var.id_variable}_acum_{sufijo}"] = _acum(serie, meses)
 
@@ -128,41 +142,34 @@ def calcular_features_interventana_variable(
     features_vc_actual: dict[str, float | bool | None],
     features_vc_anterior: dict[str, float | bool | None] | None,
 ) -> dict[str, float | bool | None]:
-    """`_delta_nivel`/`_delta_pendiente`/`_mejoro` (§5.3), comparando la
-    ventana corta actual contra la ventana corta de la transición anterior
-    del mismo nivel. `_mejoro` se omite si `polaridad=ambigua` (§5.4).
-    `None`/vacío si no hay transición anterior (primera ventana del nivel)."""
+    """`_delta_nivel`/`_delta_pendiente` (§5.3), comparando la ventana
+    corta actual contra la ventana corta de la transición anterior del
+    mismo nivel. `None`/vacío si no hay transición anterior (primera
+    ventana del nivel). `paquete_atributos=reducido` -> solo `_delta_nivel`
+    (D26)."""
     if var.polaridad not in _POLARIDADES_VALIDAS:
         raise ValueError(f"{var.id_variable!r}: polaridad {var.polaridad!r} inválida.")
+    if var.paquete_atributos not in _PAQUETES_VALIDOS:
+        raise ValueError(f"{var.id_variable!r}: paquete_atributos {var.paquete_atributos!r} inválido.")
 
     nivel_actual = features_vc_actual.get(f"{var.id_variable}_nivel_vc")
-    pendiente_actual = features_vc_actual.get(f"{var.id_variable}_pendiente_vc")
-
-    if features_vc_anterior is None:
-        nivel_anterior = pendiente_anterior = None
-    else:
-        nivel_anterior = features_vc_anterior.get(f"{var.id_variable}_nivel_vc")
-        pendiente_anterior = features_vc_anterior.get(f"{var.id_variable}_pendiente_vc")
+    nivel_anterior = (features_vc_anterior or {}).get(f"{var.id_variable}_nivel_vc")
 
     resultado: dict[str, float | bool | None] = {}
-
     delta_nivel = (
         nivel_actual - nivel_anterior if nivel_actual is not None and nivel_anterior is not None else None
     )
     resultado[f"{var.id_variable}_delta_nivel"] = delta_nivel
+
+    if var.paquete_atributos == "reducido":
+        return resultado
+
+    pendiente_actual = features_vc_actual.get(f"{var.id_variable}_pendiente_vc")
+    pendiente_anterior = (features_vc_anterior or {}).get(f"{var.id_variable}_pendiente_vc")
     resultado[f"{var.id_variable}_delta_pendiente"] = (
         pendiente_actual - pendiente_anterior
         if pendiente_actual is not None and pendiente_anterior is not None
         else None
     )
-
-    if var.polaridad != "ambigua":
-        if delta_nivel is None:
-            mejoro = None
-        elif var.polaridad == "positiva":
-            mejoro = delta_nivel > 0
-        else:  # negativa
-            mejoro = delta_nivel < 0
-        resultado[f"{var.id_variable}_mejoro"] = mejoro
 
     return resultado

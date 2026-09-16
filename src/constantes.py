@@ -42,6 +42,7 @@ MACRO_CACHE_DATOS_GOB_DIR = "data/macroeconomia/_cache/datos_gob"
 
 # --- Socioeconomía ---
 EPH_CACHE_DIR = "data/socioeconomia/eph_cache"
+EPH_GRAN_LA_PLATA_PATH = "data/socioeconomia/eph_gran_la_plata.csv"
 CIRCUITOS_GEOJSON_PATH = "data/socioeconomia/circuitos_electorales_la_plata.geojson"
 ICG_RAW_PATH = "data/socioeconomia/icg-icc/Base_histórica_2001-presente-ICG.dta"
 ICG_HEADLINE_PATH = "data/socioeconomia/icg/icg_mensual_la_plata_pais_2001_presente.csv"

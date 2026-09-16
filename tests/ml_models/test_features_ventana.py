@@ -17,7 +17,7 @@ from ml_models.features_ventana import (
 )
 
 
-def _var(id_variable="x", periodicidad_nativa="mensual", es_flujo=False, polaridad="positiva"):
+def _var(id_variable="x", periodicidad_nativa="mensual", es_flujo=False, polaridad="positiva", paquete_atributos="completo"):
     return FilaRegistroVariable(
         id_variable=id_variable,
         descripcion="",
@@ -32,6 +32,7 @@ def _var(id_variable="x", periodicidad_nativa="mensual", es_flujo=False, polarid
         nominal=False,
         bloque_tematico="real",
         estado="nucleo",
+        paquete_atributos=paquete_atributos,
         nota_metodologica="",
     )
 
@@ -94,6 +95,25 @@ class TestCalcularFeaturesVentanaVariable:
         serie = {date(2007, m, 1): 1.0 for m in range(1, 13)} | {date(2011, m, 1): 1.0 for m in range(1, 13)}
         resultado = calcular_features_ventana_variable(var, serie, "2009-06-28", "2011-10-23", "2007-10-28")
         assert "x_nivel_vl" in resultado
+        assert "x_pendiente_vl" in resultado
+        assert "x_volatilidad_vl" in resultado
+
+    def test_final_vl_nunca_se_calcula(self):
+        # vc y vl comparten fecha_fin_vc (ventanas.csv no tiene fecha_fin_vl)
+        # -- _final_vl sería siempre idéntico a _final_vc, así que no se genera.
+        var = _var()
+        serie = {date(2007, m, 1): 1.0 for m in range(1, 13)} | {date(2011, m, 1): 1.0 for m in range(1, 13)}
+        resultado = calcular_features_ventana_variable(var, serie, "2009-06-28", "2011-10-23", "2007-10-28")
+        assert "x_final_vc" in resultado
+        assert "x_final_vl" not in resultado
+
+    def test_paquete_reducido_solo_nivel_vc_y_cobertura(self):
+        # D26: paquete_atributos=reducido -- ni siquiera arma la ventana vl,
+        # aunque fecha_inicio_vl exista.
+        var = _var(paquete_atributos="reducido")
+        serie = {date(2007, m, 1): 1.0 for m in range(1, 13)} | {date(2011, m, 1): 1.0 for m in range(1, 13)}
+        resultado = calcular_features_ventana_variable(var, serie, "2009-06-28", "2011-10-23", "2007-10-28")
+        assert set(resultado) == {"x_nivel_vc", "x_cobertura_parcial"}
 
     def test_anual_solo_calcula_nivel(self):
         var = _var(periodicidad_nativa="anual")
@@ -156,26 +176,21 @@ class TestCalcularFeaturesInterventanaVariable:
         assert resultado["x_delta_nivel"] is None
         assert resultado["x_delta_pendiente"] is None
 
-    def test_mejoro_true_si_positiva_y_sube(self):
-        var = _var(polaridad="positiva")
+    def test_paquete_reducido_solo_delta_nivel(self):
+        var = _var(paquete_atributos="reducido")
+        actual = {"x_nivel_vc": 10.0, "x_pendiente_vc": 1.0}
+        anterior = {"x_nivel_vc": 6.0, "x_pendiente_vc": 0.5}
+        resultado = calcular_features_interventana_variable(var, actual, anterior)
+        assert resultado == {"x_delta_nivel": pytest.approx(4.0)}
+
+    def test_mejoro_nunca_se_calcula(self):
+        # _mejoro era una función determinística de x_delta_nivel + polaridad
+        # -- redundante para cualquier variable, se retiró (D25).
         actual = {"x_nivel_vc": 10.0}
         anterior = {"x_nivel_vc": 5.0}
-        resultado = calcular_features_interventana_variable(var, actual, anterior)
-        assert resultado["x_mejoro"] is True
-
-    def test_mejoro_true_si_negativa_y_baja(self):
-        var = _var(polaridad="negativa")
-        actual = {"x_nivel_vc": 5.0}
-        anterior = {"x_nivel_vc": 10.0}
-        resultado = calcular_features_interventana_variable(var, actual, anterior)
-        assert resultado["x_mejoro"] is True
-
-    def test_mejoro_omitido_si_ambigua(self):
-        var = _var(polaridad="ambigua")
-        actual = {"x_nivel_vc": 10.0}
-        anterior = {"x_nivel_vc": 5.0}
-        resultado = calcular_features_interventana_variable(var, actual, anterior)
-        assert "x_mejoro" not in resultado
+        for polaridad in ("positiva", "negativa", "ambigua"):
+            resultado = calcular_features_interventana_variable(_var(polaridad=polaridad), actual, anterior)
+            assert "x_mejoro" not in resultado
 
     def test_polaridad_invalida_falla_explicitamente(self):
         var = _var(polaridad="mala")

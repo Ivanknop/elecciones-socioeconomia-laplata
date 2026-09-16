@@ -15,7 +15,8 @@ from ml_models.construir_elecciones_resumen import (
     calcular_cobertura_minima,
     calcular_delta_dispersion,
     calcular_delta_participacion,
-    calcular_delta_voto_exit_total,
+    calcular_delta_voto_exit_ausentismo,
+    calcular_delta_voto_exit_blanco_nulo,
     calcular_participacion_voto_exit,
     cargar_elecciones,
     construir_elecciones,
@@ -439,7 +440,7 @@ class TestCalcularParticipacionVotoExit:
         assert resultado.voto_exit_total_pct is not None
 
 
-class TestDeltaParticipacionYVotoExitTotal:
+class TestDeltaParticipacionYVotoExit:
     def test_delta_participacion_resta_t_menos_t_menos_1(self):
         elecciones = {
             (2019, "municipal"): _fila_participacion(2019, "municipal", 1000, 700, 50, 30, 220),  # 78.0
@@ -451,16 +452,31 @@ class TestDeltaParticipacionYVotoExitTotal:
         elecciones = {(2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185)}
         assert calcular_delta_participacion(elecciones, "municipal", 2021, 2019) is None
 
-    def test_delta_voto_exit_total_resta_t_menos_t_menos_1(self):
+    def test_delta_voto_exit_ausentismo_resta_t_menos_t_menos_1(self):
         elecciones = {
-            (2019, "municipal"): _fila_participacion(2019, "municipal", 1000, 700, 50, 30, 220),  # exit_total 30.0
-            (2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185),  # exit_total 20.0
+            (2019, "municipal"): _fila_participacion(2019, "municipal", 1000, 700, 50, 30, 220),  # ausentismo 22.0
+            (2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185),  # ausentismo 18.5
         }
-        assert calcular_delta_voto_exit_total(elecciones, "municipal", 2021, 2019) == pytest.approx(-10.0)
+        assert calcular_delta_voto_exit_ausentismo(elecciones, "municipal", 2021, 2019) == pytest.approx(-3.5)
 
-    def test_delta_voto_exit_total_none_si_ausentismo_falta_en_una_punta(self):
+    def test_delta_voto_exit_ausentismo_none_si_falta_una_punta(self):
+        elecciones = {(2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185)}
+        assert calcular_delta_voto_exit_ausentismo(elecciones, "municipal", 2021, 2019) is None
+
+    def test_delta_voto_exit_ausentismo_none_si_ausentismo_falta_en_una_punta(self):
         elecciones = {
             (2019, "municipal"): _fila_participacion(2019, "municipal", 1000, 700, 80, None, None),
             (2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185),
         }
-        assert calcular_delta_voto_exit_total(elecciones, "municipal", 2021, 2019) is None
+        assert calcular_delta_voto_exit_ausentismo(elecciones, "municipal", 2021, 2019) is None
+
+    def test_delta_voto_exit_blanco_nulo_resta_t_menos_t_menos_1(self):
+        elecciones = {
+            (2019, "municipal"): _fila_participacion(2019, "municipal", 1000, 700, 50, 30, 220),  # blanco_nulo 8.0
+            (2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185),  # blanco_nulo 1.5
+        }
+        assert calcular_delta_voto_exit_blanco_nulo(elecciones, "municipal", 2021, 2019) == pytest.approx(-6.5)
+
+    def test_delta_voto_exit_blanco_nulo_none_si_falta_una_punta(self):
+        elecciones = {(2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185)}
+        assert calcular_delta_voto_exit_blanco_nulo(elecciones, "municipal", 2021, 2019) is None

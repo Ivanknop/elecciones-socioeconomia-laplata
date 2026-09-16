@@ -47,12 +47,18 @@ _COLUMNAS_FIJAS = {
 _UNIDADES = {
     "desocupacion": "%",
     "emae": "índice (2004=100)",
+    "hacinamiento_medio": "personas por cuarto",
     "icc": "índice (puntos)",
     "icg": "índice (puntos)",
     "ipc": "variación % acumulada del trimestre",
+    "pct_hogares_ayuda_social_gobierno": "%",
+    "pct_hogares_prestamo_bancario": "%",
+    "pct_hogares_vendio_pertenencias": "%",
+    "pct_sin_cobertura_salud": "%",
     "reservas": "millones de USD",
     "resultado_fiscal": "millones de $ corrientes",
     "salario_real_usd": "RIPTE nominal / tipo de cambio oficial (USD)",
+    "tasa_informalidad": "%",
     "tc_oficial": "$ (pesos) por USD",
 }
 

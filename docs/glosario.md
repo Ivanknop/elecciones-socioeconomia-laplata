@@ -592,18 +592,28 @@ Fuente principal: `docs/especificaciones/especificacion_panel_temporal.md` y `do
 
 #### `panel_ventanas.csv` — familias de features por sufijo
 
-Para cada variable núcleo del registro (`icg`, `icc`, `ipc`, `tc_oficial`, `emae`, `desocupacion`, `salario_real`, `reservas`, `resultado_fiscal`) se calculan, sobre la ventana corta (`_vc`) y el bloque largo (`_vl`), los siguientes features genéricos (`features_ventana.py`, iterando sobre `registro_variables.csv`, nunca una lista fija en código):
+Para cada variable del registro con `paquete_atributos=completo` (las 9
+macro -- `icg`, `icc`, `ipc`, `tc_oficial`, `emae`, `desocupacion`,
+`salario_real`, `reservas`, `resultado_fiscal` -- y `tasa_informalidad`,
+EPH) se calculan, sobre la ventana corta (`_vc`) y el bloque largo (`_vl`),
+los siguientes features genéricos (`features_ventana.py`, iterando sobre
+`registro_variables.csv`, nunca una lista fija en código). Las variables
+con `paquete_atributos=reducido` (las otras 5 EPH: `pct_sin_cobertura_salud`,
+`hacinamiento_medio`, `pct_hogares_ayuda_social_gobierno`,
+`pct_hogares_prestamo_bancario`, `pct_hogares_vendio_pertenencias`) reciben
+solo `<var>_nivel_vc`, `<var>_delta_nivel` y `<var>_cobertura_parcial` --
+series de ritmo más lento/estructural que no necesitan el detalle de
+trayectoria completo en una ventana de 24 meses (D26):
 
 | Sufijo | Fórmula |
 |---|---|
 | `<var>_nivel_vc` / `_vl` | media de los valores mensuales de la variable en la ventana |
 | `<var>_pendiente_vc` / `_vl` | coeficiente de la regresión lineal de la variable sobre el índice temporal dentro de la ventana |
 | `<var>_volatilidad_vc` / `_vl` | desvío estándar de los valores mensuales en la ventana |
-| `<var>_final_vc` / `_vl` | media de los últimos 6 meses antes de la elección `t` |
+| `<var>_final_vc` | media de los últimos 6 meses antes de la elección `t` (solo `_vc` -- `_vl` sería siempre idéntico, `vc`/`vl` comparten `fecha_fin_vc`; retirado, D25) |
 | `<var>_acum` | variación acumulada en la ventana (solo si `es_flujo=true`, ej. inflación) |
 | `<var>_delta_nivel` | `<var>_nivel_vc(t) − <var>_nivel_vc(t−1)` |
 | `<var>_delta_pendiente` | `<var>_pendiente_vc(t) − <var>_pendiente_vc(t−1)` |
-| `<var>_mejoro` | booleano: ¿la variable evolucionó favorablemente vs. la ventana anterior?, según su `polaridad` (omitido si `polaridad=ambigua`) |
 | `<var>_cobertura_parcial` | booleano flag: si dentro de la ventana hubo un tramo sin dato real (el feature se calcula igual sobre los meses disponibles, sin imputar) |
 
 Origen de toda la familia: Derivada (`src/ml_models/features_ventana.py`, orquestada por `construir_panel_ventanas.py`).
@@ -666,8 +676,9 @@ Origen de toda la familia: Derivada (`src/ml_models/features_ventana.py`, orques
 
 ##### `resultado_disponible`
 - **Significado:** si la fila de `elecciones.csv` salió del dato de mayor calidad.
-- **Qué mide:** `True` si vino de `circuito_<cargo>.json` (agregado real de circuitos); `False` si vino del fallback `elecciones/<año>_<nivel>.csv` (años sin desagregado por circuito, 2001-2009).
+- **Qué mide:** `True` si vino de `circuito_<cargo>.json` (agregado real de circuitos); `False` si vino del fallback `elecciones/<año>_<nivel>.csv` (años sin desagregado por circuito, 2001-2009, y 2025 provincial/municipal).
 - **Origen:** Derivada.
+- **Nota:** existe en `elecciones.csv` (y en `resultado_distrito.csv`, congelado); ya **no** aparece en `panel_ventanas.csv` -- se retiró por D24 al no tener ningún uso crítico (nunca filtraba filas ni condicionaba otro cálculo).
 
 ##### `continuidad_oficialismo` (en el panel)
 Ver definición en `oficialismo_por_nivel.csv` arriba; se propaga por join.
@@ -718,15 +729,15 @@ Ver definición en `oficialismo_por_nivel.csv` arriba; se propaga por join.
 - **Qué mide:** booleano `participacion_pct > 79.0` (`PARTICIPACION_BENCHMARK_NACIONAL_PCT`, benchmark externo: promedio nacional 1983-2023, Chequeado 26/10/2025) — la participación real de La Plata 2001-2025 es 75.7%, por debajo del benchmark.
 - **Origen:** Derivada.
 
-##### `voto_exit_ausentismo_pct`, `voto_exit_blanco_nulo_pct`, `voto_exit_total_pct` (y sus `_t`/`_t_menos_1`)
-- **Significado:** las tres formas de "salida" del voto positivo: no ir a votar, votar en blanco/nulo, o la suma de ambas.
-- **Qué mide:** `voto_exit_ausentismo_pct = ausentismo / votantes_habilitados * 100`; `voto_exit_blanco_nulo_pct = votos_blancos_y_nulos / votantes_habilitados * 100`; `voto_exit_total_pct` = suma de los dos anteriores (equivalente a `100 − participacion_pct`).
+##### `voto_exit_ausentismo_pct`, `voto_exit_blanco_nulo_pct` (y sus `_t`/`_t_menos_1`)
+- **Significado:** las dos formas de "salida" del voto positivo: no ir a votar, o votar en blanco/nulo.
+- **Qué mide:** `voto_exit_ausentismo_pct = ausentismo / votantes_habilitados * 100`; `voto_exit_blanco_nulo_pct = votos_blancos_y_nulos / votantes_habilitados * 100`. La suma de ambas (`voto_exit_total_pct`, equivalente a `100 − participacion_pct`) sigue calculándose internamente en `calcular_participacion_voto_exit`, pero ya no se expone como columna `_t`/`_t_menos_1` del panel: era exactamente redundante con estas dos (D22).
 - **Cómo se calcula:** `ml_models.construir_elecciones_resumen.calcular_participacion_voto_exit`.
 - **Origen:** Derivada.
 
-##### `delta_participacion_pct`, `delta_voto_exit_total_pct`
-- **Significado:** cambio de participación/voto-exit entre `t-1` y `t`.
-- **Qué mide:** `participacion_pct_t − participacion_pct_t_menos_1` (e idem para voto exit).
+##### `delta_participacion_pct`, `delta_voto_exit_ausentismo_pct`, `delta_voto_exit_blanco_nulo_pct`
+- **Significado:** cambio de participación/ausentismo/voto en blanco-nulo entre `t-1` y `t`, cada uno por separado (D22: ausentismo y blanco/nulo son fenómenos políticamente distintos, ya no se ofrece un delta "total" combinado).
+- **Qué mide:** `participacion_pct_t − participacion_pct_t_menos_1` (e idem para cada componente de voto exit).
 - **Origen:** Derivada.
 
 ##### `votos_blancos_y_nulos`

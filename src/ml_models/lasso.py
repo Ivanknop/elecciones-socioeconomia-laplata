@@ -1,6 +1,18 @@
 import pandas as pd
 import numpy as np
 
+from ml_models.cargar_panel import COLUMNAS_METADATA_PANEL
+
+
+def _rechazar_metadata(columnas: list[str]) -> None:
+    """Guarda defensiva (D23): protege a cualquier llamador de
+    `construir_Xy_final`/`estabilidad_seleccion`, sin importar cómo haya
+    armado su lista de columnas (sufijo, `.select_dtypes`, a mano)."""
+    colados = set(columnas) & set(COLUMNAS_METADATA_PANEL)
+    if colados:
+        raise ValueError(f"columnas de metadata coladas en el feature set: {sorted(colados)}")
+
+
 def encontrar_redundantes(corr: pd.DataFrame, umbral: float) -> list[set[str]]:
     """Agrupa columnas en clusters de redundancia transitiva (single-linkage):
     si A-B >= umbral y B-C >= umbral, A/B/C quedan juntas aunque A-C no
@@ -80,6 +92,7 @@ def soft_threshold(z: float, umbral: float) -> float:
     return 0.0
 
 def construir_Xy_final(nivel: str, columnas: list[str], df,target: str) -> tuple[pd.DataFrame, pd.Series]:
+    _rechazar_metadata(columnas)
     df_local = df[nivel]
     X = df_local[columnas].copy()
     y = df_local[target].copy()
@@ -235,6 +248,7 @@ def estabilidad_seleccion(
     depende de un punto influyente en vez de ser un patrón sostenido.
     X_df/y_ser tienen que ser los mismos (ya filtrados por completas)
     que se usaron para ajustar el modelo con ese alpha."""
+    _rechazar_metadata(columnas)
     X_completo = df[columnas]
     y_completo = df[target]
     completas = X_completo.notna().all(axis=1) & y_completo.notna()

@@ -98,7 +98,8 @@ compatible con el pipeline existente.
 
 **Impacto:** hasta que se consiga, las transiciones municipal/provincial
 2001→2003, 2003→2005, 2005→2007, 2007→2009 y 2009→2011 quedan con
-`resultado_disponible=false` en `resultado_distrito.csv`/`panel_ventanas.csv`
+`resultado_disponible=false` en `resultado_distrito.csv` (y, hasta D24, en
+`panel_ventanas.csv` -- ver `docs/decisiones_metodologicas.md`)
 (sin el detalle por circuito, `participacion` exacta y `votos_blanco` con la
 fórmula de ausentismo real siguen sin poder derivarse).
 

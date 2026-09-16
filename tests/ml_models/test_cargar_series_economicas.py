@@ -15,7 +15,7 @@ from ml_models.cargar_series_economicas import (
 )
 
 
-def _var(id_variable, periodicidad_nativa="mensual", nominal=False, es_flujo=False, polaridad="positiva"):
+def _var(id_variable, periodicidad_nativa="mensual", nominal=False, es_flujo=False, polaridad="positiva", paquete_atributos="completo"):
     return FilaRegistroVariable(
         id_variable=id_variable,
         descripcion="",
@@ -30,6 +30,7 @@ def _var(id_variable, periodicidad_nativa="mensual", nominal=False, es_flujo=Fal
         nominal=nominal,
         bloque_tematico="real",
         estado="nucleo",
+        paquete_atributos=paquete_atributos,
         nota_metodologica="",
     )
 
@@ -114,6 +115,11 @@ class TestCargarRegistro:
         registro = cargar_registro(REGISTRO_VARIABLES_PATH)
         for v in registro:
             assert v.polaridad in ("positiva", "negativa", "ambigua"), v
+
+    def test_toda_variable_tiene_paquete_atributos_completo_o_reducido(self):
+        registro = cargar_registro(REGISTRO_VARIABLES_PATH)
+        for v in registro:
+            assert v.paquete_atributos in ("completo", "reducido"), v
 
 
 class TestConstruirTablaMensual:
