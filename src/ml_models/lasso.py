@@ -1,16 +1,17 @@
 import pandas as pd
 import numpy as np
 
-from ml_models.cargar_panel import COLUMNAS_METADATA_PANEL
+from ml_models.cargar_panel import COLUMNAS_METADATA_PANEL, COLUMNAS_OUTCOME_ELECTORAL
 
 
 def _rechazar_metadata(columnas: list[str]) -> None:
-    """Guarda defensiva (D23): protege a cualquier llamador de
-    `construir_Xy_final`/`estabilidad_seleccion`, sin importar cómo haya
-    armado su lista de columnas (sufijo, `.select_dtypes`, a mano)."""
-    colados = set(columnas) & set(COLUMNAS_METADATA_PANEL)
+    """Guarda defensiva (D23, ampliada en D27 contra outcome electoral):
+    protege a cualquier llamador de `construir_Xy_final`/
+    `estabilidad_seleccion`, sin importar cómo haya armado su lista de
+    columnas (sufijo, `.select_dtypes`, a mano)."""
+    colados = set(columnas) & (set(COLUMNAS_METADATA_PANEL) | set(COLUMNAS_OUTCOME_ELECTORAL))
     if colados:
-        raise ValueError(f"columnas de metadata coladas en el feature set: {sorted(colados)}")
+        raise ValueError(f"columnas de metadata u outcome electoral coladas en el feature set: {sorted(colados)}")
 
 
 def encontrar_redundantes(corr: pd.DataFrame, umbral: float) -> list[set[str]]:
@@ -78,8 +79,13 @@ def columnas_nan(nivel: str, id_transicion: str, columnas: list[str], df: pd.Dat
 def estandarizar(X: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     medias = X.mean(axis=0).values
     desvios = X.std(axis=0, ddof=0).values
-    X_std = (X.values - medias) / desvios
-    return X_std, medias, desvios
+    # D29: una columna sin varianza en el N completo (D28) puede volverse
+    # constante solo dentro de un fold de LOO-CV (ej. emae_cobertura_parcial,
+    # True en una única fila) -- desvio=0 ahí implica numerador=0 también, así
+    # que el resultado correcto es 0, no NaN por división 0/0.
+    desvios_seguros = np.where(desvios == 0, 1.0, desvios)
+    X_std = (X.values - medias) / desvios_seguros
+    return X_std, medias, desvios_seguros
 
 
 def soft_threshold(z: float, umbral: float) -> float:
@@ -102,7 +108,24 @@ def construir_Xy_final(nivel: str, columnas: list[str], df,target: str) -> tuple
     if n_incompletas:
         print(f"[{nivel}] excluye {n_incompletas} fila(s) por NaN: {df_local.loc[~completas, 'id_transicion'].tolist()}")
 
-    return X.loc[completas].reset_index(drop=True), y.loc[completas].reset_index(drop=True)
+    X_final = X.loc[completas].reset_index(drop=True)
+    y_final = y.loc[completas].reset_index(drop=True)
+
+    # D28: columnas_candidatas (D27) ya no filtra por sufijo -- una variable
+    # bien cubierta (ej. icc/icg/tc_oficial) puede tener cobertura_parcial
+    # constante en las filas que sobreviven para un nivel dado. Sin varianza
+    # no hay nada que estandarizar (división por 0), y no aporta nada a LASSO.
+    constantes = X_final.columns[X_final.std(axis=0, ddof=0) == 0]
+    if len(constantes):
+        print(f"[{nivel}] excluye columna(s) sin varianza: {list(constantes)}")
+        X_final = X_final.drop(columns=constantes)
+
+    # D28: columnas booleanas (ej. X_cobertura_parcial) mezcladas con
+    # float64 hacen que X.values sea dtype=object -- se castean a float
+    # (True/False -> 1.0/0.0, codificación numérica estándar para LASSO).
+    X_final = X_final.astype(float)
+
+    return X_final, y_final
 
 
 def lasso_coordinate_descent(

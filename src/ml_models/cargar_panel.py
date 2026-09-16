@@ -21,18 +21,38 @@ COLUMNAS_METADATA_PANEL = (
     "anio_t", "anio_t_menos_1", "anio_t_menos_2",
 )
 
+# Resultado electoral o derivado de resultado electoral (D27) -- describen
+# QUÉ PASÓ en la elección t (quién ganó, cuánto sacó, cuánto cambió la
+# ideología del electorado, cuánta gente votó/se ausentó/votó en blanco),
+# nunca una variable económica independiente. Ninguna termina en "_vc": el
+# viejo filtro por sufijo las excluía sin que nadie lo haya diseñado así.
+# Cubre simétricamente la familia propia de cada uno de los dos objetivos
+# de modelado que conviven en panel_ventanas.csv (delta_v en 01_lasso*.ipynb;
+# magnitud_desplazamiento_ideologico en 03_desplazamiento_ideologico.ipynb)
+# para que el target de uno no se cuele como feature del otro.
+COLUMNAS_OUTCOME_ELECTORAL = (
+    "delta_v", "gana_oficialismo", "share_oficialismo", "agrupacion_oficialismo",
+    "continuidad_oficialismo", "delta_posicion_ideologica", "distancia_oficialismo_alternativa",
+    "delta_dispersion_economico_mu", "delta_dispersion_progresismo_mu",
+    "delta_sigma2_economico", "delta_sigma2_progresismo",
+    "magnitud_desplazamiento_ideologico", "cuadrante_desplazamiento",
+    "dispersion_cobertura_share_min",
+    "participacion_pct_t", "participacion_pct_t_menos_1", "participacion_relevante_t",
+    "voto_exit_ausentismo_pct_t", "voto_exit_ausentismo_pct_t_menos_1",
+    "voto_exit_blanco_nulo_pct_t", "voto_exit_blanco_nulo_pct_t_menos_1",
+    "delta_participacion_pct", "delta_voto_exit_ausentismo_pct", "delta_voto_exit_blanco_nulo_pct",
+)
 
-def columnas_candidatas(df: pd.DataFrame, sufijo: str = "_vc") -> list[str]:
-    """Columnas numéricas con `sufijo`, excluyendo siempre
-    `COLUMNAS_METADATA_PANEL` -- reemplaza el filtro ad hoc que se repetía
-    en cada notebook (`fecha_inicio_vc`/`fecha_fin_vc` terminan en `_vc`
-    igual que las variables económicas; antes de esto solo quedaban afuera
-    porque `pd.read_csv` las tipa como string, no por una exclusión
-    explícita)."""
-    return [
-        c for c in df.columns
-        if c.endswith(sufijo) and pd.api.types.is_numeric_dtype(df[c]) and c not in COLUMNAS_METADATA_PANEL
-    ]
+
+def columnas_candidatas(df: pd.DataFrame, excluir_adicional: tuple[str, ...] = ()) -> list[str]:
+    """Todas las columnas numéricas del panel, excluyendo metadata
+    (`COLUMNAS_METADATA_PANEL`), resultado electoral o derivado de
+    resultado (`COLUMNAS_OUTCOME_ELECTORAL`, D27) y lo que se pase en
+    `excluir_adicional` -- el/los target(s) propios del notebook que
+    llama, incluido un target construido en el notebook que no es columna
+    real del panel (ver `01.3_lasso_voto_exit.ipynb`)."""
+    excluir = set(COLUMNAS_METADATA_PANEL) | set(COLUMNAS_OUTCOME_ELECTORAL) | set(excluir_adicional)
+    return [c for c in df.columns if pd.api.types.is_numeric_dtype(df[c]) and c not in excluir]
 
 
 def sin_metadata(columnas: list[str]) -> list[str]:
