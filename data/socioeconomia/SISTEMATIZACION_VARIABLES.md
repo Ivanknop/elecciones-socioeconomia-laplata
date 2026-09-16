@@ -55,9 +55,11 @@ en el repo.
 
 ## 3. Evolución histórica construida — qué series existen realmente
 
-- **EPH: serie trimestral completa, 2011T1-2025T4, 57 de 60 trimestres**
-  (solo faltan 2015T3, 2015T4, 2016T1 — INDEC no publicó, no es un hueco de
-  este pipeline). Es la única fuente con evolución histórica real y densa.
+- **EPH: serie trimestral completa, 2003T3-2025T4, 86 de 90 trimestres**
+  (solo faltan 2007T3, 2015T3, 2015T4, 2016T1 — INDEC no publicó, no es un
+  hueco de este pipeline; 2003T3 es el piso real, la EPH continua no existe
+  antes de ese trimestre). Es la única fuente con evolución histórica real y
+  densa.
 - **Censo: dos puntos, no una serie** — 2010 y 2022, sin nada en el medio (el
   Censo es decenal). Lo único con "evolución" hoy es población/viviendas
   totales por radio (§2a); las variables temáticas (§2b) no tienen ni

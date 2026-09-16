@@ -22,6 +22,42 @@ extiende sola si se reemplaza el `.dta` por una versión más nueva.
 identificador temporal no hay bucket al que asignarlas, se excluyen en
 `icg_cargar.cargar_microdatos` (antes de cualquier agregación).
 
+## Dos pisos distintos: país desde 2001, La Plata desde 2008
+
+El `.dta` se llama "histórica 2001-presente" y efectivamente trae filas
+desde 2001, pero **La Plata (`Ciudad==7`) no existe en el panel antes de
+marzo de 2008**: 2001-2007 el relevamiento UTDT cubría solo 6 metrópolis
+(GBA, CABA, Córdoba, Rosario, Mendoza, Tucumán — confirmado contra la
+tabla de `Ciudad` del `Codebook_ICG.pdf`), sin La Plata. El panel se
+amplía a ~40 ciudades recién en 2008 (a ~45 desde 2018). Por eso
+`icg_la_plata_anual_por_*_2008_presente.csv` y el componente `icg_la_plata`/
+`n_la_plata` del headline arrancan en 2008 -- no es un problema de acceso
+al dato (a diferencia de la EPH 2003-2010, ver `docs/FUNCIONALIDADES.md`),
+es que La Plata directamente no fue encuestada antes.
+
+`icg_pais_mensual_por_*_2001_presente.csv` y el componente `icg_pais`/
+`n_pais` del headline (`icg_mensual_la_plata_pais_2001_presente.csv`), en
+cambio, sí arrancan en 2001 (`icg_exportar_csv.ANIO_DESDE_PAIS`) -- decisión
+explícita, pese a que 2001-2007 no es comparable sin más con 2008 en
+adelante: es un promedio ponderado sobre 6 grandes metrópolis (~600-810
+casos/mes), no sobre el panel nacional de ~40-45 ciudades (~1.200+
+casos/mes) que sostiene el resto de la serie. `ponderacion_UTDT` corrige
+proporciones *dentro* de cada panel relevado ese mes, no equipara la
+cobertura geográfica entre un panel y el otro -- quien grafique o modele
+`icg_pais` completo debe tener presente ese quiebre de diseño muestral en
+2008, visible en el gráfico (`icg_graficos.py`) como un salto de nivel,
+no una tendencia real. Mismo trade-off que ya aceptaba explícitamente un
+uso distinto y preexistente de este microdato -- ver D2 en
+`docs/decisiones_metodologicas.md` y `src/ml_models/cargar_series_economicas.py`,
+que es un panel de series económicas nacionales, no un dato de La Plata.
+
+El headline (`icg_mensual_la_plata_pais_2001_presente.csv`) mezcla ambos
+pisos en el mismo archivo por diseño: `construir_serie_headline` se llama
+con `anio_desde=ANIO_DESDE_PAIS` (2001), así que `icg_la_plata`/`n_la_plata`
+quedan vacíos (no en cero) para todo el tramo 2001-2007 -- mismo mecanismo,
+sin caso especial, que ya deja vacíos enero-febrero de 2008 (La Plata entra
+recién en marzo).
+
 ## Por qué "país" incluye a La Plata
 
 `icg_pais` (y por lo tanto `brecha = icg_la_plata - icg_pais`) se calcula
@@ -47,23 +83,26 @@ Es intencional, justificado por el tamaño de muestra real medido:
 
 | Grano | N mensual (min / mediana / max) |
 |---|---|
-| País (pooled) | 431 / 1.201 / 2.004 |
-| La Plata | 6 / 36 / 92 |
+| País (pooled) | 431 / 1.196 / 2.004 |
+| La Plata | 6 / 32 / 92 |
 
 Un mes de La Plata con `N=6` dividido en 3 tramos de edad dejaría celdas
 de 1-2 casos — no graficable de forma confiable. A resolución anual, La
-Plata pasa a ~150-220 casos por año (12-18 meses acumulados), suficiente
-para un corte en 2-3 categorías. El país, en cambio, es robusto incluso
-partido en 3 categorías a resolución mensual (cientos de casos por
-celda). Los 7 CSV de `data/socioeconomia/icg_*.csv` incluyen siempre una
+Plata pasa a 164-670 casos por año (mediana 388; los primeros años del
+panel -- 2008 parcial, 2011, 2012 -- son los más chicos, ~10-12 meses
+acumulados recién entrando al relevamiento), suficiente para un corte en
+2-3 categorías. El país, en cambio, es robusto incluso partido en 3
+categorías a resolución mensual (cientos de casos por celda). Los 7 CSV
+de `data/socioeconomia/icg/*.csv` incluyen siempre una
 columna `n` (o `n_la_plata`/`n_pais` en el headline) para que quien
 consuma el dato pueda juzgar la confiabilidad de cada punto — no hay un
 umbral de supresión automática.
 
 ## `edu`: nulos
 
-`edu` tiene 126 nulos sobre ~314k filas desde 2011 en adelante (~0,04%,
-"Ns/Nc" del encuestado) — se excluyen (`dropna`) solo al construir el
+`edu` tiene 204 nulos sobre ~314.800 filas totales del `.dta` (~0,06%,
+"Ns/Nc" del encuestado; los 204 caen dentro de 2008 en adelante -- 2001-2007
+no tiene ningún nulo de `edu`) — se excluyen (`dropna`) solo al construir el
 corte por `edu`, sin afectar los cortes por `sexo`/`edad` (que no tienen
 nulos) ni el headline (que no usa `edu`).
 

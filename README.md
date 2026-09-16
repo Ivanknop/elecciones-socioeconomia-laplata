@@ -10,7 +10,7 @@ capa socioeconómica (EPH Gran La Plata, IAELaP y su correspondencia espacial
 con el Censo) para poder cruzar, más adelante, resultados electorales con
 condiciones socioeconómicas del mismo territorio; el Índice de Confianza en
 el Gobierno (ICG, UTDT) para comparar la confianza declarada de La Plata
-contra el resto del país, 2011 en adelante; una capa macroeconómica
+contra el resto del país, 2008 en adelante; una capa macroeconómica
 nacional (2011-2025, sin apertura espacial) que da contexto temporal a las
 anteriores; y una capa de geolocalización (catálogo validado de las 36
 localidades del partido, Georef-AR cruzado contra el Ministerio de Obras
@@ -150,6 +150,11 @@ construir algo — algunas ya ejecutadas, se conservan como registro).
   metodología de qué fila de `clasificacion_ideologica_agrupaciones.csv`
   viene de V-Party real vs. estimación propia vive en
   `data/agrupaciones/v-party/README.md` (ver más abajo), no ahí.
+- Para un **glosario de todos los términos del proyecto** — variables
+  (qué mide cada columna, cómo se calcula, primaria o derivada), modelos
+  de machine learning (uso general y uso concreto acá) y conceptos
+  teóricos de ciencia política (definición original, bibliografía, uso
+  concreto acá) —, ver [`docs/glosario.md`](docs/glosario.md).
 
 **Especificaciones (`docs/especificaciones/`):**
 

@@ -1,5 +1,9 @@
 """Cliente de descarga+caché de microdatos trimestrales de la EPH (INDEC),
-2011-2025 (histórico vía Wayback Machine, 2017+ vía URL regular de INDEC).
+2003T3-2025 (histórico vía Wayback Machine hasta 2015T2, 2016+ vía URL
+regular de INDEC). 2003T3 es el piso real: la EPH continua (formato de
+panel rotativo trimestral que este cliente asume) reemplazó a la EPH
+puntual/"onda" (bianual, cuestionario distinto) a mediados de 2003 --
+no hay captura de continua anterior a ese trimestre.
 Huecos, URLs y metodología en `docs/FUNCIONALIDADES.md` y
 `data/socioeconomia/SISTEMATIZACION_VARIABLES.md`."""
 from __future__ import annotations
@@ -28,6 +32,35 @@ _URLS_IRREGULARES = {
 }
 
 _WAYBACK_DBF = {
+    (2003, 3): "20140908170023",
+    (2003, 4): "20140908165933",
+    (2004, 1): "20140908165841",
+    (2004, 2): "20140908165749",
+    (2004, 3): "20140908165659",
+    (2004, 4): "20140908165601",
+    (2005, 1): "20140908165451",
+    (2005, 2): "20140908165356",
+    (2005, 3): "20140908165248",
+    (2005, 4): "20140908165105",
+    (2006, 1): "20140908165010",
+    (2006, 2): "20140908164925",
+    (2006, 3): "20140908164836",
+    (2006, 4): "20140908164743",
+    (2007, 1): "20140908164648",
+    (2007, 2): "20140908164550",
+    (2007, 4): "20140908164447",
+    (2008, 1): "20140908164402",
+    (2008, 2): "20140908164304",
+    (2008, 3): "20140908164133",
+    (2008, 4): "20140908164039",
+    (2009, 1): "20140908163927",
+    (2009, 2): "20140908163830",
+    (2009, 3): "20140908163710",
+    (2009, 4): "20140908163610",
+    (2010, 1): "20140908163507",
+    (2010, 2): "20140908163427",
+    (2010, 3): "20140908163328",
+    (2010, 4): "20140908163236",
     (2011, 1): "20171018105514",
     (2011, 2): "20171018105001",
     (2011, 3): "20171018152650",
@@ -170,10 +203,13 @@ class EphClient:
 
     def leer_base_historica(self, archivo_path: Path, tipo: str) -> pd.DataFrame:
         """Lee la base `individual` u `hogar` de un .zip/.rar histórico
-        (2011-2015, formato DBF)."""
+        (2003T3-2015, formato DBF). Patrón de nombre corto -- `ind`/`hog`,
+        no la palabra completa: hasta 2009T4 los DBF vienen como
+        `Ind_t*.DBF`/`Hog_t*.DBF`, desde 2010T1 (incl. 2011-2015) como
+        `Individual_t*.dbf`/`Hogar_t*.dbf`."""
         if tipo not in ("individual", "hogar"):
             raise ValueError("tipo debe ser 'individual' u 'hogar'")
-        patron = "individual" if tipo == "individual" else "hogar"
+        patron = "ind" if tipo == "individual" else "hog"
         with tempfile.TemporaryDirectory() as tmp:
             resultado = subprocess.run(
                 ["unar", "-quiet", "-output-directory", tmp, str(archivo_path)],
@@ -185,7 +221,10 @@ class EphClient:
                     f"unar no pudo extraer {archivo_path} (¿está instalado? "
                     f"'apt-get install unar'): {resultado.stderr}"
                 )
-            candidatos = [p for p in Path(tmp).rglob("*.dbf") if patron in p.name.lower()]
+            candidatos = [
+                p for p in Path(tmp).rglob("*")
+                if p.suffix.lower() == ".dbf" and patron in p.name.lower()
+            ]
             if not candidatos:
                 raise FileNotFoundError(f"No se encontró la base '{tipo}' dentro de {archivo_path}")
             tabla = DBF(str(candidatos[0]), encoding="latin-1", char_decode_errors="ignore")

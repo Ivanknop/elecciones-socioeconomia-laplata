@@ -73,7 +73,7 @@ PYTHONPATH=src python -m analisis.completar_clasificacion_historica  # append-on
 PYTHONPATH=src python -m analisis.vparty_cuadrantes         # national V-Party cuadrantes scatter (Diputados 2001-2019), one JSON (tracked) + PNG (local)
 PYTHONPATH=src python -m analisis.vparty_cuadrantes_local   # DEPRECADO (see Architecture below) -- superseded by ml_models.construir_elecciones's data/tfi_data/elecciones/<año>_<nivel>.csv
 PYTHONPATH=src python -m analisis.vparty_distribucion_tfi   # V-Party cuadrantes PNG per (año,nivel) from data/tfi_data/elecciones/, 2001-2025, writes graficos/tfi/v-party/<año>_<nivel>.png
-PYTHONPATH=src python -m socioeconomia.icg_exportar_csv  # ICG (UTDT) headline + 6 demographic-cut CSVs to data/socioeconomia/; needs data/socioeconomia/icg-icc/Base_histórica_2001-presente-ICG.dta placed manually first, see data/socioeconomia/icg-icc/README.md
+PYTHONPATH=src python -m socioeconomia.icg_exportar_csv  # ICG (UTDT) headline + 6 demographic-cut CSVs to data/socioeconomia/icg/ (país from 2001, La Plata from 2008 -- La Plata isn't in the UTDT panel before then); needs data/socioeconomia/icg-icc/Base_histórica_2001-presente-ICG.dta placed manually first, see data/socioeconomia/icg-icc/README.md
 PYTHONPATH=src python -m socioeconomia.icg_graficos  # La Plata vs. país ICG time series PNG from the headline CSV above
 PYTHONPATH=src python -m auditoria_interna.cobertura_clasificacion  # on-demand audit: votes missing campo_ideologico/filiacion_politica/V-Party by (año, nivel) + top-N parties to classify next, writes data/auditoria_interna/cobertura_clasificacion.md
 ```

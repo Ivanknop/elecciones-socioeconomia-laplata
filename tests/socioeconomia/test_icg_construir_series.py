@@ -67,6 +67,21 @@ class TestConstruirSerieHeadline:
 
         assert list(salida["año"]) == [2011]
 
+    def test_default_anio_desde_es_2008(self):
+        # 2008 es el piso real: La Plata entra al panel UTDT recién en 2008T1
+        # (ver data/socioeconomia/ICG.md) -- 2007 debe quedar afuera por default.
+        df = pd.DataFrame({
+            "año": [2007, 2008],
+            "mes": [1, 1],
+            "Ciudad": [7, 7],
+            "ICG": [2.0, 3.0],
+            "ponderacion_UTDT": [1.0, 1.0],
+        })
+
+        salida = construir_serie_headline(df)
+
+        assert list(salida["año"]) == [2008]
+
 
 class TestConstruirSeriesDemograficas:
     def _df(self) -> pd.DataFrame:
@@ -95,6 +110,19 @@ class TestConstruirSeriesDemograficas:
         # combina los dos meses: filas con sexo==0 son ICG 2.0 y 1.0, peso 1 cada una.
         assert fila_sexo0["icg"] == pytest.approx((2.0 + 1.0) / 2)
         assert fila_sexo0["n"] == 2
+
+    def test_default_anio_desde_es_2008(self):
+        df = pd.DataFrame({
+            "año": [2007, 2008],
+            "mes": [1, 1],
+            "ICG": [2.0, 3.0],
+            "ponderacion_UTDT": [1.0, 1.0],
+            "sexo": [0, 0],
+        })
+
+        salida = construir_series_demograficas(df, corte="sexo", resolucion="anual")
+
+        assert list(salida["año"]) == [2008]
 
     def test_edu_descarta_nulos_sin_afectar_sexo(self):
         df = self._df()

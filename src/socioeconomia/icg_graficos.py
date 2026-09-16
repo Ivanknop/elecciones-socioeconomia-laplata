@@ -19,7 +19,7 @@ from constantes import ICG_HEADLINE_PATH
 _AZUL = "#2a78d6"
 _NARANJA = "#eb6834"
 
-RUTA_SALIDA = Path("graficos/socioeconomia/icg/serie_icg_la_plata_pais_2011_presente.png")
+RUTA_SALIDA = Path("graficos/socioeconomia/icg/serie_icg_la_plata_pais_2001_presente.png")
 
 
 def _leer_csv(path: Path | str) -> list[dict]:

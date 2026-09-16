@@ -749,7 +749,7 @@ abiertos de la Provincia de Buenos Aires), no es un problema de la
 correspondencia con radios.
 
 **EPH Gran La Plata** (`src/socioeconomia/eph_client.py`, tres CSV en
-`data/socioeconomia/`): serie trimestral **2011T1-2025T4 (57 de 60
+`data/socioeconomia/`): serie trimestral **2003T3-2025T4 (86 de 90
 trimestres)**, para `AGLOMERADO=2` — confirmado empíricamente: en el 1er
 trimestre de 2018 concentra 870.693 personas ponderadas, en línea con la
 población conocida de Gran La Plata (La Plata + Berisso + Ensenada). **Es un
@@ -779,14 +779,36 @@ Desde 2023T4 INDEC dividió la pregunta `V5` (ayuda social del gobierno) en
 `V5_01`/`V5_02`/`V5_03` — el cliente reconstruye una `V5` equivalente (1 si
 cualquiera de las tres es "Sí") para no perder continuidad de la serie.
 
-2011-2015 salió de una fuente distinta a 2016 en adelante: INDEC dejó de
+2003T3-2015T4 salió de una fuente distinta a 2016 en adelante: INDEC dejó de
 servir esos trimestres en su propio sitio (el dominio que los alojaba,
 `www.indec.gov.ar`) — se recuperaron desde el archivo de
 Internet (`web.archive.org`), en formato DBF (no txt/csv), con un esquema de
-nombres previo (`t<trimestre><año>_dbf.<zip|rar>`).
+nombres previo (`t<trimestre><año>_dbf.<zip|rar>`). Ese esquema tiene además
+un cambio de convención de nombre de archivo interno a mediados de camino:
+hasta 2009T4 los DBF vienen como `Ind_t*.DBF`/`Hog_t*.DBF` (prefijo corto,
+extensión en mayúsculas), desde 2010T1 en adelante como
+`Individual_t*.dbf`/`Hogar_t*.dbf` — `leer_base_historica` matchea por
+substring case-insensitive (`ind`/`hog`) para cubrir ambas variantes sin
+distinguir por año. **2003T3 es el piso real de la serie**: la EPH continua
+(el formato de panel rotativo que asume este cliente) reemplazó a la EPH
+puntual/"onda" (bianual, cuestionario y archivos de diseño distinto) a
+mediados de 2003 — no hay captura de continua anterior a ese trimestre en
+Wayback Machine ni en ningún otro lado; extender más atrás no es una
+extensión de este mecanismo, es una fuente distinta.
 
-Quedan exactamente **3 trimestres sin dato**: INDEC no publicó la encuesta en 2015T3, 2015T4 y 2016T1
-("emergencia estadística").
+Quedan exactamente **4 trimestres sin dato** dentro del rango 2003T3-2025T4:
+INDEC no publicó la encuesta en 2007T3, 2015T3, 2015T4 y 2016T1
+("emergencia estadística" para los últimos tres).
+
+**Nota de calidad del dato, 2007-2015**: coincide con la intervención del
+INDEC, ampliamente documentada para el IPC y con dudas planteadas también
+sobre otras estadísticas oficiales del período. Las variables laborales
+core (`ESTADO`/`CAT_OCUP`, de donde salen `tasa_actividad`/`tasa_empleo`/
+`tasa_desocupacion`) no son el foco de esa controversia, pero las variables
+de ingreso (`P21`/`P47T`/`IPCF`) podrían llevar el mismo sesgo que otras
+series de precios/ingresos de la época — no se corrige (no hay fuente
+alternativa confiable a nivel Gran La Plata para ese período), solo se
+documenta como limitación conocida al leer esos años.
 
 **Censo 2010 y 2022 por radio censal** (país de nacimiento, nivel
 educativo, condición de actividad, vivienda/hacinamiento): **falta

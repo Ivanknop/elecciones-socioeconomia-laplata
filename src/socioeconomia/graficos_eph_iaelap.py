@@ -30,17 +30,36 @@ def _quitar_spines(ax) -> None:
     ax.spines[["top", "right"]].set_visible(False)
 
 
-def _indice_hueco_no_publicado(filas: list[dict]) -> tuple[int, int] | None:
-    """Índice (antes, después) del primer salto >1 trimestre; detecta
-    cualquier hueco real, no asume un período fijo."""
+def _indices_huecos_no_publicados(filas: list[dict]) -> list[tuple[int, int]]:
+    """Índices (antes, después) de cada salto >1 trimestre, en orden; detecta
+    cualquier cantidad de huecos reales, no asume un período fijo ni uno solo."""
     periodos = [(int(f["anio"]), int(f["trimestre"])) for f in filas]
+    huecos = []
     for i in range(len(periodos) - 1):
         anio_a, trim_a = periodos[i]
         anio_b, trim_b = periodos[i + 1]
         trimestres_transcurridos = (anio_b - anio_a) * 4 + (trim_b - trim_a)
         if trimestres_transcurridos > 1:
-            return i, i + 1
-    return None
+            huecos.append((i, i + 1))
+    return huecos
+
+
+def _etiqueta_rango_hueco(periodo_antes: tuple[int, int], periodo_despues: tuple[int, int]) -> str:
+    """Etiqueta legible de los trimestres faltantes entre dos períodos
+    consecutivos con dato, ej. (2015,2) y (2016,2) -> '2015T3-2016T1'."""
+    anio, trim = periodo_antes
+    trim += 1
+    if trim > 4:
+        anio, trim = anio + 1, 1
+    inicio = f"{anio}T{trim}"
+
+    anio_f, trim_f = periodo_despues
+    trim_f -= 1
+    if trim_f < 1:
+        anio_f, trim_f = anio_f - 1, 4
+    fin = f"{anio_f}T{trim_f}"
+
+    return inicio if inicio == fin else f"{inicio}-{fin}"
 
 
 def _indice_primer_trimestre_desde(filas: list[dict], anio: int, trimestre: int) -> int | None:
@@ -51,14 +70,24 @@ def _indice_primer_trimestre_desde(filas: list[dict], anio: int, trimestre: int)
     return None
 
 
-_NOTA_HUECO = (
-    "sin dato 2015T3-2016T1 (INDEC no publicó, \"emergencia estadística\"); "
-    "cambio de fuente y ponderación en el mismo punto (bases DBF históricas -> bases actuales INDEC)"
-)
+def _nota_hueco(etiqueta: str, es_cambio_de_fuente: bool) -> str:
+    """`es_cambio_de_fuente` es específico del hueco 2015T3-2016T1 -- el único
+    con motivo confirmado ("emergencia estadística") y que además coincide
+    con el punto donde el pipeline pasa de DBF histórico (Wayback) a bases
+    regulares de INDEC. Otros huecos (ej. 2007T3) no tienen motivo publicado
+    conocido -- no se le atribuye la misma causa sin confirmarla."""
+    if es_cambio_de_fuente:
+        return (
+            f"sin dato {etiqueta} (INDEC no publicó, \"emergencia estadística\"); "
+            "cambio de fuente y ponderación en el mismo punto (bases DBF históricas -> bases actuales INDEC)"
+        )
+    return f"sin dato {etiqueta} (INDEC no publicó la encuesta)"
+
+
 _NOTA_2020 = "desde 2020, encuesta telefónica (pandemia) -- cambio de operativo, no solo de coyuntura"
 _NOTA_V5 = "desde 2023T4, la pregunta de ayuda social (V5) se reconstruye a partir de V5_01/02/03"
 
-_SIMBOLOS_NOTA = ("¹", "²", "³")
+_SIMBOLOS_NOTA = ("¹", "²", "³", "⁴", "⁵")
 
 
 def _marcar_nota(ax, x: float, simbolo: str) -> None:
@@ -75,11 +104,13 @@ def _marcar_cortes_metodologicos(ax, filas: list[dict], incluir_v5: bool = False
     para agregarlas una vez. Detalle en `SISTEMATIZACION_VARIABLES.md`."""
     notas = []
 
-    hueco = _indice_hueco_no_publicado(filas)
-    if hueco is not None:
+    for antes, despues in _indices_huecos_no_publicados(filas):
+        periodo_antes = (int(filas[antes]["anio"]), int(filas[antes]["trimestre"]))
+        periodo_despues = (int(filas[despues]["anio"]), int(filas[despues]["trimestre"]))
+        etiqueta = _etiqueta_rango_hueco(periodo_antes, periodo_despues)
         simbolo = _SIMBOLOS_NOTA[len(notas)]
-        _marcar_nota(ax, sum(hueco) / 2, simbolo)
-        notas.append(f"{simbolo} {_NOTA_HUECO}")
+        _marcar_nota(ax, (antes + despues) / 2, simbolo)
+        notas.append(f"{simbolo} {_nota_hueco(etiqueta, es_cambio_de_fuente=periodo_despues[0] >= 2016)}")
 
     idx_2020 = _indice_primer_trimestre_desde(filas, 2020, 1)
     if idx_2020 is not None:
@@ -108,7 +139,7 @@ def _agregar_notas_al_pie(fig, notas: list[str]) -> None:
 
 
 def graficar_desocupacion_informalidad(data_dir: Path | str, ax=None, marcar_cortes: bool = True):
-    """Desocupación e informalidad, EPH Gran La Plata, 2011-2025. Dos
+    """Desocupación e informalidad, EPH Gran La Plata, 2003-2025. Dos
     líneas sobre un único eje (ambas son %, comparables sin normalizar).
     """
     filas = _leer_csv(Path(data_dir) / "eph_gran_la_plata.csv")

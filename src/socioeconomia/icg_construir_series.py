@@ -25,10 +25,13 @@ def _agregar_ponderado(d: pd.DataFrame, cols_grupo: list[str]) -> pd.DataFrame:
 
 
 def construir_serie_headline(
-    df: pd.DataFrame, anio_desde: int = 2011, anio_hasta: int | None = None,
+    df: pd.DataFrame, anio_desde: int = 2008, anio_hasta: int | None = None,
 ) -> pd.DataFrame:
     """Una fila por (año, mes); `anio_hasta=None` resuelve al año máximo
-    presente en `df`, sin capar a un valor hardcodeado."""
+    presente en `df`, sin capar a un valor hardcodeado. `anio_desde=2008`
+    es el piso real de La Plata en el panel UTDT (`Ciudad==7` no existe
+    antes de 2008T1 -- el relevamiento cubría solo 6 metrópolis 2001-2007,
+    ver `data/socioeconomia/ICG.md`), no un valor arbitrario."""
     if anio_hasta is None:
         anio_hasta = int(df["año"].max())
     recorte = df[(df["año"] >= anio_desde) & (df["año"] <= anio_hasta)]
@@ -46,7 +49,7 @@ def construir_series_demograficas(
     df: pd.DataFrame,
     corte: Literal["sexo", "edad", "edu"],
     resolucion: Literal["mensual", "anual"],
-    anio_desde: int = 2011,
+    anio_desde: int = 2008,
     anio_hasta: int | None = None,
 ) -> pd.DataFrame:
     """Una fila por (tiempo, categoría de `corte`), con `n` incluido;
