@@ -369,9 +369,20 @@ Se requiere una columna `continuidad_oficialismo` con valores:
 - `continua` — misma agrupación, misma etiqueta
 - `continua_renombrada` — misma fuerza política, etiqueta distinta
 - `ruptura` — el oficialismo no compite o se fragmenta
-- `sin_oficialismo` — casos extremos (2001-2003, colapso del gobierno)
 
-`delta_v` solo es interpretable directamente en los dos primeros casos. Los otros requieren tratamiento explícito, no imputación silenciosa.
+`delta_v` solo es interpretable directamente en los dos primeros casos. `ruptura` requiere tratamiento explícito, no imputación silenciosa.
+
+Esta especificación previó una cuarta categoría, `sin_oficialismo`, para
+"casos extremos (2001-2003, colapso del gobierno)" — referencia a la
+crisis de diciembre de 2001 (renuncia de De la Rúa, sucesión de varios
+presidentes en dos semanas). **Validado que nunca se activa** (D20,
+`docs/decisiones_metodologicas.md`): a nivel nacional la ventana 2001-2003
+no existe en el panel (nacional arranca en 2011, D15); a nivel provincial
+y municipal el titular de octubre de 2001 (antes de la crisis) es
+PARTIDO JUSTICIALISTA en ambos casos y la continuidad es lisa
+(Ruckauf→Solá, Alak reelecto) — ya codificada como `continua`. Los tres
+valores de arriba son los únicos que produce
+`construir_calendario.construir_oficialismo_por_nivel`.
 
 ### 6.3 Variables dependientes secundarias (H2 y H3)
 
