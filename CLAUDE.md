@@ -509,8 +509,8 @@ order, 01→04) are the pipeline**.
   `docs/decisiones_metodologicas.md` for the full audit.
 
   `notebooks/ml/03_desplazamiento_ideologico.ipynb` (H2/H3, independent
-  of `01_lasso.ipynb`/`02_bayes.ipynb`, no cross-notebook imports — same
-  self-contained convention as those two) models
+  of `01.1`-`01.3_lasso_*.ipynb`/`02_bayes.ipynb`, no cross-notebook
+  imports — same self-contained convention as those) models
   `magnitud_desplazamiento_ideologico` as the dependent variable, reusing
   the same `_vc` economic battery as H1/H4 plus a legitimate H3 predictor
   (minimum `distancia_euclidea_al_oficialismo` at `t-1` from
