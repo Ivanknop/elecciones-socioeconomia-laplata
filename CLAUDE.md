@@ -240,25 +240,14 @@ order, 01→04) are the pipeline**.
   is approximated here.
 
   **`generar_distrito()`/`graficar_cuadrantes_partido()`/the CLI
-  (`main()`) are DEPRECATED** — the JSON they write to
-  `graficos/agrupaciones/<año>/v_party_<nivel>.json` turned out redundant
-  once `ml_models.construir_elecciones` started writing
-  `data/tfi_data/elecciones/<año>_<nivel>.csv`: same source
-  (`resultado_total_por_agrupacion`) and same V-Party join
-  (`clasificacion_ideologica_agrupaciones.csv`), but the CSV keeps every
-  agrupación with votes (not just the ones with a populated
-  `vparty_economico` — 38 of 141 partido-filas across the 22 tracked
-  (año,nivel) combos were being silently dropped) plus BLANCO/NULO. The
-  only field the JSON had that the CSV doesn't is `color`, trivially
-  recomputed from `filiacion_politica` via `_color_por_partido`. One real
-  gotcha if reconciling the two: `votos_porcentaje` means different things
-  in each — the CSV's is over the full electorate (agrupaciones + BLANCO +
-  NULO, always sums to 100%), the JSON's is over agrupaciones only (from
-  `resultado_total_por_agrupacion`, excludes BLANCO/NULO from the
-  denominator) — not a bug in either, just two different conventions that
-  don't compare directly. The code isn't deleted (still runs standalone if
-  invoked directly) but isn't part of the pipeline anymore and shouldn't
-  be extended — see the module's own docstring for the same note.
+  (`main()`) are DEPRECATED**, superseded by
+  `data/tfi_data/elecciones/<año>_<nivel>.csv`
+  (`ml_models.construir_elecciones`) — full rationale (JSON-vs-CSV diffs,
+  silently-dropped rows, the `votos_porcentaje` convention mismatch) is in
+  tag `v8.3.0`, not repeated here. The code isn't deleted (still runs
+  standalone if invoked directly) but isn't part of the pipeline anymore
+  and shouldn't be extended — see the module's own docstring for the same
+  note.
   `tabla_localidades()` (localidad-grain
   aggregation via `electoral.localidades.agrupar_resultados_por_localidad`)
   stays in the module as a library function, still pure and tested, but as
@@ -322,9 +311,10 @@ order, 01→04) are the pipeline**.
   `_puntos_del_nivel` resolves which cargo applies to which año) via
   `NIVEL_A_NIVEL_CSV`, imported from `totales_por_lista.py` rather than
   redefined. (Deprecated) output was one JSON + PNG per (año, nivel) at
-  `graficos/agrupaciones/<año>/v_party_<nivel>.{json,png}` — no longer
-  written by the pipeline, see the DEPRECATED note above; the CLI still
-  works if run by hand:
+  `graficos/agrupaciones/<año>/v_party_<nivel>.{json,png}` — removed from
+  the repo and `.gitignore`d (see the DEPRECATED note above; tag `v8.3.0`
+  has the full history). The CLI still works if run by hand and will
+  regenerate them locally:
 
   ```bash
   PYTHONPATH=src python -m analisis.vparty_cuadrantes_local        # deprecated, see above
@@ -410,16 +400,17 @@ order, 01→04) are the pipeline**.
   Municipio/Provincia/Nación Markdown to
   `graficos/distrito/comparativos_nivel/`, git-tracked. Full per-script
   behavior in `docs/FUNCIONALIDADES.md` §"Gráficos". Git-tracked
-  exceptions: `graficos/agrupaciones/<año>/<nivel>/*.json` (+ the national
-  scatter JSON one level up), `graficos/distrito/serie_temporal/*.json`,
+  exceptions: the national V-Party scatter JSON at
+  `graficos/agrupaciones/vparty_cuadrantes_economico_progresismo_populismo.json`
+  (`analisis.vparty_cuadrantes`), `graficos/distrito/serie_temporal/*.json`,
   `graficos/distrito/comparativos_nivel/`, and (outside `src/analisis/`,
   same convention) `graficos/socioeconomia/iaelap_general.json`/
   `iaelap_sectorial_*.json` from `src/socioeconomia/graficos_eph_iaelap.py`
   — the rest of `graficos/` (including every `.png`) is `.gitignore`d and
-  regenerated on demand. `graficos/agrupaciones/<año>/<nivel>/*.json`
-  specifically is frozen, not actively regenerated — its generator
-  (`vparty_cuadrantes_local.generar_distrito`) is deprecated in favor of
-  `data/tfi_data/elecciones/<año>_<nivel>.csv`, see above.
+  regenerated on demand. `graficos/agrupaciones/<año>/<nivel>/*.json` used
+  to be a tracked exception too; it was removed from the repo and
+  `.gitignore`d — see `vparty_cuadrantes_local.py`'s docstring for the
+  current pointer, and tag `v8.3.0` for the full history.
 
 - **`src/visualizacion/`** holds the five scripts that generate a full
   interactive HTML page for `docs/` — each pairs a `construir_payload()`

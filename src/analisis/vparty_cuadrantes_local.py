@@ -12,7 +12,14 @@ tienen cobertura V-Party (que acá se descartaban en silencio) y BLANCO/NULO.
 momento desde `filiacion_politica` + `colorimetria_familia_politica.csv`
 vía `_color_por_partido`. No se borra el código -- sigue funcionando si se
 lo invoca a mano -- pero no forma parte del pipeline vigente y no se lo
-debe extender. El resto del módulo (`tabla_distrito`, `cargar_posiciones_propias`,
+debe extender. `graficos/agrupaciones/<año>/` (JSON + PNG que este módulo
+generaba) se sacó del repo y de `.gitignore` pasó a estar explícitamente
+ignorado -- quedó atrasado respecto del período que cubre
+`graficos/tfi/v-party/` (`analisis.vparty_distribucion_tfi`, 2001-2025) y
+ya no se regenera como parte de ningún pipeline; se puede volver a generar
+a mano si hace falta, corriendo este módulo directamente. Detalle completo
+de cómo era ese output y por qué quedó redundante: tag `v8.3.0`. El resto del
+módulo (`tabla_distrito`, `cargar_posiciones_propias`,
 `cargar_filiaciones`, `tabla_localidades`, `_color_por_partido`, `_sombras`,
 `_limites_globales`) sigue activo: lo importa en vivo
 `src/visualizacion/distribucion_ideologica_interactiva.py`.

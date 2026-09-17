@@ -21,7 +21,7 @@ graficos/socioeconomia/*
 !graficos/agrupaciones/
 graficos/agrupaciones/por_localidad/
 graficos/agrupaciones/*.png
-graficos/agrupaciones/*/*.png
+graficos/agrupaciones/[0-9][0-9][0-9][0-9]/
 
 data/socioeconomia/icg-icc/*.dta
 data/socioeconomia/icg-icc/*.pdf

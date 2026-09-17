@@ -131,17 +131,16 @@ Presidente 2015/2023).
 - **Los CSV/PNG derivados de esta capa (bajo `data/por_localidad/` y
   casi todo `graficos/`) no se versionan** salvo el JSON (nunca el PNG):
   `graficos/distrito/serie_temporal/*.json`,
-  `graficos/distrito/comparativos_nivel/` (Markdown, no JSON) y
-  `graficos/agrupaciones/<año>/<nivel>/*.json` (cuadrantes V-Party, La
-  Plata por año/nivel; el scatter nacional en la raíz de `agrupaciones/`
-  también) -- ver `.gitignore` y `CLAUDE.md` antes de asumir cuál es cuál.
-  El grano localidad (`graficos/por_localidad/`, `graficos/agrupaciones/por_localidad/`)
-  se eliminó del todo, código incluido -- ya no existe ningún PNG por
-  localidad. **`graficos/agrupaciones/<año>/<nivel>/*.json` está
-  congelado, no se regenera**: su generador
-  (`vparty_cuadrantes_local.generar_distrito`) quedó deprecado en favor de
-  `data/tfi_data/elecciones/<año>_<nivel>.csv`, que trae lo mismo más las
-  agrupaciones sin cobertura V-Party y BLANCO/NULO -- ver CLAUDE.md.
+  `graficos/distrito/comparativos_nivel/` (Markdown, no JSON) y el scatter
+  nacional en la raíz de `graficos/agrupaciones/` -- ver `.gitignore` y
+  CLAUDE.md antes de asumir cuál es cuál. El grano localidad
+  (`graficos/por_localidad/`, `graficos/agrupaciones/por_localidad/`) se
+  eliminó del todo, código incluido -- ya no existe ningún PNG por
+  localidad. `graficos/agrupaciones/<año>/<nivel>/*.json` (cuadrantes
+  V-Party por año/nivel) dejó de ser una excepción versionada y se sacó
+  del repo -- su generador (`vparty_cuadrantes_local.generar_distrito`)
+  está deprecado en favor de `data/tfi_data/elecciones/<año>_<nivel>.csv`;
+  detalle completo en el tag `v8.3.0`.
 
 ## Gaps conocidos, para no re-descubrirlos
 
