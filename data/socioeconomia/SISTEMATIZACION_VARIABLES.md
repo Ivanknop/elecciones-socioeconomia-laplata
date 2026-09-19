@@ -8,7 +8,7 @@ resultados electorales — sigue sin hacerse, por instrucción explícita.
 
 ## 1. EPH Gran La Plata — qué se relevó
 
-Fuente: microdatos trimestrales INDEC, 2011-2025 (`src/socioeconomia/eph_client.py`,
+Fuente: microdatos trimestrales INDEC, 2003T3-2025T4 (`src/socioeconomia/eph_client.py`,
 ver su docstring para el detalle de dónde sale cada trimestre). Aglomerado
 Gran La Plata (`AGLOMERADO=2`, incluye Berisso y Ensenada) — no hay
 apertura por circuito, es un techo estructural de la fuente, no de este

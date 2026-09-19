@@ -1,4 +1,4 @@
-"""Tabla mensual unificada de series macroeconómicas nacionales (2011-2025)
+"""Tabla mensual unificada de series macroeconómicas nacionales (2001-2025)
 desde `catalogo_series.csv` y datos.gob.ar. Nunca rellena ni repite un
 valor -- celda vacía si la fuente no publicó ese mes exacto. Detalle en
 CLAUDE.md y `docs/especificaciones/plan_macroeconomia.md`.
@@ -130,7 +130,7 @@ class ReporteCobertura:
 def construir_tabla_mensual(
     catalogo: list[ConceptoCatalogo],
     puntos_por_concepto: dict[str, list[tuple[date, float]]],
-    anio_inicio: int = 2011,
+    anio_inicio: int = 2001,
     anio_fin: int = 2025,
 ) -> tuple[list[dict], ReporteCobertura]:
     """Pura -- no hace red. `puntos_por_concepto` ya viene parseado
@@ -182,7 +182,7 @@ def generar_csv(
     catalogo_path: Path | str = MACRO_CATALOGO_SERIES_PATH,
     destino: Path | str = MACRO_SERIES_MENSUAL_PATH,
     cache_dir: Path | str = MACRO_CACHE_DATOS_GOB_DIR,
-    anio_inicio: int = 2011,
+    anio_inicio: int = 2001,
     anio_fin: int = 2025,
     force_refresh: bool = False,
 ) -> tuple[Path, ReporteCobertura]:
@@ -212,7 +212,7 @@ def main():
     parser.add_argument("--catalogo", default=MACRO_CATALOGO_SERIES_PATH)
     parser.add_argument("--destino", default=MACRO_SERIES_MENSUAL_PATH)
     parser.add_argument("--cache-dir", default=MACRO_CACHE_DATOS_GOB_DIR)
-    parser.add_argument("--anio-inicio", type=int, default=2011)
+    parser.add_argument("--anio-inicio", type=int, default=2001)
     parser.add_argument("--anio-fin", type=int, default=2025)
     parser.add_argument("--force-refresh", action="store_true")
     args = parser.parse_args()

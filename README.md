@@ -11,7 +11,7 @@ con el Censo) para poder cruzar, más adelante, resultados electorales con
 condiciones socioeconómicas del mismo territorio; el Índice de Confianza en
 el Gobierno (ICG, UTDT) para comparar la confianza declarada de La Plata
 contra el resto del país, 2008 en adelante; una capa macroeconómica
-nacional (2011-2025, sin apertura espacial) que da contexto temporal a las
+nacional (2001-2025, sin apertura espacial) que da contexto temporal a las
 anteriores; y una capa de geolocalización (catálogo validado de las 36
 localidades del partido, Georef-AR cruzado contra el Ministerio de Obras
 Públicas) pensada para, más adelante, cruzar circuitos y series censales

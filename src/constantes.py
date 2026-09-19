@@ -31,8 +31,8 @@ AUDITORIA_DISCREPANCIAS_PATH = "data/geolocalizacion/fuentes_extra/AUDITORIA_DIS
 
 MACRO_CATALOGO_SERIES_PATH = "data/macroeconomia/catalogo_series.csv"
 MACRO_CATALOGO_SERIES_ANUALES_PATH = "data/macroeconomia/catalogo_series_anuales.csv"
-MACRO_SERIES_MENSUAL_PATH = "data/macroeconomia/series_macro_2011_2025.csv"
-MACRO_SERIES_ANUAL_PATH = "data/macroeconomia/series_macro_anuales_2011_2025.csv"
+MACRO_SERIES_MENSUAL_PATH = "data/macroeconomia/series_macro_2001_2025.csv"
+MACRO_SERIES_ANUAL_PATH = "data/macroeconomia/series_macro_anuales_2001_2025.csv"
 MACRO_CACHE_DATOS_GOB_DIR = "data/macroeconomia/_cache/datos_gob"
 
 EPH_CACHE_DIR = "data/socioeconomia/eph_cache"

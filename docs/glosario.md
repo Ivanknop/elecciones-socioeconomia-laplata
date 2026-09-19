@@ -142,7 +142,7 @@ respaldo, y uso concreto en este proyecto).
 
 ### Capa macroeconómica
 
-Todas las variables son de grano **nacional** (sin apertura regional/local), 2011-2025, tomadas de `datos.gob.ar` (API Series de Tiempo) salvo excepción indicada. Viven en `data/macroeconomia/series_macro_2011_2025.csv` (mensual) o `series_macro_anuales_2011_2025.csv` (anual). Regla del pipeline: **nunca se repite (forward-fill) un valor** — una celda vacía significa que ese mes/año no tiene publicación propia, no que el valor sea igual al anterior.
+Todas las variables son de grano **nacional** (sin apertura regional/local), 2001-2025, tomadas de `datos.gob.ar` (API Series de Tiempo) salvo excepción indicada. Viven en `data/macroeconomia/series_macro_2001_2025.csv` (mensual) o `series_macro_anuales_2001_2025.csv` (anual). Regla del pipeline: **nunca se repite (forward-fill) un valor** — una celda vacía significa que ese mes/año no tiene publicación propia, no que el valor sea igual al anterior.
 
 #### `tipo_cambio_oficial`
 - **Significado:** cotización de referencia del dólar estadounidense fijada oficialmente.
@@ -286,7 +286,7 @@ Todas las variables son de grano **nacional** (sin apertura regional/local), 201
 
 #### EPH Gran La Plata (`data/socioeconomia/eph_gran_la_plata*.csv`)
 
-Fuente: microdatos trimestrales INDEC, aglomerado Gran La Plata (`AGLOMERADO=2`, incluye Berisso y Ensenada), 2011-2025 (57/60 trimestres, faltan 2015T3-2016T1 por "emergencia estadística" de INDEC). Cambio de fuente en 2016 (DBF histórico → bases actuales INDEC): comparaciones año a año solo válidas dentro de cada tramo (2011-2015 vs. 2016-2025).
+Fuente: microdatos trimestrales INDEC, aglomerado Gran La Plata (`AGLOMERADO=2`, incluye Berisso y Ensenada), 2003T3-2025T4 (86/90 trimestres, faltan 2007T3/2015T3/2015T4/2016T1 por falta de publicación de INDEC). Cambio de fuente en 2016 (DBF histórico → bases actuales INDEC): comparaciones año a año solo válidas dentro de cada tramo (2003-2015 vs. 2016-2025).
 
 ##### `tasa_actividad` (EPH Gran La Plata)
 - **Significado:** proporción de la población que participa del mercado laboral.

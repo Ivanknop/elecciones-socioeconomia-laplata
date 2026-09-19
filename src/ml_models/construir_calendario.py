@@ -242,7 +242,8 @@ def _vparty_directo(
 
 
 def _cargar_oficialismos(path: Path | str) -> dict[tuple[int, str], dict]:
-    """(anio, nivel) -> fila de oficialismos.csv (2011-2025, ya curado)."""
+    """(anio, nivel) -> fila de oficialismos.csv (2001-2025 municipal/provincial,
+    2011-2025 nacional -- D15/D20 -- ya curado)."""
     with Path(path).open(encoding="utf-8", newline="") as f:
         return {(int(fila["anio"]), fila["nivel"]): fila for fila in csv.DictReader(f)}
 
@@ -284,7 +285,7 @@ def _clasificacion_del_titular(
 # El titular es un estado que solo cambia en años con elección ejecutiva.
 def construir_oficialismo_por_nivel(
     calendario: list[FilaCalendario],
-    oficialismos_2011_2025: dict[tuple[int, str], dict],
+    oficialismos_curados: dict[tuple[int, str], dict],
     clasificacion: dict[tuple[str, str, str], dict],
     vparty_directo: dict[tuple[int, str], tuple[str, str, str]] | None = None,
 ) -> list[FilaOficialismo]:
@@ -308,7 +309,7 @@ def construir_oficialismo_por_nivel(
 
             if fc.tipo_eleccion == "ejecutiva":
                 if fc.anio >= 2011:
-                    fila_of = oficialismos_2011_2025.get((fc.anio, nivel))
+                    fila_of = oficialismos_curados.get((fc.anio, nivel))
                     if fila_of is None:
                         continue
                     ganadora = fila_of["agrupacion_ganadora"]
@@ -466,10 +467,10 @@ def generar_csvs(
         calendario_path, calendario, ["anio", "nivel", "fecha_eleccion", "tipo_eleccion", "desdoblada", "cargos_en_juego"]
     )
 
-    oficialismos_2011_2025 = _cargar_oficialismos(oficialismos_existente_path)
+    oficialismos_curados = _cargar_oficialismos(oficialismos_existente_path)
     clasificacion = _cargar_clasificacion(clasificacion_path)
     vparty_directo = _cargar_vparty_directo(vparty_path)
-    oficialismo = construir_oficialismo_por_nivel(calendario, oficialismos_2011_2025, clasificacion, vparty_directo)
+    oficialismo = construir_oficialismo_por_nivel(calendario, oficialismos_curados, clasificacion, vparty_directo)
 
     destino_oficialismo = _escribir_csv(
         oficialismo_path,
