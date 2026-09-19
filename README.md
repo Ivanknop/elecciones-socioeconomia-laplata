@@ -129,42 +129,20 @@ detallado en `CLAUDE.md`.
 
 ## Documentación
 
-`docs/` mezcla tres géneros: referencia viva (se actualiza sin parar
-junto con el código, versionada), `docs/especificaciones/` (specs/planes
-escritos antes de construir algo — algunas ya ejecutadas, se conservan
-como registro, versionadas), y `docs/auditoria_interna/` (trabajo
-interno, `.gitignore`d — no forma parte de este repo público, aunque
-viva bajo `docs/` por prolijidad de filesystem).
-
-**Referencia viva:**
-
 - Para el **detalle operativo de cada script, comando y anomalía
   conocida**, ver [`docs/FUNCIONALIDADES.md`](docs/FUNCIONALIDADES.md).
-- Para el **panel temporal de ventanas electorales** (`src/ml_models/`,
-  qué es cada fase, ventana corta vs. bloque largo), ver
-  [`docs/decisiones_metodologicas.md`](docs/decisiones_metodologicas.md)
-  para las decisiones de diseño puntuales (`D1`, `D2`, ...).
 - Para el **gráfico de cuadrantes ideológicos V-Party** (qué indica cada
   eje/punto del scatter nacional), ver
-  [`docs/vparty_cuadrantes.md`](docs/vparty_cuadrantes.md) — la
-  metodología de qué fila de `clasificacion_ideologica_agrupaciones.csv`
-  viene de V-Party real vs. estimación propia vive en
-  `data/agrupaciones/v-party/README.md` (ver más abajo), no ahí.
+  [`docs/vparty_cuadrantes.md`](docs/vparty_cuadrantes.md) 
 - Para un **glosario de todos los términos del proyecto** — variables
   (qué mide cada columna, cómo se calcula, primaria o derivada), modelos
   de machine learning (uso general y uso concreto acá) y conceptos
   teóricos de ciencia política (definición original, bibliografía, uso
   concreto acá) —, ver [`docs/glosario.md`](docs/glosario.md).
-
-**Especificaciones (`docs/especificaciones/`):**
-
-- Para una **especificación no técnica del proyecto** (qué pregunta
-  intenta responder, qué falta, para quién no sabe de código), ver
+- Para una **especificación no técnica del proyecto**  ver
   [`docs/especificaciones/ESPECIFICACION_NO_TECNICA.md`](docs/especificaciones/ESPECIFICACION_NO_TECNICA.md).
 - Para la **cobertura real obtenida de la capa macroeconómica**, ver
-  `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` (la
-  evaluación de fuentes previa a implementarla es trabajo interno, no
-  versionado, ver más abajo).
+  `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` 
 - El **diseño de investigación completo** (hipótesis, alcance válido de
   las inferencias, la falacia ecológica a evitar) parte de una nota
   metodológica externa que quedó como trabajo interno, no versionado —
@@ -174,31 +152,4 @@ viva bajo `docs/` por prolijidad de filesystem).
   (fases, ventana corta vs. bloque largo), ver
   [`docs/especificaciones/especificacion_panel_temporal.md`](docs/especificaciones/especificacion_panel_temporal.md).
 - `docs/especificaciones/ESPECIFICACION_CAPA_ELECTORAL.md` — histórica,
-  reemplazada por `docs/FUNCIONALIDADES.md` (ver nota en el propio archivo).
-
-Cuatro documentos de trabajo interno, no versionados (existe copia local
-con el detalle real, no pública en este repo): la nota metodológica
-externa: qué está resuelto de cada uno de sus puntos vive en
-`docs/decisiones_metodologicas.md`, no en un archivo de estado aparte;
-los planes ya resueltos de correcciones electorales, diseño de la
-pestaña de distribución ideológica, y evaluación de fuentes
-macroeconómicas.
-
-Documentos que **no** están en `docs/` porque describen un dataset
-puntual y viven al lado de él (ver `CLAUDE.md` para el detalle de cada
-uno): `data/geolocalizacion/fuentes_extra/CIRCUITOS_LOCALIDADES.md` y
-`AUDITORIA_DISCREPANCIAS.md` (crosswalk circuito↔localidad),
-`data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` (cobertura de la
-capa macro), `data/geolocalizacion/LOCALIDADES.md` (catálogo validado de
-localidades geolocalizadas), `data/socioeconomia/EXTRACCION_REDATAM.md` y
-`EXTRACCION_IAELAP.md`/`SISTEMATIZACION_VARIABLES.md` (capa
-socioeconómica), `data/socioeconomia/ICG.md` (decisiones metodológicas
-del pipeline ICG — cobertura real vs. codebook, por qué "país" incluye a
-La Plata, asimetría de resolución mensual/anual, límites de la fuente),
-`data/socioeconomia/icg-icc/README.md` (qué es el microdato ICG, cómo
-conseguirlo — no se distribuye en el repo),
-`data/agrupaciones/v-party/README.md` (procedencia del
-dataset V-Party y de qué fuente viene cada `vparty_economico`/
-`progresismo`/`populismo` de `clasificacion_ideologica_agrupaciones.csv`
-— única fuente de esa distinción en todo el repo).
-
+  reemplazada por `docs/FUNCIONALIDADES.md` .
