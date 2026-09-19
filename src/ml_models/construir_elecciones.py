@@ -9,9 +9,9 @@ cualquier consumidor de estos CSV que no la filtre explícitamente
 contaría el padrón como si fuera un partido más.
 
 Es la fuente de referencia para resultado+clasificación por (año,nivel) --
-`graficos/agrupaciones/<año>/<nivel>/*.json` (generado por el ahora
-deprecado `analisis.vparty_cuadrantes_local.generar_distrito`) es un
-subconjunto de esto, no al revés (ver CLAUDE.md).
+`graficos/agrupaciones/<año>/<nivel>/*.json` (generado por el ya retirado
+`analisis.vparty_cuadrantes_local.generar_distrito`, ver tag `v8.3.0`) era
+un subconjunto de esto, no al revés (ver CLAUDE.md).
 
 **Falta 2001-2009**: sin `circuito_<cargo>.json` para esos años,
 `_combos_disponibles` no los ofrece -- se intentó conseguir ese detalle

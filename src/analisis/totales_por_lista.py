@@ -2,7 +2,7 @@
 `electoral.totales.resultado_total_por_agrupacion`. Ya no genera gráficos
 propios (el bar chart por (año, nivel) se retiró de `graficos/` por no
 aportar al nuevo enfoque temporal, ver CLAUDE.md); este módulo sobrevive
-como capa de datos compartida por `vparty_cuadrantes_local.py`,
+como capa de datos compartida por `vparty_localidad.py`,
 `comparativo_nivel.py`, `distribucion_ideologica_interactiva.py` y
 `ml_models/construir_calendario.py`/`construir_elecciones.py`."""
 from __future__ import annotations

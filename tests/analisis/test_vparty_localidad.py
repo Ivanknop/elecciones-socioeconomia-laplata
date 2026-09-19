@@ -1,12 +1,11 @@
-"""Tests de `vparty_cuadrantes_local.py`: carga de posiciones/filiaciones,
-tablas de agregación y color por partido -- lógica pura, sin matplotlib.
-Graficado sin test, ver CLAUDE.md."""
+"""Tests de `vparty_localidad.py`: carga de posiciones/filiaciones,
+tablas de agregación y color por partido -- lógica pura, sin matplotlib."""
 import csv
 import json
 
 import pytest
 
-from analisis.vparty_cuadrantes_local import (
+from analisis.vparty_localidad import (
     _color_por_partido,
     _sombras,
     _votos_por_circuito_agrupacion,
