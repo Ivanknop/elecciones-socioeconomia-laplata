@@ -126,7 +126,7 @@ hace falta que sea la única o la mayoritaria— es base suficiente para
 clasificarlos como `oficial_confirmada` → `MELCHOR_ROMERO`, en vez de
 dejarlos sin agrupar. Con este criterio no hace falta ningún reparto por
 área (el problema que sí sigue sin resolverse para el cruce
-circuito↔radio censal, ver `docs/AUDITORIA_ESTADO.md`): alcanza con que el
+circuito↔radio censal, ver `docs/auditoria_interna/AUDITORIA_ESTADO.md`): alcanza con que el
 nombre de la localidad aparezca en la tabla del circuito. Hoy no quedan
 circuitos marcados `oficial_no_agrupable` en el crosswalk (el nivel
 sigue existiendo en el código por si aparece un caso futuro sin ninguna

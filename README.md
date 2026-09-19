@@ -129,9 +129,12 @@ detallado en `CLAUDE.md`.
 
 ## Documentación
 
-`docs/` mezcla dos géneros: referencia viva (se actualiza sin parar junto
-con el código) y `docs/especificaciones/` (specs/planes escritos antes de
-construir algo — algunas ya ejecutadas, se conservan como registro).
+`docs/` mezcla tres géneros: referencia viva (se actualiza sin parar
+junto con el código, versionada), `docs/especificaciones/` (specs/planes
+escritos antes de construir algo — algunas ya ejecutadas, se conservan
+como registro, versionadas), y `docs/auditoria_interna/` (trabajo
+interno, `.gitignore`d — no forma parte de este repo público, aunque
+viva bajo `docs/` por prolijidad de filesystem).
 
 **Referencia viva:**
 
@@ -141,9 +144,6 @@ construir algo — algunas ya ejecutadas, se conservan como registro).
   qué es cada fase, ventana corta vs. bloque largo), ver
   [`docs/decisiones_metodologicas.md`](docs/decisiones_metodologicas.md)
   para las decisiones de diseño puntuales (`D1`, `D2`, ...).
-- Para **qué puntos de la auditoría metodológica están resueltos o
-  siguen abiertos**, ver
-  [`docs/AUDITORIA_ESTADO.md`](docs/AUDITORIA_ESTADO.md).
 - Para el **gráfico de cuadrantes ideológicos V-Party** (qué indica cada
   eje/punto del scatter nacional), ver
   [`docs/vparty_cuadrantes.md`](docs/vparty_cuadrantes.md) — la
@@ -168,18 +168,21 @@ construir algo — algunas ya ejecutadas, se conservan como registro).
 - El **diseño de investigación completo** (hipótesis, alcance válido de
   las inferencias, la falacia ecológica a evitar) parte de una nota
   metodológica externa que quedó como trabajo interno, no versionado —
-  `docs/decisiones_metodologicas.md` y `docs/AUDITORIA_ESTADO.md`
-  documentan qué se resolvió de esa nota, sin reproducirla.
+  `docs/decisiones_metodologicas.md` documenta qué decisión de diseño
+  responde a qué punto de esa nota, sin reproducirla.
 - Para la **especificación del panel temporal de ventanas electorales**
   (fases, ventana corta vs. bloque largo), ver
   [`docs/especificaciones/especificacion_panel_temporal.md`](docs/especificaciones/especificacion_panel_temporal.md).
 - `docs/especificaciones/ESPECIFICACION_CAPA_ELECTORAL.md` — histórica,
   reemplazada por `docs/FUNCIONALIDADES.md` (ver nota en el propio archivo).
 
-Tres planes de trabajo internos ya resueltos (correcciones electorales,
-diseño de la pestaña de distribución ideológica, evaluación de fuentes
-macroeconómicas) quedaron como trabajo interno, no versionado — existe
-documentación local con el detalle real, no pública en este repo.
+Cuatro documentos de trabajo interno, no versionados (existe copia local
+con el detalle real, no pública en este repo): la nota metodológica
+externa: qué está resuelto de cada uno de sus puntos vive en
+`docs/decisiones_metodologicas.md`, no en un archivo de estado aparte;
+los planes ya resueltos de correcciones electorales, diseño de la
+pestaña de distribución ideológica, y evaluación de fuentes
+macroeconómicas.
 
 Documentos que **no** están en `docs/` porque describen un dataset
 puntual y viven al lado de él (ver `CLAUDE.md` para el detalle de cada

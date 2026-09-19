@@ -12,7 +12,7 @@ qué fuente viene cada fila** — hoy el desglose de abajo cubre 121 de esas
 356 filas (todas del rango 2011-2019, la única cobertura real de
 V-Party); las ~235 restantes (2001-2009 recién incorporado, más el resto
 de 2011-2025 ya señalado antes) están pobladas pero sin procedencia
-documentada acá todavía (ver `docs/AUDITORIA_ESTADO.md`, sección 8.2,
+documentada acá todavía (ver `docs/auditoria_interna/AUDITORIA_ESTADO.md`, sección 8.2,
 para el detalle de esta brecha, que creció con la incorporación de
 2001-2009). La carga es puntual (no hay
 script que la repita ni la mantenga sincronizada — si se agregan filas

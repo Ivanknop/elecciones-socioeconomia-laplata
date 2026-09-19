@@ -28,7 +28,7 @@ detalle — y avisá para que esto se corrija.
    relación con el crosswalk geolocalizado que ahora es el default (ver
    nota al principio de ese documento y
    `data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md`).
-2. `docs/AUDITORIA_ESTADO.md` -- qué puntos de la auditoría
+2. `docs/auditoria_interna/AUDITORIA_ESTADO.md` -- qué puntos de la auditoría
    metodológica original están resueltos, parciales o abiertos.
 3. `docs/auditoria_interna/nota_metodologica.md` (nota externa, trabajo
    interno, no versionado) -- el diseño de investigación completo:
@@ -41,7 +41,7 @@ detalle — y avisá para que esto se corrija.
 
 Si la tarea es sobre localidades específicamente, con el punto 1
 alcanza. No hace falta releer `git log` completo ni re-auditar archivos
-que ya están marcados como resueltos en `docs/AUDITORIA_ESTADO.md`.
+que ya están marcados como resueltos en `docs/auditoria_interna/AUDITORIA_ESTADO.md`.
 
 ## Estructura de datos (no listar el directorio para redescubrir esto)
 
@@ -75,7 +75,7 @@ tests/
 
 `<nivel>` = presidente | gobernador | intendente | nacional | provincial
 | municipal, según el año (la nomenclatura cambió entre 2011-2017 y
-2019-2025; ver `docs/AUDITORIA_ESTADO.md` ítem 10 de 8.1, "Series unen cargos
+2019-2025; ver `docs/auditoria_interna/AUDITORIA_ESTADO.md` ítem 10 de 8.1, "Series unen cargos
 distintos"). `<etapa>` = generales | paso | balotaje (balotaje solo
 Presidente 2015/2023).
 
@@ -127,7 +127,7 @@ Presidente 2015/2023).
   EPH-aglomerado NO se cruzan a nivel circuito.** Decisión tomada
   explícitamente: el desajuste entre las tres mallas (circuito, radio
   censal, localidad) es estructural, no un bug -- documentado con
-  evidencia cuantitativa en `docs/AUDITORIA_ESTADO.md`. No reabrir esto sin
+  evidencia cuantitativa en `docs/auditoria_interna/AUDITORIA_ESTADO.md`. No reabrir esto sin
   releer esa sección primero.
 - **Los CSV/PNG derivados de esta capa (bajo `data/por_localidad/` y
   casi todo `graficos/`) no se versionan** salvo el JSON (nunca el PNG):
@@ -169,7 +169,7 @@ Presidente 2015/2023).
   "corregir" ajustando el dato.
 - El circuito **493** en Presidente/Gobernador/Intendente 2023 tiene
   `electores=109` con `positivos=0` y `otros=0` (ítem 8.1.5 de
-  `docs/AUDITORIA_ESTADO.md`, hueco de telegrama). Su `ausentismo` puntual da
+  `docs/auditoria_interna/AUDITORIA_ESTADO.md`, hueco de telegrama). Su `ausentismo` puntual da
   100% -- no es abstención real, es el mismo hueco de cobertura ya
   documentado, no una fila nueva a investigar. El propio crosswalk lo
   marca como "límite incierto" (cabecera oficial "Isla Martín García") —
@@ -213,7 +213,7 @@ Presidente 2015/2023).
 - `data/geolocalizacion/fuentes_extra/AUDITORIA_DISCREPANCIAS.md` -- comparación fila
   por fila entre oficial y periodístico para los 16 circuitos con
   fuente oficial.
-- `docs/AUDITORIA_ESTADO.md` -- tabla de estado de cada punto de auditoría,
+- `docs/auditoria_interna/AUDITORIA_ESTADO.md` -- tabla de estado de cada punto de auditoría,
   con referencia a qué commit lo resolvió.
 - `CLAUDE.md` -- comandos, arquitectura, y la estructura de directorios
   que manda si este archivo y la realidad difieren.

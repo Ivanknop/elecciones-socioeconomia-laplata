@@ -452,7 +452,7 @@ asignación todavía no están fijados de forma sistemática.
 **`data/agrupaciones/campo_ideologico.csv` está sin usar por el código
 actual** — `src/analisis/graficos.py` define su propio diccionario
 `IDEOLOGIAS` hardcodeado en vez de leer este CSV (ítem 9,
-`docs/AUDITORIA_ESTADO.md`, abierto desde antes del release v4.0.0). No se
+`docs/auditoria_interna/AUDITORIA_ESTADO.md`, abierto desde antes del release v4.0.0). No se
 corrigió porque cambiar `graficos.py` para que lea de un CSV externo es un
 cambio de comportamiento que necesita su propia verificación, no un ajuste
 de documentación — queda como pendiente explícito, no hay que asumir que
@@ -485,7 +485,7 @@ arriba), tiene 237 agrupaciones únicas, de las cuales 193 tienen
 `filiacion_politica` poblada; las 121 de `tabla_referencia_filiacion_politica.csv`
 no se volvieron a ampliar para cubrir las agrupaciones nuevas — brecha
 pendiente, no investigada fila por fila (mismo tipo de deuda que la de
-V-Party, ver `docs/AUDITORIA_ESTADO.md`).
+V-Party, ver `docs/auditoria_interna/AUDITORIA_ESTADO.md`).
 
 El mismo CSV trae además tres columnas opcionales —
 `vparty_economico`/`vparty_progresismo`/`vparty_populismo`, posición
@@ -519,7 +519,7 @@ circuito para mapear; hasta que se defina un criterio para tratar
 2001-2009 en ese nivel, la pestaña es un único bubble chart a nivel
 distrito. **🔒 Bloqueado además por cambio de alcance**: el proyecto pasó
 a trabajar a nivel municipal, no circuito/localidad — no reintroducir
-sin volver a preguntar (ver `docs/AUDITORIA_ESTADO.md`).
+sin volver a preguntar (ver `docs/auditoria_interna/AUDITORIA_ESTADO.md`).
 
 El panel único es un bubble chart SVG: eje X económico, eje Y progresismo,
 tamaño = % de votos del partido en esa elección (sobre el total de la
@@ -829,7 +829,7 @@ de unión listo (`unir_censo_a_circuitos`, prorratea cada variable por
 **🔒 Bloqueado por cambio de alcance**: el proyecto pasó a trabajar a
 nivel municipal, no circuito/localidad — esta sección documenta lo ya
 construido (código y datos se conservan), pero no hay trabajo previsto
-acá hasta que ese alcance cambie (ver `docs/AUDITORIA_ESTADO.md`).
+acá hasta que ese alcance cambie (ver `docs/auditoria_interna/AUDITORIA_ESTADO.md`).
 
 Además de la correspondencia circuito↔radio censal de la sección anterior
 (para cruzar con el Censo), existe una **segunda correspondencia
@@ -899,7 +899,7 @@ Lorenzo, Melchor Romero, etc.) con nombres legibles, no censales.
   cuadros, un gráfico de serie temporal por campo ideológico +
   `blanco_nulo` + `ausentismo` por localidad y nivel de gobierno
   (2011-2025). Ya no existe en el código ni sus ~132 PNG — no hay hoy una
-  serie temporal por localidad activa (ver `docs/AUDITORIA_ESTADO.md`).
+  serie temporal por localidad activa (ver `docs/auditoria_interna/AUDITORIA_ESTADO.md`).
 
 ## Capa macroeconómica nacional — estado actual
 
