@@ -39,7 +39,11 @@ root) is one of only two folders GitHub Pages can serve without a
 separate Actions workflow, and the `.md` files were already there
 first. `docs/.nojekyll` skips Jekyll processing for the whole folder,
 `.md` files included — they're still readable straight from GitHub's
-own blob viewer regardless. Both interactive-HTML generators (and their
+own blob viewer regardless. One exception lives under `docs/` without
+being part of the site: `docs/auditoria_interna/` is `.gitignore`d
+personal working state (see `src/auditoria_interna/` below), not a
+GitHub Pages deliverable — it landed there for filesystem tidiness, not
+because it's meant to be public. Both interactive-HTML generators (and their
 templates) live in `src/visualizacion/`, not `src/analisis/` — that
 folder is reserved for the scripts that generate static PNGs/Markdown
 under `graficos/` from `circuito_<nivel>.json`; `src/visualizacion/`
@@ -74,7 +78,7 @@ PYTHONPATH=src python -m analisis.vparty_cuadrantes         # national V-Party c
 PYTHONPATH=src python -m analisis.vparty_distribucion_tfi   # V-Party cuadrantes PNG per (año,nivel) from data/tfi_data/elecciones/, 2001-2025, writes graficos/tfi/v-party/<año>_<nivel>.png
 PYTHONPATH=src python -m socioeconomia.icg_exportar_csv  # ICG (UTDT) headline + 6 demographic-cut CSVs to data/socioeconomia/icg/ (país from 2001, La Plata from 2008 -- La Plata isn't in the UTDT panel before then); needs data/socioeconomia/icg-icc/Base_histórica_2001-presente-ICG.dta placed manually first, see data/socioeconomia/icg-icc/README.md
 PYTHONPATH=src python -m socioeconomia.icg_graficos  # La Plata vs. país ICG time series PNG from the headline CSV above
-PYTHONPATH=src python -m auditoria_interna.cobertura_clasificacion  # on-demand audit: votes missing campo_ideologico/filiacion_politica/V-Party by (año, nivel) + top-N parties to classify next, writes data/auditoria_interna/cobertura_clasificacion.md
+PYTHONPATH=src python -m auditoria_interna.cobertura_clasificacion  # on-demand audit: votes missing campo_ideologico/filiacion_politica/V-Party by (año, nivel) + top-N parties to classify next, writes docs/auditoria_interna/cobertura_clasificacion.md
 ```
 
 There is no build/lint step configured. Tests cover `src/electoral/models.py`
@@ -509,8 +513,9 @@ order, 01→04) are the pipeline**.
   classified, and includes the % of votes each gap represents (same
   absolute vote count matters differently in a small vs. a large
   election). On-demand only (not part of any pipeline). Two outputs
-  with opposite persistence, neither git-tracked (`data/auditoria_interna/`
-  is `.gitignore`d — personal working state, not a repo deliverable):
+  with opposite persistence, neither git-tracked (`docs/auditoria_interna/`
+  is `.gitignore`d despite living under `docs/` — personal working state,
+  not a repo deliverable, not part of the GitHub Pages site):
   `cobertura_clasificacion.md` is a snapshot, overwritten on each run;
   `cobertura_clasificacion_log.csv` is append-only, one row per run
   (timestamp + global totals + delta vs. the previous run, no
