@@ -1,4 +1,4 @@
-# Estado de la auditoría (`NOTA_METODOLOGICA.md`, Sección 8) — a v8.0.0 (post-v7.4.0) + sesión actual
+# Estado de la auditoría (`NOTA_METODOLOGICA.md`, Sección 8) — a v9.0.0 (post-v8.0.0)
 
 Este documento existe porque la nota metodológica es un documento de trabajo
 fechado sobre `v1.0.0`. Se actualiza cada vez que se cierra un punto.
@@ -165,7 +165,7 @@ Sección 5.3 tienen ahora un primer avance:
 | Ampliar etapas y fuentes (PASO/balotaje) | 🟢 base agregada en `909760e`; ampliado sustancialmente en `80a16db` (posterior a v3.3.0) — hoy cubre todo combo (año, nivel, etapa) con PASO/balotaje disponible salvo las excepciones documentadas por diseño (2011/intendente y todo 2025 sin PASO, Ley 27.781; balotaje sólo Presidente 2015/2023) |
 | Armonizar territorio y Censo | 🟡 correspondencia espacial circuito↔radio lista (v2.0.0); **variables temáticas del Censo por radio, no extraídas todavía** (REDATAM manual, ver `EXTRACCION_REDATAM.md`) — sin cambios desde v3.3.0 |
 | Correspondencia circuito↔localidad (barrio, no censal) | 🔒 bloqueado — el proyecto pasó a trabajar a nivel municipal, no circuito/localidad; se conserva el estado alcanzado pero no hay trabajo previsto acá hasta que eso cambie. Estado al momento de bloquearse: crosswalk armado (`data/geolocalizacion/fuentes_extra/circuito_localidad.csv`): 16/68 circuitos con fuente oficial (Resolución 1990/2007, todos `oficial_confirmada` — 503/503A se reclasificaron a MELCHOR_ROMERO por decisión explícita, ver abajo), 65/68 con alguna fuente de El Día ("barrio por barrio", octubre 2025) — 6/68 con la etiqueta recontrastada contra fuentes web adicionales (`revision_web`), 59/68 sin esa revisión (`periodistico_no_oficial`). Los 16 oficiales auditados contra el detalle completo del anexo, no solo la descripción general (`AUDITORIA_DISCREPANCIAS.md`) — de 14 comparables, 8 resultan `discrepancia_real` contra la etiqueta de El Día (más de lo que sugería `CIRCUITOS_LOCALIDADES.md`), aunque eso ya no determina el agrupamiento de 503/503A. Agregación de resultados (`electoral/localidades.py`, `analisis/cuadros_por_localidad.py`, 22 cuadros 2011-2025, ~99% de cobertura de votos combinando los tres niveles, `SIN_DETERMINAR` siempre visible, hoy solo el circuito 521) ya construida. **Corrección a esta misma auditoría**: `analisis/serie_temporal_por_localidad.py` (132 imágenes), que esta tabla listaba como ya construido, se eliminó en `fb35b41` ("elimina salidas obsoletas") — no hay hoy una serie temporal por localidad activa. Es un tipo de correspondencia territorial distinto y paralelo al de la fila de arriba (esta es para nombres de barrio legibles, no para unir Censo) — no lo reemplaza ni depende de él, y tampoco depende del catálogo de `data/geolocalizacion/` (fila nueva abajo, coordenadas de localidad, otro propósito). **Falta**: subir de nivel los circuitos que quedan en `periodistico_no_oficial` dentro de las familias 504/505/508/509 (504, 508D, 508F y 508G ya subieron a `revision_web`; quedan 504A, 505, 505A, 505B, 508, 508A, 508B, 508C, 508E, 509 y 509A), y diagnóstico causal del hueco de datos de circuito 493/2023 (ver ítem 8.1.5; ya no se ve a simple vista en la fila MELCHOR_ROMERO, diluido por los votos reales de 503/503A) — sin cambios desde v3.3.0 |
-| Separar exploración y contraste | 🔴 no hay todavía cruce elecciones↔socioeconomía, elecciones↔macroeconomía ni elecciones↔ICG; sin cambios de fondo pese a que los tres dominios auxiliares ya existen por separado (ver "Ampliaciones de alcance" abajo) |
+| Separar exploración y contraste | 🔴→🟡 desde v8.0.0 hay una primera corrida real (LASSO+LOO-CV, bayesiano jerárquico, 5 notebooks) cruzando `panel_ventanas.csv` con resultado electoral, con hallazgo sustantivo (`icg_pendiente_vc`/`emae_pendiente_vc` estables, D28/D29) — pero sigue sin una lectura interpretativa publicada ni contraste RF/GB, no se marca 🟢 (ver "v8.0.0 → v9.0.0" arriba) |
 
 ## Ampliaciones de alcance desde v3.3.0
 
@@ -175,12 +175,12 @@ Estas piezas **no estaban pedidas por `nota_metodologica.md`** (que es anterior 
 |---|---|---|
 | Macroeconomía | Series nacionales 2001-2025 (IPC, tipo de cambio, deuda, PBI, mercado laboral), grano exclusivamente nacional, sin `circuito_id` ni localidad — nunca cruzada espacialmente con lo electoral, sólo por fecha | `docs/especificaciones/plan_macroeconomia.md`, `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` |
 | Geolocalización | Catálogo validado de las 36 localidades (Georef-AR × Ministerio de Obras Públicas), lat/lon por localidad — todavía no cruzado con `circuito_id` ni Censo (explícitamente fuera de alcance por ahora) | `data/geolocalizacion/LOCALIDADES.md` |
-| Mapa interactivo + GitHub Pages | `docs/mapa_electoral_la_plata.html` (v4-v5), `docs/distribucion_ideologica_la_plata.html` (v7.2.0, cuadrantes V-Party interactivos, selector Nivel+Año, autoplay, hoy sin desglose por localidad — ver 8.2) y, desde los 15 commits hasta v8.0.0, dos pestañas más: `docs/trayectorias_economicas_la_plata.html`/`_bieleccion_la_plata.html` (movimiento trimestral de una ventana electoral, corta o de 4 años, sobre el panel de `src/ml_models/`). Cuatro scripts en `src/visualizacion/` en total. 68 circuitos × 22 combos (año, nivel) generales el primero | `CLAUDE.md`, `docs/FUNCIONALIDADES.md`, skill `laplata-visualizacion` |
+| Mapa interactivo + GitHub Pages | `docs/mapa_electoral_la_plata.html` (v4-v5), `docs/distribucion_ideologica_la_plata.html` (v7.2.0, cuadrantes V-Party interactivos, selector Nivel+Año, autoplay, hoy sin desglose por localidad — ver 8.2), `docs/trayectorias_economicas_la_plata.html`/`_bieleccion_la_plata.html` (movimiento trimestral de una ventana electoral, corta o de 4 años, sobre el panel de `src/ml_models/`) y, desde v8.2.0, una quinta: `docs/distancia_por_fuerza_la_plata.html` (D18, distancia ideológica con signo de cada fuerza viable al oficialismo, por nivel y año). Cinco scripts en `src/visualizacion/` en total (verificado). 68 circuitos × 22 combos (año, nivel) generales el primero | `CLAUDE.md`, `docs/FUNCIONALIDADES.md`, skill `laplata-visualizacion` |
 | V-Party / oficialismo | `vparty_economico`/`progresismo`/`populismo` (**356/557 filas**, no 208/347 — 2001-2009 incorporado esta sesión, ver hallazgo de desglose incompleto, ahora más grande, en 8.2) y `oficialismos.csv`. `cfb2c39` había agregado escala fija/simétrica entre PNG y cuadro interactivo (sigue vigente) y un cuadrante real por localidad (revertido 3 commits después, ver 8.2) | `data/agrupaciones/v-party/README.md` (desactualizado, ver 8.2), `docs/vparty_cuadrantes.md` |
 | ICG (v7.3.0) | Índice de Confianza en el Gobierno (UTDT, microdato externo no redistribuible) — serie mensual país 2001-presente vs. La Plata 2008-presente (ponderada, "país" incluye a La Plata a propósito) más cortes demográficos (sexo/edad/edu, mensual a nivel país y anual a nivel La Plata por tamaño de muestra). Dominio nuevo bajo `src/socioeconomia/`, sin cruce todavía con lo electoral. **Hallazgo de esta pasada**: el directorio del insumo crudo se renombró de `data/socioeconomia/icg/` a `icg-icc/` en `6f09f74`, pero el rename nunca tocó `ICG_RAW_PATH` (`src/constantes.py`) ni ~7 referencias en README/CLAUDE.md/docs que seguían citando la ruta vieja — correr `icg_exportar_csv` tiraba `FileNotFoundError`. Corregido en esta pasada (código y documentación) | `data/socioeconomia/ICG.md`, `data/socioeconomia/icg-icc/README.md` |
-| Panel temporal de ventanas electorales (`src/ml_models/`) | Dominio nuevo entero, no existía a v7.4.0: una fila por transición electoral (año×nivel), cruzando resultado electoral local con las series del dominio macro, para modelado futuro. Cinco fases — calendario/oficialismo/ventanas (`construir_calendario.py`), resultado por distrito con fallback a `data/tfi_data/elecciones/` para 2001-2009 (`construir_resultado_distrito.py`), registro de variables económicas (`cargar_series_economicas.py`), features intra/interventana + `panel_ventanas.csv` (`features_ventana.py`/`construir_panel_ventanas.py`), y panel trimestral en formato largo sobre la ventana corta `_vc` (`data/tfi_data/panel/t-1/`) y sobre el bloque largo `_vl` t-2→t (`data/tfi_data/panel/t-2/`, 28 ventanas, no 31 — la primera transición de cada nivel no tiene bloque largo). `cargar_panel()` exige `nivel` sin default a propósito (D7/D10, no pooling accidental de los tres niveles) | `docs/especificaciones/especificacion_panel_temporal.md`, `docs/decisiones_metodologicas.md`, `CLAUDE.md` ("`src/ml_models/`") |
+| Panel temporal de ventanas electorales (`src/ml_models/`) | Dominio nuevo entero, no existía a v7.4.0: una fila por transición electoral (año×nivel), cruzando resultado electoral local con las series del dominio macro, para modelado futuro. Cinco fases — calendario/oficialismo/ventanas (`construir_calendario.py`), resultado por distrito con fallback a `data/tfi_data/elecciones/` para 2001-2009 (`construir_resultado_distrito.py`), registro de variables económicas (`cargar_series_economicas.py`), features intra/interventana + `panel_ventanas.csv` (`features_ventana.py`/`construir_panel_ventanas.py`), y panel trimestral en formato largo sobre la ventana corta `_vc` (`data/tfi_data/panel/t-1/`) y sobre el bloque largo `_vl` t-2→t (`data/tfi_data/panel/t-2/`, 28 ventanas, no 31 — la primera transición de cada nivel no tiene bloque largo). `cargar_panel()` exige `nivel` sin default a propósito (D7/D10, no pooling accidental de los tres niveles). **Desde v8.0.0** (D18-D29, ver "v8.0.0 → v9.0.0" arriba): `distancias_ideologicas.csv` sucede a `distancia_oficialismo_alternativa`; el "modelado futuro" que este dominio prometía ya corrió en 5 notebooks (LASSO+LOO-CV por variable dependiente, bayesiano jerárquico, H2/H3), con `icg_pendiente_vc`/`emae_pendiente_vc` como primer hallazgo sustantivo real | `docs/especificaciones/especificacion_panel_temporal.md`, `docs/decisiones_metodologicas.md`, `CLAUDE.md` ("`src/ml_models/`") |
 
-Ninguna de las seis resuelve por sí sola "Separar exploración y contraste" (fila de arriba en "Plan de trabajo") — son insumos nuevos para ese cruce, no el cruce en sí; el panel temporal en particular es el que más cerca está de ese cruce (junta lo electoral con lo macro por fecha), pero es insumo para modelado, no el cruce/análisis descriptivo en sí que pide la Sección 10.
+A v8.0.0, ninguna de las seis resolvía por sí sola "Separar exploración y contraste" (fila de arriba en "Plan de trabajo") — eran insumos nuevos para ese cruce, no el cruce en sí. Desde entonces el panel temporal dejó de ser solo insumo: las 5 notebooks de modelado (ver fila de arriba y "v8.0.0 → v9.0.0") corren el cruce real — sigue sin ser el análisis descriptivo/interpretativo que pide la Sección 10 (de ahí que "Separar exploración y contraste" pase a 🟡, no a 🟢).
 
 ## Sección 10
 
@@ -251,3 +251,87 @@ elecciones-socioeconomía/macroeconomía/ICG) — sigue siendo el trabajo
 pendiente central del proyecto. El panel temporal es insumo para ese
 cruce (junta lo electoral con lo macro por fecha, ver "Ampliaciones de
 alcance"), no el cruce/análisis descriptivo en sí.
+
+## v8.0.0 → v9.0.0 (2026-09-04 a 2026-09-19, 4 tags + una reorganización de archivos)
+
+**Esta sí es la pasada que primero cruza lo electoral con lo macro/ICG/EPH
+en un análisis real, no solo insumo**: cinco notebooks de modelado
+(`01.1`/`01.2`/`01.3_lasso_*.ipynb` por variable dependiente, `02_bayes.ipynb`
+jerárquico bayesiano, `03_desplazamiento_ideologico.ipynb` para H2/H3,
+`04_lasso_eph_local.ipynb` con universo exclusivamente EPH) corren LASSO
+con LOO-CV y un modelo bayesiano jerárquico sobre `panel_ventanas.csv`,
+con resultado sustantivo real: `icg_pendiente_vc` y, más recientemente,
+`emae_pendiente_vc` sobreviven con coeficiente estable en el chequeo de
+estabilidad leave-one-transition-out a nivel municipal/nacional
+respectivamente (D28/D29, ver `docs/decisiones_metodologicas.md`). Esto
+**no cierra** "Separar exploración y contraste" (Plan de trabajo, seguía
+🔴) ni Sección 10 — no hay todavía una lectura interpretativa publicada
+de esos coeficientes ni un contraste RF/GB — pero es la primera vez que
+existe una corrida real, no solo el panel armado. Verificado con
+`pytest`: **619 tests** (526 a v8.0.0, +93 — íntegro de este tramo,
+`tests/ml_models/test_construir_distancias_ideologicas.py` y el resto de
+la limpieza de `panel_ventanas.csv`/`lasso.py`; la reorganización de
+archivos de cierre de este tramo no sumó ni restó tests, ver más abajo).
+
+Por tag, verificado contra `git log`/el código real, no supuesto:
+
+- **v8.1.0** (`71bb226`): `data/tfi_data/distancias_ideologicas.csv`
+  (D18, 227 filas reales verificadas — grano nivel×año×agrupación,
+  reemplaza `distancia_oficialismo_alternativa`, que queda deprecada in
+  situ, no borrada — ver nota de seguimiento agregada a D18 en esta
+  misma pasada de v9.0.0) y `magnitud_desplazamiento_ideologico`/
+  `cuadrante_desplazamiento` para H2/H3.
+- **v8.2.0** (`70b0646`): `docs/` reorganizado en `docs/especificaciones/`
+  (9 archivos, verificado); quinta pestaña interactiva,
+  `docs/distancia_por_fuerza_la_plata.html`
+  (`src/visualizacion/distancia_por_fuerza.py`, D18) — el bullet
+  "Mapa interactivo + GitHub Pages" de "Ampliaciones de alcance" abajo
+  seguía diciendo "cuatro scripts", corregido a cinco en esta pasada.
+- **Antes de v8.3.0** (`2579d50`): D17 corrige un bug real que dejaba
+  `ausentismo` vacío para 2025 provincial/municipal; D19 unifica
+  participación/voto exit (blanco+nulo) por el cambio de régimen legal
+  de la Ley 5.109 (2025 ya no distingue nulo de blanco).
+- **v8.3.0** (`2ab41ab`): EPH extendida de 2011-2025 a **2003T3-2025T4**
+  (Wayback Machine para el tramo histórico) e ICG a **país 2001 / La
+  Plata 2008** — el bullet de ICG en "Ampliaciones de alcance" ya
+  arrastraba el dato viejo ("2011-presente"), corregido en esta pasada.
+- **Sin tag propio, entre v8.3.0 y la reorganización**: D20 (retiro de
+  `sin_oficialismo`, nunca se activó), D21 (6 variables EPH al registro),
+  D22-D26 (limpieza de `panel_ventanas.csv`: se sacan 3 columnas
+  redundantes de voto-exit, `resultado_disponible`, `X_final_vl`/
+  `X_mejoro`; se blinda la metadata de ventana contra leakage), D27-D29
+  (filtro por sufijo `_vc` reemplazado por exclusión explícita, dos bugs
+  de varianza-cero corregidos en `lasso.py`, hallazgo de
+  `emae_pendiente_vc`). `graficos/agrupaciones/<año>/` se sacó del repo
+  (atrasado frente a `graficos/tfi/v-party/`, que ya cubre 2001-2025) —
+  por eso `graficos/` pasó de **65 a 21 archivos trackeados** (verificado
+  con `git ls-files graficos/`), no es una regresión de cobertura, es la
+  excepción vieja quedando sin uso.
+- **v9.0.0** (`34f95ce`, reorganización de archivos, D30 — ver
+  `docs/decisiones_metodologicas.md`): `src/socioeconomia/geo.py` →
+  `src/geolocalizacion/geo.py`; `vparty_cuadrantes_local.py` dividido
+  (deprecadas borradas, resto a `vparty_localidad.py`); 63 comentarios
+  de sección borrados aplicando el skill de comentarios al pie de la
+  letra; `src/macroeconomia/` extendido de 2011-2025 a 2001-2025;
+  `02_bayes.ipynb` reemplazado por su continuación reejecutada. Sin
+  cambios de lógica de modelado — por eso el conteo de tests no se movió
+  en este tramo. Dos hallazgos quedaron señalados, no resueltos a
+  propósito (alcance additive-only, no metodológico): `catalogo_series.csv`
+  (`src/macroeconomia/`) tiene `cobertura_desde` más optimista que el
+  dato real en caché para 10/20 conceptos (`SISTEMATIZACION_VARIABLES_MACRO.md`
+  §8); `distancia_oficialismo_alternativa` sigue en
+  `panel_ventanas.csv`/`cargar_panel.py` (nota de seguimiento adjunta a
+  D18).
+
+**Verificado en esta pasada, no asumido**: cobertura V-Party
+(`vparty_economico` poblado) subió de 356/557 a **388/557** filas de
+`clasificacion_ideologica_agrupaciones.csv`; `filiacion_politica` subió
+de 193/237 a **207/237** agrupaciones únicas (30 sin, antes 44) — el
+hueco de procedencia documentado en 8.2 (qué README explica de dónde
+sale cada fila) no se investigó en este tramo, sigue creciendo en la
+misma proporción que el total. `data/` completo pesa **513 MB** (439 MB
+a v8.0.0, +74 MB — EPH histórico 2003-2015 nuevo más el rango 2001-2010
+de `src/macroeconomia/`); el `.git` empaquetado son **111 MB** (~98 MB
+antes). Mismo diagnóstico de siempre sobre el peso del repo (8.1 ítem
+14): no es bloat, es dato real cacheado a propósito, la única palanca
+real sigue siendo dejar de trackear `data/distrito/**/*.csv`.
