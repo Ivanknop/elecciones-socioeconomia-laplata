@@ -24,7 +24,9 @@ la decisión de qué incorporar. `icg`, `desocupacion`, `ipc`, `tc_oficial`,
 `reservas`, `icc`, `emae`, `salario_real` y `resultado_fiscal` (Parte I y
 parte de la Parte II) ya están adoptadas — su cobertura real y estado
 vigente vive en `data/tfi_data/registro_variables.csv` y
-`docs/especificaciones/plan_macroeconomia.md`, no acá. El resto de la
+`data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md`, no acá (la
+evaluación previa completa, `plan_macroeconomia.md`, quedó como trabajo
+interno no versionado). El resto de la
 Parte II y toda la Parte III siguen siendo candidatas sin incorporar — ver
 también la lista corta en `especificacion_panel_temporal.md` §4.3.
 

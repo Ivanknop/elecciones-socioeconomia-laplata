@@ -131,7 +131,7 @@ class TestCargarEscalaIdeologica:
 
     def test_ideologias_del_modulo_viene_del_csv_versionado(self):
         # Nunca hardcodeada de nuevo en el módulo -- `data/agrupaciones/campo_ideologico.csv`
-        # es la única fuente (ver §2.1 de docs/especificaciones/PLAN_CORRECCIONES_ELECTORALES.md).
+        # es la única fuente (ver docs/auditoria_interna/PLAN_CORRECCIONES_ELECTORALES.md §2.1, interno).
         assert IDEOLOGIAS == _cargar_escala_ideologica()
 
 

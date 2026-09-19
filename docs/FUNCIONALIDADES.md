@@ -908,9 +908,9 @@ Un dominio analítico separado del electoral y del socioeconómico:
 apertura regional), se relaciona con el resto del repositorio por fecha,
 nunca por unidad espacial ni por join territorial. El detalle completo de
 fuentes evaluadas, decisiones de diseño y catálogo variable por variable
-está en `docs/especificaciones/plan_macroeconomia.md`; la cobertura real
-obtenida, las salvedades encontradas al implementar y el resultado de la
-auditoría externa están en
+está en `docs/auditoria_interna/plan_macroeconomia.md` (trabajo interno,
+no versionado); la cobertura real obtenida, las salvedades encontradas
+al implementar y el resultado de la auditoría externa están en
 `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md`.
 
 - **`src/macroeconomia/datos_gob_client.py`**: cliente de descarga+caché

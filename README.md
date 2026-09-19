@@ -161,10 +161,10 @@ construir algo — algunas ya ejecutadas, se conservan como registro).
 - Para una **especificación no técnica del proyecto** (qué pregunta
   intenta responder, qué falta, para quién no sabe de código), ver
   [`docs/especificaciones/ESPECIFICACION_NO_TECNICA.md`](docs/especificaciones/ESPECIFICACION_NO_TECNICA.md).
-- Para **fuentes evaluadas y catálogo de la capa macroeconómica**, ver
-  [`docs/especificaciones/plan_macroeconomia.md`](docs/especificaciones/plan_macroeconomia.md) (y
-  `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` para la
-  cobertura real obtenida).
+- Para la **cobertura real obtenida de la capa macroeconómica**, ver
+  `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` (la
+  evaluación de fuentes previa a implementarla es trabajo interno, no
+  versionado, ver más abajo).
 - Para el **diseño de investigación completo** (hipótesis, alcance válido
   de las inferencias, la falacia ecológica a evitar), ver
   [`docs/especificaciones/nota_metodologica.md`](docs/especificaciones/nota_metodologica.md).
@@ -173,9 +173,11 @@ construir algo — algunas ya ejecutadas, se conservan como registro).
   [`docs/especificaciones/especificacion_panel_temporal.md`](docs/especificaciones/especificacion_panel_temporal.md).
 - `docs/especificaciones/ESPECIFICACION_CAPA_ELECTORAL.md` — histórica,
   reemplazada por `docs/FUNCIONALIDADES.md` (ver nota en el propio archivo).
-- `docs/especificaciones/PLAN_CORRECCIONES_ELECTORALES.md`/
-  `PLAN_DISTRIBUCION_IDEOLOGICA_INTERACTIVA.md` — planes internos ya
-  resueltos, conservados como registro histórico.
+
+Tres planes de trabajo internos ya resueltos (correcciones electorales,
+diseño de la pestaña de distribución ideológica, evaluación de fuentes
+macroeconómicas) quedaron como trabajo interno, no versionado — existe
+documentación local con el detalle real, no pública en este repo.
 
 Documentos que **no** están en `docs/` porque describen un dataset
 puntual y viven al lado de él (ver `CLAUDE.md` para el detalle de cada

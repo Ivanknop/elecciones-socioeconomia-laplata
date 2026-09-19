@@ -486,7 +486,8 @@ order, 01→04) are the pipeline**.
 - **`src/macroeconomia/`** is a separate analytical domain: **national-grain
   only** (no circuito, no localidad), related to the rest of the repo by
   date, never by spatial join. Source evaluation and per-variable design
-  in `docs/especificaciones/plan_macroeconomia.md`; actual coverage in
+  in `docs/auditoria_interna/plan_macroeconomia.md` (internal working
+  document, not tracked); actual coverage in
   `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md`.
   `datos_gob_client.py` fetches+caches from datos.gob.ar; `series.py`/
   `series_anuales.py` build the monthly/annual CSVs. **No cell is ever
@@ -540,12 +541,13 @@ order, 01→04) are the pipeline**.
 - `mesas_esperadas` / `mesas_totalizadas_porcentaje` are always `0` in the
   already-downloaded data (the API only fills them for live elections) —
   don't treat this as a bug to fix or backfill.
-- A prior audit (`docs/especificaciones/PLAN_CORRECCIONES_ELECTORALES.md`)
+- A prior audit (`docs/auditoria_interna/PLAN_CORRECCIONES_ELECTORALES.md`)
   tracked known data-quality issues and fixes, nearly all resolved by now
-  — kept as historical record, not actively maintained. It was untracked
-  (gitignored as an internal working document) until the `docs/especificaciones/`
-  reorganization made it tracked; `git log` on it only shows history from
-  that point forward.
+  — kept as an internal working document, not a repo deliverable. It was
+  untracked originally, got tracked during the `docs/especificaciones/`
+  reorganization, and went back to untracked (moved under
+  `docs/auditoria_interna/`) after the `reorganizacion` branch — `git log`
+  on it only shows history from the window in between.
 - **Commit messages: ~20 words, one line, no body.** Summarize the change
   itself (what/why), not a narration of the session that produced it —
   same terseness `git log` already shows for this repo's history.

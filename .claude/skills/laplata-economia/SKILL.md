@@ -14,9 +14,10 @@ código), ver el skill `laplata-general` primero.
 
 ## Antes de escribir código
 
-- `docs/especificaciones/plan_macroeconomia.md` -- evaluación completa de fuentes y
-  diseño por variable, incluyendo el "Rediseño posterior" que abandonó
-  un primer diseño con forward-fill.
+- `docs/auditoria_interna/plan_macroeconomia.md` -- evaluación completa de
+  fuentes y diseño por variable, incluyendo el "Rediseño posterior" que
+  abandonó un primer diseño con forward-fill. Documento de trabajo
+  interno, no versionado -- solo disponible con el checkout local.
 - `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` -- qué se
   terminó bajando, su cobertura real, y los hallazgos de la última
   auditoría manual contra estadisticasbcra.com -- incluye un bug de
@@ -48,7 +49,7 @@ src/macroeconomia/auditoria_estadisticasbcra.py  # cruce manual puntual contra e
   (o, en series diarias, para algún día hábil de ese mes); si no, queda
   vacía y `observaciones` lo declara. Un forward-fill le daría
   apariencia de granularidad mensual real a una serie trimestral/anual
-  -- ver `docs/especificaciones/plan_macroeconomia.md`, "Rediseño posterior", para el
+  -- ver `docs/auditoria_interna/plan_macroeconomia.md`, "Rediseño posterior", para el
   diseño anterior que se abandonó por esto.
 - **Frecuencia mensual y anual van en catálogos y CSV separados**, no
   en una sola grilla mensual -- una serie anual en grilla mensual queda
@@ -65,8 +66,8 @@ src/macroeconomia/auditoria_estadisticasbcra.py  # cruce manual puntual contra e
 
 ## Referencias
 
-- `docs/especificaciones/plan_macroeconomia.md` -- evaluación de fuentes y diseño por
-  variable.
+- `docs/auditoria_interna/plan_macroeconomia.md` -- evaluación de fuentes y diseño por
+  variable (interno, no versionado).
 - `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` -- cobertura
   real y auditoría.
 - `CLAUDE.md` -- comandos exactos y arquitectura autoritativa.
