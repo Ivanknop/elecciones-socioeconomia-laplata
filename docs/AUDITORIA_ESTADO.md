@@ -121,14 +121,14 @@ Sección 5.3 tienen ahora un primer avance:
   134.
 - **Escala comparable entre gráficos**: se agregó en `cfb2c39` como
   `vparty_cuadrantes_local._limites_globales()` (rango fijo y simétrico
-  respecto de 0, en vez de uno recalculado por PNG) y sigue vigente, pero
-  cambió de dueño: la pestaña interactiva ya no la llama desde ahí —
-  `distribucion_ideologica_interactiva.py` usa hoy
+  respecto de 0, en vez de uno recalculado por PNG); esa función se borró
+  en D30 (sin importador ni test desde que la pestaña interactiva dejó de
+  llamarla) — `distribucion_ideologica_interactiva.py` usa hoy
   `vparty_distribucion_tfi.limites_globales()` (mismo criterio, fuente de
   datos distinta, ver bullet siguiente). El PNG estático equivalente
   también migró: `analisis.vparty_distribucion_tfi.graficar_cuadrantes_eleccion`
   reemplazó a `vparty_cuadrantes_local.graficar_cuadrantes_partido`
-  (deprecado, ver `CLAUDE.md`). **Sigue sin corregirse**, a propósito:
+  (borrado en D30, ver tag `v8.3.0`). **Sigue sin corregirse**, a propósito:
   `vparty_cuadrantes.py::graficar_cuadrantes` (PNG nacional).
 - 🔒 **Cuadrante V-Party real por localidad — bloqueado**: el proyecto
   pasó a trabajar a nivel municipal, no circuito/localidad, así que este

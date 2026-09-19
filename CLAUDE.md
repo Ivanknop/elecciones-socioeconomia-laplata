@@ -71,7 +71,6 @@ PYTHONPATH=src python -m geolocalizacion.mapa      # one PNG with all 36 localid
 PYTHONPATH=src python3 src/analisis/generar_v_party_propio.py --encuesta data/agrupaciones/v-party/encuesta_partidos_propia.csv --referencia data/agrupaciones/clasificacion_ideologica_agrupaciones.csv --salida data/agrupaciones/v-party/v_party_propio.csv  # estimates vparty_economico/progresismo/populismo from an own expert survey for partidos without real V-Party coverage; estimar_partido_cobertura_parcial() (same module) is a separate ad hoc helper for partidos evaluated by only a subset of experts, see data/agrupaciones/v-party/README.md
 PYTHONPATH=src python -m analisis.completar_clasificacion_historica  # append-only: adds 2001-2009 rows to clasificacion_ideologica_agrupaciones.csv from data/tfi_data/elecciones/, idempotent (no-op if already incorporated)
 PYTHONPATH=src python -m analisis.vparty_cuadrantes         # national V-Party cuadrantes scatter (Diputados 2001-2019), one JSON (tracked) + PNG (local)
-PYTHONPATH=src python -m analisis.vparty_cuadrantes_local   # DEPRECADO (see Architecture below) -- superseded by ml_models.construir_elecciones's data/tfi_data/elecciones/<año>_<nivel>.csv
 PYTHONPATH=src python -m analisis.vparty_distribucion_tfi   # V-Party cuadrantes PNG per (año,nivel) from data/tfi_data/elecciones/, 2001-2025, writes graficos/tfi/v-party/<año>_<nivel>.png
 PYTHONPATH=src python -m socioeconomia.icg_exportar_csv  # ICG (UTDT) headline + 6 demographic-cut CSVs to data/socioeconomia/icg/ (país from 2001, La Plata from 2008 -- La Plata isn't in the UTDT panel before then); needs data/socioeconomia/icg-icc/Base_histórica_2001-presente-ICG.dta placed manually first, see data/socioeconomia/icg-icc/README.md
 PYTHONPATH=src python -m socioeconomia.icg_graficos  # La Plata vs. país ICG time series PNG from the headline CSV above
@@ -109,19 +108,19 @@ modes render, known negative-`ausentismo` circuitos are visually
 flagged) rather than by running notebooks, since there's no notebook in
 this path. `src/visualizacion/distribucion_ideologica_interactiva.py`
 reuses `analisis.vparty_distribucion_tfi.cargar_eleccion`/`combos_disponibles`/
-`limites_globales` and `vparty_cuadrantes_local._color_por_partido` as-is
+`limites_globales` and `vparty_localidad._color_por_partido` as-is
 (already covered by `tests/analisis/test_vparty_distribucion_tfi.py`/
-`tests/analisis/test_vparty_cuadrantes_local.py`) and `construir_payload`
+`tests/analisis/test_vparty_localidad.py`) and `construir_payload`
 itself has no dedicated test — same untested-orchestration criterion as
 `mapa_interactivo.construir_payload`; its template
 (`distribucion_ideologica_template.html`) is validated the same way, a
 headless Chromium pass.
 `src/socioeconomia/eph_client.py` (URL/filename resolution, the historical
 DBF-era file lookup, and the labor-indicator aggregation core — no
-network) is covered by `tests/socioeconomia/test_eph_client.py`; `src/socioeconomia/geo.py`
+network) is covered by `tests/socioeconomia/test_eph_client.py`; `src/geolocalizacion/geo.py`
 (circuito_id canonicalization and the area-weighted circuito↔radio spatial
 join, tested against synthetic polygons, not real data) by
-`tests/socioeconomia/test_geo.py`; the pure gap-detection helpers plus
+`tests/geolocalizacion/test_geo.py`; the pure gap-detection helpers plus
 `datos_iaelap_general`/`datos_iaelap_sectorial` (the JSON-contract
 counterparts of `graficar_iaelap_general`/`graficar_iaelap_sectorial`,
 written by notebook 06 to `graficos/socioeconomia/iaelap_general.json`/
@@ -225,51 +224,37 @@ order, 01→04) are the pipeline**.
   pure and covered by
   `tests/analisis/test_completar_clasificacion_historica.py`.
 
-  `src/analisis/vparty_cuadrantes_local.py` plots those same
-  `vparty_economico`/`progresismo`/`populismo` columns against La Plata's
-  own election results instead of the national V-Party dataset, for
-  **distrito** (whole La Plata, via
-  `electoral.totales.resultado_total_por_agrupacion`). It only generates
-  this one grain: one point per party with **color = familia política**
-  (`filiacion_politica`, via `graficar_cuadrantes_partido`) and **size =
-  % of that party's votes** in that election; populismo is deliberately
-  left out of the encoding for now (still available as a `tabla_distrito`
-  column for whoever wants to add it back). Only agrupaciones with a
-  populated `vparty_economico` for that (año, cargo) are plotted — same
-  silent-skip criterion as `vparty_cuadrantes.cargar_posiciones`, nothing
-  is approximated here.
+  `src/analisis/vparty_localidad.py` (renamed from `vparty_cuadrantes_local.py`
+  in the `reorganizacion` branch, D30) holds `vparty_economico`/`progresismo`/
+  `populismo` positions against La Plata's own election results instead of
+  the national V-Party dataset, at **distrito** grain (whole La Plata, via
+  `electoral.totales.resultado_total_por_agrupacion`) and at **localidad**
+  grain (`tabla_localidades`, via `electoral.localidades.agrupar_resultados_por_localidad`
+  — no live caller as of this writing, `src/visualizacion/distribucion_ideologica_interactiva.py`
+  dropped its per-localidad panel when it moved to `data/tfi_data/elecciones/`;
+  kept as the D8 per-localidad secondary analysis, not deleted, revive it if
+  that breakdown comes back). **The deprecated plotting path
+  (`generar_distrito()`/`graficar_cuadrantes_partido()`/`_registros_json()`/
+  the CLI `main()`) was deleted in D30**, not just marked deprecated — it had
+  zero external importers and its JSON/PNG output
+  (`graficos/agrupaciones/<año>/v_party_<nivel>.{json,png}`) was already out
+  of the repo and `.gitignore`d before the deletion. Full rationale for why
+  it became redundant against `data/tfi_data/elecciones/<año>_<nivel>.csv`
+  (`ml_models.construir_elecciones`) is in tag `v8.3.0`; the deleted code
+  itself is recoverable via tag `pre-reorganizacion` if ever needed again.
 
-  **`generar_distrito()`/`graficar_cuadrantes_partido()`/the CLI
-  (`main()`) are DEPRECATED**, superseded by
-  `data/tfi_data/elecciones/<año>_<nivel>.csv`
-  (`ml_models.construir_elecciones`) — full rationale (JSON-vs-CSV diffs,
-  silently-dropped rows, the `votos_porcentaje` convention mismatch) is in
-  tag `v8.3.0`, not repeated here. The code isn't deleted (still runs
-  standalone if invoked directly) but isn't part of the pipeline anymore
-  and shouldn't be extended — see the module's own docstring for the same
-  note.
-  `tabla_localidades()` (localidad-grain
-  aggregation via `electoral.localidades.agrupar_resultados_por_localidad`)
-  stays in the module as a library function, still pure and tested, but as
-  of this writing has **no live caller** —
-  `src/visualizacion/distribucion_ideologica_interactiva.py` dropped its
-  per-localidad panel (map + per-circuito click) when it moved to
-  `data/tfi_data/elecciones/` as its data source (see that section below).
-  Not deleted, just orphaned — revive it if a per-localidad breakdown
-  comes back.
-
-  The deprecated PNG output now has an actual successor:
-  `src/analisis/vparty_distribucion_tfi.py` reads
+  The deprecated PNG output's actual successor is
+  `src/analisis/vparty_distribucion_tfi.py`, which reads
   `data/tfi_data/elecciones/<año>_<nivel>.csv` directly (not
   `resultado_total_por_agrupacion`/`clasificacion_ideologica_agrupaciones.csv`
-  like `generar_distrito`) and writes one PNG per (año, nivel) to
+  like the deleted `generar_distrito`) and writes one PNG per (año, nivel) to
   `graficos/tfi/v-party/<año>_<nivel>.png` — crucially this covers
   **2001-2025**, including the years without `circuito_<cargo>.json`
   (2001-2009) that `generar_distrito` could never produce. It reuses only
-  `_color_por_partido`/`_sombras` from this module (still active) and
-  defines its own plotting function (`graficar_cuadrantes_eleccion`)
-  instead of the deprecated `graficar_cuadrantes_partido`, on purpose, to
-  avoid extending deprecated code. `graficos/tfi/v-party/` is
+  `_color_por_partido`/`_sombras` from `vparty_localidad.py` (still active)
+  and defines its own plotting function (`graficar_cuadrantes_eleccion`)
+  instead of the deleted `graficar_cuadrantes_partido`, on purpose, to avoid
+  extending code from the deprecated path. `graficos/tfi/v-party/` is
   `.gitignore`d like the rest of on-demand `graficos/`, not one of the
   tracked exceptions.
 
@@ -300,26 +285,15 @@ order, 01→04) are the pipeline**.
   legislative years of the *same* level of government — a given year only
   ever has one of the two (never both), so treating the 6 `data/distrito/`
   directory names as 6 independent levels would split each into a sparse
-  ~4-election series instead of the full 2011-2025 run. This script reuses
-  `NIVELES`/`_puntos_del_nivel` from `analisis.serie_temporal` (the same
-  mapping that combined script already uses to merge both cargos into one
-  chart) instead of iterating the 6 directory names directly — `--nivel`
-  here takes one of `nacional`/`provincial`/`municipal`, not a
-  `data/distrito/` directory name. The `"gobernador"` → `"gobernacion"`
-  nivel-name mismatch between `data/distrito/` and
-  `clasificacion_ideologica_agrupaciones.csv` is resolved per-point (after
-  `_puntos_del_nivel` resolves which cargo applies to which año) via
-  `NIVEL_A_NIVEL_CSV`, imported from `totales_por_lista.py` rather than
-  redefined. (Deprecated) output was one JSON + PNG per (año, nivel) at
-  `graficos/agrupaciones/<año>/v_party_<nivel>.{json,png}` — removed from
-  the repo and `.gitignore`d (see the DEPRECATED note above; tag `v8.3.0`
-  has the full history). The CLI still works if run by hand and will
-  regenerate them locally:
-
-  ```bash
-  PYTHONPATH=src python -m analisis.vparty_cuadrantes_local        # deprecated, see above
-  PYTHONPATH=src python -m analisis.vparty_cuadrantes_local --nivel municipal
-  ```
+  series instead of one run per nivel. `vparty_localidad.tabla_distrito`/
+  `tabla_localidades` reuse `_puntos_del_nivel` from `analisis.serie_temporal`
+  (the same mapping that combined script already uses to merge both cargos
+  into one chart) instead of iterating the 6 directory names directly. The
+  `"gobernador"` → `"gobernacion"` nivel-name mismatch between
+  `data/distrito/` and `clasificacion_ideologica_agrupaciones.csv` is
+  resolved per-point (after `_puntos_del_nivel` resolves which cargo applies
+  to which año) via `NIVEL_A_NIVEL_CSV`, imported from `totales_por_lista.py`
+  rather than redefined.
 
   The one-scatter-per-nivel-colored-by-year variant stays available by
   calling `tabla_distrito` + `analisis.vparty_cuadrantes.graficar_cuadrantes`
@@ -328,17 +302,14 @@ order, 01→04) are the pipeline**.
   The join/aggregation/color logic (`cargar_posiciones_propias`,
   `cargar_filiaciones`, `tabla_distrito`, `_votos_por_circuito_agrupacion`,
   `tabla_localidades`, `_sombras`, `_color_por_partido`) is pure and
-  covered by `tests/analisis/test_vparty_cuadrantes_local.py`, no network
-  — but only `_color_por_partido`/`_sombras` still have a live caller
-  outside this module (`analisis.vparty_distribucion_tfi` and
+  covered by `tests/analisis/test_vparty_localidad.py`, no network — but
+  only `_color_por_partido`/`_sombras` still have a live caller outside this
+  module (`analisis.vparty_distribucion_tfi` and
   `visualizacion.distribucion_ideologica_interactiva`, both color-only).
   `cargar_posiciones_propias`/`cargar_filiaciones`/`tabla_distrito`/
-  `tabla_localidades`/`_votos_por_circuito_agrupacion`/`_limites_globales`
-  are orphaned as of this writing (see `tabla_localidades()` note above) —
-  kept, not deleted; the deprecated plotting wrapper
-  (`generar_distrito`/`graficar_cuadrantes_partido`) and `main()` were
-  already untested before being deprecated, same criterion as the rest of
-  `src/analisis/*`.
+  `tabla_localidades`/`_votos_por_circuito_agrupacion` are orphaned as of
+  this writing (see `tabla_localidades()` note above) — kept, not deleted,
+  same D8 protection as the rest of the per-localidad approach.
 
   `colorimetria_campo_ideologico.csv` (`campo_ideologico` value → hex, one
   row per one of the 6 labels in `campo_ideologico.csv`) and
@@ -409,7 +380,7 @@ order, 01→04) are the pipeline**.
   — the rest of `graficos/` (including every `.png`) is `.gitignore`d and
   regenerated on demand. `graficos/agrupaciones/<año>/<nivel>/*.json` used
   to be a tracked exception too; it was removed from the repo and
-  `.gitignore`d — see `vparty_cuadrantes_local.py`'s docstring for the
+  `.gitignore`d — see the `vparty_localidad.py` section above for the
   current pointer, and tag `v8.3.0` for the full history.
 
 - **`src/visualizacion/`** holds the five scripts that generate a full
@@ -476,7 +447,8 @@ order, 01→04) are the pipeline**.
   `voto_partido_distrito.csv` are now orphaned from that join**: still on
   disk, `construir_resultado_distrito.py` still runs standalone, but
   nothing in the Fase 5 pipeline reads or regenerates them anymore, same
-  "kept, not deleted" pattern as `vparty_cuadrantes_local` above.
+  "kept, not deleted" pattern as `vparty_localidad.py`'s orphaned
+  per-localidad functions above.
   `panel_ventanas.csv` (Fase 4) still joins against `resultado_distrito.csv`
   for `delta_v`/`gana_oficialismo`/`share_oficialismo` as before, plus
   (D18) now also against `elecciones.csv` for

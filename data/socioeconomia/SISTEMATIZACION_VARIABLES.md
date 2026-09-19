@@ -42,7 +42,7 @@ Dos capas distintas, con estados de avance muy distintos:
 viviendas totales ya contadas por INDEC (`B_POB_TOT`/`B_VIV_TOT` en 2010,
 `POB_TOT_P`/`VIV_TOT_P` en 2022) — esto **sí permite una comparación
 2010→2022 real**, ver §4. También está `circuito_radio_correspondencia.csv`
-(`src/socioeconomia/geo.py`), el cruce espacial circuito↔radio.
+(`src/geolocalizacion/geo.py`), el cruce espacial circuito↔radio.
 
 **b) Variables temáticas por radio (NO están, extracción manual pendiente):**
 país de nacimiento, nivel educativo, condición de actividad,

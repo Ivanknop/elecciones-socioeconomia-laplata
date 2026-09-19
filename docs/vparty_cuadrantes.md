@@ -100,7 +100,7 @@ Las mismas tres variables (`vparty_economico`, `vparty_progresismo`,
 `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` (356 de 557
 filas, 2001-2025), combinando V-Party real con una estimación propia por encuesta de
 expertos calibrada para caer en la misma escala — mismo modelo, así que
-los consumidores de esa columna (`vparty_cuadrantes_local.py`, etc.) no
+los consumidores de esa columna (`vparty_localidad.py`, etc.) no
 necesitan distinguir el origen. El detalle de qué fila viene de qué
 fuente y bajo qué criterio vive **solo** en
 `data/agrupaciones/v-party/README.md` — no se repite acá.
