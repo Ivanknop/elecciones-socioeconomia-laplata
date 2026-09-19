@@ -32,7 +32,7 @@ from constantes import (
 )
 from electoral.localidades import cargar_circuito_localidad_geo
 from electoral.totales import _combos_disponibles
-from socioeconomia.geo import canonicalizar_circuito_id
+from geolocalizacion.geo import canonicalizar_circuito_id
 
 TOP_N = 7
 

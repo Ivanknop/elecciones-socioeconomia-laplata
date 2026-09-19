@@ -20,7 +20,7 @@ from constantes import (
     CIRCUITOS_POR_LOCALIDAD_PATH,
     LOCALIDADES_LA_PLATA_PATH,
 )
-from socioeconomia.geo import cargar_circuitos_electorales
+from geolocalizacion.geo import cargar_circuitos_electorales
 
 
 @dataclass(frozen=True)
