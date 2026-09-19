@@ -15,7 +15,7 @@ Lo arma `src/geolocalizacion/circuitos_por_localidad.py`:
 PYTHONPATH=src python -m geolocalizacion.circuitos_por_localidad
 ```
 
-Columnas: `circuito` (id canónico, `socioeconomia.geo.canonicalizar_circuito_id`),
+Columnas: `circuito` (id canónico, `geolocalizacion.geo.canonicalizar_circuito_id`),
 `localidad` (nombre tal como aparece en `localidades_la_plata.csv`),
 `distancia_metros` (ver metodología).
 
@@ -28,7 +28,7 @@ ese punto, a qué localidad pertenecen; no dice nada de los otros ~40
 circuitos que no contienen ningún punto de localidad. La asignación acá
 es entonces: centroide de cada circuito (reproyectado a la UTM estimada
 de la capa de circuitos, mismo criterio que
-`socioeconomia.geo.calcular_correspondencia`, para que la distancia
+`geolocalizacion.geo.calcular_correspondencia`, para que la distancia
 salga en metros) contra el punto de localidad más cercano
 (`geopandas.sjoin_nearest`). Cada circuito queda con **exactamente una**
 localidad — nunca `SIN_DETERMINAR`, porque el nearest-neighbor siempre

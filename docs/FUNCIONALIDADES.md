@@ -335,7 +335,7 @@ gráficos, excepción explícita en `.gitignore`).
   **recalculando `votos_porcentaje` sobre el nuevo total** con
   `electoral.models.totalizar_agrupaciones` (no relee `data/totales/`, que
   es agnóstico de blanco/nulo a propósito). La consumen
-  `vparty_cuadrantes_local.py`, `comparativo_nivel.py`,
+  `vparty_localidad.py`, `comparativo_nivel.py`,
   `distribucion_ideologica_interactiva.py` y
   `ml_models/construir_calendario.py`/`construir_elecciones.py`.
 
@@ -368,10 +368,10 @@ gráficos, excepción explícita en `.gitignore`).
   `data/tfi_data/elecciones/<año>_<nivel>.csv` — a diferencia del resto de
   esta sección (que arranca de `circuito_<nivel>.json`), cubre **2001-2025**
   porque esos CSV no dependen de tener geometría de circuito. Reemplaza en
-  los hechos al generador deprecado
-  `analisis.vparty_cuadrantes_local.generar_distrito` (ver CLAUDE.md), pero
-  sin extender ese módulo: solo reusa `_color_por_partido`/`_sombras` de
-  ahí (aún activas) y define su propio `graficar_cuadrantes_eleccion`.
+  los hechos al generador `analisis.vparty_cuadrantes_local.generar_distrito`,
+  borrado en D30 (ver tag `v8.3.0`), pero sin extender ese código: solo
+  reusa `_color_por_partido`/`_sombras` de `vparty_localidad.py` (aún
+  activas) y define su propio `graficar_cuadrantes_eleccion`.
   Límites de eje fijos y simétricos respecto de 0
   (`limites_globales`, sobre toda la cobertura cargada), calculados una
   sola vez para que los 34 PNG sean comparables entre sí. Escribe en
@@ -526,7 +526,7 @@ tamaño = % de votos del partido en esa elección (sobre el total de la
 elección: agrupaciones + BLANCO + NULO, aunque BLANCO/NULO no se grafican
 por no tener V-Party), color = familia política (`filiacion_politica`,
 sombreada por partido dentro de la familia, mismas
-`_color_por_partido`/`_sombras` de `vparty_cuadrantes_local`, aún activas
+`_color_por_partido`/`_sombras` de `vparty_localidad`, aún activas
 para esto). **Todos los puntos se muestran de la misma forma, sin
 distinguir V-Party real de estimación propia** — de qué fuente viene cada
 valor está documentado en un único lugar,
@@ -543,11 +543,11 @@ enviada una sola vez en el payload (`eje_limites`) y nunca recalculada por
 render: el (0,0) siempre cae en el centro visual del gráfico, y el rango
 no cambia al pasar de año o nivel, así el autoplay no reescala el chart.
 
-No modifica `vparty_cuadrantes_local.py` — solo reusa
+No modifica `vparty_localidad.py` — solo reusa
 `_color_por_partido`/`_sombras`, que siguen activas; el resto de ese
 módulo (`tabla_distrito`, `tabla_localidades`, `cargar_posiciones_propias`,
-`cargar_filiaciones`, `_limites_globales`) quedó sin llamador desde que
-esta pestaña dejó de usarlo, ver CLAUDE.md. El equivalente en PNG estático
+`cargar_filiaciones`) quedó sin llamador desde que esta pestaña dejó de
+usarlo, ver CLAUDE.md. El equivalente en PNG estático
 por (año, nivel) es `analisis.vparty_distribucion_tfi` (sección "Gráficos"
 más abajo) — mismo dato, mismo criterio de color, salida a
 `graficos/tfi/v-party/` en vez de un payload JSON.
@@ -729,7 +729,7 @@ reemplaza acá).
 
 **Correspondencia circuito electoral ↔ radio censal**
 (`data/socioeconomia/circuito_radio_correspondencia.csv`, construida por
-`src/socioeconomia/geo.py`): circuitos electorales y radios censales son
+`src/geolocalizacion/geo.py`): circuitos electorales y radios censales son
 geografías de instituciones distintas sin id compartido, así que la
 correspondencia es un join espacial (`geopandas`), no un lookup por id como
 `circuito_id_correspondencias.csv`. Cada radio censal (2010 y 2022, cargados

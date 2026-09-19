@@ -1,4 +1,4 @@
-# Sistematización de variables macroeconómicas nacionales (2011-2025)
+# Sistematización de variables macroeconómicas nacionales (2001-2025)
 
 Documento de referencia de la capa `src/macroeconomia/`: qué se relevó, con
 qué cobertura real, qué salvedades aparecieron al implementarlo, y qué queda
@@ -16,14 +16,17 @@ documentada en la sección 3.1.
 20 conceptos de frecuencia diaria/mensual/trimestral, todos de grano
 **nacional** (sin apertura regional), en
 `data/macroeconomia/catalogo_series.csv`, volcados a
-`data/macroeconomia/series_macro_2011_2025.csv`: una fila por mes
-(2011-01 a 2025-12, 180 filas), una columna por concepto, más
+`data/macroeconomia/series_macro_2001_2025.csv`: una fila por mes
+(2001-01 a 2025-12, 300 filas), una columna por concepto, más
 `observaciones`. Los 2 conceptos de frecuencia **anual**
 (`gasto_deuda_publica_nivel`/`_pib`) viven aparte, en
 `data/macroeconomia/catalogo_series_anuales.csv` /
-`series_macro_anuales_2011_2025.csv` — una fila por **año** en vez de por
+`series_macro_anuales_2001_2025.csv` — una fila por **año** en vez de por
 mes (ver "Split a catálogo anual" en `docs/especificaciones/plan_macroeconomia.md`; motivo
-y cobertura en la sección 2.1 de este documento).
+y cobertura en la sección 2.1 de este documento). **Sección 2 (cobertura
+por concepto) todavía refleja la corrida sobre 2011-2025** -- ver §8 para
+el hallazgo que motivó recortar el alcance de esta pasada y dejar la
+tabla completa para una siguiente etapa.
 
 **Rediseño (2026-08): sin forward-fill.** La primera versión de este
 pipeline repetía el último valor publicado en los meses siguientes para
@@ -265,3 +268,48 @@ Requiere un token propio de `estadisticasbcra.com/api/registracion`
 (gratuito, 100 consultas/día) — nunca se guarda en el repo. No es parte de
 `macroeconomia.series` ni corre en cada regeneración del CSV, según lo
 decidido en `docs/especificaciones/plan_macroeconomia.md` §5 punto 5.
+
+## 8. Pendiente: `cobertura_desde` de `catalogo_series.csv` no coincide con el caché real (hallazgo 2026-09-19)
+
+Al extender `series.py`/`series_anuales.py` de 2011-2025 a 2001-2025
+(reorganización del repo, rama `reorganizacion`), se comparó el primer
+mes con dato real de cada concepto en el CSV regenerado contra la
+columna `cobertura_desde` que el catálogo promete. **10 de los 20
+conceptos mensuales/diarios tienen su primer dato real más tarde de lo
+que el catálogo indica** — el hueco no lo generó este cambio, estaba
+oculto porque el CSV nunca había bajado de 2011:
+
+| concepto | `cobertura_desde` (catálogo) | primer dato real en el caché actual |
+|---|---|---|
+| tipo_cambio_oficial | 1992-01 | 2001-01 |
+| ripte | 1994-07 | 2001-01 |
+| tasa_badlar | 1999-01 | 2010-01 |
+| tipo_cambio_mayorista | 2002-03 | 2010-01 |
+| base_monetaria | 2003-01 | 2010-01 |
+| pbi | 2006-01 | 2010-01 |
+| tasa_empleo | 2003-01 | 2010-01 |
+| tasa_actividad | 2003-01 | 2010-01 |
+| comercio_exterior_cobros | 2003-01 | 2010-01 |
+| comercio_exterior_pagos | 2003-01 | 2010-01 |
+
+Los otros 10 conceptos (`reservas_internacionales`, `tasa_politica_monetaria`,
+`ipc_nacional`, `canasta_basica_alimentaria`/`_total`, `emae`,
+`tasa_desocupacion`, `indice_salarios_total`/`_privado_registrado`/`_publico`)
+coinciden exactamente entre catálogo y caché.
+
+Nótese el agrupamiento en `2010-01` para 8 de los 10 casos — sugiere una
+causa común (posible límite real del endpoint `datos.gob.ar` para esos
+`id_datos_gob` puntuales, distinto de la cobertura histórica que
+documentaba originalmente `plan_macroeconomia.md`) en vez de 8 errores
+de tipeo independientes. Podría estar relacionado con la discrepancia ya
+señalada en §6 contra `estadisticasbcra.com` para `base_monetaria`/
+`tasa_badlar` (magnitud distinta, no solo cobertura) — mismo síntoma de
+fondo, no investigado en profundidad todavía.
+
+**No se corrigió en esta pasada** (curación de datos, fuera del alcance
+de mover/renombrar/comentarios/rango de la reorganización) — queda
+señalado acá para una etapa posterior: confirmar contra la fuente
+primaria (BCRA/INDEC según corresponda) si el hueco es real o si hay un
+`id_datos_gob` alternativo con más historia, corregir `cobertura_desde`
+en el catálogo si el hueco es real, y solo entonces regenerar/completar
+la tabla de cobertura de la sección 2 para el rango 2001-2025 completo.

@@ -125,7 +125,7 @@ a nivel distrito.
 - **Fuente de datos: `data/tfi_data/elecciones/<año>_<nivel>.csv`**, vía
   `analisis.vparty_distribucion_tfi.cargar_eleccion`/`combos_disponibles` --
   no `circuito_<cargo>.json` ni el join propio de
-  `vparty_cuadrantes_local` contra `clasificacion_ideologica_agrupaciones.csv`.
+  `vparty_localidad` contra `clasificacion_ideologica_agrupaciones.csv`.
   Por eso cubre **2001-2025**, no solo 2011-2025.
 - Selector **Nivel + Año únicamente**, sin el toggle Cargo/Nivel del
   mapa -- los cuadros V-Party solo existen por nivel unificado.
@@ -133,10 +133,9 @@ a nivel distrito.
   (`analisis.vparty_distribucion_tfi.limites_globales`, mismo criterio que
   los PNG estáticos), enviada una sola vez en el payload -- nunca
   recalculada por render.
-- De `vparty_cuadrantes_local` solo reusa `_color_por_partido`/`_sombras`
+- De `vparty_localidad` solo reusa `_color_por_partido`/`_sombras`
   -- `tabla_distrito`/`tabla_localidades`/`cargar_posiciones_propias`/
-  `cargar_filiaciones`/`_limites_globales` quedaron sin llamador acá (ver
-  CLAUDE.md).
+  `cargar_filiaciones` quedaron sin llamador acá (ver CLAUDE.md).
 
 **Regla de diseño explícita, pedida por Ivan -- no reintroducir sin
 volver a preguntar**: esta pestaña **no distingue visualmente V-Party
@@ -206,8 +205,8 @@ patrón payload+template de este skill. Se documenta acá igual porque
 `cargar_eleccion`/`combos_disponibles`/`limites_globales` como fuente de
 datos -- mismo número, dos salidas (HTML interactivo vs. PNG). Detalle
 completo en `docs/FUNCIONALIDADES.md` sección "Gráficos" y en `CLAUDE.md`
-(nota sobre el reemplazo de `vparty_cuadrantes_local.generar_distrito`,
-deprecado).
+(nota sobre el reemplazo del ahora borrado
+`vparty_cuadrantes_local.generar_distrito`, ver tag `v8.3.0`).
 
 ## Testing
 
@@ -215,7 +214,7 @@ Mismo criterio que el resto de `src/analisis/*` (ver `laplata-general`):
 lógica pura testeada, renderizado sin test automatizado. Concretamente:
 
 - Lo que reusan de otros módulos (`analisis.graficos`,
-  `analisis.serie_temporal_filiacion`, `analisis.vparty_cuadrantes_local`,
+  `analisis.serie_temporal_filiacion`, `analisis.vparty_localidad`,
   `analisis.vparty_distribucion_tfi`, `electoral.localidades`,
   `electoral.totales`) ya está cubierto en los tests de esos módulos -- no
   se duplica acá (`vparty_distribucion_tfi`: `tests/analisis/test_vparty_distribucion_tfi.py`).

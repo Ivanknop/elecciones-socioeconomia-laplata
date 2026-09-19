@@ -73,26 +73,9 @@ CLAUDE.md                 # comandos + arquitectura autoritativa -- manda si alg
 ## Convenciones de código, para los tres dominios por igual
 
 - Docstrings, comentarios y mensajes de error en **español**.
-- **El código tiene que ser autodescriptivo; comentarios y docstrings
-  son la excepción, no la norma. Esto es innegociable, no una preferencia
-  de estilo.** El default para toda función nueva es **cero
-  comentarios**. Se agrega uno solo para dejar constancia de una decisión
-  puntual que no se entiende leyendo el código: una trampa del dato (la
-  fuente dice una unidad, el valor real es otra), el origen de un número
-  mágico, un invariante entre archivos, una anomalía conocida, o una
-  referencia a una decisión `D` de `docs/decisiones_metodologicas.md`.
-  Antes de agregar cualquier comentario/docstring, contrastarlo contra esa
-  lista -- si no encaja en ninguno de esos casos, no se escribe, sin
-  importar cuán nueva, exportada o "importante" parezca la función. Nunca
-  un docstring/comentario que repite la firma de la función, parafrasea
-  las líneas de abajo, repite una fórmula o valor de retorno que ya es
-  visible una línea más abajo, o explica un "por qué" que cualquiera
-  infiere del código de alrededor -- eso se borra, no se acorta (una
-  oración cortada a mitad de camino es peor que no tener comentario). Si
-  una decisión necesita más contexto que una línea, apuntar a
-  `CLAUDE.md`/`docs/FUNCIONALIDADES.md`/el README o `.md` propio del
-  dominio en vez de inlinearlo -- un hecho, un solo lugar, nunca duplicado
-  entre archivos.
+- **Regla de tamaño de comentarios/docstrings: ver `CLAUDE.md`** (sección
+  de convenciones de commits/código) -- es la única copia, no se duplica
+  acá para no tener dos fuentes de verdad del mismo hecho.
 - Reportes de resultados como `@dataclass` con propiedades calculadas
   (ver `ReporteCobertura` en `src/electoral/localidades.py`,
   `ReporteValidacion` en `src/geolocalizacion/catalogo.py`) en vez de

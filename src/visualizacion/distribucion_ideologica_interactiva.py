@@ -17,7 +17,7 @@ from pathlib import Path
 import pandas as pd
 
 from analisis.graficos import _COLOR_FILIACION
-from analisis.vparty_cuadrantes_local import _color_por_partido
+from analisis.vparty_localidad import _color_por_partido
 from analisis.vparty_distribucion_tfi import cargar_eleccion, combos_disponibles, limites_globales
 from constantes import CARGO_LABEL, ELECCIONES_DIR
 

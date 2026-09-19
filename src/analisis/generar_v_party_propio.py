@@ -68,10 +68,6 @@ NO_MAPEAR_ADICIONALES = {"Union Civica Radical"}
 DIMENSIONES = ["econ", "prog", "pop"]
 
 
-# ---------------------------------------------------------------------------
-# 1. PARSEO DE LA ENCUESTA
-# ---------------------------------------------------------------------------
-
 def cargar_encuesta(path):
     with open(path, encoding="utf-8") as f:
         rows = list(csv.reader(f))
@@ -110,10 +106,6 @@ def cargar_encuesta(path):
     return survey, expertos_orden
 
 
-# ---------------------------------------------------------------------------
-# 2. REFERENCIA V-PARTY REAL
-# ---------------------------------------------------------------------------
-
 def cargar_referencia(path):
     with open(path, encoding="utf-8") as f:
         rows = [r for r in csv.DictReader(f) if r.get("vparty_economico")]
@@ -148,10 +140,6 @@ def rangos_vparty(ref_rows):
         for dim, col in zip(DIMENSIONES, ["economico", "progresismo", "populismo"])
     }
 
-
-# ---------------------------------------------------------------------------
-# 3. VALIDACIÓN POR EXPERTO (distancia z contra vparty real)
-# ---------------------------------------------------------------------------
 
 def validar_expertos(survey, expertos, targets, ref_rows, log):
     if not targets:
@@ -212,10 +200,6 @@ def validar_expertos(survey, expertos, targets, ref_rows, log):
     return distancias
 
 
-# ---------------------------------------------------------------------------
-# 4. AGREGACIÓN (mediana) + CALIBRACIÓN (regresión lineal)
-# ---------------------------------------------------------------------------
-
 def mediana_por_partido(survey, expertos):
     medianas = {}
     for p in PARTIDOS:
@@ -272,12 +256,10 @@ def estimar(medianas, calib):
     return estimaciones
 
 
-# ---------------------------------------------------------------------------
 # AD HOC: partido fuera de PARTIDOS, evaluado por un subconjunto de expertos
 # (no todo el panel respondió). No pasa por cargar_encuesta/mediana_por_partido
 # ni se integra a estimar()/escribir_salida -- se llama a mano, un partido a
 # la vez, reusando el `calib` ya ajustado sobre el panel completo.
-# ---------------------------------------------------------------------------
 
 def estimar_partido_cobertura_parcial(respuestas, calib):
     """Estima econ/prog/pop para un partido fuera de PARTIDOS desde un subconjunto de expertos.
@@ -295,10 +277,6 @@ def estimar_partido_cobertura_parcial(respuestas, calib):
     medianas = {dim: st.median(valores[dim]) for dim in DIMENSIONES}
     return {dim: calib[dim][0] + calib[dim][1] * medianas[dim] for dim in DIMENSIONES}
 
-
-# ---------------------------------------------------------------------------
-# 5. SALIDA
-# ---------------------------------------------------------------------------
 
 def escribir_salida(path, targets, estimaciones, rangos, log):
     log.append("\n## Resultado final por partido\n")
@@ -331,10 +309,6 @@ def escribir_salida(path, targets, estimaciones, rangos, log):
                 f"| {fuente} | {', '.join(extrapola) if extrapola else '-'} |"
             )
 
-
-# ---------------------------------------------------------------------------
-# MAIN
-# ---------------------------------------------------------------------------
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)

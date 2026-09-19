@@ -8,7 +8,7 @@ resultados electorales — sigue sin hacerse, por instrucción explícita.
 
 ## 1. EPH Gran La Plata — qué se relevó
 
-Fuente: microdatos trimestrales INDEC, 2011-2025 (`src/socioeconomia/eph_client.py`,
+Fuente: microdatos trimestrales INDEC, 2003T3-2025T4 (`src/socioeconomia/eph_client.py`,
 ver su docstring para el detalle de dónde sale cada trimestre). Aglomerado
 Gran La Plata (`AGLOMERADO=2`, incluye Berisso y Ensenada) — no hay
 apertura por circuito, es un techo estructural de la fuente, no de este
@@ -42,7 +42,7 @@ Dos capas distintas, con estados de avance muy distintos:
 viviendas totales ya contadas por INDEC (`B_POB_TOT`/`B_VIV_TOT` en 2010,
 `POB_TOT_P`/`VIV_TOT_P` en 2022) — esto **sí permite una comparación
 2010→2022 real**, ver §4. También está `circuito_radio_correspondencia.csv`
-(`src/socioeconomia/geo.py`), el cruce espacial circuito↔radio.
+(`src/geolocalizacion/geo.py`), el cruce espacial circuito↔radio.
 
 **b) Variables temáticas por radio (NO están, extracción manual pendiente):**
 país de nacimiento, nivel educativo, condición de actividad,

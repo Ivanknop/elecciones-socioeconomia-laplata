@@ -503,8 +503,8 @@ transición (`anio_t`/`anio_t_menos_1`), mismo patrón de join que ya usa
 dato, no una variable dependiente) son variables dependientes de H2,
 calculadas con datos de `t` — nunca deben usarse como predictoras de
 H1/H4. Ninguna termina en `_vc`/`_vl`, así que el mecanismo de selección
-de `notebooks/ml/01_lasso.ipynb`/`02_bayes.ipynb` ya las excluye por
-construcción (ver D18).
+de `notebooks/ml/01.1`-`01.3_lasso_*.ipynb`/`02_bayes.ipynb` ya las
+excluye por construcción (ver D18).
 
 `distancia_oficialismo_alternativa` (existente) queda **deprecada**: ver
 D18 en `docs/decisiones_metodologicas.md` para la auditoría completa.

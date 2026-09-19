@@ -17,10 +17,11 @@ cruce con los datos socioeconómicos por circuito sigue sin resolverse.
 Por ahora existen **varias colecciones de datos separadas**, construidas
 en paralelo pero todavía no combinadas entre sí:
 
-1. **Resultados electorales** de La Plata entre 2011 y 2025: quién ganó,
-con qué porcentaje, en cada una de las mesas y circuitos de votación de
-la ciudad, para las elecciones de Presidente, Gobernador, Intendente,
-Diputados, Senadores y Concejales. Sobre esta base también se construyó
+1. **Resultados electorales** de La Plata entre 2001 y 2025 para
+Gobernador/Intendente/Diputados provinciales/Concejales, y entre 2011 y
+2025 para Presidente/Diputados/Senadores nacionales (el detalle por
+mesa y circuito de los cargos nacionales no está disponible desde el
+Ministerio del Interior para 2001-2009). Sobre esta base también se construyó
 una primera clasificación de los partidos —por posición ideológica, por
 familia/tradición política, y por un tercer criterio más fino tomado de
 un proyecto académico internacional (V-Party)— para poder agrupar
@@ -31,13 +32,13 @@ condiciones de vida, tomada de encuestas oficiales (la Encuesta
 Permanente de Hogares) y del Censo Nacional.
 
 3. **Datos económicos nacionales**: inflación, tipo de cambio, deuda
-pública, actividad y empleo a nivel país, 2011-2025 — sirven de contexto
+pública, actividad y empleo a nivel país, 2001-2025 — sirven de contexto
 temporal (a qué le tocó gobernar cada gestión), no están abiertos por
 barrio ni por circuito.
 
 4. **Un índice de confianza en el gobierno** (encuesta nacional
 mensual, universidad privada), que permite comparar cómo evolucionó esa
-confianza en La Plata contra el resto del país, 2011 en adelante.
+confianza en La Plata (desde 2008) contra el resto del país (desde 2001).
 
 5. **Un catálogo geográfico validado** de los barrios/localidades del
 partido de La Plata (nombre y ubicación de cada uno), que sirve de base
@@ -171,7 +172,7 @@ distintas, o esa relación es más débil o más compleja de lo que parece
 a primera vista.
 
 - **¿Esa relación cambió con el tiempo?** La Plata atravesó crisis
-económicas y varios cambios de gobierno entre 2011 y 2025; una misma
+económicas y varios cambios de gobierno entre 2001 y 2025; una misma
 zona pudo haber tenido una relación distinta entre economía y voto en
 distintos momentos.
 

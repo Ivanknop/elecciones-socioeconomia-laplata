@@ -1,7 +1,7 @@
 """Cuadrantes ideológicos V-Party (económico × progresismo, tamaño = % de
 votos) por (año, nivel), leídos directo de `data/tfi_data/elecciones/`. Un
-PNG por combinación en `graficos/tfi/v-party/`. No usa `vparty_cuadrantes_local`
-(deprecado) salvo sus helpers de color, aún activos.
+PNG por combinación en `graficos/tfi/v-party/`. Reusa el color por partido
+de `analisis.vparty_localidad`.
 
 Uso:
     PYTHONPATH=src python -m analisis.vparty_distribucion_tfi
@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 from analisis.vparty_cuadrantes import EJE_X, EJE_Y, _asignar_offsets, _radio_por_populismo
-from analisis.vparty_cuadrantes_local import _color_por_partido
+from analisis.vparty_localidad import _color_por_partido
 from constantes import ELECCIONES_DIR
 
 RUTA_SALIDA_DIR = Path("graficos/tfi/v-party")

@@ -27,7 +27,7 @@ COLUMNAS_METADATA_PANEL = (
 # nunca una variable económica independiente. Ninguna termina en "_vc": el
 # viejo filtro por sufijo las excluía sin que nadie lo haya diseñado así.
 # Cubre simétricamente la familia propia de cada uno de los dos objetivos
-# de modelado que conviven en panel_ventanas.csv (delta_v en 01_lasso*.ipynb;
+# de modelado que conviven en panel_ventanas.csv (delta_v en 01.1_lasso_*.ipynb;
 # magnitud_desplazamiento_ideologico en 03_desplazamiento_ideologico.ipynb)
 # para que el target de uno no se cuele como feature del otro.
 COLUMNAS_OUTCOME_ELECTORAL = (

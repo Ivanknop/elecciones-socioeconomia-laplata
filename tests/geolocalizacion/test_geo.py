@@ -1,4 +1,4 @@
-"""Tests de `src/socioeconomia/geo.py` sobre polígonos sintéticos (no pega a
+"""Tests de `src/geolocalizacion/geo.py` sobre polígonos sintéticos (no pega a
 ningún archivo real de circuitos/radios). Circuitos y radios se arman a mano
 con `shapely.box`, en grados cerca de La Plata, para que `estimate_utm_crs`
 elija una proyección real.
@@ -7,7 +7,7 @@ import geopandas as gpd
 import pytest
 from shapely.geometry import box
 
-from socioeconomia.geo import calcular_correspondencia, canonicalizar_circuito_id
+from geolocalizacion.geo import calcular_correspondencia, canonicalizar_circuito_id
 
 
 class TestCanonicalizarCircuitoId:
