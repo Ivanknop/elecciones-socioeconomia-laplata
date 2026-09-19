@@ -165,9 +165,11 @@ construir algo — algunas ya ejecutadas, se conservan como registro).
   `data/macroeconomia/SISTEMATIZACION_VARIABLES_MACRO.md` (la
   evaluación de fuentes previa a implementarla es trabajo interno, no
   versionado, ver más abajo).
-- Para el **diseño de investigación completo** (hipótesis, alcance válido
-  de las inferencias, la falacia ecológica a evitar), ver
-  [`docs/especificaciones/nota_metodologica.md`](docs/especificaciones/nota_metodologica.md).
+- El **diseño de investigación completo** (hipótesis, alcance válido de
+  las inferencias, la falacia ecológica a evitar) parte de una nota
+  metodológica externa que quedó como trabajo interno, no versionado —
+  `docs/decisiones_metodologicas.md` y `docs/AUDITORIA_ESTADO.md`
+  documentan qué se resolvió de esa nota, sin reproducirla.
 - Para la **especificación del panel temporal de ventanas electorales**
   (fases, ventana corta vs. bloque largo), ver
   [`docs/especificaciones/especificacion_panel_temporal.md`](docs/especificaciones/especificacion_panel_temporal.md).
