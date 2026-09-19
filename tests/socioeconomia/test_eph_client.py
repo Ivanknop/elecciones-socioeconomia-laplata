@@ -44,8 +44,6 @@ class TestNombreArchivoHistorico:
         assert _nombre_archivo_historico(2014, 2) == "t214_dbf.zip"
 
 
-# --- Fixtures individual/hogar --------------------------------------------
-#
 # 5 personas en Gran La Plata (aglomerado 2), PONDERA=100 c/u, más 1 persona
 # en aglomerado 33 (PONDERA=500, valores absurdos) para verificar que el
 # filtro por aglomerado excluye todo lo demás:
@@ -300,8 +298,6 @@ class TestAgregadosGranLaPlataViviendaYEstrategias:
         assert agregados["ipcf_medio"] == pytest.approx(30000)
 
 
-# --- Fixtures dedicadas a los dos bugs de INDEC corregidos -----------------
-#
 # Patrones confirmados contra microdatos reales (2023T4 y 2011T1, Gran La
 # Plata): P21==-9 (no respuesta) coincide siempre con PONDIIO==0 en la base;
 # PP07H vale 0 ("no corresponde") para patrón/cuentapropia, y también puede

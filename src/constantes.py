@@ -6,12 +6,10 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
-# --- Electoral / distrito ---
 DATA_DISTRITO_DIR = "data/distrito"
 DATA_TOTALES_DIR = "data/totales"
 DATA_POR_LOCALIDAD_DIR = "data/por_localidad"
 
-# --- Agrupaciones / clasificación ---
 AGRUPACIONES_DIR = "data/agrupaciones"
 CAMPO_IDEOLOGICO_PATH = "data/agrupaciones/campo_ideologico.csv"
 CLASIFICACION_IDEOLOGICA_PATH = "data/agrupaciones/clasificacion_ideologica_agrupaciones.csv"
@@ -21,33 +19,28 @@ OFICIALISMOS_PATH = "data/agrupaciones/oficialismos.csv"
 CIRCUITO_ID_CORRESPONDENCIAS_PATH = "data/agrupaciones/circuito_id_correspondencias.csv"
 VPARTY_PATH = "data/agrupaciones/v-party/v_party_argentina_2001_2019_espaniol.csv"
 
-# --- Geolocalización ---
 LOCALIDADES_LA_PLATA_PATH = "data/geolocalizacion/localidades_la_plata.csv"
 GEOLOCALIZACION_CACHE_DIR = "data/geolocalizacion/_cache"
 CIRCUITOS_POR_LOCALIDAD_PATH = "data/geolocalizacion/circuitos_por_localidad.csv"
 CIRCUITOS_POR_LOCALIDAD_DOC_PATH = "data/geolocalizacion/CIRCUITOS_POR_LOCALIDAD.md"
 
-# --- Fuentes extra / crosswalk (data/geolocalizacion/fuentes_extra/ -- insumos
 FUENTES_EXTRA_DIR = "data/geolocalizacion/fuentes_extra"
 CROSSWALK_CIRCUITO_LOCALIDAD_PATH = "data/geolocalizacion/fuentes_extra/circuito_localidad.csv"
 LOCALIDADES_MINISTERIO_PATH = "data/geolocalizacion/fuentes_extra/localidades.csv"
 AUDITORIA_DISCREPANCIAS_PATH = "data/geolocalizacion/fuentes_extra/AUDITORIA_DISCREPANCIAS.md"
 
-# --- Macroeconomía ---
 MACRO_CATALOGO_SERIES_PATH = "data/macroeconomia/catalogo_series.csv"
 MACRO_CATALOGO_SERIES_ANUALES_PATH = "data/macroeconomia/catalogo_series_anuales.csv"
 MACRO_SERIES_MENSUAL_PATH = "data/macroeconomia/series_macro_2011_2025.csv"
 MACRO_SERIES_ANUAL_PATH = "data/macroeconomia/series_macro_anuales_2011_2025.csv"
 MACRO_CACHE_DATOS_GOB_DIR = "data/macroeconomia/_cache/datos_gob"
 
-# --- Socioeconomía ---
 EPH_CACHE_DIR = "data/socioeconomia/eph_cache"
 EPH_GRAN_LA_PLATA_PATH = "data/socioeconomia/eph_gran_la_plata.csv"
 CIRCUITOS_GEOJSON_PATH = "data/socioeconomia/circuitos_electorales_la_plata.geojson"
 ICG_RAW_PATH = "data/socioeconomia/icg-icc/Base_histórica_2001-presente-ICG.dta"
 ICG_HEADLINE_PATH = "data/socioeconomia/icg/icg_mensual_la_plata_pais_2001_presente.csv"
 
-# --- Panel temporal de ventanas electorales
 TFI_DATA_DIR = "data/tfi_data"
 CALENDARIO_ELECTORAL_PATH = "data/tfi_data/calendario_electoral.csv"
 OFICIALISMO_POR_NIVEL_PATH = "data/tfi_data/oficialismo_por_nivel.csv"
@@ -64,13 +57,10 @@ PANEL_DIR = "data/tfi_data/panel"
 PANEL_TRIMESTRAL_DIR = "data/tfi_data/panel/t-1"
 PANEL_BIELECCION_TRIMESTRAL_DIR = "data/tfi_data/panel/t-2"
 
-# --- Auditoría interna ---
 AUDITORIA_INTERNA_DIR = "data/auditoria_interna"
 COBERTURA_CLASIFICACION_PATH = "data/auditoria_interna/cobertura_clasificacion.md"
 COBERTURA_CLASIFICACION_LOG_PATH = "data/auditoria_interna/cobertura_clasificacion_log.csv"
 
-
-# --- Constantes de dominio compartidas ---
 
 CARGO_LABEL = {
     "presidente": "Presidente",

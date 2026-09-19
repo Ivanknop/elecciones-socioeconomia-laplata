@@ -20,13 +20,11 @@ from analisis.generar_v_party_propio import (
     validar_expertos,
 )
 
-# ---------------------------------------------------------------------------
 # Helpers para construir una encuesta anonimizada -- misma forma que
 # encuesta_partidos_propia.csv: 1 columna de metadata (ID secuencial, sin
 # datos personales), un bloque de 12 columnas (A1-D2) por cada uno de los
 # 12 PARTIDOS reales del script (la validación de cantidad de columnas en
 # cargar_encuesta está atada a ese largo fijo), y 1 columna final.
-# ---------------------------------------------------------------------------
 
 def _bloque(econ, prog, pop, d1=0, d2="Alta"):
     """A1-A4 → econ (invertida), B1-B4 → prog, C1-C2 → pop; D1/D2 no se
@@ -74,10 +72,6 @@ VALORES_BASE = {
     "Encuentro Republicano Federal": (0.5, -0.4, 0.45),
 }
 
-
-# ---------------------------------------------------------------------------
-# 1. cargar_encuesta
-# ---------------------------------------------------------------------------
 
 class TestCargarEncuesta:
     def test_calcula_econ_prog_pop_por_experto_y_partido(self, tmp_path):
@@ -152,10 +146,6 @@ class TestCargarEncuesta:
             cargar_encuesta(str(path))
 
 
-# ---------------------------------------------------------------------------
-# 2. cargar_referencia / targets_vparty / rangos_vparty
-# ---------------------------------------------------------------------------
-
 REF_ROWS = [
     {"agrupacion": "COALICION CIVICA ARI", "vparty_economico": "2.0", "vparty_progresismo": "0.2", "vparty_populismo": "1.1"},
     {"agrupacion": "JUNTOS", "vparty_economico": "3.0", "vparty_progresismo": "1.0", "vparty_populismo": "0.5"},
@@ -218,10 +208,6 @@ class TestRangosVparty:
         }
 
 
-# ---------------------------------------------------------------------------
-# 3. validar_expertos
-# ---------------------------------------------------------------------------
-
 class TestValidarExpertos:
     def test_sin_targets_no_valida_y_lo_deja_asentado_en_el_log(self):
         survey = {(e, p): {"econ": 0, "prog": 0, "pop": 0} for e in ["E1"] for p in PARTIDOS}
@@ -256,10 +242,6 @@ class TestValidarExpertos:
         assert distancias["E4"] > distancias["E1"]
         assert any("Posibles outliers" in linea and "E4" in linea for linea in log)
 
-
-# ---------------------------------------------------------------------------
-# 4. mediana_por_partido / ols / calibrar / estimar
-# ---------------------------------------------------------------------------
 
 class TestMedianaPorPartido:
     def test_mediana_de_tres_expertos_con_un_disidente(self):
@@ -331,10 +313,6 @@ class TestCalibrarYEstimar:
 
         assert any("AVISO" in linea and "menos de 3" in linea for linea in log)
 
-
-# ---------------------------------------------------------------------------
-# 5. escribir_salida
-# ---------------------------------------------------------------------------
 
 class TestEscribirSalida:
     def test_pipeline_completo_reproduce_valores_y_marcado_con_numeral(self, tmp_path):
