@@ -1,6 +1,7 @@
 """Gráficos de EPH Gran La Plata e IAELaP Partido de La Plata, a partir de
 `data/socioeconomia/eph_gran_la_plata.csv` e `iaelap_la_plata*.csv` (ver
-`notebooks/05_capa_socioeconomica.ipynb` y `notebooks/06_graficos_eph_iaelap.ipynb`).
+`notebooks/mineria_datos/05_capa_socioeconomica.ipynb` y
+`notebooks/mineria_datos/06_graficos_eph_iaelap.ipynb`).
 """
 from __future__ import annotations
 

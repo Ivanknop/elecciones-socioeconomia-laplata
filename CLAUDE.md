@@ -169,8 +169,8 @@ tests, same criterion as `electoral/client.py`.
 API data (JSON or CSV) and never transforms it; `src/electoral/models.py`
 parses that raw JSON into typed dataclasses. Notebooks are the actual
 pipeline runner — they call the client, drive `models`, and write everything
-under `data/`. There is no orchestration script; **the notebooks (run in
-order, 01→04) are the pipeline**.
+under `data/`. There is no orchestration script; **the notebooks under
+`notebooks/mineria_datos/` (run in order, 01→04) are the pipeline**.
 
 - `ResultadosClient` wraps two distinct, differently-shaped endpoints of the
   same site: `get_resultados` (JSON) and `get_resultados_csv` (CSV, the
@@ -533,7 +533,7 @@ order, 01→04) are the pipeline**.
 
 - Code, comments, and docs in this repo are in **Spanish** (Rioplatense) —
   match that when editing existing files.
-- `campo_ideologico` is an intentionally strict join: `notebooks/04_totales_por_circuito.ipynb`
+- `campo_ideologico` is an intentionally strict join: `notebooks/mineria_datos/04_totales_por_circuito.ipynb`
   raises `KeyError` if an agrupación isn't classified, by design — don't add
   a fallback/default that would silently mask an unclassified party.
   `agrupacion` names are uppercased for the join key (see

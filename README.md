@@ -34,7 +34,7 @@ src/socioeconomia/      EPH, correspondencia circuito↔radio censal, ICG (UTDT)
 src/macroeconomia/      series macroeconómicas nacionales (sin apertura espacial)
 src/geolocalizacion/    catálogo validado de localidades geolocalizadas
 src/ml_models/          panel temporal de ventanas electorales (calendario, resultado por distrito, panel trimestral) para modelado
-notebooks/               pipeline: 01-04 capa electoral, 05-06 capa socioeconómica
+notebooks/mineria_datos/ pipeline: 01-04 capa electoral, 05-06 capa socioeconómica
 data/                    insumos crudos + datos derivados, un subdirectorio por dominio
 graficos/                salidas estáticas (PNG/Markdown); casi todo derivado, no versionado
 docs/                    documentación narrativa del repo + sitio de GitHub Pages
@@ -69,20 +69,20 @@ geolocalización, a `apis.datos.gob.ar` (esta última incluye
 ## Cómo reproducir
 
 1. `pip install -r requirements.txt`
-2. Abrir y correr `notebooks/01_explorar_resultados.ipynb` para ver cómo se usa
-   el cliente (`ResultadosClient`) y el modelo de dominio (`ResultadoElectoral`)
-   sobre un solo caso (La Plata, Presidente, 2011).
-3. Abrir y correr `notebooks/02_la_plata_cargos_ejecutivos.ipynb`. Este es el
-   notebook que efectivamente genera/actualiza `data/`: trae el CSV oficial y
-   el agregado JSON de cada combinación (año × cargo), y valida/actualiza
-   `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv` contra lo
-   que trae la API (detalle del merge en `docs/FUNCIONALIDADES.md`, "Libro
-   de códigos ideológico").
-4. Abrir y correr `notebooks/03_la_plata_legislativas.ipynb`: mismo patrón
-   pero para los cargos legislativos (nacional/provincial/municipal,
-   2013-2025), sobre el mismo
+2. Abrir y correr `notebooks/mineria_datos/01_explorar_resultados.ipynb` para
+   ver cómo se usa el cliente (`ResultadosClient`) y el modelo de dominio
+   (`ResultadoElectoral`) sobre un solo caso (La Plata, Presidente, 2011).
+3. Abrir y correr `notebooks/mineria_datos/02_la_plata_cargos_ejecutivos.ipynb`.
+   Este es el notebook que efectivamente genera/actualiza `data/`: trae el CSV
+   oficial y el agregado JSON de cada combinación (año × cargo), y
+   valida/actualiza `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv`
+   contra lo que trae la API (detalle del merge en `docs/FUNCIONALIDADES.md`,
+   "Libro de códigos ideológico").
+4. Abrir y correr `notebooks/mineria_datos/03_la_plata_legislativas.ipynb`:
+   mismo patrón pero para los cargos legislativos
+   (nacional/provincial/municipal, 2013-2025), sobre el mismo
    `data/agrupaciones/clasificacion_ideologica_agrupaciones.csv`.
-5. Abrir y correr `notebooks/04_totales_por_circuito.ipynb`: normaliza
+5. Abrir y correr `notebooks/mineria_datos/04_totales_por_circuito.ipynb`: normaliza
    `circuito_id`, agrega por ese id los totales de cada agrupación y de los
    "otros" (blanco, nulo, recurrido, impugnado...) para cada (año, nivel) ya
    descargado, cruza contra el libro de códigos ideológico, y escribe
