@@ -27,16 +27,27 @@ def _escribir_vparty_csv(tmp_path, filas):
 
 
 class TestConstruirCalendario:
-    def test_nacional_solo_desde_2011(self):
+    def test_nacional_cubre_2001_2025(self):
         calendario = construir_calendario()
         anios_nacional = sorted(f.anio for f in calendario if f.nivel == "nacional")
-        assert anios_nacional == [2011, 2013, 2015, 2017, 2019, 2021, 2023, 2025]
+        assert anios_nacional == [2001, 2003, 2005, 2007, 2009, 2011, 2013, 2015, 2017, 2019, 2021, 2023, 2025]
 
     def test_municipal_y_provincial_cubren_2001_2025(self):
         calendario = construir_calendario()
         for nivel in ("municipal", "provincial"):
             anios = sorted(f.anio for f in calendario if f.nivel == nivel)
             assert anios == [2001, 2003, 2005, 2007, 2009, 2011, 2013, 2015, 2017, 2019, 2021, 2023, 2025]
+
+    def test_nacional_2003_y_2007_tienen_tipo_eleccion_ejecutiva(self):
+        """2003 (Kirchner) y 2007 (CFK) fueron elecciones presidenciales
+        reales -- mismo patrón que provincial/municipal, con sus propios
+        años ejecutivos (D11: siempre primera vuelta)."""
+        calendario = construir_calendario()
+        for f in calendario:
+            if f.nivel == "nacional" and f.anio in (2003, 2007, 2011, 2015, 2019, 2023):
+                assert f.tipo_eleccion == "ejecutiva", f
+            elif f.nivel == "nacional":
+                assert f.tipo_eleccion == "legislativa", f
 
     def test_solo_2025_esta_desdoblada(self):
         calendario = construir_calendario()
@@ -210,10 +221,24 @@ class TestConstruirOficialismoPorNivel:
         assert por_anio[2019].continuidad_oficialismo == "ruptura"  # el Ejecutivo real sí cambió
         assert por_anio[2021].agrupacion_oficialismo == "FRENTE DE TODOS"
 
-    def test_nacional_pre_2011_no_genera_filas(self):
-        calendario = [_FilaCalendarioFake(2003, "nacional")]
+    def test_pre_2011_nacional_usa_historia_investigada(self):
+        """2003 (Duhalde interino -> Kirchner, ruptura respecto de la
+        Alianza) y 2007 (CFK sucede a NK, continua) -- misma mecánica que
+        municipal/provincial, con la salvedad de que la elección de 2001
+        (legislativa) sí entra a la ventana del panel para nacional."""
+        calendario = [
+            _FilaCalendarioFake(anio, "nacional", "ejecutiva" if anio in (2003, 2007) else "legislativa")
+            for anio in (2001, 2003, 2005, 2007, 2009)
+        ]
         filas = construir_oficialismo_por_nivel(calendario, {}, {})
-        assert filas == []
+        assert len(filas) == 5
+        por_anio = {f.anio: f for f in filas}
+        assert por_anio[2001].agrupacion_oficialismo == "AL. TRAB. JUST. EDUC. (1)"
+        assert por_anio[2003].agrupacion_oficialismo == "AL. TRAB. JUST. EDUC. (1)"  # titular ANTES de la ruptura
+        assert por_anio[2003].continuidad_oficialismo == "ruptura"
+        assert por_anio[2005].agrupacion_oficialismo == "JUSTICIALISTA"  # ya con el ganador de 2003
+        assert por_anio[2007].continuidad_oficialismo == "continua"
+        assert por_anio[2009].agrupacion_oficialismo == "AL. FTE. P/LA VICTORIA"  # ya con el ganador de 2007
 
     def test_sin_fila_en_oficialismos_no_genera_fila_huerfana(self):
         calendario = [_FilaCalendarioFake(2025, "provincial", "ejecutiva")]

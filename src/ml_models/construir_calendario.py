@@ -25,11 +25,18 @@ from constantes import (
 NIVELES = ("municipal", "provincial", "nacional")
 
 _FECHAS: dict[int, tuple[str | None, str]] = {
-    2001: (None, "2001-10-14"),
-    2003: (None, "2003-04-27"),
-    2005: (None, "2005-10-23"),
-    2007: (None, "2007-10-28"),
-    2009: (None, "2009-06-28"),
+    # 2001-2009: mismo día que provincial/municipal en los cinco años -- no
+    # hubo desdoblamiento salvo la duda puntual de 2003 (ver nota en
+    # _EJECUTIVA_PRE_2011["nacional"][2003]: el escrutinio cargado en
+    # data/tfi_data/elecciones/2003_nacional.csv podría corresponder a la
+    # legislativa del 14-sep, no a la presidencial del 27-abr que usa esta
+    # fecha -- se toma como una sola fecha/dato por falta de otra
+    # información, decisión explícita, no un error).
+    2001: ("2001-10-14", "2001-10-14"),
+    2003: ("2003-04-27", "2003-04-27"),
+    2005: ("2005-10-23", "2005-10-23"),
+    2007: ("2007-10-28", "2007-10-28"),
+    2009: ("2009-06-28", "2009-06-28"),
     2011: ("2011-10-23", "2011-10-23"),
     2013: ("2013-10-27", "2013-10-27"),
     2015: ("2015-10-25", "2015-10-25"),
@@ -41,7 +48,7 @@ _FECHAS: dict[int, tuple[str | None, str]] = {
 }
 
 _ANIOS_EJECUTIVA_PROV_MUN = {2003, 2007, 2011, 2015, 2019, 2023}
-_ANIOS_EJECUTIVA_NACIONAL = {2011, 2015, 2019, 2023}
+_ANIOS_EJECUTIVA_NACIONAL = {2003, 2007, 2011, 2015, 2019, 2023}
 
 _CARGOS_EN_JUEGO = {
     ("municipal", True): "intendente, concejales",
@@ -120,10 +127,14 @@ _TITULAR_INICIAL_2001 = {
         "(mismo signo político) -- sucesión constitucional, no ruptura.",
     ),
     "nacional": (
-        "ALIANZA FRENTE PARA LA VICTORIA",
-        "Cristina Fernández de Kirchner, presidenta desde 2007 (reelecta en "
-        "2011). Titular al momento de la elección de 2011 -- año anterior a "
-        "la ventana del panel para este nivel.",
+        "AL. TRAB. JUST. EDUC. (1)",
+        "Fernando de la Rúa (UCR-FREPASO), presidente desde dic-1999. Titular "
+        "al momento de la elección de 2001 (año legislativo, solo diputados "
+        "nacionales) -- \"AL. TRAB. JUST. EDUC. (1)\" es la Alianza (Alianza "
+        "para el Trabajo, la Justicia y la Educación), confirmado por el "
+        "usuario; el sufijo \"(1)\" de la fuente no se pudo verificar contra "
+        "el PDF original (bloqueado por la herramienta de esta sesión), no "
+        "afecta la identificación del partido.",
     ),
 }
 
@@ -172,6 +183,32 @@ _EJECUTIVA_PRE_2011: dict[str, dict[int, ResultadoEjecutiva]] = {
             "peronista, nueva etiqueta de frente (Scioli-Balestrini, 3.376.795 votos).",
         ),
     },
+    "nacional": {
+        2003: ResultadoEjecutiva(
+            "JUSTICIALISTA",
+            "ruptura",
+            "Duhalde (PJ), presidente interino desde ene-2002 tras la sucesión "
+            "constitucional post-renuncia de De la Rúa (dic-2001) y varios "
+            "presidentes interinos en dos semanas -- no hubo titular electo entre "
+            "2001 y 2003. Kirchner gana la presidencia bajo la etiqueta "
+            "JUSTICIALISTA en La Plata/Pcia. Bs. As. (aparato del PJ bonaerense "
+            "controlado por Duhalde) -- ruptura respecto de la Alianza, no "
+            "continuidad. Nota de calidad de dato: el escrutinio cargado en "
+            "data/tfi_data/elecciones/2003_nacional.csv podría corresponder a la "
+            "legislativa del 14-sep-2003 (diputados nacionales) y no a la "
+            "presidencial del 27-abr-2003 -- se usa como único dato nacional "
+            "disponible de ese año por falta de otra información (decisión "
+            "explícita, no error); la conclusión de ruptura Alianza->PJ es la "
+            "misma bajo cualquiera de las dos lecturas.",
+        ),
+        2007: ResultadoEjecutiva(
+            "AL. FTE. P/LA VICTORIA",
+            "continua",
+            "Cristina Fernández de Kirchner (Frente para la Victoria) sucede a "
+            "Néstor Kirchner -- mismo espacio, misma etiqueta de frente ya vigente "
+            "desde 2005, continuidad plena, no ruptura ni renombre.",
+        ),
+    },
 }
 
 
@@ -201,7 +238,10 @@ CLASIFICACION_APROX_MANUAL = {
 CLASIFICACION_TITULAR_INICIAL = {
     "municipal": ("3", "peronistas", "0.838", "0.147", "0.336"),
     "provincial": ("3", "peronistas", "0.838", "0.147", "0.336"),
-    "nacional": ("3", "peronistas", "-1.686", "2.097", "0.871"),
+    # Mismo campo_ideologico/filiacion_politica/vparty_* que ya tiene
+    # "AL. TRAB. JUST. EDUC. (1)" en clasificacion_ideologica_agrupaciones.csv
+    # (2001, nacional) -- no es una clasificación nueva.
+    "nacional": ("3", "radicalismo", "0.262", "0.755", "0.288"),
 }
 
 # Misma fórmula que `analisis.vparty_cuadrantes.cargar_posiciones`:
@@ -295,10 +335,8 @@ def construir_oficialismo_por_nivel(
     filas = []
     for nivel in NIVELES:
         filas_nivel = sorted((fc for fc in calendario if fc.nivel == nivel), key=lambda fc: fc.anio)
-        if nivel == "nacional":
-            filas_nivel = [fc for fc in filas_nivel if fc.anio >= 2011]
-            if not filas_nivel:
-                continue
+        if not filas_nivel:
+            continue
         titular, nota_inicial = _TITULAR_INICIAL_2001[nivel]
         titular_anio_clasificacion = None  # el titular inicial es pre-ventana, sin ejecutiva propia en el panel
 
@@ -329,7 +367,7 @@ def construir_oficialismo_por_nivel(
                 continuidad = "continua"
                 nota_extra = "Sin elección ejecutiva este año (solo legislativo); el titular del Ejecutivo no cambia."
 
-            if fc.anio == 2001 and nivel != "nacional":
+            if fc.anio == 2001:
                 nota_extra = f"{nota_inicial} {nota_extra}".strip()
 
             if anio_clasificacion_de_esta_fila is None:

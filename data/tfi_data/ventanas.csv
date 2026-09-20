@@ -23,7 +23,12 @@ provincial_2017_2019,provincial,2019,2017,2015,2017-10-22,2019-10-27,2015-10-25,
 provincial_2019_2021,provincial,2021,2019,2017,2019-10-27,2021-11-14,2017-10-22,legislativa,ejecutiva
 provincial_2021_2023,provincial,2023,2021,2019,2021-11-14,2023-10-22,2019-10-27,ejecutiva,legislativa
 provincial_2023_2025,provincial,2025,2023,2021,2023-10-22,2025-09-07,2021-11-14,legislativa,ejecutiva
-nacional_2011_2013,nacional,2013,2011,,2011-10-23,2013-10-27,,legislativa,ejecutiva
+nacional_2001_2003,nacional,2003,2001,,2001-10-14,2003-04-27,,ejecutiva,legislativa
+nacional_2003_2005,nacional,2005,2003,2001,2003-04-27,2005-10-23,2001-10-14,legislativa,ejecutiva
+nacional_2005_2007,nacional,2007,2005,2003,2005-10-23,2007-10-28,2003-04-27,ejecutiva,legislativa
+nacional_2007_2009,nacional,2009,2007,2005,2007-10-28,2009-06-28,2005-10-23,legislativa,ejecutiva
+nacional_2009_2011,nacional,2011,2009,2007,2009-06-28,2011-10-23,2007-10-28,ejecutiva,legislativa
+nacional_2011_2013,nacional,2013,2011,2009,2011-10-23,2013-10-27,2009-06-28,legislativa,ejecutiva
 nacional_2013_2015,nacional,2015,2013,2011,2013-10-27,2015-10-25,2011-10-23,ejecutiva,legislativa
 nacional_2015_2017,nacional,2017,2015,2013,2015-10-25,2017-10-22,2013-10-27,legislativa,ejecutiva
 nacional_2017_2019,nacional,2019,2017,2015,2017-10-22,2019-10-27,2015-10-25,ejecutiva,legislativa

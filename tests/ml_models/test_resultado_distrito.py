@@ -3,8 +3,10 @@
 nunca la caché real."""
 import json
 
+import pandas as pd
 import pytest
 
+from constantes import RESULTADO_DISTRITO_PATH
 from ml_models.construir_calendario import FilaCalendario
 from ml_models.construir_resultado_distrito import (
     FilaVotoPartido,
@@ -341,3 +343,27 @@ class TestCalcularDistanciaOficialismoAlternativa:
     def test_none_si_oficialismo_sin_score(self):
         voto_partido = [FilaVotoPartido(2011, "municipal", "1", "OFICIALISMO", 60, 60.0)]
         assert calcular_distancia_oficialismo_alternativa(voto_partido, {}, "OFICIALISMO") is None
+
+
+class TestOficialismoNacionalResueltoContraDatosReales:
+    """Contra el `resultado_distrito.csv` ya generado (sin red): las 13
+    elecciones nacionales (2001-2025) deben tener `gana_oficialismo`/
+    `share_oficialismo` resueltos -- salvo (2003, nacional), documentado
+    (la Alianza, titular entrante a esa elección, no tiene lista en esa
+    boleta -- colapsó en dic-2001 y no compitió). Cualquier otra falla de
+    matching se reporta acá, no se parchea en silencio agregando un alias
+    a ciegas."""
+
+    _SIN_OFICIALISMO_VIABLE_DOCUMENTADO = {2003}
+
+    def test_gana_y_share_oficialismo_resueltos_2001_2025(self):
+        df = pd.read_csv(RESULTADO_DISTRITO_PATH)
+        nac = df[df["nivel"] == "nacional"]
+        assert sorted(nac["anio"]) == [2001, 2003, 2005, 2007, 2009, 2011, 2013, 2015, 2017, 2019, 2021, 2023, 2025]
+
+        sin_resolver = set(nac.loc[nac["share_oficialismo"].isna(), "anio"]) - self._SIN_OFICIALISMO_VIABLE_DOCUMENTADO
+        assert sin_resolver == set(), (
+            f"nacional, años sin share_oficialismo resuelto: {sin_resolver} -- "
+            "si no es por falta real de lista en la boleta, falta un alias en "
+            "ALIAS_LISTA_OFICIALISMO, no se debe parchear a ciegas"
+        )

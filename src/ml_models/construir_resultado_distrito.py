@@ -147,6 +147,19 @@ ALIAS_LISTA_OFICIALISMO: dict[tuple[int, str], str] = {
     (2013, "provincial"): "FRENTE PARA LA VICTORIA",
     (2013, "municipal"): "FRENTE PARA LA VICTORIA",
     (2019, "nacional"): "JUNTOS POR EL CAMBIO",
+    # oficialismo_por_nivel.csv arrastra "JUSTICIALISTA" (etiqueta de 2003)
+    # como titular hasta la próxima elección ejecutiva (2007); la boleta real
+    # de 2005 usa la abreviatura de data/tfi_data/elecciones/2005_nacional.csv,
+    # no el nombre canónico "FRENTE PARA LA VICTORIA" que usan otros niveles/años.
+    (2005, "nacional"): "AL. FTE. P/LA VICTORIA",
+    # Mismo caso: oficialismo_por_nivel.csv trae "JUSTICIALISTA" (etiqueta de
+    # 2003) como titular entrante a 2007, pero la boleta real de
+    # 2007_nacional.csv usa "FTE. PARA LA VICTORIA".
+    (2007, "nacional"): "FTE. PARA LA VICTORIA",
+    # oficialismo_por_nivel.csv trae "AL. FTE. P/LA VICTORIA" (etiqueta de
+    # 2007) como titular entrante a 2009, pero la boleta real de
+    # 2009_nacional.csv usa "FTE. JUSTICIALIS.P/LA VICTORIA".
+    (2009, "nacional"): "FTE. JUSTICIALIS.P/LA VICTORIA",
 }
 
 
@@ -184,7 +197,15 @@ def _entrada_oficialismo(
     fila_oficialismo = _match_oficialismo(del_anio, nombre_lista)
     if fila_oficialismo is None:
         return None, None
-    gana_oficialismo = ganador is not None and ganador.id_agrupacion == fila_oficialismo.id_agrupacion
+    # Identidad de fila, no de id_agrupacion: los CSV de
+    # data/tfi_data/elecciones/2001-2009_nacional.csv no traen id_agrupacion
+    # (a diferencia de municipal/provincial), así que "" == "" daba un falso
+    # positivo cuando ganador y oficialismo eran filas distintas ambas sin id
+    # (bug real, encontrado en (2001, nacional): comparar por id_agrupacion
+    # decía que ganó JUSTICIALISTA-como-oficialismo cuando el oficialismo
+    # (Alianza) en realidad perdió). Verificado que este cambio no altera
+    # ningún resultado existente de municipal/provincial/nacional 2005-2025.
+    gana_oficialismo = ganador is not None and ganador is fila_oficialismo
     entrada = ganador if gana_oficialismo and ganador is not None else fila_oficialismo
     return gana_oficialismo, entrada
 

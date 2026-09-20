@@ -1,12 +1,17 @@
 anio,nivel,fecha_eleccion,tipo_eleccion,desdoblada,cargos_en_juego
+2001,nacional,2001-10-14,legislativa,False,diputados nacionales
 2001,provincial,2001-10-14,legislativa,False,diputados provinciales
 2001,municipal,2001-10-14,legislativa,False,concejales
+2003,nacional,2003-04-27,ejecutiva,False,"presidente, diputados nacionales"
 2003,provincial,2003-04-27,ejecutiva,False,"gobernador, diputados provinciales"
 2003,municipal,2003-04-27,ejecutiva,False,"intendente, concejales"
+2005,nacional,2005-10-23,legislativa,False,diputados nacionales
 2005,provincial,2005-10-23,legislativa,False,diputados provinciales
 2005,municipal,2005-10-23,legislativa,False,concejales
+2007,nacional,2007-10-28,ejecutiva,False,"presidente, diputados nacionales"
 2007,provincial,2007-10-28,ejecutiva,False,"gobernador, diputados provinciales"
 2007,municipal,2007-10-28,ejecutiva,False,"intendente, concejales"
+2009,nacional,2009-06-28,legislativa,False,diputados nacionales
 2009,provincial,2009-06-28,legislativa,False,diputados provinciales
 2009,municipal,2009-06-28,legislativa,False,concejales
 2011,nacional,2011-10-23,ejecutiva,False,"presidente, diputados nacionales"

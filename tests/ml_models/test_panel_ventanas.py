@@ -138,7 +138,7 @@ class TestConstruirPanel:
         assert filas[0]["x_nivel_vc"] == pytest.approx(10.0)
         assert filas[0]["x_pendiente_vc"] == pytest.approx(0.0)
 
-    def test_31_filas_distribucion_12_12_7_con_calendario_real(self):
+    def test_36_filas_distribucion_12_12_12_con_calendario_real(self):
         """Extremo a extremo con el calendario/ventanas reales (sin red,
         sin depender de resultado_distrito -- solo estructura)."""
         from ml_models.construir_calendario import construir_calendario, construir_ventanas
@@ -160,11 +160,11 @@ class TestConstruirPanel:
             for v in ventanas_reales
         ]
         filas = construir_panel(ventanas_dict, [], {}, {}, {}, {}, {}, {})
-        assert len(filas) == 31
+        assert len(filas) == 36
         por_nivel = {}
         for f in filas:
             por_nivel[f["nivel"]] = por_nivel.get(f["nivel"], 0) + 1
-        assert por_nivel == {"municipal": 12, "provincial": 12, "nacional": 7}
+        assert por_nivel == {"municipal": 12, "provincial": 12, "nacional": 12}
 
 
 class TestColumnasDeDesplazamientoIdeologico:

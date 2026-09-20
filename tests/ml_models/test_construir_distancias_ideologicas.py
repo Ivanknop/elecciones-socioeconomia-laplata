@@ -120,10 +120,19 @@ class TestCasoRealAuditoria2023:
         assert len(oficialismo) == 1
         assert oficialismo.iloc[0]["agrupacion"] == "UNION POR LA PATRIA"
 
+    # (nacional, 2003): la Alianza (titular entrante a esa elección, ver
+    # _EJECUTIVA_PRE_2011["nacional"] en construir_calendario.py) no tiene
+    # ninguna lista en la boleta de 2003 -- colapsó en dic-2001 y no
+    # compitió. No es un hueco de adquisición ni una regresión: el
+    # oficialismo de esa fila directamente no es identificable en los
+    # datos reales.
+    _SIN_OFICIALISMO_VIABLE_DOCUMENTADO = {("nacional", 2003)}
+
     def test_exactamente_un_oficialismo_por_nivel_anio_con_oficialismo_resuelto(self, distancias_reales):
         """Pedido explícito: nunca 0 ni >1 fila `es_oficialismo=True` por
-        (nivel, año) -- salvo que el oficialismo real no sea viable (no
-        ocurre en los datos reales, se verifica aparte)."""
+        (nivel, año) -- salvo los casos documentados en
+        _SIN_OFICIALISMO_VIABLE_DOCUMENTADO, donde el oficialismo real no
+        tiene lista en la boleta."""
         conteo = distancias_reales[distancias_reales["es_oficialismo"]].groupby(["nivel", "anio"]).size()
         assert (conteo == 1).all(), conteo[conteo != 1]
 
@@ -134,7 +143,7 @@ class TestCasoRealAuditoria2023:
         # el universo real de (nivel, anio) de la tabla.
         universo = set(map(tuple, distancias_reales[["nivel", "anio"]].drop_duplicates().values.tolist()))
         con_oficialismo = set(conteo.index)
-        sin_oficialismo_resuelto = universo - con_oficialismo
+        sin_oficialismo_resuelto = universo - con_oficialismo - self._SIN_OFICIALISMO_VIABLE_DOCUMENTADO
         assert sin_oficialismo_resuelto == set(), (
             f"(nivel, anio) sin ninguna fila es_oficialismo=True: {sin_oficialismo_resuelto} "
             "-- si es por oficialismo no viable, documentarlo; si no, es una regresión"

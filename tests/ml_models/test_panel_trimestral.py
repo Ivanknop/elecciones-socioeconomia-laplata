@@ -94,15 +94,17 @@ class TestCalcularNTrimestres:
     def test_casos_conocidos(self, fecha_inicio, fecha_fin, n_esperado):
         assert calcular_n_trimestres(fecha_inicio, fecha_fin) == n_esperado
 
-    def test_contra_las_31_ventanas_reales(self):
+    def test_contra_las_36_ventanas_reales(self):
         """Sin red, sin depender de resultado_distrito -- solo el
         calendario real de ventanas.csv, mismo criterio que el test
-        equivalente de test_panel_ventanas.py."""
+        equivalente de test_panel_ventanas.py. nacional_2001_2003 (6,
+        18.4 meses) y nacional_2003_2005 (10, 29.9 meses) caen dentro del
+        rango ya observado en municipal/provincial, sin ampliarlo."""
         from ml_models.construir_calendario import construir_calendario, construir_ventanas
 
         ventanas_reales = construir_ventanas(construir_calendario())
         ns = [calcular_n_trimestres(v.fecha_inicio_vc, v.fecha_fin_vc) for v in ventanas_reales]
-        assert len(ns) == 31
+        assert len(ns) == 36
         assert min(ns) == 6
         assert max(ns) == 10
 

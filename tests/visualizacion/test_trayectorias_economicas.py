@@ -181,10 +181,10 @@ class TestIntegracionDatosReales:
     data/tfi_data/series_economicas_mensuales.csv (sin red), mismo
     criterio que el test equivalente de test_panel_ventanas.py."""
 
-    def test_31_ventanas_totales(self):
+    def test_36_ventanas_totales(self):
         payload = construir_payload(panel_dir=PANEL_TRIMESTRAL_DIR)
         total = sum(len(v) for v in payload["trayectorias"].values())
-        assert total == 31
+        assert total == 36
 
     def test_largo_de_serie_coincide_con_calcular_n_trimestres(self):
         payload = construir_payload(panel_dir=PANEL_TRIMESTRAL_DIR)

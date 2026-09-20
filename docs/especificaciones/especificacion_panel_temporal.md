@@ -130,11 +130,11 @@ Elecciones cada dos años, en años impares. Corte inferior en 2001 por disponib
 
 | Año | Tipo nacional | Nivel municipal | Nivel provincial | Nivel nacional |
 |---|---|---|---|---|
-| 2001 | Legislativa | ✓ | ✓ | ✗ (sin desagregado La Plata) |
-| 2003 | Presidencial | ✓ | ✓ | ✗ |
-| 2005 | Legislativa | ✓ | ✓ | ✗ |
-| 2007 | Presidencial | ✓ | ✓ | ✗ |
-| 2009 | Legislativa | ✓ | ✓ | ✗ |
+| 2001 | Legislativa | ✓ | ✓ | ✓ (desde D31) |
+| 2003 | Presidencial | ✓ | ✓ | ✓ (desde D31; ver nota de incertidumbre de fecha/cargo en D31) |
+| 2005 | Legislativa | ✓ | ✓ | ✓ (desde D31) |
+| 2007 | Presidencial | ✓ | ✓ | ✓ (desde D31) |
+| 2009 | Legislativa | ✓ | ✓ | ✓ (desde D31) |
 | 2011 | Presidencial | ✓ | ✓ | ✓ |
 | 2013 | Legislativa | ✓ | ✓ | ✓ |
 | 2015 | Presidencial | ✓ | ✓ | ✓ |
@@ -150,8 +150,8 @@ Elecciones cada dos años, en años impares. Corte inferior en 2001 por disponib
 |---|---|---|
 | `municipal` | 13 (2001-2025) | 12 |
 | `provincial` | 13 (2001-2025) | 12 |
-| `nacional` | 8 (2011-2025) | 7 |
-| **Total** | | **31** |
+| `nacional` | 13 (2001-2025, desde D31) | 12 |
+| **Total** | | **36** |
 
 ### 3.3 Desdoblamiento
 
@@ -391,11 +391,13 @@ Se requiere una columna `continuidad_oficialismo` con valores:
 Esta especificación previó una cuarta categoría, `sin_oficialismo`, para
 "casos extremos (2001-2003, colapso del gobierno)" — referencia a la
 crisis de diciembre de 2001 (renuncia de De la Rúa, sucesión de varios
-presidentes en dos semanas). **Validado que nunca se activa** (D20,
-`docs/decisiones_metodologicas.md`): a nivel nacional la ventana 2001-2003
-no existe en el panel (nacional arranca en 2011, D15); a nivel provincial
-y municipal el titular de octubre de 2001 (antes de la crisis) es
-PARTIDO JUSTICIALISTA en ambos casos y la continuidad es lisa
+presidentes en dos semanas). **Validado en su momento que nunca se
+activaba** (D20, `docs/decisiones_metodologicas.md`; superado por D31, que
+sí incorpora la ventana `nacional_2001_2003` -- ruptura Alianza→PJ real,
+sin `share_oficialismo` resoluble en 2003 porque la Alianza no tiene lista
+en esa boleta, documentado como hueco real, no como `sin_oficialismo`): a
+nivel provincial y municipal el titular de octubre de 2001 (antes de la
+crisis) es PARTIDO JUSTICIALISTA en ambos casos y la continuidad es lisa
 (Ruckauf→Solá, Alak reelecto) — ya codificada como `continua`. Los tres
 valores de arriba son los únicos que produce
 `construir_calendario.construir_oficialismo_por_nivel`.
@@ -438,7 +440,7 @@ huecos.
 | `resultado_disponible` | `True` si la fila salió de `circuito_<cargo>.json`, `False` si salió del fallback `elecciones/` | — |
 
 **Huecos de cobertura esperados:**
-- `nacional` 2001-2009 no genera fila (no está en `calendario_electoral.csv`).
+- `nacional` 2001-2009 sí genera fila desde D31; `(2003, nacional)` queda sin `share_oficialismo`/`gana_oficialismo`/`delta_v` resueltos (la Alianza, titular entrante a esa elección, no tiene lista en esa boleta).
 - `votos_nulos` vacío en `2025 provincial`/`2025 municipal` (Ley 5.109,
   D19) — `ausentismo` ya **no** está vacío para esos dos años desde la
   corrección a D17 (`votos_nulos` se trata como `0` sólo en esa resta).
@@ -568,7 +570,7 @@ Una única tabla `panel_ventanas.csv` con columna `nivel`, pero **el grano de an
 
 ### 7.4 Pooling parcial: decisión abierta
 
-La serie `nacional` tiene solo 7 observaciones. Existe una vía intermedia entre pooling completo (que destruiría la pregunta) y sin pooling (que deja la serie nacional muy débil): **modelo jerárquico bayesiano con parcial pooling entre niveles**, donde cada nivel conserva su propio coeficiente de respuesta pero comparte información a través de una distribución común.
+La serie `nacional` tenía solo 7 observaciones (12 desde D31, igual que las otras dos series). Existe una vía intermedia entre pooling completo (que destruiría la pregunta) y sin pooling (que deja la serie nacional muy débil): **modelo jerárquico bayesiano con parcial pooling entre niveles**, donde cada nivel conserva su propio coeficiente de respuesta pero comparte información a través de una distribución común.
 
 Trade-off: introduce el supuesto de intercambiabilidad a priori entre niveles.
 
@@ -618,7 +620,7 @@ A incorporar en `docs/decisiones_metodologicas.md`:
 ### 9.4 Fase 4 — Features y panel final
 
 11. Implementar `features_ventana.py` con las fórmulas de la sección 5, **operando genéricamente sobre el registro de variables**. No hardcodear la lista de variables ni sus polaridades.
-12. Construir `panel_ventanas.csv`: 31 filas (12 municipales + 12 provinciales + 7 nacionales), con todas las columnas de identificación, dependientes y features.
+12. Construir `panel_ventanas.csv`: 36 filas (12 municipales + 12 provinciales + 12 nacionales, D31), con todas las columnas de identificación, dependientes y features.
 13. Tests: verificar el N esperado por nivel, la ausencia de nulos no documentados, la coherencia de fechas, la correcta polaridad de los features, y **que agregar una fila ficticia al registro produzca sus features automáticamente sin tocar código** (test de extensibilidad).
 
 ### 9.5 Fuera de alcance de esta especificación
@@ -634,7 +636,7 @@ A incorporar en `docs/decisiones_metodologicas.md`:
 El trabajo se considera completo cuando:
 
 - La rama `especializacion` existe y contiene todos los archivos nuevos, sin haber modificado, movido ni renombrado ningún archivo preexistente.
-- `panel_ventanas.csv` tiene exactamente 31 filas, con la distribución 12/12/7 por nivel.
+- `panel_ventanas.csv` tiene exactamente 36 filas, con la distribución 12/12/12 por nivel (D31; originalmente 31, 12/12/7).
 - Todo hueco de datos está documentado explícitamente (columna de flag o nota metodológica), sin imputaciones silenciosas.
 - La suite de tests existente (19 tests) sigue pasando sin modificaciones.
 - Los tests nuevos de `tests/ml_models/` pasan.

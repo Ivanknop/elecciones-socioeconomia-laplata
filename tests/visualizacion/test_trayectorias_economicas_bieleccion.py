@@ -83,13 +83,13 @@ class TestIntegracionDatosReales:
     """Contra los CSV ya committeados de data/tfi_data/panel/t-2/ (sin
     red), mismo criterio que el equivalente en test_trayectorias_economicas.py."""
 
-    def test_28_transiciones_totales(self):
-        """12 municipal + 12 provincial + 7 nacional ventanas `_vc`, menos
+    def test_33_transiciones_totales(self):
+        """12 municipal + 12 provincial + 12 nacional ventanas `_vc`, menos
         una por nivel sin bloque largo (la primera transición de cada
-        nivel) = 11 + 11 + 6 = 28."""
+        nivel) = 11 + 11 + 11 = 33."""
         payload = construir_payload(panel_dir=PANEL_BIELECCION_TRIMESTRAL_DIR)
         total = sum(len(v) for v in payload["trayectorias"].values())
-        assert total == 28
+        assert total == 33
 
     def test_largo_de_serie_coincide_con_calcular_n_trimestres_del_bloque_largo(self):
         payload = construir_payload(panel_dir=PANEL_BIELECCION_TRIMESTRAL_DIR)

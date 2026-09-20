@@ -257,7 +257,7 @@ están versionados en git.** El resto de `graficos/distrito/<año>/<nivel>/`
 (circuito por circuito, más el cuadro anual de todos los cargos de ese año)
 está en `.gitignore` — se genera on demand con los scripts de abajo y no
 hace falta subirlo (son miles de archivos, se regeneran en segundos desde
-`data/`). Para la capa socioeconómica, `notebooks/06_graficos_eph_iaelap.ipynb`/
+`data/`). Para la capa socioeconómica, `notebooks/mineria_datos/06_graficos_eph_iaelap.ipynb`/
 `src/socioeconomia/graficos_eph_iaelap.py` generan tanto los PNG de la EPH
 (`graficos/socioeconomia/eph/`) como los de IAELaP y el de contraste
 EPH/IAELaP (`graficos/socioeconomia/`) — ninguno de esos PNG está
@@ -583,7 +583,7 @@ variables hoy `exploratoria` (`pobreza`/`gini`/`brecha_cambiaria`/
 `empleo_registrado_pba`, ver `cargar_series_economicas.py`), aparece
 sola sin tocar este módulo.
 
-**Un gráfico por ventana, nunca las 31 superpuestas**: elegidos nivel +
+**Un gráfico por ventana, nunca las 36 superpuestas**: elegidos nivel +
 elección + variable, se muestra la trayectoria trimestral de esa única
 ventana, alineada por **posición relativa dentro de la ventana**
 (trimestre 1..N desde la elección anterior), no por fecha calendario —
@@ -674,8 +674,8 @@ columna `anio_t_menos_1` se reemplaza por `anio_t_menos_2` y la frontera
 inicial es `tipo_fila="eleccion_t_menos_2"` en vez de
 `"eleccion_t_menos_1"`. **Ventanas sin `fecha_inicio_vl` (la primera
 transición de cada nivel, sin bloque largo posible -- D3) se saltean**,
-no generan fila: de las 31 ventanas `_vc` totales (12 municipal + 12
-provincial + 7 nacional) quedan **28 ventanas bielección** (11 + 11 + 6).
+no generan fila: de las 36 ventanas `_vc` totales (12 municipal + 12
+provincial + 12 nacional, D31) quedan **33 ventanas bielección** (11 + 11 + 11).
 `id_transicion` propio, `<nivel>_<anio_t_menos_2>_<anio_t>` (ej.
 `municipal_2001_2005`), distinto del `id_transicion` del bloque corto
 para la misma agrupación de años.
@@ -977,7 +977,7 @@ al implementar y el resultado de la auditoría externa están en
 3. Usar `get_resultados_csv` para traer los datos, y a partir de ahí seguir
    el mismo camino que los notebooks de este repo:
    - Agregar por `circuito_id` (normalizado a su forma canónica, sin ceros a
-     la izquierda) con la misma lógica de `notebooks/04_totales_por_circuito.ipynb`
+     la izquierda) con la misma lógica de `notebooks/mineria_datos/04_totales_por_circuito.ipynb`
      (`agregar_por_circuito`), validando contra el JSON agregado de
      `get_resultados` antes de confiar en el resultado.
    - Armar (o extender) el libro de códigos ideológico para las agrupaciones
