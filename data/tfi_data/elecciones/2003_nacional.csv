@@ -1,2 +1,33 @@
-# Total de votos, elección general -- La Plata, nacional 2003 (cargo: presidente)
+# Total de votos, elección general -- La Plata, nacional 2003 (cargo: presidente) // Fuente https://web.archive.org/web/20110902184524/http://www.elecciones.gob.ar/estadistica/archivos/2003/BSAS_14_de_Sep_03/BastotPcial2003.pdf
 id_agrupacion,agrupacion,votos,votos_porcentaje,campo_ideologico,filiacion_politica,vparty_economico,vparty_progresismo,vparty_populismo
+,M.I.D.,1641,0.69,5,liberales,0.185,0.925,0.351
+,JUSTICIALISTA,81160,34.23,3,peronistas,-0.416,0.268,0.658
+,U.C.R.,19258,8.12,3,radicalismo,0.039,0.895,0.338
+,DEM. CRISTIANO,1870,0.79,4,liberales,2.365,-1.020,0.045
+,M.A.S,1120,0.47,1,marxistas,-1.991,2.325,0.723
+,SOC. AUTENT /DEL SOC. AUT.,1913,0.81,2,progresistas,-1.683,2.154,0.481
+,NAC. CONSTITUCIONAL,740,0.31,5,nacionalistas,,,
+,AUTONOMISTA,4204,1.77,2,conservadores,,,
+,DE LOS TRAB. SOC.,1892,0.80,1,marxistas,-1.991,2.325,0.723
+,POP.DE LA RECONSTRUC.,723,0.30,,,,,
+,UNION Y LIBERTAD,541,0.23,,,,,
+,AUTENTICO,13,0.01,,,,,
+,HUMANISTA ECOLOGISTA,4751,2.00,2,progresistas,-1.412,1.557,0.723
+,MOV. POR LA JUST. SOCIAL,27,0.01,,,,,
+,ENCUENTRO POPULAR,0,0.00,,,,,
+,OBRERO / DEL OBRERO,3361,1.42,1,marxistas,-1.991,2.325,0.723
+,MOV. INTEGRACION FED.,851,0.36,,,,,
+,VOLUNT. INT. Y DES. AUT.(V.I.D.A.),5851,2.47,,,,,
+,UNION POPULAR,26,0.01,5,conservadores,2.365,-1.020,0.045
+,POLO SOCIAL,911,0.38,2,progresistas,-1.412,1.557,0.723
+,FTE. POLO SOCIAL P/ VICTORIA,0,0.00,,,,,
+,MOV. VECIN. PROV.(MO.VE.PRO.),65,0.03,,vecinalismo,,,
+,AL.MOV.FED.P/ RECREAR CRECIM.,14323,6.04,4,radicalismo,0.039,0.874,0.354
+,AL. ACCION FED. P/ BS.AS.,14196,5.99,4,nacionalistas,1.579,-1.862,0.425
+,AL. FTE. POP. BONAERENSE,19966,8.42,4,nacionalistas,1.579,-1.862,0.425
+,AL. FTE. CAMBIA BUENOS AIRES,1150,0.48,2,peronistas,,,
+,AL. IZQ. UNIDA - SOCIALISTA,18705,7.89,2,progresistas,-1.683,2.154,0.481
+,AL. A.R.I.,37867,15.97,4,radicales,0.452,0.299,0.372
+BLANCO,BLANCO,65370,21.26,,,,,
+NULO,NULO,4961,1.61,,,,,
+VOTANTES_HABILITADOS,VOTANTES_HABILITADOS,417765,100.0000,,,,,

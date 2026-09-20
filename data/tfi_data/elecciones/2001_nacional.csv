@@ -1,2 +1,24 @@
-# Total de votos, elección general -- La Plata, nacional 2001 (cargo: nacional)
+# Total de votos, elección general -- La Plata, nacional 2001 (cargo: nacional) // Funente: https://web.archive.org/web/20110902190507/http://www.elecciones.gov.ar/estadistica/archivos/2001/BsAsTotDistr2001.pdf
 id_agrupacion,agrupacion,votos,votos_porcentaje,campo_ideologico,filiacion_politica,vparty_economico,vparty_progresismo,vparty_populismo
+,HUM. ECOL. / HUM.,7564,3.21,2,progresistas,-1.412,1.557,0.723
+,JUSTICIALISTA,73939,31.34,3,peronistas,0.544,0.050,0.503
+,PROGRESO SOCIAL,1163,0.49,3,peronistas,-0.416,0.268,0.658
+,U.Ce.Dé,11806,5.00,4,liberales,2.365,-1.020,0.045
+,ACC. P/ REP.,5384,2.28,5,liberales,2.243,-0.238,0.136
+,DE LOS TRAB. SOC. (PTS),3080,1.31,1,marxistas,-1.991,2.325,0.723
+,MOV. POP. BONAERENSE,3349,1.42,4,nacionalistas,1.579,-1.862,0.425
+,LABORISTA,1483,0.63,2,progresistas,-1.412,1.557,0.723
+,UNID. FEDERALISTA - PAUFE,7930,3.36,4,nacionalistas,1.579,-1.862,0.425
+,DEL SOC. AUTENTICO,2813,1.19,2,progresistas,-1.683,2.154,0.481
+,POP. D/L RECONSTRUCCION,1338,0.57,,,,,
+,POP. P/ LA RECONQUISTA,1293,0.55,,,,,
+,AL. FTE. RENOV. POP. (FREPEBA),1391,0.59,,,,,
+,FTE. COMP. SOCIAL,2135,0.91,4,peronistas,0.544,0.050,0.503
+,ALTER REP IGUAL. (ARI),28737,12.18,4,radicales,0.452,0.299,0.372
+,AL. IZ. UNIDA (I.U),9259,3.93,1,marxistas,-1.991,2.325,0.723
+,AL. TRAB. JUST. EDUC. (1),45630,19.34,3,radicalismo,0.262,0.755,0.288
+,DEL OBRERO - MAS/ OBRERO,5029,2.13,1,marxistas,-1.991,2.325,0.723
+,AL. FTE. POLO SOCIAL,22573,9.57,2,progresistas,-1.412,1.557,0.723
+BLANCO,BLANCO,21293,6.78,,,,,
+NULO,NULO,57022,18.15,,,,,
+VOTANTES_HABILITADOS,VOTANTES_HABILITADOS,410518,100.0000,,,,,

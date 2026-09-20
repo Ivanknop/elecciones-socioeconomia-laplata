@@ -1,2 +1,23 @@
-# Total de votos, elección general -- La Plata, nacional 2009 (cargo: nacional)
+# Total de votos, elección general -- La Plata, nacional 2009 (cargo: nacional) // Fuente: https://web.archive.org/web/20131107071107/http://www.elecciones.gov.ar/estadistica/archivos/2009/Bs_As_28_de_junio_de_2009_8%C2%BA.pdf
 id_agrupacion,agrupacion,votos,votos_porcentaje,campo_ideologico,filiacion_politica,vparty_economico,vparty_progresismo,vparty_populismo
+,OBRERO,3487,1.13,1,marxistas,-1.991,2.325,0.723
+,POPULAR DE LA RECONSTRUCCION,769,0.25,,,,,
+,AUTENTICO,610,0.20,,,,,
+,MOV. POP. PARA LA RECONQUISTA,489,0.16,,,,,
+,VIDA - VOL. P / INT. DES. AUT. ENT.,1304,0.42,,,,,
+,NUC - NUEVA UNION CIUDADANA,1314,0.43,,,,,
+,PASIB - P. AC.SOL. INDEPENDIENTE,15,0.00,,,,,
+,VECINALISTA DE INT. CIUDADANA,646,0.21,,vecinalismo,,,
+,CONCERTACION PLURAL,34,0.01,,,,,
+,MO.FE.JU. - MOV. FED. DE LOS JUB.,1884,0.61,,,,,
+,RENOVADOR DE LA PCIA. DE BS. AS.,2267,0.74,4,peronistas,0.376,-0.016,0.363
+,PTS - MAS - IZQUIERDA SOCIALISTA,6034,1.96,1,marxistas,-1.991,2.325,0.723
+,UNION PRO,111364,36.24,5,liberales,1.401,-0.142,0.186
+,FTE. ES POSIBLE,1342,0.44,,,,,
+,MST - MIJD - NUEVA IZQ. EN UNIDAD,1893,0.62,1,marxistas,-1.991,2.325,0.723
+,FTE. JUSTICIALIS.P/LA VICTORIA,65564,21.34,3,peronistas,-1.664,1.831,0.871
+,NE - NUEVO ENCUENTRO,15877,5.17,2,marxistas,-1.412,1.557,0.723
+,ACUERDO CIVICO Y SOCIAL,92361,30.06,3,progresistas,-0.692,1.546,0.461
+BLANCO,BLANCO,36623,10.50,,,,,
+NULO,NULO,4849,1.39,,,,,
+VOTANTES_HABILITADOS,VOTANTES_HABILITADOS,453508,100.0000,,,,,
