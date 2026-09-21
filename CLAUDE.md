@@ -475,7 +475,7 @@ under `data/`. There is no orchestration script; **the notebooks under
   2023 nacional/provincial), not missing V-Party coverage. See D18 in
   `docs/decisiones_metodologicas.md` for the full audit.
 
-  `notebooks/ml/03_desplazamiento_ideologico.ipynb` (H2/H3, independent
+  `notebooks/ml/ventana_t-1/03_desplazamiento_ideologico.ipynb` (H2/H3, independent
   of `01.1`-`01.3_lasso_*.ipynb`/`02_bayes.ipynb`, no cross-notebook
   imports — same self-contained convention as those) models
   `magnitud_desplazamiento_ideologico` as the dependent variable, reusing

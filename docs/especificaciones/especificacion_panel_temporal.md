@@ -482,7 +482,7 @@ alternativas disponibles en vez de una sola preseleccionada por votos.
 
 No se guarda una columna "fuerza ideológicamente más cercana" — se deriva
 con `min(distancia_euclidea_al_oficialismo)` sobre las fuerzas no
-oficialistas cuando haga falta (ver `notebooks/ml/03_desplazamiento_ideologico.ipynb`),
+oficialistas cuando haga falta (ver `notebooks/ml/ventana_t-1/03_desplazamiento_ideologico.ipynb`),
 para no fijar de antemano un criterio que puede no coincidir con "la que
 más votos sacó".
 
@@ -498,14 +498,14 @@ transición (`anio_t`/`anio_t_menos_1`), mismo patrón de join que ya usa
 | `delta_sigma2_economico`, `delta_sigma2_progresismo` | `dispersion_<eje>_sigma2(t) − dispersion_<eje>_sigma2(t−1)`, por eje — magnitud de la fragmentación/polarización; no cancela cuando fuerzas de polos opuestos ganan votos parecidos (caso real: LLA/FIT-U 2021), a diferencia de los deltas de `mu` |
 | `magnitud_desplazamiento_ideologico` | `√(delta_economico² + delta_progresismo²)`, sobre los deltas de `mu` |
 | `cuadrante_desplazamiento` | dirección del vector de desplazamiento: `derecha`/`izquierda` según el signo de `delta_dispersion_economico_mu`, `progresista`/`conservador` según el signo de `delta_dispersion_progresismo_mu` (mismo criterio de signo que las etiquetas fijas de `vparty_cuadrantes`/`vparty_cuadrantes_local`, aplicado al vector de desplazamiento en vez de al punto absoluto) — `None` si falta cualquiera de los dos deltas o si alguno es exactamente `0` (cuadrante indefinido) |
-| `dispersion_cobertura_share_min` | `min(dispersion_cobertura_share(t), dispersion_cobertura_share(t−1))` — para ponderar/filtrar transiciones con baja cobertura V-Party sin fijar un umbral en código (ver `notebooks/ml/03_desplazamiento_ideologico.ipynb`) |
+| `dispersion_cobertura_share_min` | `min(dispersion_cobertura_share(t), dispersion_cobertura_share(t−1))` — para ponderar/filtrar transiciones con baja cobertura V-Party sin fijar un umbral en código (ver `notebooks/ml/ventana_t-1/03_desplazamiento_ideologico.ipynb`) |
 
 **Disciplina H1/H4 vs. H2/H3:** estas 6 columnas (todas menos
 `dispersion_cobertura_share_min`, que es una covariable de calidad de
 dato, no una variable dependiente) son variables dependientes de H2,
 calculadas con datos de `t` — nunca deben usarse como predictoras de
 H1/H4. Ninguna termina en `_vc`/`_vl`, así que el mecanismo de selección
-de `notebooks/ml/01.1`-`01.3_lasso_*.ipynb`/`02_bayes.ipynb` ya las
+de `notebooks/ml/ventana_t-1/01.1`-`01.3_lasso_*.ipynb`/`02_bayes.ipynb` ya las
 excluye por construcción (ver D18).
 
 `distancia_oficialismo_alternativa` (existente) queda **deprecada**: ver
