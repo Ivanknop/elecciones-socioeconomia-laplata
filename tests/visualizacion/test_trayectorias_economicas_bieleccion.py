@@ -83,13 +83,15 @@ class TestIntegracionDatosReales:
     """Contra los CSV ya committeados de data/tfi_data/panel/t-2/ (sin
     red), mismo criterio que el equivalente en test_trayectorias_economicas.py."""
 
-    def test_33_transiciones_totales(self):
+    def test_estructura_basica_del_payload_real(self):
         """12 municipal + 12 provincial + 12 nacional ventanas `_vc`, menos
         una por nivel sin bloque largo (la primera transición de cada
         nivel) = 11 + 11 + 11 = 33."""
         payload = construir_payload(panel_dir=PANEL_BIELECCION_TRIMESTRAL_DIR)
         total = sum(len(v) for v in payload["trayectorias"].values())
         assert total == 33
+        for var in payload["variables"]:
+            assert payload["unidades"].get(var), var
 
     def test_largo_de_serie_coincide_con_calcular_n_trimestres_del_bloque_largo(self):
         payload = construir_payload(panel_dir=PANEL_BIELECCION_TRIMESTRAL_DIR)
@@ -100,8 +102,3 @@ class TestIntegracionDatosReales:
             ventana = payload["trayectorias"][v.nivel][id_transicion]
             alguna_variable = next(iter(ventana["series"]))
             assert len(ventana["series"][alguna_variable]) == n_esperado, id_transicion
-
-    def test_unidades_presentes_para_todas_las_variables(self):
-        payload = construir_payload(panel_dir=PANEL_BIELECCION_TRIMESTRAL_DIR)
-        for var in payload["variables"]:
-            assert payload["unidades"].get(var), var

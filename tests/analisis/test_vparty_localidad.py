@@ -100,26 +100,18 @@ def crosswalk_path(tmp_path):
 
 
 class TestCargarPosicionesPropias:
-    def test_solo_incluye_filas_con_vparty_economico_poblado(self, clasificacion_path):
+    def test_carga_posiciones_filtra_castea_y_conserva_nivel(self, clasificacion_path):
         posiciones = cargar_posiciones_propias(clasificacion_path)
 
         assert ("2023", "intendente", "PARTIDO A") in posiciones
         assert ("2023", "intendente", "PARTIDO B") in posiciones
-        assert ("2023", "intendente", "PARTIDO C") not in posiciones
-
-    def test_devuelve_la_tupla_econ_prog_pop_como_float(self, clasificacion_path):
-        posiciones = cargar_posiciones_propias(clasificacion_path)
-
+        assert ("2023", "intendente", "PARTIDO C") not in posiciones  # sin vparty_economico
         assert posiciones[("2023", "intendente", "PARTIDO A")] == (-1.0, 1.0, 0.5)
-
-    def test_conserva_el_nombre_de_nivel_tal_cual_esta_en_el_csv(self, clasificacion_path):
-        posiciones = cargar_posiciones_propias(clasificacion_path)
-
-        assert ("2011", "gobernacion", "PARTIDO D") in posiciones
+        assert ("2011", "gobernacion", "PARTIDO D") in posiciones  # nivel del CSV, no normalizado
 
 
 class TestTablaDistrito:
-    def test_suma_votos_de_todos_los_circuitos_para_agrupaciones_con_cobertura(self, data_dir, clasificacion_path):
+    def test_tabla_distrito_suma_votos_y_excluye_sin_cobertura(self, data_dir, clasificacion_path):
         posiciones = cargar_posiciones_propias(clasificacion_path)
 
         df = tabla_distrito("municipal", posiciones, data_dir)
@@ -127,12 +119,6 @@ class TestTablaDistrito:
         fila_a = df.set_index("agrupacion").loc["PARTIDO A"]
         assert fila_a["votos"] == 60 + 30
         assert (fila_a["economico"], fila_a["progresismo"], fila_a["populismo"]) == (-1.0, 1.0, 0.5)
-
-    def test_excluye_agrupaciones_sin_cobertura_vparty(self, data_dir, clasificacion_path):
-        posiciones = cargar_posiciones_propias(clasificacion_path)
-
-        df = tabla_distrito("municipal", posiciones, data_dir)
-
         assert "PARTIDO C" not in df["agrupacion"].values
 
     def test_usa_nivel_a_nivel_csv_para_el_join_de_gobernador(self, data_dir, clasificacion_path):
@@ -163,29 +149,19 @@ class TestVotosPorCircuitoAgrupacion:
 
 
 class TestTablaLocalidades:
-    def test_suma_votos_de_los_circuitos_de_la_misma_localidad(self, data_dir, clasificacion_path, crosswalk_path):
-        posiciones = cargar_posiciones_propias(clasificacion_path)
-
-        df = tabla_localidades("municipal", posiciones, data_dir, crosswalk_path)
-
-        fila_a = df[(df["localidad"] == "BARRIO_A") & (df["agrupacion"] == "PARTIDO A")].iloc[0]
-        assert fila_a["votos"] == 60 + 30  # circuitos 100 + 101
-
-    def test_circuito_sin_crosswalk_cae_en_sin_determinar(self, data_dir, clasificacion_path, crosswalk_path):
+    def test_tabla_localidades_agrupa_sin_determinar_y_excluye_sin_cobertura(
+        self, data_dir, clasificacion_path, crosswalk_path,
+    ):
         from electoral.localidades import SIN_DETERMINAR
 
         posiciones = cargar_posiciones_propias(clasificacion_path)
 
         df = tabla_localidades("municipal", posiciones, data_dir, crosswalk_path)
 
+        fila_a = df[(df["localidad"] == "BARRIO_A") & (df["agrupacion"] == "PARTIDO A")].iloc[0]
+        assert fila_a["votos"] == 60 + 30  # circuitos 100 + 101
         fila_b = df[(df["localidad"] == SIN_DETERMINAR) & (df["agrupacion"] == "PARTIDO B")].iloc[0]
         assert fila_b["votos"] == 15  # circuito 999
-
-    def test_excluye_agrupaciones_sin_cobertura_vparty(self, data_dir, clasificacion_path, crosswalk_path):
-        posiciones = cargar_posiciones_propias(clasificacion_path)
-
-        df = tabla_localidades("municipal", posiciones, data_dir, crosswalk_path)
-
         assert "PARTIDO C" not in df["agrupacion"].values
 
     def test_no_incluye_filas_de_votos_cero(self, tmp_path, clasificacion_path, crosswalk_path):
@@ -207,16 +183,12 @@ class TestTablaLocalidades:
 
 
 class TestCargarFiliaciones:
-    def test_devuelve_filiacion_por_agrupacion(self, clasificacion_path):
-        filiaciones = cargar_filiaciones(clasificacion_path)
-
-        assert filiaciones[("2023", "intendente", "PARTIDO A")] == "otros"
-
-    def test_incluye_agrupaciones_sin_cobertura_vparty(self, clasificacion_path):
+    def test_cargar_filiaciones_incluye_incluso_sin_cobertura_vparty(self, clasificacion_path):
         """A diferencia de `cargar_posiciones_propias`, no filtra por
         `vparty_economico` -- PARTIDO C no tiene V-Party pero sí filiación."""
         filiaciones = cargar_filiaciones(clasificacion_path)
 
+        assert filiaciones[("2023", "intendente", "PARTIDO A")] == "otros"
         assert ("2023", "intendente", "PARTIDO C") in filiaciones
 
     def test_omite_filas_sin_filiacion_politica(self, tmp_path):
@@ -229,28 +201,25 @@ class TestCargarFiliaciones:
 
 
 class TestSombras:
-    def test_devuelve_n_colores_distintos(self):
-        colores = _sombras("#FF0000", 3)
-
-        assert len(colores) == 3
-        assert len(set(colores)) == 3
-
-    def test_n_uno_devuelve_un_solo_color(self):
-        colores = _sombras("#0000FF", 1)
-
-        assert len(colores) == 1
-
-    def test_mantiene_el_matiz_y_la_saturacion_del_color_base(self):
+    def test_sombras_distintas_conservan_matiz_y_saturacion(self):
         import colorsys
 
         base = "#FF0000"
         h_base, l_base, s_base = colorsys.rgb_to_hls(1.0, 0.0, 0.0)
 
-        for color in _sombras(base, 4):
+        colores = _sombras(base, 3)
+        assert len(colores) == 3
+        assert len(set(colores)) == 3
+        for color in colores:
             r, g, b = (int(color.lstrip("#")[i:i + 2], 16) / 255 for i in (0, 2, 4))
             h, l, s = colorsys.rgb_to_hls(r, g, b)
             assert h == pytest.approx(h_base, abs=1e-6)
             assert s == pytest.approx(s_base, abs=1e-6)
+
+    def test_n_uno_devuelve_un_solo_color(self):
+        colores = _sombras("#0000FF", 1)
+
+        assert len(colores) == 1
 
 
 class TestColorPorPartido:

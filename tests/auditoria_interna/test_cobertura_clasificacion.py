@@ -92,29 +92,25 @@ def test_calcular_cobertura_totalmente_clasificado_no_tiene_faltantes():
     assert filas[0]["faltantes"] == []
 
 
-def test_resumen_por_anio_nivel_suma_votos_faltantes():
+def test_resumen_por_anio_nivel_agrega_ordena_y_calcula_porcentajes():
     filas = [
-        {"anio": 2011, "nivel": "presidente", "agrupacion": "A", "votos": 1000, "faltantes": ["campo_ideologico"]},
-        {"anio": 2011, "nivel": "presidente", "agrupacion": "B", "votos": 500, "faltantes": []},
-        {"anio": 2013, "nivel": "nacional", "agrupacion": "C", "votos": 200, "faltantes": ["vparty_economico"]},
-    ]
-    resumen = resumen_por_anio_nivel(filas)
-    fila_2011 = next(r for r in resumen if r["anio"] == 2011)
-    assert fila_2011["total_votos"] == 1500
-    assert fila_2011["campo_ideologico"] == 1000
-    assert fila_2011["filiacion_politica"] == 0
-    assert fila_2011["vparty_economico"] == 0
-
-
-def test_resumen_por_anio_nivel_ordenado_anio_nivel():
-    filas = [
-        {"anio": 2013, "nivel": "provincial", "agrupacion": "A", "votos": 1, "faltantes": []},
-        {"anio": 2011, "nivel": "presidente", "agrupacion": "B", "votos": 1, "faltantes": []},
+        {"anio": 2013, "nivel": "provincial", "agrupacion": "D", "votos": 1, "faltantes": []},
+        {"anio": 2011, "nivel": "presidente", "agrupacion": "A", "votos": 750, "faltantes": ["campo_ideologico"]},
+        {"anio": 2011, "nivel": "presidente", "agrupacion": "B", "votos": 250, "faltantes": []},
         {"anio": 2011, "nivel": "gobernacion", "agrupacion": "C", "votos": 1, "faltantes": []},
     ]
     resumen = resumen_por_anio_nivel(filas)
     claves = [(r["anio"], r["nivel"]) for r in resumen]
     assert claves == [(2011, "gobernacion"), (2011, "presidente"), (2013, "provincial")]
+
+    fila_presidente = next(r for r in resumen if r["nivel"] == "presidente")
+    assert fila_presidente["total_votos"] == 1000
+    assert fila_presidente["campo_ideologico"] == 750
+    assert fila_presidente["filiacion_politica"] == 0
+    assert fila_presidente["vparty_economico"] == 0
+    assert fila_presidente["campo_ideologico_pct"] == 75.0
+    assert fila_presidente["filiacion_politica_pct"] == 0.0
+    assert fila_presidente["vparty_economico_pct"] == 0.0
 
 
 def test_top_n_partidos_a_clasificar_ordena_por_votos_desc():
@@ -149,18 +145,6 @@ def test_top_n_partidos_a_clasificar_anios_ordenados_sin_repetir():
     ]
     top = top_n_partidos_a_clasificar(filas, n=5)
     assert top[0]["anios"] == [2011, 2015]
-
-
-def test_resumen_por_anio_nivel_calcula_porcentajes():
-    filas = [
-        {"anio": 2011, "nivel": "presidente", "agrupacion": "A", "votos": 750, "faltantes": ["campo_ideologico"]},
-        {"anio": 2011, "nivel": "presidente", "agrupacion": "B", "votos": 250, "faltantes": []},
-    ]
-    resumen = resumen_por_anio_nivel(filas)
-    fila = resumen[0]
-    assert fila["campo_ideologico_pct"] == 75.0
-    assert fila["filiacion_politica_pct"] == 0.0
-    assert fila["vparty_economico_pct"] == 0.0
 
 
 def test_resumen_por_anio_nivel_porcentaje_cero_si_no_hay_votos():

@@ -25,15 +25,17 @@ class TestLista:
 
 
 class TestValorAgrupacion:
-    def test_from_json_campos_basicos(self, raw_valor_agrupacion):
+    def test_from_json_parsea_campos_basicos_listas_y_extra(self, raw_valor_agrupacion):
+        assert "listas" not in raw_valor_agrupacion
         valor = ValorAgrupacion.from_json(raw_valor_agrupacion)
         assert valor.id_agrupacion == "0131"
         assert valor.votos == 160079
         assert valor.votos_porcentaje == 45.44
-
-    def test_from_json_recorta_espacios_del_nombre(self, raw_valor_agrupacion):
-        valor = ValorAgrupacion.from_json(raw_valor_agrupacion)
         assert valor.nombre_agrupacion == "Alianza Frente para la Victoria"
+        assert valor.listas == []
+        assert valor.extra == {"idAgrupacionTelegrama": "", "urlLogo": ""}
+        conocidos = {"idAgrupacion", "nombreAgrupacion", "votos", "votosPorcentaje", "listas"}
+        assert conocidos.isdisjoint(valor.extra)
 
     def test_id_agrupacion_se_castea_a_str(self, raw_valor_agrupacion):
         raw_valor_agrupacion["idAgrupacion"] = 131  # la API real ya lo manda como string
@@ -41,24 +43,10 @@ class TestValorAgrupacion:
         assert valor.id_agrupacion == "131"
         assert isinstance(valor.id_agrupacion, str)
 
-    def test_listas_por_defecto_vacia_si_falta_la_clave(self, raw_valor_agrupacion):
-        assert "listas" not in raw_valor_agrupacion
-        valor = ValorAgrupacion.from_json(raw_valor_agrupacion)
-        assert valor.listas == []
-
     def test_listas_se_parsean_si_estan_presentes(self, raw_valor_agrupacion, raw_lista):
         raw_valor_agrupacion["listas"] = [raw_lista]
         valor = ValorAgrupacion.from_json(raw_valor_agrupacion)
         assert valor.listas == [Lista(nombre="LISTA 3 - UNIDAD", votos=1234, numero="3")]
-
-    def test_extra_guarda_campos_no_modelados(self, raw_valor_agrupacion):
-        valor = ValorAgrupacion.from_json(raw_valor_agrupacion)
-        assert valor.extra == {"idAgrupacionTelegrama": "", "urlLogo": ""}
-
-    def test_extra_no_repite_campos_conocidos(self, raw_valor_agrupacion):
-        valor = ValorAgrupacion.from_json(raw_valor_agrupacion)
-        conocidos = {"idAgrupacion", "nombreAgrupacion", "votos", "votosPorcentaje", "listas"}
-        assert conocidos.isdisjoint(valor.extra)
 
     def test_extra_detecta_campo_nuevo_no_documentado(self, raw_valor_agrupacion):
         raw_valor_agrupacion["campoQueLaApiAgregueMañana"] = 42
@@ -67,40 +55,22 @@ class TestValorAgrupacion:
 
 
 class TestTotalizarAgrupaciones:
-    def test_suma_votos_de_la_misma_agrupacion_por_id(self):
+    def test_totaliza_suma_ordena_y_recalcula_porcentaje(self):
         valores = [
-            ValorAgrupacion("0131", "Frente A", 100, 0.0),
-            ValorAgrupacion("0131", "Frente A", 50, 0.0),
-            ValorAgrupacion("0047", "Frente B", 30, 0.0),
-        ]
-        totales = totalizar_agrupaciones(valores)
-        assert {v.id_agrupacion: v.votos for v in totales} == {"0131": 150, "0047": 30}
-
-    def test_ordena_de_mayor_a_menor_por_votos(self):
-        valores = [
-            ValorAgrupacion("0047", "Frente B", 30, 0.0),
-            ValorAgrupacion("0131", "Frente A", 150, 0.0),
-        ]
-        totales = totalizar_agrupaciones(valores)
-        assert [v.id_agrupacion for v in totales] == ["0131", "0047"]
-
-    def test_recalcula_votos_porcentaje_sobre_el_nuevo_total(self):
-        valores = [
-            ValorAgrupacion("0131", "Frente A", 75, 99.0),  # porcentaje viejo, de otra consulta
+            ValorAgrupacion("0131", "Frente A", 40, 99.0),  # porcentaje viejo, de otra consulta
+            ValorAgrupacion("0131", "Frente A", 35, 99.0),  # mismo id que el anterior: se suman
             ValorAgrupacion("0047", "Frente B", 25, 1.0),
         ]
         totales = totalizar_agrupaciones(valores)
+        assert {v.id_agrupacion: v.votos for v in totales} == {"0131": 75, "0047": 25}
+        assert [v.id_agrupacion for v in totales] == ["0131", "0047"]  # mayor a menor
         por_id = {v.id_agrupacion: v.votos_porcentaje for v in totales}
-        assert por_id["0131"] == 75.0
+        assert por_id["0131"] == 75.0  # recalculado sobre el nuevo total, no el 99.0 viejo
         assert por_id["0047"] == 25.0
+        assert totales[0].nombre_agrupacion == "Frente A"
 
     def test_lista_vacia_no_rompe(self):
         assert totalizar_agrupaciones([]) == []
-
-    def test_conserva_el_nombre_de_agrupacion(self):
-        valores = [ValorAgrupacion("0131", "Frente A", 10, 0.0), ValorAgrupacion("0131", "Frente A", 5, 0.0)]
-        totales = totalizar_agrupaciones(valores)
-        assert totales[0].nombre_agrupacion == "Frente A"
 
 
 class TestEstadoRecuento:
@@ -136,7 +106,7 @@ class TestValoresOtros:
 
 
 class TestResultadoElectoral:
-    def test_from_json_parsea_estructura_anidada(self, raw_resultado_electoral):
+    def test_from_json_parsea_estructura_completa(self, raw_resultado_electoral):
         resultado = ResultadoElectoral.from_json(raw_resultado_electoral)
         assert resultado.fecha_totalizacion == "2026-07-26T15:28:11.171Z"
         assert isinstance(resultado.estado_recuento, EstadoRecuento)
@@ -144,10 +114,10 @@ class TestResultadoElectoral:
         assert isinstance(resultado.valores_totalizados_otros, ValoresOtros)
         assert len(resultado.valores_totalizados_positivos) == 2
         assert all(isinstance(v, ValorAgrupacion) for v in resultado.valores_totalizados_positivos)
-
-    def test_consulta_por_defecto_vacia(self, raw_resultado_electoral):
-        resultado = ResultadoElectoral.from_json(raw_resultado_electoral)
         assert resultado.consulta == {}
+        assert resultado.ganador.nombre_agrupacion == "Alianza Frente para la Victoria"
+        assert resultado.ganador.votos == 160079
+        assert resultado.total_votos_positivos == 160079 + 13177
 
     def test_consulta_se_guarda_si_se_pasa(self, raw_resultado_electoral):
         consulta = {"anio_eleccion": 2011, "nivel": "intendente"}
@@ -159,16 +129,6 @@ class TestResultadoElectoral:
         resultado = ResultadoElectoral.from_json(raw_resultado_electoral)
         assert resultado.extra == {"nuevoCampoDeLaApi": "x"}
 
-    def test_ganador_devuelve_la_agrupacion_con_mas_votos(self, raw_resultado_electoral):
-        resultado = ResultadoElectoral.from_json(raw_resultado_electoral)
-        assert resultado.ganador.nombre_agrupacion == "Alianza Frente para la Victoria"
-        assert resultado.ganador.votos == 160079
-
-    def test_ganador_es_none_si_no_hay_positivos(self, raw_resultado_electoral):
-        raw_resultado_electoral["valoresTotalizadosPositivos"] = []
-        resultado = ResultadoElectoral.from_json(raw_resultado_electoral)
-        assert resultado.ganador is None
-
     def test_ganador_en_empate_devuelve_el_primero_de_la_lista(self, raw_resultado_electoral):
         # documenta el comportamiento real de max(): con empate exacto en votos,
         # gana el primer elemento en el orden de valoresTotalizadosPositivos.
@@ -178,23 +138,15 @@ class TestResultadoElectoral:
         resultado = ResultadoElectoral.from_json(raw_resultado_electoral)
         assert resultado.ganador.id_agrupacion == "0131"
 
-    def test_total_votos_positivos_suma_todas_las_agrupaciones(self, raw_resultado_electoral):
-        resultado = ResultadoElectoral.from_json(raw_resultado_electoral)
-        assert resultado.total_votos_positivos == 160079 + 13177
-
-    def test_total_votos_positivos_es_cero_sin_agrupaciones(self, raw_resultado_electoral):
+    def test_sin_agrupaciones_positivas_ganador_none_y_total_cero(self, raw_resultado_electoral):
         raw_resultado_electoral["valoresTotalizadosPositivos"] = []
         resultado = ResultadoElectoral.from_json(raw_resultado_electoral)
+        assert resultado.ganador is None
         assert resultado.total_votos_positivos == 0
 
-    def test_es_mesa_false_sin_consulta(self, raw_resultado_electoral):
-        resultado = ResultadoElectoral.from_json(raw_resultado_electoral)
-        assert resultado.es_mesa is False
-
-    def test_es_mesa_false_si_consulta_no_tiene_mesa_id(self, raw_resultado_electoral):
-        resultado = ResultadoElectoral.from_json(raw_resultado_electoral, consulta={"anio_eleccion": 2011})
-        assert resultado.es_mesa is False
-
-    def test_es_mesa_true_si_consulta_trae_mesa_id(self, raw_resultado_electoral):
-        resultado = ResultadoElectoral.from_json(raw_resultado_electoral, consulta={"mesa_id": 5})
-        assert resultado.es_mesa is True
+    def test_es_mesa_segun_presencia_de_mesa_id_en_consulta(self, raw_resultado_electoral):
+        assert ResultadoElectoral.from_json(raw_resultado_electoral).es_mesa is False
+        sin_mesa_id = ResultadoElectoral.from_json(raw_resultado_electoral, consulta={"anio_eleccion": 2011})
+        assert sin_mesa_id.es_mesa is False
+        con_mesa_id = ResultadoElectoral.from_json(raw_resultado_electoral, consulta={"mesa_id": 5})
+        assert con_mesa_id.es_mesa is True

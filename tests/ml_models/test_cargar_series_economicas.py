@@ -85,40 +85,25 @@ class TestHomogeneizarMensualTrimestral:
 
 
 class TestDeflactar:
-    def test_divide_por_ipc_y_escala_por_100(self):
-        nominal = {date(2023, 1, 1): 1000.0}
-        ipc = {date(2023, 1, 1): 200.0}
+    def test_deflactar_divide_o_none_si_falta_algun_lado(self):
+        nominal = {date(2023, 1, 1): 1000.0, date(2023, 2, 1): 1000.0, date(2023, 3, 1): None}
+        ipc = {date(2023, 1, 1): 200.0, date(2023, 2, 1): None, date(2023, 3, 1): 200.0}
         resultado = _deflactar(nominal, ipc)
         assert resultado[date(2023, 1, 1)] == pytest.approx(500.0)
-
-    def test_none_si_falta_el_ipc_ese_mes(self):
-        nominal = {date(2023, 1, 1): 1000.0}
-        ipc = {date(2023, 1, 1): None}
-        assert _deflactar(nominal, ipc)[date(2023, 1, 1)] is None
-
-    def test_none_si_falta_el_nominal_ese_mes(self):
-        nominal = {date(2023, 1, 1): None}
-        ipc = {date(2023, 1, 1): 200.0}
-        assert _deflactar(nominal, ipc)[date(2023, 1, 1)] is None
+        assert resultado[date(2023, 2, 1)] is None
+        assert resultado[date(2023, 3, 1)] is None
 
 
 class TestCargarRegistro:
-    def test_lee_el_registro_real_del_repo(self):
-        registro = cargar_registro(REGISTRO_VARIABLES_PATH)
-        ids = {v.id_variable for v in registro}
-        assert {"icg", "desocupacion", "ipc", "icc", "resultado_fiscal", "salario_real", "tc_oficial", "reservas"} <= ids
-
-    def test_toda_variable_nucleo_tiene_polaridad_o_es_explicitamente_ambigua(self):
+    def test_registro_real_estructura_valida(self):
         """La especificación exige que toda variable declare polaridad --
         'ambigua' es válida (excluye `_mejoro`), lo que no puede pasar es
         que quede vacía."""
         registro = cargar_registro(REGISTRO_VARIABLES_PATH)
+        ids = {v.id_variable for v in registro}
+        assert {"icg", "desocupacion", "ipc", "icc", "resultado_fiscal", "salario_real", "tc_oficial", "reservas"} <= ids
         for v in registro:
             assert v.polaridad in ("positiva", "negativa", "ambigua"), v
-
-    def test_toda_variable_tiene_paquete_atributos_completo_o_reducido(self):
-        registro = cargar_registro(REGISTRO_VARIABLES_PATH)
-        for v in registro:
             assert v.paquete_atributos in ("completo", "reducido"), v
 
 

@@ -46,12 +46,16 @@ class TestEstructuraOferta:
         assert oposicion == 13.5
         assert otras == 0
 
-    def test_oficialismo_tambien_ganador(self):
+    def test_oficialismo_ganador_identidad_suma_100(self):
         of, op, otra = _v("OFICIALISMO", 600, 60.0), _v("OPOSICION", 300, 30.0), _v("OTRA", 100, 10.0)
         n, marginal, oposicion, otras = _estructura_oferta([of, op, otra], entrada_oficialismo=of)
         assert n == 3
         assert oposicion == 30.0
         assert otras == 10.0
+
+        of2, op2, c2, d2 = _v("OF", 500, 50.0), _v("OP", 300, 30.0), _v("C", 180, 18.0), _v("marginal", 20, 2.0)
+        _, marginal2, oposicion2, otras2 = _estructura_oferta([of2, op2, c2, d2], entrada_oficialismo=of2)
+        assert marginal2 + oposicion2 + otras2 + 50.0 == pytest.approx(100.0)
 
     def test_oficialismo_no_viable_no_se_excluye_de_marginal_ni_se_cuenta_viable(self):
         of = _v("OFICIALISMO", 10, 1.0)
@@ -65,11 +69,6 @@ class TestEstructuraOferta:
         # identidad D17: al no ser viable el oficialismo, su share ya está
         # adentro de `marginal` -- no se vuelve a sumar aparte.
         assert marginal + oposicion + otras == pytest.approx(100.0)
-
-    def test_identidad_con_oficialismo_viable_suma_100(self):
-        of, op, c, d = _v("OF", 500, 50.0), _v("OP", 300, 30.0), _v("C", 180, 18.0), _v("marginal", 20, 2.0)
-        n, marginal, oposicion, otras = _estructura_oferta([of, op, c, d], entrada_oficialismo=of)
-        assert marginal + oposicion + otras + 50.0 == pytest.approx(100.0)
 
     def test_una_sola_fuerza_viable_sin_oposicion(self):
         of = _v("OF", 990, 99.0)
@@ -342,9 +341,15 @@ class TestDeltaDispersionYCoberturaMinima:
         delta = calcular_delta_dispersion(elecciones, "municipal", 2021, 2019, "economico")
         assert delta == pytest.approx(2.0)
 
-    def test_delta_dispersion_none_si_falta_una_punta(self):
+    def test_delta_dispersion_none_si_falta_una_punta_mu_o_sigma2(self):
         elecciones = {(2021, "municipal"): self._fila(2021, 3.0, 900)}
         assert calcular_delta_dispersion(elecciones, "municipal", 2021, 2019, "economico") is None
+
+        elecciones_dos_partidos = {(2021, "municipal"): self._fila_dos_partidos(2021, 2.0, -2.0)}
+        assert (
+            calcular_delta_dispersion(elecciones_dos_partidos, "municipal", 2021, 2019, "economico", estadistico="sigma2")
+            is None
+        )
 
     def test_delta_dispersion_none_si_mu_falta_en_una_punta(self):
         elecciones = {(2019, "municipal"): self._fila(2019, None, 0), (2021, "municipal"): self._fila(2021, 3.0, 900)}
@@ -378,10 +383,6 @@ class TestDeltaDispersionYCoberturaMinima:
         }
         delta = calcular_delta_dispersion(elecciones, "municipal", 2021, 2019, "economico", estadistico="sigma2")
         assert delta == pytest.approx(3.0)
-
-    def test_delta_sigma2_none_si_falta_una_punta(self):
-        elecciones = {(2021, "municipal"): self._fila_dos_partidos(2021, 2.0, -2.0)}
-        assert calcular_delta_dispersion(elecciones, "municipal", 2021, 2019, "economico", estadistico="sigma2") is None
 
 
 def _fila_participacion(anio, nivel, habilitados, positivos, blanco, nulo, ausentismo) -> object:
@@ -441,27 +442,22 @@ class TestCalcularParticipacionVotoExit:
 
 
 class TestDeltaParticipacionYVotoExit:
-    def test_delta_participacion_resta_t_menos_t_menos_1(self):
+    def test_deltas_participacion_ausentismo_blanco_nulo_restan_t_menos_t_menos_1(self):
         elecciones = {
-            (2019, "municipal"): _fila_participacion(2019, "municipal", 1000, 700, 50, 30, 220),  # 78.0
-            (2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185),  # 81.5
+            # 2019: participacion 78.0, ausentismo 22.0, blanco_nulo 8.0
+            (2019, "municipal"): _fila_participacion(2019, "municipal", 1000, 700, 50, 30, 220),
+            # 2021: participacion 81.5, ausentismo 18.5, blanco_nulo 1.5
+            (2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185),
         }
         assert calcular_delta_participacion(elecciones, "municipal", 2021, 2019) == pytest.approx(3.5)
+        assert calcular_delta_voto_exit_ausentismo(elecciones, "municipal", 2021, 2019) == pytest.approx(-3.5)
+        assert calcular_delta_voto_exit_blanco_nulo(elecciones, "municipal", 2021, 2019) == pytest.approx(-6.5)
 
-    def test_delta_participacion_none_si_falta_una_punta(self):
+    def test_deltas_none_si_falta_una_punta(self):
         elecciones = {(2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185)}
         assert calcular_delta_participacion(elecciones, "municipal", 2021, 2019) is None
-
-    def test_delta_voto_exit_ausentismo_resta_t_menos_t_menos_1(self):
-        elecciones = {
-            (2019, "municipal"): _fila_participacion(2019, "municipal", 1000, 700, 50, 30, 220),  # ausentismo 22.0
-            (2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185),  # ausentismo 18.5
-        }
-        assert calcular_delta_voto_exit_ausentismo(elecciones, "municipal", 2021, 2019) == pytest.approx(-3.5)
-
-    def test_delta_voto_exit_ausentismo_none_si_falta_una_punta(self):
-        elecciones = {(2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185)}
         assert calcular_delta_voto_exit_ausentismo(elecciones, "municipal", 2021, 2019) is None
+        assert calcular_delta_voto_exit_blanco_nulo(elecciones, "municipal", 2021, 2019) is None
 
     def test_delta_voto_exit_ausentismo_none_si_ausentismo_falta_en_una_punta(self):
         elecciones = {
@@ -469,14 +465,3 @@ class TestDeltaParticipacionYVotoExit:
             (2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185),
         }
         assert calcular_delta_voto_exit_ausentismo(elecciones, "municipal", 2021, 2019) is None
-
-    def test_delta_voto_exit_blanco_nulo_resta_t_menos_t_menos_1(self):
-        elecciones = {
-            (2019, "municipal"): _fila_participacion(2019, "municipal", 1000, 700, 50, 30, 220),  # blanco_nulo 8.0
-            (2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185),  # blanco_nulo 1.5
-        }
-        assert calcular_delta_voto_exit_blanco_nulo(elecciones, "municipal", 2021, 2019) == pytest.approx(-6.5)
-
-    def test_delta_voto_exit_blanco_nulo_none_si_falta_una_punta(self):
-        elecciones = {(2021, "municipal"): _fila_participacion(2021, "municipal", 1000, 800, 10, 5, 185)}
-        assert calcular_delta_voto_exit_blanco_nulo(elecciones, "municipal", 2021, 2019) is None

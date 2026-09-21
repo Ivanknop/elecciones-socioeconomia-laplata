@@ -71,17 +71,11 @@ class TestCombosDisponibles:
 
 
 class TestResultadoTotalPorAgrupacion:
-    def test_suma_los_circuitos_por_agrupacion(self, data_dir):
+    def test_suma_ordena_y_excluye_blanco_nulo(self, data_dir):
         totales = resultado_total_por_agrupacion(data_dir, 2023, "intendente")
         por_id = {v.id_agrupacion: v.votos for v in totales}
         assert por_id == {"1": 90, "2": 35}  # PARTIDO A: 60+30, PARTIDO B: 20+15
-
-    def test_ordenado_de_mayor_a_menor(self, data_dir):
-        totales = resultado_total_por_agrupacion(data_dir, 2023, "intendente")
-        assert [v.id_agrupacion for v in totales] == ["1", "2"]
-
-    def test_no_incluye_blanco_nulo_ni_otros(self, data_dir):
-        totales = resultado_total_por_agrupacion(data_dir, 2023, "intendente")
+        assert [v.id_agrupacion for v in totales] == ["1", "2"]  # mayor a menor
         assert sum(v.votos for v in totales) == 90 + 35  # ni el EN BLANCO/NULO de _circuito()
 
     def test_etapa_paso_lee_su_propio_circuito_json(self, data_dir_con_paso_y_balotaje):
@@ -101,20 +95,14 @@ class TestResultadoTotalPorAgrupacion:
 
 
 class TestGenerarCsvTotales:
-    def test_guarda_en_data_totales_nivel_anio(self, data_dir, tmp_path):
-        destino = generar_csv_totales(data_dir, tmp_path / "totales", 2023, "intendente")
-        assert destino == tmp_path / "totales" / "intendente" / "2023" / "resultado_total.csv"
-        assert destino.exists()
-
-    def test_csv_trae_encabezado_de_procedencia_como_comentario(self, data_dir, tmp_path):
-        destino = generar_csv_totales(data_dir, tmp_path / "totales", 2023, "intendente")
-        primera_linea = destino.read_text(encoding="utf-8").splitlines()[0]
-        assert primera_linea.startswith("#")
-
-    def test_csv_tiene_una_fila_por_agrupacion_con_las_columnas_esperadas(self, data_dir, tmp_path):
+    def test_genera_csv_con_ruta_encabezado_y_columnas_esperadas(self, data_dir, tmp_path):
         import pandas as pd
 
         destino = generar_csv_totales(data_dir, tmp_path / "totales", 2023, "intendente")
+        assert destino == tmp_path / "totales" / "intendente" / "2023" / "resultado_total.csv"
+        assert destino.exists()
+        primera_linea = destino.read_text(encoding="utf-8").splitlines()[0]
+        assert primera_linea.startswith("#")
         df = pd.read_csv(destino, comment="#")
         assert list(df.columns) == ["id_agrupacion", "agrupacion", "votos", "votos_porcentaje"]
         assert len(df) == 2

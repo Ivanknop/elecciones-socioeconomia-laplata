@@ -16,10 +16,8 @@ from socioeconomia.eph_client import (
 
 
 class TestNombreArchivo:
-    def test_patron_regular_desde_2017_t2(self):
+    def test_patron_regular(self):
         assert _nombre_archivo(2017, 2) == "EPH_usu_2_Trim_2017_txt.zip"
-
-    def test_patron_regular_anios_recientes(self):
         assert _nombre_archivo(2023, 4) == "EPH_usu_4_Trim_2023_txt.zip"
 
     def test_nombre_irregular_confirmado(self):
@@ -133,113 +131,69 @@ def hogar_gran_la_plata():
 
 
 class TestAgregadosGranLaPlataNucleoLaboral:
-    def test_filtra_por_aglomerado_gran_la_plata(self, individual_gran_la_plata, hogar_gran_la_plata):
+    def test_nucleo_laboral_agregados_completos(self, individual_gran_la_plata, hogar_gran_la_plata):
         agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["ingreso_ocupacion_principal_medio_todos_ocupados"] < 99999
         assert agregados["ingreso_ocupacion_principal_medio_perceptores"] < 99999
         assert agregados["ipcf_medio"] < 99999
-
-    def test_tasa_actividad(self, individual_gran_la_plata, hogar_gran_la_plata):
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["tasa_actividad"] == pytest.approx(0.75)  # PEA 300 / pob.ref. 400
-
-    def test_tasa_empleo(self, individual_gran_la_plata, hogar_gran_la_plata):
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["tasa_empleo"] == pytest.approx(0.5)  # ocupados 200 / pob.ref. 400
-
-    def test_tasa_desocupacion_sobre_pea(self, individual_gran_la_plata, hogar_gran_la_plata):
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["tasa_desocupacion"] == pytest.approx(1 / 3)
-
-    def test_tasa_informalidad_sobre_asalariados_validos(self, individual_gran_la_plata, hogar_gran_la_plata):
         # único asalariado (P1) es formal (PP07H=1) -> 0% informalidad. P2
         # (cuentapropista, PP07H=0 "no corresponde") no entra en el
         # denominador -- antes sí entraba (denominador = todos los
         # ocupados), lo que subestimaba/distorsionaba la tasa.
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["tasa_informalidad"] == pytest.approx(0.0)
-
-    def test_ingreso_ocupacion_principal_medio_dos_estimandos(self, individual_gran_la_plata, hogar_gran_la_plata):
         # sin no-respuesta en este fixture, ambos estimandos coinciden:
         # (50000+20000)*100 / 200 ponderado = 35000.
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["ingreso_ocupacion_principal_medio_todos_ocupados"] == pytest.approx(35000)
         assert agregados["ingreso_ocupacion_principal_medio_perceptores"] == pytest.approx(35000)
-
-    def test_anio_y_trimestre_se_propagan(self, individual_gran_la_plata, hogar_gran_la_plata):
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["anio"] == 2018
         assert agregados["trimestre"] == 1
 
 
 class TestAgregadosGranLaPlataOcupacionYEducacion:
-    def test_composicion_ocupacional(self, individual_gran_la_plata, hogar_gran_la_plata):
+    def test_ocupacion_y_educacion_agregados_completos(self, individual_gran_la_plata, hogar_gran_la_plata):
         agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["pct_asalariado"] == pytest.approx(0.5)
         assert agregados["pct_cuentapropia"] == pytest.approx(0.5)
         assert agregados["pct_patron"] == pytest.approx(0.0)
         assert agregados["pct_trabajador_familiar"] == pytest.approx(0.0)
-
-    def test_calidad_empleo_asalariado(self, individual_gran_la_plata, hogar_gran_la_plata):
         # único asalariado (P1) tiene los 3 beneficios -> 100%; la cuentapropista
         # (P2) no entra en la base de asalariados aunque sus PP07G* sean 2.
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["pct_con_obra_social"] == pytest.approx(1.0)
         assert agregados["pct_con_aguinaldo"] == pytest.approx(1.0)
         assert agregados["pct_con_vacaciones_pagas"] == pytest.approx(1.0)
-
-    def test_pct_sin_cobertura_salud(self, individual_gran_la_plata, hogar_gran_la_plata):
         # sobre las 5 personas de Gran La Plata (500 ponderado), solo P2 sin cobertura.
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["pct_sin_cobertura_salud"] == pytest.approx(0.2)
-
-    def test_pct_secundario_completo_o_mas(self, individual_gran_la_plata, hogar_gran_la_plata):
         # población 25+: P1 (secund. completo) y P3 (primaria completa) -> 1 de 2.
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["pct_secundario_completo_o_mas"] == pytest.approx(0.5)
-
-    def test_tasa_analfabetismo(self, individual_gran_la_plata, hogar_gran_la_plata):
         # población 10+: P1,P2,P3,P4 -> solo P4 analfabeta -> 1 de 4.
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["tasa_analfabetismo"] == pytest.approx(0.25)
-
-    def test_tasa_asistencia_escolar(self, individual_gran_la_plata, hogar_gran_la_plata):
         # población 5-24: P2,P4,P5 -> asisten P2 y P4 -> 2 de 3.
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["tasa_asistencia_escolar"] == pytest.approx(2 / 3)
-
-    def test_ingreso_total_individual_medio_dos_estimandos(self, individual_gran_la_plata, hogar_gran_la_plata):
         # sobre la población de referencia (400 ponderado), incluye ceros
         # válidos de P3/P4 (no hay no-respuesta en este fixture, así que
         # ambos estimandos coinciden).
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["ingreso_total_individual_medio_todos"] == pytest.approx(17500)
         assert agregados["ingreso_total_individual_medio_perceptores"] == pytest.approx(17500)
 
 
 class TestAgregadosGranLaPlataViviendaYEstrategias:
-    def test_hacinamiento_medio(self, individual_gran_la_plata, hogar_gran_la_plata):
+    def test_vivienda_y_estrategias_agregados_completos(self, individual_gran_la_plata, hogar_gran_la_plata):
+        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         # hogar A: 4 personas / 2 ambientes = 2.0; hogar B: 2/2 = 1.0; pesos iguales.
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["hacinamiento_medio"] == pytest.approx(1.5)
-
-    def test_pct_agua_red_publica(self, individual_gran_la_plata, hogar_gran_la_plata):
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["pct_agua_red_publica"] == pytest.approx(0.5)
-
-    def test_pct_vivienda_propia(self, individual_gran_la_plata, hogar_gran_la_plata):
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["pct_vivienda_propia"] == pytest.approx(0.5)
-
-    def test_pct_inquilino(self, individual_gran_la_plata, hogar_gran_la_plata):
         # II7 en Gran La Plata: hogar A=1 (propietario), hogar B=3 (inquilino).
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["pct_inquilino"] == pytest.approx(0.5)
-
-    def test_tamanio_hogar_medio(self, individual_gran_la_plata, hogar_gran_la_plata):
         # IX_TOT en Gran La Plata: hogar A=4, hogar B=2, pesos iguales -> 3.0.
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
         assert agregados["tamanio_hogar_medio"] == pytest.approx(3.0)
+        assert agregados["pct_hogares_ayuda_social_gobierno"] == pytest.approx(0.5)
+        assert agregados["pct_hogares_prestamo_bancario"] == pytest.approx(0.5)
+        assert agregados["pct_hogares_vendio_pertenencias"] == pytest.approx(0.5)
+        assert agregados["ipcf_medio"] == pytest.approx(30000)
 
     def test_distribucion_hacinamiento_incluye_los_tres_buckets(self, individual_gran_la_plata, hogar_gran_la_plata):
         # agrega dos hogares sintéticos Gran La Plata (ratio 3.0 "moderado" y
@@ -271,16 +225,6 @@ class TestAgregadosGranLaPlataViviendaYEstrategias:
             + agregados["pct_hacinamiento_critico"]
         )
         assert suma == pytest.approx(1.0)
-
-    def test_estrategias_de_subsistencia(self, individual_gran_la_plata, hogar_gran_la_plata):
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
-        assert agregados["pct_hogares_ayuda_social_gobierno"] == pytest.approx(0.5)
-        assert agregados["pct_hogares_prestamo_bancario"] == pytest.approx(0.5)
-        assert agregados["pct_hogares_vendio_pertenencias"] == pytest.approx(0.5)
-
-    def test_ipcf_medio_ponderado(self, individual_gran_la_plata, hogar_gran_la_plata):
-        agregados = agregados_gran_la_plata(individual_gran_la_plata, hogar_gran_la_plata)
-        assert agregados["ipcf_medio"] == pytest.approx(30000)
 
     def test_v5_dividida_desde_2023t4_se_reconstruye(self, individual_gran_la_plata, hogar_gran_la_plata):
         # desde 2023 T4 INDEC reemplazó V5 por V5_01/V5_02/V5_03 -- "Sí" en
@@ -322,13 +266,10 @@ def individual_con_no_respuesta_ingreso():
 
 
 class TestIngresoOcupacionPrincipalDosEstimandos:
-    def test_todos_ocupados_trata_no_respuesta_como_cero(self, individual_con_no_respuesta_ingreso):
+    def test_ingreso_ocupacion_principal_dos_estimandos(self, individual_con_no_respuesta_ingreso):
         core = _indicadores_laborales_core(individual_con_no_respuesta_ingreso)
         # (30000+50000+0)*100 / 300 ponderado = 26666.67
         assert core["ingreso_ocupacion_principal_medio_todos_ocupados"] == pytest.approx(80000 / 3)
-
-    def test_perceptores_excluye_no_respuesta_y_usa_pondiio(self, individual_con_no_respuesta_ingreso):
-        core = _indicadores_laborales_core(individual_con_no_respuesta_ingreso)
         # (30000*100 + 50000*100) / (100+100) pondiio = 40000 -- el no
         # respondente (PONDIIO=0) queda fuera de numerador y denominador.
         assert core["ingreso_ocupacion_principal_medio_perceptores"] == pytest.approx(40000)
@@ -391,43 +332,30 @@ class TestTasaInformalidadDenominadorCorrecto:
 
 
 class TestAgregadosPorSexo:
-    def test_una_fila_por_sexo(self, individual_gran_la_plata):
+    def test_agregados_por_sexo_completos(self, individual_gran_la_plata):
         filas = agregados_por_sexo(individual_gran_la_plata)
         assert {f["sexo"] for f in filas} == {"varon", "mujer"}
         assert len(filas) == 2
-
-    def test_tasa_desocupacion_varon(self, individual_gran_la_plata):
+        por_sexo = {f["sexo"]: f for f in filas}
         # varones en Gran La Plata: P1 (ocupado), P3 (desocupado), P5 (menor, fuera de PEA).
-        filas = {f["sexo"]: f for f in agregados_por_sexo(individual_gran_la_plata)}
-        assert filas["varon"]["tasa_desocupacion"] == pytest.approx(0.5)  # 1 de 2 en la PEA
-
-    def test_tasa_desocupacion_mujer(self, individual_gran_la_plata):
+        assert por_sexo["varon"]["tasa_desocupacion"] == pytest.approx(0.5)  # 1 de 2 en la PEA
         # mujeres en Gran La Plata: P2 (ocupada), P4 (inactiva) -> PEA = solo P2, 0% desocupación.
-        filas = {f["sexo"]: f for f in agregados_por_sexo(individual_gran_la_plata)}
-        assert filas["mujer"]["tasa_desocupacion"] == pytest.approx(0.0)
-
-    def test_no_incluye_indicadores_de_hogar(self, individual_gran_la_plata):
-        filas = agregados_por_sexo(individual_gran_la_plata)
+        assert por_sexo["mujer"]["tasa_desocupacion"] == pytest.approx(0.0)
         assert "ipcf_medio" not in filas[0]
         assert "hacinamiento_medio" not in filas[0]
 
 
 class TestAgregadosPorEdad:
-    def test_una_fila_por_tramo(self, individual_gran_la_plata):
+    def test_agregados_por_edad_tramos_poblados(self, individual_gran_la_plata):
         filas = agregados_por_edad(individual_gran_la_plata)
         assert {f["tramo_etario"] for f in filas} == {"10-24", "25-39", "40-59", "60+"}
         assert len(filas) == 4
-
-    def test_tramo_10_24_incluye_solo_p2_y_p4(self, individual_gran_la_plata):
+        por_tramo = {f["tramo_etario"]: f for f in filas}
         # P2 (20a, ocupada) y P4 (15a, inactiva) -> PEA = solo P2 -> desocupación 0%.
-        filas = {f["tramo_etario"]: f for f in agregados_por_edad(individual_gran_la_plata)}
-        assert filas["10-24"]["tasa_desocupacion"] == pytest.approx(0.0)
-        assert filas["10-24"]["tasa_empleo"] == pytest.approx(0.5)  # 1 ocupada de 2 en el tramo
-
-    def test_tramo_40_59_incluye_solo_p3(self, individual_gran_la_plata):
+        assert por_tramo["10-24"]["tasa_desocupacion"] == pytest.approx(0.0)
+        assert por_tramo["10-24"]["tasa_empleo"] == pytest.approx(0.5)  # 1 ocupada de 2 en el tramo
         # P3 (45a, desocupado) es el único en el tramo -> desocupación 100%.
-        filas = {f["tramo_etario"]: f for f in agregados_por_edad(individual_gran_la_plata)}
-        assert filas["40-59"]["tasa_desocupacion"] == pytest.approx(1.0)
+        assert por_tramo["40-59"]["tasa_desocupacion"] == pytest.approx(1.0)
 
     def test_tramo_60_mas_vacio(self, individual_gran_la_plata):
         # nadie en el fixture tiene 60+ -> todas las tasas None (denominador cero).

@@ -58,17 +58,12 @@ def test_leer_clasificacion_de_eleccion_conserva_campo_ideologico_vacio(tmp_path
     assert filas[0]["campo_ideologico"] == ""
 
 
-def test_extraer_clasificacion_historica_respeta_anio_max(tmp_path):
-    _escribir_eleccion(tmp_path, "2009_nacional.csv", "nacional", ["01,PARTIDO A,10,1.0,3,peronistas,,,"])
-    _escribir_eleccion(tmp_path, "2011_nacional.csv", "presidente", ["01,PARTIDO A,10,1.0,3,peronistas,,,"])
-    filas = extraer_clasificacion_historica(tmp_path, anio_max=2009)
-    assert {f["anio"] for f in filas} == {"2009"}
-
-
-def test_extraer_clasificacion_historica_junta_varios_archivos(tmp_path):
+def test_extraer_clasificacion_historica_respeta_anio_max_y_junta_archivos(tmp_path):
     _escribir_eleccion(tmp_path, "2001_municipal.csv", "municipal", ["01,PARTIDO A,10,1.0,3,peronistas,,,"])
     _escribir_eleccion(tmp_path, "2001_nacional.csv", "nacional", ["01,PARTIDO B,10,1.0,4,liberales,,,"])
+    _escribir_eleccion(tmp_path, "2011_nacional.csv", "presidente", ["01,PARTIDO A,10,1.0,3,peronistas,,,"])
     filas = extraer_clasificacion_historica(tmp_path, anio_max=2009)
+    assert {f["anio"] for f in filas} == {"2001"}  # 2011 queda afuera por anio_max
     assert len(filas) == 2
     assert {f["nivel"] for f in filas} == {"municipal", "nacional"}
 
@@ -81,12 +76,17 @@ def _fila(anio, nivel, agrupacion, campo_ideologico="3", filiacion="peronistas")
     }
 
 
-def test_fusionar_clasificacion_agrega_filas_nuevas():
+def test_fusionar_clasificacion_agrega_y_ordena_anio_nivel_agrupacion():
     existentes = [_fila("2011", "presidente", "PARTIDO A")]
-    nuevas = [_fila("2003", "presidente", "PARTIDO B")]
+    nuevas = [
+        _fila("2003", "provincial", "PARTIDO Z"),
+        _fila("2003", "municipal", "PARTIDO A"),
+        _fila("2001", "nacional", "PARTIDO M"),
+    ]
     combinado = fusionar_clasificacion(existentes, nuevas)
-    assert len(combinado) == 2
-    assert combinado[0]["anio"] == "2003"  # ordenado por año primero
+    assert len(combinado) == 4
+    orden = [(f["anio"], f["nivel"], f["agrupacion"]) for f in combinado]
+    assert orden == sorted(orden, key=lambda t: (int(t[0]), t[1], t[2]))
 
 
 def test_fusionar_clasificacion_nunca_sobreescribe_fila_existente():
@@ -106,13 +106,3 @@ def test_fusionar_clasificacion_es_idempotente():
     assert segunda == primera
 
 
-def test_fusionar_clasificacion_orden_anio_nivel_agrupacion():
-    existentes = []
-    nuevas = [
-        _fila("2003", "provincial", "PARTIDO Z"),
-        _fila("2003", "municipal", "PARTIDO A"),
-        _fila("2001", "nacional", "PARTIDO M"),
-    ]
-    combinado = fusionar_clasificacion(existentes, nuevas)
-    orden = [(f["anio"], f["nivel"], f["agrupacion"]) for f in combinado]
-    assert orden == sorted(orden, key=lambda t: (int(t[0]), t[1], t[2]))

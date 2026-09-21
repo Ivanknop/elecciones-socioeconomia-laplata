@@ -75,17 +75,15 @@ class TestVotosPorIdeologia:
 
 
 class TestVotosNoIdeologicos:
-    def test_blanco_nulo_reconoce_nombres_2011_y_2021(self, contenido):
+    def test_blanco_nulo_y_ausentismo_sobre_todos_los_circuitos(self, contenido):
+        votos = _votos_no_ideologicos(contenido, circuito_id=None)
         # circuito 100 usa "EN BLANCO"/"NULO", circuito 101 "BLANCOS"/"NULOS" -- ambas variantes suman
-        assert _votos_no_ideologicos(contenido, circuito_id=None)["blanco_nulo"] == 7 + 4
+        assert votos["blanco_nulo"] == 7 + 4
+        assert votos["ausentismo"] == 10 + 11
 
     def test_blanco_nulo_no_incluye_categorias_procedimentales(self, contenido):
         # RECURRIDOS (circuito 100) resta en ausentismo pero no cuenta como blanco_nulo
         assert _votos_no_ideologicos(contenido, circuito_id="100")["blanco_nulo"] == 7
-
-    def test_ausentismo_es_electores_menos_positivos_menos_otros(self, contenido):
-        votos = _votos_no_ideologicos(contenido, circuito_id=None)
-        assert votos["ausentismo"] == 10 + 11
 
     def test_un_solo_circuito(self, contenido):
         votos = _votos_no_ideologicos(contenido, circuito_id="101")

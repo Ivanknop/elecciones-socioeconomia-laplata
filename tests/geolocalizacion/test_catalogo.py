@@ -11,13 +11,9 @@ from geolocalizacion.catalogo import (
 
 
 class TestNormalizar:
-    def test_quita_acentos_y_pasa_a_mayusculas(self):
+    def test_normaliza_acentos_parentesis_y_espacios(self):
         assert _normalizar("José Melchor Romero") == "JOSE MELCHOR ROMERO"
-
-    def test_quita_parentesis_y_puntos(self):
         assert _normalizar("Barrio El Carmen (Oeste)") == "BARRIO EL CARMEN OESTE"
-
-    def test_colapsa_espacios_repetidos(self):
         assert _normalizar("Villa   Elisa") == "VILLA ELISA"
 
 

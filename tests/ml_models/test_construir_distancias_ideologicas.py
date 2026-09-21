@@ -123,16 +123,30 @@ class TestCasoRealAuditoria2023:
     # (nacional, 2003): la Alianza (titular entrante a esa elección, ver
     # _EJECUTIVA_PRE_2011["nacional"] en construir_calendario.py) no tiene
     # ninguna lista en la boleta de 2003 -- colapsó en dic-2001 y no
-    # compitió. No es un hueco de adquisición ni una regresión: el
-    # oficialismo de esa fila directamente no es identificable en los
-    # datos reales.
-    _SIN_OFICIALISMO_VIABLE_DOCUMENTADO = {("nacional", 2003)}
+    # compitió. Ya no es un hueco: `data/agrupaciones/oficialismos.csv`
+    # trae desde esta sesión una fila curada `2003,nacional,PARTIDO
+    # JUSTICIALISTA,true,...`, y `_entrada_oficialismo` consulta ese CSV
+    # sin restricción de año (a diferencia de
+    # `construir_calendario.construir_oficialismo_por_nivel`, que sí
+    # exige `año >= 2011`) -- con `era_oficialismo=true` resuelve
+    # directo contra el ganador real de la elección (JUSTICIALISTA,
+    # 34.23%), sin necesitar el matching por nombre que fallaba con la
+    # Alianza. Ver `test_2003_resuelve_justicialista_como_oficialismo`
+    # abajo y D31 (corrección) en docs/decisiones_metodologicas.md.
+    _SIN_OFICIALISMO_VIABLE_DOCUMENTADO: set[tuple[str, int]] = set()
+
+    def test_2003_resuelve_justicialista_como_oficialismo(self, distancias_reales):
+        del_2003 = distancias_reales[(distancias_reales["nivel"] == "nacional") & (distancias_reales["anio"] == 2003)]
+        oficialismo = del_2003[del_2003["es_oficialismo"]]
+        assert len(oficialismo) == 1
+        assert oficialismo.iloc[0]["agrupacion"] == "JUSTICIALISTA"
+        assert oficialismo.iloc[0]["share"] == pytest.approx(34.23, abs=0.01)
 
     def test_exactamente_un_oficialismo_por_nivel_anio_con_oficialismo_resuelto(self, distancias_reales):
         """Pedido explícito: nunca 0 ni >1 fila `es_oficialismo=True` por
         (nivel, año) -- salvo los casos documentados en
         _SIN_OFICIALISMO_VIABLE_DOCUMENTADO, donde el oficialismo real no
-        tiene lista en la boleta."""
+        tiene lista en la boleta. Hoy ese conjunto está vacío (ver arriba)."""
         conteo = distancias_reales[distancias_reales["es_oficialismo"]].groupby(["nivel", "anio"]).size()
         assert (conteo == 1).all(), conteo[conteo != 1]
 

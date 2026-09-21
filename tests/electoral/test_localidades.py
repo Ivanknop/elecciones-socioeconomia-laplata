@@ -72,17 +72,14 @@ class TestMapaLocalidadPorCircuito:
             "104": "BARRIO_G",  # solo tiene periodístico + revisión web; revisión web ya entra por defecto
         }
 
-    def test_periodistico_cubre_circuitos_sin_fuente_oficial_ni_revision_web(self, crosswalk):
+    def test_prioridad_oficial_revision_web_periodistico(self, crosswalk):
         mapa = mapa_localidad_por_circuito(
             crosswalk, niveles_cobertura=(NIVEL_OFICIAL, NIVEL_REVISION_WEB, NIVEL_PERIODISTICO)
         )
-        assert mapa["200"] == "BARRIO_B"
-
-    def test_oficial_prevalece_sobre_periodistico_cuando_ambos_existen(self, crosswalk):
-        mapa = mapa_localidad_por_circuito(
-            crosswalk, niveles_cobertura=(NIVEL_OFICIAL, NIVEL_REVISION_WEB, NIVEL_PERIODISTICO)
-        )
-        assert mapa["101"] == "BARRIO_A"
+        assert mapa["200"] == "BARRIO_B"  # solo periodístico cubre lo que ningún otro nivel cubre
+        assert mapa["101"] == "BARRIO_A"  # oficial prevalece sobre periodístico
+        assert "300" not in mapa  # no_agrupable nunca se agrupa, aunque periodístico tenga etiqueta
+        assert "400" not in mapa  # sin ninguna fila de ningún nivel
 
     def test_oficial_prevalece_sobre_revision_web_cuando_ambos_existen(self, crosswalk):
         mapa = mapa_localidad_por_circuito(crosswalk, niveles_cobertura=(NIVEL_OFICIAL, NIVEL_REVISION_WEB))
@@ -96,26 +93,11 @@ class TestMapaLocalidadPorCircuito:
         mapa = mapa_localidad_por_circuito(crosswalk, niveles_cobertura=(NIVEL_REVISION_WEB,))
         assert mapa["103"] == "BARRIO_E"
 
-    def test_no_agrupable_nunca_se_agrupa_aunque_periodistico_tenga_etiqueta(self, crosswalk):
-        mapa = mapa_localidad_por_circuito(
-            crosswalk, niveles_cobertura=(NIVEL_OFICIAL, NIVEL_REVISION_WEB, NIVEL_PERIODISTICO)
-        )
-        assert "300" not in mapa
-
-    def test_circuito_sin_ninguna_fila_no_aparece_en_el_mapa(self, crosswalk):
-        mapa = mapa_localidad_por_circuito(
-            crosswalk, niveles_cobertura=(NIVEL_OFICIAL, NIVEL_REVISION_WEB, NIVEL_PERIODISTICO)
-        )
-        assert "400" not in mapa
-
 
 class TestCircuitosConDiscrepancia:
-    def test_detecta_el_circuito_donde_oficial_y_periodistico_difieren(self, crosswalk):
+    def test_detecta_solo_el_circuito_con_discrepancia(self, crosswalk):
         discrepancias = circuitos_con_discrepancia(crosswalk)
         assert [d["circuito_id"] for d in discrepancias] == ["101"]
-
-    def test_no_incluye_circuitos_donde_coinciden(self, crosswalk):
-        discrepancias = circuitos_con_discrepancia(crosswalk)
         assert "100" not in [d["circuito_id"] for d in discrepancias]
 
 
@@ -146,14 +128,10 @@ class TestAgruparResultadosPorLocalidad:
         fila = agrupado.set_index("localidad").loc[SIN_DETERMINAR]
         assert fila["votos"] == 12
 
-    def test_sin_determinar_esta_presente_aunque_no_haya_circuitos_sin_asignar(self, mapa):
+    def test_sin_determinar_presente_en_cero_cuando_todo_asignado(self, mapa):
         resultados = {"100": 50}
         agrupado, _ = agrupar_resultados_por_localidad(resultados, mapa)
         assert SIN_DETERMINAR in agrupado["localidad"].values
-
-    def test_sin_determinar_en_cero_cuando_todo_esta_asignado(self, mapa):
-        resultados = {"100": 50}
-        agrupado, _ = agrupar_resultados_por_localidad(resultados, mapa)
         fila = agrupado.set_index("localidad").loc[SIN_DETERMINAR]
         assert fila["votos"] == 0
 
@@ -163,24 +141,12 @@ class TestAgruparResultadosPorLocalidad:
         fila = agrupado.set_index("localidad").loc["BARRIO_A"]
         assert fila["izquierda"] == 10 and fila["derecha"] == 40
 
-    def test_reporte_cuenta_circuitos_agrupados_y_totales(self, mapa):
-        resultados = {"100": 50, "101": 30, "400": 7}
-        _, reporte = agrupar_resultados_por_localidad(resultados, mapa)
-        assert (reporte.circuitos_agrupados, reporte.circuitos_totales) == (2, 3)
-
-    def test_reporte_calcula_porcentaje_de_votos_agrupados(self, mapa):
-        resultados = {"100": 75, "400": 25}
-        _, reporte = agrupar_resultados_por_localidad(resultados, mapa)
-        assert reporte.porcentaje_votos == 75.0
-
-    def test_reporte_lista_los_circuitos_sin_determinar(self, mapa):
-        resultados = {"300": 5, "400": 7}
-        _, reporte = agrupar_resultados_por_localidad(resultados, mapa)
-        assert reporte.circuitos_sin_determinar == ("300", "400")
-
-    def test_reporte_incluye_la_etiqueta_de_fuente_pasada(self, mapa):
-        resultados = {"100": 50}
+    def test_reporte_calcula_todos_los_campos(self, mapa):
+        resultados = {"100": 60, "101": 20, "300": 5, "400": 15}
         _, reporte = agrupar_resultados_por_localidad(resultados, mapa, fuente="crosswalk_de_prueba.csv")
+        assert (reporte.circuitos_agrupados, reporte.circuitos_totales) == (2, 4)
+        assert reporte.porcentaje_votos == 80.0
+        assert reporte.circuitos_sin_determinar == ("300", "400")
         assert reporte.fuente == "crosswalk_de_prueba.csv"
 
     def test_funciona_igual_con_un_mapa_geolocalizado(self):

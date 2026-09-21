@@ -105,7 +105,7 @@ class TestConstruirCircuito:
         agrup_index = {"PARTIDO A": 0, "PARTIDO B": 1, "PARTIDO C": 2}
         return c, filiaciones, agrup_index
 
-    def test_total_incluye_blanco_nulo_y_ausentismo_no_solo_positivos(self):
+    def test_construir_circuito_caso_normal_completo(self):
         c, filiaciones, agrup_index = self._circuito_y_filiaciones()
         resultado = _construir_circuito(c, filiaciones, agrup_index)
         # positivos 90, blanco_nulo 7, ausentismo = 110-90-10=10 -> total 107
@@ -113,25 +113,16 @@ class TestConstruirCircuito:
         assert resultado["bn"][0] == 7
         assert resultado["aus"][0] == 10
         assert resultado["tot"] == 107
-
-    def test_porcentajes_sobre_el_total_no_sobre_positivos(self):
-        c, filiaciones, agrup_index = self._circuito_y_filiaciones()
-        resultado = _construir_circuito(c, filiaciones, agrup_index)
         # PARTIDO A: 60 votos sobre total 107, no sobre positivos 90
         pct_partido_a = next(row[2] for row in resultado["r"] if row[0] == 0)
         assert abs(pct_partido_a - 60 / 107 * 100) < 0.01
-
-    def test_ganador_es_el_de_mas_votos(self):
-        c, filiaciones, agrup_index = self._circuito_y_filiaciones()
-        resultado = _construir_circuito(c, filiaciones, agrup_index)
         assert resultado["g7"] == 0  # PARTIDO A
         assert resultado["cg"] == "3"
         assert resultado["fg"] == "peronistas"
-
-    def test_sin_mas_de_top_n_agrupaciones_no_hay_residuo(self):
-        c, filiaciones, agrup_index = self._circuito_y_filiaciones()
-        resultado = _construir_circuito(c, filiaciones, agrup_index)
         assert resultado["otros_l"] is None
+        # PARTIDO A (campo "3", familia peronistas) es el único de ese campo/familia acá
+        assert resultado["por_campo"]["3"] == [60, resultado["r"][0][2]]
+        assert resultado["por_familia"]["peronistas"] == [60, resultado["r"][0][2]]
 
     def test_con_mas_de_top_n_agrupaciones_el_residuo_no_se_pierde(self):
         positivos = {str(i): (f"PARTIDO {i}", "3", 10 - i) for i in range(TOP_N + 3)}
@@ -160,16 +151,8 @@ class TestConstruirCircuito:
         assert resultado["g7"] is None
         assert resultado["r"] == []
 
-    def test_por_campo_y_por_familia_sobre_el_mismo_total_que_r(self):
-        c, filiaciones, agrup_index = self._circuito_y_filiaciones()
-        resultado = _construir_circuito(c, filiaciones, agrup_index)
-        # PARTIDO A (campo "3", familia peronistas) es el único de ese campo/familia acá
-        assert resultado["por_campo"]["3"] == [60, resultado["r"][0][2]]
-        assert resultado["por_familia"]["peronistas"] == [60, resultado["r"][0][2]]
-
-
 class TestConstruirEleccion:
-    def test_acumulado_distrito_suma_los_circuitos(self):
+    def test_acumulado_distrito_completo(self):
         c1 = _circuito({"1": ("PARTIDO A", "3", 60)}, electores=100, otros={"EN BLANCO": 5})
         c2 = _circuito({"1": ("PARTIDO A", "3", 40)}, electores=80, otros={"NULO": 3})
         contenido = {"anio": 2023, "nivel": "intendente", "circuitos": {"0001": c1, "0002": c2}}
@@ -179,6 +162,8 @@ class TestConstruirEleccion:
         assert resultado["pos"] == 100
         assert resultado["bn"][0] == 8
         assert set(resultado["circuitos"]) == {"1", "2"}  # canonicalizado, sin ceros a la izquierda
+        assert resultado["por_campo"]["3"][0] == 100
+        assert resultado["por_familia"]["peronistas"][0] == 100
 
     def test_no_pierde_votos_de_listas_chicas_fuera_del_top7_distrital(self):
         positivos = {str(i): (f"PARTIDO {i}", "3", 10 - i) for i in range(TOP_N + 2)}
@@ -190,28 +175,13 @@ class TestConstruirEleccion:
         assert resultado["otros_l"] is not None
         assert resultado["otros_l"][0] > 0
 
-    def test_por_campo_y_por_familia_acumulan_los_circuitos(self):
-        c1 = _circuito({"1": ("PARTIDO A", "3", 60)}, electores=100, otros={"EN BLANCO": 5})
-        c2 = _circuito({"1": ("PARTIDO A", "3", 40)}, electores=80, otros={"NULO": 3})
-        contenido = {"anio": 2023, "nivel": "intendente", "circuitos": {"0001": c1, "0002": c2}}
-        filiaciones = {"PARTIDO A": "peronistas"}
-        agrup_index = {"PARTIDO A": 0}
-        resultado = _construir_eleccion(contenido, filiaciones, agrup_index)
-        assert resultado["por_campo"]["3"][0] == 100
-        assert resultado["por_familia"]["peronistas"][0] == 100
-
-    def test_resumen_ausentismo_relativo_al_padron_completo(self):
+    def test_resumen_ausentismo_y_blanco_correctos(self):
         # electores 100, positivos 60, blanco 5, nulo 2 (otros_total 7) -> ausentismo 33
-        c = _circuito({"1": ("PARTIDO A", "3", 60)}, electores=100, otros={"EN BLANCO": 5, "NULO": 2})
-        contenido = {"anio": 2023, "nivel": "intendente", "circuitos": {"0001": c}}
-        resultado = _construir_eleccion(contenido, {"PARTIDO A": "peronistas"}, {"PARTIDO A": 0})
-        assert resultado["resumen"]["ausentismo_pct"] == 33.0  # 33/100, no sobre "tot" (que excluye procedimentales)
-
-    def test_resumen_blanco_relativo_a_votos_emitidos_no_a_positivos(self):
         # votos emitidos = electores - ausentismo = 100 - 33 = 67; blanco 5/67
         c = _circuito({"1": ("PARTIDO A", "3", 60)}, electores=100, otros={"EN BLANCO": 5, "NULO": 2})
         contenido = {"anio": 2023, "nivel": "intendente", "circuitos": {"0001": c}}
         resultado = _construir_eleccion(contenido, {"PARTIDO A": "peronistas"}, {"PARTIDO A": 0})
+        assert resultado["resumen"]["ausentismo_pct"] == 33.0  # 33/100, no sobre "tot" (que excluye procedimentales)
         assert resultado["resumen"]["blanco_votos"] == 5
         assert abs(resultado["resumen"]["blanco_pct"] - 5 / 67 * 100) < 0.01
 

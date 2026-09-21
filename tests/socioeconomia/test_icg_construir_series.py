@@ -9,7 +9,7 @@ from socioeconomia.icg_construir_series import construir_serie_headline, constru
 
 
 class TestConstruirSerieHeadline:
-    def test_promedio_ponderado_la_plata_y_pais(self):
+    def test_promedio_ponderado_y_brecha(self):
         # país = las 3 filas (incluye La Plata), La Plata = solo Ciudad==7.
         df = pd.DataFrame({
             "año": [2011, 2011, 2011],
@@ -26,19 +26,6 @@ class TestConstruirSerieHeadline:
         assert fila["icg_pais"] == pytest.approx((2 * 2 + 4 * 1 + 1 * 1) / 4)
         assert fila["n_la_plata"] == 2
         assert fila["n_pais"] == 3
-
-    def test_brecha_es_la_plata_menos_pais(self):
-        df = pd.DataFrame({
-            "año": [2011, 2011],
-            "mes": [1, 1],
-            "Ciudad": [7, 3],
-            "ICG": [3.0, 1.0],
-            "ponderacion_UTDT": [1.0, 1.0],
-        })
-
-        salida = construir_serie_headline(df)
-
-        fila = salida.iloc[0]
         assert fila["brecha"] == pytest.approx(fila["icg_la_plata"] - fila["icg_pais"])
 
     def test_anio_hasta_none_resuelve_al_maximo_real(self):

@@ -27,48 +27,27 @@ def _escribir_vparty_csv(tmp_path, filas):
 
 
 class TestConstruirCalendario:
-    def test_nacional_cubre_2001_2025(self):
-        calendario = construir_calendario()
-        anios_nacional = sorted(f.anio for f in calendario if f.nivel == "nacional")
-        assert anios_nacional == [2001, 2003, 2005, 2007, 2009, 2011, 2013, 2015, 2017, 2019, 2021, 2023, 2025]
-
-    def test_municipal_y_provincial_cubren_2001_2025(self):
-        calendario = construir_calendario()
-        for nivel in ("municipal", "provincial"):
-            anios = sorted(f.anio for f in calendario if f.nivel == nivel)
-            assert anios == [2001, 2003, 2005, 2007, 2009, 2011, 2013, 2015, 2017, 2019, 2021, 2023, 2025]
-
-    def test_nacional_2003_y_2007_tienen_tipo_eleccion_ejecutiva(self):
+    def test_construir_calendario_estructura_basica(self):
         """2003 (Kirchner) y 2007 (CFK) fueron elecciones presidenciales
         reales -- mismo patrón que provincial/municipal, con sus propios
         años ejecutivos (D11: siempre primera vuelta)."""
         calendario = construir_calendario()
+
+        for nivel in ("nacional", "municipal", "provincial"):
+            anios = sorted(f.anio for f in calendario if f.nivel == nivel)
+            assert anios == [2001, 2003, 2005, 2007, 2009, 2011, 2013, 2015, 2017, 2019, 2021, 2023, 2025]
+
         for f in calendario:
-            if f.nivel == "nacional" and f.anio in (2003, 2007, 2011, 2015, 2019, 2023):
+            if f.anio in (2003, 2007, 2011, 2015, 2019, 2023):
                 assert f.tipo_eleccion == "ejecutiva", f
-            elif f.nivel == "nacional":
+            else:
                 assert f.tipo_eleccion == "legislativa", f
 
-    def test_solo_2025_esta_desdoblada(self):
-        calendario = construir_calendario()
         desdobladas = {(f.anio, f.nivel) for f in calendario if f.desdoblada}
         assert desdobladas == {(2025, "provincial"), (2025, "municipal")}
+        fila_2025_nacional = next(f for f in calendario if f.nivel == "nacional" and f.anio == 2025)
+        assert fila_2025_nacional.desdoblada is False
 
-    def test_2025_nacional_no_esta_desdoblada(self):
-        calendario = construir_calendario()
-        fila = next(f for f in calendario if f.nivel == "nacional" and f.anio == 2025)
-        assert fila.desdoblada is False
-
-    def test_anios_ejecutivos_tienen_tipo_eleccion_ejecutiva(self):
-        calendario = construir_calendario()
-        for f in calendario:
-            if f.nivel in ("municipal", "provincial") and f.anio in (2003, 2007, 2011, 2015, 2019, 2023):
-                assert f.tipo_eleccion == "ejecutiva", f
-            elif f.nivel in ("municipal", "provincial"):
-                assert f.tipo_eleccion == "legislativa", f
-
-    def test_fechas_no_vacias(self):
-        calendario = construir_calendario()
         assert all(f.fecha_eleccion for f in calendario)
 
 

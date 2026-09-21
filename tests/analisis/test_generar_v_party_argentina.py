@@ -21,18 +21,10 @@ def _df_crudo():
     return df
 
 
-def test_filtrar_argentina_excluye_otros_paises():
+def test_filtrar_argentina_excluye_paises_respeta_rango_y_ordena_columnas():
     filtrado = _filtrar_argentina(_df_crudo(), anio_min=2001, anio_max=2019)
     assert set(filtrado["v2paenname"]) == {"Radical Civic Union", "Front for Victory"}
-
-
-def test_filtrar_argentina_respeta_rango_de_anios():
-    filtrado = _filtrar_argentina(_df_crudo(), anio_min=2001, anio_max=2019)
     assert set(filtrado["year"]) == {2001.0, 2011.0}
-
-
-def test_filtrar_argentina_columnas_y_orden():
-    filtrado = _filtrar_argentina(_df_crudo(), anio_min=2001, anio_max=2019)
     assert list(filtrado.columns) == COLUMNAS
     assert list(filtrado["year"]) == [2001.0, 2011.0]
 

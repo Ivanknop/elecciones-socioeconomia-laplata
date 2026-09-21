@@ -65,6 +65,7 @@ class TestConstruirVotoPartidoDistrito:
         filas = construir_voto_partido_distrito(calendario, data_dir)
         assert len(filas) == 2
         assert {f.agrupacion for f in filas} == {"ALIANZA FRENTE PARA LA VICTORIA", "PARTIDO B"}
+        assert sum(f.share for f in filas) == pytest.approx(100.0)
 
     def test_sin_filas_si_no_hay_circuito_ni_tfi_cacheado(self, data_dir, tmp_path):
         calendario = [_fc(2001, "municipal")]
@@ -91,10 +92,6 @@ class TestConstruirVotoPartidoDistrito:
         assert {(f.agrupacion, f.votos) for f in filas} == {("PARTIDO A", 60), ("PARTIDO B", 30)}
         assert sum(f.share for f in filas) == pytest.approx(100.0)  # sobre agrupaciones, sin BLANCO/NULO
 
-    def test_share_suma_100(self, data_dir):
-        calendario = [_fc(2011, "municipal")]
-        filas = construir_voto_partido_distrito(calendario, data_dir)
-        assert sum(f.share for f in filas) == pytest.approx(100.0)
 
 
 class TestConstruirResultadoDistrito:
@@ -222,7 +219,7 @@ class TestConstruirResultadoDistrito:
         assert filas[0].gana_oficialismo is True
         assert filas[0].share_oficialismo == pytest.approx(131171 / (0 + 131171 + 14159) * 100)
 
-    def test_gana_oficialismo_viene_de_era_oficialismo_no_de_matchear_nombres(self, data_dir):
+    def test_gana_y_share_oficialismo_vienen_de_era_oficialismo_no_de_matchear_nombres(self, data_dir):
         calendario = [_fc(2011, "municipal")]
         voto_partido = construir_voto_partido_distrito(calendario, data_dir)
         oficialismo_por_nivel = {
@@ -231,13 +228,6 @@ class TestConstruirResultadoDistrito:
         oficialismos_curados = {(2011, "municipal"): {"agrupacion_ganadora": "ALIANZA FRENTE PARA LA VICTORIA", "era_oficialismo": "true"}}
         filas = construir_resultado_distrito(calendario, voto_partido, oficialismo_por_nivel, oficialismos_curados, data_dir)
         assert filas[0].gana_oficialismo is True  # a pesar de que "PARTIDO PROGRESO SOCIAL" no matchea ningún competidor
-
-    def test_share_oficialismo_es_el_del_ganador_cuando_gana(self, data_dir):
-        calendario = [_fc(2011, "municipal")]
-        voto_partido = construir_voto_partido_distrito(calendario, data_dir)
-        oficialismo_por_nivel = {(2011, "municipal"): {"agrupacion_oficialismo": "PARTIDO PROGRESO SOCIAL"}}
-        oficialismos_curados = {(2011, "municipal"): {"agrupacion_ganadora": "ALIANZA FRENTE PARA LA VICTORIA", "era_oficialismo": "true"}}
-        filas = construir_resultado_distrito(calendario, voto_partido, oficialismo_por_nivel, oficialismos_curados, data_dir)
         assert filas[0].share_oficialismo == pytest.approx(60.0)  # 60/(60+40)
 
     def test_share_oficialismo_none_si_pierde_y_no_matchea(self, data_dir):
@@ -348,22 +338,33 @@ class TestCalcularDistanciaOficialismoAlternativa:
 class TestOficialismoNacionalResueltoContraDatosReales:
     """Contra el `resultado_distrito.csv` ya generado (sin red): las 13
     elecciones nacionales (2001-2025) deben tener `gana_oficialismo`/
-    `share_oficialismo` resueltos -- salvo (2003, nacional), documentado
-    (la Alianza, titular entrante a esa elección, no tiene lista en esa
-    boleta -- colapsó en dic-2001 y no compitió). Cualquier otra falla de
-    matching se reporta acá, no se parchea en silencio agregando un alias
-    a ciegas."""
-
-    _SIN_OFICIALISMO_VIABLE_DOCUMENTADO = {2003}
+    `share_oficialismo` resueltos. (2003, nacional) estaba documentado
+    como hueco (la Alianza, titular entrante a esa elección, no tiene
+    lista en esa boleta -- colapsó en dic-2001 y no compitió), pero desde
+    que `data/agrupaciones/oficialismos.csv` trae una fila curada
+    `2003,nacional,PARTIDO JUSTICIALISTA,true,...`, `_entrada_oficialismo`
+    la resuelve directo (consulta ese CSV sin restricción de año, a
+    diferencia de `construir_calendario.construir_oficialismo_por_nivel`)
+    contra el ganador real (JUSTICIALISTA, 34.23%), sin necesitar el
+    matching por nombre que fallaba con la Alianza -- ver D31 (corrección)
+    en docs/decisiones_metodologicas.md. Cualquier otra falla de matching
+    se reporta acá, no se parchea en silencio agregando un alias a
+    ciegas."""
 
     def test_gana_y_share_oficialismo_resueltos_2001_2025(self):
         df = pd.read_csv(RESULTADO_DISTRITO_PATH)
         nac = df[df["nivel"] == "nacional"]
         assert sorted(nac["anio"]) == [2001, 2003, 2005, 2007, 2009, 2011, 2013, 2015, 2017, 2019, 2021, 2023, 2025]
 
-        sin_resolver = set(nac.loc[nac["share_oficialismo"].isna(), "anio"]) - self._SIN_OFICIALISMO_VIABLE_DOCUMENTADO
+        sin_resolver = set(nac.loc[nac["share_oficialismo"].isna(), "anio"])
         assert sin_resolver == set(), (
             f"nacional, años sin share_oficialismo resuelto: {sin_resolver} -- "
             "si no es por falta real de lista en la boleta, falta un alias en "
             "ALIAS_LISTA_OFICIALISMO, no se debe parchear a ciegas"
         )
+
+    def test_2003_gana_oficialismo_justicialista_34_23_pct(self):
+        df = pd.read_csv(RESULTADO_DISTRITO_PATH)
+        fila = df[(df["nivel"] == "nacional") & (df["anio"] == 2003)].iloc[0]
+        assert fila["gana_oficialismo"] == True  # noqa: E712 (bool leído de CSV, no comparar con `is`)
+        assert fila["share_oficialismo"] == pytest.approx(34.23, abs=0.01)

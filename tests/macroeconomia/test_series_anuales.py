@@ -34,14 +34,16 @@ class TestConstruirTablaAnual:
             "gasto_deuda_publica_pib": [(date(2011, 1, 1), 1.5)],
         }
 
-    def test_una_fila_por_anio_en_el_rango_pedido(self):
-        filas, _ = construir_tabla_anual(self._catalogo(), self._puntos(), anio_inicio=2011, anio_fin=2013)
+    def test_tabla_anual_estructura_y_cobertura_basica(self):
+        filas, reporte = construir_tabla_anual(self._catalogo(), self._puntos(), anio_inicio=2011, anio_fin=2013)
         assert [f["anio"] for f in filas] == [2011, 2012, 2013]
-
-    def test_dato_real_queda_en_su_propio_anio(self):
-        filas, _ = construir_tabla_anual(self._catalogo(), self._puntos(), anio_inicio=2011, anio_fin=2013)
         assert filas[0]["gasto_deuda_publica_nivel"] == 100.0
         assert filas[1]["gasto_deuda_publica_nivel"] == 200.0
+        assert list(filas[0].keys()) == ["anio", "gasto_deuda_publica_nivel", "gasto_deuda_publica_pib", "observaciones"]
+        assert reporte.celdas_totales == 3 * 2
+        assert reporte.celdas_con_dato_real == 3  # nivel: 2011, 2012; pib: 2011
+        assert reporte.celdas_vacias == 3
+        assert reporte.celdas_con_dato_real + reporte.celdas_vacias == reporte.celdas_totales
 
     def test_anio_sin_dato_queda_vacio_con_observacion(self):
         filas, _ = construir_tabla_anual(self._catalogo(), self._puntos(), anio_inicio=2011, anio_fin=2013)
@@ -58,14 +60,3 @@ class TestConstruirTablaAnual:
         filas, reporte = construir_tabla_anual(catalogo, {}, anio_inicio=2011, anio_fin=2013)
         assert reporte.conceptos_sin_ningun_dato == ("vacio",)
         assert all(f["vacio"] == "" for f in filas)
-
-    def test_reporte_de_cobertura_cuenta_celdas_reales_y_vacias(self):
-        filas, reporte = construir_tabla_anual(self._catalogo(), self._puntos(), anio_inicio=2011, anio_fin=2013)
-        assert reporte.celdas_totales == 3 * 2
-        assert reporte.celdas_con_dato_real == 3  # nivel: 2011, 2012; pib: 2011
-        assert reporte.celdas_vacias == 3
-        assert reporte.celdas_con_dato_real + reporte.celdas_vacias == reporte.celdas_totales
-
-    def test_orden_de_columnas_sigue_el_orden_del_catalogo(self):
-        filas, _ = construir_tabla_anual(self._catalogo(), self._puntos(), anio_inicio=2011, anio_fin=2011)
-        assert list(filas[0].keys()) == ["anio", "gasto_deuda_publica_nivel", "gasto_deuda_publica_pib", "observaciones"]

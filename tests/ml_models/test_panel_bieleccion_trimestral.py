@@ -105,13 +105,12 @@ class TestConstruirPanelBieleccionTrimestral:
         filas = construir_panel_bieleccion_trimestral(ventanas_sin_vl, *resto, nivel="municipal")
         assert filas == []
 
-    def test_solo_la_ventana_con_bloque_largo_produce_filas(self, escenario_basico):
+    def test_construir_panel_bieleccion_trimestral_estructura_basica(self, escenario_basico):
         filas = construir_panel_bieleccion_trimestral(*escenario_basico, nivel="municipal")
+
         ids = {f["id_transicion"] for f in filas}
         assert ids == {"municipal_2007_2011"}
 
-    def test_filas_frontera_usan_anio_t_menos_2_no_anio_t_menos_1(self, escenario_basico):
-        filas = construir_panel_bieleccion_trimestral(*escenario_basico, nivel="municipal")
         frontera_t_menos_2, frontera_t = filas[0], filas[-1]
         assert frontera_t_menos_2["tipo_fila"] == "eleccion_t_menos_2"
         assert frontera_t["tipo_fila"] == "eleccion_t"
@@ -124,8 +123,6 @@ class TestConstruirPanelBieleccionTrimestral:
             assert frontera["x"] is None
             assert frontera["n_meses"] is None
 
-    def test_filas_trimestre_cubren_los_48_meses_de_t_menos_2_a_t(self, escenario_basico):
-        filas = construir_panel_bieleccion_trimestral(*escenario_basico, nivel="municipal")
         trimestres = [f for f in filas if f["tipo_fila"] == "trimestre"]
         assert len(trimestres) == 16  # 48 meses (2007-01 a 2011-01) / 3
         assert trimestres[0]["fecha_inicio"] == "2007-02-01"
@@ -134,8 +131,6 @@ class TestConstruirPanelBieleccionTrimestral:
             assert t["gana_oficialismo"] is None
             assert t["x"] is not None
 
-    def test_orden_correlativo_0_a_n_mas_1(self, escenario_basico):
-        filas = construir_panel_bieleccion_trimestral(*escenario_basico, nivel="municipal")
         assert [f["orden"] for f in filas] == list(range(18))
 
     def test_nivel_distinto_no_produce_filas(self, escenario_basico):
@@ -144,15 +139,16 @@ class TestConstruirPanelBieleccionTrimestral:
 
 
 class TestGenerarCsvs:
-    def test_escribe_en_destino_dir_no_en_la_carpeta_padre(self, tmp_path):
+    def test_genera_un_csv_por_nivel_en_destino_dir(self, tmp_path):
+        import csv
+
         destino_dir = tmp_path / "t-2"
         destinos = generar_csvs(destino_dir=destino_dir)
+
         assert len(destinos) == 3
         for d in destinos:
             assert d.parent == destino_dir
 
-    def test_nombres_de_archivo_por_nivel(self, tmp_path):
-        destinos = generar_csvs(destino_dir=tmp_path / "t-2")
         nombres = {d.name for d in destinos}
         assert nombres == {
             "panel_bieleccion_trimestral_municipal.csv",
@@ -160,10 +156,6 @@ class TestGenerarCsvs:
             "panel_bieleccion_trimestral_nacional.csv",
         }
 
-    def test_ninguna_fila_referencia_una_ventana_sin_bloque_largo(self, tmp_path):
-        import csv
-
-        destinos = generar_csvs(destino_dir=tmp_path / "t-2")
         for destino in destinos:
             with destino.open(encoding="utf-8", newline="") as f:
                 filas = list(csv.DictReader(f))

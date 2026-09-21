@@ -116,17 +116,17 @@ class TestParticionarMeses:
         reconstruido = [m for grupo in grupos for m in grupo]
         assert reconstruido == meses
 
-    def test_20_meses_en_7_grupos_da_un_grupo_de_dos(self):
-        meses = [date(2020 + (m - 1) // 12, (m - 1) % 12 + 1, 1) for m in range(1, 21)]
-        grupos = _particionar_meses(meses, 7)
-        tamanos = sorted(len(g) for g in grupos)
-        assert tamanos == [2, 3, 3, 3, 3, 3, 3]
-
-    def test_28_meses_en_9_grupos_da_un_grupo_de_cuatro(self):
-        meses = [date(2020 + (m - 1) // 12, (m - 1) % 12 + 1, 1) for m in range(1, 29)]
-        grupos = _particionar_meses(meses, 9)
-        tamanos = sorted(len(g) for g in grupos)
-        assert tamanos == [3, 3, 3, 3, 3, 3, 3, 3, 4]
+    @pytest.mark.parametrize(
+        "n_meses,n_grupos,tamanos_esperados",
+        [
+            (20, 7, [2, 3, 3, 3, 3, 3, 3]),
+            (28, 9, [3, 3, 3, 3, 3, 3, 3, 3, 4]),
+        ],
+    )
+    def test_reparte_el_resto_en_grupos_de_a_uno(self, n_meses, n_grupos, tamanos_esperados):
+        meses = [date(2020 + (m - 1) // 12, (m - 1) % 12 + 1, 1) for m in range(1, n_meses + 1)]
+        grupos = _particionar_meses(meses, n_grupos)
+        assert sorted(len(g) for g in grupos) == tamanos_esperados
 
 
 class TestPromedioTrimestre:
@@ -201,8 +201,9 @@ def escenario_basico():
 
 
 class TestConstruirPanelTrimestral:
-    def test_filas_frontera_tienen_gana_oficialismo_no_nulo_y_columnas_economicas_nulas(self, escenario_basico):
+    def test_construir_panel_trimestral_estructura_basica(self, escenario_basico):
         filas = construir_panel_trimestral(*escenario_basico, nivel="municipal")
+
         frontera_t_menos_1, frontera_t = filas[0], filas[-1]
         assert frontera_t_menos_1["tipo_fila"] == "eleccion_t_menos_1"
         assert frontera_t["tipo_fila"] == "eleccion_t"
@@ -211,24 +212,10 @@ class TestConstruirPanelTrimestral:
             assert frontera["x"] is None
             assert frontera["ipc"] is None
             assert frontera["n_meses"] is None
-
-    def test_filas_frontera_traen_las_columnas_nuevas_de_elecciones_csv(self, escenario_basico):
-        filas = construir_panel_trimestral(*escenario_basico, nivel="municipal")
-        frontera_t_menos_1, frontera_t = filas[0], filas[-1]
         assert frontera_t_menos_1["n_fuerzas_viables"] == 2
         assert frontera_t_menos_1["votos_positivos"] == 90
         assert frontera_t["agrupacion_oficialismo"] == "OTRO"
 
-    def test_filas_frontera_sin_eleccion_correspondiente_quedan_en_none(self, escenario_basico):
-        ventanas, registro, series_mensuales, _ = escenario_basico
-        filas = construir_panel_trimestral(ventanas, registro, series_mensuales, {}, nivel="municipal")
-        frontera_t_menos_1, frontera_t = filas[0], filas[-1]
-        assert frontera_t_menos_1["gana_oficialismo"] is None
-        assert frontera_t_menos_1["n_fuerzas_viables"] is None
-        assert frontera_t["votos_positivos"] is None
-
-    def test_filas_trimestre_tienen_columnas_electorales_nulas(self, escenario_basico):
-        filas = construir_panel_trimestral(*escenario_basico, nivel="municipal")
         trimestres = [f for f in filas if f["tipo_fila"] == "trimestre"]
         assert len(trimestres) == 2  # 6 meses de ventana / 3
         for t in trimestres:
@@ -239,9 +226,15 @@ class TestConstruirPanelTrimestral:
             assert t["dispersion_economico_mu"] is None
             assert t["x"] is not None
 
-    def test_orden_correlativo_0_a_n_mas_1(self, escenario_basico):
-        filas = construir_panel_trimestral(*escenario_basico, nivel="municipal")
         assert [f["orden"] for f in filas] == [0, 1, 2, 3]
+
+    def test_filas_frontera_sin_eleccion_correspondiente_quedan_en_none(self, escenario_basico):
+        ventanas, registro, series_mensuales, _ = escenario_basico
+        filas = construir_panel_trimestral(ventanas, registro, series_mensuales, {}, nivel="municipal")
+        frontera_t_menos_1, frontera_t = filas[0], filas[-1]
+        assert frontera_t_menos_1["gana_oficialismo"] is None
+        assert frontera_t_menos_1["n_fuerzas_viables"] is None
+        assert frontera_t["votos_positivos"] is None
 
     def test_nivel_distinto_no_produce_filas(self, escenario_basico):
         filas = construir_panel_trimestral(*escenario_basico, nivel="provincial")
@@ -279,32 +272,29 @@ class TestIntegracionDatosReales:
 
 
 class TestGenerarCsvs:
-    def test_escribe_en_destino_dir_no_en_la_carpeta_padre(self, tmp_path):
+    def test_genera_un_csv_por_nivel_en_destino_dir(self, tmp_path):
+        import csv
+
         destino_dir = tmp_path / "panel"
         destinos = generar_csvs(destino_dir=destino_dir)
+
         assert len(destinos) == 3
         for d in destinos:
             assert d.parent == destino_dir
             assert not (tmp_path / d.name).exists()  # no quedó nada en la carpeta padre de destino_dir
 
-    def test_cada_archivo_contiene_solo_su_nivel(self, tmp_path):
-        import csv
-
-        destinos = generar_csvs(destino_dir=tmp_path / "panel")
-        for destino in destinos:
-            nivel_esperado = destino.stem.replace("panel_trimestral_", "")
-            with destino.open(encoding="utf-8", newline="") as f:
-                niveles = {r["nivel"] for r in csv.DictReader(f)}
-            assert niveles == {nivel_esperado}
-
-    def test_nombres_de_archivo_por_nivel(self, tmp_path):
-        destinos = generar_csvs(destino_dir=tmp_path / "panel")
         nombres = {d.name for d in destinos}
         assert nombres == {
             "panel_trimestral_municipal.csv",
             "panel_trimestral_provincial.csv",
             "panel_trimestral_nacional.csv",
         }
+
+        for destino in destinos:
+            nivel_esperado = destino.stem.replace("panel_trimestral_", "")
+            with destino.open(encoding="utf-8", newline="") as f:
+                niveles = {r["nivel"] for r in csv.DictReader(f)}
+            assert niveles == {nivel_esperado}
 
     def test_constante_panel_trimestral_dir_es_la_subcarpeta_t_1(self):
         from constantes import PANEL_DIR, PANEL_TRIMESTRAL_DIR, TFI_DATA_DIR

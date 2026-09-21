@@ -78,15 +78,21 @@ class TestConstruirTablaMensual:
             "diaria_x": [(date(2023, 1, 31), 350.0)],
         }
 
-    def test_una_fila_por_mes_en_el_rango_pedido(self):
-        filas, _ = construir_tabla_mensual(self._catalogo(), self._puntos(), anio_inicio=2023, anio_fin=2023)
+    def test_tabla_mensual_estructura_y_cobertura_basica(self):
+        filas, reporte = construir_tabla_mensual(self._catalogo(), self._puntos(), anio_inicio=2023, anio_fin=2023)
         assert [f["fecha"] for f in filas] == [date(2023, m, 1).isoformat() for m in range(1, 13)]
-
-    def test_dato_real_no_genera_observacion_de_repetido(self):
-        filas, _ = construir_tabla_mensual(self._catalogo(), self._puntos(), anio_inicio=2023, anio_fin=2023)
         enero = filas[0]
         assert enero["mensual_x"] == 1.0
         assert "repetido" not in enero["observaciones"]
+        assert list(filas[0].keys()) == ["fecha", "mensual_x", "trimestral_x", "diaria_x", "observaciones"]
+        assert reporte.celdas_totales == 12 * 3
+        # mensual_x: 2 reales (ene, feb), 10 vacías
+        # trimestral_x: 1 real (ene), 11 vacías
+        # diaria_x: 1 real (ene), 11 vacías
+        assert reporte.celdas_con_dato_real == 4
+        assert reporte.celdas_vacias == reporte.celdas_totales - 4
+        assert reporte.celdas_con_dato_real + reporte.celdas_vacias == reporte.celdas_totales
+        assert reporte.porcentaje_dato_real > 0
 
     def test_trimestral_queda_vacio_en_meses_2_y_3_del_trimestre(self):
         filas, _ = construir_tabla_mensual(self._catalogo(), self._puntos(), anio_inicio=2023, anio_fin=2023)
@@ -116,18 +122,3 @@ class TestConstruirTablaMensual:
         filas, reporte = construir_tabla_mensual(catalogo, {}, anio_inicio=2023, anio_fin=2023)
         assert reporte.conceptos_sin_ningun_dato == ("vacio",)
         assert all(f["vacio"] == "" for f in filas)
-
-    def test_reporte_de_cobertura_cuenta_celdas_reales_y_vacias(self):
-        filas, reporte = construir_tabla_mensual(self._catalogo(), self._puntos(), anio_inicio=2023, anio_fin=2023)
-        assert reporte.celdas_totales == 12 * 3
-        # mensual_x: 2 reales (ene, feb), 10 vacías
-        # trimestral_x: 1 real (ene), 11 vacías
-        # diaria_x: 1 real (ene), 11 vacías
-        assert reporte.celdas_con_dato_real == 4
-        assert reporte.celdas_vacias == reporte.celdas_totales - 4
-        assert reporte.celdas_con_dato_real + reporte.celdas_vacias == reporte.celdas_totales
-        assert reporte.porcentaje_dato_real > 0
-
-    def test_orden_de_columnas_sigue_el_orden_del_catalogo(self):
-        filas, _ = construir_tabla_mensual(self._catalogo(), self._puntos(), anio_inicio=2023, anio_fin=2023)
-        assert list(filas[0].keys()) == ["fecha", "mensual_x", "trimestral_x", "diaria_x", "observaciones"]

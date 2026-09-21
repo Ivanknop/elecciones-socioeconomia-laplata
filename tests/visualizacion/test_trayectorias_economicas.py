@@ -181,10 +181,12 @@ class TestIntegracionDatosReales:
     data/tfi_data/series_economicas_mensuales.csv (sin red), mismo
     criterio que el test equivalente de test_panel_ventanas.py."""
 
-    def test_36_ventanas_totales(self):
+    def test_estructura_basica_del_payload_real(self):
         payload = construir_payload(panel_dir=PANEL_TRIMESTRAL_DIR)
         total = sum(len(v) for v in payload["trayectorias"].values())
         assert total == 36
+        for var in payload["variables"]:
+            assert payload["unidades"].get(var), var
 
     def test_largo_de_serie_coincide_con_calcular_n_trimestres(self):
         payload = construir_payload(panel_dir=PANEL_TRIMESTRAL_DIR)
@@ -208,11 +210,6 @@ class TestIntegracionDatosReales:
 
         payload = construir_payload(panel_dir=PANEL_TRIMESTRAL_DIR)
         assert payload["variables"] == esperadas
-
-    def test_unidades_presentes_para_todas_las_variables(self):
-        payload = construir_payload(panel_dir=PANEL_TRIMESTRAL_DIR)
-        for var in payload["variables"]:
-            assert payload["unidades"].get(var), var
 
     def test_nacional_2023_2025_refleja_el_fix_de_titular(self):
         """Regresión directa del fix de _TITULAR_REAL_DIVERGE_DE_VOTO_LA_PLATA

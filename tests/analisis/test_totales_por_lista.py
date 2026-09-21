@@ -26,45 +26,27 @@ def _escribir_circuito(data_dir, anio, nivel, circuitos):
 
 
 class TestResultadoTotalConBlancoNulo:
-    def test_agrega_blanco_nulo_a_los_totales_por_agrupacion(self, tmp_path):
+    def test_agrega_blanco_nulo_con_nombre_y_porcentaje_correctos(self, tmp_path):
         _escribir_circuito(
             tmp_path, 2023, "intendente",
             {
                 "100": _circuito(
-                    {"1": ("PARTIDO A", "3", 60), "2": ("PARTIDO B", "5", 20)},
-                    electores=100, otros={"EN BLANCO": 5, "NULO": 3},
+                    {"1": ("PARTIDO A", "3", 60), "2": ("PARTIDO B", "5", 15)},
+                    electores=100, otros={"EN BLANCO": 20, "NULO": 5},
                 ),
             },
         )
 
         totales = resultado_total_con_blanco_nulo(tmp_path, 2023, "intendente")
-        por_id = {v.id_agrupacion: v.votos for v in totales}
-
-        assert por_id == {"1": 60, "2": 20, _ID_BLANCO_NULO: 8}
-
-    def test_blanco_nulo_tiene_el_nombre_esperado(self, tmp_path):
-        _escribir_circuito(
-            tmp_path, 2023, "intendente",
-            {"100": _circuito({"1": ("PARTIDO A", "3", 60)}, electores=100, otros={"EN BLANCO": 5, "NULO": 3})},
-        )
-
-        totales = resultado_total_con_blanco_nulo(tmp_path, 2023, "intendente")
+        por_votos = {v.id_agrupacion: v.votos for v in totales}
+        por_porcentaje = {v.id_agrupacion: v.votos_porcentaje for v in totales}
         blanco_nulo = next(v for v in totales if v.id_agrupacion == _ID_BLANCO_NULO)
 
+        assert por_votos == {"1": 60, "2": 15, _ID_BLANCO_NULO: 25}
         assert blanco_nulo.nombre_agrupacion == _NOMBRE_BLANCO_NULO
-
-    def test_porcentaje_se_recalcula_sobre_el_nuevo_total(self, tmp_path):
-        _escribir_circuito(
-            tmp_path, 2023, "intendente",
-            {"100": _circuito({"1": ("PARTIDO A", "3", 75)}, electores=100, otros={"EN BLANCO": 25, "NULO": 0})},
-        )
-
-        totales = resultado_total_con_blanco_nulo(tmp_path, 2023, "intendente")
-        por_id = {v.id_agrupacion: v.votos_porcentaje for v in totales}
-
-        # 75 + 25 = 100 total -> 75% / 25%, no el % sobre positivos únicamente (que daría 100%)
-        assert por_id["1"] == 75.0
-        assert por_id[_ID_BLANCO_NULO] == 25.0
+        # 60 + 15 + 25 = 100 total -> % sobre el total con blanco/nulo, no solo sobre positivos
+        assert por_porcentaje["1"] == 60.0
+        assert por_porcentaje[_ID_BLANCO_NULO] == 25.0
 
     def test_sin_blanco_ni_nulo_agrega_entrada_en_cero(self, tmp_path):
         _escribir_circuito(

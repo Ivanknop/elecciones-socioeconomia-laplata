@@ -42,40 +42,25 @@ def localidades():
 
 
 class TestAsignarLocalidadMasCercana:
-    def test_una_fila_por_circuito(self, circuitos, localidades):
+    def test_asignacion_completa_correcta(self, circuitos, localidades):
         asignacion = asignar_localidad_mas_cercana(circuitos, localidades)
         assert sorted(asignacion["circuito_id"]) == ["1", "2", "3"]
-
-    def test_circuito_que_contiene_el_punto_se_asigna_a_esa_localidad(self, circuitos, localidades):
-        asignacion = asignar_localidad_mas_cercana(circuitos, localidades).set_index("circuito_id")
-        assert asignacion.loc["1", "localidad"] == "A"
-        assert asignacion.loc["3", "localidad"] == "B"
-
-    def test_circuito_intermedio_va_a_la_localidad_geometricamente_mas_cercana(self, circuitos, localidades):
+        por_circuito = asignacion.set_index("circuito_id")
+        assert por_circuito.loc["1", "localidad"] == "A"
+        assert por_circuito.loc["3", "localidad"] == "B"
         # el circuito 2 no contiene ningún punto, pero su centroide está a
         # mitad de camino entre A y B -- debe quedar con alguna de las dos,
         # nunca con C (la lejana).
-        asignacion = asignar_localidad_mas_cercana(circuitos, localidades).set_index("circuito_id")
-        assert asignacion.loc["2", "localidad"] in {"A", "B"}
-
-    def test_distancia_metros_es_no_negativa(self, circuitos, localidades):
-        asignacion = asignar_localidad_mas_cercana(circuitos, localidades)
+        assert por_circuito.loc["2", "localidad"] in {"A", "B"}
         assert (asignacion["distancia_metros"] >= 0).all()
-
-    def test_localidad_lejana_sin_ningun_circuito_asignado(self, circuitos, localidades):
-        asignacion = asignar_localidad_mas_cercana(circuitos, localidades)
         assert "C" not in set(asignacion["localidad"])
 
 
 class TestGenerarReporte:
-    def test_localidades_sin_circuito_incluye_la_no_usada(self, circuitos, localidades):
+    def test_reporte_completo(self, circuitos, localidades):
         asignacion = asignar_localidad_mas_cercana(circuitos, localidades)
         reporte = generar_reporte(asignacion, {"A", "B", "C"})
         assert reporte.localidades_sin_circuito == ("C",)
         assert reporte.localidades_totales == 3
         assert reporte.total_circuitos == 3
-
-    def test_localidades_utilizadas_cuenta_nombres_distintos(self, circuitos, localidades):
-        asignacion = asignar_localidad_mas_cercana(circuitos, localidades)
-        reporte = generar_reporte(asignacion, {"A", "B", "C"})
         assert reporte.localidades_utilizadas == len(set(asignacion["localidad"]))

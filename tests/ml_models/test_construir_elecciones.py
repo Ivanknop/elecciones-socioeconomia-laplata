@@ -72,29 +72,23 @@ class TestBlancoNulo:
 
 
 class TestConstruirEleccion:
-    def test_incluye_agrupaciones_blanco_nulo_y_votantes_habilitados(self, data_dir):
+    def test_construir_eleccion_estructura_y_valores_basicos(self, data_dir):
         filas = construir_eleccion(data_dir, 2023, "intendente")
         nombres = {f.agrupacion for f in filas}
         assert nombres == {"PARTIDO A", "PARTIDO B", "BLANCO", "NULO", "VOTANTES_HABILITADOS"}
 
-    def test_votos_porcentaje_suma_100_sobre_agrupaciones_mas_blanco_nulo(self, data_dir):
-        filas = construir_eleccion(data_dir, 2023, "intendente")
         sin_votantes = [f for f in filas if f.agrupacion != "VOTANTES_HABILITADOS"]
         assert round(sum(f.votos_porcentaje for f in sin_votantes), 6) == 100.0
 
-    def test_votantes_habilitados_es_el_padron_con_100_por_ciento(self, data_dir):
-        filas = construir_eleccion(data_dir, 2023, "intendente")
         por_nombre = {f.agrupacion: f for f in filas}
         assert por_nombre["VOTANTES_HABILITADOS"].votos == 2000  # 1000 electores x 2 circuitos
         assert por_nombre["VOTANTES_HABILITADOS"].votos_porcentaje == 100.0
 
-    def test_votos_agregados_correctamente(self, data_dir):
-        filas = construir_eleccion(data_dir, 2023, "intendente")
-        por_nombre = {f.agrupacion: f.votos for f in filas}
-        assert por_nombre["PARTIDO A"] == 90
-        assert por_nombre["PARTIDO B"] == 30
-        assert por_nombre["BLANCO"] == 8
-        assert por_nombre["NULO"] == 3
+        por_nombre_votos = {f.agrupacion: f.votos for f in filas}
+        assert por_nombre_votos["PARTIDO A"] == 90
+        assert por_nombre_votos["PARTIDO B"] == 30
+        assert por_nombre_votos["BLANCO"] == 8
+        assert por_nombre_votos["NULO"] == 3
 
     def test_sin_votos_no_rompe_por_division_cero(self, tmp_path):
         _escribir_circuito(tmp_path, 2023, "intendente", {"100": _circuito({}, {})})

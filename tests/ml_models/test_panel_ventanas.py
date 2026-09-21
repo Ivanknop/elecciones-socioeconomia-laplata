@@ -114,27 +114,19 @@ def escenario_basico():
 
 
 class TestConstruirPanel:
-    def test_una_fila_por_ventana(self, escenario_basico):
-        filas = construir_panel(*escenario_basico)
-        assert len(filas) == 1
-        assert filas[0]["id_transicion"] == "municipal_2011_2013"
-
-    def test_delta_v_share_gana_oficialismo(self, escenario_basico):
-        filas = construir_panel(*escenario_basico)
-        assert filas[0]["delta_v"] == pytest.approx(40.0 - 60.0)
-        assert filas[0]["gana_oficialismo"] is False
-        assert filas[0]["share_oficialismo"] == 40.0
-
-    def test_nombres_de_columna_canonicos(self, escenario_basico):
+    def test_construir_panel_estructura_y_valores_basicos(self, escenario_basico):
         """gana_oficialismo (no gano_oficialismo); filiacion_politica se
         resuelve por join, acá se verifica que el nombre de columna del
         panel sea el canónico."""
         filas = construir_panel(*escenario_basico)
-        assert "gana_oficialismo" in filas[0]
+        assert len(filas) == 1
+        assert filas[0]["id_transicion"] == "municipal_2011_2013"
+
+        assert filas[0]["delta_v"] == pytest.approx(40.0 - 60.0)
+        assert filas[0]["gana_oficialismo"] is False
+        assert filas[0]["share_oficialismo"] == 40.0
         assert "gano_oficialismo" not in filas[0]
 
-    def test_columnas_de_features_de_la_variable_del_registro(self, escenario_basico):
-        filas = construir_panel(*escenario_basico)
         assert filas[0]["x_nivel_vc"] == pytest.approx(10.0)
         assert filas[0]["x_pendiente_vc"] == pytest.approx(0.0)
 

@@ -90,20 +90,14 @@ class TestTablaComparativa:
         _escribir_circuito(tmp_path, 2025, "nacional", {"1": _circuito({}, electores=10, otros={})})
         assert tabla_comparativa(tmp_path, 2025) is None
 
-    def test_incluye_las_tres_columnas_y_la_agrupacion(self, data_dir_2019_completo):
+    def test_tabla_completa_con_columnas_orden_y_diferencias(self, data_dir_2019_completo):
         tabla = tabla_comparativa(data_dir_2019_completo, 2019)
         assert tabla is not None
         assert "| Agrupación | Municipio | Provincia | Nación |" in tabla
         assert "PARTIDO A" in tabla
         assert "80.0%" in tabla and "60.0%" in tabla and "50.0%" in tabla
-
-    def test_blanco_nulo_va_siempre_al_final(self, data_dir_2019_completo):
-        tabla = tabla_comparativa(data_dir_2019_completo, 2019)
         lineas = [l for l in tabla.splitlines() if l.startswith("|") and "---" not in l and "Agrupación" not in l]
         assert lineas[-1].split("|")[1].strip() == "BLANCO + NULO"
-
-    def test_diferencias_en_puntos_porcentuales(self, data_dir_2019_completo):
-        tabla = tabla_comparativa(data_dir_2019_completo, 2019)
         # PARTIDO A: Municipio 50%, Provincia 60%, Nación 80% -> Mun-Prov=-10, Mun-Nac=-30, Prov-Nac=-20
         fila = next(l for l in tabla.splitlines() if l.startswith("| PARTIDO A"))
         assert "-10.0 pp" in fila and "-30.0 pp" in fila and "-20.0 pp" in fila
