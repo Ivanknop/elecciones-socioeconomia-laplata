@@ -231,7 +231,7 @@ Todas las variables son de grano **nacional** (sin apertura regional/local), 200
 #### `ripte` (`salario_real` en `data/tfi_data/registro_variables.csv`)
 - **Significado:** Remuneración Imponible Promedio de los Trabajadores Estables — serie salarial más larga y estable del catálogo.
 - **Qué mide:** salario nominal promedio de trabajadores registrados estables. En `registro_variables.csv`, `salario_real` es RIPTE **deflactado por IPC empalmado** (variable derivada distinta del RIPTE nominal).
-- **Cómo se calcula:** RIPTE crudo de datos.gob.ar (id `158.1_REPTE_0_0_5`), mensual; `salario_real` = RIPTE ÷ `ipc`, calculado en `src/ml_models/cargar_series_economicas.py` — hereda el hueco de `ipc` (2014-01 a 2016-03) como celdas vacías (no imputadas). Es un índice con dos bases de precios distintas según el tramo (abril 2008=100 hasta 2013, diciembre 2016=100 desde 2016) — no comparable linealmente entre tramos sin renormalizar.
+- **Cómo se calcula:** RIPTE crudo de datos.gob.ar (id `158.1_REPTE_0_0_5`), mensual; `salario_real` = RIPTE ÷ `ipc`, calculado en `src/ml_models/cargar_series_economicas.py`. Desde D33 (`docs/especificaciones/especificacion_empalme_ipc.md`), `ipc` es la serie FACPCE (Res. JG 539/18, continua 1993-2025, sin huecos) -- ya no hereda el hueco 2014-2016 que tenía la fuente anterior de `ipc` (datos.gob.ar, 3 vintages sin rebasar entre sí). Salvedad que sí sigue vigente: para 2001-2016, FACPCE empalma con IPIM (precios **mayoristas**, no de consumidor) -- `salario_real` de esos años queda deflactado por un proxy mayorista, no por inflación al consumidor real (ver nota de `ipc` en `registro_variables.csv` para el detalle).
 - **Origen:** `ripte` es Primaria; `salario_real` es Derivada.
 
 #### `indice_salarios_total`

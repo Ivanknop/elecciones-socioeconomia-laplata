@@ -8,6 +8,7 @@ import pytest
 from constantes import REGISTRO_VARIABLES_PATH
 from ml_models.cargar_series_economicas import (
     FilaRegistroVariable,
+    _cargar_facpce,
     _deflactar,
     _homogeneizar_mensual,
     cargar_registro,
@@ -92,6 +93,25 @@ class TestDeflactar:
         assert resultado[date(2023, 1, 1)] == pytest.approx(500.0)
         assert resultado[date(2023, 2, 1)] is None
         assert resultado[date(2023, 3, 1)] is None
+
+
+class TestCargarFacpce:
+    def test_ordena_y_omite_filas_sin_dato_real(self, tmp_path):
+        path = tmp_path / "indice-FACPCE.csv"
+        path.write_text(
+            "fecha,ipc_facpce\n"
+            "2016-12-01,100.0\n"
+            "1993-01-01,7.467067\n"
+            "2026-09-01,\n"  # mes todavía no publicado por INDEC al momento de la descarga
+            "2017-01-01,101.5859\n",
+            encoding="utf-8",
+        )
+        resultado = _cargar_facpce(path)
+        assert resultado == [
+            (date(1993, 1, 1), pytest.approx(7.467067)),
+            (date(2016, 12, 1), pytest.approx(100.0)),
+            (date(2017, 1, 1), pytest.approx(101.5859)),
+        ]
 
 
 class TestCargarRegistro:

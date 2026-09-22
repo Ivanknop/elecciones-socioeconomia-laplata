@@ -13,6 +13,7 @@ from pathlib import Path
 
 from constantes import (
     EPH_GRAN_LA_PLATA_PATH,
+    FACPCE_IPC_PATH,
     ICG_RAW_PATH,
     MACRO_CACHE_DATOS_GOB_DIR,
     REGISTRO_VARIABLES_PATH,
@@ -33,11 +34,15 @@ _DATOS_GOB_IDS: dict[str, list[str]] = {
     "salario_real": ["158.1_REPTE_0_0_5"],  # RIPTE nominal; se deflacta genéricamente más abajo
     "tc_oficial": ["175.1_DR_ESTANSE_0_0_20"],
     "reservas": ["92.1_RID_0_0_32"],
-    "ipc": ["178.1_NL_GENERAL_0_0_13", "97.2_ING_2008_M_17", "148.3_INIVELNAL_DICI_M_26"],
     "icc": ["380.3_ICC_NACIONNAL_0_T_12"],
     "resultado_fiscal": ["379.4_RESULTADO_006__36_27", "379.5_RESULTADO_014__36_68", "379.9_RESULTADO_017__31_73"],
     "emae": ["143.3_NO_PR_2004_A_21"],
 }
+# ipc: reemplazado por FACPCE (D33, docs/especificaciones/especificacion_empalme_ipc.md) --
+# los 3 vintages de datos.gob.ar de arriba (178.1_NL_GENERAL_0_0_13, 97.2_ING_2008_M_17,
+# 148.3_INIVELNAL_DICI_M_26) quedaban sin rebasar entre sí (hueco real 2014-01/2016-11, 35
+# meses, sin solapamiento -- el segmento posterior arranca en dic-2016=100 sin ningún factor
+# de reescala contra el segmento anterior).
 
 
 @dataclass(frozen=True)
@@ -117,6 +122,23 @@ def _cargar_eph(id_columna: str, path: Path | str = EPH_GRAN_LA_PLATA_PATH) -> l
         )
 
 
+def _cargar_facpce(path: Path | str = FACPCE_IPC_PATH) -> list[tuple[date, float]]:
+    """`ipc` -- FACPCE, Res. JG 539/18 ("IPC Nacional Empalme IPIM"), D33
+    (`docs/especificaciones/especificacion_empalme_ipc.md`). CSV ya
+    limpiado a mano a partir de `data/macroeconomia/indice-FACPCE.xlsx`
+    (descarga manual, sin URL estable conocida -- FACPCE publica un
+    archivo nuevo por mes, no un endpoint versionado). Filas sin dato
+    numérico real (el mes más reciente, todavía no publicado por INDEC al
+    momento de la descarga) se omiten, igual que cualquier otro hueco de
+    cobertura del registro."""
+    with Path(path).open(encoding="utf-8", newline="") as f:
+        return sorted(
+            (date.fromisoformat(r["fecha"]), float(r["ipc_facpce"]))
+            for r in csv.DictReader(f)
+            if r["ipc_facpce"] not in ("", None)
+        )
+
+
 def _cargar_datos_gob(ids: list[str], client: DatosGobClient, start_date: str = "2000-01-01") -> list[tuple[date, float]]:
     """Encadena una o más series de datos.gob.ar; si se solapan en una
     fecha, la última de la lista pisa a las anteriores (vintage más nuevo
@@ -133,6 +155,7 @@ def _cargar_datos_gob(ids: list[str], client: DatosGobClient, start_date: str = 
 
 _LOADERS = {
     "icg": lambda client: _cargar_icg(ANIO_INICIO),
+    "ipc": lambda client: _cargar_facpce(),
     **{v: (lambda client, v=v: _cargar_eph(v)) for v in _VARIABLES_EPH},
 }
 

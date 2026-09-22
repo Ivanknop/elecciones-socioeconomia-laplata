@@ -599,10 +599,15 @@ Claves genéricas a propósito (`anio_inicio_ventana`/`agrupacion_inicio`,
 no `anio_t_menos_1`/`agrupacion_t_menos_1`): el mismo template se reusa
 sin cambios para la pestaña bielección de más abajo, donde ese límite
 inicial es la elección `t-2`, no `t-1`.
-Huecos reales dentro de la serie (ej. el hueco de `ipc` 2014-01/2016-11,
-ver `cargar_series_economicas.py`) cortan la línea en tramos, nunca se
-interpolan; cada punto real es hoverable individualmente (valor exacto de
-ese trimestre).
+Huecos reales dentro de la serie (ej. los huecos de las 6 variables EPH en
+2007T3/2015T3/2015T4/2016T1, ver `cargar_series_economicas.py`) cortan la
+línea en tramos, nunca se interpolan; cada punto real es hoverable
+individualmente (valor exacto de ese trimestre). `ipc` tenía un hueco real
+2014-01/2016-11 (3 vintages de datos.gob.ar sin rebasar entre sí) que
+motivó este comportamiento originalmente -- ya no aplica desde D33
+(`docs/especificaciones/especificacion_empalme_ipc.md`, fuente reemplazada
+por FACPCE, continua 1993-2025), pero el corte de línea en huecos reales
+sigue siendo necesario para las demás variables.
 
 Eje X escalado al largo real de la ventana seleccionada (1..N, recalculado
 por render — sin sentido fijarlo a un máximo global si solo se muestra una

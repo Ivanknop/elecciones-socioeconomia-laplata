@@ -34,6 +34,7 @@ MACRO_CATALOGO_SERIES_ANUALES_PATH = "data/macroeconomia/catalogo_series_anuales
 MACRO_SERIES_MENSUAL_PATH = "data/macroeconomia/series_macro_2001_2025.csv"
 MACRO_SERIES_ANUAL_PATH = "data/macroeconomia/series_macro_anuales_2001_2025.csv"
 MACRO_CACHE_DATOS_GOB_DIR = "data/macroeconomia/_cache/datos_gob"
+FACPCE_IPC_PATH = "data/macroeconomia/indice-FACPCE.csv"
 
 EPH_CACHE_DIR = "data/socioeconomia/eph_cache"
 EPH_GRAN_LA_PLATA_PATH = "data/socioeconomia/eph_gran_la_plata.csv"
@@ -60,6 +61,7 @@ PANEL_BIELECCION_TRIMESTRAL_DIR = "data/tfi_data/panel/t-2"
 
 AUDITORIA_INTERNA_DIR = "docs/auditoria_interna"
 COBERTURA_CLASIFICACION_PATH = "docs/auditoria_interna/cobertura_clasificacion.md"
+AUDITORIA_EMPALME_VINTAGE_PATH = "docs/auditoria_interna/auditoria_empalme_vintage.md"
 COBERTURA_CLASIFICACION_LOG_PATH = "docs/auditoria_interna/cobertura_clasificacion_log.csv"
 
 

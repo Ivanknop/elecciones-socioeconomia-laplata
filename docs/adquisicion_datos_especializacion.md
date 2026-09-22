@@ -25,6 +25,16 @@ período de transición metodológica post-intervención INDEC, coincide con
 el final del período con reservas por intervención INDEC (D6, 2007-2015).
 Se declara como tramo faltante explícito, no se imputa.
 
+**Actualización (D33, `docs/especificaciones/especificacion_empalme_ipc.md`):**
+además del hueco, se encontró que estos 3 vintages quedaban sin rebasar
+entre sí (el tramo `148.3_INIVELNAL_DICI_M_26` arranca en dic-2016=100 sin
+ningún factor de reescala contra el tramo anterior) — esto ya contaminaba
+resultados reales, no solo el hueco. Este registro de adquisición queda
+como estaba (log histórico de la Fase 0.5), pero el encadenamiento que
+describe **ya no es la fuente activa** de `ipc` en
+`src/ml_models/cargar_series_economicas.py`: fue reemplazado por FACPCE
+(Res. JG 539/18), continua 1993-2025 sin huecos.
+
 ## 1.d — ICC (Índice de Confianza del Consumidor, UTDT): ÉXITO
 
 Misma API de series de datos.gob.ar. Serie `380.3_ICC_NACIONNAL_0_T_12`

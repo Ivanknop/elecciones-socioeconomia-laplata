@@ -129,6 +129,38 @@ existe): `tests/ml_models/test_construir_distancias_ideologicas.py::TestCasoReal
 (sin exclusión de 2003, nueva `test_2003_gana_oficialismo_justicialista_34_23_pct`).
 `pytest`: 624 passed (antes 622 -- los dos tests nuevos).
 
+## Corrección a D6 (2026-09-21) -- post-D33
+
+D6/su corrección (`docs/decisiones_metodologicas.md`, más abajo) documentaban el flag
+`periodo_intervenido` (2007-2015) como marca de "estos años usan el dato IPC de INDEC
+cuestionado sin corregir". **D33** (`docs/especificaciones/especificacion_empalme_ipc.md`)
+reemplazó la fuente de `ipc` (antes: 3 vintages de datos.gob.ar encadenados sin rebasar entre
+sí, con un hueco real 2014-01/2016-11 de 35 meses que ya contaminaba `ipc_acum_vl`/
+`pendiente_vl`/`volatilidad_vl` de `*_2015_2017` en `panel_ventanas.csv` y el nivel de
+`salario_real` de toda transición posterior a dic-2016) por **FACPCE, Res. JG 539/18** ("IPC
+Nacional Empalme IPIM", `data/macroeconomia/indice-FACPCE.csv`), continua 1993-2025 sin huecos.
+
+**Esto cambia lo que `periodo_intervenido` (2007-2015) significaría si se lo reintrodujera**:
+ya no marcaría "dato INDEC cuestionado, sin corregir" -- desde D33, esos años usan un proxy
+sustituto (FACPCE) en vez del dato INDEC original. Más relevante todavía: **el reemplazo por
+FACPCE no se limita a `periodo_intervenido`** -- según la metodología pública de la Res. JG
+539/18 (verificada, D33 §4.2), FACPCE empalma IPIM (precios **mayoristas**, no de consumidor)
+desde 1993-01 hasta 2016-12, con IPC real de INDEC recién desde 2017-01. Es decir: **2001-2016
+completo** (no solo 2007-2015) queda con `ipc`/`salario_real` construidos sobre un proxy
+mayorista -- incluidos 2001-2006, años que D6 nunca cuestionó (el INDEC de esos años no estaba
+intervenido) y para los que el repo tenía IPC oficial genuino y sin disputa (los vintages 1-2 de
+datos.gob.ar, ahora reemplazados igual, por decisión explícita de usar una sola fuente
+consistente de punta a punta en vez de parchear solo el tramo roto -- ver D33 §4.1: la razón
+entre ambas series no era un factor de escala constante en el tramo pre-2014, parchear hubiera
+dejado una costura metodológicamente inconsistente).
+
+**Resolución**: no se reintroduce `periodo_intervenido` como columna (sigue retirada, esta
+corrección es solo documental). Queda documentado, acá y en la `nota_metodologica` de `ipc` en
+`registro_variables.csv`, que **cualquier coeficiente de `ipc_*`/`salario_real_*` para
+elecciones 2001-2015 en H1 (voto económico) mide un proxy de precios mayoristas, no inflación
+al consumidor** -- interpretación que corre pareja a la elección explícita, no a un descuido de
+`periodo_intervenido`.
+
 ## Corrección a D17 (2026-09-13)
 
 D17 documentaba que `votos_nulos`/`ausentismo` quedan vacíos para

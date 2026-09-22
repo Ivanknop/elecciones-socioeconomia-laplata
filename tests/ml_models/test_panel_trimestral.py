@@ -245,7 +245,14 @@ class TestIntegracionDatosReales:
     """Contra los CSV ya committeados (sin red) -- mismo criterio que
     test_31_filas_distribucion... de test_panel_ventanas.py."""
 
-    def test_ipc_none_en_el_hueco_real_y_no_none_afuera(self):
+    def test_ipc_sin_hueco_desde_d33_pese_a_cruzar_2014_2016(self):
+        """Antes de D33 (`docs/especificaciones/especificacion_empalme_ipc.md`)
+        `ipc` tenía un hueco real 2014-01/2016-11 (3 vintages de
+        datos.gob.ar sin rebasar entre sí) -- esta ventana nacional
+        2013-2015/2015-2017 lo cruzaba entero, así que sus trimestres
+        intermedios daban `None`. D33 reemplazó la fuente por FACPCE (Res.
+        JG 539/18), continua en todo el rango -- ya no hay ningún trimestre
+        sin dato real acá, se verifica que siga así."""
         registro = cargar_registro(REGISTRO_VARIABLES_PATH)
         series_mensuales = _cargar_series_mensuales(SERIES_ECONOMICAS_MENSUALES_PATH, registro)
         elecciones_por_anio_nivel: dict = {}
@@ -256,12 +263,9 @@ class TestIntegracionDatosReales:
         filas = construir_panel_trimestral(ventanas, registro, series_mensuales, elecciones_por_anio_nivel, "nacional")
         trimestres = [f for f in filas if f["tipo_fila"] == "trimestre"]
 
-        dentro_del_hueco = [t for t in trimestres if "2014-03" <= t["fecha_inicio"] <= "2016-08"]
-        fuera_del_hueco = [t for t in trimestres if t["fecha_fin"] < "2013-01" or t["fecha_inicio"] > "2017-06"]
-        assert dentro_del_hueco  # el hueco real cae dentro de la ventana nacional 2013-2015/2015-2017
-        assert all(t["ipc"] is None for t in dentro_del_hueco)
-        assert fuera_del_hueco
-        assert all(t["ipc"] is not None for t in fuera_del_hueco)
+        cruza_el_ex_hueco = [t for t in trimestres if "2014-03" <= t["fecha_inicio"] <= "2016-08"]
+        assert cruza_el_ex_hueco  # la ventana nacional 2013-2015/2015-2017 sigue cruzando ese rango de fechas
+        assert all(t["ipc"] is not None for t in cruza_el_ex_hueco)
 
     def test_variables_exploratorias_sin_dato_no_generan_columna(self):
         registro = cargar_registro(REGISTRO_VARIABLES_PATH)
