@@ -330,11 +330,14 @@ def _indicadores_laborales_core(ind: pd.DataFrame) -> dict:
     }
 
 
-def agregados_gran_la_plata(individual: pd.DataFrame, hogar: pd.DataFrame) -> dict:
+def agregados_gran_la_plata(individual: pd.DataFrame, hogar: pd.DataFrame, aglomerado: int = AGLOMERADO_GRAN_LA_PLATA) -> dict:
     """Indicadores trimestrales para Gran La Plata, ponderados por
-    `PONDERA`/`PONDIH`/`PONDIIO`/`PONDII`; históricas (2011-2015) caen a `PONDERA`."""
-    ind = individual[individual["AGLOMERADO"] == AGLOMERADO_GRAN_LA_PLATA].copy()
-    hog = hogar[hogar["AGLOMERADO"] == AGLOMERADO_GRAN_LA_PLATA].copy()
+    `PONDERA`/`PONDIH`/`PONDIIO`/`PONDII`; históricas (2011-2015) caen a `PONDERA`.
+    `aglomerado` es parametrizable (default Gran La Plata) -- reutilizado, sin
+    duplicar la fórmula, para calcular los mismos indicadores sobre aglomerados
+    de referencia (ver `notebooks/ml/experimental_estimacion_eph_2007t3/`)."""
+    ind = individual[individual["AGLOMERADO"] == aglomerado].copy()
+    hog = hogar[hogar["AGLOMERADO"] == aglomerado].copy()
     hog = _resolver_v5_dividida(hog)
     ind = _numerico(ind, _COLUMNAS_NUMERICAS_INDIVIDUAL)
     columna_pondih = "PONDIH" if "PONDIH" in hog.columns else "PONDERA"
